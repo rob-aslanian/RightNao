@@ -1,0 +1,40 @@
+{
+  "/graphql/*": {
+    "target": "http://testing.lan",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/file/*": {
+    "target": "http://testing.lan",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/api/*": {
+    "target": "http://testing.lan",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/fs/*": {
+    "target": "http://testing.lan",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/statistics/*": {
+    "target": "http://testing.lan",
+    "secure": false,
+    "changeOrigin": true
+  },
+  "/ws/*": {
+    "target": "http://testing.lan",
+    "secure": false,
+    "changeOrigin": true,
+    "ws":true,
+    "logLevel":"debug"
+  },
+  "/graphqlws/*": {
+    "target": "http://testing.lan",
+    "secure": false,
+    "changeOrigin": true,
+    "ws":true
+  }
+}
