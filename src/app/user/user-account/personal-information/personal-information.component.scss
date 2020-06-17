@@ -1,0 +1,30 @@
+.is-invalid{
+    border: 1px solid red;
+}
+
+.error_message{
+    margin-left: 28%;
+
+}
+
+
+@media(max-width: 990px) {
+    .empty-col {
+        display: none;
+    }
+}
+
+.language_text{
+    position: absolute;
+    right: 60px;
+    top: 4px;
+}
+.box__image {
+  width: 24px;
+  height: 24px;
+
+}
+
+.edit.edit-language {
+    margin-top: 3px;
+}

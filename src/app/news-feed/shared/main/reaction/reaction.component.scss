@@ -1,0 +1,53 @@
+@import 'src/variables';
+
+.comment-popup {
+    padding: 5px 10px;
+    position: absolute;
+    border-radius: 1.2rem;
+    bottom: 25px;
+    z-index: 3;
+    background: $white;
+    height: 2.5rem;
+    // width: 15rem;
+    display: none;
+    box-shadow: 0 0 20px 0 rgba(0,0,0,.50);
+    transition: .3s all;
+    &:hover{
+      display: flex;
+    }
+  }
+
+  img{ 
+      height: 22px;
+      width: 26px;
+      padding-right: 5px;
+      transition: .2s all ease-in-out;
+      &:hover{
+        transform: scale(1.2);
+        animation: .3s scale ease-in-out;
+      }
+}
+
+.reaction-text{
+    text-transform: capitalize;
+    color: $dark-grey;
+    font-size: 14px;
+}
+.reaction-btn{
+  &:hover{
+    ~ .comment-popup{
+      display: flex;
+    }
+  }
+  img {
+    height: 22px;
+    width: 26px;
+  }
+}
+
+
+  @keyframes scale{
+    0%{ transform: scale(1.2); }
+    50%{ transform: scale(1.5); }
+    100%{ transform: scale(1.2);  }
+  }

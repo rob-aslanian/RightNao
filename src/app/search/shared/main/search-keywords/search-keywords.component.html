@@ -1,0 +1,34 @@
+<ng-container *ngIf="(keywords | async ) as keywords">
+    <div class="search-groups__content__filters__keyword-container" >
+        <ng-container *ngIf="keywords.length > 0">
+                <app-search-keyword *ngFor="let keyword of keywords" [keyword]="keyword" (result)="removeKeyword($event)"></app-search-keyword>
+    
+                <button class="btn backgroundless clear-filters" (click)="clearFillter()">Clear Filters</button>
+        </ng-container>
+        <div ngbDropdown #saveDrop="ngbDropdown">
+            <button class="btn backgroundless" ngbDropdownToggle [disabled]="keywords.length === 0">
+                <img src="assets/img/659.svg" >  Save this Filters
+            </button>
+            
+            <div ngbDropdownMenu class="popover-keyword">
+                <div class="dropDownStyle ">
+                    <input class="form-control" type="text" placeholder="Filter name" [(ngModel)]="filterName" 
+                            (keyup.enter)="saveFilter(); saveDrop.close()"/>
+                    <div>
+                        <button class="btn btn-primary" type="submit" (click)="saveFilter(); saveDrop.close()">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <!-- <div class="d-flex justify-content-end pt-2">
+        
+
+    </div> -->
+</ng-container>
+
+
+
+
+

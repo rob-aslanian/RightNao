@@ -1,0 +1,29 @@
+@import "src/variables";
+@import 'src/mixins.scss';
+.my-calendars {
+    padding: 15px 0;
+    border-bottom: 1px solid $background-light-blue;
+
+    &__title {
+        color: $white;
+        font-size: $large-text;
+        margin-bottom: 16px;
+    }
+
+    &__list {
+        &__item {
+            display: flex;
+            align-items: center;
+            color: $dark-grey;
+            font-size: $medium-text;
+            margin-bottom: 15px;
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+
+    .calendar-bullet {
+        @include calendar-colored-bullets(16px, 16px, 10px, 15px)
+    }
+}

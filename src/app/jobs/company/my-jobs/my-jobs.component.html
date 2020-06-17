@@ -1,0 +1,172 @@
+<main class="main-light-blue pt-4">
+
+    <div class="jobs">
+        <div class="row justify-content-between">
+            <!-- Content in the center -->
+            <div class="col" *ngIf="jobs">
+
+                <!-- My jobs start -->
+                <h5 class="jobs-section-title">Jobs <span>{{ jobs.length }}</span></h5>
+                <div class="center-content-jobs my-jobs">
+                    
+                    <div style="position: relative" (appClickOutside)="showSortPopup = $event;">
+                        <span  class="d-block text-right" (click)="showSortPopup = !showSortPopup">
+                            {{ selectedName === "" ? "Sort By" : selectedName }} &#9662;
+                        </span>
+                        <div class="options" [ngClass]="{'d-block': showSortPopup}">
+                            <button class="btn-more" *ngFor="let status of statuses" (click)="jobs = sortBy(status.name); ">
+                                {{ status.name }}
+                            </button>
+                        </div>
+                    </div>
+                    <div class="job-lines-wrapper" >
+                        
+                        <div class="job-line main">
+                            <div class="job-title">
+                                <h6>Job Title</h6>
+                            </div>
+                            <div class="line-border"></div>
+                            <div class="status">
+                                <h6>Status</h6>
+                            </div>
+                            <div class="line-border"></div>
+                            <div class="views">
+                                <h6>Views</h6>
+                            </div>
+                            <div class="line-border"></div>
+                            <div class="applicants">
+                                <h6>Applicants</h6>
+                            </div>
+                            <div class="line-border"></div>
+                            <div class="posted-date">
+                                <h6>Posted Date</h6>
+                            </div>
+                            <div class="line-border"></div>
+                            <div class="exp-date">
+                                <h6>Exp. Date</h6>
+                            </div>
+                            <div class="line-border"></div>
+                            <div class="budget">
+                                <h6>Budget</h6>
+                            </div>
+                            <div class="line-border"></div>
+                            <div class="created-by">
+                                <h6>Created by</h6>
+                            </div>
+                            <div class="line-border"></div>
+                            <div class="action">
+                                <h6>Action</h6>
+                            </div>
+                        </div>
+
+                        <div class="job-line" *ngFor="let job of jobs; let i = index;">
+                            <div class="job-title">
+                                <span>{{ job.job_details.title }}</span>
+                            </div>
+                            <div class="line-border"></div>
+                            <div class="status">
+
+                                <ng-container [ngSwitch]="job.status">
+                                    <span *ngSwitchCase="'Active'">
+                                        <img src="assets/img/213.svg" alt="active" >
+                                        {{ job.status }}
+                                    </span>
+                                    <span *ngSwitchCase="'Draft'">
+                                        <img src="assets/img/162.svg" alt="draft" >
+                                        {{ job.status }}
+                                    </span>
+                                    <span *ngSwitchCase="'Paused'">
+                                        <img src="assets/img/163.svg" alt="paused" >
+                                        {{ job.status }}
+                                    </span>
+                                    <span *ngSwitchCase="'Expired'">
+                                        <img src="assets/img/214.svg" alt="expired" >
+                                        {{ job.status }}
+                                    </span>
+ 
+                                    <span *ngSwitchDefault></span>
+                                </ng-container>
+
+                            </div>
+                            <div class="line-border"></div>
+                            <div class="views">
+                                <span>{{ job.number_of_views }}</span>
+                            </div>
+                            <div class="line-border"></div>
+                            <div class="applicants">
+                                <span>{{ job.number_of_applications }}</span>
+                            </div>
+                            <div class="line-border"></div>
+                            <div class="posted-date" *ngIf="job.job_details; let jobDetails;">
+                                <span>
+                                    {{  jobDetails.publish_day ? jobDetails.publish_day + '.' : '' }}  
+                                    {{  jobDetails.publish_month ? jobDetails.publish_month + '.' : '' }}
+                                    {{  jobDetails.publish_year || '' }}
+                                </span>
+                            </div>
+                            <div class="line-border"></div>
+                            <div class="exp-date"  *ngIf="job.job_details; let jobDetails;">
+                                <span>
+                                    {{  jobDetails.deadline_day ? jobDetails.deadline_day + '.' : '' }}  
+                                    {{  jobDetails.deadline_month ? jobDetails.deadline_month + '.' : '' }}
+                                    {{  jobDetails.deadline_year || '' }}
+                                </span>
+                            </div>
+                            <div class="line-border"></div>
+                            <div class="budget">
+                                <span>120$</span>
+                            </div>
+                            <div class="line-border"></div>
+                            <div class="created-by">
+                                <img  [src]=" user.avatar ? '/file/'+ user.avatar : 'assets/img/124.svg' "alt="user">
+                            </div>
+                            <div class="line-border"></div>
+                            <div class="action" style="position: relative;">
+                                <button class="btn btn-secondary" 
+                                        [ngbPopover]="actionButtons" 
+                                        #btnPopup="ngbPopover" >&#9662;</button>
+
+                                <ng-template #actionButtons>
+                                    <div class="options actions" [ngClass]="{'d-block': btnPopup.isOpen}" >
+                                        <ng-container [ngSwitch]="job.status">
+                                            <button class="btn backgroundless  p-2" (click)="pauseJob(job)" *ngSwitchCase="'Active'">
+                                                Pause
+                                            </button>
+                                            <button class="btn backgroundless  p-2" (click)="activateJob(job)"  *ngSwitchCase="'Paused'">
+                                                Activate
+                                            </button>
+                                            <button class="btn backgroundless  p-2" (click)="activateJob(job)" *ngSwitchCase="'Draft'">
+                                                Publish
+                                            </button>
+                                            <button class="btn backgroundless  p-2" *ngSwitchCase="'Expired'">
+                                                Renew
+                                            </button>
+                                        </ng-container>
+                                        <button class="btn backgroundless mt-2  p-2" *ngIf="job.status !== 'Expired' " [routerLink]="['/jobs/company/post-a-job' ,  job.id]" >
+                                            Edit
+                                        </button>
+                                        <button class="btn backgroundless mt-2  p-2" *ngIf="job.status === 'Expired'"  >Delete</button> 
+                                    </div>
+                                </ng-template>
+                                
+                              
+                            </div>
+                        </div>
+
+                        
+                    </div>
+                </div>
+                <button class="backgroundless big-screen d-block ml-auto" [routerLink]="['/jobs/company']" >Go to jobs</button>
+                <!-- My jobs end -->
+            </div>      
+            <!-- Content in the center end -->
+
+
+            <!-- Content on the right -->
+               <app-ads class="col-3" [isLeft]="true"></app-ads>
+            <!-- Content on the right end -->
+        </div>
+    </div>
+</main>
+
+

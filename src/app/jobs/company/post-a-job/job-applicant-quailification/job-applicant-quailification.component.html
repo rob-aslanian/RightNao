@@ -1,0 +1,62 @@
+<div class="post-a-job__content__qualifications">
+    <div class="post-a-job__section-heading">
+        <div>
+            <img src="assets/img/154.svg">
+        </div>
+        <h4>Applicant Qualifications</h4>
+    </div>
+
+    <div>
+        <div class="d-flex justify-content-between align-items-center">
+            <h2 class="page-section-text-blue ml-1">Required</h2>
+            <div class="d-flex align-items-center">
+                <!-- Add -->
+                <button class="btn blue-btn blue-btn--high pt-0 pb-0 ml-4" 
+                        (click)="open('required')" *ngIf="!forms['required']; else:editReq">
+                        Add Qualifications
+                </button>
+
+                <!-- Edit -->
+                <ng-template #editReq>
+                    <button class="backgroundless"  (click)="open('required')">
+                        <img src="assets/img/19.svg"/>
+                    </button>
+                </ng-template>
+                
+            </div>
+        </div>
+
+        <app-job-qualification-container [data]="forms['required']" ></app-job-qualification-container>
+     
+    </div>
+
+    <div class="post-a-job__content__compensation__salary">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2 class="page-section-text-blue ml-1">Preferred</h2>
+            <div class="d-flex align-items-center">
+                <!-- Add -->
+                <button class="btn blue-btn blue-btn--high pt-0 pb-0 ml-4" 
+                        (click)="open('preterred')" *ngIf="!forms['preterred']; else:editPret">
+                        Add Qualifications
+                </button>
+                
+                <!-- Edit -->
+                <ng-template #editPret>
+                    <button class="backgroundless"  (click)="open('preterred')">
+                        <img src="assets/img/19.svg"/>
+                    </button>
+                </ng-template>
+
+            </div>
+        </div>
+
+        <app-job-qualification-container [data]="forms['preterred']"></app-job-qualification-container>
+
+    </div>
+</div>  
+
+<app-modal [width]="721">
+  <app-job-qualification-modal *ngIf="form" (result)="getQualification($event)" 
+                               [type]="modalType" [form]="form">
+  </app-job-qualification-modal>
+</app-modal>

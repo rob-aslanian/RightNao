@@ -1,0 +1,174 @@
+@import "src/variables";
+
+
+.ads-wrapper{
+    position: sticky;
+    top: 80px;
+}
+
+// This content is displayed on many pages so it's better be global
+// Content on the right
+.right-row {
+    // width: 283px;
+    position: relative;
+    margin: 0px 7px 20px 7px;
+    padding-left: 8px;
+    padding-right: 8px;
+    display: flex;
+    //Boxes on the right
+    padding: 0;
+    margin-left: 0;
+    margin-right: 0;
+    .right-block {
+        width: 100%;
+        .col-md-3 {
+            min-width: unset !important;
+        }
+        .box {
+            margin-bottom:16px;
+            border-radius:5px;
+            min-height: 138px;
+            border: solid 1px #E6E6E6;
+        }
+        .jobs {
+            background: $dark-blue;
+            position: relative;
+            span {
+                background:$light-grey;
+                border-radius: 5px;
+                font-size:30px;
+                padding:0px 10px;
+                position: absolute;
+                top:10px;
+                left: 15px;
+            }
+            .jobs-text {
+                color:$dark-grey;
+                font-size: 12px;
+                position: absolute;
+                top:10px;
+                left: 80px;
+
+            }
+            .jobs-heading {
+                color: white;
+                font-size: 18px;
+                position: absolute;
+                top:60px;
+                left: 15px;
+            }
+            button {
+                position: absolute;
+                bottom:15px;
+                right:15px;
+                background:#FF9452;
+                font-size:14px;
+            }
+        }
+
+
+        //Ad-2 start
+        .ad-2 {
+            @extend .ad-1;
+            padding:10px;
+            h3 {
+                font-size:16px;
+                margin-bottom:17px;
+            }
+        }
+        .hirer {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom:24px;
+            div {
+                img {
+                    border-radius: 50%;
+                    height:50px;
+                    width:50px;
+                    margin-right:11px;
+                }
+                .ad-2-text {
+                    margin-right:11px;
+                    h4 {
+                        font-size:14px;
+                        margin:2px 0 2px 0;
+                    }
+                    p {
+                        font-size:12px;
+                        color:$dark-grey;
+                        margin-bottom:0;
+                    }
+                } 
+            }
+            button {
+                margin-top: auto;
+                margin-left:auto;
+                font-size:14px;
+                height: 24px;
+                line-height: 11px;
+            } 
+            @media(max-width: 1108px) {
+                flex-direction: column;
+                // button {
+                //     margin: 5px auto;
+                // }
+            }        
+        }
+        //Ad-2 End
+    }
+}
+.ad {        
+    position: absolute;
+    right:5px;
+    top:5px;
+    color: white;
+    font-size: 10px;
+    background:$dark-blue;
+    padding:0 5px;
+    border-radius:5px;
+    cursor: pointer;       
+}
+input:focus,textarea:focus,select:focus{
+    border-color: #ced4da!important;
+    box-shadow: inset 1px 1px 2px #ced4da, 0 0 0 transparent!important;
+}
+.custom-control-input:focus ~ .custom-control-label::before{
+    box-shadow: none!important;
+}
+
+//End of right content
+
+// Responsive
+
+@media(max-width: 991px) {
+   
+    .right-row {
+        max-width: 100vw;
+        padding: 0;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .right-block {
+        flex-wrap: wrap;
+        .col-md-3 {
+            min-width: unset !important;
+            padding: 0;
+        }
+        .hirer {
+            flex-direction: row;
+            align-items: flex-start;
+        }
+        div {
+            .box.ad-1 {
+                height: 188px;
+            }
+        }
+    }
+}
+
+@media(max-width: 768px) {
+    .right-block {
+        flex-wrap: wrap;
+       
+    }
+}

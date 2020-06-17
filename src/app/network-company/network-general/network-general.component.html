@@ -1,0 +1,79 @@
+
+<!-- Content on the left -->
+<div class="left-row-network col-3 px-0">
+    
+    <a [routerLink]="['/network-company/following']" class="network-left-box">
+        <img src="assets/img/94.svg" alt="profile">
+        <span> {{ (followingPeople | async)?.length + (followingCompanies | async)?.length }} </span>
+        <h3>Following</h3>
+    </a>
+
+    <a [routerLink]="['/network-company/followers']" class="network-left-box">
+        <img src="assets/img/95.svg" alt="profile">
+        <span> {{ (followersPeople | async)?.length + (followersCompanies | async)?.length }} </span>
+        <h3>Followers</h3>
+    </a>
+
+    <a [routerLink]="['/network-company/grow-network']" class="network-left-box">
+        <img src="assets/img/96.svg" alt="profile">
+        <br>
+        <h3>Grow Your Network</h3>
+    </a>
+
+    <a [routerLink]="['/network-company/manage']" class="network-left-box">
+        <img src="assets/img/97.svg" alt="profile">
+        <span> {{ (manageReceivedRequest | async)?.length }} </span>
+        <h3>Manage Connections</h3>
+    </a>
+</div>
+
+
+
+
+<!-- Content in the center -->
+<div class="center-content-network col mx-3">
+    <h1>Discover People You Know on HyperCube</h1>
+    <p>Synchronize your address book to find or invite people on HyperCube</p>
+
+    <h2>Synchronize Contacts From Networks</h2>
+    <button><img src="assets/img/87.svg" alt="social"></button>
+    <button><img src="assets/img/90.svg" alt="social"></button>
+    <button><img src="assets/img/88.svg" alt="social"></button>
+    <button><img src="assets/img/89.svg" alt="social"></button>
+    <button><img src="assets/img/skype-logo.png" alt="social"></button>
+
+
+    <h2>Synchronize Contacts From Emails</h2>
+    <button><img src="assets/img/gmail-logo.png" alt="mail"></button>
+    <button><img src="assets/img/yahoo-logo.png" alt="mail"></button>
+    <button><img src="assets/img/outlook-logo.png" alt="mail"></button>
+    <button><img src="assets/img/aol-logo.svg" alt="mail"></button>
+    <button><img src="assets/img/m-logo.png" alt="mail"></button>
+    <button><img src="assets/img/z-mail-logo.png" alt="mail"></button>
+    <button><img src="assets/img/mail-logo.png" alt="mail"></button>
+    <button><img src="assets/img/lock-logo.png" alt="mail"></button>
+
+
+    
+
+    <h2>Synchronize data from contacts file</h2>
+    <form action="">
+        <div class="form-group row my-0">
+            <input type="text" class="form-control col-7 mr-2" placeholder="Select files from your computer"> 
+            <input type="file" class="col button-main" id="upload" accept="file/csv, file/txt, file/vcf">
+            <label for="upload">Upload</label>
+            <small class="form-text text-muted col-12">File formats must be csv, txt, or vcf</small>
+        </div>
+    </form>
+
+
+    <h2>Invite your email contacts to connect on HyperCube</h2>
+    <form action="">
+        <div class="form-group row my-0">
+            <input type="text" class="form-control col-7 mr-2" placeholder="Enter email addresses separated by comma"> 
+            <input type="submit" class="col button-main" id="invite">
+            <label for="invite">Invite</label>
+        </div>
+    </form>
+</div>
+<!-- Content in the center end -->

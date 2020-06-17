@@ -1,0 +1,15 @@
+<ng-container *ngIf="data">
+    <div *ngFor="let advert of data" class="ads-box responsive-advert">
+        <span class="ad">Ad</span>
+        <a class="ads__content row"  (click)="click($event , advert?.id , advert?.campaing_clicks)" [href]="advert?.url | getUrl" target="_blank">
+            <div class="ads__content-left col-6" *ngIf="advert?.files[0] as file">
+                <img [src]="'/file/' + file?.address" [alt]="file?.name">
+            </div>
+            <div class="ads__content-right col" *ngIf="advert?.contents[0] as content">
+                 <h5>{{ content?.title }}</h5>
+                 <p>{{ content?.description }}</p>
+            </div>
+        </a>
+    </div>
+</ng-container>
+     

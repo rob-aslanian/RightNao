@@ -1,0 +1,243 @@
+
+<div class="center-content-jobs applicants-by-skill-content" *ngIf="applicants">
+    <div class="first-line" *ngIf="type !== 'all' ">
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" id="check-applicants" 
+                (change)="toggleAllUser($event)" [checked]="isUserChecked['_checked']" >
+            <label class="custom-control-label"
+                [ngClass]="{'uncheck-all': isUserChecked['_checked'] && checkedApplicants.length !== applicants.length}" 
+            for="check-applicants"></label>
+        </div>
+
+        <ng-container *ngIf="isUserChecked['_checked']">
+                <button class="marked" [ngbPopover]="usersAdd">
+                        <img src='assets/img/165.svg' alt="button" >
+                        Add label
+                </button>
+                <ng-template #usersAdd>
+                    <div class="options add-label-bottom d-block" style="left:0">
+                        <button *ngFor="let action of userActions; trackBy:trackByFn" (click)="setUserCategory(action.id ,  checkedApplicants)">
+                            <img [src]="action.icon" alt="label">
+                            {{ action.name }}
+                        </button>
+                    </div>
+                </ng-template>
+            
+                <!-- <button class="download big-screen" (click)="donwloadResume(checkedApplicants)">
+                    <img src="assets/img/71.svg" alt="download" >
+                    Download Resume
+                </button> -->
+            </ng-container>
+
+            <button class="sort ml-auto" [ngbPopover]="sortContent">
+                Sort By &#9662;
+            </button>
+            <ng-template #sortContent>
+                <div class="options sort-by d-block">
+                    <button (click)="sortBy('firstname' , 'user')">
+                        First name
+                    </button>
+                    <button (click)="sortBy('lastname' , 'user')">
+                        Last name
+                    </button>
+                    <button (click)="sortBy('date')" >
+                        Date
+                    </button>
+                    <button (click)="sortBy('experience' , 'career_interests')">
+                        Years of Experience
+                    </button>
+                </div>
+            </ng-template>
+            
+
+            <div class="form-group col-4 mr-0 pr-0">
+                <input type="text" class="form-control search">
+            </div>
+    </div>
+
+    <ng-container *ngFor="let applicant of applicants; let i = index; trackBy:trackByFn">
+        <a [name]="applicant.user.url"></a>
+        <div class="candidate"
+            *ngIf="type && type !== 'all' ? applicant.application.metadata.category == type : applicant" 
+            [id]="applicant.user.url"
+            [ngClass]="{'activated': isDetails[i] || isUserChecked[i], 'bordelss':  isLanding }"  
+            >
+            <span class="ad" *ngIf="applicant?.isAd">Ad</span>
+
+                <div *ngIf="type !== 'all' " class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" [id]="'canidate_' + i" 
+                        (change)="toggleCheckedUser(i , $event)" [checked]="isUserChecked[i]">
+                    <label class="custom-control-label" [for]="'canidate_' + i"></label>
+                </div>
+
+
+            <ng-container *ngIf="type !== 'all'">
+                <button class="marked click__disable" [ngbPopover]="userAdd">
+                    <img [src]="utils.setJobCategoryIcon(applicant.application.metadata.category)" alt="button" class="click__disable">
+                </button>
+                <ng-template #userAdd>
+                        <div class="options add-label-bottom d-block">
+                            <button *ngFor="let action of userActions; trackBy:trackByFn" (click)="setUserCategory(action.id ,  applicant , i)"
+                                    [ngClass]="{'cheked-label': action.id === applicant.application.metadata.category}">  
+                                <img [src]="action.icon" alt="label" class="click__disable">
+                                {{ action.name }}
+                            </button>
+                        </div>
+                </ng-template>
+            </ng-container>
+            <div class="visible" (click)="toggle(i, $event , applicant)">
+                
+
+                <div class="line-one"  *ngIf="applicant.user || applicant.profile; let user">
+                    <img [src]="user.avatar ? '/file/' + user.avatar : 'assets/img/124.svg' "alt="candidate">
+                    <div class="candidate-content">
+                        <h3 [routerLink]="['/user/profile' , user.url]"  style="cursor: pointer;">{{ user.firstname + ' ' +  user.lastname }} </h3>
+                        <span *ngIf="user.experiences[0]; let experience">
+                            <ng-container *ngIf="experience">
+                                {{ experience.title }} / {{ experience.company }}
+                            </ng-container>
+                        </span>
+                        <div class="skills" >
+                            <ng-container *ngIf="!showMoreSkills[i]; else:moreSkill">                                  
+                                <span *ngFor="let skill of user.skills | slice:0:skillsNumber; trackBy:trackByFn" >
+                                        {{ skill.name }} 
+                                </span>
+                            </ng-container>
+                            <ng-template #moreSkill>
+                                <span *ngFor="let skill of user.skills; trackBy:trackByFn">
+                                    {{ skill.name }} 
+                                </span>
+                            </ng-template>
+                        
+                            <button  class="skills-btn" *ngIf="user.skills.length > skillsNumber && !showMoreSkills[i]"
+                                    (click)="moreSkills(i)">
+                                +{{ user.skills.length -  skillsNumber }} more
+                            </button>
+                            <button class="skills-btn" *ngIf="showMoreSkills[i]"
+                                    (click)="moreSkills(i)">
+                                less
+                            </button>
+                        </div>
+                    </div>
+                  <ng-container *ngIf="isDetails[i]">
+                        <button class="btn backgroundless more__btn" *ngIf="type === 'all' && !applicant.career_interests?.is_invited"
+                                (click)="open('invite' , applicant)" style="right: 147px; top: 4px;">
+                            Invite
+                        </button>
+
+                        <button class="btn btn-primary more__btn" (click)="openChatBox(applicant.user)" style="right: 47px; top: 4px;" >
+                            Message
+                        </button>
+
+                        <button class="backgroundless more__btn"  [ngbPopover]="userMore" (click)="getLink(applicant.user)">
+                            <img src="assets/img/107.svg" alt="..." class="click__disable">
+                        </button>
+
+                        <ng-template #userMore>
+                            <div class="options d-block canidate__block"> 
+                            
+
+                                <button class="btn-more d-flex align-items-center" (click)="donwloadResume(applicant.user)">
+                                    <img src="assets/img/71.svg" alt="download" class="click__disable user-more-options-icon">
+                                    <span class="pl-2">Download Resume</span>
+                                </button>
+
+
+                                <button class="btn-more d-flex align-items-center" *ngIf="type === 'career'"
+                                        (click)="open('invite' , applicant)" >
+                                    <img src="assets/img/54.svg" alt="Report" class="mr-2" class="click__disable user-more-options-icon">
+                                    <span>Remove</span>
+                                </button>
+
+                                <div class="btn-more" >
+                                    <div class="d-flex align-items-center">
+                                        <img src="assets/img/84.svg" alt="Share" class="mr-2" class="click__disable user-more-options-icon">
+                                        <span class="pl-2" >Share</span>    
+                                    </div>
+                                    <div class="social__networks">
+                                        <button (click)="share(applicant.user)" class="p-0">
+                                            <img class="click__disable" src="assets/img/106.svg" alt="Share" class="mr-2">
+                                        </button>
+                                        <button shareButton="facebook" [url]="sharedLink" class="p-0">
+                                            <img class="click__disable" src="assets/img/87.svg" alt="Share" class="mr-2">
+                                        </button>
+                                        <button shareButton="linkedin" [url]="sharedLink" class="p-0">
+                                            <img class="click__disable" src="assets/img/90.svg" alt="Share" class="mr-2">
+                                        </button>
+                                        <button shareButton="vk" [url]="sharedLink" class="p-0">
+                                            <img class="click__disable" src="assets/img/vk.svg" alt="Share" class="mr-2">
+                                        </button>
+                                    </div>
+                                </div>
+                                <button class="btn-more d-flex align-items-center" (click)="open('report' , applicant)" >
+                                    <img src="assets/img/42.svg" alt="Report" class="mr-2" class="click__disable user-more-options-icon">
+                                    <span class="pl-2">Report / Block</span>
+                                </button>
+                            </div>
+                        </ng-template>
+                    </ng-container>
+                    </div>
+
+                <div class="line-two click__disable">
+                    <button class="backgroundless click__disable" *ngIf="category !== 'saved'" >
+                        <img class="click__disable" *ngIf="category !== 'skiped' " src="assets/img/152.svg" (click)="skipCandidate(applicant.user.id); applicants.splice(i , 1) " alt="btn" >
+                        <img class="click__disable" *ngIf="category && category === 'skiped' " src="assets/img/169.svg" (click)="unskipCandidate(applicant.user.id); applicants.splice(i , 1) " alt="btn" >
+                    </button>
+                    <button  class="backgroundless click__disable">
+
+                        <img style="height: 18px; width:18px;" class="click__disable" src="assets/img/44.svg"   *ngIf="!applicant.career_interests?.is_saved && category  !== 'saved'" 
+                            (click)="saveCandidate(applicant.user.id); applicant.career_interests.is_saved = true;" alt="favorite">
+
+                        <img style="height: 18px; width:18px;" class="click__disable" src="assets/img/99.svg"   *ngIf="applicant.career_interests?.is_saved || category === 'saved' "  
+                            (click)="unsaveCandidate(applicant.user.id , i); applicant.career_interests.is_saved = false;" alt="favorite">
+                    </button>
+                </div>
+
+            </div>
+             <!-- Show user detial -->
+            <div *ngIf="(isDetails[i] && !isLanding) then userDetails" ></div>
+            <ng-template #userDetails>
+                <app-user-details [data]="applicant" ></app-user-details>
+            </ng-template>
+            
+        </div>
+    </ng-container>
+
+    <div  *ngIf="resume">
+        <!---START SAVE TO PDF -->
+        <app-save-to-pdf [data]="resume"  class="d-none"> </app-save-to-pdf>
+        <!-- END SAVE TO PDF -->
+    </div>
+
+</div>
+
+
+
+
+
+<!-- Modals -->
+<app-modal (closeModal)="modalType = null">
+    <!-- Report -->
+    <ng-container *ngIf="modalType === 'report'">
+        <app-report-block-user type="user" 
+            [blockId]="selectedUser" *ngIf="selectedUser"
+            (closeModal)="modal.close()"> 
+        </app-report-block-user>
+    </ng-container>
+
+    <!-- Invite-->
+    <ng-container *ngIf="modalType === 'invite'">
+        <app-invite-to-apply [modalContent]="selectedUser" (closeModal)="close($event)"></app-invite-to-apply>
+    </ng-container>
+
+</app-modal>
+
+<ng-container *ngIf="isCloseModal">
+    <app-notification-alert type="invitation" [data]="selectedUser"></app-notification-alert>
+</ng-container>
+     
+
+
+
+
+

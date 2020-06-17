@@ -1,0 +1,22 @@
+<svg id="Group_5" data-name="Group 5" xmlns="http://www.w3.org/2000/svg" width="20" height="17.272" viewBox="0 0 20 17.272">
+  <g id="Rectangle_2" data-name="Rectangle 2" transform="translate(0 9)" fill="#fff" stroke="#264361" stroke-width="1">
+    <rect width="20" height="6" rx="1" stroke="none"/>
+    <rect x="0.5" y="0.5" width="19" height="5" rx="0.5" fill="none"/>
+  </g>
+  <g id="Rectangle_3" data-name="Rectangle 3" transform="translate(2)" fill="#fff" stroke="#264361" stroke-width="1">
+    <rect width="16" height="10" rx="1" stroke="none"/>
+    <rect x="0.5" y="0.5" width="15" height="9" rx="0.5" fill="none"/>
+  </g>
+  <path id="Path_437" data-name="Path 437" d="M1414,130.772v2.348" transform="translate(-1397 -116.347)" fill="none" stroke="#264361" stroke-linecap="round" stroke-width="1"/>
+  <path id="Path_438" data-name="Path 438" d="M1414,130.772v2.348" transform="translate(-1411 -116.347)" fill="none" stroke="#264361" stroke-linecap="round" stroke-width="1"/>
+  <g id="Group_4" data-name="Group 4" transform="translate(5 3)">
+    <g id="Rectangle_4" data-name="Rectangle 4" fill="#fff" stroke="#264361" stroke-width="1">
+      <rect width="4" height="7" rx="1" stroke="none"/>
+      <rect x="0.5" y="0.5" width="3" height="6" rx="0.5" fill="none"/>
+    </g>
+    <g id="Rectangle_5" data-name="Rectangle 5" transform="translate(6)" fill="#fff" stroke="#264361" stroke-width="1">
+      <rect width="4" height="7" rx="1" stroke="none"/>
+      <rect x="0.5" y="0.5" width="3" height="6" rx="0.5" fill="none"/>
+    </g>
+  </g>
+</svg>

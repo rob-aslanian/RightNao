@@ -1,0 +1,244 @@
+@import "src/variables";
+@import 'src/mixins.scss';
+
+
+.service-request-section-heading {
+    display: flex;
+    align-items: center;
+    margin-bottom: 24px;
+    // margin-left: 7px;
+    div {
+        height: 24px;
+        max-width: 40px;
+        text-align: center;
+        // margin-right: 16px;
+        position: relative;
+    }
+    h4 {
+        font-size: 1.125rem;
+        color: $dark-blue;
+        margin-bottom: 0;
+    }
+}
+
+.reviews-label {
+    color: $dark-grey;
+    font-size: 0.875rem;
+    line-height: 24px;
+}
+
+.service-request {
+    margin-top: 24px;
+    margin-bottom: 45px;
+    &__content {
+        @include white-card-template;
+        margin-top: 12px;
+
+        &__box {
+            margin-top: 2rem; 
+        }
+
+        &__request-details {
+            &__heading {
+                &__icon {
+                    width: 2.5rem;
+                    height: 1.5rem;
+                    img {
+                        width: 100%; 
+                        height: 100%;
+                    }
+                }
+            }
+            &__category-container {
+                margin: 32px 0;
+            }
+
+            &__category, &__subcategory {
+                flex: 0 0 50%;
+                max-width: 416px;
+            }
+
+            &__description-text {
+                textarea {
+                    height: 143px !important;
+                    font-size: 14px !important;
+                    color: $dark-grey;
+                }
+            }
+
+            &__type {
+                margin-top: 36px;
+                &-options {
+                    display: flex;
+                    flex-wrap: wrap;
+                    &--delivery-time {
+                        max-width: 416px;
+                        display: flex;
+                        flex-wrap: wrap;
+                    }
+                    &__item {
+                        margin-right: 50px;
+                        color: $dark-grey;
+                        font-size: 14px;
+                        line-height: 24px;
+                        white-space: nowrap;
+                        &--delivery-time {
+                            margin-right: 0;
+                        }
+                    }
+                    @media(max-width: 411px) {
+                        flex-direction: column;
+                    }
+                }
+            }
+
+            &__upload {
+                margin-top: 36px;
+                &-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                    &__img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                        border-radius: 5px;
+                    }
+                    &__box {
+                        max-width: 131px;
+                        max-height: 131px;
+                        width: 131px;
+                        height: 131px;
+                        border-radius: 5px;
+                        text-align: center;
+                        background: #DCE1E6;
+                        margin-right: 10px;
+                        margin-bottom: 10px;
+                        position: relative;
+
+                        &-file-details {
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: center;
+                            height: 100%;
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+
+        }
+
+        &__delivery-time {
+            margin-bottom: 65px;
+        }
+
+        &__budget {
+            margin-bottom: 65px;
+            &__amount {
+                margin-top: 24px;
+                &-input {
+                    max-width: 416px;
+
+                }
+            }
+        }
+
+        &__additional-details {
+            margin-bottom: 65px;
+            button {
+                display: flex;
+                align-items: center;
+                line-height: 19px;
+                span {
+                    color: $background-dark-cyan;
+                    &:first-child {
+                        font-size: 36px;
+                        margin-right: 15px;
+                    }
+                    &:last-child {
+                        font-size: 16px;
+                        margin-top: 1px;
+                    }
+                }
+
+                // &::before {
+                //     content: url("/../../assets/img/148.svg");
+
+                // }
+            }
+
+            &__expanded {
+                &-select {
+                    max-width: 416px;
+                }
+
+                &__type {
+                    margin-bottom: 40px;
+                }
+
+                &__block {
+                    margin-bottom: 40px;
+                }
+
+                &__selected-tool {
+                    margin: 14px 0;
+
+                    &-title {
+                        max-width: 416px !important;
+                        background: #DCE1E6;
+                        border-radius: 5px;
+                        padding: 8px 12px;
+                        margin-right: 10px
+                    }
+                }
+            }
+        }
+
+        &__location {
+            margin-bottom: 65px;
+        }
+
+        &__visibility {
+            &__invite {
+                margin-top: 36px;
+            }
+        }
+
+        &__publish {
+            margin-top: 32px;
+            display: flex;
+            justify-content: flex-end;
+        }
+    }
+
+    &__content-wrap.col-lg-9.col-md-12 {
+        padding-left: 0;
+        padding-right: 16px;
+    }
+    &__ads {
+        @include white-card-template;
+    }
+}
+
+
+/* Responsive */
+
+@media(max-width: 992px) {
+    .service-request {
+        display: flex;
+        flex-direction: column;
+
+        &__content-wrap.col-lg-9.col-md-12 {
+            padding: 0;
+        }
+
+        &__ads-wrap.col-lg-3.col-md-12 {
+            padding: 0;
+        }
+    }
+}
+
+.heading-margin {
+    margin-left: 7px;
+}

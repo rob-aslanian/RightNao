@@ -1,0 +1,22 @@
+<form [formGroup]="form" class="col-md-5">
+    <div class="form-group">
+        <p>Vehicle Weights</p>
+        <div class="custom-control custom-radio custom-control-inline col-3"  *ngFor="let item of carsWeight">
+            <input  type="radio" 
+                    class="custom-control-input" 
+                    [value]="item" 
+                    id="carsWeight-{{ item }}" 
+                    name="vehicleWeightUnit"
+                    formControlName="vehicleWeightUnit">
+            <label  for="carsWeight-{{ item }}" class="custom-control-label"> 
+                {{ item }}
+            </label>
+        </div>
+        <div>
+            <input type="number" 
+                    class="form-control" 
+                    placeholder="Enter weight"
+                    formControlName="vehicleWeight">
+        </div>
+    </div>
+</form>

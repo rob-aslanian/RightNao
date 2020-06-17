@@ -1,0 +1,72 @@
+ 
+.favorites.btn-more {
+    margin-top: 4px;
+    margin-left: -5px;
+    img {
+        height: 16px;
+        width: 16px;
+    }
+}
+
+.sort.btn-more {
+    margin-top: 3px;
+}
+
+.custom-control.custom-checkbox.box {
+    margin-top: -22px;
+    padding-left: 10px;
+}
+
+.position-relative.btn-more {
+    left: -15px;
+}
+
+// .network-box {
+//     min-height: 192px;
+// }
+
+.network-navigation-item {
+    height: 100%;
+}
+
+.network-box.btn-more.list {
+    min-height: 0;
+    height: auto;
+}
+.network-boxes-container .network-box {
+    min-height: 192px;
+}
+
+.options.network-option {
+    top: 190px;
+    right: 0;
+}
+
+:host ::ng-deep .options-for-more {
+    min-width: 194px !important; 
+    top: 3px !important;
+    left: 180px !important;
+}
+
+:host ::ng-deep .option {
+    &:first-child {
+       padding-top: unset !important;
+    }
+    &:last-child {
+        padding-bottom: unset !important;
+    }
+}
+
+
+:host ::ng-deep ngb-popover-window {
+    .popover-body {
+        display: none;
+    }
+}
+.loader
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    widsth: 100%;
+}

@@ -1,0 +1,342 @@
+<header class="calendar-header">
+    <div class="calendar-header__left">
+      <div class="calendar-header__left__logo-container">
+        <img src="../../../assets/img/hypercube_logo.svg" class="calendar-header__left__logo-container__logo"/>
+      </div>
+      <div class="calendar-header__left__title">Calendar</div>
+    </div>
+    <div  class="calendar-header__right">
+      <div class="calendar-header__right__search">
+          <form>
+              <input type="text" class="form-control search">
+          </form>
+      </div>
+      
+      <div class="calendar-header__right__profile">
+        <div class="calendar-header__right__profile__icon-container">
+          <div class="calendar-header__profile__help">
+            <img src="../../../assets/img/618.svg"/>
+          </div>
+        </div>
+        <div 
+          [class]="d.isOpen() ? 'calendar-header__right__profile__icon-container background-white' : 'calendar-header__right__profile__icon-container'" 
+          ngbDropdown 
+          placement="bottom-right" 
+          #d="ngbDropdown" 
+          autoClose="outside">
+          <div class="calendar-header__right__profile__notif" ngbDropdownToggle class=" without-arrow">
+            <!-- <img src="../../../assets/img/256.svg"/> -->
+            <span class="calendar-header__right__profile__notif__icon notif-active">
+              <span class="notif-count">2</span>
+            </span>
+          </div>
+          <div ngbDropdownMenu class="header-dropdown pl-0 py-3">
+            <div class="header-menu__content__item__heading header-menu__content__item__heading--notifs justify-content-between align-items-start">
+              <div class="d-flex align-items-center">
+                <h4 class="ml-3">Notifications</h4>
+              </div>
+              <div class="close-icon">
+                <img src="../../../assets/img/menu-icons/35.svg"/>
+              </div>
+            </div>
+            <app-calendar-notifications></app-calendar-notifications>
+          </div>
+        </div>
+  
+  
+  
+        <div (click)="menuIsOpen = !menuIsOpen" [class]="menuIsOpen ? 'calendar-header__right__profile__icon-container background-white' : 'calendar-header__right__profile__icon-container'">
+          <div class="calendar-header__profile__menu" >
+            <img src="../../../assets/img/617.svg"/>
+          </div>
+        </div>
+        <div class="header-dropdown" *ngIf="menuIsOpen">
+          <div class="header-menu__content">
+  
+  
+            <div class="header-menu__content__item">
+              <div class="header-menu__content__item__heading justify-content-between align-items-start">
+                <div class="d-flex align-items-center">
+                  <div>
+                    <img src="../../../assets/img/menu-icons/715.svg"/>
+                  </div>
+                  <h4>Network</h4>
+                </div>
+                <div class="close-icon">
+                  <img src="../../../assets/img/menu-icons/35.svg"/>
+                </div>
+              </div>
+  
+              <div class="header-menu__content__body">
+                <div class="col-6 p-0">
+                  <ul class="header-menu__content__body__list">
+                    <li class="header-menu__content__body__list__item">
+                      <a>My Network</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Groups</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Communities</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Companies</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-6 p-0">
+                  <ul class="header-menu__content__body__list">
+                    <li class="header-menu__content__body__list__item">
+                      <a>Organizations</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Hashtags</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Search</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+  
+            <div class="header-menu__content__item">
+              <div class="header-menu__content__item__heading">
+                <div>
+                  <img src="../../../assets/img/menu-icons/713.svg"/>
+                </div>
+                <h4>Interact</h4>
+              </div>
+  
+              <div class="header-menu__content__body">
+                <div class="col-6 p-0">
+                  <ul class="header-menu__content__body__list">
+                    <li class="header-menu__content__body__list__item">
+                      <a>Message</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Email</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Calendar</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Call (A/V)</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Conference Call</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-6 p-0">
+                  <ul class="header-menu__content__body__list">
+                    <li class="header-menu__content__body__list__item">
+                      <a>ToDo & Tasks</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Notes & Lists</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Board</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Files</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+  
+  
+            <div class="header-menu__content__item">
+              <div class="header-menu__content__item__heading">
+                <div>
+                  <img src="../../../assets/img/menu-icons/711.svg"/>
+                </div>
+                <h4>Work</h4>
+              </div>
+  
+              <div class="header-menu__content__body">
+                <div class="col-6 p-0">
+                  <ul class="header-menu__content__body__list">
+                    <li class="header-menu__content__body__list__item">
+                      <a>Jobs</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Hire</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Volunteer</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-6 p-0">
+                  <ul class="header-menu__content__body__list">
+                    <li class="header-menu__content__body__list__item">
+                      <a>Programs</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Exchange</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Internship</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+  
+  
+            <div class="header-menu__content__item">
+              <div class="header-menu__content__item__heading">
+                <div>
+                  <img src="../../../assets/img/menu-icons/709_1.svg"/>
+                </div>
+                <h4>Services</h4>
+              </div>
+  
+              <div class="header-menu__content__body">
+                <div class="col-6 p-0">
+                  <ul class="header-menu__content__body__list">
+                    <li class="header-menu__content__body__list__item">
+                      <a>v-Office</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Post a Service</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Service Requests</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Seller’s Dashboard</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-6 p-0">
+                  <ul class="header-menu__content__body__list">
+                    <li class="header-menu__content__body__list__item">
+                      <a>Services</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Post a Request</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Buyer’s Dashboard</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+  
+            <div class="header-menu__content__item">
+              <div class="header-menu__content__item__heading">
+                <div>
+                  <img src="../../../assets/img/menu-icons/708_1.svg"/>
+                </div>
+                <h4>Products</h4>
+              </div>
+  
+              <div class="header-menu__content__body">
+                <div class="col-6 p-0">
+                  <ul class="header-menu__content__body__list">
+                    <li class="header-menu__content__body__list__item">
+                      <a>v-Shop</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Portfolio</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Promote (Ad)</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Sales</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Search</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-6 p-0">
+                  <ul class="header-menu__content__body__list">
+                    <li class="header-menu__content__body__list__item">
+                      <a>Marketplace</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Used</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Bidding</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Auction</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Shipping</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+  
+  
+            <div class="header-menu__content__item">
+              <div class="header-menu__content__item__heading">
+                <div>
+                  <img src="../../../assets/img/menu-icons/707_1.svg"/>
+                </div>
+                <h4>Finance</h4>
+              </div>
+  
+              <div class="header-menu__content__body">
+                <div class="col-6 p-0">
+                  <ul class="header-menu__content__body__list">
+                    <li class="header-menu__content__body__list__item">
+                      <a>Wallet</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Banking</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Crowd Found</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Donations</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>SponSor</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-6 p-0">
+                  <ul class="header-menu__content__body__list">
+                    <li class="header-menu__content__body__list__item">
+                      <a>Micro Credits</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Borrow</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Insure</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Invert</a>
+                    </li>
+                    <li class="header-menu__content__body__list__item">
+                      <a>Equity</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+  
+          </div>
+        </div>
+  
+  
+        <div class="calendar-header__right__profile__img-container">
+          <img />
+        </div>
+      </div>
+    </div>
+  </header>
+  

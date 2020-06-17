@@ -1,0 +1,363 @@
+<div class="popup-content">
+  <div class="create-poll">
+    <div class="page-1" *ngIf="pageNumber === 1">
+      <div class="create-poll__field d-flex align-items-center mt-3">
+        <div class="create-poll__field__icon-wrap mr-2">
+          <img src="../../../../../assets/img/631.svg"/>
+        </div>
+        <div class="col p-0">
+          <input type="text" class="form-control calendar-input title-input" placeholder="Event title">
+        </div>
+      </div>
+
+      <div class="create-poll__field d-flex align-items-center">
+        <div class="create-poll__field__icon-wrap mr-2">
+          <img src="../../../../../assets/img/207.svg"/>
+        </div>
+        <div class="col p-0">
+          <input type="text" class="form-control calendar-input" placeholder="Add location">
+        </div>
+      </div>
+
+      <div class="create-poll__field row align-items-center">
+        <div class="col-3 d-flex align-items-center">
+          <div class="create-poll__field__icon-wrap mr-2">
+            <img src="../../../../../assets/img/621.svg"/>
+          </div>
+          <div class="col p-0">
+            <div ngbDropdown autoClose="outside" placement="bottom-left" class="add-event-dropdown">
+              <div ngbDropdownToggle class="add-event-dropdown__toggle">
+                <span class="add-event-dropdown__toggle__calendar-bullet bullet-purple"></span><span>Personal</span>
+              </div>
+              <div ngbDropdownMenu class="add-event-dropdown__menu add-event-dropdown__menu--full-width mt-2">
+                <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+                  <span class="add-event-dropdown__toggle__calendar-bullet bullet-purple"></span>
+                  <span class="ml-1">Personal</span>
+                </div>
+                <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+                  <span class="add-event-dropdown__toggle__calendar-bullet bullet-light-blue"></span>
+                  <span class="ml-1">Work</span>
+                </div>
+                <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+                  <span class="add-event-dropdown__toggle__calendar-bullet bullet-green"></span>
+                  <span class="ml-1">My Finances</span>
+                </div>
+                <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+                  <span class="add-event-dropdown__toggle__calendar-bullet bullet-yellow"></span>
+                  <span class="ml-1">Friends</span>
+                </div>
+                <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+                  <span class="add-event-dropdown__toggle__calendar-bullet bullet-pink"></span>
+                  <span class="ml-1">Birthdays</span>
+                </div>
+                <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+                  <span class="add-event-dropdown__toggle__calendar-bullet bullet-lavender"></span>
+                  <span class="ml-1">Holidays</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col"></div>
+        <div class="col-4"></div>
+      </div>
+
+      <div class="create-poll__field row align-items-center mb-4">
+        <div class="col d-flex align-items-start">
+          <div class="create-poll__field__icon-wrap mr-2">
+            <img src="../../../../../assets/img/630.svg"/>
+          </div>
+          <div class="col p-0">
+            <textarea class="form-control calendar-input" placeholder="Add a description"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-2" *ngIf="pageNumber === 2">
+      <h2 class="create-poll__title">What are the options?</h2>
+
+      <div class="create-poll__options">
+        <ngb-tabset title="poll-options">
+          <ngb-tab id="month">
+            <ng-template ngbTabTitle>
+              <div>Month</div>
+            </ng-template>
+            <ng-template ngbTabContent>
+              <div class="create-poll__options__month row">
+                  <div class="col-7">
+                    <div class="create-poll__options__month__calendar">
+                      <header class="create-poll__options__month__calendar__header">
+                          <div class="d-flex">
+                            <div class="d-flex align-items-center mr-4">
+                              <button class="btn calendar-outline">Today</button>
+                            </div>
+                            <div class="d-flex align-items-center mr-4">
+                              <button class="btn calendar-outline calendar-outline--left mr-2">
+                                <img src="../../../../../assets/img/147.svg">
+                              </button>
+                              <button class="btn calendar-outline calendar-outline--right">
+                                <img src="../../../../../assets/img/147.svg">
+                              </button>
+                            </div>
+                            <div class="d-flex align-items-center">
+                              <h2 class="create-poll__options__month__calendar__header__date">September 2019</h2>
+                            </div>
+                          </div>
+                      </header>
+                      <div>
+                        calendar content
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-5">
+                    <div class="create-poll__options__month__select-times">
+                      <div class="select-times-wrap" *ngIf="!addTimes">
+                        <button class="btn btn-outline-primary" (click)="addTimes = true">Add times</button>
+                      </div>
+
+                      <div class="create-poll__options__month__select-times__content" *ngIf="addTimes">
+  
+                        <div class="d-flex align-items-end">
+                          <div class="create-poll__switch">
+                            <div class="d-flex align-items-end">
+                              <span class="pr-2">Different times for each day</span>
+                              <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider round"></span>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="mt-4">
+                          <div class="mb-2">
+                            <h4>Sep 24</h4>
+                            <div class="row ">
+                              <div class="col">
+                                <select class="form-control calendar-input">
+                                  <option value="" disabled>Start time</option>
+                                  <option>1</option>
+                                </select>
+                              </div>
+                              <div class="col d-flex align-items-center pl-0">
+                                <select class="form-control calendar-input">
+                                  <option value="" disabled>End time</option>
+                                  <option>1</option>
+                                </select>
+                              </div>
+                              <div class="col-1 p-0 d-flex align-items-center">
+                                <span>✕</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="mb-2">
+                            <h4>Sep 25</h4>
+                            <div class="row ">
+                              <div class="col">
+                                <select class="form-control calendar-input">
+                                  <option value="" disabled>Start time</option>
+                                  <option>1</option>
+                                </select>
+                              </div>
+                              <div class="col d-flex align-items-center pl-0">
+                                <select class="form-control calendar-input">
+                                  <option value="" disabled>End time</option>
+                                  <option>1</option>
+                                </select>
+                              </div>
+                              <div class="col-1 p-0 d-flex align-items-center">
+                                <span>✕</span>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="mb-2">
+                            <h4>Sep 26</h4>
+                            <div class="row ">
+                              <div class="col">
+                                <select class="form-control calendar-input">
+                                  <option value="" disabled>Start time</option>
+                                  <option>1</option>
+                                </select>
+                              </div>
+                              <div class="col d-flex align-items-center pl-0">
+                                <select class="form-control calendar-input">
+                                  <option value="" disabled>End time</option>
+                                  <option>1</option>
+                                </select>
+                              </div>
+                              <div class="col-1 p-0 d-flex align-items-center">
+                                <span>✕</span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="create-poll__options__month__select-times__content__timezone">
+                          <span>Time zone</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab id="week">
+            <ng-template ngbTabTitle><div>Week</div></ng-template>
+            <ng-template ngbTabContent>
+              <div class="create-poll__options__week">
+                <div class="col-3 p-0">
+                  <div class="d-flex align-items-center">
+                    <span class="create-poll__options__week__text">Event Duration</span>
+                    <select class="form-control calendar-input">
+                      <option>30 minutes</option>
+                    </select>
+                  </div>
+
+                </div>
+                <header class="create-poll__options__month__calendar__header my-4 d-flex justify-content-between align-items-center">
+                    <div class="d-flex">
+                      <div class="d-flex align-items-center mr-4">
+                        <button class="btn calendar-outline">Today</button>
+                      </div>
+                      <div class="d-flex align-items-center mr-4">
+                        <button class="btn calendar-outline calendar-outline--left mr-2">
+                          <img src="../../../../../assets/img/147.svg">
+                        </button>
+                        <button class="btn calendar-outline calendar-outline--right">
+                          <img src="../../../../../assets/img/147.svg">
+                        </button>
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <h2 class="create-poll__options__month__calendar__header__date">September 2019</h2>
+                      </div>
+                    </div>
+                    <div>
+                      <span>Time zone</span>
+                    </div>
+                </header>
+                <div>calendar content</div>
+              </div>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab id="text">
+            <ng-template ngbTabTitle><div>Text</div></ng-template>
+            <ng-template ngbTabContent>
+              <div class="create-poll__options__text">
+                <div class="d-flex align-items-center mb-4">
+                  <div>
+                    <span class="create-poll__options__text__number">1</span>
+                  </div>
+                  <div class="col">
+                    <input type="text" class="form-control calendar-input" placeholder="Options"/>
+                  </div>
+                  <div>
+                    <span>✕</span>
+                  </div>
+                </div>
+
+                <div class="d-flex align-items-center mb-4">
+                  <div>
+                    <span class="create-poll__options__text__number">2</span>
+                  </div>
+                  <div class="col">
+                    <input type="text" class="form-control calendar-input" placeholder="Options"/>
+                  </div>
+                  <div>
+                    <span>✕</span>
+                  </div>
+                </div>
+                <div class="d-flex align-items-center mb-4">
+                  <div>
+                    <span class="create-poll__options__text__number">3</span>
+                  </div>
+                  <div class="col">
+                    <input type="text" class="form-control calendar-input" placeholder="Add options "/>
+                  </div>
+                  <div>
+                    <span>✕</span>
+                  </div>
+                </div>
+              </div>
+            </ng-template>
+          </ngb-tab>
+        </ngb-tabset>
+      </div>
+
+    </div>
+
+    <div class="page-3" *ngIf="pageNumber === 3">
+      <h2 class="create-poll__title">Finish the poll</h2>
+      <div class="mt-4 mb-5">
+        <div class="create-poll__field">
+          <h4 class="create-poll__field__title">Invite attendees</h4>
+          <input type="text" class="form-control calendar-input" placeholder="Enter name or email address "/>
+        </div>
+        <div class="create-poll__field">
+          <h4 class="create-poll__field__title">End date <span class="required-star">*</span></h4>
+          <div class="col-3 p-0">
+            <select class="form-control calendar-input">
+              <option>October 21, 2019</option>
+            </select>
+          </div>
+        </div>
+
+      </div>
+        <div>
+          <h2 class="create-poll__subtitle mb-4">Poll settings</h2>
+          <div class="row">
+            <div class="col-6">
+              <div class="custom-control custom-checkbox mb-3">
+                <input class="custom-control-input" id="yes-or-no" type="checkbox">
+                <label class="custom-control-label add-event-dropdown__menu__checkbox-label" for="yes-or-no">
+                  <h4 class="create-poll__label">Yes or No poll</h4>
+                  <span>Attendees can vote yes or no for every suggested option.</span>
+                </label>
+              </div>
+              <div class="custom-control custom-checkbox mb-3">
+                <input class="custom-control-input" id="votes-per-option" type="checkbox">
+                <label class="custom-control-label add-event-dropdown__menu__checkbox-label" for="votes-per-option">
+                  <h4 class="create-poll__label">Limit the number of votes per option</h4>
+                  <span>If the limit is reached the option is no longer available.</span>
+                </label>
+                <div class="col-6 p-0 mt-3">
+                  <div class="d-flex align-items-center">
+                    <input type="text" class="form-control calendar-input mr-2" placeholder="1"/>
+                    <span class="create-poll__options__week__text create-poll__options__week__text--grey">Vote per option</span>
+                  </div>
+                </div>
+              </div>
+              <div class="custom-control custom-checkbox mb-3">
+                <input class="custom-control-input" id="single-vote" type="checkbox">
+                <label class="custom-control-label add-event-dropdown__menu__checkbox-label" for="single-vote">
+                  <h4 class="create-poll__label">Limit attendees to a single vote</h4>
+                  <span>Attendees can only select one option.</span>
+                </label>
+              </div>
+            </div>
+            <div class="col-6">
+              <div class="custom-control custom-checkbox mb-3">
+                <input class="custom-control-input" id="add-option" type="checkbox">
+                <label class="custom-control-label add-event-dropdown__menu__checkbox-label" for="add-option">
+                  <h4 class="create-poll__label">Add option</h4>
+                  <span>Allow attendees to offer their option</span>
+                </label>
+              </div>
+              <div class="custom-control custom-checkbox mb-3">
+                <input class="custom-control-input" id="hidden-poll" type="checkbox">
+                <label class="custom-control-label add-event-dropdown__menu__checkbox-label" for="hidden-poll">
+                  <h4 class="create-poll__label">Hidden poll</h4>
+                  <span>Votes are confidential. Only you can see the results.</span>
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+      <div class="d-flex justify-content-end">
+        <button class="btn btn-primary"  *ngIf="pageNumber < 3" (click)="nextPage()">Next</button>
+        <button class="btn btn-primary"  *ngIf="pageNumber === 3">Finish</button>
+      </div>
+  </div>
+</div>

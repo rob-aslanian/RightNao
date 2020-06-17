@@ -1,0 +1,47 @@
+@import "src/_variables.scss";
+
+body {
+    background-color: $light-grey; 
+}
+
+.custom-container {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 1460px;
+}
+
+.col-xl-7 {   
+@media #{$break1} {
+    padding-right: 1rem !important;  
+}
+@media (max-width: 1200px) {
+    padding-right: 1rem !important; 
+  }
+}
+
+.right-box {
+display: flex;
+flex-direction: column;
+    
+@media #{$break1} {
+    padding-left: 1rem !important;  
+}
+@media (max-width: 1199px) {
+    padding-right: 1rem !important; 
+    padding-left: 1rem !important; 
+    
+  }
+
+
+  .active-connections {
+      height: 100%;
+  }
+
+
+}
+
+
+

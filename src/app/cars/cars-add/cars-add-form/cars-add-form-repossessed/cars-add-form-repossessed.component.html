@@ -1,0 +1,40 @@
+<form [formGroup]="form" class='basic-form'>
+
+    <div class="col-md-4">
+        <div class="custom-control custom-checkbox options-wrapper">
+            <input type="checkbox" 
+                    name="isRepossessed" 
+                    class="custom-control-input" 
+                    id="isRepossessed"
+                    formControlName="isRepossessed">
+            <label class="custom-control-label" for="isRepossessed">
+                Repossessed property
+            </label>
+        </div>
+    </div>
+    
+    <div class="row  ml-2 mr-2">
+        <div class="custom-control custom-radio custom-control-inline col-5 col-md-3">
+                <input  type="radio" 
+                        class="custom-control-input" 
+                        [value]="true" 
+                        id="isDealer-true" 
+                        name="isDealer"
+                        formControlName="isDealer">
+                <label  for="isDealer-true" class="custom-control-label" [ngClass]="{'custom-red':form.get('isDealer').invalid && isSubmitted}"> 
+                    I am a dealer
+                </label>
+        </div>
+        <div class="custom-control custom-radio custom-control-inline col-5 col-md-3">
+            <input  type="radio" 
+                    class="custom-control-input" 
+                    [value]="false" 
+                    id="isDealer-false" 
+                    name="isDealer"
+                    formControlName="isDealer">
+            <label  for="isDealer-false" class="custom-control-label" [ngClass]="{'custom-red':form.get('isDealer').invalid && isSubmitted}"> 
+                I am a private seller
+            </label>
+        </div>
+    </div>
+</form>

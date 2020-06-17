@@ -1,0 +1,53 @@
+
+
+
+
+<div class="feed-box mt-3 groups business-profile " *ngIf="!profile.isCompany; else:companyContent">
+    <ng-container *ngIf="(companies | async) as companies;">     
+      <h2>My Business Profiles</h2>
+      <div class="row mt-3" *ngFor="let company of companies">
+          <div class="col-3" [routerLink]="['/company/profile/' , company.url]"  >
+              <img class="rounder-image" [src]="company.avatar ? '/file/' + company.avatar : 
+                                                'assets/img/default-company.svg'" alt="group">
+          </div>
+          <div class="col">
+              <h2 *ngIf="company?.name">{{ company.name }}</h2>
+              <h5 *ngIf="(company?.network_info) as info">
+                Followers  {{ info.followers }}
+              </h5>
+              <!-- <h5>Reviews  3,894</h5> -->
+          </div>
+      </div>
+      <!-- NOT HAVE COMPANY -->
+      <div class="feed-box mt-3" *ngIf="companies.length === 0 ">
+          <div  style="margin:0px;" [routerLink]="['/registration/company_sign_in']"  >
+              <div class="d-flex align-items-end">
+                  <img src="assets/img/rv.svg" alt="contacts">
+                  <h2 class="ml-2">Register Business Profile</h2>
+              </div>
+              <div class="mt-1">
+                  <h5>Create a business profile and help
+                      people get to know you</h5>
+              </div>
+          </div>
+      </div>
+      <!-- NOT HAVE COMPANY -->
+    </ng-container>
+
+
+</div>
+
+<ng-template #companyContent>
+    <div class="feed-box mt-3" >
+        <div  style="margin:0px;" [routerLink]="['/jobs/company/post-a-job']"  >
+            <div class="d-flex align-items-end">
+                <img src="assets/img/450.svg" alt="contacts">
+                <h2 class="ml-2">Post a Job</h2>
+            </div>
+            <div class="mt-1">
+                <h5>Post your job offer and attract top 
+                    talent, start hiring now</h5>
+            </div>
+        </div>
+    </div>
+</ng-template>

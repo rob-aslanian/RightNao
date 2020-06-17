@@ -1,0 +1,48 @@
+<div class="search-groups__sidebar-section">
+    <app-search-column-header title="Working hours">
+        <div class="mt-2">
+            <div class="search-groups__sidebar-section__delivery-time-options search-groups__sidebar-section__wrap">
+                <form [formGroup]="form">
+                    <div class="
+                        custom-control 
+                        custom-checkbox 
+                        page-section-text-grey
+                        " >
+                        <input  type="checkbox" class="custom-control-input" id="is_always_open" 
+                                    name="is_always_open"  formControlName="is_always_open">
+                        <label class="custom-control-label" for="is_always_open">
+                            24 / 7
+                        </label>
+                    </div>
+
+                    <div class="mt-2">
+                        <ng-multiselect-dropdown
+                            placeholder="Days"
+                            [data]="dropdownListDays"
+                            name="week_days"
+                            [settings]="dropdownSettingsDays"
+                            formControlName="week_days"
+                        >
+                        </ng-multiselect-dropdown>
+                    </div>
+
+                    <div class="d-flex mt-2">
+                        <select class="form-control mr-2" id="location-street-address-4-right" formControlName="hour_from">
+                            <option value="" disabled>From</option>
+                            <option [value]="workingHour" *ngFor="let workingHour of workingHours">
+                                {{ workingHour }} pm
+                            </option>
+                        </select>
+                        <select class="form-control" id="location-street-address-4-right" formControlName="hour_to">
+                            <option value="" disabled>To</option>
+                            <option [value]="workingHour" *ngFor="let workingHour of workingHours">
+                                {{ workingHour }} am
+                            </option>
+                        </select>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </app-search-column-header>
+</div>

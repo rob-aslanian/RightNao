@@ -1,0 +1,30 @@
+<div class="company__jobs">
+        <!-- <div class="center-content-search">
+            <div class="d-flex my-0 search-bg">
+                <input type="search" (keyup)="searchJob()" name="keyword" class="form-control mr-2 search mb-0"
+                    placeholder="Search...">
+                <button type="button" class="filters btn btn-primary" [routerLink]="['/search/candidate']">
+                    Search
+                </button>
+            </div>
+        </div> -->
+    
+        <div class="company__jobs__body" *ngIf="(candidates | async) as candidates; else:loading">
+            <!-- Content -->
+            <ng-container *ngIf="candidates.length > 0 ">
+                <div class="d-flex align-items-center justify-content-between" >
+                    <span class="results">Showing {{ candidates.length }} results</span>
+                </div>
+                <div class="candidates-container mt-3">
+                    <app-user-box [companyID]="companyID" [applicants]="candidates" type="all"></app-user-box>
+                </div>
+            </ng-container>
+            <!-- Content -->
+    
+        </div>
+        <!-- Loader -->
+        <ng-template #loading>
+            <app-spinner class="mt-3 d-flex justify-content-center"></app-spinner>
+        </ng-template>
+        <!-- Loader -->
+    </div>

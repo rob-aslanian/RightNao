@@ -1,0 +1,12 @@
+<div class="landing-card mb-4" [routerLink]="[ads.link]"  >
+         <div class="landing-card-photo">
+            <picture>
+                <source media="(max-width: 768px)"   [srcset]="ads.mediumImage">
+                <img  [src]="ads.lgImage">
+            </picture> 
+         </div>
+         <div class="landing-card-body">
+                <p>{{  ads.title  }}</p>
+                <span>{{  ads.amount  }}</span>
+         </div> 
+</div>

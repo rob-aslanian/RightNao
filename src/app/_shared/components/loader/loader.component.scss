@@ -1,0 +1,138 @@
+@import 'src/variables';
+
+.loader-box{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 30;
+    background-image: linear-gradient( to bottom, $dark-blue, $blue );
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1200px;
+    transform: rotateX(0deg);
+    transform-style: preserve-3d;
+}
+.loader-cube-outer{
+    transform: translateZ(122px);
+    transform-style: preserve-3d;
+}
+.loader-cube{
+    width: 100px;
+    height: 100px;
+    position: relative;
+    transform-origin: center;
+    transform: rotateX(-36deg) rotateY(-45deg) rotateZ(0deg);
+    transform-style: preserve-3d;
+    animation: cubeRotation 7s ease-in infinite;
+    > div[class^="LC"]{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1;
+        transform-style: preserve-3d;
+    }
+}
+.LC-top{
+    transform-origin: top;
+    transform: rotateX(-90deg) translateY(-50px);
+}
+.LC-front{
+    transform: translateZ(50px);
+}
+.LC-right{
+    transform-origin: right;
+    transform: rotateY(-90deg) translateX(50px);
+}
+.LC-left{
+    transform-origin: left;
+    transform: rotateY(90deg) translateX(-50px);
+    .LC-B-angle{
+        transform: rotateZ(90deg);
+    }
+}
+.LC-bottom{
+    transform-origin: bottom;
+    transform: rotateX(90deg) translateY(50px);
+    .LC-B-angle{
+        transform: rotateZ(-90deg);
+    }
+}
+.LC-back{
+    transform: translateZ(-50px);
+    .LC-B-angle{
+        transform: rotateZ(180deg);
+    }
+}
+.LC-B-angle{
+    width: 90px;
+    height: 90px;
+    border-left: 1px solid cyan;
+    border-bottom: 1px solid cyan;
+    position: relative;
+    &::before{
+        content: "";
+        width: 20px;
+        height: calc( 100% - 20px );
+        border-top: 1px solid cyan;
+        border-right: 1px solid cyan;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    &::after{
+        content: "";
+        width: calc( 100% - 20px );
+        height: 20px;
+        border-top: 1px solid cyan;
+        border-right: 1px solid cyan;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+}
+.LC-S-angle{
+    width: calc( 100% - 25px );
+    height: calc( 100% - 25px );
+    position: absolute;
+    border-top: 1px solid cyan;
+    border-right: 1px solid cyan;
+    top: 0;
+    right: 0;
+    &::before{
+        content: "";
+        width: calc( 100% - 20px );
+        height: 20px;
+        border-bottom: 1px solid cyan;
+        border-left: 1px solid cyan;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    &::after{
+        content: "";
+        height: calc( 100% - 20px );
+        width: 20px;
+        border-bottom: 1px solid cyan;
+        border-left: 1px solid cyan;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+}
+@keyframes cubeRotation{
+    0%{
+        transform: rotateX(-36deg) rotateY(-45deg) rotateZ(0deg);
+    }
+    20%{
+        transform: rotateX(-36deg) rotateY(-45deg) rotateZ(0deg);
+    }
+    100%{
+        transform: rotateX(-396deg) rotateY(-405deg) rotateZ(0deg);
+    }
+}

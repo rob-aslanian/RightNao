@@ -1,0 +1,50 @@
+<div class="section-header d-flex">
+    <h1 class="mb-0"> {{ '641' | translate }}</h1>
+    <div class="col line">
+        <button class="add" (click)="open()" *ngIf="isAdmin" >
+            <img src="assets/img/50.svg" alt="add">
+        </button>
+    </div>
+</div>
+
+<!-- One line, if we want to add more founders, we should add new div with same classes (founder and d-flex) | slice: startPage:paginationLimitExp -->
+<div class="founder row" *ngIf="founders && founders.length > 0" >
+<div class="col-12 col-lg-6 mt-3 founder"  *ngFor="let founder of founders | slice:0:startPage">
+    <div class="section-content founder__content"  *ngIf="(!founder.approved && isAdmin) || founder.approved">
+        <p *ngIf="!founder.approved" class="not-approved">Pending...</p>
+        <div class="d-flex">
+            <img class="founder-image" [src]="founder.avatar ? '/file/' + founder.avatar : 'assets/img/124.svg' " alt appAppLazyImage>
+            <div class="d-flex flex-column justify-content-center founder-content-container__right">
+                <h3>{{founder.name}}</h3>
+                <p class="position-title">{{ founder.position_title }}</p>
+            </div>
+        </div>
+        <button class="edit founder-edit" *ngIf="isAdmin">
+            <img src="assets/img/19.svg" alt="edit" (click)="open(true , founder)" >
+        </button>
+    </div>
+</div>
+
+</div>
+<app-more-less [dataLength]="founders.length" (start)="startPage = $event;"></app-more-less>
+
+
+<ng-container *ngIf="!(founders && founders.length > 0) && isAdmin" >
+        <app-empty-profile [key]='"founders"' (openModal)='openEmptyModal()'></app-empty-profile>
+</ng-container>
+
+
+<ng-container *ngIf="newFounder">
+        <app-notification-alert [data]="newFounder" type="founder"></app-notification-alert>
+</ng-container>
+
+
+
+<app-modal (closeModal)="modalType = null">
+    <ng-container *ngIf="modalType === 'add'">
+        <app-founders-modal [companyID]="data.companyId" (result)="getFounder($event)"></app-founders-modal>
+    </ng-container>
+    <ng-container *ngIf="modalType === 'edit'">
+        <app-founders-modal [companyID]="data.companyId" (result)="getFounder($event)" [data]="editableContent"></app-founders-modal>
+    </ng-container>
+</app-modal>

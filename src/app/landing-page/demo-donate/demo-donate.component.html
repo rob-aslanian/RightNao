@@ -1,0 +1,184 @@
+
+   <div class="wrap main-light-blue" >
+        <!-- Left Logo -->
+        <div class="logo d-flex">
+            <img src="assets/img/hypercube_logo.svg" alt="logo">
+            <div class="menu">
+                <a href="">
+                    <img src="assets/img/menu_icon.svg" alt="menu">
+                </a>
+            </div>
+        </div>
+        <!-- End -->
+
+
+        <!-- Sidebar header -->
+        <div class="sidenav">
+            
+        </div>
+        <!-- End -->
+
+
+
+      
+            <div class="donation container">
+                <h1>{{ 'Landing_Page.row_321' | translate }}</h1>
+                <form>
+                    <div class="form-wrap">
+                        <h2>{{ 'Landing_Page.row_323' | translate }}</h2>
+                        <select name="" id="" class="form-control col-md-2">
+                            <option selected disabled hidden>Dollar</option>
+                        </select>
+                        <div class="amount-buttons">
+                            <a>10$</a>
+                            <a>50$</a>
+                            <a>100$</a>
+                            <a>250$</a>
+                            <a>500$</a>
+                            <a>Other</a>
+                        </div>
+                        <div class="form-group col-md-6 px-0">
+                            <label for="your-donation">{{ 'Landing_Page.row_327' | translate }} <span class="star">*</span></label>
+
+                            <input type="text" class="form-control" id="your-donation" [placeholder]="'Landing_Page.row_329' | translate">
+                        </div>
+                    </div>
+
+
+                    <div class="form-wrap">
+                        <h2>{{ 'Landing_Page.row_331' | translate }}</h2>
+
+                        <!-- In case of user start -->
+                        <div class="profile-information">
+                            <img src="assets/img/profile-picture.png" alt="profile">
+                            <div>
+                                <h3>Maria Domingez</h3>
+                                <span>Graphic Designer | Logo Designer</span>
+                                <span>Leo Burnett</span>
+                            </div>
+                        </div>
+                        <!-- In case of user end -->
+
+
+
+                        <div class="custom-control custom-checkbox mb-3">
+                            <input type="checkbox" class="custom-control-input" id="corporate-donation">
+                            <label class="custom-control-label" for="corporate-donation">{{ 'Landing_Page.row_333' | translate }}</label>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label for="first-name">{{ 'Landing_Page.row_335' | translate }} <span class="star">*</span></label>
+                                <input type="text" class="form-control" id="first-name" placeholder="Enter first name">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="last-name">{{ 'Landing_Page.row_337' | translate }} <span class="star">*</span></label>
+                                <input type="text" class="form-control" id="last-name" placeholder="Enter last name">
+                            </div>
+                        </div>
+                        <div class="custom-control custom-checkbox mb-3">
+                            <input type="checkbox" class="custom-control-input" id="remain-anonymous">
+                            <label class="custom-control-label" for="remain-anonymous">{{ 'Landing_Page.row_338' | translate }}</label>
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label for="email">{{ 'Landing_Page.row_340' | translate }} <span class="star">*</span></label>
+                                <input type="text" class="form-control" id="email" placeholder="Enter email address">
+                            </div>
+                            <div class="form-row pr-0 col-md-6 mb-3">
+                                <div class="col-md-5 mb-3 pr-0">
+                                    <label for="phone-number">{{ 'Landing_Page.row_347' | translate }}</label>
+                                    <select name="" id="phone-number" class="form-control">
+                                        <option selected hidden disabled>{{ 'Landing_Page.row_348' | translate }}</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-7 mb-3 pr-0">
+                                    <label>&nbsp;</label>
+                                    <input type="text" class="form-control" [placeholder]="'Landing_Page.row_350' | translate ">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-3 px-0">
+                            <label for="donation-comment">{{ 'Landing_Page.row_352' | translate }}</label>
+                            <textarea name="" id="donation-comment" class="form-control" cols="30" rows="4" [placeholder]="'Landing_Page.row_354' | translate "></textarea>
+                        </div>
+                    </div>
+
+
+                    <div class="form-wrap">
+                        <h2>{{ 'Landing_Page.row_356' | translate }}</h2>
+                        <div class="we-accept">
+                            <span>{{ 'Landing_Page.row_358' | translate }}</span>
+                            
+                            <div class="cards">
+                                <a><img src="assets/img/237.svg" alt="visa"></a>
+                                <a><img src="assets/img/238.svg" alt="master"></a>
+                            </div>
+                        </div>
+                        <div class="col-12 px-0 mb-3">
+                            <label for="name-on-card">{{ 'Landing_Page.row_360' | translate }} <span class="star">*</span></label>
+                            <input type="text" class="form-control" id="name-on-card" [placeholder]="'Landing_Page.row_362' | translate">
+                        </div>
+                        <div class="col-12 px-0 mb-3">
+                            <label for="credit-card-number"> {{ 'Landing_Page.row_363' | translate }}<span class="star">*</span></label>
+                            <input type="text" class="form-control" id="credit-card-number" [placeholder]=" 'Landing_Page.row_364' | translate ">
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-3 mb-3">
+                                <label for="month">{{ 'Landing_Page.row_366' | translate }} <span class="star">*</span></label>
+                                <select id="month" class="form-control">
+                                    <option hidden selected disabled>{{ 'Landing_Page.row_368' | translate }}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="validationCustom04">&nbsp;</label>
+                                <input type="text" class="form-control" id="validationCustom04" [placeholder]="'Landing_Page.row_370' | translate">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="cvv">{{ 'Landing_Page.row_372' | translate }} <span class="star">*</span></label>
+                                <input type="text" class="form-control" id="cvv" [placeholder]="'Landing_Page.row_374' | translate ">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-wrap">
+                        <h2>{{ 'Landing_Page.row_376' | translate }}</h2>
+                        <div class="col-12 px-0 mb-3">
+                            <label for="street-address">{{ 'Landing_Page.row_378' | translate }} <span class="star">*</span></label>
+                            <input type="text" class="form-control" id="street-address" [placeholder]="'Landing_Page.row_380' | translate">
+                        </div>
+                        <div class="col-12 px-0 mb-3">
+                            <label for="apartment">{{ 'Landing_Page.row_382' | translate }}<span class="star">*</span></label>
+                            <input type="text" class="form-control" id="apartment" [placeholder]="'Landing_Page.row_384' | translate ">
+                        </div>
+                        <div class="form-row">
+                            <div class="col-md-6 mb-3">
+                                <label for="billing-city">{{ 'Landing_Page.row_386' | translate }} <span class="star">*</span></label>
+                                <input type="text" class="form-control" id="billing-city" [placeholder]="'Landing_Page.row_388' | translate">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="state">{{ 'Landing_Page.row_394' | translate }} <span class="star">*</span></label>
+                                <input type="text" class="form-control" id="state" [placeholder]="'Landing_Page.row_396' | translate ">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="postal-code">{{ 'Landing_Page.row_390' | translate }} <span class="star">*</span></label>
+                                <input type="text" class="form-control" id="postal-code" [placeholder]="'Landing_Page.row_392' | translate ">
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="country-region">{{ 'Landing_Page.row_398' | translate }} <span class="star">*</span></label>
+                                <select id="country-region" class="form-control">
+                                    <option hidden selected disabled>{{ 'Landing_Page.row_400' | translate }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                        
+                    
+                    <button class="btn btn-primary d-block ml-auto mt-3" type="submit">{{ 'Landing_Page.row_402' | translate }}</button>
+                </form>
+            </div>
+        <!-- End -->
+
+
+        
+    </div>

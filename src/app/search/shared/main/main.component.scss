@@ -1,0 +1,49 @@
+.bg-unset{
+    background: unset;
+    border: unset;
+    padding: 0 15px;
+}
+
+.blocks {
+    background: url(src/assets/img/blocks.svg) no-repeat;
+    padding: 10px;
+    margin-left: 10px;
+}
+
+.blocks {
+    background:url(src/assets/img/blocks.svg) no-repeat;
+    padding:10px;
+    margin-left: 10px;
+    margin-top: 8px;
+    border: unset;
+}
+.list {
+    background:url(src/assets/img/semi-blocks.svg) no-repeat;
+    padding:10px;
+    margin-top: 8px;
+    border: unset;
+}
+
+.blocks-option {
+    top:30px;
+    right:0px;
+    button{
+        width: 100%;
+        padding-left: 61px;
+        margin: 0 !important;
+    }
+    button::before{
+        width: 27px;
+        height: 27px;
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        left: 20px;
+    }
+    button:first-child::before {
+        content: url(src/assets/img/blocks.svg);
+    }
+    button:last-child::before {
+        content: url(src/assets/img/semi-blocks.svg);
+    }
+  }

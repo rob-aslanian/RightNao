@@ -1,0 +1,37 @@
+@import 'src/variables';
+// ========================================================================
+// Start error styles
+// ========================================================================
+.error-content {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    min-height: calc(100vh - 316px);
+    align-items: center;
+}
+
+.comming__soon__header{
+    height: 58px;
+    background-color: #052337;
+}
+
+h1 {
+    font-size:50px;
+    color:$dark-blue;
+    text-transform: capitalize;
+}
+
+a {
+    color:$background-dark-cyan;
+}
+p {
+    margin-bottom: 0;
+    color:$dark-grey;
+    margin: 40px 0 60px;
+    font-size: 20px;
+}
+
+
+// ========================================================================
+// Finish error styles
+// ========================================================================

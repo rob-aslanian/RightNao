@@ -1,0 +1,113 @@
+
+    
+    
+    <div  *ngIf='editUser && type !== "jobs" ' class="popup-content popup-report" >
+
+        <form  [formGroup]='modalForm' (ngSubmit)="submitForm(modalForm)" autocomplete="off">
+            <div class="d-flex">
+                <div class="custom-control custom-radio custom-control-inline report-ptions-container">
+                    <input  type="radio" class="custom-control-input" value="block" id="block"  formControlName='blockUser' name="blockUser">  
+                    <label  for="block" class="custom-control-label"> 
+                       Block {{ getName }}
+                     </label>
+                </div>
+                <div class="custom-control custom-radio custom-control-inline report-ptions-container">
+                    <input type="radio" class="custom-control-input" value="report" id="report"  formControlName='blockUser' name="blockUser">  
+                    <label for="report" class="custom-control-label">Report this profile</label>
+                </div>    
+            </div>
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-primary">Next</button>
+            </div>
+        </form>   
+    </div>
+
+ 
+        <div class="modal-content" *ngIf='blockUserFun'>
+                <div class="popup-content popup-report-3">
+                    <h2>Are you sure you want to block {{ getName }}?</h2>
+                    <div class="to-block d-flex">
+                        <img class="rounded-circle" [src]="blockId.avatar == '' ? 'assets/img/124.svg' : '/file/'+blockId.avatar" alt="1">
+                        <div class="d-flex flex-column justify-content-center">
+                            <h2> {{ getName }}  </h2>
+                        </div>
+                    </div>
+                    <p>
+                        Blocking means you won't be able to access or contact each other on HyperCube. 
+                        <br>
+                        <ng-container *ngIf="type !== 'company'">You will no longer be connected or have endorsements and recommendations from this person.</ng-container>
+                    </p>
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-primary" (click)="blockUser()" >Block</button>
+                    </div>
+                </div>
+        </div>
+
+
+<div class="modal-content" *ngIf='reportUser'>
+    <div class="popup-content popup-report-2" *ngIf="reportReasonKey && reportReasons">
+        <form  [formGroup]='reportModal' autocomplete="off">
+            <div class="custom-control custom-radio" *ngFor="let reason of reportReasonKey; trackBy:trackByFn ">
+            
+            
+                <!-- Something else -->
+                <ng-container *ngIf="reason === 'other' || reason === 'report_somthing_else' ">
+                    <input type="radio" class="custom-control-input other" 
+                          [value]="reason" [id]="reason" formControlName='violate'  name="violate">  
+                </ng-container>
+
+                <input type="radio" class="custom-control-input"  [value]="reason" [id]="reason" formControlName='violate' name="violate">             
+              <label [for]="reason" class="custom-control-label">{{ reportReasons[reason] }}</label>
+            </div>
+
+
+    <div class="form-group"  class="textareas" *ngIf='reportModal.get("violate").value === "other"'>
+        <div class="d-flex justify-content-end">
+            <span> {{ reportModal.get('text').value.length  }} / 400</span>
+      </div>
+         <textarea   formControlName="text" class="form-control resize textareas"  maxlength="400" rows="5" placeholder="Content limited to 400 Characters" >
+            
+         </textarea>     
+     </div>
+    <div class="d-flex justify-content-end">
+    <button class="btn btn-primary"  (click)='reportingUser(reportModal)'>Report</button>
+   </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- Jobs -->
+<div class="modal-content" *ngIf="type === 'jobs'">
+    <div class="popup-content popup-report-2" *ngIf="reportReasonKey && reportReasons">
+        <form  [formGroup]='reportModal' autocomplete="off">
+            <div class="custom-control custom-radio" *ngFor="let reason of reportReasonKey; trackBy:trackByFn ">
+                <!-- Something else -->
+            <ng-container *ngIf="reason === 'other' || reason === 'report_somthing_else' ">
+                <input type="radio" class="custom-control-input other"  [value]="reason" [id]="reason" formControlName='violate' name="violate">  
+            </ng-container>
+
+                <input type="radio" class="custom-control-input" 
+                                    [value]="reason" [id]="reason" formControlName='violate' name="violate">  
+                <label [for]="reason" class="custom-control-label">{{ reportReasons[reason] }}</label>
+            </div>
+            <div class="form-group"       class="textareas">
+
+                <ng-container *ngIf='reportModal.get("violate").value === "other"' >
+                <div class="d-flex justify-content-end">
+                <span> {{ reportModal.get('text').value.length  }} / 400</span>
+                </div>
+                <textarea  formControlName="text" class="form-control resize textareas" 
+                            maxlength="400"
+                            rows="5" placeholder="Content limited to 400 Characters" >
+              </textarea>
+
+            </ng-container>
+            </div>
+            <button class="btn btn-primary"  (click)='reportingUser(reportModal)'>Report</button>
+        </form>
+    </div>
+</div>
+<!-- Jobs -->
+
+

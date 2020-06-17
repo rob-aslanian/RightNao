@@ -1,0 +1,57 @@
+<div class="photo-modal default-modal">
+
+  <form [formGroup]="awardForm" autocomplete="off">
+      <div class="form-group">
+          <label for="award-title">{{ '1416' | translate }} <span>*</span></label>
+          <input type="text" class="form-control" formControlName="title" 
+                [ngClass]="{ 'is-invalid': submited && aw.title.errors }" id="award-title" maxlength="128">
+
+            <!-- Errors -->
+            <ng-container *ngIf="submited && aw.title.errors">
+                <span class="error_message"  *ngFor="let error of utils.getErrorsKey(aw.title.errors)">
+                    {{ utils.$getErrors(error) }}
+                </span>
+            </ng-container>
+            <!-- Errors -->
+      </div>
+
+      <div class="form-group">
+          <label for="award-issuer"> {{ '801' | translate }} <span>*</span></label>
+          <input type="text" class="form-control" formControlName="issuer" 
+                 [ngClass]="{ 'is-invalid': submited && aw.issuer.errors}" id="award-issuer" maxlength="128">
+
+            <!-- Errors -->
+            <ng-container *ngIf="submited && aw.issuer.errors">
+                <span class="error_message"  *ngFor="let error of utils.getErrorsKey(aw.issuer.errors)">
+                    {{ utils.$getErrors(error) }}
+                </span>
+            </ng-container>
+            <!-- Errors -->
+      </div>
+
+      <div class="form-row form-group">     
+          <div class="col-sm-2 pr-1">
+              <label for="milestone-year"> {{ '1582' | translate }}<span>*</span></label>
+              <select class="form-control" formControlName="year" id="award-year"  [ngClass]="{ 'is-invalid': submited && aw.year.errors  }">
+                  <option value="" disabled selected> {{ '1582' | translate }} </option>
+                  <option *ngFor="let year of Years"  [value]="year" >
+                      {{year}}
+                  </option>
+              </select>
+          </div>
+        <span class="error_message"  *ngIf="submited && aw.year.errors">
+            {{ utils.$getErrors('required') }}
+        </span>
+      </div>
+
+      <div class="media_links">
+          <app-media-and-link [existFiles]="data" type="award" (result)="getFiles($event)" style="padding: 0px"></app-media-and-link>
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <button class="save-and-add backgroundless btn" (click)="remove()" *ngIf="data"> {{ '1185' | translate }} </button>
+        <button class="backgroundless ml-auto" (click)="submit(true)" *ngIf="!data"> {{ '1233' | translate }} </button>
+        <button class="btn btn-primary ml-2" (click)="submit()"> {{ '1231' | translate }} </button>
+      </div>
+  </form>
+</div>

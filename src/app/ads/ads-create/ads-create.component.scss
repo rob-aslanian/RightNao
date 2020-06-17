@@ -1,0 +1,34 @@
+@import 'src/variables';
+.ads-create-wrapper {
+    background-color: $white;
+    padding: 15px;
+    width: 100%;
+    &-title {
+        font-size: 20px;
+        
+    }
+    p {
+        margin-top: 20px;
+    }
+}
+
+.grey-wrapper {
+    background-color: $background-soft-blue;
+    padding: 15px;
+}
+.image-upload-wrapper {
+    height: 195px;
+    width: 315px;
+    background-color: $background-soft-blue;
+    padding: 15px;
+    p {
+        margin: 0;
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
+}
+.upload-image-box {
+    height: 138px;
+    width: 283px;
+    border-radius: 5px;
+}

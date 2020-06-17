@@ -1,0 +1,134 @@
+<form [formGroup]='qualifications' autocomplete="off" class="import-profile-wrap" style="padding-top: 0px">
+  <div class="col-md-12 pl-0 pr-0">
+
+      <div class="form-group form-small">
+          <div class="d-flex justify-content-between flex-wrap">
+            <label for="skill" class="pb-1 headings">Skills</label>
+              <button  type="button" 
+                      (click)='importSkills()' 
+                      class="backgroundless m-0" 
+                      [disabled]='toggleProfile?.skill'
+                      *ngIf='!isCompany && isOpen.open'
+                >insert from profile</button>
+          </div>
+    <ng-container *ngIf='!isOpen.isEdit'>
+          <input
+            type="text" 
+            id="skill" 
+            #skill
+            class="form-control" 
+            placeholder="Enter skill" 
+            [ngbTypeahead]="searchSkill"
+            [resultFormatter]="skillFormatter" 
+            [inputFormatter]="skillFormatter"
+            (selectItem)='selectSkill($event); skill.value = ""'
+            />
+      </ng-container>
+          </div>
+
+        <ng-container  *ngFor='let skill of qual["skills"]["value"]; let i = index; trackBy:trackByFn'>
+            <span class="keywords mb-2"> {{ skill.skill }} <a (click)='removeSkill(i)'>✕</a></span>
+        </ng-container>
+
+ </div>
+
+
+  <div class="col-md-12 pl-0 pr-0">
+    <div class="form-small">
+      <div class="d-flex justify-content-between flex-wrap">
+
+      <label for="tools" class="pb-1 headings">Tools & Technologies</label>
+          <button 
+                type="button" 
+                (click)='importTools()'  
+                class="backgroundless m-0" 
+                [disabled]='toggleProfile?.tool' 
+                *ngIf='!isCompany &&  isOpen.open'
+               >insert from profile</button>
+        </div>
+        <ng-container *ngIf='!isOpen.isEdit'>
+        <input 
+            type="text" 
+            id="tools" 
+            #tools
+            class="form-control"
+            placeholder="Enter Tools & Technologies"
+            (keyup.enter)='selectTools($event.target.value); tools.value =""'
+        />
+        </ng-container>
+  </div>
+ 
+    <ng-container  *ngFor='let tool of  qual["toolTechnology"]["controls"]; let i = index; trackBy:trackByFn ' formArrayName='toolTechnology' >
+        <div [formGroupName]='i'>
+          <div class="row mt-3">
+            <div class="col-8">
+              <div class="choose-input  d-flex align-items-center">
+                <span class="ml-3" > {{ tool.value.tool_Technology }}</span>
+              </div>
+          </div>
+          <div class="col-4 pl-0 pr-0 d-flex align-items-center"  >
+              <select class="form-control" 
+              (change)='selectToolRank($event.target.value, i )' 
+              formControlName='rank'
+              [ngClass]='{"is-invalid": 
+              ( qual.toolTechnology.at(i).get("rank").errors && qual.toolTechnology.at(i).get("rank").touched ) || (  qual.toolTechnology.at(i).get("rank").errors && isSubmited ) }'>
+                      <option value=""  disabled > Select level  </option> 
+                      <option *ngFor='let tool of toolsKeys; trackBy:trackByFn'   [value]='tool' selected >{{ toolsRank[tool]  }}</option> 
+              </select><a (click)='removeTool(i)' class="ml-2" style="cursor: pointer" >✕</a>
+          </div>
+          </div>
+        </div>
+    </ng-container>
+  
+</div>
+<ng-container *ngIf='qual["languages"]'>
+    <div class="col-md-12 pl-0 pr-0 mt-3">
+        <div class="form-small">
+          <div class="d-flex justify-content-between flex-wrap">
+            <label for="Languages" class="pb-1 headings">Languages</label>
+                    <button type="button" 
+                            (click)='importLanguages()'  
+                            class="backgroundless m-0" 
+                            [disabled]='toggleProfile?.lang' 
+                            *ngIf='!isCompany && isOpen.open'>insert from profile</button>
+          </div>
+          <ng-container *ngIf='!isOpen.isEdit'>
+            <input  type="text" 
+                    id="Languages" 
+                    class="form-control" 
+                    placeholder="Enter languages"
+                    #lang 
+                    (keyup.enter)='selectLang($event.target.value); lang.value = ""' />
+            </ng-container>
+          </div>
+      
+       
+      
+        <ng-container  *ngFor='let lang of qual["languages"]["controls"]; let i = index; trackBy:trackByFn' formArrayName='languages' >
+      
+        <div [formGroupName]='i'>
+              <div class="row mt-3">
+                <div class="col-8">
+                  <div class="choose-input  d-flex align-items-center">
+                    <span class="ml-3" > {{ lang.value.language }}</span>
+                  </div>
+               </div>
+               <div class="col-4 pl-0 pr-0 d-flex align-items-center">
+                   <select
+                    class="form-control" 
+                    formControlName='rank' 
+                    (change)='selectLangRank( $event.target.value, i )'
+                    [ngClass]='{"is-invalid": ( isSubmited && qual.languages.at(i).get("rank").errors )  ||( qual.languages.at(i).get("rank").errors &&  qual.languages.at(i).get("rank").touched  )}'>
+                        <option value=""  disabled >Select level</option> 
+                        <option *ngFor='let tool of toolsKeys; trackBy:trackByFn'  [value]='tool'>{{ toolsRank[tool]  }}</option> 
+                   </select><a (click)='removeLang(i)' class="ml-2" style="cursor: pointer" >✕</a>
+               </div>
+              </div>
+            </div>
+       
+        </ng-container>
+      </div>
+</ng-container>
+
+
+</form>  

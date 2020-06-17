@@ -1,0 +1,16 @@
+<div class="jobs" *ngIf="isCompany">
+    <div class="row justify-content-between">
+      <!-- Content in the center -->
+      <div class="col mr-3 px-0" *ngIf="(savedCandidates | async) as saved">
+        <h5 class="font-weight-bold">Saved Candidates (<span>{{ saved.length }}</span>)</h5>
+        <div class="center-content-jobs">
+          <div class="manage-candidates-menu">
+              <app-user-box type="all" category="saved" [applicants]="saved" [companyID]="companyId"></app-user-box>
+        </div>
+      </div>
+      <a routerLink="/jobs" id="gotoJobs" class="backgroundless d-block ml-auto" [routerLink]="['/jobs/company']"  >Go to jobs</a>
+
+    </div>
+
+  </div>
+  </div>

@@ -1,0 +1,13 @@
+<div class="sponsored" [routerLink]="[ '/real-estate', 'details', slide.id]" *ngIf="slide" >
+    <div class="sponsored__img-box">
+        <div class="sponsored__img-box__image">
+            <img [src]="'/file/'+slide['files'][0]['address']" alt="image">
+        </div>
+        
+        <div class="sponsored__img-box__title w-100">
+            <p *ngIf="slide['rental_details'] && slide['rental_details'].length > 0"> {{ slide['rental_details'][0]['title'] }} </p>
+            <span *ngIf="slide?.price?.min_price">${{ slide.price.min_price }} </span> 
+            <span *ngIf="slide?.price?.max_price">- ${{ slide.price.max_price }} </span>
+        </div>
+    </div>
+</div>

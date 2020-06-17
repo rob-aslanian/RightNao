@@ -1,0 +1,104 @@
+@import 'src/variables';
+
+.order {
+    cursor: pointer;
+    width: 98%;
+    display: flex;
+    align-items: center;
+    height: 63px;
+    justify-content: center;
+    padding: 15px 9px;
+    span {
+         font-weight: 400;
+    }
+    .order-box {
+        width: 100%; 
+        div {  height: 100%; flex-basis: 150px;  }
+    }
+    .toggled {
+        transform: rotate(-90deg);
+    }
+
+}
+.expandedProfile {
+    background: #EAEDF2;
+}
+
+
+.disputed {
+    background-image: url("../../../../assets/img/hexagons/465.svg");
+}
+
+
+.new {
+  background-image: url("../../../../assets/img/hexagons/163.svg");
+}
+
+.in_progress {
+    background-image: url("../../../../assets/img/hexagons/light-blue.svg");
+}
+
+.out_of_schedule {
+  background-image: url("../../../../assets/img/hexagons/163.svg");
+}
+
+.delivered {
+    background-image: url("../../../../assets/img/hexagons/blue.svg");
+}
+
+.completed {
+    background-image: url("../../../../assets/img/hexagons/213.svg");
+
+} 
+
+.canceled {
+    background-image: url("../../../../assets/img/hexagons/214.svg");
+}
+
+.status {
+    p {
+        background-repeat: no-repeat;
+        width: 16px;
+        height: 17px;
+        margin-top: 4px;
+        background-position: center;
+    }
+    span {
+        margin-left: 10px;
+    }
+};
+
+.profile {
+    border-radius: 5px;
+    margin-right: 3px;
+    .profile-photo {
+        height: 35px;
+        width: 35px;
+        border-radius: 50%;
+    }
+};
+
+.user-photo {
+    border-radius: 50% !important;
+}
+.popup-note {
+    position: absolute;
+    width: 200px;
+    padding: 15px;
+    height: 100px !important;
+    background: #fff;
+    border-radius: 5px;
+    z-index: 1;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.15);
+}
+.content {
+    .description {
+        color: $dark-grey;
+    }
+    .price {
+        color: $dark-grey;
+    }
+}
+.company-photo {
+    border-radius: 5px !important;
+}

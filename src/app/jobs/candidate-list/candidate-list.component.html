@@ -1,0 +1,221 @@
+<!-- Candidate list - starts  -->
+<div class="candidate {{ selectedCandidate === candidate ? 'activated' : '' }}" (click)="onSelectCandidate(candidate)" *ngFor="let candidate of candidates">
+    <div class="visible">
+        <div class="detailed-view-line d-flex" *ngIf="selectedCandidate === candidate">
+            <a (click)="toggleLanguageDropdown($event)">ENG &#9662;</a>
+            <div #languagePopupContainer class="options languageOptions mt-4 {{ languageDropdownVisible ? 'open' : '' }}">
+                <button>English</button>
+                <button>Georgian</button>
+                <button>Other language</button>
+            </div>
+            <button class="backgroundless ml-auto" (click)="openInviteToApplyModal($event)">Invite to apply</button>
+            <button class="btn btn-primary">Message</button>
+            <button class="backgroundless" (click)="toggleCandidateActionDropdown($event)">
+                <img src="assets/img/107.svg" alt="...">
+            </button>
+            <div #candidateActionsPopupContainer class="options candidate-options  {{ candidateActionDropdownVisible ? 'open' : '' }}">
+                <button>
+                    <img src="assets/img/71.svg" alt="download"> Download Resume
+                </button>
+                <button>
+                    <img src="assets/img/84.svg" alt="share"> Share
+                </button>
+                <button>
+                    <img src="assets/img/42.svg" alt="block"> Report / Block
+                </button>
+            </div>
+        </div>
+        <div class="line-one">
+            <img src="{{candidate.profile.avatar ? '/file/' + candidate.profile.avatar : 'assets/img/124.svg'}}" alt="candidate">
+            <div class="candidate-content">
+                <h3>{{candidate.profile.firstname + ' ' + candidate.profile.lastname}}</h3>
+                <span>
+                    <ng-container *ngFor="let experience of candidate.profile.experiences; let last = last">
+                        {{ experience.title }} / {{ experience.company }}
+                        <span *ngIf="!last"> | </span>
+                    </ng-container>
+                </span>
+                <div class="skills">
+                    <span *ngFor="let skill of candidate.profile.skills">
+                        {{ skill.name }}
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="line-two">
+            <button type="button" class="backgroundless" [attr.disabled]="isSkipCandidateInProgress === true ? true : null" (click)="skipCandidate(candidate, $event)">
+                <img src="assets/img/152.svg" alt="btn">
+                {{ isSkipCandidateInProgress ? 'Request in progress...' : '' }}
+            </button>
+            <button type="button" class="backgroundless" [attr.disabled]="isSaveCandidateInProgress === true ? true : null" (click)="saveCandidate(candidate, $event)">
+                <img src="assets/img/44.svg" alt="favorite">
+                {{ isSaveCandidateInProgress ? 'Request in progress...' : '' }}
+            </button>
+        </div>
+    </div>
+    <!-- Candidate Detail - starts -->
+    <div class="detailed-info" *ngIf="selectedCandidate === candidate">
+        <div class="detail-content">
+            <div class="left">
+                <img src="assets/img/62.svg" alt="image">
+                <h5>Career interest</h5>
+            </div>
+            <div class="right container pl-0">
+                <div class="row">
+                    <div class="col-6">
+                        <h6>Job Title</h6>
+                        <span *ngFor="let job of candidate.candidate_description.jobs; let last = last">
+                            {{ job }}
+                            <span *ngIf="!last"> | </span>
+                        </span>
+                    </div>
+                    <div class="col-6">
+                        <h6>Company Size</h6>
+                        <span>{{ candidate.candidate_description.company_size }}</span>
+                    </div>
+                    <div class="col-6">
+                        <h6>Industry</h6>
+                        <span>{{ candidate.candidate_description.industry }}</span>
+                    </div>
+                    <div class="col-6">
+                        <h6>Salary</h6>
+                        <span>{{ candidate.candidate_description.salary_min }}-{{ candidate.candidate_description.salary_max }}
+                            per {{ candidate.candidate_description.salary_interval }}</span>
+                    </div>
+                    <div class="col-6">
+                        <h6>Job Type</h6>
+                        <span *ngFor="let job_type of candidate.candidate_description.job_types">
+                            {{ job_type }}
+                        </span>
+                    </div>
+                    <div class="col-6">
+                        <h6>Location</h6>
+                        <span>{{ candidate.profile.location.country }}</span>
+                    </div>
+                    <div class="col-6 mb-0">
+                        <h6>Experience level</h6>
+                        <span>{{ candidate.candidate_description.experience }} years</span>
+                    </div>
+                    <div class="col-6 mb-0">
+                        <h6>Mobility</h6>
+                        <span *ngIf="candidate.candidate_description.travel">Willing to travel</span>
+                        <span *ngIf="candidate.candidate_description.remotely">Open to working remotely</span>
+                        <span *ngIf="candidate.candidate_description.relocate">Open to relocate</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="detail-content">
+            <div class="left">
+                <h5>Experience</h5>
+            </div>
+            <div class="right">
+                <ng-container *ngFor="let experience of candidate.profile.experiences; let first = first">
+                    <div *ngIf="first || isExperienceSectionExpanded">
+                        <h6>{{ experience.title }}</h6>
+                        <span>{{ experience.company }}</span>
+                        <span>{{ experience.start_date }} - {{ experience.finish_date }} | 0 yrs 0 mos</span>
+                        <br>
+                        <p>{{ experience.description }}</p>
+                    </div>
+                </ng-container>
+                <a *ngIf="candidate.profile.experiences.length > 1" (click)="toggleExperienceSection($event)" class="more">
+                    {{ !isExperienceSectionExpanded ? '&#9662;' : '&#9652;' }}
+                </a>
+            </div>
+        </div>
+        <hr>
+        <div class="detail-content">
+            <div class="left">
+                <h5>Education</h5>
+            </div>
+            <div class="right">
+                <ng-container *ngFor="let education of candidate.profile.educations; let first = first">
+                    <div *ngIf="first || isEducationSectionExpanded">
+                        <h6>{{ education.school }}</h6>
+                        <span>{{ education.degree }} - {{ education.field_study }}</span>
+                        <span>{{ education.start_date }} - {{ education.finish_date }}</span>
+                        <br/>
+                    </div>
+                </ng-container>
+                <a *ngIf="candidate.profile.educations.length > 1" (click)="toggleEducationSection($event)" class="more">
+                    {{ !isEducationSectionExpanded ? '&#9662;' : '&#9652;' }}
+                </a>
+            </div>
+        </div>
+        <hr>
+        <div class="detail-content">
+            <div class="left">
+                <h5>Accomplishments</h5>
+            </div>
+            <div class="right">
+                <h6>Project</h6>
+                <span>Opera Neon project</span>
+                <span>Jan 2007 - 2011 | 1 yrs 7 mos</span>
+                <a class="more">&#9662;</a>
+            </div>
+        </div>
+        <hr>
+        <div class="detail-content">
+            <div class="left">
+                <h5>Languages</h5>
+            </div>
+            <div class="right container pl-0">
+                <div class="row">
+                    <ng-container *ngFor="let language of candidate.profile.languages; let first = first">
+                        <div class="col-6" *ngIf="first || (first + 1) || isLanguageSectionExpanded">
+                            <h6>{{ language.language }}</h6>
+                            <ngb-rating [(rate)]="language.rate" [readonly]="true"></ngb-rating>
+                        </div>
+                    </ng-container>
+                </div>
+                <a *ngIf="candidate.profile.languages.length > 2" (click)="toggleLanguageSection($event)" class="more">
+                    {{ !isLanguageSectionExpanded ? '&#9662;' : '&#9652;' }}
+                </a>
+            </div>
+        </div>
+        <hr>
+        <div class="detail-content">
+            <div class="left">
+                <h5>Interests</h5>
+            </div>
+            <div class="right">
+                <span class="interest" *ngFor="let interest of candidate.profile.interests">
+                    {{ interest.title }}
+                </span>
+            </div>
+        </div>
+        <hr>
+        <div class="detail-content">
+            <div class="left">
+                <h5>Recommendations</h5>
+            </div>
+            <div class="right">
+                <ng-container *ngFor="let recommendation of candidate.profile.given_recommendations; let first = first">
+                    <div class="profile d-flex" *ngIf="first || isRecommendationSectionExpanded">
+                        <img src="{{ recommendation.recommendator.avatar ? '/file/' + recommendation.recommendator.avatar : 'assets/img/124.svg' }}"
+                            alt="recommendator">
+                        <div class="recommendator-info">
+                            <h5>{{ recommendation.recommendator.firstname }} {{ recommendation.recommendator.lastname }}</h5>
+                            <ng-container *ngFor="let experience of recommendation.recommendator.experiences; let first = first ">
+                                <ng-container *ngIf="first">
+                                    <span>{{ experience.title }}</span>
+                                    <span>{{ experience.company }}</span>
+                                </ng-container>
+                            </ng-container>
+                        </div>
+                    </div>
+                    <p *ngIf="first || isRecommendationSectionExpanded">
+                        {{ recommendation.text }}
+                    </p>
+                </ng-container>
+                <a *ngIf="candidate.profile.given_recommendations.length > 1" (click)="toggleRecommendationSection($event)" class="more">
+                    {{ !isRecommendationSectionExpanded ? '&#9662;' : '&#9652;' }}
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- Candidate Detail - ends  -->
+</div>
+<!-- Candidate list - ends  -->

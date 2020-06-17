@@ -1,0 +1,53 @@
+@import "src/variables.scss";
+
+.invate-people-wrapper {
+ background: $white;
+    .invite-people {
+        max-height: 660px;
+        overflow: hidden;
+        overflow-y: initial;
+        padding-right: 7px;
+
+        &::-webkit-scrollbar-thumb {
+        background: $dark-blue;
+        border-radius: 2px;
+        }
+
+        &::-webkit-scrollbar {
+        background: $light-grey;
+        width: 5px;
+        padding: 2px;
+        max-height: 90%;
+        }
+        &__all {
+        border-bottom: 1px solid #E6E6E6;
+        opacity: 0.5;
+        }
+        &__content {
+        border-bottom: 1px solid $light-grey;
+        padding: 10px 0px;
+        &__right {
+            &__person {
+            width: 3.125rem;
+            height: 3.125rem;
+            }
+            &__heading {
+            font-size: 1rem;
+            margin-bottom: 4px;
+            }
+            &__sub {
+            font-size: 0.75rem;
+            color: $dark-grey;
+            margin-bottom: 4px;
+            }
+        }
+        }
+    }
+}
+.rounded-image {
+    border-radius: 50%;
+}
+.invations {
+    padding-bottom: 32px;
+    padding-right: 0px;
+}

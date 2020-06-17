@@ -1,0 +1,37 @@
+<div class="selected-city-container">
+        <div class="selected-city-item"  *ngFor="let country of selectedCountry">
+            <span> {{ country['country_id'] | country }} </span>
+            <button class="btn" (click)="removeSelectedCountry(country['country_id'])">&#10005;</button>
+        </div>
+</div>
+<div class="location-include-search">
+    <label for="include-search-country">
+        <img src="assets/img/wallet/208.svg" 
+            alt="search"  
+            class="location-include-search-img">
+    </label>
+    <input type="text" 
+            class="location-include-search-input" 
+            id="include-search-country" 
+            placeholder="Search country"
+            [ngbTypeahead]="searchCountry"
+            [resultFormatter]="countryFormatter"
+            [inputFormatter]="countryFormatter"
+            (selectItem)="selectLocation($event)">
+</div>
+<div class="custom-control 
+            custom-checkbox 
+            country-checkbox
+            page-section-text-grey
+            " *ngFor="let country  of countries">
+    <input type="checkbox" 
+            [checked]="country.isSelected" 
+            class="custom-control-input" 
+            [id]="country.name" 
+            name="country"
+            (change)="selectCountry($event)" 
+            [value]="country.name">
+    <label class="custom-control-label" [for]="country.name">
+        {{ country.name | country }}
+    </label>
+</div>

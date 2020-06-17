@@ -1,0 +1,60 @@
+<div class="wrapper">
+        <div class="service-request d-flex flex-wrap">
+            <!-- <div class="service-request__content-wrap col-lg-9 col-md-12"> -->
+                <form style="width: 100%;" [formGroup]="service">
+                    <h2 class="page-section-heading ml-1">Post a Service Request </h2>
+                    <section class="service-request__content">
+    
+                        <div class="service-request__content__box mt-4">
+                            <app-service-request-details [details]='details' [isSubmit]='isSubmit'></app-service-request-details>
+                            <app-type-of-project [projectType] = 'projectType'></app-type-of-project>
+                            <app-upload-service-file (result) = 'getFiles($event)' [editFiles]='editFiles'></app-upload-service-file>
+                        </div>
+    
+    
+                        <div class="service-request__content__box">
+                                <app-service-delivery-time [delivery]='delivery' [type]='"service"' [sumbitted]='isSubmit'></app-service-delivery-time>
+                        </div>
+                            
+                        <div class="service-request__content__box">
+                                <app-location [location]='location' [sumbitted]='isSubmit'></app-location>
+                        </div>
+                        
+                        <div class="service-request__content__box">
+                                <div class="service-request__request-details__heading service-request-section-heading">
+                                        <div class="service-request__content__request-details__heading__icon-wrapper">
+                                            <img src="../../../assets/img/paper.svg" class="service-request__content__request-details__heading__icon">
+                                        </div>
+                                        <h4 class="service-request__content__request-details__heading__title">Additional Details</h4>
+                                </div>
+                                <div class="col-lg-5 pl-0">
+                                    <div style="margin-left: -15px; margin-top: -15px;">
+                                        <app-import-from-profile [qualifications]='qualifications'></app-import-from-profile>
+                                    </div>
+                                </div>
+               
+                        </div>
+    
+                        <div class="service-request__content__visibility">
+                            <div class=" col-md-6 pl-0">
+                                <label for="provider">Type of service provider</label>
+                                <select class="form-control" formControlName="service_provider" id="provider">
+                                    <option value="No_Preference">No preference</option>
+                                    <option value="Company">Company</option>
+                                    <option value="Freelancer">Professional</option>
+                                    <option value="Proffesional">Freelancer</option>
+                                </select>
+                            </div>
+                        </div>
+    
+                        <div class="service-request__content__publish">
+                            <button class="backgroundless service-request__content__publish__btn" (click)="addServices(true)">Save as Draft</button>
+                            <button class="btn btn-primary service-request__content__publish__btn" (click)="addServices()">Publish</button>
+                        </div>
+    
+                    </section>
+                </form>
+            <!-- </div> -->
+    
+        </div>
+    </div>

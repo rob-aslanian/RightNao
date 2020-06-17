@@ -1,0 +1,94 @@
+@import 'src/variables';
+
+.post {
+background-color: $dark-blue;
+
+h1 {
+    color: white;
+    font-family: above;
+}
+
+.post__service {
+        margin-left: 2rem;
+        color:#264361;
+        cursor: pointer;
+        border: 1px solid #264361;
+        padding: 0.3rem;
+        border-radius: 5%;
+        text-align: center;
+    }
+}
+
+.profile {
+    max-width: 1100px;
+    width: 100%;
+}
+
+.add-for-sale {
+     margin-top: 15px;
+     border-radius: 5px;
+     background: white;
+     padding: 20px;
+};
+
+
+:host ::ng-deep {
+    .active-sub-button {
+        color: $white;
+        background: $background-dark-cyan;
+    };
+}
+
+ 
+ 
+.title-label {
+    color: #052337;
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 1.3rem;
+    margin-bottom: .8rem;
+
+}
+
+input[type="text"], input[type="number"],  select {
+        width: 30%;
+        @media screen and(max-width: 820px) {
+            width: 100%;
+        }
+}
+ 
+:host ::ng-deep {
+    .custom-radio-input-god {
+        label {
+            cursor: pointer;
+        }
+        input[type='radio']:checked {
+            +label {
+                color: white !important;
+                background: #00D4E3 !important;
+            }
+         }
+    }
+};
+
+.add-another {
+    .add {
+        width: 30px;
+        height: 30px;
+        img {
+            height: 100%;
+            width: 100%;
+        }
+    }
+    span {
+        font-size: 16px;
+        color: #808080;
+        cursor: pointer;
+    }
+}
+
+.is-invalid-custom {
+    ::ng-deep  .angular-editor {
+        border: 1px solid red !important;
+    }
+}

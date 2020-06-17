@@ -1,0 +1,45 @@
+
+<aside class="calendar-left">
+  <div class="calendar-left__create mb-4">
+    <button class="btn btn-primary btn-primary--high calendar-left__create__btn">
+      <span>Create</span>
+    </button>
+  </div>
+
+  <div class="calendar-left__mini-calendar" style="height: 220px">
+
+  </div>
+  <app-my-calendars></app-my-calendars>
+  <app-other-calendars></app-other-calendars>
+  
+  <div class="pt-2 pb-2 mb-5">
+    <button class="backgroundless d-flex align-items-center pl-0" (click)='foo()'>
+      <img src="../../../assets/img/612.svg"/>
+      <span class="ml-3" >Add calendar</span>
+    </button>
+  </div>
+
+  <div class="calendar-left__icons d-flex align-items-center">
+    <div>
+      <img src="../../../assets/img/608.svg"/>
+    </div>
+    <div>
+      <img src="../../../assets/img/609.svg"/>
+    </div>
+    <div>
+      <img src="../../../assets/img/610.svg"/>
+    </div>
+    <div>
+      <img src="../../../assets/img/611.svg"/>
+    </div>
+  </div>
+</aside>
+
+
+<ng-container *ngIf='modalType === "add"'>
+    <app-modal (closeModal)='modalType = null' width="550"  [isBlue]='false'>
+
+        <app-add-calendar-modal></app-add-calendar-modal>
+
+    </app-modal>
+</ng-container>

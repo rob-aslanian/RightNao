@@ -1,0 +1,179 @@
+<!-- Accomplishments -->
+<ng-container *ngIf="accompData.length > 0">
+  <div class="section-header d-flex">
+    <h1>{{ '39'| translate }}</h1>
+    <div class="col line"></div>
+    <button class="add" (click)="open()" *ngIf="isCurrent">
+      <img src="assets/img/50.svg" alt="add">
+    </button>
+  </div>
+
+  <ng-container>
+    <div class="section-content col" >
+      <div class="accomplishment" *ngFor="let accomp of accompData | slice:0:startPage">
+        <button class="edit experience-edit" *ngIf="isCurrent" (click)="open(true , accomp)">
+          <img src="assets/img/19.svg" alt="edit" >
+        </button>
+        <h2 *ngIf="accomp.__typename === 'Test'; else typeName">Test Scores</h2>
+        <ng-template #typeName>
+          <h2>{{  accomp.__typename }}</h2>
+        </ng-template>
+        <p *ngIf="accomp.name || accomp.title ">{{ accomp.name ? accomp.name : accomp.title }}</p>      
+        <p *ngIf="accomp.certification_authority">{{ accomp.certification_authority }}</p>
+        <p *ngIf="accomp.license_number">{{ accomp.license_number }}</p>
+
+        <p *ngIf="accomp.issuer && accomp.issuer !== null">
+          {{ accomp.issuer }}
+        </p>
+
+        <p *ngIf="accomp.score && accomp.score !== null" class="mt-3">
+           Score {{ accomp.score }}
+        </p>
+        <!-- Date -->
+        <p *ngIf="(accomp.start_date && accomp.start_date !== '') ||
+                  (accomp.date && accomp.date !== null)">
+            {{ accomp.start_date || accomp.date  | monthPipe }} 
+            <span *ngIf="accomp.is_expire !== undefined && accomp.is_expire"> - Doesn`t expire</span>
+
+            <!-- Finish date -->
+            <ng-container *ngIf="accomp.finish_date && accomp.finish_date !== '' &&  !accomp.finish_date.includes(null) ">
+               - {{  accomp.finish_date || '' | monthPipe }}
+            </ng-container>
+            <!-- Finish date -->
+
+            <span> | {{ utils.dateFromTo(accomp.start_date || accomp.date  , accomp.finish_date)  }}</span>
+        </p>
+         <!-- Date -->
+
+    
+        <p *ngIf="accomp.publisher && accomp.publisher !== null" class="mt-3">
+            {{ accomp.publisher }}
+        </p>
+        <p *ngIf="accomp.description && accomp.description !== null" class="mt-3">
+            {{ accomp.description }}
+        </p>
+
+        <!-- Media content -->
+        <div class="media__content">
+
+          <!-- Links -->
+          <ng-container *ngIf="accomp.link && accomp.link.length > 0 ">
+              <a [href]="getLink(link)" target="_blank" *ngFor="let link of accomp.link" style="color:#00D4E3">
+                  {{  link.address  ?  link.address :  link.url }}
+              </a>
+          </ng-container>
+           <!-- Links -->
+
+          <!-- Files -->
+          <div class="row mt-1">
+            <div *ngFor="let file of accomp.file" class="col-6">
+                <img [src]="file.file ? file.file : '/file/' + file.address " class="col-12 media__content__files" alt
+                                  *ngIf="file['ext'] || file['mime_type'].split('/')[1] === 'jpeg' || 
+                                          file['ext'] || file['mime_type'].split('/')[1] === 'jpg'  || 
+                                          file['ext'] || file['mime_type'].split('/')[1] === 'png'  || 
+                                          file['ext'] || file['mime_type'].split('/')[1] === 'gif'  || 
+                                          file['ext'] || file['mime_type'].split('/')[1] === 'bmp'; else: notImage" appAppLazyImage>
+                <ng-template #notImage>
+                    <a [href]="file.file ? file.file :  '/file/' + file.address" target="_blank">{{ file.name }}</a>
+                </ng-template>                       
+              </div>
+            </div>
+          <!-- Files -->
+        </div>
+        <!-- Media content -->
+        
+      </div>
+
+    </div>
+
+    <app-more-less  [dataLength]="accompData.length" (start)="startPage = $event"></app-more-less>
+  </ng-container>
+</ng-container>
+
+  <ng-container  *ngIf="accompData.length === 0 && isCurrent">
+      <div class="section-header d-flex">
+          <h1>{{ '39'| translate }}</h1>
+          <div class="col line"></div>
+          <button class="add" (click)="open()" *ngIf="isCurrent">
+            <img src="assets/img/50.svg" alt="add">
+          </button>
+      </div>
+        <app-empty-profile [key]='"acoplishments"' (openModal)='openEmptyModal()'></app-empty-profile>
+  </ng-container>
+  
+<!-- Accomplishments end -->
+
+
+<!-- Modals -->
+<app-modal (closeModal)="modalType = null; selectedType = null">
+   <!-- First page-->
+    <ng-container  *ngIf="selectedType === null;" >
+        <div class="modal-content btn-more">
+            <div class="popup-content add-accomplishments" >
+                <h2>{{ '311'| translate }}</h2>
+                <form [formGroup]="accomplishmentForm">
+                    <div class="form-row">
+                        <div class="col-6">
+                            <div class="custom-control custom-radio" for="certification" >
+                                <input type="radio" class="custom-control-input" value="certification" id="certification"
+                                    formControlName="accomp">
+                                <label for="certification" class="custom-control-label">{{ '300'| translate }}</label>
+                            </div>
+
+                            <div class="custom-control custom-radio" for="license">
+                                <input type="radio" class="custom-control-input" value="license" id="license"
+                                    formControlName="accomp">       
+                                <label for="license" class="custom-control-label">{{ '861'| translate }}</label>
+
+                            </div>
+                            <div class="custom-control custom-radio" for="honors">
+                                <input type="radio" class="custom-control-input" value="award" id="honors"
+                                    formControlName="accomp">
+                                <label for="honors" class="custom-control-label">{{ '717'| translate }}</label>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" value="project" id="project"
+                                    formControlName="accomp">
+                                <label for="project" class="custom-control-label">{{ '1118'| translate }}</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" value="publication" id="publication"
+                                    formControlName="accomp">
+                                <label for="publication" class="custom-control-label">{{ '1137'| translate }}</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input type="radio" class="custom-control-input" value="test" id="test-scores"
+                                    formControlName="accomp">
+                                <label for="test-scores" class="custom-control-label">{{ '1392'| translate }}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                      <button class="btn btn-primary" (click)="selectType()" type="submit"
+                            [disabled]="accomplishmentForm.get('accomp').value === null">{{ '969'| translate }}</button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </ng-container>
+    <!-- First page-->
+
+  <!-- Add -->
+  <ng-container *ngIf="modalType === 'add' && selectedType !== null">
+    <app-accomplishment-modal (back)="selectedType = null" (result)="getResult($event)"
+                              [type]="selectedType">
+    </app-accomplishment-modal>
+  </ng-container>
+
+  <!-- Edit -->
+  <ng-container *ngIf="modalType === 'edit'">
+      <app-accomplishment-modal (back)="selectedType = null" (result)="getResult($event)" 
+                                [data]="editableData" [type]="selectedType">
+      </app-accomplishment-modal>
+  </ng-container>
+
+</app-modal>
+<!-- Modals -->

@@ -1,0 +1,28 @@
+<form [formGroup]="form">
+    <div class="mt-3" 
+    formArrayName="phones" >
+        <ng-container *ngFor="let item of form.get('phones')['controls']; let i = index;" [formGroupName]="i">
+            <div class="row mb-4">
+                    <select name="" 
+                    id="" 
+                    class="form-control col-3 mr-4 ml-2"
+                    formControlName="country_code_id"
+                    [ngClass]="{'is-invalid': isSubmitted  &&  form.get('phones').at(i).get('country_code_id').invalid}">
+            <option value="">Select one</option>
+            <option *ngFor="let phone of countryCodes" 
+                   [value]='phone.id' >{{ phone.country }}</option>
+            </select>
+ 
+            <input type="text" 
+                   class="form-control col-5" 
+                   placeholder="Type phone number"
+                   formControlName="number"
+                   [ngClass]="{'is-invalid': isSubmitted && form.get('phones').at(i).get('number').invalid }">
+                   <div class="add-fetching-data pl-2 col-2" (click)="deletePhone(i)" *ngIf="form.get('phones').length>1" >  
+                        <img src="assets/img/267.svg" alt="delete">
+                    </div>
+            </div>
+        </ng-container>
+        <button (click)="addNewPhone()" class="btn mb-4"> Add other phone number</button>
+    </div>
+</form>

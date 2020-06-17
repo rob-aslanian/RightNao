@@ -1,0 +1,270 @@
+
+@import './variables';
+
+@mixin white-card-template ($bg: $white, $border-radius: 5px, $border: 1px solid #e6e6e6, $padding: 24px){
+    background: $bg;
+    border-radius: $border-radius;
+    border: $border; 
+    padding: $padding;
+}
+
+@mixin chart-bars ($height) {
+    width: 13px;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    margin: 0 3px;
+    height: $height;
+    @if($height == 24px) {
+        background-color: $background-dark-cyan
+    } @else {
+        background-color: #DCE1E6;
+    }
+}
+
+@mixin rating-stars ($outer-margin: 0 10px, $height: 16px, $ml: 0, $mr: 10px, $mt: 0, $mb: 0) {
+    display: flex;
+    align-items: center;
+    margin: $outer-margin;
+    img {
+        height: $height;
+        margin-left: $ml;
+        margin-right: $mr;
+        margin-top: $mt;
+        margin-bottom: $mb;
+    }
+}
+
+@mixin profile-info ($height: 70px, $width: 70px) {
+    display: flex;
+    align-items: center;
+
+    .img-container {
+        max-height: $height;
+        max-width: $width;
+        min-height: $height;
+        min-width: $width;
+        margin-right: 15px;
+
+        .profile-info-img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+
+            &--user {
+                border-radius: 50%;
+            }
+
+            &--company {
+                border-radius: 5px;
+            }
+        }
+    }
+}
+
+
+
+@mixin list-block($left, $right , $width: 11rem) {
+    position: absolute;
+    background: $white;
+    border-radius: 5px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+    top: $left;
+    right: $right;
+    z-index: 2;
+    width:$width;
+      button {
+        color: $dark-grey;
+        display: block;
+        font-size: 14px;
+        width: 100%;
+        text-align: left;
+        margin-top: 0.2rem;
+        text-decoration: none;
+            &:hover {
+                background: $light-grey;
+            }
+        }
+  }
+
+@mixin required-star($starcolor, $topPosition, $leftPosition, $fontSize) {
+    position: absolute;
+    z-index: 1;
+    color: $starcolor;
+    top: $topPosition;
+    left: $leftPosition;
+    font-size: $fontSize;
+}
+
+@mixin thin-scrollbar--horizontal {
+    &::-webkit-scrollbar {
+        height: 4px;
+    }
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background-color: #cccccc;
+        border-radius: 10px;
+    }
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: #244361;
+        border-radius: 10px;
+        &:hover {
+            background: $dark-blue; 
+        }
+    }
+}
+
+@mixin thin-scrollbar--vertical {
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background-color: #cccccc;
+        border-radius: 10px;
+    }
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: #244361;
+        border-radius: 10px;
+        &:hover {
+            background: $dark-blue; 
+        }
+    }
+}
+
+
+@mixin network-card($height: 174px) {
+    border: solid 1px #e6e6e6;
+    border-radius: 5px;
+    padding: 0 12px 6px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    background-color: #ffffff;
+    transition: background-color 0.3s ease-out;
+    position: relative;
+    min-height: $height;
+    max-height: $height;
+}
+
+
+// ------------ For calendar ------------ //
+
+// Colors
+
+
+
+
+@mixin calendar-colored-bullets($height, $width, $bg-size, $mr: 0) {
+    height: $height;
+    width: $width;
+    display: block;
+    border-radius: 50%;
+    margin-right: $mr;
+    position: relative;
+    bottom: 1px;
+
+    &.bullet-dark-cyan {
+        background-color: $dark-cyan;
+    }
+    &.bullet-light-blue {
+        background-color: $blue-option;
+    }
+    &.bullet-dark-blue {
+        background-color: $dark-blue-option;
+    }
+    &.bullet-lavender {
+        background-color: $lavender;
+    }
+    &.bullet-purple {
+        background-color: $purple;
+    }
+    &.bullet-green {
+        background-color: $green;
+    }
+    &.bullet-yellow {
+        background-color: $yellow;
+    }
+    &.bullet-orange {
+        background-color: $orange;
+    }
+    &.bullet-pink {
+        background-color: $pink;
+    }
+    &.bullet-dark-red {
+        background-color: $dark-red;
+    }
+
+    &.with-check {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath fill='%23fff' d='M6.564.75l-3.59 3.612-1.538-1.55L0 4.26 2.974 7.25 8 2.193z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: $bg-size;
+    }
+}
+
+@mixin event-color-codes {
+    &::before {
+        content: "";
+        height: 100%;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 7px;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+    }
+
+    &.event-dark-cyan::before {
+        background-color: $dark-cyan;
+    }
+    &.event-light-blue::before {
+        background-color: $blue-option;
+    }
+    &.event-dark-blue::before {
+        background-color: $dark-blue-option;
+    }
+    &.event-lavender::before {
+        background-color: $lavender;
+    }
+    &.event-purple::before {
+        background-color: $purple;
+    }
+    &.event-green::before {
+        background-color: $green;
+    }
+    &.event-yellow::before {
+        background-color: $yellow;
+    }
+    &.event-orange::before {
+        background-color: $orange;
+    }
+    &.event-pink::before {
+        background-color: $pink;
+    }
+    &.event-dark-red::before {
+        background-color: $dark-red;
+    }
+}
+
+@mixin calendar-popover($height: auto, $width: auto, $padding: 24px, $t: -8px, $r: -14px) {
+    height: $height;
+    width: $width;
+    padding: $padding;
+    background-color: $white;
+    border-radius: 5px;
+    border: 1px solid $input-grey;
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.50);
+    color: $dark-grey;
+
+    .close-btn {
+        position: absolute;
+        background-image: url("src/assets/img/menu-icons/35.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: transparent;
+        right: $r;
+        top: $t;
+    }
+}
+

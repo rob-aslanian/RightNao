@@ -1,0 +1,102 @@
+<ng-container *ngIf="experiences.length != 0" >
+    <div class="section-header d-flex">
+        <h1>{{ '589'| translate }}</h1>
+        <div class="col line">
+            <button class="add" *ngIf="isMe" (click)="open()">
+                <img src="assets/img/50.svg" alt="add">
+            </button>
+        </div>
+    </div>
+                            
+    <div>
+        <div class="section-content" >
+            <div class="experience" *ngFor="let experience of experiences | slice:0:startPage" >
+                <button class="edit" *ngIf="isMe" (click)="open(true, experience)">
+                    <img src="assets/img/19.svg" alt="edit">
+                </button>
+                <h2>
+                    <strong>{{ experience.title }}</strong>
+                </h2>
+                <p>{{ experience.company }}</p>
+                <p>
+                    {{ experience.start_date | monthPipe }} - <span *ngIf="!experience.currently"> {{ experience.finish_date | monthPipe }} </span> 
+                    <span *ngIf="experience.currently"> Present </span> 
+                    <span>| 
+                        {{ experience.start_date | dateFromTo : experience.finish_date }}
+                        <!-- {{ utils.dateFromTo(experience.start_date , experience.finish_date)  }} -->
+                    </span>
+                </p>
+                <p>  {{ experience.location.country.id | country }} - {{ experience.location.city.city }}</p>
+                <p class="mt-3">
+                    <app-read-more [text]="experience.description" [maxLength]="250"></app-read-more>
+                </p>
+                <!-- Media content -->
+                <div class="media__content">
+                    <!-- Links -->
+                        <a [href]="getLink(link)" target="_blank" *ngFor="let link of experience.link" style="display: block;" class="link-name">
+                                {{  link.address  ?  link.address :  link.url | lowercase }}
+                        </a>
+                    <!-- Links -->
+        
+                    <!-- Files -->
+                    <div class="row">    
+                            <div *ngFor="let file of experience.file" class="col-md-6 pl-0 " >
+                                <img [src]="file.file ? 
+                                            file.file : 
+                                            '/file/' + file.address "  
+                                     class="media__content__files"
+                                     style="object-fit: cover;"
+                                     (click)="photo = file.file ?  file.file : '/file/' + file.address "
+                                                    *ngIf=" file['ext'] || file['mime_type'].split('/')[1] === 'jpeg' || 
+                                                            file['ext'] || file['mime_type'].split('/')[1] === 'jpg'  || 
+                                                            file['ext'] || file['mime_type'].split('/')[1] === 'png'  || 
+                                                            file['ext'] || file['mime_type'].split('/')[1] === 'gif'  || 
+                                                            file['ext'] || file['mime_type'].split('/')[1] === 'bmp'; else: notImage" appAppLazyImage>
+                                <ng-template #notImage>
+                                    <a [href]="file.file ? file.file :  '/file/' + file.address" target="_blank" style="display: block">
+                                        {{ file.name | lowercase | addDots: "35"}}
+                                    </a>
+                                </ng-template>                       
+                            </div>
+                    </div>
+                    <!-- Files -->
+                </div>
+                <!-- Media content -->
+
+
+            </div>
+        </div>
+        <app-more-less  [dataLength]="experiences.length" (start)="startPage = $event"></app-more-less>
+    </div>
+</ng-container>
+
+
+<ng-container  *ngIf="experiences.length === 0 && isMe">
+        <div class="section-header d-flex">
+            <h1>{{ '589'| translate }}</h1>
+            <div class="col line">
+                <button class="add" *ngIf="isMe" (click)="open()">
+                    <img src="assets/img/50.svg" alt="add">
+                </button>
+            </div>
+        </div>
+    <app-empty-profile [key]='"experiences"' (openModal)='openEmptyModal()'></app-empty-profile>
+</ng-container>
+
+
+<app-modal (closeModal)="modalType = null">
+    
+   <ng-container *ngIf="modalType === 'add'">
+      <app-experience-modal (result)="getExperience($event)"></app-experience-modal>
+   </ng-container>
+   <ng-container *ngIf="modalType === 'edit'">
+      <app-experience-modal  (result)="getExperience($event)" [data]="editExperience"></app-experience-modal>
+   </ng-container>
+   
+</app-modal>
+
+
+<ng-container *ngIf="photo">
+        <app-photo-modal [src]='photo' (onSrc)=' photo = "" '></app-photo-modal>
+  </ng-container>
+  

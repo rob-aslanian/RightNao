@@ -1,0 +1,32 @@
+<div class="categories-content  d-flex">
+  <div class="categories-content__box col d-flex">
+    <img *ngIf="!isCompanyActive" src="assets/img/user-landing-page/job-offers.svg" alt="">
+    <img *ngIf="isCompanyActive" src="assets/img/190.svg" alt="" style="width: 4rem;">
+    <div class="">
+      <p *ngIf="!isCompanyActive"> {{ amoutOfAllJobs$ | async }} </p>
+      <p *ngIf="isCompanyActive"> {{ amoutOfAllCandidates$ | async }} </p>
+      <span *ngIf="!isCompanyActive"> {{ "826" | translate }} </span>
+      <span *ngIf="isCompanyActive"> Candidates</span>
+    </div>
+  </div>
+  <div class="categories-content__box col d-flex">
+    <img *ngIf="!isCompanyActive" src="assets/img/user-landing-page/jobs-today.svg" alt="">
+    <img *ngIf="isCompanyActive" src="assets/img/user-landing-page/jobs-today.svg" alt="">
+    <div class="">
+      <p *ngIf="!isCompanyActive"> {{ amountOfTodaysJobs$ | async }} </p>
+      <p *ngIf="isCompanyActive"> {{ amountOfTodaysJobs$ | async }} </p>
+      <span *ngIf="!isCompanyActive">Jobs today</span>
+      <span *ngIf="isCompanyActive">New Candidates</span>
+    </div>
+  </div>
+  <div class="categories-content__box col d-flex">
+    <img *ngIf="!isCompanyActive" src="assets/img/user-landing-page/job-location.svg" alt="">
+    <img *ngIf="isCompanyActive" src="assets/img/user-landing-page/job-location.svg" alt="">
+    <div class="">
+      <p *ngIf="!isCompanyActive"> {{ amountOfJobsInYourLocation$ | async }} </p>
+      <p *ngIf="isCompanyActive"> {{ amountOfJobsInYourLocation$ | async }} </p>
+      <span *ngIf="!isCompanyActive">Jobs in your location</span>
+      <span *ngIf="isCompanyActive">Candidates in your location</span>
+    </div>
+  </div>
+</div>

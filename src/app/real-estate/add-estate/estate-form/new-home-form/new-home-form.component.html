@@ -1,0 +1,50 @@
+    <div class="new-home-wrapper">
+
+        <app-checkbox-home [title]='title' [list]='home.type_of_property'></app-checkbox-home>
+
+        <div class="mt-3">
+                <app-status-home></app-status-home>
+        </div>
+        
+        <div class="col-6 p-0">
+               <app-specs-form></app-specs-form>
+        </div>
+
+        <div class="mt-3">
+                <app-checkbox-home  [title]='"Outdoor Features"' [list]='home.outdoor_features'></app-checkbox-home>
+        </div>
+      
+        <div class="mt-3">
+                <app-checkbox-home  [title]='"Indoor Features"' [list]='home.indoor_features'></app-checkbox-home>
+        </div>
+
+        <div class="mt-3 type-of-home">
+                <app-checkbox-home  [title]='"Climate control & energy"' [list]='home.climat_control'></app-checkbox-home>
+        </div>
+
+        <div class="mt-3">
+                <app-more-information></app-more-information>
+        </div>
+        
+        <ng-container  *ngIf="categoryId === 'DealType_Rent'">
+                <app-avilability-home></app-avilability-home>  
+        </ng-container>
+
+
+        <ng-container  *ngIf="categoryId === 'DealType_Lease'">
+                <app-checkbox-home [title]='"Who will live"' [list]='who_will_live'></app-checkbox-home>
+        </ng-container>
+        
+    </div> 
+
+    <div class="col-8 pl-0 mt-3">
+                <app-basic-information></app-basic-information>
+    </div>
+
+    <div class="d-flex justify-content-between mt-5">
+            <button class="btn  backgroundless" (click)='goBack()'>
+                Back</button>
+            <button class="btn btn-primary" (click)='logValue()'>
+                Next</button>
+    </div>
+    

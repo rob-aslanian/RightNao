@@ -1,0 +1,156 @@
+<div class="add-education">
+    <form [formGroup]="educationForm" autocomplete="off">
+      <div class="mobile-modal">
+        <div class="form-group">
+            <label for="add-school">School / University <span>*</span></label>
+            <input type="text" maxlength="128" formControlName="school" class="form-control" [ngClass]="{ 'is-invalid': submited && ed.school.errors   }" id="add-school">
+        </div>
+                                 <!-- errors    -->
+        <ng-container *ngIf="submited && ed.school.errors">
+                <span class="error_message"  *ngFor="let error of utils.getErrorsKey(ed.school.errors)">
+                    {{ utils.$getErrors(error) }}
+                </span> 
+         </ng-container>    
+         
+                                <!-- errors    -->
+        <div class="form-group">
+            <label for="add-degree">{{ '445'| translate }}</label>
+            <input type="text" class="form-control" 
+                    maxlength="64"
+                    formControlName="degree"  id="add-degree"
+                    [ngbTypeahead]="searchgDegree">
+    
+        </div>
+
+                             <!-- errors   -->
+        <ng-container *ngIf="submited && ed.degree.errors">
+                <span class="error_message"  *ngFor="let error of utils.getErrorsKey(ed.degree.errors)">
+                    {{ utils.$getErrors(error) }}
+                </span>
+         </ng-container>
+                            <!-- errors  -->
+        <div class="form-group">
+            <label for="add-field">{{ '606'| translate }} <span>*</span></label>
+            <input type="text" class="form-control" formControlName="field" 
+                    [ngClass]="{ 'is-invalid': submited && ed.field.errors }" 
+                    id="add-field"
+                    maxlength="128"
+                    [ngbTypeahead]="searchFieldOfStudy">
+        </div>
+                             <!-- errors  -->
+        <ng-container *ngIf="submited && ed.field.errors">
+                <span class="error_message"  *ngFor="let error of utils.getErrorsKey(ed.field.errors)">
+                        {{ utils.$getErrors(error) }}
+                </span> 
+         </ng-container>
+                            <!-- errors  -->
+
+        <div class="form-group">
+            <label for="add-grade">{{ '688'| translate }}</label>
+            <input type="text" class="form-control" formControlName="grade" maxlength="32" id="add-grade">
+        </div>
+                      <!-- errors  -->
+        <ng-container *ngIf="submited && ed.grade.errors">
+                <span class="error_message"  *ngFor="let error of utils.getErrorsKey(ed.grade.errors)">
+                        {{ utils.$getErrors(error) }}
+                </span> 
+        </ng-container>
+                       <!-- errors  -->
+ 
+        <div class="row">
+            <div class="col-md-6 custom-padding-right">
+                <div class="form-row form-group">
+                    <div class="col-7 pr-2">
+                        <label for="education-from">{{ '649'| translate }} <span>*</span></label>
+                        <select class="form-control" id="education-from" formControlName="startMonth" (change)='getDate()' [ngClass]="{ 'is-invalid': submited && ed.startMonth.errors  }">
+                            <option value="" disabled selected>{{ '926'| translate }}</option>
+                            <option *ngFor="let month of Months" [value]="month.id" tabindex="10"> 
+                                {{month.name}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-5 pl-2">
+                        <select class="form-control  label-less" formControlName="startYear" (change)='getDate()' [ngClass]="{ 'is-invalid': submited && ed.startYear.errors  }">
+                            <option value="" disabled selected>{{ '1582'| translate }}</option>
+                            <option *ngFor="let year of Years"  [value]="year" >
+                                {{year}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 custom-padding-left">
+                <div class="form-row">
+                    <div class="col-7 pr-2">
+                        <label for="education-to">{{ '1418'| translate }}<span>*</span></label>
+                        <select class="form-control" id="education-to" formControlName="endMonth" (change)='getDate()' [ngClass]="{ 'is-invalid': submited && ed.endMonth.errors   }">
+                            <option value="" disabled selected>{{ '926'| translate }}</option>
+                            <option *ngFor="let month of Months" [value]="month.id" tabindex="10"> 
+                                {{month.name}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-5 pl-2">
+                        <select class="form-control label-less" formControlName="endYear" (change)='getDate()'  [ngClass]="{ 'is-invalid': submited && ed.endYear.errors   }">
+                            <option value="" disabled selected>{{ '1582'| translate }}</option>
+                            <option *ngFor="let year of Years"  [value]="year" >
+                                {{year}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                            <!-- errors  -->
+        <ng-container *ngIf="submited && (ed.endMonth.errors || ed.endYear.errors)">
+                <span class="error_message"  *ngFor="let error of utils.getErrorsKey(ed.endMonth.errors || ed.endYear.errors)">
+                        {{ utils.$getErrors(error) }}
+                </span> 
+         </ng-container>
+                            <!-- errors  -->
+ 
+        <div class="form-check custom-control custom-checkbox i-currently text-right" style="padding-right: 55px;">
+            <input type="checkbox" class="custom-control-input" formControlName="currently_study"  (change)="currentlyStudy($event)"  value="true"  id="i-work-here">  
+            <label for="i-work-here" class="custom-control-label">
+             I'm currently studying here
+            </label>
+        </div>
+
+        <br>
+
+        <!-- START MEDIA AND LINK -->
+             <!-- <app-media-and-link  [existFiles]="data" type="education" (result)="getFiles($event)"></app-media-and-link> -->
+        <!-- END MEDIA AND LINK -->
+
+        <div class="form-group mb-0 mt-0"> 
+                <div class="d-flex justify-content-between">
+                    <label for="add-education-description">{{ '461'| translate }}</label>
+                    <span class="letter-count"> {{ ed.description && ed.description.value !== null ?  
+                        ed.description.value.length : 0 }} / 800 
+                    </span>
+                </div>
+            <textarea class="form-control" rows="5" id="add-education-description" formControlName="description" maxlength="800"  [ngClass]="{ 'is-invalid': submited && ed.description.errors   }"></textarea>
+        </div>
+                       <!-- errors  -->
+                       <ng-container *ngIf="submited &&  ed.description.errors">
+                            <span class="error_message"  *ngFor="let error of utils.getErrorsKey(ed.description.errors)">
+                                    {{ utils.$getErrors(error) }}
+                            </span> 
+                     </ng-container>
+                                        <!-- errors  -->
+
+        <br>
+
+        <!-- START MEDIA AND LINK -->
+        <app-media-and-link  [existFiles]="data" type="education" (result)="getFiles($event)"></app-media-and-link>
+        <!-- END MEDIA AND LINK -->
+    </div>
+        <div class="d-flex mobile-button"> 
+            <button class="backgroundless ml-auto" (click)="removeEducation()" *ngIf="data"> {{ '1185'| translate }} </button>
+            <button class="backgroundless ml-auto" (click)="submit(true)" *ngIf="!data">{{ '1233'| translate }}</button>
+            <button class="btn btn-primary ml-3" (click)="submit()" >{{ '1231'| translate }}</button>
+        </div>
+    </form>
+</div>

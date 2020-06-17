@@ -1,0 +1,56 @@
+<div class="col" *ngIf='( network_info | async ) as info'>
+  <div class="row justify-content-center">
+    <ng-container *ngIf='!isCompanyActive'>
+        <div class="col-md   mt-4" [routerLink]='["/network/contacts"]'  [ngClass]="{'disabled__link':  !contacts }" >
+          <div class="col-12 d-flex  redirect-box">
+              <div class="">
+                <img src="assets/img/wg.svg" alt="">
+              </div>
+              <div class="pl-2">
+                <a >Contacts</a>
+                <h4>{{  contacts }}</h4>
+              </div>
+          </div>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf='!isCompanyActive'>
+        <div class="col-md   mt-4" [routerLink]='["/network/connection"]'  [ngClass]="{'disabled__link': !connections }" >
+          <div class="col-12 d-flex  redirect-box">
+              <div class="">
+                <img src="assets/img/225.svg" alt="">
+              </div>
+              <div class="pl-2">
+                <a >Connections</a>
+                <h4>{{ connections }}</h4>
+              </div>
+          </div>
+        </div>
+    </ng-container>
+
+    <div  class="col-md mt-4">
+      <div class="col-12 d-flex  redirect-box"  [routerLink]='[path.Following]' [ngClass]="{'disabled__link': !info?.followings }">
+          <div class="">
+            <img src="assets/img/643.svg" alt="">
+          </div>
+          <div class="pl-2">
+            <a  >Following</a>
+            <h4>{{ info?.followings }}</h4>
+          </div>
+      </div>
+    </div>
+
+    <div class="col-md mt-4">
+      <div class="col-12 d-flex  redirect-box" [routerLink]='[path.Followers]' [ngClass]="{'disabled__link': !info?.followers  }">
+          <div class="">
+            <img src="assets/img/644.svg" alt="">
+          </div>
+          <div class="pl-2">
+            <a   >Followers</a>
+            <h4>{{ info?.followers }}</h4>
+          </div>
+      </div>
+    </div>
+
+  </div>
+</div>

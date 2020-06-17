@@ -1,0 +1,95 @@
+<div>
+  <div class="find-work__sidebar__heading">
+      <h4 class="page-section-text-blue">All Categories</h4>
+  </div>
+  <div class="find-work__sidebar-section__categories">
+      <ul class="find-work__sidebar-section__categories__list" *ngFor="let category of categories | slice : startPage : paginationLimit">
+          <li class="find-work__sidebar-section__categories__list-item page-section-text-grey">
+              <a href="#" class="find-work__sidebar-section__categories__list-link">{{ category }}</a>
+          </li>
+<!--  -->
+      </ul>
+      <h4 *ngIf="showMoreIsActive; else showLessBtn" 
+           (click)="showMore()" 
+           class="find-work__sidebar-section__price-options__more mb-0">
+           Show more
+      </h4>
+      <ng-template #showLessBtn>
+        <h4 class="find-work__sidebar-section__price-options__more mb-0" (click)="showLess()">
+            Show less
+        </h4>
+      </ng-template>
+      
+  </div>
+</div>
+
+<!-- <br/>
+
+<div>
+  <div class="find-work__sidebar__heading">
+      <p class="page-section-text-grey mb-2 find-work__sidebar__heading__icon-wrap"> 
+          <span>
+              <img src="../assets/img/147.svg" class="find-work__sidebar__heading__with-icon"/>
+          </span> 
+          All Categories
+      </p>
+  </div>
+  <div class="find-work__sidebar-section__categories">
+      <div class="find-work__sidebar__heading ml-0">
+          <h4 class="page-section-text-blue">Graphics & Design</h4>
+      </div>
+      <div class="find-work__sidebar-section__categories">
+          <ul class="find-work__sidebar-section__categories__list">
+              <li class="find-work__sidebar-section__categories__list-item page-section-text-grey">
+                  <a href="#" class="find-work__sidebar-section__categories__list-link">Logo Design</a>
+              </li>
+
+              <li class="find-work__sidebar-section__categories__list-item page-section-text-grey">
+                  <a href="#" class="find-work__sidebar-section__categories__list-link">Brand Style Guide</a>
+              </li>
+          
+              <li class="find-work__sidebar-section__categories__list-item page-section-text-grey">
+                  <a href="#" class="find-work__sidebar-section__categories__list-link">Game Design</a>
+              </li>
+          
+              <li class="find-work__sidebar-section__categories__list-item page-section-text-grey">
+                  <a href="#" class="find-work__sidebar-section__categories__list-link">Business cards & Stationary</a>
+              </li>
+          
+              <li class="find-work__sidebar-section__categories__list-item page-section-text-grey">
+                  <a href="#" class="find-work__sidebar-section__categories__list-link">Illustration</a>
+              </li>
+          
+              <li class="find-work__sidebar-section__categories__list-item page-section-text-grey">
+                  <a href="#" class="find-work__sidebar-section__categories__list-link">Graphics Design</a>
+              </li>
+          </ul>
+          <h4 class="find-work__sidebar-section__price-options__more mb-0">Show more</h4>
+      </div>
+  </div>
+</div>
+
+<br/>
+<div>
+  <div class="find-work__sidebar__heading">
+      <p class="page-section-text-grey mb-2 find-work__sidebar__heading__icon-wrap"> 
+          <span>
+              <img src="../assets/img/147.svg" class="find-work__sidebar__heading__with-icon"/>
+          </span> 
+          All Categories
+      </p>
+  </div>
+  <div class="find-work__sidebar__heading">
+      <p class="page-section-text-grey mb-2 find-work__sidebar__heading__icon-wrap"> 
+          <span>
+              <img src="../assets/img/147.svg" class="find-work__sidebar__heading__with-icon"/>
+          </span> 
+          Graphics & Design
+      </p>
+  </div>
+  <div class="find-work__sidebar-section__categories">
+      <div class="find-work__sidebar__heading ml-0">
+          <h4 class="page-section-text-blue">Graphics & Design</h4>
+      </div>
+  </div>
+</div> -->

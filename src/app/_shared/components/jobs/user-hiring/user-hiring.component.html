@@ -1,0 +1,22 @@
+<div class="popup-content default-modal choose-hirer-company d-flex" *ngIf="(companies | async) as companies">
+    <ng-container *ngIf="companies.length > 0; else:noCompany" >
+      <form style="width: 100%">
+          <p>Switch to a company to post a job</p>
+              <div class="custom-control custom-radio custom-control-inline d-flex" *ngFor="let company of companies; trackBy:trackByFn" style="display: flex">
+                  <input type="radio" [id]="'company-' + company.id" name="customRadioInline1" 
+                          class="custom-control-input" [value]="company.id" (change)="selectCompany(company)">
+                  <label class="custom-control-label" [for]="'company-' + company.id">
+                    <img [src]="company.avatar ? '/file/' + company.avatar : 'assets/img/default-company.svg'" alt="company-1">
+                    {{ company.name }}
+                  </label>
+              </div>
+                <button class="btn btn-primary d-block ml-auto mt-3" type="button" (click)="submit()" [disabled]="!selectedCompany">Next</button>            
+      </form>
+    </ng-container>
+
+    <ng-template #noCompany>     
+            <p>Please register a Company or Organization to post a job</p>     
+              <button class="btn btn-primary d-block ml-auto mt-3 mb-3" (click)="submit(true)">Next</button>
+    </ng-template>
+    
+</div>

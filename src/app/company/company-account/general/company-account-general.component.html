@@ -1,0 +1,118 @@
+<div class="account-right-content" *ngIf="company_info" >
+    <h1>{{ '663' | translate }}</h1>
+
+    <!-- Name start -->
+    <div class="boxes-for-account">
+        <app-name [companyName]="company_info.name" [comapnyId]="company_info.id" (result)="getResult($event)"></app-name>
+
+    </div>
+    <!-- Name end -->
+
+    <!-- General info start -->
+    <div class="boxes-for-account">
+        <app-general-info [data]="generalInfo" (result)="getResult($event)" ></app-general-info>
+    </div>
+    <!-- General info end -->
+
+    <!-- Email  start -->
+    <div class="boxes-for-account">
+        <app-company-email [data]="companyEmails" [id]="company_info.id" (result)="getResult($event)" ></app-company-email>
+    </div>
+    <!-- Email end -->
+
+
+    <!-- Phone start -->
+    <div class="boxes-for-account">
+      <app-company-phone [data]="companyPhones" [id]="company_info.id" (result)="getResult($event)"></app-company-phone>
+    </div>
+    <!-- Phone end -->
+
+
+    <!-- Company Addressess start -->
+    <div class="boxes-for-account">
+      <app-company-addresses [data]="companyAddresses" [id]="company_info.id" (result)="getResult($event)"></app-company-addresses>
+    </div>
+    <!-- Company Addressess end -->
+
+
+    <!-- Website start  -->
+    <div class="boxes-for-account">
+        <app-website [data]="companyWebsites" (result)="getResult($event)"></app-website>
+    </div>
+    <!-- Website End -->
+
+
+    <!-- Additional Settings start -->
+    <div class="boxes-for-account">
+        <h2> {{ "111" | translate }} </h2>
+        <hr>
+        <div class="row">
+            <div class="col-lg-3">
+                <h3>
+                    {{ "1136" | translate }}
+                </h3>
+            </div>
+            <div class="col-auto">
+                <span>
+                    {{ url  }}
+                </span>
+            </div>
+            <div class="col d-none d-lg-block">
+
+            </div>
+            <div class="col button-col">
+                <button (click)="isEditURL = !isEditURL; closeAllForm('url')"></button>
+            </div>
+        </div>
+
+        <div *ngIf="isEditURL then publicUrl"></div>
+        <ng-template #publicUrl>
+            <form [formGroup]="editURLForm" autocomplete="off">
+                <label for=""> {{ "498" | translate }} </label>
+                <div class="form-group form-row">
+                    <div class="col-4 d-flex align-items-center">
+                        <span>rightnao.com/</span>
+                        <input type="text" class="form-control mr-3" placeholder="Enter URL here" formControlName="url" [value]="url" >
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <button class="btn btn-primary" (click)="editPURL()"> {{ "1231" | translate }} </button>
+                </div>
+            </form>
+        </ng-template>
+
+
+        <div class="row">
+            <div class="col-lg-3">
+                <h3>
+                    {{ "441" | translate }}
+                </h3>
+            </div>
+            <div class="col-auto d-none d-lg-block">
+
+            </div>
+            <div class="col d-none d-lg-block">
+
+            </div>
+            <div class="col button-col">
+                <span> {{ "1388" | translate }} </span>
+                             
+                <div class="form-group">
+                        <button class="btn btn-primary" (click)="deactivateAccount()"></button>
+                    </div>
+            </div>
+           <app-modal>
+                <ng-container>
+                    <app-deactivate-account
+                                [deactivate]='deactivate'
+                                (closeModal)="modal.close()"
+                                [companyID]='company_info.id'>            
+                    </app-deactivate-account>
+                 </ng-container>
+            </app-modal>
+        </div>
+    </div>
+    <!-- Additional Settings end -->
+    
+</div>

@@ -1,0 +1,286 @@
+<main class="main-light-blue">
+  
+  <div class="top__content" *ngIf="user">
+    <button class="backgroundless" (click)="open()">Cancel</button>
+    <img [src]=" user.avatar ? '/file/'+ user.avatar : 'assets/img/124.svg' " alt="user" class="user-photo">
+  </div>
+
+  <!-- Register company form container -->
+  <div class="container register company-registration" *ngIf="!isLoading">
+    <h1>REGISTER {{ type }}</h1>
+    <form class="first-form" [formGroup]="form" autocomplete="off">
+      <div class=" form-group" style="position: relative">
+        <!-- <label for="company-name" class="placeho">company name</label> -->
+        <input type="text" class="form-control required" [ngClass]="{ 'is-invalid': formSubmitted && f.name.errors }"
+          id="company-name" formControlName="name"  maxlength="128" placeholder="Legal Name" (blur)="generateUrl()">
+          <!-- <span class="required-field">*</span> -->
+
+        <!-- Errors -->
+        <ng-container *ngIf="formSubmitted && f.name.errors">
+          <span class="error_message" *ngFor="let error of utils.getErrorsKey(f.name.errors)">
+            {{ utils.$getErrors(error) }}
+          </span>
+        </ng-container>
+        <!-- Errors -->
+      </div>
+
+      <div class="form-group position-relative">
+         <div class="row mx-0 align-items-center">
+            <span class="col-2 p-0 mr-3" style="color: #808080;">rightnao.com/</span>
+            <input type="text" class="col form-control" [ngClass]="{ 'is-invalid': (f.url.touched || f.url.dirty || formSubmitted) &&  f.url.errors }"
+              id="website" formControlName="url" placeholder="Public URL" (keyup)='checkIfCompanyUrlIsTaken($event)'
+              maxlength="128">
+         </div>
+        <!-- Errors -->
+        <ng-container *ngIf=" (f.url.touched || f.url.dirty || formSubmitted)  && f.url.errors">
+          <span class="error_message" *ngFor="let error of utils.getErrorsKey(f.url.errors)">
+            {{ utils.$getErrors(error) }}
+          </span>
+        </ng-container>
+        <!-- Errors -->
+      </div>
+
+
+      <div class="form-group position-relative">
+        
+        <select class="form-control" name="industry" id="industry"
+          [ngClass]="{ 'is-invalid': formSubmitted && f.industry.errors }" formControlName="industry">
+          <option selected disabled value="">Industry</option>
+          <option *ngFor="let industry of company_industries" [value]="industry.id">{{ industry.name }}</option>
+        </select>
+        <span class="industry-required required-field" *ngIf="f.industry.value === ''">*</span>
+        <!--Error -->
+        <span class="error_message" *ngIf="formSubmitted && f.industry.errors">
+          {{ utils.$getErrors('required') }}
+        </span>
+        <!--Error -->
+      </div>
+
+      <div class="form-group">
+          <input type="text" class="form-control required" 
+          id="company-name" formControlName="websites"  maxlength="128" placeholder="Website">
+      </div>
+
+      <div class="form-row">
+        <!-- Form on left -->
+        <div class="col-sm">
+          <div class="form-row mx-0 row-group position-relative">
+            <img src="/assets/img/company_type.svg" alt="company">
+            <!-- Comapny Type -->
+            
+            <select class="form-control ml-3 col" id="company-size" formControlName="type"
+              [ngClass]="{ 'is-invalid': formSubmitted && f.type.errors }">
+              <option value="" disabled>Type</option>
+              <option *ngFor="let type of companyTypesKey;" [value]="type">
+                {{ companyTypes[type] }}
+              </option>
+            </select>
+            <span class="type-required required-field" *ngIf="f.type.value === ''">*</span>
+            <!-- Comapny Type -->
+            <!--Error -->
+            <span class="error_message" *ngIf="formSubmitted && f.type.errors">
+              {{ utils.$getErrors('required') }}
+            </span>
+            <!--Error -->
+          </div>
+
+          <div class="form-row mx-0 row-group position-relative">
+            <img src="/assets/img/mail.svg" alt="mail">
+            <input type="text" placeholder="Email" id="email" formControlName="email"
+              [ngClass]="{ 'is-invalid': formSubmitted && f.email.errors }" class="form-control ml-3 col"
+              maxlength="72">
+            <span class="email-required required-field" *ngIf="f.email.value === ''">*</span>
+            <!--Error -->
+            <span class="error_message" *ngIf="formSubmitted && f.email.errors">
+              {{ utils.$getErrors('required') }}
+            </span>
+            <!--Error -->
+          </div>
+
+
+          <div class="form-row mx-0 row-group">
+            <img src="/assets/img/phone.svg" alt="phone" class="float-right">
+            <div class="col pl-0 ml-3 form-row justify-content-between">
+              <div class="position-relative col-6">
+                <select id="" formControlName="country_code_id"
+                  [ngClass]="{ 'is-invalid': formSubmitted && f.country_code_id.errors }"
+                  class="cutom-select form-control">
+                  <option selected disabled value="">Code</option>
+                  <option *ngFor="let code of countryCodes" [value]="code.id">{{ code.country +' '+ code.country_code }}
+                  </option>
+                </select>
+                <span class="country-code-required required-field" *ngIf="f.country_code_id.value === ''">*</span>
+              </div>
+              <div class="position-relative col-6">
+                <input type="text" placeholder="Number" id="phone" formControlName="phone"
+                  [ngClass]="{ 'is-invalid': formSubmitted && f.phone.errors }" class="form-control"
+                  maxlength="32">
+                  <span class="phone-required required-field" *ngIf="f.phone.value === ''">*</span>
+              </div>
+            </div>
+            <!--Error -->
+            <span class="error_message" *ngIf="formSubmitted && f.country_code_id.errors">
+              {{ utils.$getErrors('required') }}
+            </span>
+            <!--Error -->
+
+            <!-- Errors -->
+            <ng-container *ngIf="formSubmitted && f.phone.errors">
+                <span class="error_message" *ngFor="let error of utils.getErrorsKey(f.phone.errors)" style="right: 0;">
+                  {{ utils.$getErrors(error) }}
+                </span>
+              </ng-container>
+              <!-- Errors -->
+          </div>
+
+          <div class="form-row mx-0 row-group" style="position: relative;">
+            <img src="/assets/img/VAT.svg" alt="vat">
+            <input type="text" placeholder="VAT number" formControlName="vat" class="form-control ml-3 col vat"
+              (focus)="showError = true" (blur)="showError = false" maxlength="64" [ngClass]="{ 'is-invalid': formSubmitted && f.vat.errors }">
+            <!--Error -->
+            <span class="error_message" *ngIf="formSubmitted && f.vat.errors" style="right: 0">
+              {{ utils.$getErrors('symbolsAndLatin') }}
+            </span>
+            <!--Error -->
+            <div class="password-criteria" style="right: 0; left: 317px; width: 15rem;"
+              *ngIf="showError && form.get('vat').value.length === 0 ">
+              <div class="arrow"></div>
+              <ul>
+                <li>VAT Criteria</li>
+                <li> Entering VAT registration number is not mandatory,
+                  however if it is successfully verified,
+                  you will receive a verified status on your profile
+                  that will indicate that your account
+                  represents an authentic business entity.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+        <!-- End -->
+
+
+        <!-- Form on right -->
+        <div class="col-sm right-form">
+          <div class="form-row mx-0 row-group position-relative">
+            <img src="/assets/img/location.svg" alt="location">
+            <input type="text" placeholder="Street address" class="form-control ml-3 col" formControlName="address"
+              [ngClass]="{ 'is-invalid': formSubmitted && f.address.errors }" class="form-control col ml-3"
+              maxlength="128">
+              <span class="address-required required-field" *ngIf="f.address.value === '' ">*</span>
+            <!-- Errors -->
+            <ng-container *ngIf="formSubmitted && f.address.errors">
+              <span class="error_message" *ngFor="let error of utils.getErrorsKey(f.address.errors)" >
+                {{ utils.$getErrors(error) }}
+              </span>
+            </ng-container>
+            <!-- Errors -->
+          </div>
+
+          <div class="form-row mx-0 row-group position-relative">
+            <input type="text" placeholder="Appartment, unit, building, floor, etc." id="apartment"
+              formControlName="apartment" [ngClass]="{ 'is-invalid': formSubmitted && f.apartment.errors }"
+              class="form-control imageless col" maxlength="32">
+            <!-- Errors -->
+            <ng-container *ngIf="formSubmitted && f.apartment.errors">
+              <span class="error_message" *ngFor="let error of utils.getErrorsKey(f.apartment.errors)">
+                {{ utils.$getErrors(error) }}
+              </span>
+            </ng-container>
+            <!-- Errors -->
+          </div>
+
+
+          <div class="form-row row-group justify-content-between mx-0 position-relative">
+
+            <div class="col-5 pl-0 pr-0 position-relative">
+            <!-- Country -->
+            <select class="cutom-select imageless form-control test" (change)="selectCountry($event)"
+              [ngClass]="{ 'is-invalid': formSubmitted && f.country.errors }" formControlName="country">
+              <option value="" disabled>Country </option>
+              <option [value]="country.asc" *ngFor="let country of countries | async">
+                {{ country.name }}
+              </option>
+            </select>
+            <span class="country-required required-field" *ngIf="f.country.value === '' ">*</span>
+            <!-- Country -->
+             <!--Error -->
+             <span class="error_message" *ngIf="formSubmitted && f.country.errors" >
+                {{ utils.$getErrors('required') }}
+              </span>
+              <!--Error -->
+            </div>
+
+            <div class="col-5 pl-0 pr-0 position-relative">
+          <!-- City-->
+            <input type="text" class="form-control" id="city" placeholder="City" [(ngModel)]="selectedCity"
+            formControlName="city_code" [ngbTypeahead]="searchCity" (selectItem)="selectCity($event)" [resultFormatter]="cityFormatter"
+            [inputFormatter]="cityFormatter" disabled
+            [ngClass]="{ 'is-invalid': formSubmitted && f.city_code.errors }">
+            <span class="city-required required-field" *ngIf="f.city_code.value === ''">*</span>
+          <!-- City-->
+
+           <!-- Errors -->
+           <ng-container *ngIf="formSubmitted && f.city_code.errors">
+              <span class="error_message" *ngFor="let error of utils.getErrorsKey(f.city_code.errors)" style="left: -10px;">
+                  {{ utils.$getErrors(error) }}
+              </span>
+          </ng-container>
+          <!-- Errors -->
+        </div>
+            
+          </div>
+
+          <div class="form-row row-group justify-content-between mx-0">
+            <div class="position-relative col-5 pl-0 pr-0">
+              <input type="text" placeholder="Postal Code" id="zip-code" formControlName="zip"
+                [ngClass]="{ 'is-invalid': formSubmitted && f.zip.errors }" class="form-control imageless"
+                maxlength="32">
+                <span class="zip-required required-field" *ngIf="f.zip.value === ''">*</span>
+              <!-- Errors -->
+               <ng-container *ngIf="formSubmitted && f.zip.errors">
+                  <span class="error_message" *ngFor="let error of utils.getErrorsKey(f.zip.errors)">
+                      {{ utils.$getErrors(error) }}
+                  </span>
+              </ng-container>
+              <!-- Errors -->
+            </div>
+            <div class="position-relative col-5 pl-0 pr-0">
+              <input type="text" placeholder="State/Province" class="form-control" formControlName="state">
+            </div>
+
+          </div>
+        </div>
+        <!-- End -->
+      </div>
+
+      <!-- Verification with fingerprint start -->
+      <div class="form-check custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" value="something" id="verify" formControlName="verify"
+          [ngClass]="{ 'is-invalid': formSubmitted && f.verify.errors }">
+        <label for="verify" class="custom-control-label"> I verify that I am the official representative of the {{ type }}
+        </label>
+      </div>
+
+      <button type="submit" (click)="register()" class="sign_up btn btn-primary mt-4 float-right">Register</button>
+      <!-- End -->
+    </form>
+  </div>
+  <!-- End -->
+  <app-spinner class="center_spinner" *ngIf="isLoading"></app-spinner>
+</main>
+
+
+
+
+
+<app-modal (closeModal)="isModalOpen = false;" [isBlue]="false" size="md">
+    <div *ngIf="isModalOpen" class="modal__content">
+        <h2>{{ type }} registration process will be 
+            cancelled. <br>Are you sure?</h2>
+        <div class="btn_row">
+            <button class="btn backgroundless" (click)="modal.close()">Do Not Cancel</button>
+            <button class="btn btn-primary" (click)="signOut()">Confirm</button>
+        </div>
+    </div>
+</app-modal>

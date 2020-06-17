@@ -1,0 +1,49 @@
+ <div class="services-detailer">
+   <form [formGroup]='details' autocomplete="off">
+      <img src="../../assets/img/485.svg" alt="pc">
+      <h5  class="ml-2"  style="display: inline-block; font-weight: 400;">Service Details </h5>
+
+          <div class="office-offer mt-3">
+                <label   for="office-offer-input"  class="label-control label-black">What service do you offer?<span class="star">*</span> </label>
+                <input  type="text" 
+                        class="form-control" 
+                        id="office-offer-input" 
+                        placeholder="Give a title to your service" 
+                        formControlName='name'
+                        [ngClass]='{"is-invalid": details.get("name").errors &&  submited}'>
+
+          </div>
+
+    <div class="form-row mt-4">
+       <div class="col-6">
+         <label for="category" class="dark-label">Subcategory  <span class="star">*</span></label>
+             <select   id="category"
+                       class="form-control" 
+                       formControlName='subCategory'
+                       [ngClass]='{"is-invalid": details.get("subCategory").errors &&  submited}'>
+
+                 <option  selected disabled value>Select Subcat</option>
+                 <ng-container *ngIf='subCat'>
+                    <option *ngFor='let cat of subCat' [value]='cat.id' > {{ cat.name }} </option>
+                 </ng-container>
+             </select>
+       </div>
+    </div>
+    
+    <div class="description-wrapper mt-4">
+
+        <div class="d-flex justify-content-between align-items-end mb-2">
+          <label for="textarea" class="dark-label"  >Description<span class="star">*</span></label> 
+             <span>0/1200</span>
+        </div>
+
+      <textarea  placeholder="Enter description"  
+                 class="form-control"  
+                 id="textarea" cols="30" 
+                 rows="10" 
+                 style=" resize: none;"
+                 formControlName='description'
+                 [ngClass]='{"is-invalid": details.get("description").errors &&  submited}'></textarea>   
+    </div>
+  </form>
+</div>

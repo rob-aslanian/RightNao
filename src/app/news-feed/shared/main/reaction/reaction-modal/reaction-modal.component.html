@@ -1,0 +1,111 @@
+<div class="news-feed-content">
+  <div class="col-12" style="margin: 0px auto;">
+      <div class="d-flex justify-content-between visitors-head">
+
+          <ngb-tabset title="Simple" >
+              <!-- START TOTAL APPLICANTS  -->
+              <ngb-tab id="all">
+                  <ng-template ngbTabTitle >
+                      <div class="all">
+                          <span>All </span>
+                          <span>{{ reactionCount }}</span>
+                      </div>
+                  </ng-template>
+                  <ng-template ngbTabContent>  
+                      <app-reactions-content type="all" [reactionsAmount]="reactionCount"></app-reactions-content>           
+                  </ng-template>
+              </ngb-tab>
+               <!-- END TOTAL APPLICANTS  -->
+
+              <!-- START NEW  APPLICANTS  -->
+              <ngb-tab id="like" *ngIf="(reactions['like'] ) as likes ">
+                  <ng-template ngbTabTitle >
+                      <div class="like">
+                          <img src="assets/img/500.svg" alt="like" style="margin-top: -6px;">
+                          <span>{{ likes }}</span>
+                      </div>
+                  </ng-template>
+                  <ng-template ngbTabContent>
+                      <app-reactions-content type="like" [reactionsAmount]="likes"></app-reactions-content>    
+                  </ng-template>
+              </ngb-tab>
+              <!-- END NEW APPLICANTS  -->
+
+              <!-- START FAVORITE APPLICANTS  -->
+              <ngb-tab id="heart" *ngIf="(reactions['heart'] ) as hearts " >
+                <ng-template ngbTabTitle >
+                    <div class="heart">
+                        <img src="assets/img/501.svg" alt="heart">
+                        <span>{{ hearts }}</span>
+                    </div>
+                </ng-template>
+                <ng-template ngbTabContent>
+                    <app-reactions-content type="heart" [reactionsAmount]="hearts"></app-reactions-content>   
+                </ng-template>
+              </ngb-tab>
+              <!-- END FAVORITE APPLICANTS  -->
+
+               <!-- START REVIEW APPLICANTS  -->
+               <ngb-tab id="clap" *ngIf="(reactions['clap'] ) as claps " >
+                  <ng-template ngbTabTitle >    
+                      <div class="hands">
+                          <img src="assets/img/504.svg" alt="hands" style="margin-top: -6px;">
+                          <span>{{ claps }}</span>
+                      </div>
+                  </ng-template>
+                  <ng-template ngbTabContent>
+                      <app-reactions-content type="clap" [reactionsAmount]="claps"></app-reactions-content>    
+                  </ng-template>
+              </ngb-tab>
+              <!-- END REVIEW APPLICANTS  -->
+
+              <!-- START Disqualified APPLICANTS  -->
+              <ngb-tab id="rocket"  *ngIf="(reactions['rocket'] ) as rockets " >
+                <ng-template ngbTabTitle >
+                    <div class="racket">
+                        <img src="assets/img/505.svg" alt="racket">
+                        <span>{{ rockets }}</span>
+                    </div>
+                </ng-template>
+                <ng-template ngbTabContent>
+                    <app-reactions-content type="rocket" [reactionsAmount]="rockets"></app-reactions-content> 
+                </ng-template>
+              </ngb-tab>
+              <!-- END Disqualified APPLICANTS  -->
+
+              <!-- START Disqualified APPLICANTS  -->
+              <ngb-tab id="stop"  *ngIf="(reactions['stop'] ) as stops ">
+                  <ng-template ngbTabTitle >
+                      <div class="hand">
+                          <img src="assets/img/502.svg" alt="hand">
+                          <span>{{ stops }}</span>
+                      </div>
+                  </ng-template>
+                  <ng-template ngbTabContent>
+                      <app-reactions-content type="stop" [reactionsAmount]="stops"></app-reactions-content> 
+                  </ng-template>
+                </ngb-tab>
+                <!-- END Disqualified APPLICANTS  -->
+
+                <!-- START Disqualified APPLICANTS  -->
+              <ngb-tab id="hmm"  *ngIf="(reactions['hmm'] ) as hmms ">
+                  <ng-template ngbTabTitle >
+                      <div class="boared">
+                          <img src="../../assets/img/503.svg" alt="boared">
+                          <span>{{ hmms }}</span>
+                      </div>
+                  </ng-template>
+                  <ng-template ngbTabContent>
+                      <app-reactions-content type="hmm" [reactionsAmount]="hms"></app-reactions-content> 
+                  </ng-template>
+                </ngb-tab>
+                <!-- END Disqualified APPLICANTS  -->
+            </ngb-tabset>
+
+          
+
+      </div>
+  </div>
+
+  
+

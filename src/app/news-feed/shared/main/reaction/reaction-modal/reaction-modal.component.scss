@@ -1,0 +1,61 @@
+@import 'src/variables.scss';
+
+.news-feed-content {
+    max-height: 800px;
+    min-height: 400px;
+    overflow: hidden;
+    overflow-y: initial;
+    background: #fff;
+    padding: 20px 24px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+      .visitors-head {
+          span {
+            font-size: 1rem;
+            width: 25px;
+            height: 25px;
+            cursor: pointer;
+          }
+          img {
+              width: 21px;
+              height: 21px;
+              cursor: pointer;
+          }
+          div:not( :first-child ) {
+            span {
+                color: $dark-grey;
+            }
+        }
+            div:nth-child(1) {
+                padding: 0px 6px;
+            }
+
+      }
+}
+
+
+:host ::ng-deep ngb-tabset{
+    width: 100%;
+    ul{
+        display: flex;
+        list-style: none;
+        width: 100%;
+        padding: 0; 
+        li a.active{
+            border-bottom: 3px solid $background-dark-cyan;
+        }
+        li a {
+            color: $dark-grey;
+            &:hover {
+                color: $dark-grey;
+            }
+        }
+
+        li{
+            margin-right: 2rem;
+        }
+    }
+}
+
+

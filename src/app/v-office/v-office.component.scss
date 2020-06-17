@@ -1,0 +1,8 @@
+@import '../../variables';
+
+.office-wrapper {
+    background: $background-soft-blue;
+    padding-top: 1rem;
+    margin-top: -16px;
+    min-height: calc(100vh - 242px);
+}

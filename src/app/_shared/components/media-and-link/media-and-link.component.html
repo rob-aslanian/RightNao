@@ -1,0 +1,94 @@
+<form enctype="multipart/form-data" [formGroup]="mediaForm" autocomplete="off">
+
+
+  <div class="form-group">
+
+
+    <label for="add-media">{{ '900'| translate }}</label>
+    <small id="add-media" class="form-text text-muted">{{ '103'| translate }}</small>
+    <div class="file" >
+      <label class="btn btn-outline__blue" for="upload-photo"
+            [ngClass]="{'btn-disabled': files.length >= 2}">
+        {{ '1468'| translate }}
+      </label>
+      <input type="file" class="file d-none" id="upload-photo" (change)="uploadFiles($event)" #fileInput />
+    </div>
+
+    <div class="file" >
+      <label class="btn btn-outline__blue" for="upload-link" (click)="showURlField = !showURlField"
+             [ngClass]="{'btn-disabled': links.length >= 2}">{{ '864'| translate }}</label>
+      <input type="button" class="file d-none" id="upload-link" />
+    </div>
+
+    <div class="form-group mt-2 mb-5" *ngIf="showURlField && links.length < 2" style="position: relative;">
+      
+      <input type="url" 
+             class="form-control" 
+             id="add-link" 
+             formControlName="link" 
+             (keyup.enter)="saveLink()" 
+             placeholder="Past or type a link" 
+             [ngClass]="{
+                'is-invalid': (mediaForm.controls.link.touched || isSubmetedForm) &&
+                               mediaForm.controls.link.errors || 
+                              ( showErr && mediaForm.controls.link.errors)
+              }" />
+
+      <button type="submit" class="btn backgroundless add-btn" (click)="saveLink()" *ngIf="!maxLinksError">
+              {{ links.length < 1 ? "Add" : "Add more" }}
+      </button>
+
+    </div>
+  
+  </div>
+
+  <span class="error_message" *ngIf="notAllowedType">
+      Not allowed types!
+    </span>
+  
+    <span class="error_message" *ngIf="maxFilesError">
+      Max files count must be 2
+    </span>
+  
+    <span class="error_message" *ngIf="!fileSizeValid">
+      File size must be less than 5 MB
+    </span>
+
+    <!-- SHOW LINKS -->
+    <div class="form-group mt-2 links__container" style="position: relative;"  *ngIf="links.length > 0">
+        <ng-container formArrayName="links" *ngFor="let item of mediaForm.get('links').controls; let i = index; trackBy:trackByFn">
+          <ng-container [formGroupName]="i">
+          
+            <div class="link__content">
+                <a style="color: #00D4E3;">{{ formLinks.at(i).get('link').value }}</a>
+                <button class="btn remove " style="right: -30px; top: 0px;" (click)="removeLink(i)">X</button>
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
+      <!-- SHOW LINKS -->
+</form>
+
+
+<!-- Filse -->
+<div *ngIf="files.length > 0" class="img-row">
+  <div class="col-md-6 files__container" *ngFor="let file of files; let idx = index; trackBy:trackByFn">
+    <div class="col-12 files__container__box">
+      <button class="btn remove" (click)="removeItem(idx)">X</button>
+      <!-- Image -->
+      <ng-container *ngIf="file.isImage">
+        <img [src]=" file.address ? '/file/' + file.address : file.file" [alt]="file.name" class="files__container__box__image"/>
+      </ng-container>
+
+      <!-- Other types  -->
+      <ng-container *ngIf="!file.isImage" >
+ 
+          <img [src]="file.icon" [alt]="file.name" />
+          <span class="pl-3">{{ file.name | addDots:"25" }}</span>
+ 
+      </ng-container>
+
+    </div>
+  </div>
+</div>
+<!-- Filse -->

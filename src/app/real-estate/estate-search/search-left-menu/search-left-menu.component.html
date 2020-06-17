@@ -1,0 +1,553 @@
+<div class="left-menu p-3">
+    <div class="left-menu__deal pb-3">
+        <!-- * * * Default * * * -->
+        <div class="left-menu__deal__title" *ngIf="dealTypeMenus.default; else showDealTypesMenu">
+            <h4>Deal type</h4>
+            <p (click)="toggleDealType('showSubMenu', 'Buy')">Buy</p>
+            <p (click)="toggleDealType('showSubMenu', 'Rent')">Rent</p>
+            <p (click)="toggleDealType('showSubMenu', 'Lease')">Lease</p>
+            <p (click)="toggleDealType('showSubMenu', 'Share')">Share</p>
+            <div class="mt-1">
+                <span class="show-more"> Show more </span>
+            </div>
+        </div>
+        <ng-template #showDealTypesMenu>   
+
+            <div class="left-menu__deal__title" *ngIf="!dealTypeMenus.subMenu">
+                <div class="d-flex align-items-center">
+                    <img class="mr-1"
+                         style="cursor: pointer; transform: rotate(-90deg)"
+                         src="assets/img/Path351.svg" 
+                         (click)="toggleDealType('hideSubmenu')">
+                    <h4 style="color: #808080">Deal type</h4>
+                </div>
+                <h4> {{ dealTypeTitle }} </h4>
+                <p (click)="toggleDealType( 'showDetailedInfo', 'New homes')">New homes</p>
+                <p (click)="toggleDealType( 'showDetailedInfo', 'Homes')">Homes</p>
+                <p (click)="toggleDealType( 'showDetailedInfo', 'Houses')">Houses</p>
+                <p (click)="toggleDealType( 'showDetailedInfo', 'Apartments')">Apartments</p>
+                <p (click)="toggleDealType( 'showDetailedInfo', 'Garages')">Garages</p>
+                <p (click)="toggleDealType( 'showDetailedInfo', 'Storage rooms')">Storage rooms</p>
+                <p (click)="toggleDealType( 'showDetailedInfo', 'Offices')">Offices</p>
+                <p (click)="toggleDealType( 'showDetailedInfo', 'Commercial property')">Commercial property</p>
+                <p (click)="toggleDealType( 'showDetailedInfo', 'Buildings')">Buildings</p>
+                <p (click)="toggleDealType( 'showDetailedInfo', 'Land')">Land</p>
+                <p (click)="toggleDealType( 'showDetailedInfo', 'Summer cottage')">Summer cottage</p>
+                <p (click)="toggleDealType( 'showDetailedInfo', 'Real / Farms')">Real / Farms</p>
+            </div>
+
+            <div class="left-menu__deal__title" *ngIf="dealTypeMenus.subMenu">
+                <div class=" d-flex align-items-center">
+                    <img class="mr-2"
+                         style="cursor: pointer; transform: rotate(-90deg)" 
+                         src="assets/img/Path351.svg" 
+                         (click)="toggleDealType('hideSubmenu')"
+                    >
+                    <h4 style="color: #808080">Deal type</h4>
+                </div>
+                <div class="d-flex align-items-center">
+                    <img class="mr-2"
+                    style="cursor: pointer; transform: rotate(-90deg)" 
+                    src="assets/img/Path351.svg" 
+                    (click)="toggleDealType('showSubmenu')"   
+                   >
+                    <h4 style="color: #808080"> {{ dealTypeTitle }} </h4>
+                </div>
+                <p style="color: #052337"> {{ dealPropertyTitle }} </p>
+            </div>
+
+        </ng-template>
+        
+    </div>
+    <form action="">
+    <div class="left-menu__location pb-3">
+        <div class="left-menu__location__title d-flex justify-content-between">
+            <h4>Location</h4>
+            <img style="cursor: pointer"  
+                 src="assets/img/Path351.svg"
+                 [ngClass]="{'down-arrow': !dealTypes.isLocationActive}" 
+                 (click)="toggleArrow('location')"
+                 >
+        </div>                                                                                          
+        <div *ngIf="dealTypes.isLocationActive">
+            <div class="left-menu__location__search mt-2 d-flex">
+                <input type="text" placeholder="Georgia, tbilisi" class="form-control">
+                <div class="left-menu__location__search__button px-2 ml-2">
+                    <img style="cursor: pointer;" src="assets/img/right-arrow.svg" alt="right-arrow">
+                </div>
+            </div>
+            <div class="left-menu__location__checkbox mt-2">
+                <input type="checkbox" id="location">
+                <label for="location"> Surrounding suburbs</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="left-menu__price pb-3">
+        <div class="left-menu__price__title d-flex justify-content-between">
+            <h4>Price</h4>
+            <img style="cursor: pointer"  
+                 src="assets/img/Path351.svg"
+                 [ngClass]="{'down-arrow': !dealTypes.isPriceActive}" 
+                 (click)="toggleArrow('price')"
+                 >
+        </div>
+        <div *ngIf="dealTypes.isPriceActive">
+            <div class="flex align-items-center">
+                <input type="radio" name="price" id="total">
+                <label for="total">Total Price</label>
+            </div>
+            <div class="d-flex align-items-center">
+                <input type="radio" name="price" id="meter">
+                <div class="d-flex">
+                    <label for="meter">m</label>
+                    <span>2</span>
+                </div>
+            </div>
+            <div class="d-flex align-items-center">
+                <input type="radio" name="price" id="meter">
+                <div class="d-flex">
+                    <label for="meter">ft</label>
+                    <span>2</span>
+                </div>
+            </div>
+            <div class="left-menu__price__min-max mt-2 d-flex">
+                <input type="text" name="" id="" placeholder="$ Min" class="form-control">
+                <input type="text" placeholder="$ Max" class="form-control ml-2">
+                <div class="left-menu__price__search__button px-2 ml-2">
+                    <img style="cursor: pointer;" src="assets/img/right-arrow.svg" alt="right-arrow">
+                </div>
+            </div>
+            <div class="left-menu__price__change-currency d-flex justify-content-between mt-2">
+                <p>Change Currency</p>
+            </div>    
+        </div>
+    </div>
+
+    <div class="left-menu__size pb-3">
+        <div class="left-menu__size__title d-flex justify-content-between">
+            <h4>Size</h4>
+            <img style="cursor: pointer" 
+                 [ngClass]="{'down-arrow': !dealTypes.isSizeActive}" 
+                 src="assets/img/Path351.svg"   
+                 (click)="toggleArrow('size')">
+
+        </div>
+        <div *ngIf="dealTypes.isSizeActive" class="left-menu__size__min-max mt-2 d-flex">
+            <div class="left-menu__size__min-max__min">
+                <input type="text" placeholder="m Min" class="form-control">
+            </div>
+            <div class="left-menu__size__min-max__max ml-2">
+                <input type="text" placeholder="m Min" class="form-control">
+            </div>
+            <div class="left-menu__size__search__button px-2 ml-2">
+                <img style="cursor: pointer"  src="assets/img/right-arrow.svg" alt="right-arrow">
+            </div>
+        </div>
+    </div>
+
+    <!-- * * * Type of new home * * *  -->
+    <div class="left-menu__publication pb-3">
+            <div class="left-menu__publication__title d-flex justify-content-between">
+                <h4>Type of home </h4>
+                <img style="cursor: pointer" 
+                     src="assets/img/Path351.svg"
+                     [ngClass]="{'down-arrow': !dealTypes.isTypeOfHomeActive}" 
+                     (click)="toggleArrow('type-of-home')"
+                     >
+            </div>
+            <div *ngIf="dealTypes.isTypeOfHomeActive">
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="indifferent">
+                    <label for="indifferent">Indifferent</label>
+                    
+                </div>
+    
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-48">
+                    <label for="last-48">Last 48 hours</label>
+                </div>
+    
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-week">
+                    <label for="last-week">Last week</label>
+                </div>
+    
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-month">
+                    <label for="last-month">  month</label>
+                </div>
+                
+            </div>
+        </div>
+        <!-- * * * * / * * * * -->
+
+    <!-- * * * Bedrooms * * *  -->
+    <div class="left-menu__publication pb-3">
+            <div class="left-menu__publication__title d-flex justify-content-between">
+                <h4>Bedrooms</h4>
+                <img style="cursor: pointer" 
+                     src="assets/img/Path351.svg"
+                     [ngClass]="{'down-arrow': !dealTypes.isBedroomActive}" 
+                     (click)="toggleArrow('bedrooms')"
+                     >
+            </div>
+            <div *ngIf="dealTypes.isBedroomActive">
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="indifferent">
+                    <label for="indifferent">0 (studio)</label>
+                    
+                </div>
+    
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-48">
+                    <label for="last-48">1 Bed</label>
+                </div>
+    
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-week">
+                    <label for="last-week">2 Bed</label>
+                </div>
+    
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-month">
+                    <label for="last-month"> 3 Bed</label>
+                </div>
+    
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-month">
+                    <label for="last-month"> 4 or more bedrooms </label>
+                </div>
+                
+            </div>
+        </div>
+        <!-- * * * * / * * * * -->
+
+    <!-- * * * Bathrooms * * *  -->
+    <div class="left-menu__publication pb-3">
+            <div class="left-menu__publication__title d-flex justify-content-between">
+                <h4>Bathrooms</h4>
+                <img style="cursor: pointer" 
+                     src="assets/img/Path351.svg"
+                     [ngClass]="{'down-arrow': !dealTypes.isBathActive}" 
+                     (click)="toggleArrow('bathrooms')"
+                     >
+            </div>
+            <div *ngIf="dealTypes.isBathActive">
+        
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-48">
+                    <label for="last-48">1</label>
+                </div>
+    
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-week">
+                    <label for="last-week">2 </label>
+                </div>
+    
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-month">
+                    <label for="last-month"> 3 or more bathrooms</label>
+                </div>
+                
+            </div>
+        </div>
+        <!-- * * * * / * * * * -->
+
+    <!-- * * * Car Spaces * * *  -->
+    <div class="left-menu__publication pb-3">
+            <div class="left-menu__publication__title d-flex justify-content-between">
+                <h4>Car spaces</h4>
+                <img style="cursor: pointer" 
+                     src="assets/img/Path351.svg"
+                     [ngClass]="{'down-arrow': !dealTypes.isCarSpaceActive}" 
+                     (click)="toggleArrow('car-spaces')"
+                     >
+            </div>
+            <div *ngIf="dealTypes.isCarSpaceActive">
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="indifferent">
+                    <label for="indifferent">1</label>
+                    
+                </div>
+    
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-48">
+                    <label for="last-48">2</label>
+                </div>
+    
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-week">
+                    <label for="last-week">3 or more bathrooms</label>
+                </div>
+                
+            </div>
+        </div>
+        <!-- * * * * / * * * * -->
+
+    <!-- * * * Outdoor features * * *  -->
+    <div class="left-menu__publication pb-3">
+            <div class="left-menu__publication__title d-flex justify-content-between">
+                <h4>Outdoor Features</h4>
+                <img style="cursor: pointer" 
+                     src="assets/img/Path351.svg"
+                     [ngClass]="{'down-arrow': !dealTypes.isOutdoorActive}" 
+                     (click)="toggleArrow('outdoor')"
+                     >
+            </div>
+            <div *ngIf="dealTypes.isOutdoorActive">
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="indifferent">
+                    <label for="indifferent">Swimming pool</label>
+                    
+                </div>
+    
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-48">
+                    <label for="last-48">Balcony</label>
+                </div>
+    
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-week">
+                    <label for="last-week">Undercover parking</label>
+                </div>
+    
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-month">
+                    <label for="last-month"> Full fencend </label>
+                </div>
+    
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-month">
+                    <label for="last-month"> Tennis court </label>
+                </div>
+    
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-month">
+                    <label for="last-month"> Garden </label>
+                </div>
+                
+            </div>
+        </div>
+        <!-- * * * * / * * * * -->
+
+    <!-- * * * Indoor features * * *  -->
+    <div class="left-menu__publication pb-3">
+            <div class="left-menu__publication__title d-flex justify-content-between">
+                <h4>Indoor features</h4>
+                <img style="cursor: pointer" 
+                     src="assets/img/Path351.svg"
+                     [ngClass]="{'down-arrow': !dealTypes.isIndoorActive}" 
+                     (click)="toggleArrow('indoor')"
+                     >
+            </div>
+            <div *ngIf="dealTypes.isIndoorActive">
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="indifferent">
+                    <label for="indifferent">Ensuite</label>
+                    
+                </div>
+    
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-48">
+                    <label for="last-48">Study</label>
+                </div>
+    
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-week">
+                    <label for="last-week">Alarm system</label>
+                </div>
+    
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-month">
+                    <label for="last-month">  Floorboards </label>
+                </div>
+    
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-month">
+                    <label for="last-month">  Rumpus room </label>
+                </div>
+    
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-month">
+                    <label for="last-month">  Storage rooms </label>
+                </div>
+                
+            </div>
+        </div>
+        <!-- * * * * / * * * * -->
+
+    <!-- * * * Climate control & energy * * *  -->
+    <div class="left-menu__publication pb-3">
+            <div class="left-menu__publication__title d-flex justify-content-between">
+                <h4>Climate control & energy</h4>
+                <img style="cursor: pointer" 
+                     src="assets/img/Path351.svg"
+                     [ngClass]="{'down-arrow': !dealTypes.isClimateActive}" 
+                     (click)="toggleArrow('climate')"
+                     >
+            </div>
+            <div *ngIf="dealTypes.isClimateActive">
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="indifferent">
+                    <label for="indifferent">Air conditioning</label>
+                    
+                </div>
+    
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-48">
+                    <label for="last-48">Water tank</label>
+                </div>
+    
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-week">
+                    <label for="last-week">Solar panels</label>
+                </div>
+    
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-month">
+                    <label for="last-month"> High energy efficiency</label>
+                </div>
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-month">
+                    <label for="last-month"> Solar hot water</label>
+                </div>
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-month">
+                    <label for="last-month"> Heat pumps </label>
+                </div>
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-month">
+                    <label for="last-month"> Zonal heating </label>
+                </div>
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-month">
+                    <label for="last-month"> Central heating </label>
+                </div>
+                
+            </div>
+        </div>
+        <!-- * * * * / * * * * -->
+
+    <!-- * * * Status * * *  -->
+    <div class="left-menu__publication pb-3">
+            <div class="left-menu__publication__title d-flex justify-content-between">
+                <h4>Status</h4>
+                <img style="cursor: pointer" 
+                     src="assets/img/Path351.svg"
+                     [ngClass]="{'down-arrow': !dealTypes.isStatusActive}" 
+                     (click)="toggleArrow('status')"
+                     >
+            </div>
+            <div *ngIf="dealTypes.isStatusActive">
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="indifferent">
+                    <label for="indifferent">Old build</label>
+                    
+                </div>
+    
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-48">
+                    <label for="last-48">New building</label>
+                </div>
+    
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-week">
+                    <label for="last-week">Under construction</label>
+                </div> 
+                
+            </div>
+        </div>
+        <!-- * * * * / * * * * -->
+
+    <!-- * * * Floor * * *  -->
+    <div class="left-menu__publication pb-3">
+            <div class="left-menu__publication__title d-flex justify-content-between">
+                <h4>Floor</h4>
+                <img style="cursor: pointer" 
+                     src="assets/img/Path351.svg"
+                     [ngClass]="{'down-arrow': !dealTypes.isFloorActive}" 
+                     (click)="toggleArrow('floor')"
+                     >
+            </div>
+            <div *ngIf="dealTypes.isFloorActive">
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="indifferent">
+                    <label for="indifferent">Top floor</label>
+                    
+                </div>
+    
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-48">
+                    <label for="last-48">Middle floors</label>
+                </div>
+    
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-week">
+                    <label for="last-week">Ground floor</label>
+                </div>
+    
+                <div class="flex align-items-center">
+                    <input type="radio" name="publication" id="last-month">
+                    <label for="last-month">  month</label>
+                </div>
+                
+            </div>
+        </div>
+        <!-- * * * * / * * * * -->
+
+    <div class="left-menu__publication pb-3">
+        <div class="left-menu__publication__title d-flex justify-content-between">
+            <h4>Publication date</h4>
+            <img style="cursor: pointer" 
+                 src="assets/img/Path351.svg"
+                 [ngClass]="{'down-arrow': !dealTypes.isPubActive}" 
+                 (click)="toggleArrow('pub')"
+                 >
+        </div>
+        <div *ngIf="dealTypes.isPubActive">
+            <div class="flex align-items-center">
+                <input type="radio" name="publication" id="indifferent">
+                <label for="indifferent">Indifferent</label>
+                
+            </div>
+
+            <div class="flex align-items-center">
+                <input type="radio" name="publication" id="last-48">
+                <label for="last-48">Last 48 hours</label>
+            </div>
+
+            <div class="flex align-items-center">
+                <input type="radio" name="publication" id="last-week">
+                <label for="last-week">Last week</label>
+            </div>
+
+            <div class="flex align-items-center">
+                <input type="radio" name="publication" id="last-month">
+                <label for="last-month">  month</label>
+            </div>
+            
+        </div>
+    </div>
+
+    <div class="left-menu__publication pb-3">
+        <div *ngIf="dealTypes.isPubActive">
+            <div class="flex align-items-center">
+                <input type="radio" name="publication" id="indifferent">
+                <label for="indifferent">Repossesed</label>
+                
+            </div>
+
+            <div class="flex align-items-center">
+                <input type="radio" name="publication" id="last-48">
+                <label for="last-48">By agents only</label>
+            </div>
+
+            <div class="flex align-items-center">
+                <input type="radio" name="publication" id="last-week">
+                <label for="last-week">By users only</label>
+            </div>
+        </div>
+    </div>
+</form>
+</div>

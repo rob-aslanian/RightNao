@@ -1,0 +1,297 @@
+<div class="modal-content" *ngIf="modalForm">
+    <div class="add-certification">
+        <form [formGroup]="modalForm" (ngSubmit)="submitForm(modalForm,true)" autocomplete="off">
+            <div class="mobile-modal">
+            <div class="form-group">
+                <label for="certificate-name">{{ '950'| translate }}
+                    <span>*</span>
+                </label>
+                <input maxlength="128" type="text" class="form-control" id="certificate-name" formControlName="name"
+                    [ngClass]="{ 'is-invalid': isSubmetedForm && modalForm.controls.name.errors }">
+            </div>
+
+            <ng-container *ngIf="isSubmetedForm && modalForm.controls.name.errors">
+                    <span class="error_message"  *ngFor="let error of utils.getErrorsKey(modalForm.controls.name.errors)">
+                        {{ utils.$getErrors(error) }}
+                    </span> 
+             </ng-container>     
+
+            <!-- IF CERTIFICATION TYPE -->
+            <ng-container *ngIf="type === 'certification' ">
+                <div class="form-group">
+                    <label for="certificate-authority">{{ '302'| translate }}<span>*</span> </label>
+                    <input maxlength="128" type="text" class="form-control" id="certificate-authority" formControlName="authority"
+                    [ngClass]="{ 'is-invalid': isSubmetedForm && modalForm.controls.authority.errors }"
+                    >
+                </div>
+                    
+
+            <ng-container *ngIf="isSubmetedForm && modalForm.controls.authority.errors">
+                    <span class="error_message"  *ngFor="let error of utils.getErrorsKey(modalForm.controls.authority.errors)">
+                        {{ utils.$getErrors(error) }}
+                    </span> 
+             </ng-container>     
+                 
+
+                <div class="form-group">
+                    <label for="certification-license-number">{{ '863'| translate }}</label>
+                    <input maxlength="128" type="text" class="form-control" id="certification-license-number"
+                        formControlName="license_number"
+                        [ngClass]="{ 'is-invalid': isSubmetedForm && modalForm.controls.license_number.errors }"
+                        >
+                </div>
+
+                <ng-container *ngIf="isSubmetedForm && modalForm.controls.license_number.errors">
+                        <span class="error_message"  *ngFor="let error of utils.getErrorsKey(modalForm.controls.license_number.errors)">
+                            {{ utils.$getErrors(error) }}
+                        </span> 
+                 </ng-container>     
+
+    
+            </ng-container>
+            <!-- CERTIFICATION TYPE -->
+
+            <!-- IF LICENSE TYPE -->
+            <ng-container *ngIf="type === 'license' || type === 'award' ">
+                <div class="form-group">
+                    <label for="certificate-authority">{{ '801'| translate }}<span>*</span> </label>
+                    <input maxlength="128" type="text" class="form-control" id="certificate-authority" formControlName="issuer"
+                    [ngClass]="{ 'is-invalid':  isSubmetedForm && modalForm.controls.issuer.errors }"
+                    >
+                </div>
+               
+                <ng-container *ngIf="isSubmetedForm && modalForm.controls.issuer.errors">
+                        <span class="error_message"  *ngFor="let error of utils.getErrorsKey(modalForm.controls.issuer.errors)">
+                            {{ utils.$getErrors(error) }}
+                        </span> 
+                 </ng-container>    
+
+
+                <div class="form-group" *ngIf="type !== 'award' ">
+                    <label for="certification-license-number">{{ '863'| translate }}</label>
+                    <input maxlength="128" type="text" class="form-control" id="certification-license-number"
+                        formControlName="license_number"
+                        [ngClass]="{ 'is-invalid': isSubmetedForm && modalForm.controls.license_number.errors }"
+                        >
+                </div>
+
+                <ng-container *ngIf="isSubmetedForm && modalForm.controls.license_number.errors">
+                        <span class="error_message"  *ngFor="let error of utils.getErrorsKey(modalForm.controls.license_number.errors)">
+                            {{ utils.$getErrors(error) }}
+                        </span> 
+                 </ng-container>    
+
+            </ng-container>
+            <!-- LICENSE TYPE -->
+
+            <!-- IF PUBLICATION TYPE   -->
+            <ng-container *ngIf="type === 'publication' ">
+                <div class="form-group">
+                    <label for="certificate-authority">{{ '1138'| translate }}</label>
+                    <input maxlength="128" type="text" class="form-control" id="certificate-authority" formControlName="publication"
+                    [ngClass]="{ 'is-invalid': isSubmetedForm && modalForm.controls.publication.errors }" 
+                    >
+                              
+                <ng-container *ngIf="isSubmetedForm && modalForm.controls.publication.errors">
+                        <span class="error_message"  *ngFor="let error of utils.getErrorsKey(modalForm.controls.publication.errors)">
+                            {{ utils.$getErrors(error) }}
+                        </span> 
+                 </ng-container>    
+    
+
+                </div>
+
+            </ng-container>
+            <!-- END PUBLICATION TYPE -->
+
+            <!-- IF TEST SCORES TYPE -->
+            <ng-container *ngIf="type === 'test' ">
+                <div class="form-group">
+                    <label for="certificate-authority">{{ '1247'| translate }}
+                        <span>*</span>
+                    </label>
+                    <input  [ngClass]="{ 'is-invalid': isSubmetedForm  && modalForm.controls.score.errors }" (keydown)='utils.maxNumberLenght($event)'  type="number" class="form-control" id="certificate-authority" formControlName="score">
+                </div>
+
+                <ng-container *ngIf="isSubmetedForm && modalForm.controls.score.errors">
+                        <span class="error_message"  *ngFor="let error of utils.getErrorsKey(modalForm.controls.score.errors)">
+                            {{ utils.$getErrors(error) }}
+                        </span> 
+                 </ng-container>
+                 
+            </ng-container>
+            <!-- END TEST SCORES TYPE -->
+
+
+            <div class="row" *ngIf=" type !== 'project' && type !== 'certification' && type !== 'license'">
+                <div class="col-4 pr-2">
+                    <label for="certification-date"> {{ '434'| translate }}<span>*</span> </label>
+                    <select class="form-control" id="certification-date"
+                        [formControl]="modalForm.controls.date.controls.month"
+                        [ngClass]="{ 'is-invalid': isSubmetedForm && modalForm.controls.date.controls.month.errors}">
+                        
+                        <option value="null" disabled selected> {{ '926'| translate }}</option>
+                        <option [value]="month.id" *ngFor="let month of months">
+                            {{ month.name }}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="col-3 pl-0">
+                    <select class="form-control label-less" [formControl]="modalForm.controls.date.controls.year"
+                    [ngClass]="{ 'is-invalid': isSubmetedForm && modalForm.controls.date.controls.year.errors}">
+                    
+                        <option value="null" disabled selected> {{ '1582'| translate }}</option>
+                        <option [value]="year" *ngFor="let year of years">
+                            {{ year }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+
+            <ng-container *ngIf=" ( type === award ||  publication || test )   &&   (isSubmetedForm && modalForm.controls.date.controls.year.errors)">
+                    <span class="error_message"  *ngFor="let error of utils.getErrorsKey(modalForm.controls.date.controls.year.errors)">
+                        {{ utils.$getErrors(error) }}
+                    </span> 
+             </ng-container>
+             
+             
+            <!-- IF PROJECT TYPE -->
+            <ng-container *ngIf="type === 'project' ||  type == 'certification' || type == 'license' ">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-row form-group"> 
+
+                            <div class="col-7 pr-2">
+                                <label *ngIf="type === 'project'" for="project-from"> {{ '649'| translate }} <span>*</span> </label>
+                                <label for="project-from" *ngIf="type === 'certification' || type === 'license'" >{{ '649'| translate }}<span>*</span></label>
+                                <select class="form-control" id="project-from"
+                                (change)='getDate()'
+                                    [formControl]="modalForm.controls.date.controls.month"
+                                    [ngClass]="{ 'is-invalid': isSubmetedForm && modalForm.controls.date.controls.month.errors}"
+                                    >
+                                    <option value="" disabled selected>  {{ '926'| translate }} </option>
+                                    <option [value]="month.id" *ngFor="let month of months">
+                                        {{ month.name }}
+                                    </option>
+                                </select>
+                            </div>
+ 
+                            <div class="col-5 pl-2">
+                                <select class="form-control  label-less"
+                                (change)='getDate()'
+                                    [formControl]="modalForm.controls.date.controls.year"
+                                    [ngClass]="{ 'is-invalid': isSubmetedForm && modalForm.controls.date.controls.year.errors}"
+                                    >
+                                    <option value="" disabled selected> {{ '1582'| translate }}</option>
+                                    <option [value]="year" *ngFor="let year of years">
+                                        {{ year }}
+                                    </option>
+                                </select>
+                            </div>
+                           
+                        </div>
+                    </div>
+ 
+                    <div class="col-md-6">
+                        <div class="form-row form-group">
+
+                            <div class="col-7 pr-2">
+                                <label for="project-to" *ngIf="type === 'project' || type === 'certification' || type === 'license'">To <span>*</span></label>
+                                <!-- <label for="project-to" *ngIf="type === 'license'">{{ '434'| translate }}<span>*</span></label> -->
+                                <select class="form-control" id="project-to"
+                                (change)='getDate()'
+                                    [formControl]="modalForm.controls.finish_date.controls.month"
+                                    [ngClass]="{ 'is-invalid': isSubmetedForm && modalForm.controls.finish_date.controls.month.errors}"
+                                    >
+                                    <option value="" disabled selected> {{ '926'| translate }}</option>
+                                    <option [value]="month.id" *ngFor="let month of months">
+                                        {{ month.name }}
+                                    </option>
+                                </select>
+                            </div>
+
+
+                            <div class="col-5 pl-2">
+                                <select class="form-control label-less" 
+                                (change)='getDate()'
+                                [formControl]="modalForm.controls.finish_date.controls.year" 
+                                [ngClass]="{ 'is-invalid': isSubmetedForm && modalForm.controls.finish_date.controls.year.errors}"
+                                >
+                                    <option value="" disabled selected> {{ '1582'| translate }}</option>
+                                    <option [value]="year" *ngFor="let year of ExperienceYears">
+                                        {{ year }}
+                                    </option>
+                                </select>
+                            </div>
+
+
+                            <div class="form-check custom-control custom-checkbox i-currently"
+                            *ngIf="type !== 'project' " style="padding-left: 1.5rem;">
+                            <input type="checkbox" class="custom-control-input" formControlName="is_expire"
+                                (change)="check($event)" value="true" [id]="type">
+                            <label [for]="type"
+                                class="custom-control-label">
+                                This&nbsp;{{ type }}&nbsp;does&nbsp;not&nbsp;expire
+                            </label>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                
+            
+                <ng-container *ngIf="isSubmetedForm && ( modalForm.controls.finish_date.controls.year.errors  || modalForm.controls.finish_date.controls.month.errors)">
+                        <span class="error_message"  *ngFor="let error of utils.getErrorsKey(modalForm.controls.finish_date.controls.month.errors || modalForm.controls.finish_date.controls.year.errors)">
+                            {{ utils.$getErrors(error) }}
+                        </span> 
+                 </ng-container>   
+
+
+
+
+            </ng-container>
+            <!-- END PROJECT -->            
+
+          
+            <!-- DESCRIPTION -->
+            <div class="form-group mb-0" *ngIf="type !== 'license' && type !== 'certification' ">
+                <div class="d-flex justify-content-between">
+                    <label for="add-description">{{ '461'| translate }}</label>
+                    <span class="letter-count"> {{ modalForm.controls.description && modalForm.controls.description.value !== null ?  
+                                        modalForm.controls.description.value.length : 0 }} / 500
+                    </span>
+                </div>
+                <textarea maxlength="500" class="form-control" rows="5" id="add-description" maxlength="500"
+                    formControlName="description"
+                    [ngClass]="{ 'is-invalid':  isSubmetedForm && modalForm.controls.description.errors }"
+                    ></textarea>
+            </div>
+
+
+            <ng-container *ngIf="isSubmetedForm && modalForm.controls.description.errors">
+                    <span class="error_message"  *ngFor="let error of utils.getErrorsKey(modalForm.controls.description.errors)">
+                        {{ utils.$getErrors(error) }}
+                    </span> 
+             </ng-container>    
+
+
+            <!-- END DESCRIPTION -->
+            
+             <br>
+            <app-media-and-link [existFiles]="data" type="accomplishment" (result)="getFiles($event)"></app-media-and-link>
+
+           
+        </div>
+            <div class="d-flex justify-content-between align-items-center mobile-button">
+                <button *ngIf="!data" class="backgroundless pl-0" (click)="returnBack()" type="button">{{ '207'| translate }}</button>
+                <button *ngIf="data" class="backgroundless ml-auto" (click)="removeAccomp()" type="button">{{ '1185'| translate }}</button>
+                <div>
+             <button *ngIf="!data" class="backgroundless btn" type="button" (click)="submitForm(modalForm,false)">{{ '1233'| translate }}</button>
+                    <button class="btn btn-primary ml-3" type="submit">{{ '1231'| translate }}</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>

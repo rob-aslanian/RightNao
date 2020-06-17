@@ -1,0 +1,37 @@
+<main class="main-light-blue pt-4">
+    <div class="jobs ">
+        <div class="row justify-content-between">
+            <!-- Content in the center -->
+            <div class="col">
+                <!-- Applicants start -->
+                <h5 class="font-weight-bold big-screen">Applicants <span>{{ totalCount }}</span></h5>
+                <div class="center-content-jobs applicants" *ngIf="applicants">
+                    <ng-container *ngIf="applicants.length > 0; else:noData">
+                        <div class="applicants-line" *ngFor="let applicant of applicants">
+                            <span class="applicant-skill">
+                                {{  applicant.title  }}
+                            </span>
+                            <span class="count">
+                               <a [routerLink]="[[] , applicant.title , applicant.id]"  >
+                                    {{ applicant.total_amount }}
+                                    <span class="plus" *ngIf="applicant.unseen_amount > 0">
+                                        +{{  applicant.unseen_amount }}
+                                    </span>
+                               </a>
+                            </span>
+                        </div>
+                    </ng-container>
+                    
+                    <ng-template #noData>
+                      No data
+                    </ng-template>
+                </div>
+                <button class="backgroundless ml-auto go-to-jobs" [routerLink]="['/jobs/company']" >Go to jobs</button>
+                <!-- Applicants end -->
+            </div>      
+            <!-- Content in the center end -->
+
+             <app-ads class="col-lg-3 col-md-12" [isLeft]="true"></app-ads>
+        </div>
+    </div>
+</main>

@@ -1,0 +1,31 @@
+ 
+<div class="popup-content modal-content">
+    <div class="popup-content">
+        <p  *ngIf='!isRemove && verificationData'>
+            {{ "1419" | translate }}
+        </p>
+        <div class="popup-content__qr">
+            <img class="popup-content__qr__image"  *ngIf='!isRemove && verificationData'   [src]="'data:image/png;base64,' +  verificationData.qr_code" alt="QR">
+        </div>
+      
+        <p *ngIf='!isRemove && verificationData'>
+           {{ "743" | translate }} {{verificationData.key}}
+        </p>
+        <form [formGroup]='verficationForm'>
+            <div class="form-group">
+                <label for="verification-code"> {{ "1487" | translate }} </label>
+                <input 
+                 type="text" 
+                 class="form-control"
+                 id="verification-code"
+                 autocomplete="off" 
+                 formControlName='verificationCode' 
+                 [ngClass]="{ 'is-invalid': this.verficationForm.get('verificationCode').errors  && submitedVerifcation }"    
+                 >
+            </div>
+            <button *ngIf='!isRemove' class="btn btn-primary" (click)='activateVerification()'> {{ "44" | translate }} </button>
+            <button *ngIf='isRemove' class="btn btn-primary" (click)='DeActivate()'>DeActivate</button>
+        </form>
+    </div>
+</div>
+ 

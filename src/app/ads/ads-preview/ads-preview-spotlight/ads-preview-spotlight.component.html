@@ -1,0 +1,50 @@
+<div class="preview-spotlight-wrapper">
+    <div class="spotlight-user">
+        <div class="">
+            <img [src]="user.avatar == '' ? 'assets/img/124.svg' : '/file/'+user.avatar"  alt="">
+            <span>
+                {{ user.name }}
+            </span>
+        </div>
+    </div>
+    <p class="description">
+            <span *ngIf="content['description'];else description">{{ content['description'] }}</span>
+            <ng-template #description>Your introductory text</ng-template> 
+    </p>
+    <div class="spotlight-image">
+        <img [src]="content['image']" alt="image" class="showImage" *ngIf="content['image'];else emptyImage">
+        <ng-template #emptyImage>
+            <img src="assets/img/134.svg" alt="empty">
+        </ng-template>
+    </div>
+    <div class="spotlight-line">
+        <div>
+            <h6>
+                <span *ngIf="content['line'];else headline">{{ content['line'] }}</span>
+                <ng-template #headline>Headline</ng-template> 
+            </h6>
+            <p style="margin: 0;">
+                <span *ngIf="url;else urlText">{{ url }}</span>
+                <ng-template #urlText>Destination URL</ng-template> 
+            </p>
+        </div>
+        <button class="btn btn-primary">
+            <span *ngIf="content['btn'];else btn">{{ content['btn'] }}</span>
+            <ng-template #btn>Button</ng-template>
+        </button>
+    </div>
+    <div class="spotlight-footer">
+        <button class="btn btn-backgroundless">
+            <img src="assets/img/506.svg" alt="">
+            Like
+        </button>
+        <button class="btn btn-backgroundless">
+            <img src="assets/img/491.svg" alt="">
+            Comment
+        </button>
+        <button class="btn btn-backgroundless">
+            <img src="assets/img/84.svg" alt="">
+            Share
+        </button>
+    </div>
+</div>

@@ -1,0 +1,283 @@
+    <div class="section-header d-flex flex-wrap justify-content-between">
+        <h1>{{ '1171'| translate }}</h1>
+        
+        <button class="ask" (click)="open('ask')">{{ '188'| translate }}</button>
+        <button class="recommend" (click)="open('recommend')" *ngIf='!isCurrentUser'>{{ '1169'| translate }}</button>
+    </div>
+
+    <div class="section-content col recommendations" *ngIf=' recieved.length > 0 || given.length > 0 ||  ( requests.length > 0 && isCurrentUser)  || ( hidden.length > 0 && isCurrentUser ) '>
+        <ngb-tabset title="Simple" (tabChange)="selectTab($event)">
+            <!-- START RECIEVED -->
+            <ngb-tab id="recived">
+                <ng-template ngbTabTitle >
+                    <div>{{ '1164'| translate }}&nbsp;(<span>{{ recieved.length }}</span>)</div>
+                </ng-template>
+                <ng-template ngbTabContent>
+                    <div class="recommendations-recieved" *ngFor="let rec of recieved |  slice: 0:startPage ; let i =   index ">
+                        <div class="recommendation" *ngIf='isCurrentUser ? rec : rec["is_hidden"] !== null ' >
+                            <div class="recommendator d-flex justify-content-between">
+                                <div class="d-flex ">
+                                    <img [src]="rec.avatar" alt appAppLazyImage>
+
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <h3 [routerLink]='[rec.url]'>{{ rec['fullName'] }}</h3>
+                                        <p>
+                                            {{ rec['position'] }}
+                                        </p>
+
+                                        <p> {{ rec['company'] }} </p>
+                                        <p> {{ rec['skills'] }} </p>
+                                        <p *ngIf="rec['title']"> {{ rec['title'] }} </p>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-column align-self-end">
+                                    <div class="date mb-2" *ngIf="rec['created_at']">
+                                        <img src="assets/img/48.svg" alt appAppLazyImage style="width: 12px !important; height:12px !important;">
+                                        <span>{{ rec['created_at'] | date:"dd.MM.yyyy" }}</span>         
+                                    </div>
+                                    <ng-container    *ngIf="rec['is_hidden'] === null && isCurrentUser">
+                                            <button  class="backgroundless"      (click)="setVisibility('dismiss',rec.id , false,i)">Dismiss</button>
+                                            <button  class="btn btn-primary ml-3"  (click)="setVisibility('accept',rec.id , true,i)">Accept</button>
+                                    </ng-container>
+                                    <button  class="backgroundless" *ngIf='!rec["is_hidden"] && rec["is_hidden"] !== null && isCurrentUser || rec["is_hidden"] ' (click)='setVisibility("hide",rec.id , false,i)' >
+                                        Hide
+                                    </button>
+                                    
+                                </div>
+                            </div>
+                            <p>{{ rec['text'] }}</p> 
+                        </div>
+                    </div>
+                </ng-template>     
+            </ngb-tab>      
+            <!--  END RECIVEVED -->
+
+            
+            <!-- START GIVEN -->
+            <ngb-tab id="given">    
+                <ng-template ngbTabTitle>    
+                    <div>{{ '685'| translate }}&nbsp;(<span>{{ given.length }}</span>)</div>    
+                </ng-template>   
+  
+                <ng-template ngbTabContent>
+                    <div class="recommendations-recieved" *ngFor="let giv of  given |  slice: 0:startPage ">
+                        <div class="recommendation">
+                            <div class="recommendator d-flex justify-content-between">
+                                <div class="d-flex">
+                                    <img [src]="giv.avatar" alt appAppLazyImage>
+                                    <div class="d-flex flex-column justify-content-center">
+                                        <h3 [routerLink]='[giv.url]'>{{ giv['fullName'] }}</h3>
+                                
+                                        <p>
+                                            {{ giv['position'] }}
+                                        </p>
+    
+                                        <p>
+                                            {{ giv['company'] }}
+                                        </p>
+    
+                                        <p>
+                                            {{ giv['skills'] }}
+                                        </p>
+                                        <p *ngIf="giv['title']"> {{ giv['title'] }} </p>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-column align-self-center">
+                                    <div class="date mb-2" *ngIf="giv['created_at']">
+                                        <img src="assets/img/48.svg" alt appAppLazyImage style="width: 12px !important; height:12px !important;">
+                                        <span>{{ giv['created_at'] | date:"dd.MM.yyyy" }}</span>         
+                                    </div>
+                                </div>
+                            </div>                                             
+                            <p>{{ giv['text'] }}</p>                
+                        </div>
+                    </div>
+                </ng-template>
+            </ngb-tab>
+            <!-- END GIVEN -->
+
+
+    
+
+       <!-- START REQUEST -->
+            <ngb-tab id="request">
+                <ng-template ngbTabTitle *ngIf='isCurrentUser'>
+                    <div>{{ '1195'| translate }}&nbsp;(<span>{{ requests.length }}</span>)</div>
+                </ng-template>
+
+                <ng-template ngbTabContent>
+                    <div class="recommendations-request" *ngIf="requests && requests.length > 0">
+                        <div class="request" *ngFor="let request of  requests |  slice: 0:startPage ; let i = index;">
+                            <div> 
+                                <div class="d-flex justify-content-between align-items-end mb-2">
+                                    <div class="d-flex">
+                                        <img [src]="request.avatar" alt appAppLazyImage>
+                                        <div>
+                                            <h3 [routerLink]='[request.url]'>{{ request['fullName'] }}</h3>
+        
+                                            <!-- Postitions -->
+                                            <p>
+                                                {{ request['position'] }}
+                                            </p>
+        
+                                            <!-- Companies -->
+                                            <p>
+                                                {{ request['company'] }}
+                                            </p>
+                                            <p *ngIf="request['title']"> {{ request['title'] }} </p>
+                                        </div>
+                                    </div>
+                                    <div class="request-data">
+                                            <div class="date mb-2">
+                                                <img src="assets/img/48.svg" alt appAppLazyImage>
+                                                <span>{{ request['created_at'] | date:"dd.MM.yyyy" }}</span>         
+                                            </div>
+                                            <div class="d-flex align-items-center">             
+                                                <button class="backgroundless" (click)="ignoreRequest(request.req_id, i)">Ignore</button>         
+                                                <button class="btn btn-primary" (click)="open('writeRecommendation', request , i )">Write</button> 
+                                            </div>
+                                    </div>     
+                                </div>
+                                </div>
+                                <p>
+                                    {{ request['text'] }}
+                                </p>
+                            </div>
+                        </div>
+                </ng-template> 
+            </ngb-tab>   
+            <!-- END REQUEST -->    
+  
+            <!-- START REQUESTED -->   
+            <ngb-tab id="requested">      
+                <ng-template ngbTabTitle  *ngIf='isCurrentUser'>
+                    <div>{{ '1197'| translate }}&nbsp;(<span>{{ requested.length }}</span>)</div>     
+                </ng-template>    
+      
+                <ng-template ngbTabContent>
+                    <div class="recommendations-request" *ngIf="requested && requested.length > 0">   
+                        <div class="request d-flex justify-content-between" *ngFor="let req of requested |  slice: 0:startPage ">                    
+                            <div class="d-flex">       
+                                <img [src]="req.avatar" alt appAppLazyImage>                     
+                                <div class="d-flex flex-column justify-content-center">       
+                                    <h3 [routerLink]='[req.url]'>{{ req['fullName'] }}</h3>          
+           
+                                    <!-- Postitions -->        
+                                    <p>                        
+                                        {{ req['position'] }}     
+                                    </p>       
+                             
+                                    <!-- Companies -->     
+                                    <p>
+                                        {{ req['company'] }}
+                                    </p>         
+                                      <!-- text -->
+                                    <p>        
+                                        {{ req['text'] }}       
+                                    </p>     
+
+                                </div>
+                            </div>
+
+                            <div class="request-data">
+                                <div class="date">
+                                    
+                                    <img src="assets/img/48.svg" alt appAppLazyImage>
+                                    <span>{{ req['created_at'] | date:"dd.MM.yyyy" }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </ngb-tab>
+            <!-- END REQUESTED -->
+                        
+             <!-- START HIDDEN -->
+             <ngb-tab id="hidden" *ngIf='isCurrentUser'>
+                    <ng-template ngbTabTitle>
+                        <div>{{ '710'| translate }}&nbsp;(<span>{{ hidden.length }}</span>)</div>
+                    </ng-template>
+                    <ng-template ngbTabContent>
+                        <div class="recommendations-recieved" *ngFor="let rec of hidden |  slice: 0:startPage ; let i = index; ">
+                            <div class="recommendation">
+                                <div class="recommendator d-flex">
+                                    <div class="d-flex">
+                                        <img [src]="rec.avatar" alt appAppLazyImage>
+                                        <div class="d-flex flex-column justify-content-center">
+                                            <h3 [routerLink]='[rec.url]'>{{ rec['fullName'] }}</h3>
+
+                                            <p>         
+                                                {{ rec['position'] }} 
+                                            </p>
+
+                                            <p>         
+                                                {{ rec['company'] }} 
+                                            </p> 
+
+                                            <p>
+                                                {{ rec['skills'] }}  
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center ml-auto">
+                                        <button  class="backgroundless"  (click)='setVisibility("unhide",rec.id , true, i)' >Unhide</button>               
+                                    </div>
+                                </div>
+                                <p>{{ rec['text'] }}</p>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ngb-tab>
+
+        <!-- END HiddEn -->
+        </ngb-tabset>
+
+    </div>
+
+    <ng-container  *ngIf="!(recieved.length > 0 || given.length > 0 ||  ( requests.length > 0 && isCurrentUser)  || ( hidden.length > 0 && isCurrentUser )) && isCurrentUser">
+            <app-empty-profile [key]='"recomendations"' (openModal)='openEmptyModal()'></app-empty-profile>
+    </ng-container>
+    
+
+    <app-more-less  [dataLength]="reccomLength" [isMultiply]='MultiplyTab' (start)="startPage = $event"></app-more-less>
+ 
+
+
+<app-modal (closeModal)="modalType = null">
+<ng-container *ngIf='modalType && modalType === "ask"'>
+    <app-reccomendations-modal
+    
+    [modalType]="modalType" 
+    [data]="data.user"
+    (result)="getResult($event)"
+
+    >
+    
+    </app-reccomendations-modal>
+</ng-container>
+
+<ng-container *ngIf='modalType && modalType === "recommend"'>
+    <app-reccomendations-modal
+
+    [modalType]="modalType" 
+    [data]="data.user"
+    (result)="getResult($event)"
+
+    >
+    </app-reccomendations-modal>
+</ng-container>
+
+
+<ng-container *ngIf='modalType && modalType === "writeRecommendation"'>
+    <app-reccomendations-modal
+
+    [modalType]="modalType" 
+    [data]="selectedUserToWrite"  
+    (result)="getResult($event)"
+    (onWriteRecommendations) = "true" 
+
+    >
+    </app-reccomendations-modal>
+</ng-container>
+</app-modal>
+ 

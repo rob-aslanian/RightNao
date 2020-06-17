@@ -1,0 +1,30 @@
+<!-- Not Landing page -->
+<ng-container  *ngIf=" router.url != '/' && router.url != '/demo-network' && router.url != '/demo-message' &&  
+                       router.url != '/demo-user-jobs' && router.url != '/demo-user-jobs' && 
+                       router.url != '/demo-company-jobs' && router.url != '/demo-ads' && router.url !='/demo-donate' && 
+                       urlFirstChild != 'help-center' && !router.url.includes('registration') && router.url != '/calendar'">
+
+    <!-- Small chat boxes elements Starts -->
+    <div *ngIf="showSmallChatBoxes && urlFirstChild != 'messaging' " class="small-chat-windows-container">
+        <app-small-new-chat #smallChatBoxNew *ngIf="showSmallNewChat" (addChatBox)="addChatBox($event)" (onCloseNewChatBox)="onCloseNewChatBox()"></app-small-new-chat>
+        <app-small-chat-box *ngFor="let conversationId of conversationIdArr; trackBy:trackByFn" 
+                             [conversationId]="conversationId" 
+                             (onClose)="onClose($event)">
+        </app-small-chat-box>
+        <app-small-conversations #smallConvBox (addChatBox)="addChatBox($event)"></app-small-conversations>
+    </div>
+    <!-- Small chat boxes elements Ends -->
+
+    <app-header></app-header>
+
+</ng-container>
+<!-- Not Landing page -->
+
+
+<router-outlet ></router-outlet>
+
+<app-footer *ngIf="urlFirstChild != 'messaging'  && 
+                    !router.url.includes('registration') && 
+                    !router.url.includes('/v-office/office') &&
+                    router.url != '/calendar' ">
+</app-footer>

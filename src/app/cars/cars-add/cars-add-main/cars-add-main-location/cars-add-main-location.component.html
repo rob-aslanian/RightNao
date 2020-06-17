@@ -1,0 +1,25 @@
+<form [formGroup]="form" class="col-md-6">
+    <div class="form-group">
+        <label  for="location-country" class="label-control">Location  <span>*</span></label>
+        <div class="row">
+                <div class="col-md-7">
+                        <select class="form-control" 
+                                id="location-country" 
+                                (change)="selectCountry($event)">
+                            <option value="" disabled>Country</option>
+                            <option [value]="country.asc" *ngFor="let country of countries | async">
+                                {{ country.name }}
+                            </option>
+                        </select>
+                    </div>
+                    <div  class="col-md-5">
+                        <input type="text" class="form-control" id="location-city" 
+                                (selectItem)="selectCity($event)" [(ngModel)]="selectedCity" 
+                                [ngbTypeahead]="searchCity" [resultFormatter]="cityFormatter" 
+                                [inputFormatter]="cityFormatter" [attr.disabled]="!selectedCountry ? '' : null" 
+                                formControlName="cityID" [ngClass]="{'is-invalid':form.get('cityID').invalid && isSubmitted}">
+                    </div>
+        </div>
+
+    </div>
+</form>

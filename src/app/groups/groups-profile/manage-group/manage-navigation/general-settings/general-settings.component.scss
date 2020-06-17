@@ -1,0 +1,45 @@
+@import 'src/variables';
+
+.manage-active{
+    img{
+        margin-right: .3rem;
+    }
+        color: $dark-grey;
+        margin-right: 2.875rem;
+        text-decoration: none;
+    &:hover{
+        text-decoration: none;
+        color: $dark-grey;
+    }
+}
+
+.general-settings-content{
+    background-color: $white;
+    border-radius: .5rem;
+    border: 1px solid $light-grey;
+    &__title{
+        h4{
+            font-size: 1rem !important;
+        }
+    }
+    span{
+        color: $dark-grey;
+        font-size: .875rem;
+    }
+    a{
+        font-size: .875rem;
+        color: $background-light-cyan;
+        &:hover{
+            font-size: .875rem;
+            color: $background-light-cyan;
+            text-decoration: none;
+        }
+    }
+   label{
+       color: $dark-grey !important;
+       font-size: .875rem !important;
+   }
+}
+.custom-control-label::before {
+    top: 0.05rem !important;
+}

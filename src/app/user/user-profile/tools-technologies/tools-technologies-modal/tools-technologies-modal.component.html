@@ -1,0 +1,119 @@
+<!-- ** Add Tools & Technologies ** -->
+<ng-container *ngIf="modalType === 'add'; else edit">
+    <div  class="popup-content add-tools">
+        <h2>{{ '1424'| translate }}</h2>
+        <form (ngSubmit) = "submit()" [formGroup] = "toolsForm">
+            <div class="form-group mb-3" >
+                <input 
+                type = "text" 
+                autocomplete ="off"
+                formControlName = "tool_Technology"
+                class = "form-control" 
+                id = "headline" 
+                [placeholder] = "'547'| translate "
+                maxlength = "64"
+                [ngClass] = "{ 'is-invalid': sameTool }"
+                >
+                <div class="d-flex justify-content-end" *ngIf='toolsForm.get("tool_Technology").value.length > 3'>
+                    <button class="backgroundless m-0" (click)='submit()'> Add </button>
+                </div>
+        <span class="error_message" *ngIf="sameTool" >{{utils.$getErrors('already_exist')}}</span>
+    
+                </div>
+                
+                <div *ngFor="let tool of addedToolsList; let i = index">
+                    <div class="form-group tools-container justify-content-between">
+                        <div class="tool-name">
+                            <h3 class="tool_name m-0"> {{ tool.tool_Technology }} </h3>
+                        </div>
+                        <div class="tool-level">
+                            <select 
+                            formArrayName = "rank"
+                            class="form-control tools-options"
+                            (change) = "onSelect($event.target.value, i)"
+                            [ngClass]="{'is-invalid': tool.rank === '' && submitted }"
+                           >                               
+            
+                                <option *ngIf="tool.rank === '' " selected disabled value = "">Select level</option>                                                                                                                                       
+                                <option  value = "Level_Begginer">Begginer</option>
+                                <option  value = "Level_Intermediate">Intermediate</option>
+                                <option  value = "Level_Advanced">Advanced</option>
+                                <option  value = "Level_Master">Master</option>
+                                
+                            </select>
+                        </div>
+                        <span class="delete-tool" (click) = "deleteTool(i)">&#10005;</span>
+                        
+                    </div>
+                    </div>
+                    
+                    
+                    <div class="d-flex justify-content-end">
+                        <button *ngIf="addedToolsList.length > 0" type="button" class="btn btn-primary ml-3" (click) = "saveOnAdd()">{{ '1231'| translate }}</button>
+                        <button *ngIf="addedToolsList.length === 0" type="button" class="btn btn-primary ml-3"  disabled>{{ '1231'| translate }}</button>
+                    </div>
+                    
+                </form> 
+                    
+      </div>
+</ng-container>
+<!-- End Add tools -->
+
+
+
+<!-- ** Edit Tools & Technologies ** -->
+<ng-template #edit>
+    <div  class="popup-content add-tools">
+        <h2>{{ '1424'| translate }}</h2>
+        <form (ngSubmit) = "addToolsOnEdit()" [formGroup] = "toolsForm">
+            <div class="form-group mb-3" >
+                <!-- <input 
+                type="text" 
+                formControlName = "tool_Technology"
+                class="form-control" 
+                id="headline" 
+                placeholder="Enter Tools & Technologies"
+                maxlength="64"
+                    > -->
+    
+                </div>
+                
+                <div *ngFor="let tool of toolsTechnologiesList; let i = index">
+                    <div class="form-group tools-container justify-content-between">
+                        <div class="tool-name">
+                            <h3 class="tool_name m-0"> {{ tool.tool_Technology }} </h3>
+                        </div>
+                        <div class="tool-level">
+                            <select 
+                            formArrayName = "rank"
+                            class="form-control tools-options"
+                            (change) = "selectRankOnEdit($event.target.value , i)"
+                            value = ''
+                           >
+ 
+                                <option *ngIf="tool.rank; else defaultRank" selected disabled value="">{{ setToolRankName(tool.rank) }}</option>           
+                                <ng-template #defaultRank>
+                                    <option value = "" selected disabled>Select Level</option>
+                                </ng-template>
+                                <option value = "Level_Begginer">Beginner</option>
+                                <option value = "Level_Intermediate">Intermediate</option>
+                                <option value = "Level_Advanced">Advanced</option>
+                                <option value = "Level_Master">Master</option>
+                               
+                            </select>
+                        </div>
+                        <span class="delete-tool" (click) = "deleteToolsFromDb(i , tool.id)">&#10005;</span>
+                        
+                    </div>
+                    </div>
+                    
+                    
+                    <div class="d-flex justify-content-end">
+                        <button type="button" class="btn btn-primary ml-3" (click) = "saveOnEdit()">{{ '1231'| translate }}</button>
+                    </div>
+                    
+                </form> 
+                    
+      </div>
+</ng-template>
+<!-- End edit Tools & Technologies -->

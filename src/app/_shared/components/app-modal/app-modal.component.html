@@ -1,0 +1,29 @@
+<ng-template #appModal  #ngbModalContainer>
+  
+    <div  class="modal-content" [ngStyle]="{'width.px': !!size ? undefined : width }">
+
+            <h1 *ngIf='title && isBlue &&  !withoutContent'> {{ title }}
+                <a (click)="close()">&#10005;</a>
+            </h1>
+
+            <h1 *ngIf='($title | async) as tit'> {{ tit }}
+                    <a (click)="close()">&#10005;</a>
+            </h1>
+    
+            <h2 *ngIf='!isBlue && !withoutContent' class="calendar-modal-header"> {{ title }}
+                <a (click)="close()">&#10005;</a>
+            </h2>
+
+            <h2 *ngIf='withoutContent' class="calendar-modal-header" style="padding-top: 2rem;"> {{ title }} </h2>
+            
+            <ng-content #content></ng-content>
+
+    </div>
+  
+
+</ng-template>
+
+
+
+  
+

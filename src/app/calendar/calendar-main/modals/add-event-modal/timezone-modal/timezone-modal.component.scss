@@ -1,0 +1,16 @@
+@import "src/variables";
+
+.form-control.calendar-input {
+    border: none;
+    background-color: $input-grey;
+    color: $dark-grey;
+    height: 32px;
+
+    &:focus {
+        box-shadow: unset;
+    }
+
+    &.title-input {
+        font-size: 18px;
+    }
+}

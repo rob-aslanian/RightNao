@@ -1,0 +1,17 @@
+@import "../../../../../../variables";
+
+.emoji-likes {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 22%;
+
+  img {
+    height: 22px;
+  }
+
+  &__amount {
+    color: $dark-grey;
+    position: relative;
+  }
+}

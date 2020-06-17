@@ -1,0 +1,58 @@
+ 
+        <div class="container">
+            <div class="row">
+ 
+            <div class="col-12 p-0 d-flex">
+                <div class="left-content col-3 mt-3 p-0">
+                    <div class="left-content__manage-groups p-3">
+                        <div class="left-content__manage-groups__title mb-3">
+                            <div class="col-12 mb-4 p-0">
+                                <h4>Manage group</h4>
+                            </div>  
+                        </div>    
+                        <div class="col-12 p-0 d-flex justify-content-between">
+                            <a [routerLink]='["general-settings"]' routerLinkActive='active-link'>General Settings</a>
+                            <div class="new d-flex mr-3">
+                                    <span>13</span>
+                            </div>
+                        </div>                                                 
+                        <div class="col-12 p-0 d-flex justify-content-between">
+                            <a [routerLink]='["admin-activity"]' routerLinkActive='active-link'>Admin Activity</a>
+                            <div class="new d-flex mr-3">
+                                    <span>31</span>
+                            </div>
+                        </div>                
+                        <div class="col-12 p-0 d-flex justify-content-between">
+                            <a [routerLink]='["member-requests"]' routerLinkActive='active-link'>Member Requests</a>
+                            <div class="new d-flex mr-3">
+                                <span>14</span>
+                            </div>
+                        </div>                
+                        <div class="col-12 p-0 d-flex justify-content-between">
+                            <a [routerLink]='["pending-posts"]' routerLinkActive='active-link'>Pending Posts</a>
+                            <!-- <div class="new d-flex mr-3">
+                                    <span>1</span>
+                            </div> -->
+                        </div>                
+                        <div class="col-12 p-0 d-flex justify-content-between">
+                            <a [routerLink]='["member-reported"]' routerLinkActive='active-link'>Member Reported content</a>
+                            <!-- <div class="new d-flex mr-3">
+                                    <span>1</span>
+                            </div> -->
+                        </div>                
+                    </div>
+
+                </div>
+
+
+
+                <div class="col-9 mt-3 pr-0  d-flex" >
+                        <router-outlet></router-outlet>
+                </div>
+                  
+ 
+            
+        </div>
+    </div>
+
+ 

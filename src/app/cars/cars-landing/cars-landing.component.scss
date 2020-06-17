@@ -1,0 +1,114 @@
+@import 'src/variables'; 
+
+.cover-image {
+    height: 22rem;
+    // background-color: black;
+    background-image: url('../../../assets/img/9528.png');
+    background-repeat: no-repeat; 
+    background-size: cover;
+    position: relative;
+    &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #264361;
+        opacity: .3;
+        top: 0px;
+    }
+
+}; 
+
+.header {
+    &__title {
+
+        p {
+            color: white; 
+            font-size: 2.5rem; 
+            font-weight: bold; 
+            margin: 0; 
+
+        };
+    }; 
+
+    &__description {
+        span {    
+            color: white;   
+            font-size: 1.25rem;   
+        }; 
+    };   
+}; 
+
+.landing {
+
+    &__header {
+    
+    };
+
+    &__post-manage {
+        
+        &__post {
+
+            padding-left: 0; 
+
+            @media (max-width: 768px) {
+                padding: 0 15px;
+            }; 
+
+            
+            &__content {
+                width: 98%; 
+                background-color: $blue; 
+                border: 1px solid $blue; 
+                border-radius: .5rem; 
+    
+                h4 {
+                    color: #eeee;
+                    font-size: 1.5rem; 
+                    text-align: center;
+    
+                };
+    
+                a {
+                    text-decoration: none; 
+                    font-size: 1.25rem; 
+                    color: $background-dark-cyan; 
+                    text-align: center;
+    
+                };
+            }; 
+        }; 
+
+        &__manage {
+
+            padding-right: 0; 
+
+            @media (max-width: 768px) {
+                padding: 0 15px;
+            }; 
+
+
+            &__content {
+
+                background-color: $blue; 
+                border: 1px solid $blue; 
+                border-radius: .5rem; 
+                width: 98%; 
+    
+                h4 {
+                    color: #eeee;
+                    font-size: 1.5rem; 
+                    text-align: center;
+                };
+    
+                a {
+                    text-decoration: none; 
+                    font-size: 1.25rem; 
+                    color: $background-dark-cyan; 
+                    text-align: center;
+    
+                };
+            }; 
+        }; 
+    };
+};

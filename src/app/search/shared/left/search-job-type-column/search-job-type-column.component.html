@@ -1,0 +1,19 @@
+<div class="search-groups__sidebar-section">
+        <app-search-column-header title="Type">
+            <div class="mt-2">
+                <div class="search-groups__sidebar-section__delivery-time-options search-groups__sidebar-section__wrap">
+                        <div class="
+                            custom-control 
+                            custom-checkbox 
+                            page-section-text-grey
+                            " *ngFor="let JobType of jobTypes; let i = index;">
+                            <input   type="checkbox" class="custom-control-input" [id]="JobType.id" [value]="JobType.id" 
+                                     name="job_type"  (change)="jobTypeChange($event , i)">
+                            <label class="custom-control-label" [for]="JobType.id">
+                                {{ JobType.name  }}
+                            </label>
+                        </div>
+                </div>
+            </div>
+        </app-search-column-header>
+    </div>

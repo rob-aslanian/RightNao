@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="42" height="33" viewBox="0 0 42 33">
+  <g id="Internship" transform="translate(-1060.526 -236.57)">
+    <g id="Rectangle_62" data-name="Rectangle 62" transform="translate(1102.526 269.57) rotate(-180)" fill="none" stroke="gray" stroke-linecap="round" stroke-width="1" stroke-dasharray="110 14">
+      <rect width="42" height="29" rx="2" stroke="none"/>
+      <rect x="0.5" y="0.5" width="41" height="28" rx="1.5" fill="none"/>
+    </g>
+    <path id="Path_304" data-name="Path 304" d="M208.025,49.178H219" transform="translate(875.002 204.142)" fill="none" stroke="gray" stroke-linecap="round" stroke-width="1"/>
+    <path id="Path_305" data-name="Path 305" d="M208.025,49.178H219" transform="translate(875.002 210.18)" fill="none" stroke="gray" stroke-linecap="round" stroke-width="1"/>
+    <g id="Rectangle_63" data-name="Rectangle 63" transform="translate(1078.526 236.57)" fill="#00f4ff" stroke="gray" stroke-width="1">
+      <rect width="6" height="9" rx="1" stroke="none"/>
+      <rect x="0.5" y="0.5" width="5" height="8" rx="0.5" fill="none"/>
+    </g>
+    <g id="Group_112" data-name="Group 112" transform="translate(1066.498 248.951)">
+      <path id="Path_102" data-name="Path 102" stroke="gray" d="M2.335,18.644a5.184,5.184,0,0,1,1.78.325,9.99,9.99,0,0,0,4.419,0,5.052,5.052,0,0,1,1.78-.325,2.293,2.293,0,0,1,1.46,1.858l.276,3.177a.482.482,0,0,1-.495.495H1.093A.482.482,0,0,1,.6,23.679L.875,20.5A2.293,2.293,0,0,1,2.335,18.644Z" fill="#00f4ff" transform="translate(-0.597 -9.88)" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="2.613" stroke-width="1" fill-rule="evenodd"/>
+      <path id="Path_103" data-name="Path 103" stroke="gray" d="M8.287,8.278A3.839,3.839,0,1,0,4.45,4.441,3.845,3.845,0,0,0,8.287,8.278Z" fill="#00f4ff" transform="translate(-2.581 -0.6)" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="2.613" stroke-width="1" fill-rule="evenodd"/>
+    </g>
+  </g>
+</svg>

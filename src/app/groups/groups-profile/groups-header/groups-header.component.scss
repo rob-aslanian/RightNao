@@ -1,0 +1,179 @@
+@import 'src/variables';
+
+ 
+.groups-top-center{
+    justify-content: center;
+    background-color: $white;
+    border-radius: .5rem;
+    margin-top: -5rem;
+    border: 1px solid $light-grey;
+    border-radius: .5rem;
+    border-radius: .5rem;
+    &__content{
+        @media #{$break2}{
+            margin-top: -1rem;
+        }
+        @media #{$break1}{
+            margin-top: -1rem;
+        }
+        &__title{
+             h4{
+                font-size: 1.5rem;
+             }   
+             span{
+                font-size: 0.875rem;
+                color: $dark-grey;
+             }
+             p{
+                font-size: 0.875rem;
+                color: $dark-grey;
+             }
+             img{
+                width: 2.1875rem;
+                height: 2.1875rem;
+                border-radius: 50%;
+             }
+             .add{
+                 height: 1rem;
+                 width: .8rem;
+                 margin-right: .4rem;
+
+             }
+             .edit-content {
+                 position: relative;
+                 button {
+                     position: relative;
+                     opacity: 0;
+                     left: -12px;
+                     top: -9px;
+                      &:hover {
+                          opacity: 1;
+                      }
+                      img {
+                        width: 28px;
+                        height: 28px;
+                      }
+                  } 
+             }
+             a{
+                font-size: 0.875rem;
+                color: $background-light-cyan !important;
+                &:hover{
+                    text-decoration: none;
+                }
+             }  
+        }
+        &__bottom{
+            &-left{
+                font-size: 0.875rem;
+                a{
+                    // padding-right: 2.875rem;
+                    white-space: nowrap;
+                    height: 2.6875rem;
+                    color: $dark-grey;
+                    &:hover{
+                        text-decoration: none;
+                        border-bottom: 3px solid #00D4E3 !important;
+                        height: 43px;
+                        // margin-top: 28px;
+                        border-bottom: 3px solid $background-light-cyan;
+                    }
+                }
+               
+            }
+            &-right{
+                justify-content: flex-end;
+                img{
+                    height: 17px;
+                    width: 18px;
+                }
+                .manage{
+                    color: $background-light-cyan;
+                    margin-right: 2.875rem;
+                    text-decoration: none;
+                }
+                .manage-disabled{
+                    color: $dark-grey;
+                    margin-right: 2.875rem;
+                    text-decoration: none;
+                }
+
+                .blue-bell{
+                    margin-right: 1.625rem;
+                }
+        
+                @media (max-width: 993px) {
+                    padding-bottom: 1rem;
+                    margin-left: auto;
+                }
+            }
+        }
+    }
+}
+
+//     .create-post{
+    
+//         &__content{
+//         // max-height: 3.75rem;
+//         background-color: $white;
+//         border-radius: .5rem;
+//         border: 1px solid $light-grey;
+//         border-radius: .5rem;
+//         border-radius: .5rem;
+        
+//         &__title{
+//             h4{
+//                 font-size: 1.125rem !important;
+//             }
+//         }    
+//         &__buttons{
+//             a{
+//                 &:not(:first-child){
+//                     // padding-left: 2rem;
+//                 }
+//             }
+//         }
+//     }   
+// }
+
+.active-group {
+    text-decoration: none;
+    border-bottom: 3px solid #00D4E3 !important;
+    height: 43px;
+    // margin-top: 28px;
+    border-bottom: 3px solid $background-light-cyan;
+ 
+}
+
+.vertical-line{
+    height: .8rem;
+    margin-left: .5rem;
+    margin-right: .5rem;
+    margin-top: .3rem;
+    border-right: 1px solid $dark-grey;
+     
+}
+p {
+    word-break: break-all;
+}
+
+// .create-first-post{
+//     background-color: $white;
+//     border-radius: .3rem;
+//     border: 1px solid $light-grey;
+//     border-radius: .5rem;
+//     border-radius: .5rem;
+
+//     &__title{
+//         font-size: 1.25rem;
+//     }
+
+//     &__description{
+//         color: $dark-grey;
+//         font-size: 0.875rem;
+//     }
+// }
+.active-link {
+    color: $dark-grey !important; 
+
+}

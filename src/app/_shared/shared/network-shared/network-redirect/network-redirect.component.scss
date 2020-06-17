@@ -1,0 +1,24 @@
+@import 'src/variables';
+
+.redirect-box {
+  background: $white;
+  border-radius: 5px;
+  padding: 20px; 
+  cursor: pointer;
+   a {
+       color: $dark-grey;
+       font-size: 1rem;
+
+   }
+   h4 {
+       color: $dark-blue;
+       font-size: 1.5rem;
+   }
+   img {
+        width: 48px;
+        height: 52px;
+   }
+   @media screen and  ( max-width: 767px ){
+         justify-content: center;
+   }
+}

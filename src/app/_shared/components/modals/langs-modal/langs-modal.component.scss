@@ -1,0 +1,17 @@
+@import "../../../../../variables";
+
+.popup-content.default-modal {
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.langs-modal-title {
+    color: $dark-grey;
+    margin-left: 5px;
+    margin-bottom: 32px;
+    display: block;
+}
+
+.btn.btn-primary {
+    margin-top: 16px;
+}

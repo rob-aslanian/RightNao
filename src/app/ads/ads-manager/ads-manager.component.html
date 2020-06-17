@@ -1,0 +1,363 @@
+<!-- <main class="main-light-blue">
+
+
+    <div class="container main-cont-for-adsMngr">
+
+
+        <div class="ads-mngr-head">
+            <h2>Ads manager</h2>
+
+            <button class="btn btn-primary" [routerLink]="['/ads/banner']">Create Ad</button>
+        </div>
+
+        <div class="ads-mngr-body">
+            <div class="ads-mngr-body-h">
+
+                <div class="cyan-custom-checkbox">
+                    <input type="checkbox" id="customCheck1" (change)="toggleAll($event)"
+                           [(ngModel)]="isAllSelected">
+                    <label for="customCheck1"></label>
+                </div>
+
+
+                <div class="ads-manager-optns" (click)="export()" *ngIf="data.length > 0">
+                    <img src="./assets/img/71.svg" alt="">
+                    <span >Export</span>
+                </div>
+
+                <div class="ads-mngr-select">
+                    <div class="ads-mngr-select-h">
+                        Sort by
+                        <span>&#9660;</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="ads-table" id="table">
+
+                <div class="ads-table-row head">
+                    <div class="ads-t-tr-26">Advertisment Name</div>
+                    <div class="ads-t-tr-7">ID</div>
+                    <div class="ads-t-tr-7">Status</div>
+                    <div class="ads-t-tr-7">Start Date</div>
+                    <div class="ads-t-tr-7">End Date</div>
+                    <div class="ads-t-tr-7">Budget</div>
+                    <div class="ads-t-tr-7">Created by</div>
+                    <div class="ads-t-tr-7">Action</div>
+                </div>
+
+                <ng-container *ngIf="(ads | async) as ads;else:loader">  
+                    <ng-container *ngIf="ads.length > 0">
+                        <div class="ads-table-row" *ngFor="let ad of ads; let i = index; trackBy:trackByFn " >
+                            <div class="cyan-custom-checkbox">
+                                <input type="checkbox" [id]="ad.id" class="chkbox" (change)="toggleAd($event , ad , i)"  [ngModel]="selectedAd[i]" >
+                                <label [for]="ad.id" ></label>
+                            </div>
+                            <div class="ads-t-tr-26" *ngIf="ad?.name">
+                                {{ ad.name }}
+                            </div>
+                            <div class="ads-t-tr-7" *ngIf="ad?.id">
+                                <span>
+                                    {{ ad.id }}
+                                </span>
+                            </div>
+                            <div class="ads-t-tr-7" *ngIf="ad.status">
+                                <ng-container [ngSwitch]="ad.status">
+                                    <span *ngSwitchCase="'active'">
+                                        <img src="assets/img/213.svg" alt="active">
+                                         Active
+                                    </span>
+                                    <span *ngSwitchCase="'draft'">
+                                        <img src="assets/img/162.svg" alt="draft">
+                                        Draft
+                                    </span>
+                                    <span *ngSwitchCase="'paused'">
+                                        <img src="assets/img/163.svg" alt="paused">
+                                       Paused
+                                    </span>
+                                    <span *ngSwitchCase="'not_running'">
+                                        <img src="assets/img/465.svg" alt="expired">
+                                         Not Running
+                                    </span>
+
+                                    <span *ngSwitchDefault></span>
+                                </ng-container>
+                            </div>
+                            <div class="ads-t-tr-7" *ngIf="ad?.start_date">
+                                {{ ad.start_date }}
+                            </div>
+                            <div class="ads-t-tr-7">
+                                {{ ad.end_date ?  ad.end_date : '-' }}
+                            </div>
+                            <div class="ads-t-tr-7" *ngIf="ad?.budget">
+                                {{ ad.budget }}
+                            </div>
+                            <div class="ads-t-tr-7 justify-content-center" *ngIf="(ad?.creator_profile) as profile">
+                                <img [src]="profile.avatar ? '/file/' + profile.avatar : 'assets/img/121.svg'" class="created_by">
+                            </div>
+                            <div class="ads-t-tr-7" ngbDropdown>
+                                <ng-container *ngIf="ad.status !== 'rejected' ">
+                                        <button class="ads-tr-btn" ngbDropdownToggle></button>
+
+                                        <div class="options actions" ngbDropdownMenu>
+                                            <ng-container [ngSwitch]="ad.status">
+                                                <button class="btn btn-secondary" (click)="pauseAd(ad)" *ngSwitchCase="'active'">
+                                                    Pause
+                                                </button>
+                                                <button class="btn btn-secondary" (click)="activateAd(ad)"  *ngSwitchCase="'not_running'">
+                                                    Activate
+                                                </button>
+                                                <button class="btn btn-secondary" (click)="activateAd(ad)"  *ngSwitchCase="'paused'">
+                                                    Activate
+                                                </button>
+                                                <button class="btn btn-secondary" (click)="activateAd(ad)" *ngSwitchCase="'draft'">
+                                                    Publish
+                                                </button>
+                                                <button class="btn btn-secondary" *ngSwitchCase="'complited'">
+                                                    Renew
+                                                </button>
+                                                <button class="btn btn-secondary" *ngSwitchDefault></button>
+                                            </ng-container>
+                                            <button class="btn btn-secondary mt-2" *ngIf="ad.status === 'draft' "
+                                                     [routerLink]="['/ads/company/post-a-ad' ,  ad.id]" >
+                                                Edit
+                                            </button>
+                                        </div>
+                                </ng-container>
+                                
+
+                                <button class="btn btn-secondary mt-2" *ngIf="ad.status === 'rejected'" (click)="deleteAd(ad)">
+                                    <img src="assets/img/53.svg" alt="">
+                                </button> 
+                            </div>
+                        </div>
+                    </ng-container>
+
+                </ng-container>
+
+                Spinner
+                <ng-template #loader>
+                    <app-spinner class="mt-3 d-flex justify-content-center"></app-spinner>
+                </ng-template>
+
+                <ngb-pagination [collectionSize]="amount" [maxSize]="10"  [(page)]="page" *ngIf="amount && amount > 20"
+                                (pageChange)="changePage($event)" class="d-flex justify-content-end mt-4">
+
+                </ngb-pagination>
+            </div>
+
+        </div>
+    </div>
+</main> -->
+
+
+
+<main>
+    <div class="main-cont-for-ads white-container">
+        <div class="manager-header">
+            <div class="d-flex align-items-center justify-content-between">
+                    <h6 *ngIf="!campaignInfo">{{ amount }} total campaigns</h6>
+                    <h6  *ngIf="campaignInfo">Ads Manager > {{ campaignInfo['name'] }} ({{ amount }} total ads)</h6>
+                    <div ngbDropdown class="dropDown" >
+                        <button ngbDropdownToggle class="btn">
+                            <span class="dark-grey">Most recent</span>
+                            <button class="btn">
+                                    <img src="assets/img/right-arrow.svg" alt="arrow" class="arrowDown">
+                            </button>
+                                
+                        </button>
+                        <div ngbDropdownMenu class="options dropDown-menu">
+                            <button class="btn"  ngbDropdownItem (click)="sortBy('asad')">Most recent</button>
+                            <button class="btn"  ngbDropdownItem (click)="sortBy('active')">Active first</button>
+                            <button class="btn"  ngbDropdownItem (click)="sortBy('in_active')">Inactive first</button>
+                            <button class="btn"  ngbDropdownItem  (click)="sortBy('paused')">Paused first</button>
+                            <button class="btn"  ngbDropdownItem  (click)="sortBy('complited')">Completed first</button>
+                        </div>
+                    </div>
+            </div>
+
+            
+        </div>
+        <table class="manager-table">
+            <thead>
+                <tr>
+                    <th>
+                        <div class="d-flex align-items-center">
+                            <div class="custom-control custom-checkbox format-box-checkbox" *ngIf="activeCategory != 'banner'">
+                                <input type="checkbox"  
+                                        class="custom-control-input"
+                                        [checked]="selectedList.length"
+                                        (change)="checkAll($event)"
+                                        id = "checkAll">
+                                <label class="custom-control-label" for="checkAll"></label>
+                            </div>
+                            <div ngbDropdown class="dropDown" >
+                                <button ngbDropdownToggle class="btn">
+                                        <img src="assets/img/right-arrow.svg" alt="arrow" class="arrowDown">
+                                </button>
+                                <div ngbDropdownMenu class="options dropDown-menu">
+                                    <button class="btn"  ngbDropdownItem (click)="selectively('all')">All</button>
+                                    <button class="btn"  ngbDropdownItem (click)="selectively('active')">Active</button>
+                                    <button class="btn"  ngbDropdownItem (click)="selectively('in_active')">Inactive</button>
+                                    <button class="btn"  ngbDropdownItem (click)="selectively('paused')">Paused</button>
+                                    <button class="btn"  ngbDropdownItem (click)="selectively('complited')">Completed</button>
+                                </div>
+                            </div>
+                            <button class="btn dark-grey" *ngIf="selectedList.length" (click)="deactivateSelected()">
+                                Deactivate
+                            </button>
+                            <button class="btn dark-grey" *ngIf="selectedList.length" (click)="deleteSelected()">
+                                <img src="assets/img/ads/38.svg" alt="remove">
+                                Delete
+                            </button>
+                        </div>
+                    </th>
+                    <th>Spent</th>
+                    <th>Cost per result</th>
+                    <th>Impressions</th>
+                    <th>Clicks</th>
+                    <th>Average CTR</th>
+                    <th>Average CPM</th>
+                    <th>Average CPC</th>
+
+                </tr>
+
+            </thead>
+            <tbody>
+
+                <tr *ngIf="!campaignInfo;else campaignInfoTemplate"><td>2020</td></tr>
+                <ng-template #campaignInfoTemplate>
+                    <tr class="campaignInfoContainer">
+                        <td>
+    
+                            <div class="manager-content d-flex align-items-center">
+                                <div class="d-flex align-items-start flex-column" style="width: 200px;">
+                                    <h6> {{ campaignInfo['name'] }} </h6>
+                                    <p> <img [src]="campaignStatus[campaignInfo['status']]['icon']" alt="image"> 
+                                        {{ campaignStatus[campaignInfo['status']]['text'] }} 
+                                    </p>
+                                    <p> {{ campaignInfo['start_date'] | date }} </p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>{{ campaignInfo['impressions'] }}</td>
+                        <td>{{ campaignInfo['clicks'] }}</td>
+                        <td>{{ campaignInfo['ctr_avg'] }}</td>
+                        <td>0</td>
+                        <td>0</td>
+                        <td>
+                            <div ngbDropdown class="dropDown" >
+                                <button ngbDropdownToggle class="btn">
+                                        <img src="assets/img/right-arrow.svg" alt="arrow" class="arrowDown">
+                                </button>
+                                <div ngbDropdownMenu class="options dropDown-menu">
+                                    <!-- <button class="btn"  ngbDropdownItem>Edit</button> -->
+                                    <button class="btn"  ngbDropdownItem>Duplicate</button>
+                                    <button class="btn"  ngbDropdownItem>Preview</button>
+                                    <button class="btn"  ngbDropdownItem>Deactivate</button>
+                                    <button class="btn"  ngbDropdownItem>Delete</button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+             <p></p>
+                </ng-template>
+        <ng-container *ngFor="let item of list; let i = index; trackBy:trackByFn " >
+
+            <tr 
+                
+                [ngClass]="{selectedItem: item['isSelected']}">
+                <td>
+
+                    <div class="manager-content d-flex align-items-center">
+                        <div class="custom-control custom-checkbox format-box-checkbox" *ngIf="activeCategory != 'banner'">
+                            <input type="checkbox"
+                                    (change)="toggleAd(item)"
+                                    [(ngModel)]="item['isSelected']"
+                                    class="custom-control-input"
+                                    id = "checkbox_{{i}}">
+                            <label class="custom-control-label" for="checkbox_{{i}}"></label>
+                        </div>
+                        <img [src]="'/file/' + item['files']['0']['address']" 
+                            alt="image" 
+                            *ngIf="item['files'] && item['files'].length" 
+                            class="advertImage">
+                        <div class="d-flex align-items-start flex-column">
+                            <h6> {{ item['name'] }} </h6>
+                            <p> <img [src]="campaignStatus[item['status']]['icon']" alt=""> {{ campaignStatus[item['status']]['text'] }} </p>
+                            <p> {{ item['start_date'] | date }} </p>
+                        </div>
+                    </div>
+                </td>
+                <td>0</td>
+                <td>0</td>
+                <td>{{ item['impressions'] }}</td>
+                <td>{{ item['clicks'] }}</td>
+                <td>{{ item['ctr_avg'] }}</td>
+                <td>0</td>
+                <td>0</td>
+                <td>
+                    <div ngbDropdown class="dropDown" >
+                            <button ngbDropdownToggle class="btn">
+                                    <img src="assets/img/right-arrow.svg" alt="arrow" class="arrowDown">
+                                    <!-- 107.svg -->
+                            </button>
+                            <div ngbDropdownMenu class="options dropDown-menu">
+                                <!-- <button class="btn"  ngbDropdownItem>Edit</button> -->
+                                <button class="btn"  ngbDropdownItem (click)="duplicate(item)">Duplicate</button>
+                                <button class="btn"  ngbDropdownItem (click)="showAdverts(item['id'], item)">Preview</button>
+                                <button class="btn"  ngbDropdownItem (click)="deactivate(item)" *ngIf="item['status'] == 'active'">Deactivate</button>
+                                <button class="btn"  ngbDropdownItem (click)="activate(item)" *ngIf="item['status'] == 'paused'">Activate</button>
+                                <button class="btn"  ngbDropdownItem (click)="remove(item)">Delete</button>
+                            </div>
+                    </div>
+                </td>
+            </tr>
+             <p></p>
+
+        </ng-container>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<app-modal (closeModal)="modalType = null">
+    <ng-container *ngIf="modalType">
+        <div class="modalWrapper">
+            <h5>Preview</h5>
+            <div class="previewWrapper">
+                
+                    <app-ads-preview-responsive  *ngIf="modalType && modalType != 'single_image' && modalType != 'carousel'"></app-ads-preview-responsive>
+                    <app-ads-preview-spotlight   *ngIf="modalType && modalType == 'single_image'"></app-ads-preview-spotlight>
+                    <app-ads-preview-carousel *ngIf="modalType && modalType == 'carousel'"></app-ads-preview-carousel>  
+            </div>
+            <div class="audience">
+                <h6>Audience</h6>
+                <div class="d-flex align-items-center">
+                    <p>Include Location</p>
+                    <div class="line-flex">
+                        <span  *ngFor="let item of campaignInfo['locations']"> 
+                            <ng-container *ngIf="!item['city'];else fullLocation">
+                                {{ item['country']  | country }};
+                            </ng-container>
+                            <ng-template #fullLocation>
+                                    {{item['city']}}, {{ item['country']  | country }};
+                            </ng-template>
+                        </span>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center">
+                    <p>Profile Language</p>
+                    <div class="line-flex">
+                        <span  *ngFor="let item of campaignInfo['languages']"> 
+                            {{item}};
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</app-modal>

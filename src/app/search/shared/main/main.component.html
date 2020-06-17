@@ -1,0 +1,29 @@
+<app-search-main-header></app-search-main-header>
+<!-- <app-ads></app-ads> -->
+
+<div class="search-groups__content__results" [ngClass]="{'bg-unset': type === 'job'}">
+
+        <app-spinner *ngIf="isLoading; else:content" class="d-flex justify-content-center" ></app-spinner>
+        
+        <ng-template #content>
+            <div class="search-groups__content__results__heading" *ngIf="type !== 'all' && type !== 'job'  ">
+                <span class="page-section-text-grey">Showing {{ amount }} results</span>
+
+                <div  ngbDropdown *ngIf="type !== 'candidate' && type !== 'service_request'" [autoClose]="true" #drop="ngbDropdown">
+                    <button ngbDropdownToggle class="ml-auto" [ngClass]="searchService.view == 'card' ? 'blocks' : 'list'"> </button>
+                    <div ngbDropdownMenu class=" blocks-option" style="left: 370px">
+                        <button class="btn" (click)="searchService.view = 'card'; drop.close();" >Card view</button>
+                        <button class="btn" (click)="searchService.view = 'list'; drop.close();" >List view</button>
+                    </div>
+    
+                </div>
+            </div>
+    
+            <app-search-main-content [data]="type === 'all' ? listByType : list " [amount]="amount"></app-search-main-content>
+
+            <ngb-pagination [collectionSize]="amount" [pageSize]="first" [maxSize]="first"  [(page)]="page"  *ngIf="amount && amount > 30"
+                (pageChange)="changePage($event)" class="d-flex justify-content-end mt-4">
+            </ngb-pagination>
+            
+        </ng-template>   
+</div>

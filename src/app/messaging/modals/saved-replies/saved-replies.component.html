@@ -1,0 +1,47 @@
+<div>
+    <h1>Saved Replies
+        <a (click)="close()">&#10005;</a>
+    </h1>
+    <div class="popup-content smsModal-savedRep">
+        <div class="d-flex justify-content-between">
+
+            <div class="search-messages">
+                <input (keyup)="getChatReplies()" [(ngModel)]="searchText" type="text" class="form-control" placeholder="Search Messages">
+            </div>
+
+            <!-- <div ngbDropdown class="d-inline-block chatSort-select">
+                <div id="chatListType" ngbDropdownToggle class="chatSort-select_head">{{selectedListType}}</div>
+                <div ngbDropdownMenu aria-labelledby="chatListType">
+                    <button (click)="changeChatListType('All')" class="dropdown-item">All</button>
+                    <button (click)="changeChatListType('Active')" class="dropdown-item">Active</button>
+                    <button (click)="changeChatListType('Archived')" class="dropdown-item">Archived</button>
+                    <button (click)="changeChatListType('Unread')" class="dropdown-item">Unread</button>
+                </div>
+            </div> -->
+
+        </div>
+        <br>
+
+        <div *ngFor="let reply of myReplies; let i = index" class="smsModal-savedRep-border">
+            <div class="d-flex justify-content-between align-items-center">
+                <img *ngIf="reply.files.length !== 0" src="{{reply.files[0].id | filepath}}" alt="photo" class="sms-shared-photo">
+                <h2 style="width: 100%; cursor: pointer;" (click)="onApplyReply(reply)">{{reply.title}}</h2>
+                <div class="d-flex">
+                    <button (click)="deleteReply(reply.id, i)" class="clear_btn">
+                        <img src="./assets/img/53.svg" alt="delete">
+                    </button>
+                    <button (click)="editReply(reply)" class="clear_btn">
+                        <img src="./assets/img/19.svg" alt="edit">
+                    </button>
+                </div>
+            </div>
+            <div (click)="onApplyReply(reply)" class="reply-text">{{reply.text | personalize: conversationName}}</div>
+        </div>
+
+
+
+        <!-- <button  class="btn btn-primary">Create</button> -->
+        <button (click)="onCreateClick()" class="add save-reply-add"><img alt="add" src="assets/img/50.svg"></button>
+    </div>
+
+</div>

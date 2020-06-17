@@ -1,0 +1,48 @@
+@import 'src/variables';
+
+
+.left-content__manage-groups{
+    background-color: $white;
+    border-radius: .5rem;
+    border: 1px solid $light-grey;
+    div{
+        h4{
+            font-size: 1.25rem !important;
+        }
+        a{
+            padding-left: 1rem;
+            border-left: 3px solid transparent;
+            color: $dark-grey;
+            font-size: .875rem;
+            margin-bottom: 1rem;
+            &:hover{
+                color: $dark-blue;
+                border-left: 3px solid $background-dark-cyan;
+                text-decoration: none;
+            }
+            @media #{$break1} {
+                padding-left: 0;
+            }
+            @media #{$break2} {
+                padding-left: 0;
+            }
+           
+        }
+        .new{
+            background-color: $error;
+            max-height: 1rem;
+            border-radius: .2rem;
+            -ms-flex-align: center;
+            align-items: center;
+            margin-left: .5rem;
+            color: $white;
+            font-size: 0.75rem;
+            padding: .5rem .5rem .5rem .5rem;
+        }
+    }
+}
+
+.active-link {
+    color: $dark-blue !important;
+    border-left: 3px solid $background-dark-cyan !important;
+}

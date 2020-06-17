@@ -1,0 +1,51 @@
+@import 'src/variables'; 
+
+.content {
+    background: $white; 
+    flex-wrap: wrap; 
+
+    &__item {
+        padding: 0; 
+        &__box {
+            border: 1px solid $light-grey;
+            border-radius: .5rem; 
+            padding: .5rem; 
+            width: 97%;
+            height: 100%;
+            &__img {
+                justify-content: center; 
+                max-width: 100% !important;
+                img {
+                    width: 4.375rem; 
+                    height: 4.375rem;
+                    border-radius: 50%; 
+                }
+            }
+    
+            &__details {
+                &__name {
+                    font-size: 1rem; 
+                    color: $dark-blue; 
+                    white-space: nowrap; 
+                    text-decoration: none;
+                    &:hover {
+                        text-decoration: none; 
+                        color: $dark-blue; 
+
+                    }
+                }
+                span {
+                    font-size: .75rem; 
+                    color: $dark-grey; 
+                    white-space: nowrap;
+                }
+                p {
+                    font-size: .75rem; 
+                    color: $background-dark-cyan; 
+                    margin: 0; 
+                    white-space: nowrap;
+                }
+            }   
+        }
+    }
+}

@@ -1,0 +1,19 @@
+<div class="modal-content">
+  <div class="popup-content default-modal">
+      <h2>Click to rate <span>*</span></h2>
+      <form [formGroup]='reviewForm' (ngSubmit)='onSubmit()' autocomplete="off">
+      <ngb-rating [(rate)]="rating" [readonly]="false" max="5" formControlName='ratingF' name='ratingF' [ngClass]='{"is-invalid":isValid && !rating}'>
+     </ngb-rating>
+          <div class="form-group">
+              <label for="company-review-headline" >Headline <span>*</span></label>
+              <input type="text" class="form-control" id="company-review-headline" formControlName='headline' name='headline' [ngClass]='{"is-invalid":isValidText}'>
+          </div>
+          <div class="form-group">
+              <label for="company-tell-people-what-you-think">Tell peope what you think</label>
+              <textarea class="form-control" rows="5" id="company-tell-people-what-you-think" formControlName='text' name='text'></textarea>
+          </div>
+          <button class="btn btn-primary">Post</button>
+      </form>    
+  </div>
+</div>
+

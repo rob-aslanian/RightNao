@@ -1,0 +1,25 @@
+
+
+<div class="col-12 pt-4" style="background: white">
+    <div class="ml-1 mr-1 d-flex justify-content-between">
+        <h6>
+            Tagline
+        </h6>
+        <span class="grey">
+            {{ tagline.value.length ? tagline.value.length : 0 }}/120
+        </span>
+    </div>
+    <textarea class="form-control" 
+              rows="4" 
+              placeholder="Enter a short description or catchphrase about your group"
+              [formControl]='tagline'
+              maxlength="120"
+              ></textarea>
+
+    <div class="d-flex justify-content-end pb-3">
+         <button class="btn btn-primary btn-big" (click)='submit()'>
+             Save
+         </button>
+    </div>
+ </div>        
+ 

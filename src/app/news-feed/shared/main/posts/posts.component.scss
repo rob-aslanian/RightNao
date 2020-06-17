@@ -1,0 +1,47 @@
+@import "src/variables";
+
+.create-first-post{
+    background-color: $white;
+    margin: 0 auto;
+
+    &__title{
+        font-size: 1.25rem;
+    }
+
+    &__description{
+        color: $dark-grey;
+        font-size: 0.875rem;
+    }
+}
+
+:host ::ng-deep app-post:not(:last-child) {
+    &.landing {
+        border-right: 1px solid $grey-dark; 
+     }
+    @media #{$break1} {
+        border: none !important; 
+    }
+    @media (max-width: 767px) {
+        border: none !important; 
+    }
+
+ }
+
+ .landingLine {
+     &:not(:last-child) {
+        border-right: 1px solid $grey-dark; 
+
+     }
+ }
+
+// :host ::ng-deep app-post.new-post{
+//     .feed-box{
+//         animation: 4s toggleColor ease-in-out;
+//     }
+    
+// }
+
+// @keyframes toggleColor{
+//     0%{ background: #afbace }
+//     100% { background: #fff }
+// }

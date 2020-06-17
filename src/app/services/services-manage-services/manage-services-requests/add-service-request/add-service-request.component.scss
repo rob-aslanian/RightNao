@@ -1,0 +1,38 @@
+@import 'src/variables'; 
+
+.add-service {
+    border: 1px solid $background-soft-blue; 
+    border-radius: .5rem; 
+
+    &__box {
+
+        &__circle {
+            border-radius: 50%; 
+            background-color: $background-light-cyan;
+            width: 3.125rem; 
+            height: 3.125rem; 
+            cursor: pointer; 
+            a {
+                width: 80%; 
+                height: 80%;
+                  
+                img {
+                    width: 80%; 
+                    height: 80%;
+                }
+
+            }
+        }
+
+        &__title {
+            a {
+                font-size: 1.125rem; 
+                font-weight: normal; 
+                color: $light-black; 
+                text-decoration: none;
+            }
+        }
+    }
+
+    
+}

@@ -1,0 +1,109 @@
+@import "src/variables";
+.transactions {
+    background-color: $white;
+    border-radius: 5px;
+    border: 2px solid $light-grey;
+    padding: 0 25px;
+    margin: 50px 0;
+    &-title {
+        margin: 25px 0;
+        font-size: 20px;
+    }
+    & li {
+        padding: 0;
+    }
+    &-item {
+        width: 100%;
+        text-decoration: none;
+        list-style-type: none;
+        padding: 10px 0;
+        margin: 0;
+        border-bottom: 1px solid $light-grey;
+        border-top: 1px solid $light-grey;
+        color: $dark-grey;
+        &-count {
+            font-weight: 700;
+        }
+        &-button {
+            text-align: end;
+        }
+        @media (max-width: 700px) {
+            flex-direction: column !important;
+            align-items: center;
+        }
+    }
+    &-btn {
+        margin: 15px 0;
+    }
+}
+.moreInfoButton {
+    transform: rotate(-90deg); margin-left: 10px;
+    cursor: pointer;
+}
+
+// transaction status
+.done {
+    color: #0BDE3C;
+}
+.pending {
+    color: $yellow;
+}
+.rejected {
+    color: $dark-red;
+}
+// transaction status
+
+
+
+.currencyCards {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+    @media (max-width: 700px) {
+        align-items: center;
+        justify-content: space-around;
+    }
+}
+
+.nextSlideBtn {
+    transition: 5s;
+    background-color: $background-light-blue;
+    width: 33px;
+    padding: 0 !important;
+    border-radius: 5px;
+    & > img {
+        filter: brightness(1000%);
+    }
+}
+
+@media (max-width: 700px) {
+    .currencyCardsWrapper {
+        flex-direction: column;
+    }
+    .nextSlideBtn { 
+        // transform: rotate(90deg);
+        height: 110px;
+        margin-top: 15px;
+    }
+    
+}
+@media (max-width: 1220px) {
+    .currencyCardsWrapper {
+        overflow: hidden;
+        overflow-x: scroll;
+    }
+    
+}
+
+// .nextBtn {
+//     order: 3;
+//     transform: rotate(5600deg);
+// }
+.prevBtn {
+    // order: 1;
+    transform: rotate(180deg);
+    margin-right: 20px;
+}
+.prevView {
+    justify-content: flex-start;
+}

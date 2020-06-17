@@ -1,0 +1,200 @@
+<div class="d-flex justify-content-center">
+    <div class="profile-center" style="width: 100%;">
+    <div class="row">
+          <div class="details col-lg-9 mt-3 pb-5" >
+             <div class="details__content  p-3 mb-3" style="min-height: 501px;"  >
+                <ng-container *ngIf="!isLoadingServiceRequest">
+                    <div class="d-flex justify-content-between">
+                    <div class="details__content__service d-flex">
+
+                        <div class="details__content__service__avatar mr-3">
+                            <img  [src]="profile?.avatar | avatar: profile.isCompany" alt="avatar" [ngClass]="{'user-profile-avatar': !profile.isCompany}">
+                        </div>
+
+                        <div class="details__content__service__info" *ngIf="!loading">
+                            <p class="mb-0" 
+                            style="cursor: pointer"
+                            [routerLink]="[ profile?.isCompany ? 
+                                            '/company/'+'profile/'+profile.url :
+                                            '/user/'+'profile/'+profile.url]" > {{ profile?.isCompany ? profile.name :
+                                                                                                        profile.firstname + ' ' + profile.lastname }}
+                            </p>
+
+                            <span *ngIf="profile?.isCompany && profile.addresses[0]"> {{  profile.addresses[0].city.city }}, {{ profile.addresses[0].country_id | country  }} </span>
+                            <span *ngIf="!profile?.isCompany"> {{ profile.location.city  }}, {{ profile.location.country | country }} </span>
+
+                            <div class="message d-flex align-items-center" *ngIf="profileId !== profile.id">
+                                <img src="assets/img/106.svg" class="mr-2" alt="">
+                                <p class="message mb-0" (click)='message(profile, profile.isCompany)'>Message</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="details__content__service__raiting d-flex">
+                            <img [src]="service.has_liked ? 
+                                        'assets/img/99.svg': 
+                                        'assets/img/44.svg'" 
+                                        alt="heart"  
+                                        *ngIf="profileId !== profile.id"
+                                        style="height: 14px; cursor: pointer;"
+                                        (click)="likeOrUnlikeService( service.has_liked, service.id )"></div></div>
+                                        
+                    <p class="description mt-3"> {{ service.title }} </p>
+
+                    <p class="price mb-1">
+                        {{ service.currency }}
+
+                        {{ service.price !== 'Price_Negotiable' ?
+                        service.fixed_price_amount : 
+                        service.min_price_amount + ' - ' + service.max_price_amount}} <small>/hr</small>
+                    </p>
+    
+                    <div class="service-request-body pb-2  d-flex align-items-center flex-wrap">
+
+                            <div class="pr-5">
+                                <img src="assets/img/48.svg" alt="logo" style="height: 17px;">
+                                <span class="pl-2" style="width: 17px;" *ngIf="service.created_at">Posted {{ service.created_at  }}</span>
+                            </div>
+
+                            <div class="pr-5" *ngIf="service?.location?.city.city || 
+                                                    service?.location?.country.country ">
+                                <img src="assets/img/24.svg" alt="logo">
+                                <span *ngIf="service.is_Remote; else location" class="pl-2">Remote</span>
+                                <ng-template #location>
+                                <span> {{ service.location.city.city }}, {{ service.location.country.country | country }} </span>
+                                </ng-template>
+                            </div>
+            
+                            <div class="pr-5">
+                                <img src="assets/img/492.svg" alt="logo">
+                                <span class="pl-2" *ngIf="service.delivery_time">{{"Delivery " +  deliveryTime[service.delivery_time] }}</span>
+                            </div>
+                            
+                            <div class="pr-5">
+                                <img src="assets/img/231.svg" alt="logo">
+                                <span class="pl-2" >{{ service?.proposal_amount + ' Offers'}}</span>
+                            </div> 
+                            
+                        </div>
+
+                        <div class="mt-2 description-title">
+                            <p>{{ service.description }}</p>
+                        </div>
+
+                        <div class="row project-type">
+                            <div class="col-lg-3">
+                                <p>Project type</p>
+                                <ng-container *ngFor="let type of projectType">
+                                    <ng-container *ngIf="type.id === service.project_type" >
+                                        <span>{{ type.name }}</span>
+                                    </ng-container>
+                                </ng-container>
+                                
+                            </div>
+                            <div class="col-lg-3">
+                                <p>Language</p>
+                                <ng-container *ngFor="let lang of service?.additional_details?.languages; let i = index ">
+                                            <span>{{ lang.language  }} <small *ngIf="service.additional_details?.languages.length-1 !== i">,</small> </span>
+                                </ng-container>
+
+                            </div>
+                            <div class="col-lg-4">
+                                <p>Type of service provider</p>
+                                <span *ngIf="service.additional_details?.service_provider as provider">{{ provider !== 'No_Preference' ? 
+                                                                                                        provider : 'No preference' }}</span>
+                            </div>
+                            
+                        </div>
+                    
+                        <div class="mt-3" *ngIf="service?.additional_details?.skills?.length > 0">
+                            <p style="margin-bottom: 4px;">Skills</p>
+                            <ng-container *ngFor="let skill of service?.additional_details?.skills; let i = index ">
+                                <app-rank-box [name]='skill.skill'></app-rank-box>
+                            </ng-container>
+                        </div>
+
+                        <div class="mt-3" *ngIf="service?.additional_details?.toolTechnology?.length > 0">
+                            <p style="margin-bottom: 4px;">Tools & Technologies</p>
+                            <ng-container *ngFor="let tool of service?.additional_details?.toolTechnology; let i = index ">
+                                <app-rank-box [name]='tool.tool_Technology' [rank]='tool.rank'></app-rank-box>
+                            </ng-container>
+                        </div>
+
+                        <div class="uploaded-files pb-2" *ngIf="service?.files?.length > 0">
+                                <p class="mb-3">Uploaded file</p>
+                
+                                <ng-container *ngFor="let file of service.files">
+                                    <ng-container *ngIf="( file.mime_type | mimeType ) === 'image'">
+                                        <div class="d-inline-block mr-3">
+                                        <app-file-container [file]='file' [hasClass]='true'></app-file-container>
+                                        </div>
+                                    </ng-container>
+                                </ng-container>
+                
+                                <ng-container *ngFor="let file of service.files">
+                                        <ng-container *ngIf="( file.mime_type | mimeType ) !== 'image'">
+                                        <div class="d-block mr-3 pt-2 mb-2"> 
+                                            <app-file-container [file]='file' [hasClass]='true'></app-file-container>
+                                        </div>
+                                    </ng-container>
+                                </ng-container>
+                
+                        </div>
+                    <div class="mt-2 text-right" *ngIf="profileId !== profile.id && !loading">
+                        <button class="btn btn-primary btn-default" (click)='openModal("Send Proposal")'>
+                            Send Proposal
+                        </button>
+                    </div>
+                </ng-container>
+                
+                <ng-container *ngIf="isLoadingServiceRequest">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <app-spinner></app-spinner>
+                        </div>
+                </ng-container>
+            </div>
+
+            <div class="details__content">
+
+                <ng-container *ngIf="!isLoadingReview" >
+                    <ng-container *ngIf="review.reviews.length > 0">
+                            <app-service-order-review-box (pagination)='onPageChange($event)' [review]='review'></app-service-order-review-box>
+                    </ng-container>
+                </ng-container>
+                
+                <ng-container *ngIf="isLoadingReview">
+                      <div class="d-flex justify-content-center align-items-center">
+                           <app-spinner></app-spinner>
+                      </div>
+                </ng-container>
+                
+                    
+                
+                <div class="review-border"></div>
+                <div class="text-right">
+                    <button class="btn backgroundless mb-2">Show more reviews</button>
+                </div>
+            </div>
+
+            <div class="details__content service-request-boxes" *ngIf="serviceRequests.length > 0">
+                <div class="mt-2" *ngFor="let service of serviceRequests">
+                    <app-service-request-box-detailed [service]='service'></app-service-request-box-detailed>
+                </div>
+            </div>
+
+        </div> 
+        <div class="col-lg-3">
+            <app-ads></app-ads>
+        </div>
+    </div> 
+    <div class="col-lg-3">
+        <app-ads [isLeft]="true"></app-ads>
+    </div>
+</div>
+
+<app-modal (closeModal)='modalType = null'>
+    <ng-container *ngIf="modalType === 'Send Proposal'">
+            <app-send-proposal-modal [request]='request' (result)=' modalType = null; _modal.close()'></app-send-proposal-modal>
+    </ng-container>
+</app-modal>
+

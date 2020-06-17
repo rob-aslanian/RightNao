@@ -1,0 +1,71 @@
+.sugestion-form{
+    position: relative;
+    & > .popup{
+        position: absolute;
+        top: 70px;
+        box-shadow: 0px 0px 4px -1px rgba(0, 0, 0, 0.75);
+        border-radius: 3px;
+        background: #fff;
+        padding: 10px;
+        width: 70%;
+        z-index: 2;
+        & > .list-group {
+            border-bottom: 1px solid #cccccc;
+            .list-group-item{
+                border: none !important;
+                padding: 0.75rem 0.25rem;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+                img{
+                    width: 35px;
+                    height: 35px;
+                    margin-right: 20px;
+                    border-radius: 50%;
+                }
+            }
+        }
+    }
+}
+
+.user-box{
+    position: relative;
+    padding: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    align-items: center;
+    margin-bottom: 40px;
+    img {
+        width: 70px;
+        height:70px;
+        border-radius:50%;
+        flex-shrink: 0;
+    }
+
+    & > div {
+        margin-left: 15px;
+        align-self: center;
+        span {
+            font-weight: normal;
+            margin:0;
+            font-size: 0.85rem;
+        }
+    }
+    span {
+        color: #ccc;
+        display:block;
+        margin: 3px 0;
+    }
+}
+.red{
+   color:red;
+   border:1px solid blue;
+}
+.user-photo{
+  width:50px;
+  height: 50px;
+  border-radius: 50%;
+
+
+}

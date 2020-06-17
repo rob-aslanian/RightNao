@@ -1,0 +1,47 @@
+<form [formGroup]='totalArea' autocomplete="off">
+    <div class="mt-3 col-4 pl-0">
+            <div class="mt-1" style="position: relative">
+                    <label for="total-area">Total area</label>
+                    <input type="number" 
+                           id="total-area" 
+                           placeholder="type total area m" 
+                           class="form-control"
+                           formControlName="total_area"
+                           [ngClass]="{'is-invalid': totalArea.get('total_area').invalid && isSubmitted}">
+    
+                    <div class="change-metrics" ngbDropdown>
+                            <button class="btn backgroundless p-0" 
+                                    style="position: absolute; top: -32px; left: 266px;"
+                                    ngbDropdownToggle
+                                    [ngClass]="{'custom-err': totalArea.get('metrict_type').invalid && isSubmitted}">Change Metrics</button>
+        
+                            <div class="" ngbDropdownMenu>
+    
+                                    <div class="custom-control custom-radio">
+
+                                            <input class="custom-control-input" 
+                                                   type="radio" 
+                                                   id="PriceType_MetreSquare" 
+                                                   name="metrict_type" 
+                                                   value="PriceType_MetreSquare"
+                                                   formControlName="metrict_type">
+                                            <label class="custom-control-label" for="PriceType_MetreSquare">ft<sup>2</sup></label>
+
+                                    </div>
+            
+                                    <div class="custom-control custom-radio">
+    
+                                           <input class="custom-control-input" 
+                                                   type="radio" 
+                                                   id="PriceType_FeetSquare" 
+                                                   name="metrict_type" 
+                                                   value="PriceType_FeetSquare"
+                                                   formControlName="metrict_type" >
+    
+                                            <label class="custom-control-label" for="PriceType_FeetSquare">m<sup>2</sup></label>
+                                    </div> 
+                            </div>
+                    </div>
+            </div>
+    </div>
+</form>

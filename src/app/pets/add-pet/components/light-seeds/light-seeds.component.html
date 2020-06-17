@@ -1,0 +1,9 @@
+<label class="title-label">Light needs</label>
+<div class="mt-1 d-flex custom-radio-input-god">
+        <div class="mt-2" *ngFor="let light of lightNeeds">
+            <input  type="radio" [id]="light.id"  [formControl]='ligthCtrl' class="d-none" name="ligthCtrl" [value]="light.id">
+            <label [for]="light.id" 
+                   class="btn btn-light-dark mr-3">{{ light.name }}</label>
+        </div>
+
+</div>

@@ -1,0 +1,209 @@
+/*Import variables file*/
+@import "../../../variables.scss";
+/*END OF Import variables file*/
+
+.candidate {
+    border: solid 1px #e6e6e6;
+    margin-bottom: 10px;
+    &:last-child {
+        margin-bottom:0;
+    }
+    position: relative;
+    border-radius: 5px;
+    &:hover {
+        background:$background-soft-blue;
+    }
+    .line-one {
+        display:flex;
+        img {
+            border-radius: 50%;
+            width:70px;
+            height:70px;
+        }
+        .candidate-content {
+            margin-left:20px;
+            padding-right:10px;
+            & > span {
+                font-size: 14px;
+                color:$dark-grey;
+            }
+        }
+        h3 {
+            font-size:16px;
+            font-weight: bold;
+        }
+        .skills {
+            overflow: hidden;
+            height:30px;
+            margin-bottom:5px;
+            margin-top:5px;
+            @media #{$break1}{
+                margin-left:-90px;
+            }
+            span {
+                font-size: 12px;
+                padding:5px 10px;
+                background:#DCE1E6;
+                border-radius: 5px;
+                margin-bottom:5px;
+                display: inline-block;
+                margin-right: 5px;
+            }
+        }
+    }
+    .line-two {
+        text-align:right;
+        @media #{$break3}{
+            visibility: hidden;
+        }
+    }
+    &:hover .line-two {
+        visibility:visible;
+    }
+    .visible {
+        padding:15px 5px 5px 15px;
+    }
+}
+
+.candidate.activated {
+    background:$background-soft-blue;
+    border-bottom:none;
+    font-weight:normal;
+
+    span {
+        margin-top:3px;
+        color:$dark-grey;
+        font-size:14px;
+        img {
+            margin-right:5px;
+            margin-bottom:5px;
+        }
+    } 
+}
+.detailed-view-line {
+    border-bottom: solid 1px $light-grey;
+    padding-bottom:20px;
+    margin-bottom:20px;
+    align-items: center;
+    a {
+        font-weight: bold;
+        cursor: pointer;
+    }
+    & > button {
+        margin-left:10px;
+        font-size:14px;
+    }
+
+    .options {
+        display: none;
+    }
+
+    .options.open {
+        display: block;
+    }
+
+    .options.languageOptions {
+        top: 10px;
+    }
+}
+.detailed-info {
+    background:white;
+    padding:15px;
+    border-radius: 0 0 5px 5px;
+    border-bottom: solid 1px #E6E6E6;
+}
+.detail-content {
+    display: flex;
+    width:100%;
+    @media #{$break1}{
+        flex-direction: column;
+    }
+    @media #{$break2}{
+        flex-direction: row;
+    }
+    @media #{$break3}{
+        flex-direction: row;
+    }
+    h5 {
+        font-size:14px;
+        font-weight:bold;
+        margin-bottom:10px;
+    }
+    .left {
+        margin-right:30px;
+        h5 {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        @media #{$break1}{
+            width: 100%;
+        }
+        @media #{$break2}{
+            min-width:15%;
+            max-width:15%;
+        }
+        @media #{$break3}{
+            min-width:15%;
+            max-width:15%;
+        }
+        img {
+            width:25px;
+            margin-left:30px;
+            margin-bottom:10px;
+        }
+    }
+    .right {
+        position: relative;
+        @media #{$break1}{
+            width: 100%;
+        }
+        @media #{$break2}{
+            width: 88%;
+        }
+        @media #{$break3}{
+            width: 88%;
+        }
+        .col-6 {
+            margin-bottom:15px;
+        }
+        h6 {
+            font-weight:bold;
+            margin-bottom:5px;
+            font-size:14px;
+        }
+        span {
+            display: block;
+            margin:0;
+            &.interest {
+                border-radius: 5px;
+                padding:5px;
+                margin-bottom:5px;
+                display: inline-block;
+                color:$dark-blue;
+                margin-right:5px;
+                background:#DCE1E6;
+            }
+        }
+        .more {
+            position: absolute;
+            right:0;
+            bottom:-15px;
+            font-size:20px;
+            cursor: pointer;
+        }
+    }
+    .profile {
+        img {
+            width:70px;
+            height:70px;
+            border-radius: 50%;
+        }
+        span {
+            font-size:12px;
+        }
+        .recommendator-info {
+            margin-left: 10px;
+            margin-bottom:15px;
+        }
+    }
+}

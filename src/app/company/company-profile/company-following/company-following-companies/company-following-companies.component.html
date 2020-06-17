@@ -1,0 +1,188 @@
+<!-- Content in the center -->
+<div class="col">
+    <div class="center-heading">
+        <h3>Companies & Organizations <span> {{ companyFollowingCompanies.length }} </span></h3>
+    </div>
+
+    <div class="center-content-network">
+        <h3 class="network_cat_subCat">{{ selectedCatAndScat }}</h3>
+        <div class="connections-first-line">
+            <form [formGroup]="checkAllConnForm">
+                <div class="custom-control custom-checkbox box">
+                    <!-- <input type="checkbox" class="custom-control-input" formControlName="check" id="check-connections"> -->
+                    <!-- <label class="custom-control-label " for="check-connections"></label> -->
+                </div>
+            </form>
+            <div class="position-relative ml-auto">
+                <button [ngClass]="toggle.view.selected == 'card' ? 'blocks  btn-more btn-more' : 'list btn-more'" (click)="myToggle('f_view')" >
+                </button>
+                <ng-template [ngIf]="toggle.main.active['f_view']" >
+                    <div class="options blocks-option btn-more">
+                        <button (click)="sort_and_wiew($event,'view','list')" >List view</button>
+                        <button (click)="sort_and_wiew($event,'view','card')" >Card view</button>
+                    </div>
+                </ng-template>
+
+            </div>
+        </div>
+
+        
+        <!-- card view -->
+        <ng-template [ngIf]="toggle.view.selected == 'card'" >
+            <form [formGroup]="connectionsForm" >
+            <div class="network-boxes-container form-row" formArrayName="checkbox" >
+                <div  class="col-lg-6 col-md-6"  [ngClass]="connectionsForm.controls.checkbox.controls[i] ? 'selected' : null" *ngFor="let item of companyFollowingCompanies; let i = index" >
+                    <div class="network-box">
+                        
+                        <div class="network-line-one">
+                            <div class="custom-control custom-checkbox">
+                                <!-- <input type="checkbox" [formControlName]="item.index" class="custom-control-input" [id]="'check-connection'+item.index"> -->
+                                <!-- <label class="custom-control-label " [for]="'check-connection'+item.index"></label> -->
+                            </div>
+                            <button class="btn-more" (click)="myToggle('dots'+item.index)">
+                                <img class="btn-more" src="assets/img/107.svg" alt="...">
+                            </button>
+                        </div>
+                        <div class="network-line-two">
+                            <ng-template [ngIf]="toggle.main.active['dots'+item.index]" >
+                                <div class="options connection-option btn-more">
+                                    <button  type="button" (click)="openSmallChatBox(item)" class="message">Message</button>
+                                    <button class="review" (click)='openReview(item)'>Write a Review</button>
+                                    <button class="follow btn-more" *ngIf="!item.follow && item.id !== myCompanyID" (click)="follow(item)" >Follow</button>
+                                    <button class="unfollow btn-more" *ngIf="item.follow && item.id !== myCompanyID" (click)="followingToggle(item.id,'UnfollowCompanyForCompany')" >Unfollow</button>
+                                    <button class="report" (click)="reportCompany(item, i)" >Report / block</button>
+                                </div>    
+                            </ng-template>
+                            <div class="left">
+                                <img class="company" [src]="item.avatar == '' ? 'assets/img/default-company.svg' : '/file/'+item.avatar" alt="profile">
+                            </div>
+
+                             <!-- write review starts -->
+                           
+                            <!-- write review end -->
+                            <div class="right">
+                                <a [routerLink]="['/company/profile/'+item.url]">
+                                    <h4> {{ item.name }} </h4>
+                                </a>
+                                <span> {{ item.addresses[0].city.city }} </span> 
+                                <span> {{ item.network_info.followers }} Followers</span> 
+                            </div>
+                        </div>
+                        <div class="network-line-three">
+                                <div class="d-flex" *ngIf="item.email">
+                                    <img src="assets/img/22.svg" alt="@"> 
+                                    <span> {{ item.email }} </span>
+                                </div>  
+                            </div>
+                        <div class="network-line-four">
+                          
+                                <!-- <img [src]="item.cat.favourites ? 'assets/img/99.svg' : 'assets/img/44.svg'" alt="heart"> -->
+                            
+                            <button (click)="myToggle(item.index)" >
+                            </button>
+                            <!-- connection item categories -->
+                            <ng-template [ngIf]="toggle.main.active[item.index]" >
+                                <div class="options network-option">
+                                        
+                                    <button class="btn-more" (click)="myToggle('_business','sub')" >
+                                        <img class="btn-more" src="assets/img/102.svg" alt="blue"> {{ allCategoriesList.business.name }}
+                                    </button>
+                                    <button (click)="removeAllCatFromUser(item.id)" >
+                                        <img src="assets/img/53.svg" alt="x">
+                                        Remove from All
+                                    </button>
+                                </div>
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        </ng-template>
+
+            
+        <!-- list view -->
+        <ng-template [ngIf]="toggle.view.selected == 'list'" >
+            <form [formGroup]="connectionsForm">
+            <div class="network-boxes-container-long-view" formArrayName="checkbox" >
+                <div class="network-box" [ngClass]="connectionsForm.controls.checkbox.controls[i] ? 'selected' : null" *ngFor="let item of companyFollowingCompanies; let i = index" >
+                    <div class="custom-control custom-checkbox" >
+                        <!-- <input type="checkbox" class="custom-control-input" [formControlName]="item.index" [id]="'check-network'+item.index"> -->
+                        <!-- <label class="custom-control-label " [for]="'check-network'+item.index"></label> -->
+                    </div>
+                    
+                    <div class="d-flex justify-content-between">
+                        <div class="network-box-component-one">
+                            <img class="company" [src]="item.avatar == '' ? 'assets/img/default-company.svg' : '/file/'+item.avatar" alt="profile">
+                            <div class="one-right">
+                                <a [routerLink]="['/company/profile/'+item.url]">
+                                    <h4> {{ item.name }} </h4>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="network-box-component-two">
+                            <span> {{ item.addresses[0].city.city }} </span>
+                        </div>
+
+                        <div class="network-box-component-three">
+                            <div class="d-flex">
+                                <span> {{ item.network_info.followers }} Followers </span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <button class="network-dots-btn btn-more" (click)="myToggle('list_dots'+item.index)" >
+                        <img class="btn-more" src="assets/img/107.svg" alt="...">
+                    </button>
+
+
+                    <!-- connection item categories -->
+               
+                    <ng-template [ngIf]="toggle.main.active['list_dots'+item.index]" >
+                        <div class="options connection-option btn-more">
+                            <button  type="button" (click)="openSmallChatBox(item)" class="message">Message</button>
+                            <button class="follow btn-more" *ngIf="!item.follow && item.id !== myCompanyID" (click)="follow(item)" >Follow</button>
+                            <button class="unfollow btn-more" *ngIf="item.follow && item.id !== myCompanyID" (click)="followingToggle(item.id,'UnfollowCompanyForCompany')" >Unfollow</button>
+                            <button class="review" (click)='openReview(item)'>Write a Review</button>
+                            <button class="report" (click)="reportCompany(item,i)" >Report / block</button>
+                        </div>    
+                    </ng-template>
+                </div>
+            </div>
+            </form>
+        </ng-template>
+
+
+    </div>
+</div>
+<!-- Content in the center end -->
+
+
+<!-- Start modals -->
+
+<!-- modal - what you can do -->
+ 
+<app-modal (closeModal)="modalType = null">
+<ng-container *ngIf=" modalType  && modalType === 'reportCompany' " >
+           <app-report-block-user 
+                    [blockId]="companyReport" 
+                    type="company"
+                    (closeModal)='close($event)'
+                    (isBlocked)='isCompanyBlocked($event)'
+                    >
+        </app-report-block-user>
+    </ng-container>
+
+    <ng-container *ngIf='modalType && modalType === "write"'>
+             <app-write-review 
+               [companyId]='companyReview'
+               (closeModal)="close($event)" 
+               >
+             </app-write-review>
+          </ng-container>    
+</app-modal>
+ 
+
+<!-- End modals -->

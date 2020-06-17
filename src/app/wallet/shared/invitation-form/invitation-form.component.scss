@@ -1,0 +1,13 @@
+@import "src/variables";
+.invitation-form-wrapper
+{
+    background-color: $white;
+    padding: 25px;
+}
+h3 {
+    font-size: 18px;
+    font-weight: 500;
+}
+.invitation-btn {
+    border-radius: 5px;
+}

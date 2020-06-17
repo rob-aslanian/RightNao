@@ -1,0 +1,28 @@
+<div class="messaging-head">
+    <div class="messaging-head_right">
+        <h2>New Message</h2>
+
+    </div>
+</div>
+
+<div class="messaging-main-content">
+    <div class="messaging-main_center">
+        <div class="chatBox-row">
+            <div class="new-message-wrapper-large">
+                <app-search-n-select [selectedItems]="selectedItems"></app-search-n-select>
+            </div>
+        </div>
+        <app-send-message-form (handleAfterSending)="handleAfterSending($event)" [selectedItems]="selectedItems" [conversation]="conversation"></app-send-message-form>
+    </div>
+
+    <div class="messaging-main_right">
+
+        <!-- Start selected message info row -->
+        <div class="chatbox-mainMember-row">
+
+        </div>
+        <!-- End selected message info row -->
+
+    </div>
+</div>
+

@@ -1,0 +1,125 @@
+<div class="default-modal">
+    <form [formGroup]="addAboutUsForm"> 
+        <div class="mobile-modal">
+            <div  class="add-about-us-wrap">
+                <div class="form-group">
+                    <div class="d-flex justify-content-between">
+                        <label for="add-about-us-description"> {{ '461'| translate  }}</label>
+                        <span class="letter-count"> {{ addAb.description && addAb.description.value !== null ?  
+                            addAb.description.value.length : 0 }} / 2000 
+                        </span>
+                    </div>
+                    <textarea class="form-control" rows="5" maxlength="2000"
+                                id="add-about-us-description" formControlName="description" 
+                                [ngClass]="{ 'is-invalid': submittedAddAboutUs && addAb.description.errors }">
+                    </textarea>
+                    <span class="error_message" *ngIf="addAb.description.hasError('symbolsAndLatin')">
+                        Use only latin letters and any symbols   
+                    </span>
+                </div>
+    
+                <div class="form-group">
+                <div class="d-flex justify-content-between">
+    
+                    <label for="add-mission">Mission</label>
+                    <span class="letter-count"> {{ addAb.mission && addAb.mission.value !== null ?  
+                        addAb.mission.value.length : 0 }} / 500 
+                    </span>
+    
+                </div>
+                    <textarea class="form-control" rows="2" id="add-mission" formControlName="mission" 
+                             maxlength="500"  [ngClass]="{ 'is-invalid': submittedAddAboutUs && addAb.mission.errors }">
+                    </textarea>
+                    <span class="error_message" *ngIf="addAb.mission.hasError('symbolsAndLatin')">
+                            Use only latin letters and any symbols 
+                    </span>
+    
+                <br>
+    
+                <div class="d-flex">
+    
+                    <h2 class="mr-3" style="flex-basis: 29%;">{{ '662'| translate  }}</h2>
+                    <hr class="w-100">
+                </div>
+    
+                <div class="form-group">
+                    <label for="sub-industry"> {{ '1367'| translate  }}</label>
+                    <app-industry [id]="industryID" (result)="subindustries = $event" [data]="subindustries" ></app-industry>
+                </div>
+    
+                <div class="form-group">
+                    <label for="company-type"> {{ '346'| translate  }}</label>
+                    <select type="text" class="form-control" id="company-type" formControlName="company_type"  >    
+                        <option [value]="type" *ngFor="let type of companyTypesKey">
+                            {{ companyTypes[type] }}
+                        </option>                        
+                    </select>
+                </div>
+    
+                <label> {{ '435'| translate  }}</label>
+                <div class="row">     
+                    <div class="col-2 pr-1">
+                        <select class="form-control" id="founded-day" formControlName="day" >
+                            <option value="" disabled selected> {{ '438'| translate  }}</option>
+                            <option *ngFor="let day of days" [value]="day" tabindex="9" > {{day}} </option>
+                        </select>
+                    </div>
+                    <div class="col-3">
+                        <select class="form-control" formControlName="month"  >
+                            <option value="" disabled selected> {{ '926'| translate  }}</option>
+                            <option *ngFor="let month of months" [value]="month.id" tabindex="10"> 
+                                {{month.name}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-2 pr-1">
+                        <select class="form-control" formControlName="year"  >
+                            <option value="" disabled selected> {{ '1582'| translate  }}</option>
+                            <option *ngFor="let year of years"  [value]="year" >
+                                {{year}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+    
+                <br>
+    
+                <div class="form-group">
+                    <label for="company-size"> {{ '339'| translate  }}</label>
+                    <select type="text" class="form-control" id="company-size" formControlName="company_size"   >
+                       <option [value]="size" *ngFor="let size of companyEmployeesKeys">
+                           {{ companyEmployees[size] }}
+                       </option>
+                     
+                    </select>
+                </div>
+    
+                <div class="form-group">
+                    <label for="company-parking"> {{ '1027'| translate  }}</label>
+                    <select type="text" class="form-control" id="company-parking" formControlName="parking"  >  
+                        <option [value]="parking" *ngFor="let parking of companyParkingKeys">
+                            {{ companyParking[parking] }}
+                        </option>
+                    </select>
+                </div>
+    
+                <div class="form-group business-hours">
+                    <label class="d-block"> {{ '257'| translate  }}</label>
+                     <!-- Business hours  -->
+                        <app-busines-hours 
+                                  [data]="data['business_hours']"
+                                  [multiple]="true"
+                                  (result)="getBusinessHours($event)"
+                                  >
+                        </app-busines-hours> 
+                     <!-- Business hours  -->      
+                </div>
+            </div>
+    
+            </div>
+        </div>
+        <div class="modal-footer about-us">
+             <button class="btn btn-primary ml-auto d-block" (click)="submitForm(addAboutUsForm)" > {{ '1231'| translate  }}</button>
+        </div>
+     </form>
+</div>

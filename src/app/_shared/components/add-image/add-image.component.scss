@@ -1,0 +1,29 @@
+@import 'src/variables';
+
+.img-content{
+    max-width: 100%;
+    min-height: 300px;
+    overflow: hidden;
+    position: relative;
+    background: #EAEDF2;
+    border-radius: 5px;
+    img{
+        width: 100%;
+    }
+    .rotate-button {
+        position: absolute;
+        border: 0px;
+        background: transparent;
+        right: 13px;
+        bottom: 15px;  
+          img{
+              cursor: pointer;
+          }
+    }
+
+}
+
+.backgroundless {
+    color: $dark-cyan; 
+}
+ 

@@ -1,0 +1,23 @@
+ 
+    <div class="modal-content">
+        <div class="popup-content edit-headline">
+            <h2>{{ '704'| translate }}</h2>
+
+            <form [formGroup]="editHeadlineForm">
+              
+                <input type="text" 
+                formControlName="headline" 
+                class="form-control"
+                [ngClass]="{ 'is-invalid': submittedHeadline && editHeadlineForm.get('headline').errors }"
+                [placeholder]="'564' | translate"
+                >
+                <ng-container *ngIf="submittedHeadline &&  editHeadlineForm.get('headline').errors">
+                        <span class="error_message"  *ngFor="let error of utils.getErrorsKey(editHeadlineForm.get('headline').errors)">
+                                {{ utils.$getErrors(error) }}
+                        </span> 
+                 </ng-container>
+
+                <button class="btn btn-primary d-block ml-auto" (click)="changeHeadline()">{{ '1231'| translate }}</button>
+            </form>
+        </div>
+    </div>

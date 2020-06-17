@@ -1,0 +1,36 @@
+@import 'src/variables';
+
+
+.profile-left {
+    background: $dark-blue;
+    min-width:  350px;
+    min-height: 1222px;
+}
+.profile-wrap {
+    max-width: 1755px;
+}
+
+.white-bg-tab {
+    background: $white;
+    height: 70px;
+    position: absolute;
+    left: 0px;
+    width: 100%;
+}
+.top-fixed {
+    margin-top: 88px;
+}
+
+.top-fixed-big {
+    margin-top: 50px;
+}
+.office-container {
+    @media screen and (max-width: 991px) {
+          .row {
+              div {
+                  padding-left: 0px !important;
+                  padding-right: 0px;
+              }
+          }
+    }
+}

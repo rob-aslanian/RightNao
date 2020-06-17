@@ -1,0 +1,15 @@
+@import 'src/variables';
+
+.basic-form {
+    margin-bottom: 24px;
+    & input[type="number"], select{
+        width: 50%;
+        @media (max-width: 420px) {
+            width: 100%;
+        }
+    }
+    & label {
+        font-size: 14px;
+        color: $dark-grey;
+    }
+}

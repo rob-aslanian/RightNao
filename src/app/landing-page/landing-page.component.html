@@ -1,0 +1,112 @@
+
+<app-common-header-land-pages [isLogin]='true'></app-common-header-land-pages>
+<main>
+
+    <div class="landing" style="position: relative;">
+        <div class="landing-header">
+     
+            <!-- <picture>
+                 <source media="(max-width: 768px)"   srcset="assets/img/Landing-page/new_landing/sm-idk.png">
+                 <img  src="assets/img/Landing-page/new_landing/idk.png" class="background-images">
+            </picture> 
+      -->
+            <div class="container-fluid h-100">
+                <div class="row h-100">
+                    <div class="col-xl-6 h-100">
+                        <div class="w-100 h-100 d-flex justify-content-center align-items-center explore">
+                            <div class="find-jobs" style="width: 80%;">
+                                <h1>Explore new opportunities</h1>
+                                <div class="d-flex justify-content-between align-items-center find-by-search" ngbDropdown>
+
+                                        <div class="all" ngbDropdownToggle>
+                                            <button class="btn backgroundless"  style="color: #052337;">{{ searchType }}</button>
+                                            <span>▾</span>
+                                            <div class="search-by-cat" ngbDropdownMenu>
+                                                <p *ngFor="let item of searchRoutes" ngbDropdownItem (click)="setSearch(item)">{{ item.name }}</p>
+                                                <hr>
+                                                <p style="padding-left: 24px">Classifieds</p>
+                                                <p class="pl-5" *ngFor="let item of classFields" ngbDropdownItem (click)="setSearch(item)">{{ item.name }}</p>
+                                            </div>
+                                        </div>
+          
+                                        
+                                        <div class="search-input">
+     
+                                           <div class="input-search">
+                                                 <img src="assets/img/208.svg" alt="">
+                                           </div>
+     
+                                            <div class="search">
+                                                <input type="text" class="form-control" placeholder="Search" [(ngModel)]="searchText">
+                                            </div>
+      
+                                        </div>
+     
+                                        <div class="search-button">
+                                            <button class="btn btn-primary" (click)='navigate()'>Search</button>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+        
+                 </div>
+            </div>
+     
+        </div>
+     
+        <div class="features">
+             <picture>
+                 <source media="(max-width: 768px)"   srcset="assets/img/Landing-page/new_landing/sm-cube.png">
+                 <img  src="assets/img/Landing-page/new_landing/cube.png" class="cube">
+             </picture> 
+        </div>
+     
+        <div class="landing-body mt-4">
+              <div class="proffesional-growth">
+                  <div class="d-flex justify-content-center">
+                      <div class="col-md-6">
+                          <h1 class="landing-header-tag text-center"> The way to accelerate your personal and professional growth </h1>
+                          <div class="d-flex justify-content-center flex-wrap mt-4">
+                              <div class="growth-box text-center" *ngFor="let item of list"> 
+                                  <div class="growth-box-images">
+                                      <div class="growth-box-images-fade-in">
+                                          <img [src]="item.img" alt="photo">
+                                          <img [src]="item.coloredImg" alt="colored-photo">
+                                      </div>
+                                  </div>
+                                  <span>{{ item.name }}</span>
+        
+                              </div>
+                          </div>
+                      </div>
+     
+                  </div>
+              </div>
+        </div>
+     
+     
+        <div class="landing-found-out mt-3 d-flex justify-content-center"> 
+              <div class="col-11">
+                     <h1 class="landing-header-tag"> Find out </h1>
+                     <p>Find what you're looking for or create your own ad with rightnao classfields </p>
+                     <div class="row">
+                         <div class="col-xl-2 col-lg-3  col-6" *ngFor="let ads of classifiedAds">
+                             <app-landing-card [ads]='ads'></app-landing-card>
+                         </div>
+                     </div>
+              </div>
+        </div>
+    </div>
+   
+</main> 
+
+
+
+<div class="up__button" *ngIf="showUpButton">
+    <button (click)="scrollUp()"></button>
+</div>
+
+
+
+

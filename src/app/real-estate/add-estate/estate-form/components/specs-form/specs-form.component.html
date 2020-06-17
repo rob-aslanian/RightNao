@@ -1,0 +1,67 @@
+<form [formGroup]="specsForm" autocomplete="off">
+
+    <div class="mt-3">
+        <label for="badrooms" class="label-control">Badrooms</label>
+        <input type="number" 
+                class="form-control" 
+                id="badrooms"    
+                placeholder="Type number of bedrooms" 
+                formControlName="badrooms"
+                [ngClass]="{'is-invalid': specsForm.get('badrooms').invalid && isSubmitted}">
+    </div>
+    
+    <div class="mt-3">
+            <label for="bathrooms" class="label-control">Bathrooms</label>
+            <input type="number" 
+                    class="form-control" 
+                    id="bathrooms" 
+                    placeholder="Type number of bathrooms" 
+                    formControlName="bathrooms"
+                    [ngClass]="{'is-invalid': specsForm.get('bathrooms').invalid && isSubmitted}">
+    </div>
+    
+    <div class="mt-3" style="position: relative;">
+        <label for="total-area" class="label-control">Total area</label>
+        <input type="number" 
+                class="form-control" 
+                id="total-area" 
+                placeholder="Type total area m2" 
+                formControlName="totalArea"
+                [ngClass]="{'is-invalid': specsForm.get('totalArea').invalid && isSubmitted}">
+              
+                <div class="change-metrics" ngbDropdown>
+                    <button class="btn backgroundless p-0" 
+                            ngbDropdownToggle
+                            [ngClass]="{'invalid-custom': specsForm.get('metrics').invalid && isSubmitted}">Change Metrics</button>
+
+                    <div class="" ngbDropdownMenu>
+                            <div class="custom-control custom-radio">
+                                    <input class="custom-control-input" 
+                                           type="radio" 
+                                           id="PriceType_MetreSquare" 
+                                           name="metrics"  
+                                           value="PriceType_MetreSquare" 
+                                           formControlName="metrics">
+                                    <label class="custom-control-label" for="PriceType_MetreSquare">ft<sup>2</sup></label>
+                            </div>
+    
+                            <div class="custom-control custom-radio">
+                                    <input class="custom-control-input" type="radio" id="PriceType_FeetSquare" name="metrics" value="PriceType_FeetSquare" formControlName="metrics">
+                                    <label class="custom-control-label" for="PriceType_FeetSquare">m<sup>2</sup></label>
+                            </div> 
+                    </div>
+                </div>
+    </div>
+    
+    
+    <div class="mt-3">
+            <label for="car-spaces" class="label-control">Car specs</label>
+            <input type="number" 
+                   class="form-control" 
+                   id="car-spaces" 
+                   placeholder="Type number of car spaces" 
+                   formControlName="carSpecs"
+                   [ngClass]="{'is-invalid': specsForm.get('carSpecs').invalid && isSubmitted}">
+    </div> 
+
+</form>

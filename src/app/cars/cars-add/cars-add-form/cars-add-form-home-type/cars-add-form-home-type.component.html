@@ -1,0 +1,17 @@
+
+<form [formGroup]="form" class="col-12">
+    <div class="form-group">
+        <p>Motorhome Type</p>
+            <div class="custom-control custom-radio  custom-control-inline col-6 col-md-3 mr-0"  *ngFor="let item of homeTypes">
+                <input  type="radio" 
+                        class="custom-control-input" 
+                        [value]="item['type']" 
+                        id="motorhomeType-{{ item['type'] }}" 
+                        name="motorhomeType"
+                        formControlName="motorhomeType">
+                <label  for="motorhomeType-{{ item['type'] }}" class="custom-control-label"> 
+                    {{ item['text'] }}
+                </label>
+            </div>
+    </div>
+</form>

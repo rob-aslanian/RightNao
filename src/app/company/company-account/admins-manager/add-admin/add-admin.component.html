@@ -1,0 +1,50 @@
+<div class="popup-content popup-report">
+    <div class="popup-content">
+        <form 
+        [formGroup]='addAdminForm'
+        autocomplete="off"
+        >
+            <span class="note" *ngIf='!selectedData'>
+                    {{ "976" | translate }}
+            </span>
+            <br>
+            <small *ngIf='!selectedData'> 
+                You can add Job Admin only from your connection list
+            </small>
+            <div class="form-group my-3" *ngIf='!selectedData'>
+                <input type="text" class="form-control" placeholder="Name"  (keyup)='searchUsers($event)'>
+            </div>
+
+            <div class="popup"  *ngIf="(selectedUserW | async) as users">
+                    <ul class="list-group">
+                      <li class="list-group-item" *ngFor="let user of users | slice:0:5" (click)="selectedUser(user)">
+                        <img [src]="user.avatar ? '/file/' + user.avatar : 'assets/img/124.svg' " class="user-photo">
+                        <span>
+                          {{  user.firstname }}
+                          {{  user.lastname }}
+                        </span>
+                      </li>
+                    </ul>
+            </div>
+            <div class="founder-in-add-founder d-flex"  *ngIf="selectedData">
+                    <img alt="admin" [src]="selectedData.avatar ? '/file/' +  selectedData.avatar : 'assets/img/124.svg' ">
+                    <div class="d-flex flex-column justify-content-center">
+                        <h2>
+                             {{selectedData.firstname + " " + selectedData.lastname}}
+                        </h2>
+                        <p *ngIf="selectedData.skills && selectedData.skills.length > 0 ">
+                            {{ selectedData.skills[0].name}}
+                        </p>
+                        <p *ngIf="selectedData.experiences && selectedData.experiences.length > 0 ">
+                            {{ selectedData.experiences[0].title}}
+                        </p>
+                    </div>
+                </div>
+            <div class="form-group my-3" *ngIf='selectedData'>
+                <label for="please-enter-password-2">Please enter your password</label>
+                <input type="password" class="form-control" id="please-enter-password-2" placeholder="Password" formControlName='password' [ngClass]="{'is-invalid':hasError &&  editInt.password.hasError}">
+            </div>
+            <button class="btn btn-primary" (click)='addAdmin()'> {{ "351" | translate }} </button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,95 @@
+<!-- Rating start -->
+
+<ng-container *ngIf="companyRates['amount_reviews']">
+        
+        <div class="rating-wrap">
+        
+            <div class="section-header d-flex">
+                <h1>Rating</h1>
+                <div class="col line"></div>
+            </div>
+        
+            <div class="section-content col">
+                <div class="row">
+                    <div class="col-6">
+                        <span>
+                            <ngb-rating [rate]="math.round(companyRates['avarage_rate'])" [readonly]="true" max="5">
+                            </ngb-rating>
+                        </span>
+                        <span> {{ companyRates['amount_reviews'] }} Reviews </span>
+                        <p>4,5 out of 5</p>
+                    </div>
+                    <div class="col-6 text-right align-self-center" *ngIf="isAuth">
+                        <button *ngIf="!isAdmin" class="btn btn-primary" (click)="openReview(companyId)">Write a review</button>
+                    </div>
+                    <div class="col-12">
+                        <div class="progress-circle" *ngIf="amountOfEachRate">
+                            <app-progress-circle [rates]="amountOfEachRate" [amountReviewsAverageRates]="companyRates">
+                            </app-progress-circle>
+        
+                            <!-- <ng-template #empty>
+                                <app-progress-circle
+                                [rates]="amountOfEachRate"
+                                [value] ="companyRates"></app-progress-circle>
+                             </ng-template> -->
+        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Rating end -->
+        
+        
+        <!-- Reviews start -->
+        <div class="reviews-wrap">
+        
+            <div class="section-header d-flex">
+                <h1>Reviews</h1>
+                <div class="col line"></div>
+            </div>
+        
+            <div class="section-content d-flex mt-3" *ngFor="let reviews of companyReviews" [id]="reviews.id">
+                <div class="reviews-left">
+                    <img [src]=" reviews.user.avatar ? '/file/'+ reviews.user.avatar : 'assets/img/124.svg' " alt="avatar">
+                    <h3> {{ reviews.user.firstname  }} <br>
+                        {{ reviews.user.lastname}}
+                    </h3>
+                    <!-- <span> {{ reviews.user.experineces[0].company }} </span> -->
+                </div>
+                <div class="reviews-right">
+                    <div class="review-right-line-1 d-flex justify-content-between">
+                        <ngb-rating [rate]="getScore(reviews.score)" [readonly]="true" max="5"></ngb-rating>
+                        <p><img src="assets/img/48.svg" alt="date"> {{ reviews.created_at }}</p>
+                    </div>
+                    <h2> {{ reviews.headline }} </h2>
+                    <p> {{ reviews.description }} </p>
+                </div>
+            </div>
+        </div>
+        <!-- Reviews end -->
+
+</ng-container>
+
+
+<!-- Start modals -->
+
+<!-- write review starts -->
+<app-modal (closeModal)="modalType = null">
+    <ng-container *ngIf=" modalType  && modalType === 'reportCompany' ">
+        <app-report-block-user [blockId]="companyReport" type='company' (isBlocked)='isBlockedCompany($event)'
+            (closeModal)='close($event)'>
+        </app-report-block-user>
+    </ng-container>
+
+    <ng-container *ngIf='modalType && modalType === "write"'>
+        <app-write-review [companyId]='companyId' (closeModal)="close($event)">
+        </app-write-review>
+    </ng-container>
+</app-modal>
+
+
+
+<!-- write review end -->
+
+<!-- End modals -->

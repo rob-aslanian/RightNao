@@ -1,0 +1,44 @@
+@import "../../../../variables";
+
+.favorites.btn-more {
+    margin-top: 4px;
+    margin-left: -5px;
+    img {
+        height: 16px;
+        width: 16px;
+    }
+}
+
+.sort.btn-more {
+    margin-top: 3px;
+}
+
+.custom-control.custom-checkbox.box {
+    margin-top: -22px;
+    padding-left: 24px;
+}
+
+.position-relative.btn-more {
+    left: -15px;
+}
+
+.favorites-icon {
+    height: 16px;
+    width: 16px;
+}
+
+
+
+:host ::ng-deep ngb-rating {
+    span {
+    font-size: 15px;
+        color: $background-dark-cyan;
+        margin: 0 2px;
+    }
+}
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}

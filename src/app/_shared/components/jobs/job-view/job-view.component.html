@@ -1,0 +1,134 @@
+<div class="candidates-container mt-3" *ngIf="job">
+    <div class="job-vacancy" >
+        <span class="ad" *ngIf="job?.isAd">Ad</span>
+            <div class="line-one">
+                <img [src]="job.company.avatar ? '/file/' + job.company.avatar : 'assets/img/default-company.svg'"
+                    alt="candidate" *ngIf="!showTop">
+                <div class="vacancy-content" *ngIf="job?.job_details as jobDetails"  >
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h3 *ngIf="jobDetails.title">{{ jobDetails.title }}</h3>
+                        <button class="btn btn-primary " style="width: 120px;"
+                            (click)="isAuth ? open('apply' , job) : redirect()"
+                            *ngIf="!isCompany && !job.is_applied && !showTop">Apply
+                        </button>
+
+                    </div>
+                    <div class="job__link" [ngClass]="{'info-list': showTop}">
+                        <span [routerLink]="['/company/profile' , job.company.url , 'jobs' , job.company.id ]"
+                            [queryParams]="{'job_id': job.id}" style="cursor: pointer;">
+                            {{ job.company.name }}
+                         
+                        </span>
+
+                        <div class="vacancy-info" *ngIf="job?.company?.industry && !showTop">
+                            <span >
+                                    {{ job.company.industry.id | industry  }}
+                            </span>
+                        </div>
+                             
+                        <div class="vacancy-info mt-0" *ngIf="jobDetails.city || jobDetails.country">
+                            <span>
+                                <ng-container *ngIf="showTop">&nbsp;|&nbsp;</ng-container>
+                                {{ jobDetails.location.city ? jobDetails.location.city + ', ' : ''  }}
+                                {{  jobDetails.country | country }}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="line-two click__disable" *ngIf="isAuth && !isCompany" [ngClass]="{'line-to-top': showTop}">
+                  
+                    <button class="btn" *ngIf="!job.is_saved" (click)="saveJob(job.id);   job.is_saved = true;" >
+                        <img class="click__disable" src="assets/img/44.svg" *ngIf="!job.is_saved"
+                            alt="favorite">
+                        <ng-container *ngIf="!showTop">Save</ng-container>
+                        
+                    </button>
+                    <button class="btn" *ngIf="job.is_saved" (click)="unsaveJob(job.id);   job.is_saved = false;" >
+                        <img class="click__disable" src="assets/img/99.svg" *ngIf="job.is_saved"
+                            alt="favorite">
+                        <ng-container *ngIf="!showTop">UnSave</ng-container>
+                    </button>
+
+                    <button class="btn ml-auto" (click)="openChatBox(job.company.id , job.company)"
+                        *ngIf="isAuth && job.company.id !== currentCompanyId">
+                        <img class="click__disable" src="assets/img/41.svg" >
+                        <ng-container *ngIf="!showTop">Message</ng-container>
+                    </button>
+                    <button class="btn btn-primary " style="width: 120px;"
+                        (click)="isAuth ? open('apply' , job) : redirect()"
+                        *ngIf="!isCompany && !job.is_applied && showTop">Apply
+                    </button>
+                    <button *ngIf="!showTop" class="backgroundless" [ngbPopover]="companyMore" (click)="getLink(job.id)">
+                        <img src="assets/img/107.svg" alt="..." class="click__disable"
+                            style="height: 20px; width:20px;">
+                    </button>
+                    <ng-template #companyMore>
+                        <div class="options click__disable d-block">
+                            <div class="btn-more">
+                                <img class="click__disable company-more__icon mr-2" src="assets/img/84.svg"
+                                    alt="Share">
+                                Share
+                                <div class="social__networks">
+                                    <button (click)="share(job.company)" *ngIf="isAuth">
+                                        <img class="click__disable" src="assets/img/106.svg" alt="Share"
+                                            class="mr-2">
+                                    </button>
+                                    <button shareButton="facebook" [url]="sharedLink">
+                                        <img class="click__disable" src="assets/img/87.svg" alt="Share"
+                                            class="mr-2">
+                                    </button>
+                                    <button shareButton="linkedin" [url]="sharedLink">
+                                        <img class="click__disable" src="assets/img/90.svg" alt="Share"
+                                            class="mr-2">
+                                    </button>
+                                    <button shareButton="vk" [url]="sharedLink">
+                                        <img class="click__disable" src="assets/img/vk.svg" alt="Share"
+                                            class="mr-2">
+                                    </button>
+                                </div>
+                            </div>
+                            <button class="btn-more" (click)="open('report' , job)"
+                                *ngIf="isAuth && job.company.id !== currentCompanyId">
+                                <img class="click__disable  company-more__icon mr-2" src="assets/img/42.svg"
+                                    alt="Report">
+                                Report / Block
+                            </button>
+                        </div>
+                    </ng-template>
+                </div>
+
+            </div>
+
+        <!-- Show company detial -->
+        <app-company-details [data]="job.job_details" [selectedLang]="descriptionLang" (scrollTop)="onScroll($event)"></app-company-details>
+
+        <div class="job-footer">
+            <a class="backgroundless mt-2" [routerLink]="['/company/profile' , job.company.url , 'jobs' , job.company.id ]" >
+                <strong>All Jobs at this Company</strong>
+            </a>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Modals-->
+
+<app-modal (closeModal)="modalType = null">
+    <!-- Apply -->
+    <ng-container *ngIf="modalType === 'apply'">
+        <app-apply-modal [userId]="userId" [jobId]="jobId" [company]="applyCompany" (closeModal)="close($event)">
+        </app-apply-modal>
+    </ng-container>
+
+    <!-- Report -->
+    <ng-container *ngIf="modalType === 'report'">
+        <app-report-block-user type="jobs" [blockId]="jobId" (closeModal)="modal.close()"></app-report-block-user>
+    </ng-container>
+
+</app-modal>
+
+<ng-container *ngIf="isCloseModal">
+    <app-notification-alert type="apply" [data]="applyCompany"></app-notification-alert>
+</ng-container>

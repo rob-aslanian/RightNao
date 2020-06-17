@@ -1,0 +1,334 @@
+@import "src/variables";
+
+.detailed-info {
+  background: white;
+  padding: 15px;
+  border-radius: 0 0 5px 5px;
+  border-bottom: solid 1px #e6e6e6;
+}
+.detail-content {
+  display: flex;
+  width: 100%;
+  word-wrap: break-word;
+  word-break: break-all;
+  @media #{$break1} {
+    flex-direction: column;
+  }
+  @media #{$break2} {
+    flex-direction: row;
+  }
+  @media #{$break3} {
+    flex-direction: row;
+  }
+  h5 {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  .left {
+    margin-right: 30px;
+    h5 {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    @media #{$break1} {
+      width: 100%;
+    }
+    @media #{$break2} {
+      min-width: 15%;
+      max-width: 15%;
+    }
+    @media #{$break3} {
+      min-width: 15%;
+      max-width: 15%;
+    }
+    img {
+      width: 25px;
+      margin-left: 30px;
+      margin-bottom: 10px;
+    }
+  }
+  .right {
+    position: relative;
+    @media #{$break1} {
+      width: 100%;
+    }
+    @media #{$break2} {
+      width: 88%;
+    }
+    @media #{$break3} {
+      width: 88%;
+    }
+    .col-6 {
+      margin-bottom: 15px;
+    }
+    h6 {
+      margin-bottom: 5px;
+      font-size: 14px;
+    }
+    span {
+      display: block;
+      margin: 0;
+      color: $dark-grey;
+      &.interest {
+        border-radius: 5px;
+        padding: 5px;
+        margin-bottom: 5px;
+        display: inline-block;
+        color: $dark-blue;
+        margin-right: 5px;
+        background: #dce1e6;
+      }
+    }
+    p {
+      color: $dark-grey;
+    }
+    .more {
+      position: absolute;
+      right: 0;
+      bottom: -15px;
+      font-size: 20px;
+      cursor: pointer;
+    }
+  }
+  .profile {
+    img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+    }
+    span {
+      font-size: 12px;
+    }
+    .recommendator-info {
+      margin-left: 10px;
+      margin-bottom: 15px;
+    }
+  }
+}
+
+.skills {
+  margin-bottom: 10px;
+  width: auto !important;
+  display: flex;
+  span {
+    font-size: 12px;
+    padding: 5px 10px;
+    background: #dce1e6;
+    border-radius: 5px;
+    margin-bottom: 5px;
+  }
+}
+
+.options {
+  // margin-top: 30px !important;
+  display: none;
+  padding: 10px 15px 0px 15px;
+  position: absolute;
+  background: white;
+  z-index: 4;
+  border-radius: 5px;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+  right: 0;
+  width: 180px;
+  button {
+    display: block;
+    padding: 10px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    color: #808080;
+    font-size: 12px;
+    width: 100%;
+    text-align: left;
+    &:hover {
+      background: $background-soft-blue;
+      text-decoration: none;
+    }
+  }
+}
+
+.options.info {
+  width: 440px;
+  padding: 15px;
+  h6 {
+    font-weight: bold;
+  }
+  .docs {
+    margin-top: 5px;
+    align-items: center;
+    padding-right: 20px;
+    margin-bottom: 20px;
+    a {
+      color: $dark-grey;
+      font-weight: normal;
+      font-size: 12px;
+    }
+    img {
+      margin-right: 5px;
+    }
+  }
+  span {
+    font-size: 12px;
+    color: $dark-blue;
+    font-weight: bold;
+  }
+  p {
+    font-size: 12px;
+  }
+}
+
+.candidate {
+  border: solid 1px #e6e6e6;
+  margin-bottom: 10px;
+  background: $white;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  position: relative;
+  border-radius: 5px;
+  &:hover {
+    background: $background-soft-blue;
+  }
+  .line-one {
+    display: flex;
+    img {
+      border-radius: 50%;
+      width: 70px;
+      height: 70px;
+    }
+    .candidate-content {
+      margin-left: 20px;
+      padding-right: 10px;
+      & > span {
+        font-size: 14px;
+        color: $dark-grey;
+      }
+    }
+    h3 {
+      font-size: 16px;
+    }
+    .skills {
+      overflow: hidden;
+      height: 30px;
+      margin-bottom: 5px;
+      margin-top: 5px;
+      // @media #{$break1} {
+      //   margin-left: -90px;
+      // }
+      span {
+        font-size: 12px;
+        padding: 5px 10px;
+        background: #dce1e6;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        display: inline-block;
+        margin-right: 5px;
+      }
+    }
+  }
+  .line-two {
+    text-align: right;
+    @media #{$break3} {
+      visibility: hidden;
+    }
+  }
+  &:hover .line-two {
+    visibility: visible;
+  }
+  .visible {
+    padding: 15px 5px 0px 15px;
+  }
+}
+
+.candidate.activated {
+  background: $background-soft-blue;
+  border-bottom: none;
+  font-weight: normal;
+
+  span {
+    margin-top: 3px;
+    color: $dark-grey;
+    font-size: 14px;
+    img {
+      margin-right: 5px;
+      margin-bottom: 5px;
+    }
+  }
+  .custom-control {
+    visibility: visible !important;
+  }
+}
+
+.center-content-jobs.applicants-by-skill-content {
+  .first-line {
+    display: flex;
+    align-items: center;
+
+    img {
+      height: 16px;
+      margin-right: 5px;
+    }
+
+    & > button {
+      background: none;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      margin: 0 14px;
+      font-size: 14px;
+      color: $dark-grey;
+    }
+
+    .form-group {
+      margin-top: 12px;
+      margin-left: 10px;
+    }
+
+  }
+
+
+  .right {
+    span {
+      font-size: 14px;
+      color: $dark-grey;
+    }
+
+    a {
+      font-size: 14px;
+      color: $dark-grey;
+
+      img {
+        margin-bottom: 3px;
+        margin-right: 5px;
+      }
+    }
+  }
+}
+
+.candidate {
+  .custom-control {
+    position: absolute;
+    visibility: hidden;
+    top: 1px;
+    left: 8px;
+  }
+
+  &:hover .custom-control {
+    visibility: visible !important;
+  }
+
+
+  .marked {
+    position: absolute;
+    right: 5px;
+    top: 27px;
+    border: none;
+    background: none;
+  }
+
+  .visible {
+    padding-top: 14px;
+    // padding-bottom: 20px;
+  }
+}

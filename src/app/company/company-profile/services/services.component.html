@@ -1,0 +1,41 @@
+<div class="section-header d-flex">
+  <h1 class="mb-0"> {{ '1298'| translate  }}</h1>
+  <div class="col line">
+      <button class="add" (click)="open()" *ngIf="isAdmin">
+          <img src="assets/img/50.svg" alt="add">
+      </button>
+  </div>
+</div>
+  
+
+<div class="services row" *ngIf="services && services.length" >
+  <div class="col-12 col-lg-6 mt-3 service" *ngFor="let service of services | slice: 0: startPage">
+      <div class="section-content p-0 service__content">
+          <img class="section-image" [src]="service.image ? '/file/' + service.image : 'assets/img/image_services.svg' " alt appAppLazyImage>
+          <div class="services-text">
+              <h3 class="service-name">{{ service.name}}</h3>     
+              <a [href]="service.website" target="_blank">{{ service.website }}</a>                                       
+              <button class="edit bottom-edit" (click)="open(true , service)" *ngIf="isAdmin">
+                  <img src="assets/img/19.svg" alt="edit">
+              </button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<ng-container *ngIf="!(services && services.length) && isAdmin" >
+        <app-empty-profile [key]='"services"' (openModal)='openEmptyModal()'></app-empty-profile>
+</ng-container>
+
+
+<!-- More less buttons -->
+<app-more-less [dataLength]="services.length" (start)="startPage = $event;"></app-more-less>
+
+<app-modal (closeModal)="modalType = null">
+    <ng-container *ngIf="modalType === 'add'">
+        <app-services-modal [comapnyID]="data.companyId"  (result)="getService($event)"></app-services-modal>
+    </ng-container>
+    <ng-container *ngIf="modalType === 'edit'">
+        <app-services-modal [comapnyID]="data.companyId" [data]="editableData" (result)="getService($event)" ></app-services-modal>
+    </ng-container>
+  </app-modal>

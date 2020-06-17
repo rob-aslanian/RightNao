@@ -1,0 +1,44 @@
+<form [formGroup]="proposal">
+ <div class="send-propsoal-container pt-3 pb-3">
+    <div class="col-12 p-0">
+        <label  for="service" class="label-control"> Your Service</label>
+        <select id="service"  
+                class="form-control" 
+                [ngClass]="{'is-invalid': proposal.get('serviceId').errors && submitted }" 
+                formControlName="serviceId"
+                (change)='setService( $event )'>
+            <option value="" disabled>Select your service </option>
+            <option [value]="service.id" *ngFor="let service of services"> {{ service.title }} </option>
+        </select>
+    </div>
+      <div class="service-request__content__box mt-3">
+            <app-service-delivery-time [delivery]='deliverCtrls' 
+                                       [type]='"order"' 
+                                       [sumbitted]='submitted'></app-service-delivery-time>
+     </div>
+
+     <div class="col-6 mt-3 p-0">
+            <label  for="service" class="label-control"> Offer’s expiration time</label>
+            <select id="service"  class="form-control" formControlName="expDate">
+                <option value="1"> 1 day</option>
+                <option *ngFor="let day of days" [value]="day"> {{ day }}  day </option>
+            </select>
+        </div>
+
+    <div class="col-12 mt-3 p-0">
+
+        <label for="description" >Custom Message</label>
+
+        <textarea id="description"  
+                  rows="5" 
+                  class="form-control" 
+                  placeholder="Why you are right person to hire"
+                  formControlName="description">
+        </textarea>
+                  
+    </div>
+    <div class="col-12 text-right">
+        <button class="btn btn-primary" (click)='submitForm()'>Submit</button>
+    </div>
+ </div>
+</form>

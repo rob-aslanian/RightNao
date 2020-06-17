@@ -1,0 +1,83 @@
+<div class="post-a-job__content__additional-info post-a-job__content__section">
+  
+  <div class="post-a-job__section-heading">
+    <div>
+      <img src="../../assets/img/156.svg">
+    </div>
+    <h4>Additional Info</h4>
+  </div>
+  <form  [formGroup]="infoForm">
+
+    <div [formGroup]="addInfoForm">
+      <div>
+        <h5 class="small-section-heading">
+          Travel  requirement
+        </h5>
+        <div class="d-flex" >
+            <select id="number-of-position" class="form-control" formControlName="travel_requirement">
+              <option selected value="none" disabled>None</option>
+              <option *ngFor="let req of travelRequrements" [value]="req.value">
+                {{ req.name }}
+              </option>
+            </select>
+        </div>
+      </div>
+    
+      <div class="post-a-job__content__additional-info__section">
+        <h5 class="small-section-heading">
+          Suitable for
+        </h5>
+        <div class="d-flex" formArrayName="suitable_for">
+          <div class="form-check custom-control custom-checkbox mr-5" *ngFor="let suitable of suitableFor; let i = index">
+              <input type="checkbox" class="custom-control-input" [id]="suitable.value" [value]="suitable.value" 
+                    (change)="checksBoxChange($event , i)" [formControlName]="i">
+              <label class="custom-control-label page-section-text-grey" [for]="suitable.value">
+                {{ suitable.name }}
+              </label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="post-a-job__content__additional-info__section">
+      <h5 class="small-section-heading">
+        Number of position
+      </h5>
+      <div class="col-sm-2 p-0">
+        <select id="number-of-position" class="form-control" formControlName="number_of_positions">
+          <option selected [ngValue]="0" disabled>Select one</option>
+          <option *ngFor="let position of numberOf_positions" [ngValue]="position">
+            {{ position }}
+          </option>
+        </select>
+      </div>
+    </div>
+
+
+    <div class="post-a-job__content__additional-info__section">
+      <h5 class="small-section-heading">
+        Cover letter
+      </h5>
+      <div class="d-flex">
+        <div class="custom-control custom-radio write-a-review__content__submit-review__type-options__item mr-3">
+          <input type="radio" id="cover-yes" formControlName="cover_letter" [value]="true" name="cover_letter"
+            class="custom-control-input">
+          <label class="custom-control-label" for="cover-yes">Yes</label>
+        </div>
+        <div class="custom-control custom-radio write-a-review__content__submit-review__type-options__item">
+          <input type="radio" id="cover-optional" formControlName="cover_letter" [value]="false" name="cover_letter"
+            class="custom-control-input">
+          <label class="custom-control-label" for="cover-optional">Optional</label>
+        </div>
+      </div>
+    </div>
+
+    <app-add-document>
+        <span class="page-section-text-grey-small ml-2">Add external documents, special application form, test task and etc.</span>
+        <div class="mt-2">
+            <span class="page-section-text-grey btn btn-outline-secondary">Upload</span>
+        </div>
+    </app-add-document>
+
+  </form>
+</div>

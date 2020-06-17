@@ -1,0 +1,61 @@
+<form autocomplete="off" [formGroup]="informationForm">
+    <div class="form-group">
+        <div>
+            <label for="number" class="title-label">Phone Number</label>
+            <ng-container *ngFor="let phone of informationForm.get('phones')['controls']; let i = index" 
+                          formArrayName="phones">
+                <div class="mb-3"  [formGroupName]="i">
+                    <div class="row">
+                        <div class="col-3 pr-0"> 
+                            <select class="form-control w-100" id="country-index" 
+                                    formControlName="country_code_id"  [ngClass]="{'is-invalid': informationForm.get('phones')
+                                                                                                 .at(i).get('country_code_id').invalid &&  isSubmitted }">
+                                <option value="" disabled>Country </option>
+                                <option [value]="+code.id"  [attr.data-code]="code.country_code" *ngFor="let code of countryCodes;" >
+                                    {{  code.country }}
+                                    (+{{  code.country_code }}) 
+                                </option>
+                            </select>
+                        </div>
+                        <div class="col-9">
+                            <input type="number" 
+                                   class="form-control" 
+                                   placeholder="Enter phone number" id="number" 
+                                   formControlName="number"
+                                   [ngClass]="{'is-invalid': informationForm.get('phones').at(i).get('number').invalid &&  isSubmitted }">
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+            
+            <div class="add-another mt-3 d-flex align-items-center" 
+                (click)='addPhone()' 
+                *ngIf="informationForm.get('phones')['controls'].length < 3">
+                <div class="add">
+                    <img src="assets/img/add-estate.svg" alt="">
+                </div>
+                <span class="ml-2">Add other phone number</span>
+            </div>
+        </div>
+    
+        <ng-container formGroupName="detail">
+             <div class="phones">
+                 <label for="title" class="title-label">Title</label>
+                 <input type="text" class="form-control" 
+                        placeholder="Enter phone number" id="title" 
+                        formControlName="title" [ngClass]="{'is-invalid': isSubmitted && informationForm.get('detail').get('title').invalid }">
+             </div>
+        
+             <div class="editor">
+                <div class="text-editor">
+                    <label for="description" class="title-label">Description</label>
+                    <app-text-editor [placeholder]='"Enter Description"' 
+                                     [id]='"description"' 
+                                     formControlName="description"
+                                     [ngClass]="{'is-invalid-custom': isSubmitted && informationForm.get('detail').get('description').invalid }"></app-text-editor>
+                </div>
+             </div>
+        </ng-container>
+         
+    </div>
+</form>

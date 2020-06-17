@@ -1,0 +1,54 @@
+<div class="company__jobs">
+    <div class="center-content-search">
+        <div class="d-flex my-0 search-bg">
+            <input type="search" (keyup)="searchJob($event)" name="keyword" class="form-control mr-2 search mb-0"
+                placeholder="Search...">
+            <button type="button" class="filters btn btn-primary" [routerLink]="['/search/candidate']">
+                Search
+            </button>
+        </div>
+    </div>
+
+    <div class="company__jobs__body" *ngIf="(jobs | async) as jobs; else:loading">
+        <!-- Content -->
+        <ng-container *ngIf="jobs.amount_of_results">
+            <div class="d-flex align-items-center justify-content-between" >
+                <span class="results">Showing {{ jobs.amount_of_results }} results</span>
+                <a [routerLink]="['/jobs/company/dashboard']"  style="color:#00D4E3;" *ngIf="isCompany">Manage jobs</a>
+            </div>
+            <div class="company__jobs__body__items">
+                <div class="body__item items__header">
+                    <span>Position</span>
+                    <span>Location</span>
+                    <span>Validaty</span>
+                </div>
+                <div class="body__item items" *ngFor="let job of jobs.job_search_result" (click)='openJob( job )'>
+                   <ng-container *ngIf="job?.job_details as detail">
+                        <span *ngIf="detail?.title">{{ detail.title }}</span>
+                        <span *ngIf="detail?.location as location"> ({{ location.city }} , {{ location.country | country }}) </span>
+                        <span *ngIf="detail?.deadline_day && detail?.deadline_month && detail?.deadline_year ">
+                            {{ detail.publish_day + '.' + detail.publish_month + '.' + detail.publish_year }} <!-- Publish day -->       
+                            -                 
+                            {{ detail.deadline_day + '.' + detail.deadline_month + '.' + detail.deadline_year }} <!-- Dedline day -->
+                        </span>
+                   </ng-container>
+                </div>
+            </div>
+        </ng-container>
+        <!-- Content -->
+
+    </div>
+    <!-- Loader -->
+    <ng-template #loading>
+        <app-spinner class="mt-3 d-flex justify-content-center"></app-spinner>
+    </ng-template>
+    <!-- Loader -->
+    <app-modal (closeModal)='close()' [isBlue]='false' size='lg'>
+        <ng-container *ngIf="job.length > 0">
+            <div class="modal_job">
+                <app-company-box type="all" [jobs]="job" ></app-company-box>
+            </div>
+        </ng-container>
+    </app-modal>
+
+</div>

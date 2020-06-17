@@ -1,0 +1,28 @@
+<ngb-tabset>
+  <!-- * * $ * *   Following People * * $ * * -->
+  <ngb-tab>
+      <ng-template ngbTabTitle > People <span> {{ followingPeopleLength }} </span></ng-template>
+        <ng-template ngbTabContent>
+            <app-following-people [userID] = 'profileID' 
+                                  [companyID] = 'companyID'
+                                  [isCompanyActive] = 'isCompany'
+                                  (onCloseModal) = 'closeModal($event)'
+                                  (result) = 'getPeopleLength($event)'>
+            </app-following-people>
+        </ng-template>
+  </ngb-tab>
+    <!-- * * $ * * Following Company * * $ * *  -->
+  <ngb-tab>
+    <ng-template ngbTabTitle> Business Profiles <span> {{ followingCompaniesLength }} </span></ng-template>
+      <ng-template ngbTabContent>
+          <app-following-company [userID] = 'profileID' 
+                                 [companyID] = 'companyID' 
+                                 [isCompanyActive] = 'isCompany'
+                                 (result) = 'getCompaniesLength($event)'
+                                 (onCloseModal) = 'closeModal($event)'
+                                 >
+          </app-following-company>
+      </ng-template>
+  </ngb-tab>
+  
+</ngb-tabset>

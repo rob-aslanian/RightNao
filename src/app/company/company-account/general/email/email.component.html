@@ -1,0 +1,58 @@
+<h2> {{ "507" | translate }} </h2>
+<button class="dark-button" (click)="toggle('add' , null)"></button>
+<hr>
+<ng-container *ngFor="let email of data; let i = index;">
+<div class="row" >
+    <div class="col-lg-3">
+        <h3>
+            <img src="assets/img/205.svg" alt="email">
+        </h3>
+    </div>
+    <div class="col-auto">
+        <span> {{ email.email }} </span>
+    </div>
+
+
+    <div class="col d-none d-lg-block">
+    </div>
+
+    <div class="col button-col">
+        
+        <span></span>
+        <button  [ngClass]="{'active': isOpenEditForm[i]}" (click)="toggle('edit' , i , email)"></button>
+   
+    </div>
+
+</div>
+    <div *ngIf="isOpenEditForm[i]  then editCompanyEmail"></div>
+    <ng-template #editCompanyEmail>
+        <label>Edit email</label>
+        <form>
+            <div class="form-group form-row">
+                <input type="email" class="form-control col-5 mr-5" disabled="true" [value]="editEmail.email">
+                <button class="backgroundless" (click)="remove()"> {{ "1185" | translate }} </button>
+            </div>
+                                                
+        </form>
+    </ng-template>
+</ng-container>
+    
+
+
+<!-- Area to display while editing email -->
+<div *ngIf="isOpenForm then editCompanyEmail"></div>
+<ng-template #editCompanyEmail>
+    <div class="button-col">
+        <button  class="active" (click)="isOpenForm = false" ></button>
+    </div>
+    <form>
+        <label> {{ "67" | translate }} </label>
+        <div class="form-group form-row">
+            <input type="email" class="form-control col-5 mr-5" [formControl]="addEmail"
+                    [ngClass]="{'is-invalid':  addEmail.errors && addEmail.touched}">
+            <button class="btn btn-primary h-100" (click)="submit()"> {{ "1231" | translate }} </button>
+        </div>
+                                            
+    </form>
+</ng-template>
+<!-- Area to display while editing email end -->

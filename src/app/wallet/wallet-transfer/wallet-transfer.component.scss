@@ -1,0 +1,123 @@
+@import "src/variables";
+.transfer {
+    & h3 {
+        font-size: 20px;
+        margin: 0 0 15px 10px;
+    }
+    &-header{
+        border-radius: 5px;
+        overflow: hidden;
+        &-left {
+            background-color: $background-light-blue;
+            color: $white;
+            font-weight: 300;
+            padding: 32px;
+        }
+        &-right {
+            background-color: $white;
+            padding: 32px;
+            &-amount {
+                margin: 50px 0;
+                width: 70%;
+                &-input {
+                    position: relative;
+                }
+                &-label {
+                    position: absolute;
+                    right: 10px;
+                    top: 50%;
+                    transform: translate(0, -50%);
+                }
+            }
+            & input {
+                border-radius: 10px;
+            }
+        }
+    }
+    &-currencies {
+        &-item{
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 14px;
+            margin: 5px 0;
+            &-amount {
+                font-size: 24px;
+                display: flex;
+                align-items: center;
+                font-weight: 500;
+            }
+            & p {
+                margin: 0;
+            }
+        }
+        &-more {
+            margin: 20px 0;
+        }
+        &-card-number {
+            margin-top: 30px;
+        }
+    }
+    &-section {
+        background-color: $white;
+        padding: 20px;
+        margin: 16px -15px;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+}
+button:disabled {
+    background-color: $light-grey !important;
+    color: $white !important;
+}
+
+
+
+.user-box {
+    width: 280px;
+    height: 140px;
+    border: solid 1px #e6e6e6;
+    border-radius:5px;
+    padding: 16px;
+    background-color: $white;
+    & p {
+        margin: 0;
+    }
+    &-line-one {
+        width: 100%;
+    }
+    &-avatar {
+        width: 70px;
+        height: 70px;
+        border: 2px solid green;
+        border-radius: 50%;
+        margin-right: 15px;
+    }
+    &-name {
+        font-size: 16px;
+        font-weight: 500;
+    }
+    &-profession {
+        font-size: 12px;
+        color: $dark-grey;
+    }
+}
+
+
+.Gold {
+    background-color: $yellow;
+}
+.Silver {
+    
+    background-color: #8397AB;
+}
+.Dollar {
+    background-color: $green;
+}
+.Euro {
+    background-color: $blue-option;
+}
+.Yen {
+    background-color: $autumn-orange;
+}

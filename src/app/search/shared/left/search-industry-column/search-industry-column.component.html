@@ -1,0 +1,28 @@
+<div class="search-groups__sidebar-section">
+    <app-search-column-header title="Inudstry">
+        <div class="mt-2">
+            <div class="search-groups__sidebar-section__delivery-time-options search-groups__sidebar-section__wrap">
+                <div class="
+                    custom-control 
+                    custom-checkbox 
+                    page-section-text-grey
+                    " *ngFor="let inudstry of inudstries">
+                    <input type="checkbox" [checked]="inudstry.isSelected" class="custom-control-input" [id]="inudstry.name" name="type"
+                            (change)="checkIndustry($event)" [value]="inudstry.name">
+                    <label
+                        class="custom-control-label" [for]="inudstry.name" >
+                    {{ inudstry.name | industry }}
+                    </label>
+                </div>
+            </div>
+            <div class="mt-2">
+                <select class="form-control mr-2" id="location-street-address-4-right" (change)="selectInudstry($event)">
+                    <option value="" disabled>Select industry</option>
+                    <option [value]="inudstry.id" *ngFor="let inudstry of industriesData">
+                        {{ inudstry.name }}
+                    </option>
+                </select>
+            </div>
+        </div>
+    </app-search-column-header>
+</div>

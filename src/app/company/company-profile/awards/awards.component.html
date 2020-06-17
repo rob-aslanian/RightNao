@@ -1,0 +1,68 @@
+<div class="section-header d-flex">
+  <h1>{{ '204' | translate }}</h1>
+  <div class="col line">
+      <button class="add" (click)="open()" *ngIf="isAdmin">
+          <img src="assets/img/50.svg" alt="add">
+      </button>
+  </div>
+</div>
+
+<div class="section-content" *ngIf="awards && awards.length > 0"  >
+  
+  <div class="col award p-0" *ngFor="let award of awards | slice: 0: startPage; trackBy:trackByFn" >
+      <h3>{{award.title}}</h3>
+      <p> {{award.issuer}}</p>
+      <p> {{award.year}}</p>
+
+      <!-- Media content -->
+      <div class="media__content">
+
+        <!-- Links -->
+        <ng-container *ngIf="award.link && award.link.length > 0 ">
+              <a [href]="getLink(link)" target="_blank" *ngFor="let link of award.link; trackBy:trackByFn" style="color:#00D4E3">
+                  {{  link.address  ?  link.address :  link.url }}
+              </a>
+        </ng-container>
+          <!-- Links -->
+
+        <!-- Files -->
+        <div class="row mt-2">
+          <div *ngFor="let file of award.file" class="col-6">
+              <img [src]="file.file ? file.file : '/file/' + file.address " class="media__content__files" alt
+                                *ngIf="file['ext'] || file['mime_type'].split('/')[1] === 'jpeg' || 
+                                        file['ext'] || file['mime_type'].split('/')[1] === 'jpg'  || 
+                                        file['ext'] || file['mime_type'].split('/')[1] === 'png'  || 
+                                        file['ext'] || file['mime_type'].split('/')[1] === 'gif'  || 
+                                        file['ext'] || file['mime_type'].split('/')[1] === 'bmp'; else: notImage" appAppLazyImage>
+              <ng-template #notImage>
+                  <a [href]="file.file ? file.file :  '/file/' + file.address" target="_blank">{{ file.name }}</a>
+              </ng-template>                       
+            </div>
+          </div>
+        <!-- Files -->
+      </div>
+      <!-- Media content -->
+      <button class="edit awards-edit" (click)="open(true, award)" *ngIf="isAdmin">
+          <img src="assets/img/19.svg" alt="edit">
+      </button>
+  </div>
+
+</div>
+
+
+<ng-container *ngIf="!( awards && awards.length > 0 ) && isAdmin" >
+    <app-empty-profile [key]='"awards"' (openModal)='openEmptyModal()'></app-empty-profile>
+</ng-container>
+
+
+
+<app-more-less [dataLength]="awards.length" (start)="startPage = $event;"></app-more-less>
+
+<app-modal (closeModal)="modalType = null">
+  <ng-container *ngIf="modalType === 'add'">
+    <app-awards-modal [companyId]="data.companyId" (result)="getAward($event)"></app-awards-modal>
+  </ng-container>
+  <ng-container *ngIf="modalType === 'edit'">
+     <app-awards-modal [data]="editableData" [companyId]="data.companyId" (result)="getAward($event)"></app-awards-modal>
+  </ng-container>
+</app-modal>

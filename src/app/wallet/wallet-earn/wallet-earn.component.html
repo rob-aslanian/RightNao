@@ -1,0 +1,22 @@
+<div class="earn">
+        <h3 class="earn-title">Earn HyperCoins</h3>
+        <div class="earn-list row">
+            <div class="earn-item col-6 col-md-3" *ngFor="let item of earnCategories">
+                <div class="earn-item-images">
+                        <img [src]="item.images" alt="">
+                        <div class="earn-item-images-count"  [ngClass]="{gold: item.title == 'Registered User' || item.title == 'Registered Companies'  }">{{ item.creditedCoins }}</div>
+                </div>
+                <p class="earn-item-title">{{ item.title }}</p>
+                <p class="earn-item-coinsCount">{{ item.amount }} HPC</p>
+                <button class="earn-item-btn btn-outline-primary-dark" (click)="test(item['button'])">Earn</button>
+            </div>  
+        </div>
+</div>
+<app-modal (closeModal)="modalType = null">
+        <ng-container *ngIf=" modalType  && modalType === 'Invite' " >
+                <app-invitation-form (onClose) = "closeInviteModal()"></app-invitation-form>
+        </ng-container>
+        <ng-container *ngIf="modalType === 'share' || modalType === 'registeredUser' || modalType === 'registeredCompany'" >
+                        <app-earn-share-modal [modalType]="modalType"></app-earn-share-modal>
+        </ng-container>
+</app-modal>

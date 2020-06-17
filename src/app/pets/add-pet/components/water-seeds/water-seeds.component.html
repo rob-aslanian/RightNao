@@ -1,0 +1,9 @@
+<label class="title-label">Water needs</label>
+<div class="mt-1 d-flex custom-radio-input-god">
+        <div class="mt-2" *ngFor="let light of waterNeeds">
+            <input  type="radio" [id]="light.id"  [formControl]='waterCtrl' class="d-none" name="waterCtrl" [value]="light.id">
+            <label [for]="light.id" 
+                   class="btn btn-light-dark mr-3">{{ light.name }}</label>
+        </div>
+
+</div>

@@ -1,0 +1,103 @@
+<div class="popup-content default-modal">
+   <span class="langs-modal-title">
+      Before you start creating your profile, please select the language in which you fill
+      the information
+   </span>  
+   
+    <div class="row">
+      <div class="col-6 form-group">
+          <label for="langs">
+            Language of new profile 
+            <span>*</span>
+          </label>
+          <select class="form-control" id="country-index"  [(ngModel)]="language" id="langs" [ngClass]="{ 'is-invalid' : !language && submited }">
+              <option value="" disabled> Choose languge </option>
+              <option [value]="lang.item_id" *ngFor="let lang of languages; trackBy:trackByFn" >
+                  {{  lang.item_text }}
+              </option>
+          </select>
+      </div>
+      <div class="col-12" *ngIf="data">
+        <!-- USER FORM -->
+          <ng-container *ngIf="!isCompany; else:company">
+              <form [formGroup]="userForm" autocomplete="off">
+                  <div class="row">
+                      <div class="form-group col-6">
+                          <label for="firstname">First name <span>*</span></label>
+                          <input  [ngClass]="{ 'is-invalid':  usrform.firstname.errors && submited }"  type="text" formControlName="firstname" class="form-control" placeholder="Enter first name" id="firstname">
+                      </div>
+                      <div class="form-group col-6">
+                          <label for="lastname">Last name  <span>*</span></label>
+                          <input [ngClass]="{ 'is-invalid':  usrform.lastname.errors && submited }" type="text" formControlName="lastname" class="form-control" placeholder="Enter last name" id="lastname">
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <label for="nickname">Nickname</label>
+                      <input type="text" formControlName="nickname" class="form-control" placeholder="Enter nickname" id="nickname">
+                  </div>
+      
+                  <div class="form-group">
+                      <label for="headline">Headline <span>*</span></label>
+                      <input [ngClass]="{ 'is-invalid':  usrform.headline.errors && submited }" type="text" formControlName="headline" class="form-control" placeholder="Enter headline" id="headline">
+                  </div>
+
+                  <div class="form-group">
+                        <label for="story">Story</label>
+                        <span class="letter-count"> {{ usrform.story && usrform.story.value !== null ?  
+                                usrform.story.value.length : 0 }} / 2000 
+                        </span>
+                        <textarea class="form-control" rows="5" maxlength="2000"
+                                    id="story" formControlName="story" >
+                        </textarea>
+                    </div>
+
+                  <div class="d-flex justify-content-end">
+                      <button class="btn btn-primary" type="submit" (click)="submit('user')">Create</button>
+                  </div>
+
+  
+              </form>
+          </ng-container>
+        <!-- USER FORM --> 
+
+        <!-- COMPANY FORM -->
+        <ng-template #company>
+            <form [formGroup]="companyForm" >
+                <div class="form-group">
+
+                    <label for="cmp-name">Company name <span>*</span></label>
+                    <input type="text" formControlName="name" class="form-control" placeholder="Company name" id="cmp-name">
+
+                </div>
+                <div class="form-group">
+                    <label for="add-about-us-description">Description</label>
+                    <span class="letter-count"> {{ cmpform.description && cmpform.description.value !== null ?  
+                        cmpform.description.value.length : 0 }} / 2000 
+                    </span>
+                    <textarea class="form-control" rows="5" maxlength="2000"
+                                id="add-about-us-description" formControlName="description" 
+                                [ngClass]="{ 'is-invalid': submittedAddAboutUs && cmpform.description.errors }">
+                    </textarea>
+                </div>
+    
+                <div class="form-group">
+                    <label for="add-mission">Mission</label>
+                    <span class="letter-count"> {{ cmpform.mission && cmpform.mission.value !== null ?  
+                        cmpform.mission.value.length : 0 }} / 500 
+                    </span>
+                    <textarea class="form-control" rows="2" id="add-mission" formControlName="mission" 
+                             maxlength="500"  [ngClass]="{ 'is-invalid': submittedAddAboutUs && cmpform.mission.errors }">
+                        
+                    </textarea>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button class="btn btn-primary" type="submit" (click)="submit('company')">Create</button>
+                </div>
+            </form>
+        </ng-template>
+        <!-- COMPANY FORM -->
+
+
+      </div>     
+    </div>
+</div>

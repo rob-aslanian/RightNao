@@ -1,0 +1,17 @@
+.experience-edit {
+    transition: .3s all ease-in-out;
+    opacity: 0;
+}
+
+.education {
+    &:first-child {
+        .experience-edit {
+            opacity: 1;
+        }
+    }
+    &:hover {
+        .experience-edit {
+            opacity: 1;
+        }
+    }
+}

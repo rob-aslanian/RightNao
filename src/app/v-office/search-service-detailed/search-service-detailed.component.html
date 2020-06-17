@@ -1,0 +1,217 @@
+<div class="d-flex justify-content-center">
+    <div class="profile-center" style="width: 100%;">
+        <div class="row m-0">
+            <div class="details col-lg-9 mt-3 pb-2">
+                <div class="details__content  p-3">
+                    <ng-container *ngIf="!loading">
+                        <div class="d-flex justify-content-between"></div>
+                        <div class="col-12">
+                            <div class="d-flex justify-content-between">
+                                <div class="details__content__service d-flex">
+                                    <div class="details__content__service__avatar mr-3">
+                                        <img [src]="office.cover_origin ?  
+                                                    '/file/'+office.cover_origin : 
+                                                    'assets/img/default-office.svg'" alt="avatar">
+                                    </div>
+    
+                                    <div class="details__content__service__info">
+                                        <p class="mb-0" style="cursor: pointer;font-size: 1rem;" 
+                                                         [routerLink]="['/v-office','office', officeId, activeProfileType, activeProfileId ]">
+                                            {{ office.name }} </p>
+                                        <span>
+                                            {{  office.location.city.city }}, {{ office.location.country.country | country  }}
+                                        </span>
+                                    </div>
+    
+                                </div>
+    
+                                <div class="details__content__service__raiting d-flex"  *ngIf="activeProfileId !== profileId">
+                                    <img [src]="service.has_liked ? 
+                                                'assets/img/99.svg': 
+                                                'assets/img/44.svg'" 
+                                                    alt="heart" 
+                                                    style="height: 14px; cursor: pointer;" (click)="likeOrUnlikeService( service.has_liked, service.id )">
+                                </div>
+    
+                            </div>
+                            <h6 class="mt-2">{{ service.title }}</h6>
+    
+                            <div class="d-flex">
+                                <h5 class="mr-2">{{ service.currency  }}</h5>
+                                <h5 *ngIf="service.price === 'Price_Negotiable'; else fixed "> {{  service.max_price_amount  }} - {{ service.min_price_amount  }} /hr</h5>
+                                <ng-template #fixed>
+                                    <h5 > {{ service.fixed_price_amount }}  </h5>
+                                </ng-template>
+    
+                            </div>
+                            <div class="d-flex location">
+
+                                    <div class="pr-3" *ngIf="(service.location.city.city && service.location.country.country) || service.location_type === 'On_Site_Work'">
+
+                                        <img src="assets/img/24.svg" alt="logo">
+                                        <span *ngIf="service.location_type === 'On_Site_Work'; else location" class="pl-2">Remote</span>
+
+                                        <ng-template #location>
+                                            <span *ngIf="service.location.city.city && service.location.country.country"> {{ service.location.city.city }}, {{ service.location.country.country | country }} </span>
+                                        </ng-template>
+
+                                   </div>
+
+                                    <div >
+                                        <img src="assets/img/492.svg" alt="logo">
+                                        <span class="pl-2">{{"Delivery " +  deliveryTime[service.delivery_time] }}</span>
+                                    </div>
+    
+                            </div>
+                        </div>
+                        <div class="slider">
+    
+                            <ng-container *ngIf='service?.files && service?.files.length > 0'>
+                                <app-service-slider-edition-two [files]='service.files'> </app-service-slider-edition-two>
+                            </ng-container>
+    
+                        </div>
+                        <div class="text col-12 mt-2">
+                                <p class="paragraph"> {{ service.description }} </p>
+                            </div>
+                        <div class="col-12 mt-3">
+                                <div class="busniessh-hours">
+                                    <p  class="mb-1" >Working hourse</p>
+                                    <div class="hour" *ngFor="let hour of service?.wokring_hour.working_date">
+    
+                                        <span *ngIf="hour.week_days.length  >= 2; else onDay">
+                                            {{ hour.week_days[0] | titlecase }} to 
+                                            {{ hour.week_days[hour.week_days.length - 1 ] | titlecase }} - {{ hour.hour_from }} to {{ hour.hour_to }}
+                                        </span>
+    
+                                            <ng-template  #oneDay>
+                                                <span>
+                                                        {{ hour.week_days[0] | titlecase }}  -  {{ hour.hour_from }} to {{ hour.hour_to }}
+                                                </span>
+                                            </ng-template>
+    
+                                    </div>
+                            </div>
+    
+    
+                            <div class="mt-3" *ngIf="service?.additional_details?.qualifications?.skills.length > 0">
+                                <p style="margin-bottom: 4px;">Skills</p>
+                                <ng-container *ngFor="let skill of service?.additional_details?.qualifications?.skills">
+                                    <app-rank-box [name]='skill.skill'></app-rank-box>
+                                </ng-container>
+                            </div>
+    
+                            <div class="mt-3" *ngIf="service?.additional_details?.qualifications?.toolTechnology.length > 0">
+                                <p style="margin-bottom: 4px;">Tools & Technologies</p>
+                                <ng-container *ngFor="let tool of service?.additional_details?.qualifications?.toolTechnology">
+                                    <app-rank-box [name]='tool.tool_Technology' [rank]='tool.rank'></app-rank-box>
+                                </ng-container>
+                            </div>
+    
+                            <div class="mt-3" *ngIf="office?.languages?.length > 0">
+                                    <p style="margin-bottom: 4px;">Languages</p>
+                                    <ng-container *ngFor="let lang of office.languages">
+                                        <app-rank-box [name]='lang.language' [rank]='lang.rank'></app-rank-box>
+                                    </ng-container>
+                            </div>
+                                <div class="mt-3 text-right"  *ngIf="activeProfileId !== profileId">
+                                    <button class="btn btn-primary" (click)="openOrderModal()">Order now</button>
+                                </div>
+                        </div>
+                  </ng-container>
+
+
+                <ng-container *ngIf="loading">
+                       <div class="d-flex justify-content-center align-items-center h-100">
+                           <app-spinner></app-spinner>
+                       </div>
+                </ng-container>
+                
+                </div>
+            </div>
+
+            <div class="col-lg-3">
+                <app-ads [isLeft]="true"></app-ads>
+            </div>
+
+        </div>
+        <div class="col-lg-9 mb-3">
+                <div style="background: #fff;" *ngIf="!loading && review?.reviews.length > 0" >
+                    <app-service-order-review-box  [review]='review'></app-service-order-review-box>
+                    <div class="border-line"></div>
+                    <div class="mt-2 text-right">
+                        <button class="mr-3 mb-3 backgroundless" [routerLink]="['/v-office','office', officeId, activeProfileType, activeProfileId ]" >Show more reviews</button>
+                    </div>
+               </div>
+        </div>
+
+        <div class="col-lg-9 mb-3" *ngIf="otherService" >
+                <div style="background: #fff;" *ngIf="!loading && review?.reviews.length > 0"  class="p-3">
+                    <div class="d-flex justify-content-between">
+                        <h4 style="font-weight: 400;" >Other Services From {{ office?.name }}</h4>
+                        <button class="mr-3 mb-3 backgroundless" [routerLink]="['/v-office','office', officeId, activeProfileType, activeProfileId ]" >See all</button>                     
+                    </div>
+                    <div class="service-detailed-box p-2" style="height: 221px; position: relative;">
+                          <div class="row" style="height: 100%;">
+                              <div class="col-4 details-file" *ngIf="otherService.files.length > 0" style="height: 100%;">
+                                  <img [src]="'/file/'+otherService.files[0]['address']" alt="image">
+                              </div>
+                              <div class="col-8 detailed-addational-details">
+                                  <h6 >{{ otherService.title }}</h6>
+                                     <ng-container *ngIf="otherService.price === 'Price_Negotiable'; else notNegotiable">
+                                         <h5>{{ otherService.currency }}
+                                             {{ otherService.min_price_amount }} - 
+                                             {{ otherService.max_price_amount }}
+                                            /hr 
+                                         </h5>
+                                     </ng-container>
+                                     <ng-template #notNegotiable>
+                                            <h5>{{ otherService.currency }} 
+                                            {{ otherService.fixed_price_amount }} /hr </h5> 
+                                     </ng-template>
+                                     <p style="color: #808080;">{{ otherService.description }}</p>
+                                     <ng-container *ngIf="otherService.additional_details.qualifications.toolTechnology.length > 0">
+                                         <div class="addaditional-details-qualification" *ngIf="otherService.additional_details.qualifications.toolTechnology as tools">
+                                             <ng-container *ngIf="tools.length === 1; else more">
+                                                 <app-rank-box [name]='tools[0]["tool_Technology"]' 
+                                                               [rank]='tools[0]["rank"]'></app-rank-box>
+                                             </ng-container>
+                                             <ng-template #more>
+                                                    <app-rank-box [name]='tools[0]["tool_Technology"]' 
+                                                                  [rank]='tools[0]["rank"]'></app-rank-box>
+                                                    <app-rank-box [name]='tools[1]["tool_Technology"]' 
+                                                                  [rank]='tools[1]["rank"]'></app-rank-box>
+
+                                                   <ng-container *ngIf="tools.length - 2 > 0">
+                                                        <p style="color: #808080;" class="d-inline-block">+ {{ tools.length -2  }} more </p>
+                                                   </ng-container>
+                                                   
+                                             </ng-template>
+                                         </div>
+                                     </ng-container>
+                                     <div class="likes-detailed"  *ngIf="activeProfileId !== profileId">
+                                            <img [src]="otherService.has_liked ?  'assets/img/99.svg': 'assets/img/44.svg'" 
+                                                 alt="heart" 
+                                                 style="height: 14px; cursor: pointer;"
+                                                 (click)="likeOrUnlikeService( service.has_liked, service.id, true )">
+                                        </div>
+                                     
+                              </div>
+                          </div>
+                    </div>
+               </div>
+        </div>
+
+        
+    </div>
+</div>
+
+
+         
+<app-modal (closeModal)='modalType = null'>
+    <ng-container *ngIf="modalType === 'Order Now'">
+            <app-order-now-modal [orderService]='orderService' (result)='modalType = null; _modal.close()'></app-order-now-modal>
+    </ng-container>
+</app-modal>
+        
+ 

@@ -1,0 +1,25 @@
+ <ng-container *ngIf='userAcountSession'>
+    <div class="user-session-container">
+      <div class="d-flex justify-content-between session-row"  *ngFor='let session of userAcountSession; let i = index '>
+        <div>
+          <div class="d-flex align-items-center">
+            <div class="user-session-icon-container">
+              <img [src]="utils.changeImageForSessions(session.device_type)" alt="session" class="img-head mr-3" />
+            </div>
+            <div>
+              <span  class="items-pc">{{session.os}}  {{ getCountryName( session.location.country) }}</span>
+              <div  *ngIf='!session.current_session' class="item ml-0">{{session.browser}} - {{   session.last_activity_time | date}}</div>
+              <div  *ngIf='session.current_session' class="item ml-0">{{session.browser}} - Active now</div>
+            </div>
+          </div>
+        </div>
+        <a *ngIf='!session.current_session' (click)='signOutFromSession(session,i)'> {{ "1316" | translate }} </a>
+      </div>
+      <div class="d-flex justify-content-between session-row">
+        <a *ngIf='userAcountSession.length <   20 &&  userAcountSession.length > 3' (click)='showMore()'> {{ "1305" | translate }} </a>
+        <div>
+        <a *ngIf='userAcountSession.length  !== 1' (click)='signOutFromAllSessions()'> {{ "1317" | translate }} </a>
+        </div>
+      </div>
+  </div>
+  </ng-container>

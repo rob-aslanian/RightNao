@@ -1,0 +1,119 @@
+<div class="backgroundless ml-auto" ngbDropdown autoClose="outside" #drop="ngbDropdown">
+    <button class="btn btn-secondary" style="height: 38px;" type="button" ngbDropdownAnchor (click)="open(drop)">
+        <strong>
+            Saved filters
+        </strong>
+    </button>
+    <div class="options search-filters-option" ngbDropdownMenu *ngIf="(filtersObservable | async) as _filters">
+        <!-- People -->
+        <ng-container *ngIf="fillters['UserSearchFilterFragment'].length > 0 ">
+            <span>
+                <img src="assets/img/235.svg" alt="icon" />
+                People
+            </span>
+            <ng-container *ngIf=" fillters['UserSearchFilterFragment'] as userFilters">
+                <div class="d-flex filter_row" *ngFor='let userFilter of userFilters; let i =  index'>
+                    <button class="backgroundless" type="button" (click)="selectFilter('people' , userFilter)">
+                        {{ userFilter.filter_name }}
+                    </button>
+                    <button class="backgroundless" (click)="removeFilter('UserSearchFilterFragment' , userFilter.id)">
+                        &#10005;
+                    </button>
+                </div>
+            </ng-container>
+        </ng-container>
+
+        <!-- Company -->
+        <ng-container *ngIf="fillters['SearchCompanyFilterFragment'].length > 0 ">
+            <span>
+                <img src="assets/img/13.svg" alt="icon" />
+                Company
+            </span>
+            <ng-container *ngIf=" fillters['SearchCompanyFilterFragment'] as companyFilters">
+                <div class="d-flex filter_row" *ngFor='let companyFilter of companyFilters; let i =  index'>
+                    <button class="backgroundless" type="button" (click)="selectFilter('company' , companyFilter)">
+                        {{ companyFilter.filter_name }}
+                    </button>
+                    <button class="backgroundless"
+                        (click)="removeFilter('SearchCompanyFilterFragment' , companyFilter.id)">
+                        &#10005;
+                    </button>
+                </div>
+            </ng-container>
+        </ng-container>
+
+        <!-- Jobs -->
+        <ng-container *ngIf="fillters['SearchJobFilterFragment'].length > 0 ">
+            <span>
+                <img src="assets/img/236.svg" alt="icon" />
+                Jobs
+            </span>
+            <ng-container *ngIf=" fillters['SearchJobFilterFragment'] as jobFilters">
+                <div class="d-flex filter_row" *ngFor='let jobFilter of jobFilters; let i =  index'>
+                    <button class="backgroundless" type="button" (click)="selectFilter('job' , jobFilter)">
+                        {{ jobFilter.filter_name }}
+                    </button>
+                    <button class="backgroundless" (click)="removeFilter('SearchJobFilterFragment' , jobFilter.id)">
+                        &#10005;
+                    </button>
+                </div>
+            </ng-container>
+        </ng-container>
+
+        <!-- Service -->
+        <ng-container *ngIf="fillters['SearchServiceFilterFragment'].length > 0 ">
+            <span>
+                <img src="assets/img/711.svg" alt="icon" />
+                Service
+            </span>
+            <ng-container *ngIf=" fillters['SearchServiceFilterFragment'] as serviceFilters">
+                <div class="d-flex filter_row" *ngFor='let serviceFilter of serviceFilters; let i =  index'>
+                    <button class="backgroundless" type="button" (click)="selectFilter('service' , serviceFilter)">
+                        {{ serviceFilter.filter_name }}
+                    </button>
+                    <button class="backgroundless" (click)="removeFilter('SearchServiceFilterFragment' , serviceFilter.id)">
+                        &#10005;
+                    </button>
+                </div>
+            </ng-container>
+        </ng-container>
+
+        <!-- Service -->
+        <ng-container *ngIf="fillters['SearchServiceRequestFilterFragment'].length > 0 ">
+            <span>
+                <img src="assets/img/712.svg" alt="icon" />
+                Service Request
+            </span>
+            <ng-container *ngIf=" fillters['SearchServiceRequestFilterFragment'] as jobFilters">
+                <div class="d-flex filter_row" *ngFor='let jobFilter of jobFilters; let i =  index'>
+                    <button class="backgroundless" type="button" (click)="selectFilter('service_request' , jobFilter)">
+                        {{ jobFilter.filter_name }}
+                    </button>
+                    <button class="backgroundless" (click)="removeFilter('SearchServiceRequestFilterFragment' , jobFilter.id)">
+                        &#10005;
+                    </button>
+                </div>
+            </ng-container>
+        </ng-container>
+
+        <!-- Candodate -->
+        <ng-container *ngIf="isCompanyActive && fillters['SearchCandidateFilterFragment'].length > 0">
+            <span>
+                <img src="assets/img/234.svg" alt="icon" />
+                Candidates
+            </span>
+            <ng-container *ngIf=" fillters['SearchCandidateFilterFragment'] as candidateFilters">
+                <div class="d-flex filter_row" *ngFor='let candidateFilter of candidateFilters; let i =  index'>
+                    <button class="backgroundless" type="button" (click)="selectFilter('candidate' , candidateFilter)">
+                        {{ candidateFilter.filter_name }}
+                    </button>
+                    <button class="backgroundless"
+                        (click)="removeFilter('SearchCandidateFilterFragment' , candidateFilter.id)">
+                        &#10005;
+                    </button>
+                </div>
+            </ng-container>
+        </ng-container>
+
+    </div>
+</div>

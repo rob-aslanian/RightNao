@@ -1,0 +1,131 @@
+@import 'src/variables'; 
+
+.box {
+
+    &__img {
+
+        &__content {
+            width: 100%;  
+            height: 100%;
+
+            img {
+                width: 100%; 
+                height: 100%;
+                border-top-left-radius: .5rem;
+                border-bottom-left-radius: .5rem;
+                cursor: pointer; 
+            }; 
+
+        }; 
+    }; 
+
+    &__details {
+        border: 1px solid $grey-dark; 
+        border-left-color: transparent !important;
+        border-top-right-radius: .5rem;
+        border-bottom-right-radius: .5rem;
+
+        &__title {
+
+            h4 {
+                font-size: 1.25rem; 
+                font-weight: 300; 
+                cursor: pointer; 
+            }
+
+            img {
+                margin-left: 1rem; 
+            }
+        }
+
+        &__price {
+            p {
+                font-size: 1.5rem; 
+                font-weight: bold; 
+                color: $background-dark-cyan;
+            }
+        }
+
+        &__rooms {
+            &__item {
+                align-items: end; 
+                p {
+                    font-size: 0.875rem; 
+                    white-space: nowrap; 
+                    margin: 0; 
+                
+                }; 
+            }; 
+        }; 
+
+        &__description {
+            p {
+                color: $dark-grey; 
+                font-size: .875rem;
+            }
+        }
+
+        &__alert {
+            &__notify {
+                position: relative;
+                display: flex; 
+                justify-content: flex-end; 
+                margin-top: 1rem; 
+               
+
+                img {
+                    margin-top: .3rem; 
+                    margin-right: .5rem; 
+                }
+                &__counter {
+                    position: absolute; 
+                    right: 0;
+                    top: 0; 
+                    background-color: $autumn-orange; 
+                    width: 0.875rem; 
+                    height: 0.875rem;
+                    border-radius: .2rem;
+                    display: flex; 
+                    justify-content: center; 
+                    align-items: center;  
+                    
+                    span {
+                        color: white; 
+                        font-size: 0.75rem; 
+                    }
+                }
+            }
+        }
+
+
+
+    }
+
+}
+
+button {
+    background-color: $lighter-grey !important; 
+    // color: $dark-grey !important;     
+    font-size: .875rem; 
+    white-space: nowrap;
+    padding-top: .5rem; 
+    padding-bottom: .5rem; 
+}; 
+
+.options {
+    background-color: white; 
+    border-radius: .5rem; 
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3); 
+    position: absolute; 
+    right: 1rem;
+    z-index: 2; 
+    top: 2.5rem; 
+
+    p {
+        font-size: .875rem; 
+        cursor: pointer;
+    }
+
+}
+
+

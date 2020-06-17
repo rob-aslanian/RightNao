@@ -1,0 +1,39 @@
+
+
+
+<div class="modal-content" *ngIf='!deactivate '>
+    <div class="popup-content">
+        <form [formGroup]='formDeactivate'>
+            <div class="form-group">
+                <label for="password-to-continue">Please enter your password to continue</label>
+                <input type="password" class="form-control" id="password-to-continue" 
+                       placeholder="Password" formControlName='password' [ngClass]="{'is-invalid': inncorectPassword && !deactAccount.password.touched}">
+            </div>
+            <span class="note">
+                    Note:
+            </span>
+            <br>
+            <small>
+                    You can disable your account instead of deleting it. This means your 
+                    account will be hidden until you reactivate it by logging back in.
+            </small>
+            <button type="submit"  class="btn btn-primary d-block ml-auto" (click)='saveResult()'>Confirm</button>
+        </form>
+    </div>
+</div>
+
+
+
+<!-- deactivate account -->
+
+    <div class="modal-content" *ngIf='deactivate'>
+        <div class="popup-content">
+            <h3>Are you sure you want to Deactivate your account?</h3>
+            <button  class="btn btn-primary mt-4 d-block ml-auto" (click)='deactivateAccount()'>Confirm</button>
+            
+        </div>
+    </div>
+
+
+
+

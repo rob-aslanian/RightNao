@@ -1,0 +1,103 @@
+
+<div class="p-3">
+    <div class="add-portfolio">
+            <div class="add-portfolio-container">
+                    <div class="d-flex justify-content-between">
+                            <h5>Create a Project</h5>
+                            <a style="cursor: pointer" [routerLink]="['../../Music']" >
+                                <img src="assets/img/54.svg" alt="back" >
+                            </a>
+                    </div>
+                 <form autocomplete="off" [formGroup]="portfolioForm">
+                        <div class="row">
+
+                           <div class="col-md-7">
+                                        <div class="upload upload-big" [ngClass]="{'invalid': isSubmitted && !musics.length}">
+                                                
+                                                <app-upload-file [supportedType]='"Music"' 
+                                                                 (result)='getFiles($event)'></app-upload-file> 
+                                        </div>
+                                        <div class="row mt-4">
+                                                <div class="col-4"  style="border-radius: 5px; max-height: 256px;">
+
+                                                                <app-upload-file [supportedType]='"Photo"' 
+                                                                                 (result)='getUploadImage($event)'
+                                                                                 [index]='50'
+                                                                                 [fileEdit]='file.path'></app-upload-file> 
+                                                </div>
+                                                <div class="col-8">
+                                                           <p>Default Background</p>
+                                                           <div class="row">
+                                                                   <div class="col-4 mb-3" *ngFor="let img of defaultImage">
+
+                                                                           <img [src]="img" 
+                                                                                alt="default-image" 
+                                                                                class="default-image" 
+                                                                                (click)='setDefaultImage( img )' 
+                                                                                style="max-height: 107px;">
+                                                                   </div>
+                                                           </div>
+                                                </div>
+                                        </div>
+                          
+                           </div>
+
+                           <div class="col-md-5">
+                                        <div class="form-group">
+                                                <label for="title">Title</label>
+
+                                                <input type="text" 
+                                                       class="form-control" 
+                                                       id="title" 
+                                                       placeholder="Add a title" 
+                                                       formControlName="title"
+                                                       [ngClass]="{'is-invalid': portCtrl.title.invalid && isSubmitted }">
+                                        </div>
+ 
+
+                                        <div class="form-group">
+                                                <label for="description">Description</label>
+
+                                                <textarea class="form-control" 
+                                                          placeholder="Tell us about your process and you arreved at this design" 
+                                                          cols="4" 
+                                                          formControlName="description"></textarea>
+
+                                         </div>
+                                         <div class="form-group">
+
+                                                 <app-music-box *ngFor="let music of musics; let i = index"
+                                                                 [music]='music'
+                                                                 [index]='i'
+                                                                 [isAdd]='true'
+                                                                 (result)='getMusic( $event )'></app-music-box>
+                                         </div>
+
+                                        <div  class="custom-control custom-checkbox" style="margin-left: -15px;" >
+
+                                                <input  class="custom-control-input custom-control-label"  
+                                                        id="check-connections" 
+                                                        type="checkbox" 
+                                                        formControlName="is_comment_disabled">
+
+                                                <label  class="custom-control-label" 
+                                                        for="check-connections" 
+                                                        style="color:#808080"> Close Comments </label>
+                                        </div>
+                           </div>
+
+                        </div>   
+
+ 
+                        <div class="d-flex justify-content-end mt-3">
+                                <button class="btn btn-primary"   type="button" (click)='submitForm()'>
+                                        Publish
+                                </button>
+                        </div>  
+                        
+                 </form>
+                </div>
+
+    </div>
+
+</div>

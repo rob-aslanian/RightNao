@@ -1,0 +1,130 @@
+<div class="row portfolio-wrapper">
+    <div class="col-6  pl-0">
+        <div class="music-info" *ngIf="selectedFile">
+            <div class="info-photo">
+                <img [src]="selectedFile.address? '/file/'+selectedFile.address : 'assets/img/Music/4.jpg'" alt="" class="pl-0" style="max-height: 576px;">
+                <div class="file-description pl-2" *ngIf="selectedMusic">
+                    <audio class="d-none" [src]="'/file/'+selectedMusic.address"  #playe (timeupdate)='onTimeUpdate()'></audio>
+                     <div class="d-flex align-items-center" >
+                           <img class="pl-3" 
+                                [src]="!isTurnnedOn ||  
+                                        player?.nativeElement?.ended ? 
+                                       'assets/img/play-music.svg' : 
+                                       'assets/img/pause-music.svg' " 
+                                alt="" 
+                                (click)='playMusic( player?.nativeElement?.paused )'
+                                style="width: 50px; height: 50px; cursor: pointer;">
+
+                           <div class="description-music pl-3 music-player">
+                                 <p class="m-0">{{ selectedMusic.name }}</p>
+                                 <p class="m-0"> By {{  music.title }}</p>
+                           </div>
+                     </div>
+                     <ng-container *ngIf="isTurnnedOn">
+                         <div class="range">
+                              <input type="range"  [max]="player?.nativeElement?.duration" 
+                                    (change)='handleSlide($event)'>
+                              <div class="range-wrapper">
+                                  <div></div>
+                              </div>
+                              <app-progress-bar-music [_player]='player?.nativeElement'></app-progress-bar-music>
+                         </div>
+                    </ng-container>
+                        
+                </div>
+                
+            </div>
+        </div>
+        <div class="portfolio-likes likes" style="padding-left: 11px;">
+            <div class="d-flex justify-content-between">
+                <div class="likes">
+                        <img [src]="music.has_liked ? 'assets/img/99.svg' : 'assets/img/44.svg'" alt="" >
+                        <span> {{ music.like_count }}</span>
+                </div>
+                    <div class="views">
+                    <span (click)="showComments = !showComments"> {{ amountComments }} comments</span> | 
+                    <span>{{ music.view_count }} views </span>
+                </div>
+            </div>
+        </div>
+        <hr>
+
+     <div class="p-2">
+        <div class="add-likes likes">
+            <div class="likes d-inline">
+                <img [src]="music.has_liked ? 'assets/img/99.svg' : 'assets/img/44.svg'" alt="" (click)='likeOrUnlike( music.has_liked )'>
+                <span (click)='likeOrUnlike( music.has_liked )'>Like</span>
+            </div>
+            <div class="comments d-inline">
+                <img src="assets/img/41.svg" alt="">
+                <span (click)="showComments = !showComments">Comment</span>
+            </div>
+        </div>
+        <ng-container *ngIf="showComments">
+            <div class="likes">
+                <app-portfolio-comments *ngIf="id && userId"
+                                        [owner_id]='userId'
+                                        [portfolio_id]='id'></app-portfolio-comments>
+            </div>
+        </ng-container>
+   </div>
+
+        
+     
+ 
+    </div>
+    <div class="col-6 mt-3" >
+            <div class="row mb-4" *ngFor="let music of musics; let i = index">
+                    <div class="col-7" >
+                         <span *ngIf="selectedMusic.id !== music.id">{{ i +1 }}</span>
+                         <img src="assets/img/pause-music.svg" *ngIf="selectedMusic.id === music.id && 
+                                                                     isTurnnedOn && !player?.nativeElement?.ended" class="sub-player" (click)='handleSubPlayerClicks( true )'>
+
+                         <img src="assets/img/play-music.svg" *ngIf="selectedMusic.id === music.id && !isTurnnedOn || 
+                                                                    (selectedMusic.id === music.id &&
+                                                                     player?.nativeElement?.ended)" class="sub-player" (click)='handleSubPlayerClicks( false )'>
+
+                         <a class="pl-3" > {{ music.name | addDots:'25' }} </a>
+                    </div>
+                
+                    <div class="col-3 text-right" >
+                          <img src="assets/img/71.svg" alt="download" class="pl-2" (click)='download(music)'>
+                    </div>
+                
+                    <div class="col text-right" (click)='removeMusic()'>
+                        <img src="assets/img/53.svg" alt="delete">
+                    </div>
+                </div>
+            <div class="portfolio-music-details">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="details-left">
+    
+                                <div class="pt-2">
+                                    <img src="assets/img/6.svg" alt="eye">
+                                    <span>{{ music?.view_count }} Views</span>
+                                </div>
+    
+                                <div class="pt-2">
+                                     <img src="assets/img/44.svg" alt="likes">
+                                     <span>{{ music?.like_count }} Likes</span>
+                                 </div>
+    
+                                 <div class="pt-2">
+                                         <img src="assets/img/71.svg" alt="likes">
+                                         <span>{{ music?.saved_count }} Saved</span>
+                                 </div>
+    
+                                 <div class="pt-2">
+                                         <img src="assets/img/168.svg" alt="likes">
+                                         <span> {{ music?.created_at | date }} </span>
+                                 </div>
+                            </div>
+                    </div>
+                    <div class="col-6">
+                        <p>{{ music?.description   }}</p>
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>

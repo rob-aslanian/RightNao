@@ -1,0 +1,31 @@
+<div class="langs">
+
+  <div class="lang__list" *ngIf="data.langs.length > 0 ">
+    <button class="btn btn-blue mr-2" style="max-width: 128px;">{{  currentLang | lang  }}</button>
+    <button *ngIf="data.langs.length === 2" class="btn btn-light">{{  data['langs'][1] | lang }}</button>
+    <button class="btn other-btn mr-2" [ngbPopover]="otherlang" *ngIf="data.langs.length > 2">Other ▾</button>
+    <!-- Other langs -->
+    <ng-template #otherlang>
+        <div class="options-for-more" >
+            <div class="option d-flex align-items-center" *ngFor="let lang of otherLang; trackBy:trackByFn">
+                <button (click)="selectLang(lang)">{{ utils.getLanguage(lang) }}</button>
+                <!-- <div class="option-icon-coniner">
+                    <img src="assets/img/53.svg" alt="message">
+                </div> -->
+            </div>
+        </div>
+    </ng-template>
+    <!-- Other langs -->    
+  </div>
+
+  <button type="button" class="langs__btn" (click)="open()" *ngIf="hasPermission">
+     <b>+</b>
+     <span *ngIf="data.langs.length === 0">Add profile in another language</span>
+  </button>
+
+</div>
+
+
+<app-modal (closeModal)="modalType = null;">
+    <app-langs-modal *ngIf="modalType === 'lang'" [data]="data" (langAdded)="selectLang($event)"></app-langs-modal>
+</app-modal>

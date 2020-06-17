@@ -1,0 +1,17 @@
+
+<form [formGroup]="form" class="col-12 basic-form ">
+        <div class="form-group">
+                <p>Lifestyle</p>
+                <div class="custom-control custom-radio custom-control-inline col-5 col-md-3"  *ngFor="let item of lifeStyles">
+                        <input  type="radio" 
+                                class="custom-control-input" 
+                                [value]="item['type']" 
+                                id="lifeStyle-{{ item['type'] }}" 
+                                name="lifeStyle"
+                                formControlName="lifeStyle">
+                        <label  for="lifeStyle-{{ item['type'] }}" class="custom-control-label"> 
+                        {{ item['text'] }}
+                        </label>
+                </div>
+        </div>
+</form>

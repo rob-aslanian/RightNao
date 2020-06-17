@@ -1,0 +1,517 @@
+<main class="main-light-blue">
+  <div class="dark-blue-bg-for-jobs big-screen">
+    <div class="background-content-wrap">
+      <h1>Hire</h1>
+    </div>
+  </div>
+  <div class="dark-blue-bg-for-jobs small-screen">
+    <button *ngIf="activePage !== 1" type="button" (click)="gotoPreviousPage()" class="backgroundless">
+      Back
+    </button>
+    <h2>Post a job</h2>
+    <button *ngIf="activePage !== 3" type="button" (click)="gotoNextPage()" class="btn btn-primary d-block ml-auto">
+      Next
+    </button>
+  </div>
+  <div class="post-a-job container jobs" *ngIf="isCompany">
+    <div class="row justify-content-between">
+      <!-- Content in the center -->
+      <div class="col">
+        <!-- Filtered search start -->
+        <h5 class="font-weight-bold big-screen">Post a Job</h5>
+        <div class="center-content-jobs post-job" *ngIf="activePage === 1">
+          <h6>Choose job location and currency</h6>
+          <form [formGroup]="form" autocomplete="off">
+            <div formGroupName="meta">
+              <div class="countries">
+                <!-- <button (click)="onAddCountry($event)" class="btn btn-outline-secondary">
+                  Add Country
+                </button>
+                <div #locationPopupContainer class="options addCountryPopover {{ addCountryPopoverVisible ? 'open' : '' }}">
+                  <div class="form-group my-0">
+                    <input type="text" #addCountryTextbox name="qf_country" [ngbTypeahead]="searchCountry" (selectItem)="onSelectCountryForAdvertisement($event, addCountryTextbox)"
+                      [resultFormatter]="countryFormatter" [inputFormatter]="countryFormatter" class="form-control" id="qf_location"
+                      placeholder="Country">
+                  </div>
+                </div>  -->
+                <div class="mt-1">
+                  <div class="form-group" formGroupName="active_advertisement">
+                    <div class="row">
+                      <div class="col-3">
+                        <select class="form-control" formControlName="advertisement_countries">
+                          <option [value]="country.asc" *ngFor="let country of countries">
+                            {{ country.name }}
+                          </option>
+                        </select>
+                      </div>
+
+                      <div class="col-3">
+                        <select id="currency" class="form-control" formControlName="currency">
+                          <option value="" disabled>Currency</option>
+                          <option *ngFor="let currency of utils.getAllCurency()" [value]="currency">
+                            {{ currency  }}
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <h6>Job post</h6>
+              <!-- <div class="container"> -->
+              <div class="form-row plan-row " formGroupName="active_advertisement">
+                <div class="col-lg-3 col-sm-6" 
+                  *ngFor="let plan of jobDays; let i = index;">
+                  <label [for]="plan['name']" class="priced-plan-container" 
+                         [ngClass]="{'plan-active': activeDay === i || 
+                                  (jobAmountOfDays === plan['days'] &&  plan['days'] <= 60 ) 
+                          }">
+
+                      <div class="plan-content">
+
+                        <div class="plan-heading">
+                          <h3 *ngIf="!plan['select']"> 15 <span style="font-size: 14px;"> {{ activeJobAdvertisement.value.currency }} </span></h3>
+                          <h3 *ngIf="plan['select']">Custom</h3>
+                          <span class="mt-2">
+                            <ng-container *ngIf="!plan['select'] || (plan['select'] && activeDay !== i); else:daysSelect">
+                                {{ plan['name'] }}
+                            </ng-container>
+
+                            <ng-template #daysSelect>
+                                <select class="form-control" formControlName="amount_of_days" >
+                                  <option value="0" disabled>Month numbers</option>
+                                  <option [value]="metaDays.days" *ngFor="let metaDays of plan['select']">
+                                    {{ metaDays.name }}
+                                  </option>
+                                </select>
+                            </ng-template>
+
+                          </span>
+                        </div>
+                        
+                        
+                        <div class="custom-control custom-radio d-none">
+                          <input type="radio" name="amount_of_days" [id]="plan['name']" class="custom-control-input" [value]="plan['days']"
+                            formControlName="amount_of_days" (click)="selectJobPlan($event , plan['days']  , i)">
+                          <label class="custom-control-label" [for]="plan['name']"></label>
+                        </div>
+                      </div>
+  
+
+                  </label>
+                </div>
+              </div>
+              
+
+              <app-job-exposure></app-job-exposure>
+
+              <h6 class="mt-5">Additional Features</h6>
+
+              <div class="post-a-job__content__sub-section mt-0"  formGroupName="active_advertisement">
+                  <span class="page-section-text-grey">Highlight announcement</span>
+                  <div class="post-a-job__content__additional d-flex mt-3">
+                      <div class="custom-control custom-radio mr-4" *ngFor="let highlight of highlights">
+                          <input type="radio" [value]="highlight['value']" class="custom-control-input" 
+                                [id]="highlight['value']" name="highlight" formControlName="highlight" >
+                          <label class="custom-control-label" [for]="highlight['value']">
+                              <h4 class="mb-0" >
+                                  <div class="page-section-sub-heading mr-2" >
+
+                                      <ng-container *ngIf="highlight['value'] !== 'none'">
+                                          <span class="post-a-job__content__additional__frame" 
+                                          [ngClass]="{'bordered': highlight['value'] === 'white' }">
+                                            {{ highlight['name'] }} </span>
+                                          <span class="ml-2">$130</span>
+                                      </ng-container>
+
+                                      <span class="page-section-sub-heading mr-2" *ngIf="highlight['value'] === 'none' "> 
+                                        {{ highlight['name'] }}
+                                      </span>
+                                  </div>
+
+                              </h4>
+                          </label>
+                      </div>
+                  </div>
+              </div>
+
+
+              <div class="publish d-flex justify-content-between" formGroupName="active_advertisement">
+                <div class="custom-control custom-checkbox mr-sm-2">
+                  <input type="checkbox" class="custom-control-input" id="publish" formControlName="anonymous"
+                    (change)="setAnonymously($event)">
+                  <label class="custom-control-label" for="publish">Publish Anonymously</label>
+                </div>
+                <span class="price">{{ anonymusPrice }}&nbsp;{{ activeJobAdvertisement.value.currency }}</span>
+              </div>
+
+            <!-- <div class="total d-flex" *ngIf=" activeJobAdvertisement.get('num_of_languages').value !== 1 || 
+                                              activeJobAdvertisement.get('renewal').value  !== 0 || 
+                                              activeJobAdvertisement.get('anonymous').value ">
+
+                <div class="features-1" formArrayName="advertisements">
+                  <div class="headings">
+                    <span>Location</span>
+                    <span>Advertising Plan</span>
+                    <span>Renewal</span>
+                    <span>Total</span>
+                  </div>
+                  <div class="option" *ngFor="let price of totalPricesCountries">
+                    <span>{{ price.country | country }}</span>
+                    <span
+                      *ngIf=" planPrices[form.get('job_plan').value]">{{ planPrices[form.get('job_plan').value]['name'] }}
+                      - {{ price.plan_price }}&nbsp;{{ jobAdvertisements.value.currency }}</span>
+                    <span>{{ form.get('renewal').value }}x -
+                      {{ price.renewal_price }}&nbsp;{{ jobAdvertisements.value.currency }}</span>
+                    <span>{{ price.total_price }}&nbsp;{{ jobAdvertisements.value.currency }}</span>
+                  </div>
+                </div>
+                <div class="border-between">
+
+                </div>
+                <div class="features-2">
+                  <div class="headings">
+                    <span>Additional Features</span>
+                  </div>
+                  <div class="option d-flex flex-column">
+                    <span>Language {{ form.value.num_of_languages }} - 0 &nbsp;
+                      {{ jobAdvertisements.value.currency }} </span>
+                    <span>Anonymous - {{ anonymusPrice  }}&nbsp; {{ jobAdvertisements.value.currency }} </span>
+                  </div>
+                </div>
+                <div class="border-between">
+
+                </div>
+                <div class="total-price">
+                  <span>Total
+                    <span class="price"> {{ totalPrice  }}&nbsp; {{ form.value.currency }} </span>
+                  </span>
+                </div>
+              </div> -->
+            </div>
+            <button type="button" (click)="gotoNextPage()" class="btn btn-primary d-block ml-auto">
+              Next
+            </button>
+          </form>
+        </div>
+        <div class="center-content-jobs post-job" *ngIf="activePage === 2">
+          <div class="intro">
+            <img src="assets/img/62.svg" alt="intro">
+            <h6>Job Details</h6>
+          </div>
+          <form class="bold-labeled" [formGroup]="form" autocomplete="off">
+            <div formGroupName="details">
+              <div class="form-group">
+                <label for="job-title">Job title
+                  <span>*</span>
+                </label>
+                <input type="text" class="form-control" formControlName="title" id="job-title"
+                  placeholder="Enter job title" maxlength="128"
+                  [ngClass]="{ 'is-invalid': submitedSecondPage && details.title.errors }">
+
+                <!--Error -->
+                <span class="error_message" *ngIf="submitedSecondPage && details.title.errors">
+                  {{ utils.$getErrors('required') }}
+                </span>
+                <!--Error -->
+              </div>
+              <label for="country">Job Location
+                <span>*</span>
+              </label>
+
+              <div>
+                  <div class="d-flex">
+                      <div class="form-check custom-control custom-radio mr-5">
+                          <input type="radio" class="custom-control-input" name="location_type"  
+                                 formControlName="location_type" value="On_Site_Work" id="onsite">
+                          <label class="custom-control-label page-section-text-grey" for="onsite">On-site work</label>
+                      </div>
+                      <div class="form-check custom-control custom-radio mr-5">
+                          <input type="radio" class="custom-control-input" name="location_type"
+                                 formControlName="location_type" value="Remote_only"  id="remote">
+                          <label class="custom-control-label page-section-text-grey" for="remote">Remote</label>
+                      </div>
+                  </div>
+                  <ng-container *ngIf="jobLocationType.value === 'On_Site_Work' ">
+                      <!-- <div class="mt-4 mb-4" >
+                          <select class="form-control">
+                              <option value="0">Main office - 18100 Von Karman Avenue, Suite 1000, 92612, Irvine, Canada</option>
+                              <option value="1">1</option>
+                              <option value="2">2</option>
+                              <option value="3">Add Address</option>
+                          </select>
+                      </div> -->
+                      <div class="form-row mt-2">
+                          <div class="form-group col-sm-4 " *ngIf="countries">
+                            <select class="form-control" id="location-street-address-4-right" (change)="onSelectCountry($event)"
+                              formControlName="country" [ngClass]="{ 'is-invalid': submitedSecondPage && jobCountry.errors }">
+                              <option value="" disabled>Country / Region</option>
+                              <option [value]="country.asc" *ngFor="let country of countries">
+                                {{ country.name }}
+                              </option>
+                            </select>
+                            <!--Error -->
+                            <span class="error_message" *ngIf="submitedSecondPage && jobCountry.errors">
+                              {{ utils.$getErrors('required') }}
+                            </span>
+                            <!--Error -->
+                          </div>
+                          <div class="form-group col-sm-4">
+          
+                            <input type="text" formControlName="city" (keyup)="getCities()" [ngbTypeahead]="searchCity"
+                              (selectItem)="onSelectCity($event)"
+                              [ngClass]="{ 'is-invalid': submitedSecondPage && details.city.errors }"
+                              [resultFormatter]="cityFormatter" [inputFormatter]="cityFormatter" class="form-control"
+                              placeholder="City" [disabled]="jobCountry.value === ''" maxlength="128">
+          
+                            <!-- Errors -->
+                            <ng-container *ngIf="submitedSecondPage && details.city.errors">
+                              <span class="error_message" *ngFor="let error of utils.getErrorsKey(details.city.errors)">
+                                {{ utils.$getErrors(error) }}
+                              </span>
+                            </ng-container>
+                            <!-- Errors -->
+                          </div>
+          
+                          <div class="form-group col-sm-4 ">
+                            <input type="text" formControlName="region" placeholder="Region" class="form-control" maxlength="128">
+                          </div>
+                      </div>
+                  </ng-container>
+                  
+              </div>
+
+
+           
+              <div class="form-group entered-buttons">
+                <label for="job-function">Job Function (Select up to 5)
+                </label>
+                <ng-multiselect-dropdown
+                    placeholder="Job Functions"
+                    [data]="dropdownFunctionList"
+                    name="days_business_hour"
+                    [settings]="dropdownJobFunctionsSettings"
+                    formControlName="job_functions"
+                  >
+                  </ng-multiselect-dropdown>
+
+              </div>
+              <div class="form-group">
+                <label for="employment-type">Employment type
+                  <span>*</span>
+                </label>
+                <select id="employment-type" formControlName="employment_types" class="form-control col-6"
+                  [ngClass]="{ 'is-invalid': submitedSecondPage && details.employment_types.errors }">
+                  <option selected [ngValue]="''">Select one</option>
+                  <option *ngFor="let employmentType of employmentTypes" [value]="employmentType.id">
+                    {{ employmentType.name }}
+                  </option>
+                </select>
+                <!--Error -->
+                <span class="error_message" *ngIf="submitedSecondPage && details.employment_types.errors">
+                  {{ utils.$getErrors('required') }}
+                </span>
+                <!--Error -->
+              </div>
+              <div class="form-group">
+                <label for="job-title">Description
+                  <span>*</span>
+                </label>
+                <div class="description" formArrayName="descriptions">
+
+                  <div class="lang-picker">
+                    <ng-container *ngFor="let language of descriptionLanguages; let i = index;">
+                      <input type="radio" name="language" [value]="language" [id]="language" checked
+                        (change)="selectedLanguageTab(i)">
+                      <label [for]="language" class="">{{ getLanguageName(language) }}</label>
+                    </ng-container>
+
+
+                    <div style="position: relative; display: inline-block;"
+                      (appClickOutside)="showAddLanguage = $event;">
+                      <input type="button" id="add-lang">
+                      <label for="add-lang" (click)="showAddLanguage = !showAddLanguage"
+                        *ngIf="activeJobAdvertisement.value.num_of_languages > 1 && activeJobAdvertisement.value.num_of_languages > descriptionLanguages.length"
+                        class="add-lang">
+                        Add Language
+                      </label>
+
+                      <div #locationPopupContainer
+                        class="options addCountryPopover {{ showAddLanguage ? 'open' : '' }}">
+                        <div class="form-group my-0">
+                          <input type="text" class="form-control" #language [ngbTypeahead]="searchLanguage"
+                            (selectItem)="onSelectLanguage($event, language , 'description'); selectedLanguageTab(descriptionLanguages.length - 1)"
+                            id="applicant-language" [resultFormatter]="languageFormatter"
+                            [inputFormatter]="languageFormatter" style="display: unset;" placeholder="Add language">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <hr>
+
+                  <ng-container [formGroupName]="i" *ngFor="let item of jobDescriptions.controls; let i = index;">
+                    <div [ngClass]="{'d-none' : !selectedLang[i] }">
+
+                      <!-- Errors -->
+                      <ng-container *ngIf="submitedSecondPage && item.controls.description.errors">
+                        <span class="error_message"
+                          *ngFor="let error of utils.getErrorsKey(item.controls.description.errors)">
+                          {{ utils.$getErrors(error) }}
+                        </span>
+                      </ng-container>
+                      <!-- Errors -->
+                      <!-- Job description -->
+                      <app-text-editor [id]="'jobTextArea' + i"
+                        [config]="{headerText:'Job Description' , editable:true , minHeight:'200px' , maxHeight:'600px'}"
+                        formControlName="description" [ngClass]="{ 'is-invalid': item.controls.description.errors}">
+
+                      </app-text-editor>
+                      <!-- Job description -->
+                      <hr>
+                      <!-- Why us -->
+                      <app-text-editor [id]="'whyTextArea' + i"
+                        [config]="{headerText:'Why us' , editable:true , minHeight:'200px' , maxHeight:'600px'}"
+                        formControlName="why_us"></app-text-editor>
+                      <!-- Why us -->
+                    </div>
+                  </ng-container>
+
+                </div>
+              </div>
+            </div>
+            <div class="d-flex buttons">
+              <button type="button" (click)="gotoPreviousPage()" class="backgroundless">Back</button>
+              <button type="button" (click)="open('preview')" class="backgroundless preview-margin">Preview</button>
+              <button type="button" (click)="saveAsDraft()" class="backgroundless">Save as Draft</button>
+              <button type="button" (click)="gotoNextPage()" class="btn btn-primary">Next</button>
+            </div>
+          </form>
+        </div>
+
+
+        <!-- Page 3 -->
+        <div class="center-content-jobs post-job" *ngIf="activePage === 3">
+
+          <app-job-applicant-quailification (result)="getQualification($event)"></app-job-applicant-quailification>
+
+          <form class="bold-labeled" [formGroup]="form" autocomplete="off">
+            <div formGroupName="details">
+              <div class="intro pt-5">
+                <img src="assets/img/155.svg" alt="intro">
+                <h6>Compensation</h6>
+              </div>
+              <label for="currency">Salary</label>
+                  <div class="d-flex">
+                      <div class="custom-control custom-radio write-a-review__content__submit-review__type-options__item">
+                          <input type="radio" formControlName="salary_interval" class="custom-control-input" 
+                                 value="Month" id="monthly" name="salary_interval">
+                          <label class="custom-control-label" for="monthly">Monthly</label>
+                      </div>
+                      <div class="custom-control custom-radio write-a-review__content__submit-review__type-options__item ml-4">
+                          <input type="radio" formControlName="salary_interval" class="custom-control-input" 
+                                 value="Hour" id="hourly" name="salary_interval">
+                          <label class="custom-control-label" for="hourly">Hourly</label>
+                      </div>
+                      <div class="custom-control custom-radio write-a-review__content__submit-review__type-options__item ml-4">
+                          <input type="radio" formControlName="salary_interval" class="custom-control-input" 
+                                 value="Year" id="annual" name="salary_interval">
+                          <label class="custom-control-label" for="annual">Annual</label>
+                      </div>
+                  </div>
+                  <div class="col-sm-6 p-0 mt-4">
+                      <div class="row">
+                          <div class="col-sm-4">
+                              <div>
+                                  <input class="form-control" type="number" formControlName="salary_min" placeholder="Min"
+                                        [ngClass]="{ 'is-invalid': (details.salary_min.touched || details.salary_min.dirty) && details.salary_min.errors }"
+                                        (keydown)="utils.maxNumberLenght($event , 32)">
+                              </div>
+                          </div>
+                          <div class="col-sm-4">
+                              <div>
+                                  <input class="form-control" type="number" formControlName="salary_max" placeholder="Max"
+                                          [ngClass]="{ 'is-invalid': (details.salary_max.touched || details.salary_max.dirty) && details.salary_max.errors }"
+                                          (keydown)="utils.maxNumberLenght($event , 32)">
+                              </div>
+                          </div>
+                          <div class="col-sm-4">
+                              <div>
+                                  <select id="currency" class="form-control" formControlName="salary_currency">
+                                      <option value="" disabled>Currency</option>
+                                      <option *ngFor="let currency of utils.getAllCurency()" [value]="currency">
+                                        {{ currency  }}
+                                      </option>
+                                  </select>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+              
+              <div class="post-a-job__content__compensation__salary" formArrayName="additional_compensation">
+                  <h5 class="small-section-heading">
+                      Additional compensation
+                  </h5>
+                  <div class="d-flex">
+                      <div class="form-check custom-control custom-checkbox mr-5" *ngFor="let comp of additionalCompensations; let i = index">
+                          <input type="checkbox" class="custom-control-input" [id]="comp['value']" [value]="comp['value']" 
+                                  (change)="compensationChange($event , i)" [formControlName]="i">
+                          <label class="custom-control-label page-section-text-grey" [for]="comp['value']">
+                            {{ comp['name'] }}
+                          </label>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group benefits-wrap">
+                <label for="benefits">Benefits</label>
+                <input type="button" value="Add Benefits" (click)="openBenefitsModal($event)" class="benefits">
+                <div class="form-row" formArrayName="benefits">
+                  <div class="col-md-6" *ngFor="let benefit of jobBenefits.controls; let i = index">
+                    <div class="custom-checkbox" (click)="removeBenefit(i)">
+                      <img [src]="benefit.value.icon" [alt]="benefit.value.id" class="mr-2">
+                      <span class="benefit__span">{{ benefit.value.name | translate }}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <app-job-additional-info [infoForm]="jobDetails"></app-job-additional-info>
+            </div>
+
+            <div class="d-flex buttons">
+              <button type="button" (click)="gotoPreviousPage()" class="backgroundless">Back</button>
+              <button type="button" (click)="open('preview')" class="backgroundless preview-margin">Preview</button>
+              <button type="button" (click)="saveAsDraft()" class="backgroundless">Save as Draft</button>
+              <button type="button" (click)="open('payment')" class="btn btn-primary">Publish</button>
+            </div>
+          </form>
+        </div>
+        <!-- Filtered search end -->
+        <a [routerLink]="['/jobs/company']" id="gotoJobs" class="backgroundless big-screen ml-auto">Go to jobs</a>
+      </div>
+      <!-- Content in the center end -->
+
+      <!-- Content on the right -->
+
+      <div class="col-lg-3 col-md-12">
+        <app-jobs-stepper [page]="activePage"></app-jobs-stepper>
+        <!-- <app-jobs-pricing-info *ngIf="activePage === 1" [form]="activeJobAdvertisement">
+          <div role="total">{{ totalPrice }</div>
+        </app-jobs-pricing-info> -->
+      </div>
+      <!-- Content on the right end -->
+    </div>
+  </div>
+</main>
+
+
+<!-- Modals -->
+
+<app-modal (closeModal)="modalType = null ; " [width]="797">
+  <app-job-preview-modal [data]="initData()" *ngIf="modalType === 'preview'" (result)="getPreview($event)">
+  </app-job-preview-modal>
+
+  <app-credit-card-modal *ngIf="modalType === 'payment'" [total]="totalCount" (closeModal)="publish()">
+  </app-credit-card-modal>
+</app-modal>

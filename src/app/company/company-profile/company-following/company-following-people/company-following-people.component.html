@@ -1,0 +1,166 @@
+<!-- Content in the center -->
+<div class="col mr-3 pl-0">
+    <div class="center-heading">
+        <h3>People <span> {{ companyFollowingPeople.length }} </span></h3>
+    </div>
+
+
+    <div class="center-content-network">
+        <div class="connections-first-line d-flex justify-content-between">
+            <form [formGroup]="checkAllConnForm">
+                <div class="custom-control custom-checkbox box">
+                    <!-- <input type="checkbox" class="custom-control-input" formControlName="check" id="check-connections"> -->
+                    <!-- <label class="custom-control-label " for="check-connections"></label> -->
+                </div>
+            </form>
+
+            <ng-template [ngIf]="isSelectedConn" >
+
+                <button class="unfollow" (click)="unfollow()" >
+                    <img src="assets/img/46.svg" alt="unfollow">
+                    Unfollow
+                </button>
+
+            </ng-template>
+
+            <div  (appClickOutside)="toggle.main.active['f_view'] = $event">
+                <button class="ml-auto" [ngClass]="toggle.view.selected == 'card' ? 'blocks btn-more' : 'list btn-more'" (click)="myToggle('f_view')" >
+                </button>
+                <ng-template [ngIf]="toggle.main.active['f_view']" >
+                    <div class="options blocks-option">                      
+                        <button (click)="sort_and_wiew($event,'view','list')" >List view</button>
+                        <button (click)="sort_and_wiew($event,'view','card')" >Card view</button>
+                    </div>
+                </ng-template>
+            </div>
+        </div>
+
+        
+        <!-- card view -->
+        <ng-template [ngIf]="toggle.view.selected == 'card'" >
+            <form [formGroup]="connectionsForm" >
+            <div class="network-boxes-container" formArrayName="checkbox" >
+            <div class="network-box" [ngClass]="connectionsForm.controls.checkbox.controls[i] ? 'selected' : null" *ngFor="let item of companyFollowingPeople; let i = index" >
+                
+                <div class="network-line-one">
+                    <div class="custom-control custom-checkbox">
+                        <!-- <input type="checkbox" [formControlName]="item.index" class="custom-control-input" [id]="'check-connection'+item.index"> -->
+                        <!-- <label class="custom-control-label " [for]="'check-connection'+item.index"></label> -->
+                    </div>
+                    <button [ngbPopover]="userMore" [autoClose]="true" #popBox="ngbPopover">
+                        <img   src="assets/img/107.svg" alt="...">
+                    </button>
+                </div>
+                <div class="network-line-two" >
+                    <div class="options_box connection-option " [ngClass]="{'d-none': !popBox.isOpen() }" #userMore>
+                        <button *ngIf="item.id !== myUserID" class="message" (click)="openSmallChatBox(item)">Message</button>
+                        <button  class="unfollow " *ngIf="item.follow && item.id !== myUserID" (click)="unfollow(item)" >Unfollow</button>
+                        <button class="save"   (click)="saveToPDF(item)">Save to PDF</button>
+                        <button  *ngIf="item.id !== myUserID" class="report" (click)="open('report'  ,item )" >Report / block</button>
+                    </div>
+                    <div class="left">
+                        <img class="profile" [src]="item.avatar == '' ? 'assets/img/124.svg' : '/file/'+item.avatar" alt="profile">
+                    </div>
+                    <div class="right">
+                        <h4 [routerLink]="['/user/profile' , item.url]" style="cursor: pointer;"> {{ item.firstname + ' ' + item.lastname }} </h4>
+                        <span *ngIf="item.experiences.length > 0"> {{ item.experiences[0].title }} </span>
+                        <span *ngIf="item.experiences.length > 0"> {{ item.experiences[0].company }} </span>
+                    </div>
+                </div>
+                <div class="network-line-three">
+                    <div class="d-flex" *ngIf="item.email">
+                        <img src="assets/img/22.svg" alt="@"> 
+                        <span> {{ item.email }} </span>
+                    </div>  
+                    <div  class="d-flex" *ngIf="item.phone">
+                        <img src="assets/img/23.svg" alt="number"> 
+                        <span> {{ item.phone }} </span>
+                    </div>
+                </div>
+                <div class="network-line-four">
+                </div>
+            </div>
+            </div>
+        </form>
+        </ng-template>
+
+    <!---START SAVE TO PDF -->
+         <div style="position: absolute; z-index:-999;">
+            <app-save-to-pdf 
+            *ngIf="selectedUser && savePDF" 
+            [data]="selectedUser" 
+            [save]="savePDF" 
+            (saved)="selectedUser = undefined; savePDF = false;" >
+            </app-save-to-pdf>
+         </div>
+    <!-- END SAVE TO PDF -->
+            
+        <!-- list view -->
+        <ng-template [ngIf]="toggle.view.selected == 'list'" >
+            <form [formGroup]="connectionsForm">
+            <div class="network-boxes-container-long-view" formArrayName="checkbox" >
+                <div class="network-box" [ngClass]="connectionsForm.controls.checkbox.controls[i] ? 'selected' : null" *ngFor="let item of companyFollowingPeople; let i = index" >
+                    <div class="custom-control custom-checkbox" >
+                        <!-- <input type="checkbox" class="custom-control-input" [formControlName]="item.index" [id]="'check-network'+item.index"> -->
+                        <!-- <label class="custom-control-label " [for]="'check-network'+item.index"></label> -->
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <div class="network-box-component-one">
+                            <img class="profile" [src]="item.avatar == '' ? 'assets/img/124.svg' : '/file/'+item.avatar" alt="profile">
+                            <div class="one-right">
+                                <h4 [routerLink]="['/user/profile' , item.url]" style="cursor: pointer;"> {{ item.firstname + ' ' + item.lastname }} </h4>
+                            </div>
+                        </div>
+
+                        <div class="network-box-component-two">
+                            <span *ngIf="item.experiences.length > 0"> {{ item.experiences[0].title }} </span>
+                            <span *ngIf="item.experiences.length > 0"> {{ item.experiences[0].company }} </span>
+                        </div>
+
+                        <div class="network-box-component-three" *ngIf="item.email">
+                            <div class="d-flex">
+                                <img src="assets/img/22.svg" alt="@"> 
+                                <span> {{ item.email }} </span>
+                            </div>  
+                            <div class="d-flex">
+                                <img src="assets/img/23.svg" alt="number" *ngIf="item.phone"> 
+                                <span> {{ item.phone }} </span>
+                            </div>
+                        </div>
+
+                        <div class="network-box-component-four">
+                        </div>
+                    </div>
+
+                    <button class="network-dots-btn"   [ngbPopover]="userMore" [autoClose]="true" #popBox="ngbPopover">
+                        <img  class="btn-more"  src="assets/img/107.svg" alt="...">
+                    </button>
+
+                    <div class="options_box connection-option " [ngClass]="{'d-none': !popBox.isOpen() }" #userMore>
+                        <button *ngIf="item.id !== myUserID" class="message "  (click)="openSmallChatBox(item)" >Message</button>
+                        <button class="unfollow " *ngIf="item.follow && item.id !== myUserID" (click)="unfollow(item)">Unfollow</button>
+                        <button class="save"   (click)="saveToPDF(item)">Save to PDF</button>
+                        <button *ngIf="item.id !== myUserID" class="report" (click)="open('report'  ,item )" >Report / block</button>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </ng-template>
+
+    </div>
+</div>
+<!-- Content in the center end -->
+
+
+<!-- Modals -->
+<app-modal (closeModal)="modalType = null">
+<!-- Report -->
+<ng-container *ngIf="modalType === 'report'">
+    <app-report-block-user type="user" 
+        [blockId]="selectedUser" *ngIf="selectedUser"
+        (closeModal)="modal.close()"> 
+    </app-report-block-user>
+</ng-container>
+
+
+</app-modal>

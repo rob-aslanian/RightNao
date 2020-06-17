@@ -1,0 +1,40 @@
+<div class="search-groups__sidebar-section">
+    <app-search-column-header title="Show me offers">
+        <div class="mt-2">
+            <div class="search-groups__sidebar-section__delivery-time-options search-groups__sidebar-section__wrap">
+                <form [formGroup]="form">
+                    <div class="
+                        custom-control 
+                        custom-checkbox 
+                        page-section-text-grey
+                        ">
+                        <input formControlName="without_cover_letter" type="checkbox" class="custom-control-input" id="without_cover_letter" name="without_cover_letter">
+                        <label class="custom-control-label" for="without_cover_letter">
+                            Without Cover Letter
+                        </label>
+                    </div>
+                    <div class="
+                        custom-control 
+                        custom-checkbox 
+                        page-section-text-grey
+                        ">
+                        <input  formControlName="with_salary" type="checkbox" class="custom-control-input" id="with_salary" name="with_salary">
+                        <label class="custom-control-label" for="with_salary">
+                            With Salary
+                        </label>
+                    </div>
+                    <div class="
+                        custom-control 
+                        custom-checkbox 
+                        page-section-text-grey
+                        ">
+                        <input  formControlName="is_following" type="checkbox" class="custom-control-input" id="is_following" name="is_following">
+                        <label class="custom-control-label" for="is_following">
+                            Companies I'm Following
+                        </label>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </app-search-column-header>
+</div>

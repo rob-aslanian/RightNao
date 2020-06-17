@@ -1,0 +1,16 @@
+<div class="dark-blue-bg-for-network long-dark-blue-bg" [ngClass]="{'full-heigth': isServiceCategories}">
+    <div class="dark-blue-for-ads container services">
+        <div class="background content container wrap row d-flex justify-content-between align-items-center">
+            <h1 *ngIf="isAddService">ADD SERVICE</h1>
+            <h1 *ngIf="isServiceCategories">Find the right work for you</h1>
+            <!-- <h1 *ngIf="isServiceRequest">Find the right work for you</h1> -->
+            <div class="d-flex col-12 p-0 d-flex mt-3 align-items-center" *ngIf="isServiceCategories || isServiceLanding">
+                <div class="col-lg-10 p-0">
+                    <input type="text" class="form-control" placeholder="Find service request">
+                </div>
+                <div class="col-lg-2">
+                    <button class="btn btn-primary ">Search</button>
+                </div>
+            </div>
+        </div>
+    </div>  

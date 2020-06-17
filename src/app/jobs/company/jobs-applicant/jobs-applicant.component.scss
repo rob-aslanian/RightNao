@@ -1,0 +1,103 @@
+@import 'src/variables';
+
+:host ::ng-deep ngb-tabset{
+  .nav-tabs{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+    overflow: hidden;
+    background: $white;
+    border-radius: 5px;
+    list-style: none;
+
+    a{ 
+        color: $light-grey !important;
+        text-decoration: none; 
+    }
+
+    .nav-link.active {
+      border-bottom: unset !important;
+    }
+
+    // Active Tab
+    a.active {
+      color: $dark-blue !important;
+      position: relative;
+      display: block;
+      height: 100%;
+        &::after{
+          content: "";
+          position: absolute;
+          border-bottom: 3px solid #00D4E3;
+          bottom: -2px;
+          width: 87%;
+          margin-left: 14px;
+        }
+        
+    }
+
+    a:hover {
+      color: $dark-blue !important;
+      position: relative;
+      display: block;
+      height: 100%;
+        &::after{
+          content: "";
+          position: absolute;
+          border-bottom: 3px solid #00D4E3;
+          bottom: -2px;
+          width: 87%;
+          margin-left: 14px;
+        }
+ 
+      
+    }
+  
+    @media #{$break1} {
+      overflow-x: scroll;
+      margin-bottom: 20px;
+    }
+  
+    @media #{$break2} {
+      overflow-x: initial;
+    }
+  
+    @media #{$break3} {
+      overflow-x: initial;
+    }
+  
+    &>li {
+      cursor: pointer;
+      width: 20%;
+      min-width: 150px;
+      border-bottom: 3px solid transparent;
+  
+      // &:hover {
+      //   color: #000;
+      //   border-bottom: $background-dark-cyan 3px solid;
+      // }
+  
+    
+
+      .applicants {
+        border-left: 1px solid #dbdbdb;
+        padding-left: 15px;
+      }
+
+      .applicant-count {
+        font-size: 20px;
+      }
+
+      img {
+        padding-right: 12px;
+      }
+
+      span {
+        display: block;
+ 
+      }
+    }
+  
+ 
+  }
+}

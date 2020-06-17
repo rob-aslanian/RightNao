@@ -1,0 +1,210 @@
+<div class="add-event-popover">
+  <div class="position-relative">
+    <button class="btn close-btn"></button>
+  </div>
+  <div class="add-event__field d-flex align-items-center mt-3">
+    <div class="add-event__field__icon-wrap mr-2">
+      <img src="../../../../../assets/img/609.svg"/>
+    </div>
+    <div class="col p-0">
+      <input type="text" class="form-control calendar-input title-input" placeholder="Task & Goal title">
+    </div>
+  </div>
+
+  <div class="calendar-time-range my-4">
+    <div class="row">
+      <div class="col-9">
+        <div class="d-flex align-items-center calendar-time-range__dates-container">
+          <div class="calendar-time-range__dates">
+            <span>2019</span>
+            <h2>Fri, Sep 20</h2>
+          </div>
+          <div class="calendar-time-range__arrow">
+            <img src="../../../../../assets/img/147.svg"/>
+          </div>
+          <div class="calendar-time-range__dates">
+            <span>2019</span>
+            <h2>Fri, Sep 20</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-3 d-flex align-items-end  justify-content-end">
+        <div class="d-flex align-items-end">
+            
+          <div class="calendar-time-range__switch">
+            <div class="d-flex align-items-end">
+              <span class="pr-2">All day</span>
+              <label class="switch">
+                <input type="checkbox"><span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+
+  <div class="add-event-popover__field row align-items-center">
+    <div class="col-7 d-flex align-items-center">
+      <div class="add-event-popover__field__icon-wrap mr-2">
+        <img src="../../../../../assets/img/621.svg"/>
+      </div>
+      <div class="col p-0">
+        <div ngbDropdown autoClose="outside" placement="bottom-left" class="add-event-dropdown">
+          <div ngbDropdownToggle class="add-event-dropdown__toggle">
+            <span class="add-event-dropdown__toggle__calendar-bullet bullet-purple"></span><span>Personal</span>
+          </div>
+          <div ngbDropdownMenu class="add-event-dropdown__menu add-event-dropdown__menu--full-width mt-2">
+            <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+              <span class="add-event-dropdown__toggle__calendar-bullet bullet-purple"></span>
+              <span class="ml-1">Personal</span>
+            </div>
+            <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+              <span class="add-event-dropdown__toggle__calendar-bullet bullet-light-blue"></span>
+              <span class="ml-1">Work</span>
+            </div>
+            <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+              <span class="add-event-dropdown__toggle__calendar-bullet bullet-green"></span>
+              <span class="ml-1">My Finances</span>
+            </div>
+            <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+              <span class="add-event-dropdown__toggle__calendar-bullet bullet-yellow"></span>
+              <span class="ml-1">Friends</span>
+            </div>
+            <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+              <span class="add-event-dropdown__toggle__calendar-bullet bullet-pink"></span>
+              <span class="ml-1">Birthdays</span>
+            </div>
+            <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+              <span class="add-event-dropdown__toggle__calendar-bullet bullet-lavender"></span>
+              <span class="ml-1">Holidays</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-5 pl-0">
+      <div class="col p-0">
+        <div ngbDropdown autoClose="outside" placement="bottom-left" class="add-event-dropdown">
+          <div ngbDropdownToggle class="add-event-dropdown__toggle">
+            <span>Default visibility</span>
+          </div>
+          <div ngbDropdownMenu class="add-event-dropdown__menu add-event-dropdown__menu--full-width mt-2">
+            <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+              <span class="ml-1">Default visibility</span>
+            </div>
+            <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+              <span class="ml-1">Public</span>
+            </div>
+            <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+              <span class="ml-1">Private</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="add-event__field row align-items-center mb-3">
+    <div class="col-7 d-flex align-items-center">
+      <div class="add-event__field__icon-wrap mr-2">
+        <img src="../../../../../assets/img/613.svg"/>
+      </div>
+      <div class="col p-0">
+        <div ngbDropdown autoClose="outside" placement="bottom-left" class="add-event-dropdown">
+          <div ngbDropdownToggle class="add-event-dropdown__toggle">
+            <span>Doesn’t repeat</span>
+          </div>
+          <div ngbDropdownMenu class="add-event-dropdown__menu add-event-dropdown__menu--full-width mt-2">
+            <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+              <span class="ml-1">Doesn’t repeat</span>
+            </div>
+            <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+              <span class="ml-1">Every day</span>
+            </div>
+            <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+              <span class="ml-1">Every weekly</span>
+            </div>
+            <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+              <span class="ml-1">Every monthly</span>
+            </div>
+            <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+              <span class="ml-1">Every year</span>
+            </div>
+            <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+              <span class="ml-1">Custom</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col"></div>
+    <div class="col-4"></div>
+  </div>
+
+  <div class="add-event__field d-flex align-items-center mb-3">
+    <div class="d-flex align-items-start">
+      <div class="add-event__field__icon-wrap mr-2">
+        <img src="../../../../../assets/img/629.svg"/>
+      </div>
+      <div class="col-12 p-0">
+        <div *ngIf="reminder === 'add'" class="mb-2">
+          <div ngbDropdown autoClose="outside" placement="bottom-left" class="add-event-dropdown">
+            <div ngbDropdownToggle class="add-event-dropdown__toggle">
+              <span>30 minutes before</span>
+            </div>
+            <div ngbDropdownMenu class="add-event-dropdown__menu add-event-dropdown__menu--full-width mt-2">
+              <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+                <span class="ml-1">At time of event</span>
+              </div>
+              <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+                <span class="ml-1">5 minutes before</span>
+              </div>
+              <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+                <span class="ml-1">15 minutes before</span>
+              </div>
+              <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+                <span class="ml-1">30 minutes before</span>
+              </div>
+              <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+                <span class="ml-1">1 hour before</span>
+              </div>
+              <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+                <span class="ml-1">2 hours before</span>
+              </div>
+              <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+                <span class="ml-1">12 hours before</span>
+              </div>
+              <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+                <span class="ml-1">1 day before</span>
+              </div>
+              <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+                <span class="ml-1">1 week before</span>
+              </div>
+              <div class="btn d-flex align-items-center add-event-dropdown__menu__btn" (click)="reminder = 'custom'">
+                <span class="ml-1">Custom</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div><span>Add reminder</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="add-event__field row align-items-center mb-4">
+    <div class="col d-flex align-items-start">
+      <div class="add-event__field__icon-wrap mr-2">
+        <img src="../../../../../assets/img/630.svg"/>
+      </div>
+      <div class="col p-0">
+        <textarea class="form-control calendar-input" placeholder="Add a description"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-end align-items-center">
+    <button class="backgroundless">Task manager</button>
+    <button class="btn btn-primary" style="height: 24px">Save</button>
+  </div>
+</div>

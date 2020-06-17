@@ -1,0 +1,20 @@
+
+<form [formGroup]="form" class="col-md-5">
+        <div class="form-group">
+                <label  for="selectYears" class="label-control"> Years </label>
+                <select name="years"
+                type = "number"
+                        id="selectYears" 
+                        class="form-control"
+                        
+                        [ngClass]="{'is-invalid':form.get('years').invalid && isSubmitted}"
+                        (change)="parseToInt($event, 'years')">
+                        
+                    <option value="" disabled>Select Years</option>
+                    <option [value]="item" 
+                            *ngFor="let item of years">
+                                {{ item }} 
+                    </option>
+                </select>
+        </div>
+</form>

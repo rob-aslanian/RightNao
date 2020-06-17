@@ -1,0 +1,36 @@
+.drop_cv__context{
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.50);
+    top: -176px !important;
+    left: 0px !important;
+    padding: 1rem;
+}
+
+.info__box{
+    background: #fff;
+    border: solid 1px #E6E6E6;
+    border-radius: 5px;
+    padding: 1.5rem 2rem;
+    margin-bottom: 1rem;
+    &__right{
+        h3 { text-transform: capitalize; }
+        p{
+            font-size: 14px;
+            color: #808080;
+            word-break: break-word;
+        }
+    }
+
+    &__left{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .company__avatar{
+            min-height: 50%;
+            max-height: 50%;
+            border-radius: 7px;
+            width: 100%;
+            object-fit: cover;
+            margin-bottom: 1.25rem;
+        }
+    }
+}

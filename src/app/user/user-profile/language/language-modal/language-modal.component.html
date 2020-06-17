@@ -1,0 +1,56 @@
+ 
+    <div class="modal-content">
+        <div class="popup-content add-language">
+            <form [formGroup]="addLanguageForm">
+                <div class="form-group">
+                    <label for="language-title">{{ '842'| translate }} <span>*</span></label>
+ 
+                    <select class="form-control" formControlName="language_id"
+                        [ngClass]="{ 'is-invalid': LangForm.language_id.errors && submitedFormLanguage }">
+                        <option value="" disabled selected>{{ '842'| translate }}</option>
+                        <option *ngFor="let language of Languages; let i = index"  [value]="language.item_id" tabindex="9">
+                            {{language.item_text}} </option>
+                    </select>
+
+
+                    <p *ngIf="LangForm.language_id.value === '' && submitedFormLanguage" class="error_inouts"> Language is required. </p>
+                    <p *ngIf="LangForm.language_id.getError('notUnique') && submitedFormLanguage" class="error_inouts"> Language is almost exist. </p>
+
+                </div>
+
+                <div class="proficiency" style="margin-top: 32px">
+                    <h3>{{ '1111'| translate }}</h3>
+                    <div class="stars">
+
+
+                        <ngb-rating
+                         max="5"  
+                         [(rate)]='currentRate'            
+                        >
+                        </ngb-rating>
+
+                        <div *ngIf='currentRate  == 1'>Beginner</div>
+                        <div *ngIf='currentRate  == 2'>Elementary</div>
+                        <div *ngIf='currentRate  == 3'>Intermediate</div>
+                        <div *ngIf='currentRate  == 4'>Advanced</div>
+                        <div *ngIf='currentRate  == 5'>Native</div>
+                    </div>
+
+                    
+
+                </div>
+
+                <div class="d-flex justify-content-end">
+                    <button class="backgroundless with-right-margin" (click)='addLanguages("saveAndAdd")' *ngIf='!data'>{{ '1233'| translate }}</button>
+                    <button class="btn btn-primary" (click)="addLanguages('add')" *ngIf='!data'>{{ '1231'| translate }}</button>
+                    <button class="backgroundless ml-auto" *ngIf='data' (click)='editLanguage("remove")'>{{ '1185'| translate }}</button>
+                    <button class="btn btn-primary ml-3"   *ngIf='data' (click)='editLanguage("editLanguage")'>{{ '1231'| translate }}</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+<!-- End Of Add Languages -->
+
+ 

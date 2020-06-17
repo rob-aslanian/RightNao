@@ -1,0 +1,9 @@
+@import 'src/variables';
+
+.checkbox-home {
+   display: block !important;
+   label {
+       color: $dark-grey;
+   }
+}
+

@@ -1,0 +1,25 @@
+<ng-container *ngIf="data">
+    <div *ngFor="let advert of data" class="ads-box">
+        <span class="ad">Ad</span>
+        <div class="ads__content" *ngIf="advert?.contents[0] as content">
+            <div class="row">
+                <div class="ads__content-left col-4" *ngIf="advert?.files[0] as file">
+                    <img [src]="'/file/' + file?.address" [alt]="file?.name">
+                </div>
+                <div class="ads__content-right col">
+                    <p>{{ content?.description }}</p>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mt-2" >
+                <h5>{{ content?.title  }}</h5>
+                <a [href]="advert?.url | getUrl" target="_blank" style="color: inherit;">
+                    <button class="btn btn-primary" type="button" (click)="click($event , advert?.id , advert?.campaing_clicks)">
+                            {{ content?.custom_button }}
+                    </button>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</ng-container>
+         

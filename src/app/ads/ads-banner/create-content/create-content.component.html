@@ -1,0 +1,32 @@
+<div class="photo-modal add-service">
+    <form  autocomplete="off" [formGroup]="contentForm" (ngSubmit)="submit()" *ngIf="!isGallery">
+        <h3>Image <span>*</span> </h3>
+          <app-add-image [img]="imgSrc ? imgSrc : null"></app-add-image>
+        
+  
+        <ng-container *ngIf="isResponsive">
+            <div class="form-group">
+                <label for="service-title">Add Title <span>*</span></label>
+                <input type="text" class="form-control" placeholder="Enter Ad title" 
+                       id="service-title"  maxlength="40" formControlName="title" [ngClass]="{'is-invalid': submited && form.title.errors}">
+            </div>
+      
+            <div class="form-group mb-0">
+                <label for="service-website">Add Content <span>*</span></label>
+                <textarea  class="form-control resize textareas"  maxlength="100" rows="5" 
+                          placeholder="Content limited to 100 Characters" formControlName="description" [ngClass]="{'is-invalid': submited && form.description.errors}"></textarea>
+            </div>
+        </ng-container>
+        
+  
+        <div class="d-flex justify-content-between">
+          <button type="button" class="backgroundless" 
+            (click)="isGallery = true" >
+            Select from My Gallery
+          </button>
+          <button class="btn btn-primary ml-2" type="submit" >Save</button>
+        </div>
+    </form>
+    <!-- Gallery-->
+    <app-ads-gallery *ngIf="isGallery" (result)="getImage($event)"></app-ads-gallery>
+</div>

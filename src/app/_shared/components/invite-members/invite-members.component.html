@@ -1,0 +1,87 @@
+<div class="invate-people-wrapper  pt-4">
+
+  <div class="col-11 container" >
+
+   <input type="text"  
+          placeholder="Enter connection name or insert from connections list" 
+          class="form-control" 
+          [formControl]='searchControl'  >
+
+
+     
+     <div class="custom-control custom-checkbox mt-4 pb-1 invite-people__all">
+        <ng-container *ngIf="hasCheckAll">
+          <input class="custom-control-input" type="checkbox" id="check-peron-1" (change)='selectAll($event)'>
+          <label class="custom-control-label" for="check-peron-1"></label>
+      </ng-container>
+     </div>
+
+
+         
+
+    <div class="invite-people">
+
+      <div class="invite-people__content"   *ngFor='let user of users; let i = index'>
+
+        <div class="row align-items-center" >
+
+           <div class="col-sm-10">
+            <div class="row align-items-center" style="max-width: 390px;">
+
+              <div class="col-2 invite-people__content__right">
+
+                <img class="invite-people__content__right__person"
+                     [src]=" user.avatar ? '/file/'+user.avatar : 'assets/img/124.svg'"
+                     alt="person"
+                     [ngClass]="{'rounded-image':! user.isCompany}"
+                     >
+
+              </div>
+
+              <div class="col-10 ">
+                <h5 class="pl-2 invite-people__content__right__heading"> {{ user.fullName }} </h5>
+               
+                <!-- <ng-container *ngIf='user.experiences.length > 0'>
+
+                  <ng-container *ngIf='user.experiences[0] as exp'>
+
+                  <h6 class="invite-people__content__right__sub">{{ exp.title }}</h6>
+                  <h6 class="invite-people__content__right__sub">{{ exp.company }}</h6>
+
+                </ng-container>
+
+              </ng-container> -->
+
+               </div>
+            </div>
+          </div>
+
+          
+          <div class="col-sm-2">
+
+              <div class="custom-control custom-checkbox">
+                  <input class="custom-control-input" 
+                        type="checkbox" 
+                        [id]="i" 
+                        [(ngModel)]="user.isSelected">
+  
+                <label class="custom-control-label" [for]="i"></label>
+              </div> 
+  
+            </div>
+  
+        </div>
+      </div>
+  
+    </div>
+ 
+  </div>
+
+  <div class="col-11 invations">
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-primary btn-big" (click)='sendInvate()'>
+        {{ hasCheckAll ? 'Invite' : 'Done' }}
+      </button>
+    </div>
+  </div>
+</div>

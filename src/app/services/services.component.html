@@ -1,0 +1,40 @@
+
+<main class="main-light-blue before-footer">
+
+    <!-- <div class="header-tagline" *ngIf="router.url === '/services/my-business'">
+        <div class="col-6 container">
+            <h1>MY BUSNIESS</h1>
+        </div>
+    </div>
+
+    <ng-container *ngIf="isSeller">
+        <app-sellers-navigation></app-sellers-navigation>
+    </ng-container>
+    
+    <ng-container *ngIf="isBuyer">
+        <app-buyers-navigation *ngIf="isBuyer"></app-buyers-navigation>
+        <app-landing-page-search *ngIf="!isBuyer"></app-landing-page-search>
+    </ng-container> -->
+    
+    <ng-container>
+        <app-services-header *ngIf="!isManageServPage"></app-services-header>
+        <app-manage-services-header *ngIf="isManageServPage"></app-manage-services-header>
+    </ng-container>
+
+    <div class="container services">
+        <div class="row">
+            <div class="col-md-9 mt-3">
+                <router-outlet></router-outlet>
+            </div>
+
+            <!-- * * *  Content on the right, ads * * *  -->
+            <div class="col-md-3 mt-3">
+                <app-user-profile-landing-languages *ngIf="isPostServiceReq || isManageServPage"></app-user-profile-landing-languages>
+                <app-ads class="col-lg-3 col-md-12 network-ads" [isLeft]="true" ></app-ads>
+            </div>
+           
+        </div>
+    </div>
+</main>
+
+

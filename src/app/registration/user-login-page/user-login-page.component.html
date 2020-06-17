@@ -1,0 +1,16 @@
+<div class="wrap main-light-blue">
+  <div class="container register sign-in">
+    <div class="row mx-0 register__form">
+      <h1>{{ "1220" | translate }}</h1>
+      <!-- Login Form -->
+        <app-user-login (signed)="redirect()" [type]="type"></app-user-login>
+      <!-- Login Form -->
+      <div class="already-registered">
+        <p>{{ "479" | translate }}</p>
+        <a [routerLink]="['/registration']" class="ml-1">{{
+          "1175" | translate
+        }}</a>
+      </div>
+    </div>
+  </div>
+</div>

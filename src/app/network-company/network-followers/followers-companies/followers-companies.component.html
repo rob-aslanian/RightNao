@@ -1,0 +1,197 @@
+<!-- Content in the center -->
+<div class="col mr-3 pl-0">
+        <div class="center-heading">
+            <h3>Companies & Organizations <span> {{ connListlength }} </span></h3>
+            <div class="d-flex center-heading__filter-wrapper">
+                <form class="d-flex" [formGroup]="searchForm" >
+                    <input type="text" class="form-control mr-2 search" formControlName="search" >
+                </form>
+                <button class="btn btn-primary" [routerLink]="['/search/company']" >
+                    <img src="assets/img/105.svg" alt="">
+                    Filters
+                </button>
+            </div>
+        </div>
+    
+    
+        <div class="center-content-network">
+            <div class="connections-first-line  d-flex justify-content-between">
+                <form [formGroup]="checkAllConnForm">
+                    <div class="custom-control custom-checkbox box">
+                        <input type="checkbox" class="custom-control-input" formControlName="check" id="check-connections">
+                        <label class="custom-control-label " for="check-connections"></label>
+                    </div>
+                </form>
+    
+                <ng-template [ngIf]="isSelectedConn" >
+    
+                    <button class="unfollow" (click)="follow()" >
+                        <img src="assets/img/70.svg" alt="Follow">
+                        Follow
+                    </button>
+    
+                    <!-- <button class="disconnect">
+                        <img src="assets/img/73.svg" alt="disconnect">
+                        Disconnect
+                    </button> -->
+                </ng-template>
+    
+                <div  (appClickOutside)="toggle.main.active['f_view'] = $event">
+                    <button class="ml-auto" [ngClass]="toggle.view.selected == 'card' ? 'blocks ' : 'list '" (click)="myToggle('f_view')" >
+                    </button>
+                    <ng-template [ngIf]="toggle.main.active['f_view']" >
+                        <div class="options blocks-option">                      
+                            <button (click)="sort_and_wiew($event,'view','card')" >Card view</button>
+                            <button (click)="sort_and_wiew($event,'view','list')" >List view</button>
+                        </div>
+                    </ng-template>
+                </div>
+            </div>
+            <app-spinner class="loader" *ngIf="isLoaded"></app-spinner>
+            <!-- card view -->
+            <ng-template [ngIf]="toggle.view.selected == 'card' && !isLoaded" >
+                <form [formGroup]="connectionsForm" >
+                <div class="network-boxes-container form-row" formArrayName="checkbox" >
+                <div class="col-lg-4 col-md-6" [ngClass]="connectionsForm.controls.checkbox.controls[item.index].value ? 'selected' : null" *ngFor="let item of connectionsList; let i = index" >
+                    <div class="network-box">
+                    <div class="network-line-one">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" [formControlName]="item.index" class="custom-control-input" [id]="'check-connection'+item.index">
+                            <label class="custom-control-label " [for]="'check-connection'+item.index"></label>
+                        </div>
+                        <button class="btn-more"  [ngbPopover]="companyPop"  [autoClose]="true" #popBox="ngbPopover">
+                            <img class="btn-more" src="assets/img/107.svg" alt="...">
+                        </button>
+                    </div>
+                    <div class="network-line-two">
+                        <div  class="options connection-option " [ngClass]="{'d-none': !popBox.isOpen() }" #companyPop>
+                            <button class="message btn-more" (click)="openSmallChatBox(item.company_profile)" >Message</button>
+                            <button class="review btn-more" (click)="open('review' , item.company_profile)">Write a Review</button>
+                            <!-- <button class="follow btn-more" *ngIf="!item.following" (click)="follow(item,'FollowCompanyForCompany')" >Follow</button> -->
+                            <button class="unfollow btn-more" *ngIf="item.following" (click)="follow(item,'UnfollowCompanyForCompany')" >Unfollow</button>
+                            <button class="report btn-more" (click)="open('report' , item.company_profile)" >Report / block</button>
+                        </div>
+                        <div class="left">
+                            <img class="company" [src]="item.company_profile.avatar == '' ? 'assets/img/default-company.svg' : '/file/'+item.company_profile.avatar" alt="profile">
+                        </div>
+                        <div class="right">
+                                <a [routerLink]="['/company/profile/'+item.company_profile.url]">
+                                    <h4> {{ item.company_profile.name }} </h4>
+                                </a>
+                                <ngb-rating [rate]= "math.round(item.company_profile.avarage_rating)" [readonly]="true" max="5"></ngb-rating> 
+                                <span >{{ utils.getInudsryName(item.company_profile.industry.id) }}</span>
+                                <span *ngIf="item.company_profile.addresses as addresses"> 
+                                    <ng-container *ngFor="let address of addresses">
+                                        <ng-container *ngIf="address.primary">
+                                            {{ address.city.city }}, 
+                                            {{ utils.getCountryName(address.country_id) }} 
+                                        </ng-container>
+                                    </ng-container>
+                                </span>
+                                <div class="mt-3">
+                                    <span> {{ item.followers }} Followers </span>
+                                    <span *ngIf="(item.company_profile.amount_jobs) as jobs" style="color: #00f4ff">
+                                        {{ jobs }} Job offers
+                                    </span>
+                                </div>
+                        </div>
+                    </div>
+                    <div class="network-line-four">
+                        <button class="btn btn-outline-primary" *ngIf="!item.following" (click)="follow(item)" >Follow</button>
+                    </div>
+                </div>
+                </div>
+                </div>
+            </form>
+            </ng-template>
+    
+                
+            <!-- list view -->
+            <ng-template [ngIf]="toggle.view.selected == 'list'  && !isLoaded" >
+                <form [formGroup]="connectionsForm">
+                <div class="network-boxes-container-long-view" formArrayName="checkbox" >
+                    <div class="network-box" [ngClass]="connectionsForm.controls.checkbox.controls[item.index].value ? 'selected' : null" *ngFor="let item of connectionsList; let i = index" >
+                        <div class="custom-control custom-checkbox" >
+                            <input type="checkbox" class="custom-control-input" [formControlName]="item.index" [id]="'check-network'+item.index">
+                            <label class="custom-control-label " [for]="'check-network'+item.index"></label>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="network-box-component-one">
+                                <img class="company" [src]="item.company_profile.avatar == '' ? 'assets/img/default-company.svg' : '/file/'+item.company_profile.avatar" alt="profile">
+                                <div class="one-right">
+                                    <h4 [routerLink]="['/company/profile' , item.company_profile.url]" style="cursor: pointer;"> {{ item.company_profile.name }} </h4>
+                                    <ngb-rating [rate]= "math.round(item.company_profile.avarage_rating)" [readonly]="true" max="5"></ngb-rating> 
+                                </div>
+                            </div>
+    
+                            <div class="network-box-component-two">
+                                <span>{{ utils.getInudsryName(item.company_profile.industry.id) }}</span>
+                                <span *ngIf="item.company_profile.addresses as addresses"> 
+                                    <ng-container *ngFor="let address of addresses">
+                                        <ng-container *ngIf="address.primary">
+                                            {{ address.city.city }}, 
+                                            {{ utils.getCountryName(address.country_id) }} 
+                                        </ng-container>
+                                    </ng-container>
+                                </span>
+                            </div>
+    
+                            <div class="network-box-component-three">
+                                <div>
+                                    <div class="d-flex">
+                                        <span> {{ item.followers }} Followers </span>
+                                    </div>
+                                    <span *ngIf="(item.company_profile.amount_jobs) as jobs" style="color: #00f4ff">
+                                        {{ jobs }} Job offers
+                                    </span>
+                                </div>
+        
+                                <div class="network-box-component-four">
+                                    <button class="btn btn-outline-primary" *ngIf="!item.following" (click)="follow(item)" >Follow</button>
+                                </div>
+                            </div>
+    
+      
+                        <button class="network-dots-btn" [ngbPopover]="companyPop"  [autoClose]="true" #popBox="ngbPopover">
+                            <img class="btn-more" src="assets/img/107.svg" alt="...">
+                        </button>
+
+                        <div  class="options connection-option " [ngClass]="{'d-none': !popBox.isOpen() }" #companyPop>
+                            <button class="message btn-more" (click)="openSmallChatBox(item.company_profile)" >Message</button>
+                            <button class="review btn-more" (click)="open('review' , item.company_profile)">Write a Review</button>
+                            <!-- <button class="follow btn-more" *ngIf="!item.following" (click)="follow(item,'FollowCompanyForCompany')" >Follow</button> -->
+                            <button class="unfollow btn-more" *ngIf="item.following" (click)="follow(item,'UnfollowCompanyForCompany')" >Unfollow</button>
+                            <button class="report btn-more" (click)="open('report' , item.company_profile)" >Report / block</button>
+                        </div>
+    
+                    </div>
+                </div>
+                </div>
+                </form>
+            </ng-template>
+    
+    
+            
+        </div>
+    </div>
+    <!-- Content in the center end -->
+    
+    
+    <!-- Start modals -->
+    <!-- Modals-->
+    <app-modal (closeModal)="modalType = null">
+        <!-- Report -->
+        <ng-container *ngIf="modalType === 'report' && selectedCompany">
+            <app-report-block-user type="company" [blockId]="selectedCompany"  (closeModal)="modal.close()">
+     
+            </app-report-block-user>
+        </ng-container>
+     
+        <!-- Review -->
+        <ng-container *ngIf="modalType === 'review' && selectedCompany">
+             <app-write-review [companyId]="selectedCompany.id" (closeModal)="modal.close()"> </app-write-review>
+        </ng-container>
+        
+       
+     </app-modal>
+     

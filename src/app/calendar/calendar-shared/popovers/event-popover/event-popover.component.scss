@@ -1,0 +1,337 @@
+@import "src/variables";
+@import 'src/mixins.scss';
+
+.form-control.calendar-input {
+    border: none;
+    background-color: $input-grey;
+    color: $dark-grey;
+    height: 32px;
+
+    &:focus {
+        box-shadow: unset;
+    }
+
+    &.title-input {
+        font-size: 18px;
+    }
+}
+
+textarea.calendar-input {
+    height: 118px !important;
+    resize: none;
+}
+
+.event-popover {
+    @include calendar-popover($width: 440px);
+    padding-bottom: 16px;
+
+    &__heading {
+        display: flex;
+        &__title {
+            font-size: 20px;
+            color: $dark-blue;
+            font-weight: 400;
+            margin-bottom: 5px;
+        }
+
+        &__event-bullet {
+            @include calendar-colored-bullets(20px, 20px, 16px, 10px );
+            margin-top: 3px;
+        }
+
+        &__icon-wrap {
+            height: 22px;
+            width: 22px;
+            margin-right: 10px;
+        }
+
+        &__icon {
+            display: inline-block;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 22px;
+            width: 22px;
+        }
+
+        &__location-icon {
+            background-image: url("../../../../../assets/img/207.svg");  
+            background-size: 15px;
+        }
+
+        &__people-icon {
+            background-image: url("../../../../../assets/img/57.svg"); 
+            background-size: 15px;
+        }
+
+        &__reminder-icon {
+            background-image: url("../../../../../assets/img/629.svg");
+            background-size: 22px;
+        }
+
+        &__topics-icon {
+            background-image: url("../../../../../assets/img/630.svg");  
+        }
+
+        &__date {
+            color: $dark-grey;
+            font-size: $medium-text;
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+
+    }
+    &__attendees {
+
+        &__item {
+            margin-bottom: 10px;
+
+            &__img {
+                position: relative;
+                height: 32px;
+                width: 32px;
+                margin-right: 10px;
+                img {
+                    height: 100%;
+                    width: 100%;
+                    border-radius: 50%;
+                }
+            }
+
+            &__icon {
+                display: inline-block;
+                position: absolute;
+                height: 14px;
+                width: 14px;
+                bottom: -2px;
+                right: -4px;
+
+                &.going {
+                    background-image: url("../../../../../assets/img/459.svg");
+                    background-size: 14px;
+                }
+                &.maybe {
+                    background-image: url("../../../../../assets/img/463.svg");
+                    background-size: 14px;
+                }
+                &.not-going {
+                    background-image: url("../../../../../assets/img/461.svg");
+                    background-size: 14px;
+                }
+            }
+    
+            &__info {
+                h4 {
+                    color: $dark-blue;
+                    font-size: 14px;
+                    margin-bottom: 0;
+                    font-weight: normal
+                }
+                span {
+                    color: $dark-grey;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+    &__host {
+        margin-bottom: 16px;
+        &__img {
+            height: 24px;
+            width: 24px;
+            margin-right: 10px;
+            img {
+                height: 100%;
+                width: 100%;
+                border-radius: 50%;
+            }
+        }
+    }
+    &__topics {
+        &__list {
+            color: $dark-grey;
+            padding: unset;
+            padding-left: 22px;
+            list-style: none;
+            
+            &__item {
+                color: $dark-grey;
+                &:before {
+                    content: "-";
+                    margin-left: -20px;
+                    margin-right: 10px;
+                }
+            }
+        }
+    }
+    &__poll-options {
+        &__item {
+            margin-right: 30px;
+            img {
+                margin-right: 10px;
+            }
+        }
+    }
+    &__footer {
+        padding-top: 16px;
+        border-top: 1px solid $input-grey;
+
+        &__options {
+            display: flex;
+            align-items: center;
+            button {
+                height: 19px;
+                width: 19px;
+                padding-right: 28px;
+                display: block;
+
+                &:last-child {
+                    padding: 0;
+                    margin-right: -8px;
+                }
+            }
+
+            &__edit {
+                background-image: url("../../../../../assets/img/19.svg");
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 16px;
+            }
+            &__delete {
+                background-image: url("../../../../../assets/img/53.svg");
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            &__notif {
+                background-image: url("../../../../../assets/img/256.svg");
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            &__more {
+                background-image: url("../../../../../assets/img/107.svg");
+                background-repeat: no-repeat;
+                background-position: center;
+                transform: rotate(90deg);
+                height: 19px;
+                width: 19px;
+                padding-right: 22px;
+            }
+        }
+    }
+    &-dropdown {
+        &.without-arrow {
+            .dropdown-toggle {
+                &:after {
+                    content: unset;
+                }
+            }
+    
+        }
+        &__menu {
+            @include calendar-popover($padding: 12px 0);
+
+            &__btn {
+                margin: 0;
+                width: 100%;
+                color: $dark-grey;
+                background-color: unset;
+                padding: 5px 16px;
+                border-radius: unset;
+                display: block;
+                text-align: left;
+
+                &:hover {
+                    background-color: $input-grey;
+                }
+                span {
+                    font-size: 14px;
+                }
+            }
+        }
+
+        &__toggle {
+            &--grey {
+                background-color: $input-grey;
+
+                &[aria-expanded="true"] {
+                    border-color: $dark-blue;
+                }
+            }
+            border-radius: 5px;
+            padding: 5px 10px;
+            height: 32px;
+            color: #4d4d4d;
+            display: flex;
+            align-items: center;
+            border: 1px solid transparent;
+            cursor: pointer;
+            max-width: 185px;
+
+            &:after {
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            
+
+            &__calendar-bullet {
+                @include calendar-colored-bullets(16px, 16px, 14px, 7px);
+            }
+            
+        }
+    }
+}
+
+.send-reminder-popover {
+    @include calendar-popover($width: 440px);
+
+    &__field {
+        margin: 30px 0;
+        &__title {
+            font-size: $medium-text;
+            font-weight: normal;
+        }
+    }
+}
+
+.publish-event-popover {
+    @include calendar-popover($width: 550px);
+
+    &__field {
+        margin: 30px 0;
+        &__title {
+            font-size: $medium-text;
+            font-weight: normal;
+        }
+    }
+
+    &__heading {
+        display: flex;
+        &__title {
+            font-size: 16px;
+            color: $dark-blue;
+            font-weight: 400;
+            margin-bottom: 5px;
+        }
+
+        &__event-bullet {
+            @include calendar-colored-bullets(16px, 16px, 14px, 10px );
+            margin-top: 3px;
+        }
+
+        
+    }
+    &__field {
+        &__title {
+            color: $dark-blue;
+            font-size: $medium-text;
+            margin-left: 7px;
+        }
+    }
+}
+
+.change-owner-popover {
+    @include calendar-popover($width: 440px);
+}
+

@@ -1,0 +1,40 @@
+
+<form [formGroup]="form" class="col-12 basic-form">
+    <div class="form-group">
+        <p [ngClass]="{'custom-red':form.get('bodyType').invalid && isSubmitted}">Body Type</p>
+
+        <div class="body-container" *ngIf="type=='CAR'">
+            <div *ngFor="let item of carsBodyTypes['CAR']; let i = index;">
+                <input  type="radio" 
+                        class="body-input" 
+                        [value]="item['type']" 
+                        id="body-{{ item['type'] }}" 
+                        name="bodyType"
+                        formControlName="bodyType">
+                        <!-- [ngClass]="{'is-invalid':form.get('bodyType').invalid && isSubmitted}" -->
+                <label  for="body-{{ item['type'] }}" class="body-label"> 
+                        <img [src]="item['icon']" alt="">
+                        <span> {{ item['text'] }} </span>
+                </label>
+            </div>
+        
+        </div>
+        
+        
+        <div *ngIf="type=='MOTOCYCLES'">
+            <div class="custom-control custom-radio custom-control-inline col-6 col-md-3 mr-0"   
+            *ngFor="let item of carsBodyTypes['MOTOCYCLES']; let i = index;">
+                    <input  type="radio" 
+                            class="custom-control-input" 
+                            [value]="item['type']" 
+                            id="body-{{ item['type'] }}" 
+                            name="bodyType"
+                            formControlName="bodyType">
+                            <!-- [ngClass]="{'is-invalid':form.get('bodyType').invalid && isSubmitted}" -->
+                    <label  for="body-{{ item['type'] }}" class="custom-control-label"> 
+                        {{ item['text'] }}
+                    </label>
+            </div>
+        </div>
+    </div>
+</form>

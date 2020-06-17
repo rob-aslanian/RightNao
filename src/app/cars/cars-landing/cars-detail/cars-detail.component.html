@@ -1,0 +1,228 @@
+<app-dream-job [title]='"Car"'></app-dream-job>
+
+<div class="container-fluid " style="width: 80%;">
+    <div class="row pb-5 mt-2" *ngIf="selectedCar; else loading">
+        <div class="col-md-10  p-0 mb-3">
+           <div class="details">
+               <div class="details__photo-gallery  col-12 p-0">
+                   <app-service-slider-edition-two [files]='selectedCar.files'></app-service-slider-edition-two>
+               </div>
+               <div class="details__content row p-3">
+                   <div class="details__content__description col-md-12 col-xl-9">
+                       <div class="details__content__title col-12">
+                           <!-- <div class="col-md-6"> -->
+                               <div class="w-100 d-flex justify-content-between">
+                                   <h4> {{ selectedCar.title }} </h4>
+                                   <span>{{ postedDate }} </span>
+                               </div>
+                               <!-- <div class="d-flex" *ngIf="selectedHome['rental_info']['location']['country'] && 
+                                                          selectedHome['rental_info']['location']['city'] ">
+                                   <img src="assets/img/24.svg" alt="location" >
+                                   <span class="ml-3">{{ selectedHome['rental_info']['location']['country'] | country }}, 
+                                                      {{ selectedHome['rental_info']['location']['city'] }}  
+                                   </span>
+                               </div> -->
+                           <!-- </div> -->       
+                       </div>
+                       <p> {{ selectedCar.brand }} {{ selectedCar.model }} </p>  
+                       <div class="details__content__description-details row justify-content-between mt-3 m-1 d-print-none" >
+                           <div class="col-xl-2 d-flex details__content__description-details__box align-items-center ">  
+                               
+                               <div class="">
+                                   <span>{{ selectedCar['years'] }}</span>
+                                   <p>Years</p>
+                               </div>
+                           </div>
+                           <div class="col-xl-2 d-flex details__content__description-details__box align-items-center ">  
+                        
+                               <div class="">
+                                   <span>{{ selectedCar.mileage }}{{selectedCar.mileageUnit}}</span>
+                                   <p>Mileage</p>
+                               </div>
+                           </div>
+                           <div class="col-xl-2 d-flex details__content__description-details__box align-items-center ">  
+                               
+                               <div class="">
+                                   <span>{{  selectedCar['transmission'] }}</span> 
+                                   <p>Transmission</p>
+                               </div>
+                           </div>
+                           <div class="col-xl-2 d-flex details__content__description-details__box align-items-center ">  
+                            
+                               <div class="">
+                                   <span>{{ selectedCar['fuelType']  }}</span>
+                                   <p>Fuel Type</p>
+                               </div>
+                           </div>
+                           <div class="col-xl-2 d-flex details__content__description-details__box align-items-center ">  
+                            
+                               <div class="">
+                                   <span>{{ selectedCar['engineSize'] }}</span>
+                                   <p>Engine Size</p>
+                               </div>
+                           </div>
+                        </div>
+                        <div class="details__content__description__text mt-4 col-12">
+                                <p> {{ selectedCar['desciption'] }} </p>
+                                <div class="row mt-5">
+
+                                        <div class="col-md-4" *ngIf="carFeatures.length > 0">
+                                            <h4>Features and Environment</h4>
+                                            <ul class="p-4">
+                                                <li *ngFor="let item of carFeatures">{{ item }}</li>
+                                            </ul>
+                                        </div>
+         
+                                        <div class="col-md-4">
+                                            <h4>Condition</h4>
+                                            <ul class="p-4">
+                                                <li>{{ selectedCar['condition'] }}</li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-md-4" *ngIf="selectedCar['colour']">
+                                                <h4>Color</h4>
+                                                <div class="color-wrapper ">
+                                                        <span class="color-box" [ngStyle]="{'background': selectedCar['colour']}"></span>
+                                                </div>
+                                                
+                                        </div>
+         
+                                        <!--<div class="col-md-4" *ngIf="selectedHome.indoor_features.length > 0">
+                                             <h4>Indoor features</h4>
+                                             <ul>
+                                                 <li *ngFor="let item of selectedHome.indoor_features">{{ item | property }}</li>
+                                             </ul>
+                                         </div>
+         
+                                         <div class="col-md-4" *ngIf="selectedHome.outdoor_features.length > 0">
+                                                 <h4>Outdoor features</h4>
+                                             <ul>
+                                                 <li *ngFor="let item of selectedHome.outdoor_features">{{ item | property }}</li>
+                                             </ul>
+                                         </div>
+         
+                                         <div class="col-md-4" *ngIf="selectedHome.type_of_land.length > 0">
+                                                 <h4>Type of Land</h4>
+                                             <ul>
+                                                 <li *ngFor="let item of selectedHome.type_of_land"> {{ item | property }} </li>
+                                             </ul>
+                                         </div>
+         
+                                         <div class="col-md-4" *ngIf="selectedHome.type_of_property.length > 0">
+                                                 <h4>Type of Property</h4>
+                                             <ul>
+                                                 <li *ngFor="let item of selectedHome.type_of_property">{{ item | property }}</li>
+                                             </ul>
+                                         </div> -->
+                                    </div>
+                        </div>
+                       </div>
+
+
+                       <div class="col-md-12 col-xl-3 d-print-none" >
+                        <div class="counter-offer py-3">
+                             <div class="counter-offers">
+                                     <div class="counter-offers__title p-3">
+                                        <h4>{{ selectedCar['price']['amount'] }}
+                                             {{ selectedCar['price']['currency'] }}
+                                        </h4>
+                                         <span>1 mth - 
+                                                {{selectedCar['finance']['firstInstalment']}} 
+                                                {{selectedCar['finance']['currency']}}
+                                        </span>
+                                     </div>
+                                     <div class="counter-offers__alert d-flex justify-content-between p-3">
+                                         <span >Recieve an alert</span>
+                                         <div class="" style="position: absolute; right: 3rem;">
+                                                 <label class="switch ml-2" [ngClass]="{ 'has_reppossed': isMe }">
+                                                     <!-- ngmodel -->
+                                                     <input type="checkbox" 
+                                                            [ngClass]="{ 'has_reppossed': isMe }"
+                                                           
+                                                            ><span class="slider round"></span>   
+                                                 </label>
+                                         </div>
+                                     </div>
+                                 
+                                     <div class="counter-offers__offer p-3"
+                                          [ngClass]="{ 'has_reppossed': isMe }">
+                                 
+                                         <p>Make a counter offer</p>
+                                         
+                                         <div class="d-flex align-items-center">
+                                             <!-- ngmodel -->
+                                             <input type="number"
+                                                    class="form-control" 
+                                                    placeholder="Enter price or price range" >
+                                             <button class="btn btn-primary ml-2" (click)='makeCounterOffer()'>Send</button>
+                                         </div>
+                                     </div>
+                                 
+                                 </div>
+                        </div>
+ 
+                        <div class="author-details mt-3 p-3">
+                                 <app-author-details [isMe]="isMe" [phones]="selectedCar.phoneNumber"></app-author-details> 
+                        </div>
+
+                        
+                        <div class="author__actions mt-3 row" *ngIf="!isMe">
+                            
+                            <div class="col-md-4 d-flex">
+                                <img class="mr-2" [src]="selectedCar.is_favourite ? 'assets/img/99.svg' : 'assets/img/98.svg' " alt="">
+                            </div>
+ 
+                            <div class="col-md-4 d-flex">
+                                <img class="mr-2" src="assets/img/84.svg" alt="">
+                                <span>Share</span>
+                            </div>
+                            <div class="col-md-4 d-flex">
+                                <img class="mr-2" src="assets/img/625.svg" alt="">
+                                <span (click)='print()'>Print</span>
+                            </div>
+                            <div class="col-12 d-flex justify-content-end mt-2">
+                                <div class="" style="border-right: 1px solid grey; padding-right: .5rem; ">
+                                    <p class="m-0">21,542 view</p>
+                                </div>
+                                <div class="ml-2">
+                                    <p class="m-0">2 share</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div>
+               </div>
+           </div>
+        <!--  * * *  Languages Bar * * *  -->
+        <div class="ads d-print-none col-md-2">
+                <app-user-profile-landing-languages></app-user-profile-landing-languages>
+            </div>
+        </div>  
+
+    <ng-template #loading>
+        <div class="d-flex justify-content-center">
+              <app-spinner></app-spinner>
+        </div>
+    </ng-template>
+    
+</div>
+
+
+
+

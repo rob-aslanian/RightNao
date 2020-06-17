@@ -1,0 +1,191 @@
+<!-- Start notifications item -->
+<div class="notification-item" *ngIf="(profile | async) as profile" [ngClass]="{'unread': !data.seen}">
+  <a [routerLink]="[isCompany ? '/company/profile' : '/user/profile' , profile.url]" (click)="markAsSeen(data)">
+    <div class="small-date">
+      <!-- {{ data.created_at | date }} -->
+      {{ utils.dateFromNow(data.created_at) }}
+    </div>
+    <div class="notf-sms">
+      <!-- User -->
+      <ng-container *ngIf="!isCompany">
+        {{ profile.firstname + ' ' + profile.lastname }}
+      </ng-container>
+
+      <!-- Comapny -->
+      <ng-container *ngIf="isCompany">
+       {{ profile.name }}
+      </ng-container>
+
+      {{ notifyTextKeys[data['type'] ]  }}
+
+      <!-- Job titile -->
+      <ng-container *ngIf="(job | async) as job">
+        {{ job.job_details.title }}
+      </ng-container>
+      
+
+    </div>
+    <div class="notf-desc">
+      <div class="notf-img">
+        <img [src]="profile.avatar ? '/file/' + profile.avatar : 'assets/img/124.svg'" alt="picture" />
+      </div>
+      <div class="flex-grow-1">
+
+        <div class="notf-title">
+          <span *ngIf="!isCompany"> {{ profile.firstname + ' ' + profile.lastname }}</span>
+          <span *ngIf="isCompany">
+
+            <!-- Job Title-->
+            <ng-container *ngIf="(job | async) as job">
+                {{ job.job_details.title }}
+            </ng-container>
+            <!-- Job Title-->
+
+            <!-- Company  Name-->
+            <ng-container *ngIf="!job">
+              {{ profile.name }}
+            </ng-container>
+            <!-- Company  Name-->
+
+          </span>
+        </div>
+
+        <!-- User -->
+        <ng-container *ngIf="!isCompany">
+          <!-- Experience-->
+          <div class="notf-gray-text" *ngIf="profile.experiences.slice(-1); let experience">
+              <ng-container *ngIf="experience[0]">
+                {{ experience[0].title }} <br>
+                {{ experience[0].company }}
+              </ng-container>
+            </div>
+            <!-- Experience-->
+        </ng-container>
+        <!-- User -->
+
+         <!-- Company -->
+         <ng-container *ngIf="isCompany">
+            <!-- Company Info-->
+            <div class="notf-gray-text" >
+                    <span>
+                      {{ profile.name }} <br>
+                      {{ profile.industry.id  ? utils.getInudsryName(profile.industry.id) : '' }}
+                    </span>
+              </div>
+               <!-- Company Info-->
+          </ng-container>
+          <!-- Company -->
+
+      </div>
+    </div>
+  </a>
+
+  <!-- Buttons -->
+  <div class="notf-buttons-box" *ngIf="data['type'] !== 'new_follow' ">
+    <ng-container [ngSwitch]="data['type']">
+
+      <!-- Reccomendation -->
+      <ng-container *ngSwitchCase="'recommendation_request'">
+        <button class="backgroundless" (click)="ignore(data.recommendation_id)">Ignore</button>
+        <button class="btn btn-primary" (click)="open('writeRecommendation' , profile);">Write</button>
+      </ng-container>
+      <!-- Reccomendation -->
+
+      
+      <!-- New Job invitation -->
+      <ng-container *ngSwitchCase="'new_job_invitation'">
+          <button class="backgroundless" (click)="result.emit(data.id)">Ignore</button>
+          <button class="btn btn-primary" (click)="open('apply' , profile.name);">Accept</button>
+      </ng-container>
+      <!-- New Job invitation -->
+
+      <!-- Founder reuquest -->
+      <ng-container *ngSwitchCase="'new_founder_request'">
+          <button class="backgroundless" (click)="founderRequest(data.request_id , 'ignore')">Ignore</button>
+          <button class="btn btn-primary" (click)="founderRequest(data.request_id , 'accept')">Accept</button>
+      </ng-container>
+      <!-- Founder reuquest -->
+
+      <!-- New Connection -->
+      <ng-container *ngSwitchCase="'new_connection'">
+          <button class="backgroundless" (click)="friendShipRequest(data.friendship_id , 'ignore')">Ignore</button>
+          <button class="btn btn-primary" (click)="friendShipRequest(data.friendship_id , 'accept')">Accept</button>
+      </ng-container>
+      <!-- New Connection -->
+
+
+      <!-- New Reccomendation -->
+      <ng-container *ngSwitchCase="'new_recommendation'">
+          <button class="btn btn-primary" [routerLink]="['/user/profile/' , userURL , 'user-recommendations']"  >
+            View
+          </button>
+      </ng-container>
+      <!-- New Reccomendation  -->
+
+      <!-- New Service Order -->
+      <ng-container *ngSwitchCase="'new_order'">
+        <button class="btn btn-primary" [routerLink]="['/user/profile/' , userURL , 'user-recommendations']"  >
+          View
+        </button>
+      </ng-container>
+      <!-- New Service Order  -->
+
+
+      <!-- New Service Proposal -->
+      <ng-container *ngSwitchCase="'new_proposal'">
+        <button class="btn btn-primary" [routerLink]="['/user/profile/' , userURL , 'user-recommendations']"  >
+          View
+        </button>
+      </ng-container>
+      <!-- New Service Proposal  -->
+
+      <!-- New Company review -->
+      <ng-container *ngSwitchCase="'new_review'">
+          <button class="btn btn-primary" [routerLink]="['/company/profile/' , companyURL , 'raiting' ,  data.receiver_id]"  
+                  [queryParams]="{'admin':true}">
+            View Review
+          </button>
+      </ng-container>
+      <!-- New Company review -->
+
+      <!-- Job Applicant -->
+      <ng-container *ngIf="(job | async) as job">
+        <ng-container *ngSwitchCase="'new_job_applicant'">
+            <button class="btn btn-primary" [routerLink]="['/jobs/company/dashboard/applicants/' , job.job_details.title , job.id]" [fragment]="profile.url">
+              View Applicant
+            </button>
+        </ng-container>
+      </ng-container>
+      <!-- Job Applicant -->
+
+    </ng-container>
+
+  </div>
+  <!-- Buttons -->
+
+   
+</div>
+
+<!-- End notifications item -->
+
+
+
+<app-modal (closeModal)="modalType = null">
+
+  <!-- Write reccomendation -->
+  <ng-container *ngIf="modalType && modalType === 'writeRecommendation'">
+    <app-reccomendations-modal [modalType]="modalType" (result)="getReccomendation($event)" [data]="selectedUser">
+    </app-reccomendations-modal>
+  </ng-container>
+  <!-- Write reccomendation -->
+
+  <!-- Apply -->
+  <ng-container *ngIf="modalType === 'apply' && job">
+      <app-apply-modal [userId]="userURL" [jobId]="data.job_id" [company]="applyContent" (closeModal)="close()"></app-apply-modal>
+  </ng-container>
+  <!-- Apply -->
+
+</app-modal>
+
+
+

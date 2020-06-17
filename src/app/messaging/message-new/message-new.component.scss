@@ -1,0 +1,16 @@
+.messaging-main-content {
+    display: flex;
+    height: calc( 100% - 24px);
+}
+
+@media(max-width: 768px) {
+    // .messaging-head {
+    //     display: none;
+    // }
+    .messaging-main_center {
+        display: none;
+    }
+    .messaging-main-content {
+        display: none;
+    }
+}

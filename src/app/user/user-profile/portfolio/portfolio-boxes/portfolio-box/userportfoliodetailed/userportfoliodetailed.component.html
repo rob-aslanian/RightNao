@@ -1,0 +1,100 @@
+<div class="portfolio-detailed pb-5">
+    <ng-container *ngIf="userId === userProfileId">
+        <div class="dots" ngbDropdown>
+             <button class="btn backgroundless" ngbDropdownToggle><img src="assets/img/107.svg" alt="dots"></button>
+             <div class="options" ngbDropdownMenu>
+                  <a ngbDropdownItem class="backgroundless" (click)='handleDots( selectedPortfolio.id, true )'>Edit</a>
+                  <a ngbDropdownItem class="backgroundless" (click)='handleDots( selectedPortfolio.id, false )'>Delete</a>
+              </div>
+        </div> 
+    </ng-container>
+    
+    <ng-container *ngIf="!loading">
+
+            <app-shared-slider [files]='files' [type]='type'></app-shared-slider>
+
+            <div class="portfolio-tools">
+                   <!-- Tools -->
+                   <div class="rounded-box-wrapper tools d-flex align-items-center" *ngIf="selectedPortfolio.tools.length > 0">
+                       <div class="rounded-box">
+                            <img [src]="selectedPortfolio.tools[0] | tools" alt="tool">
+                       </div>
+                       <span>Tools</span>
+                       <div class="addational-tools">
+                              <ng-container *ngFor="let tool of selectedPortfolio.tools" >
+                                <img [src]="tool | tools" alt="tool">
+                              </ng-container>
+                       </div>
+                   </div>
+                   <!-- Save -->
+                   <div class="rounded-box-wrapper d-flex align-items-center" (click)='save()'>
+                            <div class="rounded-box">
+                                <img src="assets/img/71.svg" alt="save">
+                            </div>
+                        <span>Save</span>
+                    </div>
+                    <!-- Like -->
+                    <div class="rounded-box-wrapper d-flex align-items-center" (click)='likeOrUnlikePortfolio( selectedPortfolio.id, selectedPortfolio.has_liked )'>
+
+                        <div class="rounded-box">
+                              <img [src]="selectedPortfolio.has_liked ? 'assets/img/99.svg' : 'assets/img/44.svg' " alt="save" style="margin-top: 3px;">
+                        </div>
+
+                        <span>Like</span>
+                    </div>
+            </div>
+            
+           <div class="portfolio-section mt-3">
+               <div class="pl-4 pr-4">
+                   <div class="row">
+                       <div class="col-7 mt-2" *ngIf="!selectedPortfolio.is_comments_disabled">
+                            <app-portfolio-comments [owner_id]='userId' [portfolio_id]='selectedPortfolio.id'></app-portfolio-comments>
+                       </div>
+                       <div class="col">
+                           <p  class="border-bottom-desc">
+                                {{ selectedPortfolio?.description }}
+                           </p>
+                           <div class="details-left">
+
+                               <div class="pt-2">
+                                   <img src="assets/img/6.svg" alt="eye">
+                                   <span>{{ selectedPortfolio?.view_count }} Views</span>
+                               </div>
+
+                               <div class="pt-2">
+                                    <img src="assets/img/44.svg" alt="likes">
+                                    <span>{{ selectedPortfolio?.like_count }} Likes</span>
+                                </div>
+
+                                <div class="pt-2">
+                                        <img src="assets/img/41.svg" alt="likes">
+                                        <span>{{ amountComments }} comments</span>
+                                </div>
+
+                                <div class="pt-2">
+                                        <img src="assets/img/71.svg" alt="likes">
+                                        <span>{{ selectedPortfolio?.saved_count }} Saved</span>
+                                </div>
+
+                                <div class="pt-2">
+                                        <img src="assets/img/168.svg" alt="likes">
+                                        <span> {{ selectedPortfolio?.created_at | date }} </span>
+                                </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+           
+    </ng-container>
+    <!-- Loader -->
+
+    <ng-container *ngIf="loading">
+        <div class="d-flex justify-content-center">
+            <app-spinner></app-spinner>
+        </div>
+    </ng-container>
+    
+</div>
+
+

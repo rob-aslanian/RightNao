@@ -1,0 +1,260 @@
+@import "src/variables";
+@import 'src/mixins.scss';
+
+.form-control.calendar-input {
+    border: none;
+    background-color: $input-grey;
+    color: $dark-grey;
+    height: 32px;
+
+    &:focus {
+        box-shadow: unset;
+    }
+
+    &.title-input {
+        font-size: 18px;
+    }
+}
+
+textarea.calendar-input {
+    height: 118px !important;
+}
+
+.add-event-popover {
+    @include calendar-popover($width: 480px);
+    .calendar-time-range {
+        &__dates-container {
+            margin-left: 33px;
+        }
+        &__dates {
+            color: $dark-grey;
+            span {
+                font-size: 14px;
+            }
+            h2 {
+                font-size: 20px;
+                font-weight: normal;
+                color: $dark-grey;
+                margin: 0;
+            }
+        }
+        &__arrow {
+            padding: 0 16px 0 20px;
+            img {
+                transform: rotate(-90deg);
+                height: 14px;
+            }
+        }
+        &__switch {
+            span {
+                color: $dark-grey;
+                white-space: nowrap;
+            }
+            .switch {
+                position: relative;
+                display: inline-block;
+                width: 37px;
+                height: 18px;
+            }
+            
+            .switch input { 
+            opacity: 0;
+            width: 0;
+            height: 0;
+            }
+            
+            .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: $light-grey;
+            -webkit-transition: .3s;
+            transition: .3s;
+            border: solid 1px #e6e6e6;
+            }
+            
+            .slider:before {
+            position: absolute;
+            content: "";
+            height: 12px;
+            width: 12px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            -webkit-transition: .3s;
+            transition: .3s;
+            }
+            
+            input:checked + .slider {
+                background-color: $background-dark-cyan;
+            }
+                
+            input:checked + .slider:before {
+                -webkit-transform: translateX(19px);
+                -ms-transform: translateX(19px);
+                transform: translateX(19px);
+            }
+            
+            /* Rounded sliders */
+            .slider.round {
+                border-radius: 34px;
+                margin-right:0;
+            }
+            
+            .slider.round:before {
+                border-radius: 50%;
+            }
+            label {
+                margin-bottom: 0 !important;
+            }
+        }
+
+        &__chosen-time {
+            display: flex;
+            margin-top: 8px;
+            span {
+                max-width: 150px;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                margin-right: 24px;
+            }
+        }
+
+        .timezone-btn {
+            position: relative;
+            bottom: -8px;
+            color: $dark-grey;
+            & ~ span{
+                line-height: 18px;
+            }
+        }
+    }
+
+    &__field {
+        margin-bottom: 16px; 
+        &__icon-wrap {
+            height: 20px;
+            width: 20px;
+            margin-bottom: 4px;
+            img {
+                height: 100%;
+                width: 100%;
+            }
+        }
+        &__more-btn {
+            background-image: url("../../../../../assets/img/107.svg");
+            background-repeat: no-repeat;
+            background-position: center;
+            -webkit-transform: rotate(90deg);
+            transform: rotate(90deg);
+            height: 19px;
+            width: 19px;
+            margin: 0;
+        }
+
+        &__attendee-list {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-left: 33px;
+
+            &__item {
+                padding: 5px 10px;
+                background-color: $white;
+                border: 1px solid $input-grey;
+                border-radius: 5px;
+                margin-bottom: 10px;
+                margin-right: 10px;
+
+                &__img {
+                    height: 32px;
+                    width: 32px;
+                    margin-right: 12px;
+                    img {
+                        height: 100%;
+                        width: 100%;
+                        border-radius: 50%;
+                    }
+                }
+
+                span {
+                    color: $dark-blue;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+
+    .add-event-dropdown {
+        &__menu {
+            @include calendar-popover($padding: 10px 0 10px 0);
+            &--full-width {
+                width: 100%;
+            }
+
+            &__btn {
+                margin: 0;
+                width: 100%;
+                color: $dark-grey;
+                background-color: unset;
+                padding: 5px 10px;
+                border-radius: unset;
+
+                &:hover {
+                    background-color: $input-grey;
+                }
+                span {
+                    font-size: 14px;
+                }
+            }
+        }
+
+        &__toggle {
+            background-color: $input-grey;
+            border-radius: 5px;
+            padding: 5px 10px;
+            height: 32px;
+            color: #4d4d4d;
+            display: flex;
+            align-items: center;
+            border: 1px solid transparent;
+            cursor: pointer;
+
+            &:after {
+                position: absolute;
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            &[aria-expanded="true"] {
+                border-color: $dark-blue;
+            }
+
+            &__calendar-bullet {
+                @include calendar-colored-bullets(16px, 16px, 14px, 7px);
+            }
+            
+        }
+    }
+
+    .add-event-dropdown.without-arrow {
+        .dropdown-toggle {
+            &:after {
+                content: unset;
+            }
+        }
+
+        &__menu {
+            @include calendar-popover($padding: 16px);
+
+            &__checkbox-label {
+                white-space: nowrap;
+            }
+        }
+    }
+}

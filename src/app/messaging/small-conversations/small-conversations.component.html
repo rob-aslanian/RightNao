@@ -1,0 +1,51 @@
+<div class="sms-nano-w small-conversation-main">
+  <div class="sms-nano-head">
+    <div (click)="showBody = !showBody" class="sms-nano-head_in header-toggle-body">
+      <h2>Messaging</h2>
+      <!-- <div *ngIf="totalUnread !==0" class="sms-nano-unreadCount">{{totalUnread}}</div> -->
+    </div>
+    <div class="sms-nano-head_in">
+      <button (click)="onNewChat()" class="sms-nano-addChat"></button>
+      <!-- <button class="sms-nano-plus"></button> -->
+      <button  [autoClose]="'outside'" [ngbPopover]="onlineVisibility" class="sms-nano-options"></button>
+      <!-- <button class="sms-nano-close">&#10005;</button> -->
+    </div>
+  </div>
+  <div *ngIf="showBody" class="sms-nano-body">
+    <div class="chatBox-row sms-nano-search-container">
+      <app-search-conversation-box (getConversationList)="getConversationList($event)"></app-search-conversation-box>
+    </div>
+   
+    <div class="sms-nano-body-row sms-nano-search-margin sms-nano-body-row-scroll">
+      <div *ngFor="let conversationItem of conversationList" (click)="onConversationTap(conversationItem)" [ngClass]="{'unread' : conversationItem.unread}" class="sms-nano-searchedSMS">
+          <app-group-avatar *ngIf="conversationItem.is_group" [conversation]="conversationItem"></app-group-avatar>
+          <img *ngIf="!conversationItem.is_group" [src]="(getParticipant(conversationItem).avatar | defaultAvatar )"
+              alt="photo">
+        <div class="sms-nano-searchedSMS-in">
+          <h2>{{conversationItem | conversationName }}</h2>
+          <ng-container *ngIf="conversationItem.last_message.type == 'ParticipantLeft' || conversationItem.last_message.type == 'AddParticipant' ">
+              <p>{{conversationItem.last_message | groupNotification: conversationItem}}</p>
+          </ng-container>
+
+          <ng-container *ngIf="conversationItem.last_message.type == 'UserMessage'">
+              <p>{{conversationItem.last_message.text}}</p>
+          </ng-container>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #onlineVisibility>
+    <div class="settings-selection_body active-status" [ngClass]="{'minimized-body': !showBody}">
+        Active status
+        <div class="notification-checkbox">
+            <label class="switch">
+                <input [(ngModel)]="listenersService.isOnline" (change)="toggleOnline()" type="checkbox" id="connections">
+                <span class="slider round"></span>
+            </label>
+        </div>
+
+    </div>
+</ng-template>

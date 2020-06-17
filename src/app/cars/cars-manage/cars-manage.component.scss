@@ -1,0 +1,114 @@
+@import 'src/variables'; 
+
+// //  * * * Header * * * 
+// .dark-blue-bg-for-estate {
+//     background-color: $dark-blue;
+   
+
+//     .manage {
+//         align-items: center;
+//         &__navigation {
+//             a {
+//                 color: white; 
+//                 cursor: pointer; 
+//                 padding-bottom: .6rem;
+//                 margin: 0;
+//                 border-bottom: 3px solid transparent;
+//                 white-space: nowrap;
+//                 text-decoration: none; 
+
+//                 &:hover {
+//                     border-bottom: 3px solid $lignt-cyan;
+//                 }
+
+//             }
+//         }; 
+
+//         &__add {
+//             img {
+//                 cursor: pointer; 
+
+//             }
+//             a {
+//                 color: $lignt-cyan;
+//                 text-decoration: none;   
+//                 cursor: pointer; 
+//                 margin: 0; 
+
+//                 &:hover {
+//                     text-decoration: none; 
+//                 }
+//             }
+//         }
+//     }
+//  }
+
+//   * * * * C o n t e n t * * * *
+
+.content {
+    background-color: white; 
+    border: 1px solid $grey-dark; 
+    border-radius: .5rem; 
+
+    &__active {
+        font-size: .875rem; 
+        color: $dark-grey; 
+    }
+
+}
+
+
+.down-arrow {
+    transform: rotate(45deg); 
+    -webkit-transform: rotate(45deg); 
+}; 
+
+.active {
+    border-bottom: 3px solid $lignt-cyan !important;
+
+}
+
+
+.wallet {
+    &-wrapper
+    {
+        background-color: $background-soft-blue;
+        // min-height: 95vh;
+        min-height: calc(100vh - 258px);
+    }
+    &-header {
+        background-color: $dark-blue;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &-nav {
+            padding:0;
+            margin: 5px 0 0 0;
+            display: inline-flex;
+            overflow: hidden;
+            overflow-x: initial;
+            list-style-type: none;
+            > li {
+                > a {
+                    text-decoration: none; 
+                    white-space: nowrap;
+                    color:$white;
+                    padding: 15px;
+                    padding-bottom:16px;
+                    display: block; 
+                    &.active {
+                        color: $white;
+                        border-bottom:4px solid $background-dark-cyan;
+                    }
+                    
+                }
+            }
+        }
+        &-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+
+}

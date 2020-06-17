@@ -1,0 +1,44 @@
+
+<div class="avilability" [formGroup]="date">
+        <div class="col-8 p-0">
+            <label for="">Avilability</label>
+            <div class="row m-0">
+                <div class="col-6 pl-0" >
+                    <div class="input-group">
+                        <input class="form-control " 
+                                ngbDatepicker 
+                                #d='ngbDatepicker' 
+                                placeholder="yyyy-mm-dd" 
+                                [navigation]='"arrows"'
+                                formControlName="dateFrom"
+                                autocomplete="off"
+                                [ngClass]="{'is-invalid': isSubmitted && date.get('dateFrom').invalid }">
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-dark" (click)='d.toggle()' >
+                                 <img src="assets/img/168.svg" style="height: 18px; width: 24px;"> 
+                            </button>
+                        </div>
+                    </div>
+                 </div>
+
+                 <div class="col-6 pl-0" >
+                        <div class="input-group">
+                            <input class="form-control" 
+                                    ngbDatepicker 
+                                    #second='ngbDatepicker' 
+                                    placeholder="yyyy-mm-dd" 
+                                    [navigation]='"arrows"'
+                                    formControlName="dateTo"
+                                    autocomplete="off"
+                                    [ngClass]="{'is-invalid': isSubmitted && date.get('dateTo').invalid }">
+
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-dark" (click)='second.toggle()'>
+                                     <img src="assets/img/168.svg" style="height: 18px; width: 24px;"> 
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+</div>

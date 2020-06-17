@@ -1,0 +1,20 @@
+<div>
+    <h1>What you can do
+        <a (click)="close()">&#10005;</a>
+    </h1>
+    <div class="popup-content">
+
+        <div class="d-flex">
+            <div class="custom-control custom-radio custom-control-inline">
+                <input [(ngModel)]="type" type="radio" class="custom-control-input" value="block" id="block" name="report-popup">
+                <label for="block" class="custom-control-label"> {{conversation.blocked ? 'Unblock' : 'Block'}} {{conversation | conversationName}}</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+                <input [(ngModel)]="type" type="radio" class="custom-control-input" value="report" id="report" name="report-popup">
+                <label for="report" class="custom-control-label">Report this Conversation</label>
+            </div>
+        </div>
+        <button (click)="onNextClick()" class="btn btn-primary" style="margin-top: 22px; height: 26px">Next</button>
+
+    </div>
+</div> 

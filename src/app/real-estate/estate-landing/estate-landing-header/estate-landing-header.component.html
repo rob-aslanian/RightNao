@@ -1,0 +1,96 @@
+<div class="header mt-3">
+    <div class="header__nav d-flex justify-content-between p-0">
+        <div class="header__nav__item col-md-2 p-0" 
+             style="border-top-left-radius: .5rem ;"
+             [routerLink]="['/real-estate', 'landing', 'DealType_Any' ]" routerLinkActive="active-tab" >
+            <p>Buy</p>
+        </div>
+        
+        <div class="header__nav__item col-md-2 p-0"
+             [routerLink]="['/real-estate', 'landing', 'DealType_Rent']" routerLinkActive="active-tab">
+            <p>Rent</p>
+        </div>
+
+        <div class="header__nav__item col-md-2 p-0"  
+            [routerLink]="['/real-estate', 'landing', 'DealType_Lease']" routerLinkActive="active-tab">
+            <p>Lease</p>
+        </div>
+        
+        <div class="header__nav__item col-md-2 p-0"
+             [routerLink]="['/real-estate', 'landing', 'DealType_Share']" routerLinkActive="active-tab">
+            <p>Share</p>
+        </div>   
+
+        <div class="manage-estate d-flex">
+              <div ngbDropdown>
+                <img src="assets/img/add-estate.svg" ngbDropdownToggle alt="add-estate"> 
+                <div ngbDropdownMenu >
+                    <button  class="btn d-block" [routerLink]="[ '/real-estate/add-estate' ]">Post</button>
+                    <button  class="btn d-block" [routerLink]="[ '/real-estate/add-estate' ]">Wanted</button>
+                </div>
+            </div>
+              <img src="assets/img/manage-estate.svg" class="pl-2" alt="manage-estate" [routerLink]="[ '/real-estate/manage-estate' ]">
+        </div> 
+      
+
+        <div class="header__nav__item col-md-2 p-0"  
+             style="border-top-right-radius: .5rem ;"  
+             ngbDropdown
+             [ngClass]="{'active-tab': isMoreActive }"
+             (openChange)='isMoreActive = !isMoreActive'>
+            <p ngbDropdownToggle>More</p>
+            <div class="more-box"   ngbDropdownMenu>
+                <ul class="mb-0">
+                    <li ngbDropdownItem >Build</li>
+                    <li ngbDropdownItem>Materials</li>
+                    <li ngbDropdownItem>Renovation</li>
+                    <li ngbDropdownItem>Move</li>
+                    <li ngbDropdownItem>Agents</li>
+                    <li ngbDropdownItem>Wanted</li>
+                </ul>
+            </div>
+        </div>   
+    </div>
+    <div class="header__search d-flex p-4">
+        
+        <div class="header__search__dropdown col-10 w-100 p-0 d-flex">
+
+            <div class="col-3 p-1 drop-down" ngbDropdown style="position: relative;">
+                
+                <button class="btn backgroundless property-type"  
+                        ngbDropdownToggle>  {{ selectedProperty }}  
+                </button>
+
+                <div class="property-types"  ngbDropdownMenu>
+                    <ul>
+                        <li ngbDropdownItem 
+                            *ngFor="let item of propertyTypes" 
+                            (click)='updateQueryParams( item.id, item.key )' >
+                              {{ item.key }}
+                        </li>
+         
+                    </ul>
+                </div>
+                
+            </div>
+
+            <div class="col-9">
+                <input type="text" 
+                     class="form-control" 
+                     placeholder="Enter a search locations" 
+                     [(ngModel)]="searchKeyword"
+                     (keyup.enter) = 'searchBykeyWord(searchKeyword)'>
+            </div>  
+
+        </div>
+      
+        <div class="header__search__button col-md-2">
+            <button class="btn btn-primary  w-100 h-100" (click)="searchBykeyWord(searchKeyword)">Search</button>
+        </div>
+        
+    </div>
+    <div class="header__button-advanced col-12 d-flex justify-content-end">
+            <p class="pr-3" (click)="routeToAdvancedSearch()">Advanced Search</p>
+            <p>Saved Filtres</p>
+    </div>   
+</div>

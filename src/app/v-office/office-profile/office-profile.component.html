@@ -1,0 +1,28 @@
+<div class="white-bg-tab" *ngIf="isMe"></div>
+    <div class="office-container">
+     <div class="profile-wrap">
+          <div class="row justify-content-between profile-wrap ml-0 mr-0">
+
+                 <div class="col-lg-3 profile-left">
+                    <app-office-header [header]='header'></app-office-header>
+                 </div>
+
+                 <div class="col-lg  pl-3" style="position: relative;" >
+                        <div style="margin-bottom: 89px;" *ngIf="isMe">
+                            <app-office-tab></app-office-tab>
+                        </div>
+                    
+                        <div style="margin-top: 50px;" >
+                            <router-outlet></router-outlet>
+                        </div>
+                 </div>
+                 <div class="col-xl-2 top-fixed"  [ngClass]="{'top-fixed-big': !isMe }">
+                     <app-ads [isLeft]="true"></app-ads>
+                 </div>
+          </div>
+        </div>
+
+    </div>
+
+
+    <!-- <app-edit-profile-picture (result)="editProfileResult($event)" type="user"></app-edit-profile-picture> -->

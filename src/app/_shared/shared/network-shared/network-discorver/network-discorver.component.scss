@@ -1,0 +1,16 @@
+@import 'src/variables';
+
+.discover {
+    background: $white;
+    padding: 1rem 0rem;
+     h3 {
+        font-size: 1.25rem;
+        color: $dark-blue;
+     }
+     span {
+        color: $dark-grey;
+     }
+     button {
+        padding: 0.1rem 2rem;
+     }
+}

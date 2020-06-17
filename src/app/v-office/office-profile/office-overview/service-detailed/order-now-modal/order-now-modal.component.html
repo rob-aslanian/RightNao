@@ -1,0 +1,19 @@
+<div class="order-now-wrapper">
+     <div class="description">
+         <label for="description" >Description</label>
+         <textarea id="description"  
+                   rows="5" 
+                   class="form-control" 
+                   placeholder="Provide more details about your work"
+                   [formControl]='descriptionCtrl'></textarea>
+     </div>
+     <div class="upload-file">
+               <app-upload-service-file (result) = 'getFiles($event)' ></app-upload-service-file>              
+     </div>
+     <div class="price">
+               <app-service-delivery-time [type]='"order"' [delivery]='delivery' [sumbitted]='submitted'></app-service-delivery-time>
+     </div>
+     <div class="text-right">
+          <button class="btn btn-primary" (click)='submit()'>Submit</button>
+     </div>
+</div>

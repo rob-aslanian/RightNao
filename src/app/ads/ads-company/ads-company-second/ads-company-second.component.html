@@ -1,0 +1,50 @@
+<div class="ads-banner-cont">
+    <div class="ads-dBlue-title">
+      <img src="./assets/img/196.svg" alt="ico" />
+      Advertisement Details
+    </div>
+  
+    <div class="form-group ads-custom-formS">
+      <label for="">Advertisement Name <span>*</span></label>
+      <input type="text" placeholder="Enter name" class="form-control" [formControl]="name"/>
+    </div>
+  
+     <ng-container *ngIf="profile">
+        <div class="profile__content ads-section">
+          <div class="d-flex"> 
+            <img [src]="profile.avatar ? '/file/' + profile.avatar : 'assets/img/default-company.svg'" alt="">
+            <div class="d-flex flex-column">
+               <h4 class="profile__content__title mb-0">{{ profile.name }}</h4>
+               <div  class="mt-2">
+                  <h4 *ngIf="(profile?.industry) as industry " class="profile__content__info mb-0"> 
+                    {{  utils.getInudsryName(industry.id) }}
+                  </h4>
+                  <span *ngIf="profile?.addresses" class="profile__content__info">
+                    {{  profile.addresses | companyAddress }}
+                  </span>
+               </div>
+            </div>
+          </div>
+            <a  [routerLink]="['/company/profile/' , profile.url]">Update your profile</a>
+        </div>
+       
+     </ng-container>
+     
+  
+    <!-- Start banners footer -->
+    <div class="ads-banners-foot">
+      <div>
+        <button class="backgroundless" (click)="back.emit(true)">back</button>
+      </div>
+      <div class="d-flex align-items-center ">
+        <button class="backgroundless" (click)="open('review')">Review</button>
+        <button class="btn btn-primary btn-primary--high" (click)="publish()">Publish</button>
+      </div>
+    </div>
+    <!-- End banners footer -->
+  </div>
+  
+  <app-modal>
+    <app-ads-review-modal type="candidate" [data]="adsReview" *ngIf="modalType === 'review' " (result)="getReview($event)"></app-ads-review-modal>
+  </app-modal>
+  

@@ -1,0 +1,77 @@
+<div class="photo-modal add-founder">
+    <form [formGroup]="foundersForm" autocapitalize="off" autocomplete="off">
+        <div class="form-group sugestion-form">
+            <label for="comapny-founder-name">{{ '652' | translate }} <span>*</span> </label>
+            <input type="text" class="form-control" id="comapny-founder-name" formControlName="name"
+                    (keyup)="search($event)"
+                    [ngClass]="{ 'is-invalid': submited && found.name.errors }"  maxlength="128">
+
+            <!-- Error -->
+            <span class="error_message" *ngIf="submited && found.name.errors" >
+                {{ utils.$getErrors('required') }}
+            </span>
+            <!-- Error -->
+
+            <!-- <small class="form-text text-muted">{{ '1409' | translate }}</small> -->
+            <div class="popup"  *ngIf="(profiles | async) as users">
+               <ul class="list-group">
+                 <li class="list-group-item" *ngFor="let user of users" (click)="selectUser(user)">
+                   <img [src]="user.avatar ? '/file/' + user.avatar : 'assets/img/124.svg' " class="user-photo">
+                   <span>
+                     {{  user.firstname }}
+                     {{  user.lastname }}
+                   </span>
+                 </li>
+               </ul>
+               <span>Neither of them?</span>
+               <button class="backgroundless mt-0" (click)="addManually()">Add manually</button>
+            </div>
+        </div>
+
+        <!--User box -->
+
+        <div class="founder-in-add-founder d-flex"  *ngIf="founder">
+            <img alt="admin" [src]="founder.avatar ? '/file/' +  founder.avatar : 'assets/img/124.svg' ">
+            <div class="d-flex flex-column justify-content-center">
+                <h2>
+                    {{ founder.firstname }}
+                    {{ founder.lastname }}
+                </h2>
+                <p *ngIf="founder.experiences && founder.experiences.length > 0 ">
+                    {{ founder.experiences[0].title }}
+                </p>
+                <p *ngIf="founder.experiences && founder.experiences.length > 0 ">
+                        {{ founder.experiences[0].company }}
+                </p>
+            </div>
+        </div>
+        <!--User box -->
+
+        <ng-container *ngIf="manually">
+          <label for="comapny-founder-image"> {{ '751' | translate }} <span>*</span> </label>
+          <app-add-image></app-add-image>
+          <span class="error_message" *ngIf="submited && !hasImage ">
+              {{ utils.$getErrors('required') }}
+          </span>
+        </ng-container> 
+        <!-- <br> -->
+        <div class="form-group mb-0">
+            <label for="comapny-founder-position"> {{ '1417' | translate }} <span>*</span>  </label>
+            <input type="text" class="form-control" id="comapny-founder-position" formControlName="position" 
+                  [ngClass]="{ 'is-invalid':  submited && found.position.errors }"  maxlength="128">
+
+            <!-- Errors -->
+            <ng-container *ngIf="submited && found.position.errors">
+                <span class="error_message"  *ngFor="let error of utils.getErrorsKey(found.position.errors)">
+                    {{ utils.$getErrors(error) }}
+                </span>
+            </ng-container>
+            <!-- Errors -->
+
+        </div>
+        <div class="d-flex">
+            <button class="save-and-add backgroundless btn" (click)="remove()" *ngIf="data"> {{ '1185' | translate }}</button>
+            <button class="btn btn-primary ml-auto" type="submit" (click)="submit()"> {{ '1231' | translate }}</button>
+        </div>
+    </form>
+</div>

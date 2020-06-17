@@ -1,0 +1,193 @@
+<main class="main-light-blue">
+    <div class="dark-blue-bg-for-network">
+        <div class="background-content-wrap">
+            <div class="d-flex justify-content-between align-items-center">
+                <h1 class="page-title">Find the job of your dream</h1>
+                <div>
+                    <button class="backgroundless" [routerLink]="['dashboard']"  >Dashboard</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container jobs mt-3">
+        <div class="row justify-content-between">
+
+            <!-- Content in the center -->
+            <div class="col mr-3 px-0">
+                <div class="search-bg d-flex">
+                    <input type="text" (keyup)="filterJob($event)" class="form-control mr-2 search"
+                        placeholder="Enter Job Title or Keyword">
+                    <button class="d-flex align-items-center btn btn-primary" [routerLink]="['/search/job']">
+                        <img src="assets/img/105.svg" class="pr-2" alt="filter">
+                        Filters
+                    </button>
+                </div>
+                <div class="jobs-landing__content__offers">
+                    <h2 class="jobs-landing__content__slider__title">What we offer</h2>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <div>
+                                <img src="assets/img/601.svg" />
+                            </div>
+                            <h4 class="jobs-landing__content__offers__title mt-2">Become a Candidate</h4>
+                            <p class="page-section-text-grey mb-0 jobs-landing__content__offers__description">
+                                You can share your career
+                                interests, including the types
+                                of companies and roles
+                                you are most interested in,
+                                with employers on
+                                Rightnão.
+                            </p>
+                        </div>
+                        <div class="col-sm-3">
+                            <div>
+                                <img src="assets/img/602.svg" />
+                            </div>
+                            <h4 class="jobs-landing__content__offers__title mt-2">Quick Apply</h4>
+                            <p class="page-section-text-grey mb-0 jobs-landing__content__offers__description">
+                                Apply for jobs more quickly.
+                                No need for CVs, just fill up
+                                your profile and we will
+                                generate a cv from your
+                                profile information.
+                            </p>
+                        </div>
+                        <div class="col-sm-3">
+                            <div>
+                                <img src="assets/img/603.svg" />
+                            </div>
+                            <h4 class="jobs-landing__content__offers__title mt-2">Manage Jobs</h4>
+                            <p class="page-section-text-grey mb-0 jobs-landing__content__offers__description">
+                                Use our tools to find jobs
+                                more quickly. Save Jobs you
+                                are interested in. Set alerts
+                                and be early candidate.
+                                Track applications.
+                            </p>
+                        </div>
+                        <div class="col-sm-3">
+                            <div>
+                                <img src="assets/img/604.svg" />
+                            </div>
+                            <h4 class="jobs-landing__content__offers__title mt-2">Candidate Ad</h4>
+                            <p class="page-section-text-grey mb-0 jobs-landing__content__offers__description">
+                                Make your profile
+                                attractive for employers.
+                                Promote your candidate
+                                profile and extend your
+                                employment
+                                opportunities.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="center-content-jobs mt-4">
+
+                    <div class="d-flex align-items-center justify-content-between mb-4">
+                        <h2 class="page-section-heading">Recommended Jobs</h2>
+                        <a class="see-all" [routerLink]="['/search/job']"  >See all</a>
+                    </div>
+
+                    <!-- Content -->
+                    <ng-container *ngIf="(reccomendedJobs | async) as jobs; else:loading">
+                        <app-company-box type="reccomended" [jobs]="jobs" *ngIf="jobs.length > 0"></app-company-box>
+                    </ng-container>
+                    <!-- Content -->
+
+
+                    <!-- Loader -->
+                    <ng-template #loading>
+                        <app-spinner class="d-flex justify-content-center"></app-spinner>
+                    </ng-template>
+                    <!-- Loader -->
+
+                </div>
+
+                <div class="jobs-landing__content__useful-articles">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h2 class="page-section-heading">Useful articles</h2>
+                        <span class="see-all">See all</span>
+                    </div>
+
+
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <div class="jobs-landing__content__useful-articles__left-img-container">
+                                <img src="assets/img/articles_images/shutterstock_645213181.jpg"
+                                    class="jobs-landing__content__useful-articles__left-img-container__img" />
+                            </div>
+                            <h2 class="jobs-landing__content__useful-articles__title">How to answer the 31 most common
+                                interview questions</h2>
+                            <span class="page-section-text-grey-small">Thomas Barwick. July 23, 2019</span>
+                            <p class="page-section-text-grey mt-4">
+                                Wouldn’t it be great if you knew exactly what questions a hiring
+                                manager would be asking you in your next job interview?
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="jobs-landing__content__useful-articles__right-img-container">
+                                        <img src="assets/img/articles_images/shutterstock_149002700.jpg"
+                                            class="jobs-landing__content__useful-articles__right-img-container__img" />
+                                    </div>
+                                    <h2 class="page-section-text-blue mt-2">How to answer the 31 most common interview
+                                        questions</h2>
+                                </div>
+                                <div class="col-6">
+                                    <div class="jobs-landing__content__useful-articles__right-img-container">
+                                        <img src="assets/img/articles_images/shutterstock_270607577.jpg"
+                                            class="jobs-landing__content__useful-articles__right-img-container__img" />
+                                    </div>
+                                    <h2 class="page-section-text-blue mt-2">How to answer the 31 most common interview
+                                        questions</h2>
+                                </div>
+                            </div>
+                            <div class="row jobs-landing__content__useful-articles__article-row">
+                                <div class="col-6">
+                                    <div class="jobs-landing__content__useful-articles__right-img-container">
+                                        <img src="assets/img/articles_images/shutterstock_417492994.jpg"
+                                            class="jobs-landing__content__useful-articles__right-img-container__img" />
+                                    </div>
+                                    <h2 class="page-section-text-blue mt-2">How to answer the 31 most common interview
+                                        questions</h2>
+                                </div>
+                                <div class="col-6">
+                                    <div class="jobs-landing__content__useful-articles__right-img-container">
+                                        <img src="assets/img/articles_images/shutterstock_623206301.jpg"
+                                            class="jobs-landing__content__useful-articles__right-img-container__img" />
+                                    </div>
+                                    <h2 class="page-section-text-blue mt-2">How to answer the 31 most common interview
+                                        questions</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Content in the center end -->
+
+            <!-- Content on the right -->
+            <div class="jobs-landing__sidebar col-lg-3 col-md-12 mt-2">
+                <div class="jobs-landing__sidebar__career-interest" [routerLink]="['/jobs/user/carrer-interest']">
+                    <div class="d-flex align-items-center mb-2">
+                        <img src="assets/img/260.svg" />
+                        <h4 class="jobs-landing__sidebar__career-interest__heading">Career interest</h4>
+                    </div>
+                    <span class="page-section-text-grey">Your answers determine which jobs we recommend </span>
+                </div>
+                <app-ads class="col-lg-3 col-md-12" [isLeft]="true"></app-ads>
+            </div>
+            <!-- Content on the right end -->
+
+        </div>
+    </div>
+</main>
+

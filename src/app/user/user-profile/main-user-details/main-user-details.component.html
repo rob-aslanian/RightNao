@@ -1,0 +1,260 @@
+<div class="d-flex justify-content-end">
+
+<div class="profile-left-wrap" *ngIf="user_info">
+    <div class="left-row profile-left">
+        <div class="profile-picture-wrap user-profile-picture">
+            <img class="profile-picture"
+                [src]=" userProfile.avatar ? '/file/'+ userProfile.avatar : 'assets/img/124.svg' "
+                alt="profile">
+            <div class="online-overlay" *ngIf="!isAdmin && userProfile.online">
+                <img src="assets/img/211.svg" alt="online-logo">
+            </div>
+            <div class="overlay" *ngIf="isAdmin" (click)="openModal('editProfile')">
+                <img src="assets/img/255.svg" alt="edit">
+            </div>
+        </div>
+
+        <div class="buttons" *ngIf="isAuth">
+            <ng-template [ngIf]="!isAdmin ">
+
+                <ng-container *ngIf="!isCompanyActive">
+                    <button 
+                          *ngIf="!isAdmin && !userProfile.friend_request  && !userProfile.recieved_friend_request && !userProfile.friend"
+                          type="button" 
+                          (click)="sendFriendRequest(userProfile.id)" 
+                          class="btn btn-primary mr-2">{{ '355'| translate }}
+                    </button>
+
+                    <button type="button" 
+                            *ngIf="userProfile.recieved_friend_request && !userProfile.friend "
+                            (click)="acceptFriendRequest(userProfile.friendship_id)"
+                            class="btn btn-primary mr-2">{{ '36'| translate }}
+                    </button>
+
+                    <div *ngIf="userProfile.friend_request" class="btn btn-primary mr-2">{{ '1274'| translate }}</div>
+                </ng-container>
+
+
+                <div class="show-more-container">
+                    <button type="button" (click)="openSmallChatBox(
+                        userProfile.firstname,
+                        userProfile.lastname,
+                        userProfile.avatar ? '/file/'+ userProfile.avatar : 'assets/img/124.svg',
+                        userProfile.id
+                            )" 
+                            class="btn btn-primary mr-2"
+                            *ngIf="!isAdmin && userProfile.friend && !userProfile.friend_request || isCompanyActive">{{ '905'| translate }}
+                    </button>
+
+
+                    <!-- More Button -->
+                    <ng-container *ngIf="profilePopUp">
+                        
+                        <button type="button" class="btn btn-secondary" #moreBtn="ngbPopover"
+                             [ngbPopover]="morePopUp" [autoClose]="true" [disabled]="isClickedAsVisitor">
+                            {{ '929'| translate }}
+                        </button>
+
+                        <app-more-popup #morePopUp [ngClass]="{'d-none': !moreBtn.isOpen() }"
+                            [data]="profilePopUp" (result)="getResultFromPopup($event)">
+                        </app-more-popup>
+
+                    </ng-container>
+
+                </div>
+            </ng-template>
+            <button *ngIf="isAdmin" 
+                     type="button" 
+                     class="btn btn-primary save-btn"
+                     (click)="saveToPDF($event)">{{ '1237'| translate }}
+            </button>
+        </div>
+
+
+        <!-- REport -->
+   
+          
+        
+        <h2 class="profile-heading"><a class="profile-heading"
+                [routerLink]="['/user/profile' , url]">{{userProfile.firstname}}
+                {{ userProfile.middlename }}
+                {{userProfile.lastname}} </a></h2>
+           <h3> {{userProfile.nickname}} </h3>
+           <h4> {{userProfile.headline}} </h4>
+
+        <button class="edit" *ngIf="isAdmin" (click)="openModal('Headline')">
+            <img src="assets/img/19.svg" alt="edit">
+        </button>
+
+        <!-- Portfolio -->
+        <div class="portfolio-details" *ngIf="( $portfolioInfo | async ) as portfolioInfo">
+
+            <div class="portfolio mt-3 portfolio-top"   (click)='togglePortfolio( portfolioInfo.portfolio_amount )'      
+
+                 *ngIf="isAdmin || ( portfolioInfo.portfolio_amount.has_photo ||
+                                     portfolioInfo.portfolio_amount.has_video ||
+                                     portfolioInfo.portfolio_amount.has_audio || 
+                                     portfolioInfo.portfolio_amount.has_article )" >
+
+                <a class="d-block"> Portfolio </a>
+            </div>
+
+            <ng-container *ngIf="router.url.includes('portfolio')">
+                <div class="portfolio mt-1 portfolio-static" *ngIf="portfolioInfo.portfolio_statistic as port">
+
+                    <div class="d-flex justify-content-between">
+                        <a> Project Views </a>
+                        <span>{{ port.view_count }}</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between ">
+                            <a> Likes </a>
+                            <span>{{ port.like_count }}</span>
+                    </div>
+
+                    <div class="d-flex justify-content-between ">
+                            <a> Comments </a>
+                            <span>{{ port.comment_count }}</span>
+                    </div>
+
+                </div>
+            </ng-container>
+            
+        </div>
+        <!-- Portfolio -->
+
+        <!-- V-offices -->
+        <ng-container *ngIf="( $vOffices | async ) as offices ">
+            <ng-container *ngFor="let office of offices">
+                <div class="offices-container p-2" *ngIf="!office.isOut">
+                    <img src="assets/img/v_office.svg" alt="office">
+                    <a [routerLink]="['/v-office', 'office', office.id, 'user', userProfile.id  ]" >{{ office.name }}</a>
+                </div>
+            </ng-container>
+            
+        </ng-container>
+        <!-- V-offices -->
+
+        <div class="user-card mt-4 mb-4 p-2">
+            <div class="user-card__category d-flex justify-content-between">
+                <a *ngIf="!isAdmin" (click)="openModal('connections')">Connections</a>
+                <a *ngIf="isAdmin" [routerLink]="[ '/network/connection' ]">Connections</a>
+                <span> {{ userProfile.network_info.connections }} </span>
+            </div>  
+            <div class="user-card__category d-flex justify-content-between">
+                <a *ngIf="!isAdmin" (click)="openModal('following')">Following</a>
+                <a *ngIf="isAdmin" [routerLink]="[ '/network/following' ]">Following</a>
+                <span> {{ userProfile.network_info.followings }} </span>
+            </div>  
+            <div class="user-card__category d-flex justify-content-between">
+                <a *ngIf="!isAdmin" (click)="openModal('followers')">Followers</a>
+                <a *ngIf="isAdmin" [routerLink]="[ '/network/followers' ]">Followers</a>
+                <span> {{ userProfile.network_info.followers }} </span>
+            </div>  
+        </div>
+
+        <div class="contact-information">
+        </div>
+
+        <div class="contact-information">
+            <h3
+                *ngIf="userProfile.email || userProfile.phone || userProfile.location.city">
+                {{ '372'| translate }}</h3>
+
+
+            <ng-container *ngIf='userProfile.emails.length > 0'>
+                <span *ngFor='let email of userProfile.emails'>
+                    <img src="assets/img/22.svg" alt="@">
+                    <a [href]="'mailto:' + email" style="color: inherit;"> {{ email }} </a>
+                </span>
+            </ng-container>
+
+
+            <ng-container *ngIf="userProfile.phones">
+                <span *ngFor='let phone of userProfile.phones'>
+                    <img src="assets/img/23.svg" alt="phone">
+                    + <a [href]="'tel:' + phone" style="color: inherit;"> {{ phone }} </a>
+                </span>
+            </ng-container>
+            <span *ngIf="userProfile?.location.city && userProfile?.location.country "><img src="assets/img/24.svg" alt="tick">{{userProfile.location.city}} ,
+                {{ userProfile.location.country | country }} </span>
+        </div>
+        <!-- <div class="socials">
+            <a ><img src="assets/img/26.svg" alt="linkedin"></a>
+            <a ><img src="assets/img/27.svg" alt="instagram"></a>
+            <a ><img src="assets/img/28.svg" alt="whatsapp"></a>
+            <a ><img src="assets/img/29.svg" alt="twitter"></a>
+            <a ><img src="assets/img/30.svg" alt="youtube"></a>
+            <a ><img src="assets/img/31.svg" alt="instagram"></a>
+            <a ><img src="assets/img/32.svg" alt="pinterest"></a>
+            <a ><img src="assets/img/33.svg" alt="facebook"></a>
+        </div> -->
+        <div class="profile-completion" *ngIf="isAdmin">
+            <h5>  {{ '1113'| translate }}</h5>
+            <div class="static-progress">
+                <div class="progress-splited">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <div class="progress-hide"
+                    [ngStyle]="{width: userProfile.profile_complete_percent+'%'}">
+                    <div class="progress-splited cyan">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </div>
+                <div class="progress-count">
+                    {{ userProfile.profile_complete_percent +'%' }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+  <app-save-to-pdf [data]="user_info.getProfile" 
+                   *ngIf="isAdmin" 
+                   class="d-none"></app-save-to-pdf>
+
+
+  <app-modal (closeModal)="modalType = null">     
+
+      <ng-container *ngIf='modalType && modalType === "editProfile" '>
+          <app-edit-profile-picture (result)="editProfileResult($event)" type="user"></app-edit-profile-picture>
+      </ng-container>
+    
+      <ng-container *ngIf='modalType && modalType === "Headline"'>
+          <app-headline [data]='userProfile' (result)='changeHeadline($event)'></app-headline>
+      </ng-container>
+      <!--  * * * Following Modal * * * -->
+      <ng-container *ngIf="modalType && modalType === 'followers'">
+              <app-followers-modal [profileID] = 'userProfile.id' 
+                                   [followerListLenght] = 'userProfile.network_info.followers'
+                                   (onCloseModal) = 'closeModal($event)'>
+              </app-followers-modal>
+      </ng-container>
+      <!--  * * * Followers  Modal * * * -->
+      <ng-container *ngIf="modalType && modalType === 'following'">
+              <app-following-modal [profileID] = 'userProfile.id' 
+                                   [followingListLength] = 'userProfile.network_info.followings' 
+                                   (onCloseModal) = 'closeModal($event)'>
+             </app-following-modal>
+      </ng-container>
+      <!--  * * * Connections  Modal * * * -->
+      <ng-container *ngIf="modalType && modalType === 'connections'">
+              <app-connections-modal [profileID] = 'userProfile.id' 
+                                     (onCloseModal) = 'closeModal($event)'>
+              </app-connections-modal>
+      </ng-container>
+
+  </app-modal>
+
+
+  

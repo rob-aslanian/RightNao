@@ -1,0 +1,22 @@
+<!-- description modal -->
+ 
+  <div class="pl-3 pr-3 pt-4" style="background: white">
+    <form autocomplete="off ">
+      <div class="d-flex justify-content-between align-items-end">
+        <label for="textarea" style="color: black; margin: 0px;">Description</label>
+        <span style="color:  #808080">{{ desControl.value.length }}/1000</span>
+      </div>
+        <textarea  placeholder="Enter description" 
+                   class="form-control" id="textarea" 
+                   cols="30" 
+                   maxlength="1000"
+                   rows="10" 
+                  [formControl]='desControl'></textarea>
+
+      <div class="d-flex justify-content-end">
+        <button type="submit" class="btn btn-primary" style="padding:6px 19px; margin-bottom: 1.5rem;" (click)='submit()'>Save</button>
+      </div>
+    </form>
+  </div>
+
+<!-- description-modal -->

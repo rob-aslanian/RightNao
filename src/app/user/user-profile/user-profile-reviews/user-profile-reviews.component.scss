@@ -1,0 +1,22 @@
+@import '../../../../variables';
+
+:host ::ng-deep ngb-rating {
+    span {
+        font-size: 20px;
+        color: $background-dark-cyan;
+        margin: 0 2px;
+    }
+}
+
+.section-content {
+    min-height: 168px;
+    .single-review {
+        .review-info {
+            h3 {
+                word-break: break-word;
+                overflow: hidden;
+                max-height: 40px;
+            }
+        }
+    }
+}

@@ -1,0 +1,43 @@
+<main class="main-light-blue">
+    <div class="dark-blue-bg-for-jobs">
+        <div class="background-content-wrap d-flex justify-content-between">
+            <h1>Find the job of your dream</h1>
+            <button class="backgroundless" [routerLink]="['/jobs/user/dashboard']" >Manage</button>
+        </div>
+    </div>
+    
+
+    <div class="jobs mt-3">
+        <div class="row justify-content-between mx-0">
+
+            <!-- Content in the center -->
+            <div class="col mr-3 px-0 jobs-career-interest">
+
+
+                <!-- career interest start -->
+                <h5>Career interest</h5>
+                <div class="center-content-jobs career-interest">
+                    <app-user-career-new-opp ></app-user-career-new-opp>
+                    
+                    <p class="jobs-career-interest__headline">
+                        Your answers determine which jobs we recommend. This also controls whether or not your profile shows up in candidates search results. 
+                        We take steps not to show your current company (founders and employees of the company) that looking for a Job.
+                    </p>
+
+                    <router-outlet></router-outlet>
+                
+                </div>
+                <button class="backgroundless d-block ml-auto" [routerLink]="['/jobs/user']"  >Go to jobs</button>
+                <!-- career interest end -->
+            </div>      
+            <!-- Content in the center end -->
+
+
+            <!-- Content on the right -->
+             <app-ads class="col-lg-3 col-md-12" [isLeft]="true"></app-ads>
+            <!-- Content on the right end -->
+        </div>
+    </div>
+</main>
+
+

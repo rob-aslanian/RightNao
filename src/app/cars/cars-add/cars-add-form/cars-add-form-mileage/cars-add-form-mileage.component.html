@@ -1,0 +1,25 @@
+
+<form [formGroup]="form" class="col-md-5 basic-form">
+        <div class="form-group">
+                        <p  [ngClass]="{'custom-red':form.get('mileage').invalid && isSubmitted}" >Mileage</p>
+        <div class="custom-control custom-radio custom-control-inline"  *ngFor="let item of carsMileage">
+                <input  type="radio" 
+                        class="custom-control-input" 
+                        [value]="item['type']" 
+                        id="carsMileage-{{ item['type'] }}" 
+                        name="mileageUnit"
+                        formControlName="mileageUnit">
+                <label  for="carsMileage-{{ item['type'] }}" class="custom-control-label"> 
+                {{ item['text'] }}
+                </label>
+        </div>
+        <div>
+        <input type="number" 
+                class="form-control" 
+                placeholder="Enter mileage"
+                formControlName="mileage"
+                [ngClass]="{'is-invalid':form.get('mileage').invalid && isSubmitted}">
+        </div>
+        </div>
+
+</form>

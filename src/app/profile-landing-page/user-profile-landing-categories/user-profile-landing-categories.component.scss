@@ -1,0 +1,49 @@
+@import "src/_variables.scss";
+
+.categories-content{
+    background-color: $dark-blue; 
+    border-radius: .5rem; 
+    justify-content: space-around; 
+    padding: .7rem; 
+    @media (max-width: 530px) {
+        display: block !important; 
+        &__box {
+            border: none !important; 
+        }
+    }
+    &__box {
+        align-items: center; 
+        img {
+            width: 2rem; 
+            height: 2rem;
+            margin-right: 1.1rem; 
+        }
+        p {
+            margin: 0;
+            color: $white; 
+            font-size: 1.25rem; 
+        }
+        span {
+            color: $dark-grey;  
+            font-size: 0.875rem;  
+            white-space: nowrap; 
+        }
+        &:not(:last-child) {
+            border-right: 1px solid $blue; 
+            @media #{$break1} {
+                border: none !important;  
+            }
+        }
+
+        @media #{$break1} {
+            justify-content: start; 
+        }
+    }
+
+    @media #{$break1} {
+        display: block !important; 
+    }
+}
+
+
+

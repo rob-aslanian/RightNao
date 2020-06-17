@@ -1,0 +1,37 @@
+ 
+<label for="" class="title-label">Age</label>
+<div class="form-group">
+    <input type="number"  class="form-control" 
+           placeholder="Enter age"  [ngClass]="{ 'is-invalid': ageCtrl.invalid && isSubmitted }" [formControl]='ageCtrl'>
+    <div class="d-flext mt-3">
+        
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" 
+                   class="custom-control-input" 
+                   id="open-on-selected-hours" 
+                   value="Age_Day" name="day" [formControl]='day'>  
+            <label for="open-on-selected-hours" class="custom-control-label">  Day </label>
+        </div>
+        
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" 
+                   class="custom-control-input" id="always-open" 
+                   name="month" [formControl]='day' name="day" value="Age_Month">  
+            <label for="always-open" class="custom-control-label"> Month </label>
+        </div>   
+
+        <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" 
+                   class="custom-control-input" 
+                   id="permanently-closed"  
+                   value="Age_Year" name="day"  [formControl]='day'>      
+            <label for="permanently-closed" class="custom-control-label">Year</label>
+        </div>
+    
+    </div>
+</div>
+
+
+
+
+

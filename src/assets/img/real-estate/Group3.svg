@@ -1,0 +1,24 @@
+<svg id="Group_3" data-name="Group 3" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
+  <g id="Rectangle_1" data-name="Rectangle 1" transform="translate(2 2)" fill="none" stroke="#264361" stroke-width="1">
+    <rect width="16" height="16" stroke="none"/>
+    <rect x="0.5" y="0.5" width="15" height="15" fill="none"/>
+  </g>
+  <g id="Ellipse_1" data-name="Ellipse 1" fill="#fff" stroke="#264361" stroke-width="1">
+    <circle cx="2.5" cy="2.5" r="2.5" stroke="none"/>
+    <circle cx="2.5" cy="2.5" r="2" fill="none"/>
+  </g>
+  <g id="Ellipse_2" data-name="Ellipse 2" transform="translate(15)" fill="#fff" stroke="#264361" stroke-width="1">
+    <circle cx="2.5" cy="2.5" r="2.5" stroke="none"/>
+    <circle cx="2.5" cy="2.5" r="2" fill="none"/>
+  </g>
+  <g id="Ellipse_3" data-name="Ellipse 3" transform="translate(15 15)" fill="#fff" stroke="#264361" stroke-width="1">
+    <circle cx="2.5" cy="2.5" r="2.5" stroke="none"/>
+    <circle cx="2.5" cy="2.5" r="2" fill="none"/>
+  </g>
+  <g id="Ellipse_4" data-name="Ellipse 4" transform="translate(0 15)" fill="#fff" stroke="#264361" stroke-width="1">
+    <circle cx="2.5" cy="2.5" r="2.5" stroke="none"/>
+    <circle cx="2.5" cy="2.5" r="2" fill="none"/>
+  </g>
+  <path id="Path_435" data-name="Path 435" d="M0,6.61,7.176,0" transform="translate(13.11 6.153) rotate(90)" fill="none" stroke="#264361" stroke-linecap="round" stroke-width="1"/>
+  <path id="Path_436" data-name="Path 436" d="M1389.964,126.579l7.176-6.61" transform="translate(-1383.464 -113.816)" fill="none" stroke="#264361" stroke-linecap="round" stroke-width="1"/>
+</svg>

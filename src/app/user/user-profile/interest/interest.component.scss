@@ -1,0 +1,28 @@
+.bottom-edit {
+    transition: .3s all ease-in-out;
+    opacity: 0;
+}
+
+.interests {
+    div {
+         &:first-child {
+              .section-content {
+                   .interests-text {
+                        .bottom-edit {
+                            opacity: 1;
+                        }
+                   }
+              }
+         }
+         
+         &:hover {
+              .section-content {
+                   .interests-text {
+                        .bottom-edit {
+                            opacity: 1;
+                        }
+                   }
+              }
+         }
+    }
+}

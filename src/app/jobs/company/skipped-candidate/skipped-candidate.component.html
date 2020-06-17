@@ -1,0 +1,16 @@
+<div class="jobs" *ngIf="isCompany">
+    <div class="row justify-content-between">
+      <!-- Content in the center -->
+      <div class="col mr-3 px-0" *ngIf="(skippedCandidates | async) as skipped">
+        <h5 class="font-weight-bold">Skipped Candidates (<span>{{ skipped.length }}</span>)</h5>
+        <div class="center-content-jobs">
+          <div class="manage-candidates-menu">
+              <app-user-box type="all" category="skiped" [applicants]="skipped" [companyID]="companyId"></app-user-box>
+        </div>
+      </div>
+      <a routerLink="/jobs" id="gotoJobs" class="backgroundless d-block ml-auto" [routerLink]="['/jobs/company']"  >Go to jobs</a>
+
+    </div>
+
+  </div>
+  </div>

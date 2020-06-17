@@ -1,0 +1,26 @@
+@import 'src/variables'; 
+
+.manage-services-header {
+    background-color: $background-dark-blue; 
+    height: 70px;
+    align-items: center;
+
+    &__item {
+        a {
+            color: $dark-grey; 
+            text-decoration: none;
+            padding-bottom: 1.4rem; 
+
+            &:hover {
+                color: $white; 
+                // transition: .3s; 
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.active {
+    color: $white !important; 
+    border-bottom: 3px solid $background-dark-cyan; 
+}

@@ -1,0 +1,58 @@
+<div class="product-box">
+    <img [src]="box.src" alt="" [routerLink]="[box.path,box.id]"   >
+    <div class="pl-2 pr-2 ">
+        <div class="d-flex  mt-2 justify-content-between">
+             <span>{{ box.title }}</span>
+             <span>{{ box.created_at | date }}</span>
+        </div>
+        
+        <div class="d-flex mt-2 justify-content-between">
+            <p>{{ box.price.currency }}
+                <ng-container *ngIf="box.price.price_type === 'PriceType_PriceRange'">
+                    {{ box.price.min_price }} -
+                    {{ box.price.max_price }}
+                </ng-container>
+
+                <ng-container *ngIf="box.price.price_type === 'PriceType_AddPrice'">
+                    {{ box.price.fix_price }}   
+                </ng-container> 
+            </p>
+            <img style="cursor: pointer" 
+                 *ngIf="box.has_liked !== undefined"
+                 [src]="box.has_liked ? 
+                         'assets/img/99.svg' : 
+                         'assets/img/44.svg' " 
+                          alt="heart" (click)='emit(box.id, box.has_liked)'>
+        </div>
+        <div class="manage" *ngIf="isManage">
+            <button class=" btn btn-secondary" (click)="manage(box.id, 'urgent')">
+                Urgent
+            </button>
+            <button class=" btn btn-secondary mr-2 ml-2">
+                Boost
+            </button>
+                <div ngbDropdown style="display:inline-block;">
+                    <button class="btn" ngbDropdownToggle>...</button> 
+                    <div  class="bottoms btn-more" ngbDropdownMenu>
+                        <button ngbDropdownItem  class="btn" (click)="manage(box.id, 'edit')">Edit</button>
+                        <button ngbDropdownItem  class="btn">
+                            <span *ngIf="box.post_status == 'PostStatus_Active' ||
+                                         box.post_status == 'PostStatus_Sold'"  
+                                         (click)="manage(box.id, 'status', 'PostStatus_Hidden')">
+                                         Make a hidden</span>
+                            <span *ngIf="box.post_status == 'PostStatus_Hidden' "  
+                                    (click)="manage(box.id, 'status', 'PostStatus_Active')">
+                                    Make a active</span>
+                        </button>
+                        <button ngbDropdownItem  
+                                class="btn" (click)="manage(box.id, 'status', 'PostStatus_Sold')"  
+                                *ngIf="box.post_status != 'PostStatus_Sold' ">
+                                Make a sold </button>
+                        <button ngbDropdownItem  class="btn" (click)="manage(box.id, 'delete')">Delete</button>
+                        <button ngbDropdownItem  class="btn" (click)="manage(box.id, 'discounted')">Discrounted</button>
+                        
+                    </div>
+                </div>
+        </div>
+    </div>
+</div>

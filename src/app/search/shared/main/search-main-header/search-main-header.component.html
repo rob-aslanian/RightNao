@@ -1,0 +1,22 @@
+<div class="search-groups__content__filters">
+    <div class="d-flex align-items-center">
+       <div class="col-2 pl-0">
+           <button class="btn btn-blue d-flex align-items-center" style="height: 38px;"
+                   (click)="searchService.showLeft = !searchService.showLeft">
+               <img src="assets/img/filter.svg" alt="fillter">
+               <strong class="ml-2">Filters</strong>
+           </button>
+       </div>
+       <div class="col d-flex">
+            <input  type="text" [(ngModel)]="keyword" class="form-control mr-2 filters-search-input" placeholder="Enter Keyword" (keyup)="searchByKeyword($event)"/>
+            <button class="btn btn-primary" type="button" (click)="searchByKeyword($event)">
+                <strong>Search</strong>
+            </button>
+       </div>
+       <div class="col-2 pl-0" >
+         <app-search-fillters></app-search-fillters>
+       </div>
+    </div>
+    <app-search-keywords *ngIf="searchService.type !== 'all' && isAuth"></app-search-keywords>
+ 
+</div>

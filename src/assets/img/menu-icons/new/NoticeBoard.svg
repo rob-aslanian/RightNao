@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="21" viewBox="0 0 32 21">
+  <g id="NoticeBoard" transform="translate(-111 -35)">
+    <g id="Group_25" data-name="Group 25" transform="translate(111 35)">
+      <g id="Rectangle_31" data-name="Rectangle 31" fill="none" stroke="gray" stroke-width="1">
+        <rect width="32" height="21" rx="2" stroke="none"/>
+        <rect x="0.5" y="0.5" width="31" height="20" rx="1.5" fill="none"/>
+      </g>
+      <g id="Group_23" data-name="Group 23" transform="translate(6 4)">
+        <g id="Rectangle_3" data-name="Rectangle 3" fill="none" stroke="gray" stroke-width="1">
+          <rect width="9" height="13" rx="1" stroke="none"/>
+          <rect x="0.5" y="0.5" width="8" height="12" rx="0.5" fill="none"/>
+        </g>
+      </g>
+      <g id="Group_26" data-name="Group 26" transform="translate(22.927 4.305) rotate(90)">
+        <g id="Rectangle_3-2" data-name="Rectangle 3" transform="translate(0 -3.405)" fill="none" stroke="gray" stroke-width="1">
+          <rect width="5.229" height="9" rx="1" stroke="none"/>
+          <rect x="0.5" y="0.5" width="4.229" height="8" rx="0.5" fill="none"/>
+        </g>
+      </g>
+      <g id="Group_27" data-name="Group 27" transform="translate(25.927 11.305) rotate(90)">
+        <g id="Rectangle_3-3" data-name="Rectangle 3" transform="translate(0 -0.405)" fill="none" stroke="gray" stroke-width="1">
+          <rect width="5.229" height="9" rx="1" stroke="none"/>
+          <rect x="0.5" y="0.5" width="4.229" height="8" rx="0.5" fill="none"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

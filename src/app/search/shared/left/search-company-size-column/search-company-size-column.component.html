@@ -1,0 +1,21 @@
+<div class="search-groups__sidebar-section">
+    <app-search-column-header title="Company Size">
+        <div class="mt-2">
+            <div class="search-groups__sidebar-section__delivery-time-options search-groups__sidebar-section__wrap">
+                <form [formGroup]="form">
+                    <div class="
+                        custom-control 
+                        custom-radio 
+                        page-section-text-grey
+                        " *ngFor="let companyKey of companyKeys">
+                        <input   type="radio" class="custom-control-input" [id]="companyKey" [value]="companyKey" [name]="formName" [formControlName]="formName">
+                        <label class="custom-control-label" [for]="companyKey">
+                            {{ companySize[companyKey]  }}
+                        </label>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </app-search-column-header>
+</div>

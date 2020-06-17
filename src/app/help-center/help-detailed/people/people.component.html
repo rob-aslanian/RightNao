@@ -1,0 +1,561 @@
+
+<div class="help-content-heading">
+    <h2>People</h2>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('how-to-register')" >
+        <h3>How to Register on HyperCube?</h3>
+        
+        <span *ngIf="toggle.view.active['how-to-register']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['how-to-register']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['how-to-register']">
+        <div class="help-content-text">
+            <p>
+                To create a HyperCube account go to HyperCube webpage, on the top right corner click on <a [routerLink]="['/registration']">Register</a>.
+            </p>
+            <p>
+                On registration form <b>Enter your personal information</b>. HyperCube needs the following information:
+            </p>
+            <ul>
+                <li>
+                    <b>First Name</b>
+                </li>
+                <li>
+                    <b>Last Name</b>
+                </li>
+                <li>
+                    <b>Email </b> - Your preferred email address at which Hypercube can contact you.
+                </li>
+                <li>
+                    <b>Password</b> - Your preferred password for your account. <br>
+                    Password Criteria:
+                    <ul>
+                        <li>
+                            At least 8 characters
+                        </li>
+                        <li>
+                            At least one uppercase letter (A-Z)
+                        </li>
+                        <li>
+                            At least one number (0-9)
+                        </li>
+                        <li>
+                            Password must not contain email address, initials, first or last name
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <b>Date of Birth </b> – Day/Month/Year
+                </li>
+                <li>
+                    <b>Gender</b> 
+                </li>
+            </ul>
+    
+            <p>
+                <b>
+                    How to activate your Hypercube Account?
+                </b>
+            </p>
+            <p>After filling all the fields click on <img src="/assets/img/12.svg" alt="button"> icon. 
+                Your account has been successfully created but you need to check your email to activate your account.
+            </p>
+            <p>
+                If you do not see the activation email in your email inbox click <b>Resend</b>.
+            </p>
+            <p>After you create and activate your account, if you want to modify your account information or reset your password, go to the <b>Account Settings page.</b></p>
+            <p>
+                You can enter further details to build your profile by going to Profile Page. Learn more about adding and editing Profile information.
+            </p>
+    
+            <p>
+                <b>
+                    Signing in and Out of Your Account
+                </b>
+            </p>
+            <p><b>To sign in:</b></p>
+            <ol>
+                <li>
+                    If you already have an account on HyperCube, you can log in from the <a [routerLink]="['/user/login']">Sign in</a> page.
+                </li>
+                <li>
+                    Enter the email address that's registered to your Hypercube account and your password.
+                </li>
+                <li>
+                    Click Sign In.
+                </li>
+            </ol>
+            <p>
+                <b>To sign out:</b>
+            </p>
+            <ol>
+                <li>
+                    Click the Me icon at top of your HyperCube homepage.
+                </li>
+                <li>
+                    Select Sign out.
+                </li>
+            </ol>
+    
+    
+            <p>
+                <b>
+                    How to reset your password if you forgot it?
+                </b>
+            </p>
+            <p>You can reset your password on the <a [routerLink]="['/user/login']">Sign in</a> page.</p>
+            <ul>
+                <li>
+                    Click the <a [routerLink]="['/user/forgotpassword']">Forgot password?</a> link.
+                </li>
+                <li>
+                    Enter an email address you have on your account.
+                </li>
+                <li>
+                    We will email a link to reset your password to the email address you provided.
+                </li>
+                <li>
+                    Go to the email account and follow the instructions.
+                </li>
+                <li>
+                    On the page Reset Password type your new password, then retype it to confirm and click <img src="/assets/img/12.svg" alt="button"> button to save it.
+                </li>
+            </ul>
+            <p>Password must:</p>
+            <ul>
+                <li>
+                    Be a minimum of 8 characters
+                </li>
+                <li>
+                    At least one Uppercase Letter (A-Z)
+                </li>
+                <li>
+                    At least one number (0-9)
+                </li>
+                <li>
+                    Password must not contain email address, initials, first or last name 
+                </li>
+            </ul>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('your-profile-overview')" >
+        <h3>Your Profile - Overview</h3>
+        <span *ngIf="toggle.view.active['your-profile-overview']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['your-profile-overview']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['your-profile-overview']" >
+        <div class="help-content-text">
+            <p>
+                <b>
+                    Sections you can display on your profile
+                </b>
+            </p>
+            <p>Introduction card - The left section of your profile that displays details of your current professional status and contact information.</p>
+            <ul>
+                <li>Name</li>
+                <li>Nickname</li>
+                <li>Profile photo</li>
+                <li>Headline - Current position</li>
+                <li>Contact Info</li>
+                <li>Location</li>
+            </ul>
+            <p>
+                <b>
+                    Sections you can add
+                </b>
+            </p>
+            <ul>
+                <li>
+                    Story – about you.
+                </li>
+                <li>
+                    Experience - Professional positions and experience.
+                </li>
+                <li>
+                    Education - School and educational information.
+                </li>
+                <li>
+                    Skills & Endorsements - A relevant list of skills on your profile helps others to understand your strengths and improves your likelihood to be found in others' searches.
+                </li>
+                <li>
+                    Interests – a list of your Interests and hobbies.
+                </li>
+                <li>
+                    Recommendations - You can request professional recommendations from your connections.
+                </li>
+                <li>
+                    Accomplishments – You can add: Certifications, Licenses, Honors & Awards, Projects, Publications, Test Scores.
+                </li>
+                <li>
+                    Languages - Languages you understand or speak.
+                </li>
+            </ul>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('how-to-download')">
+        <h3>How to download your profile in a PDF format?</h3>
+        <span *ngIf="toggle.view.active['how-to-download']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['how-to-download']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['how-to-download']" >
+        <div class="help-content-text">
+            <p>
+                You can save a copy of your profile or someone else’s profile in a PDF format from the <b>introduction card on your profile</b>.
+            </p>
+            <p>
+                To save a profile to a PDF:
+            </p>
+            <ol>
+                <li>
+                    Click the <b>More</b> icon at the card of your HyperCube Profile page.
+                </li>
+                <li>
+                    Select <b>Save to PDF</b> from the dropdown.
+                </li>
+            </ol>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('recommendations-overview')">
+        <h3>Recommendations - Overview</h3>
+        <span *ngIf="toggle.view.active['recommendations-overview']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['recommendations-overview']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['recommendations-overview']" >
+        <div class="help-content-text">
+            <p>People who view your profile will often read the recommendations you've received from your connections to see what others have to say about your work.</p>
+            <p>
+                You can ask recommendations from your connections who value your work, services, or products, such as managers, colleagues, co-workers, customers, and clients.
+            </p>
+            <p>
+                If a connection responds to your request and writes you a recommendation, you’ll be notified. You’ll have to accept the recommendation to display it on your profile or you can dismiss it.
+            </p>
+            <p>
+                Once you’ve accepted a recommendation from your connection, it’ll be visible on your profile by default. 
+            </p>
+            <p>
+                If you change your mind about a recommendation you’ve accepted, you can choose to <b>hide the recommendation</b>. 
+            </p>
+            <p>
+                You can also recognize your connections’ work by writing them a recommendation. You may receive a recommendation request, or you can take the opportunity on your own to write a recommendation for your connections.
+            </p>
+            <p>
+                If you receive a recommendation request, you aren’t required to respond and can <b>ignore the request</b>. However, if you do write a recommendation and change your mind later, you have the option to <b>edit a recommendation you’ve given</b>, or to <b>delete a recommendation</b> altogether. There's no limit to the number of recommendations you can request or give.
+            </p>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('ask-recommendations')">
+        <h3>How to ask recommendations</h3>
+        <span *ngIf="toggle.view.active['ask-recommendations']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['ask-recommendations']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['ask-recommendations']" >
+        <div class="help-content-text">
+            <p>
+                You can ask your connection to write a recommendation of your work that you can display on your profile.
+            </p>
+            <p>
+                To ask a recommendation from a connection's profile:
+            </p>
+            <ol>
+                <li>
+                    Navigate to the profile of the connection you'd like to request a recommendation from.
+                </li>
+                <li>
+                    Click the <b>More</b> button in the right section of the profile.
+                </li>
+                <li>
+                    Select <b>ask a recommendation</b>.
+                </li>
+                <li>
+                    Fill out the <b>text box</b> with personalized message of the recommendations pop-up window, and click <b>send</b>.
+                </li>
+            </ol>
+            <p>
+                To ask recommendation from your profile:
+            </p>
+            <ol>
+                <li>
+                    Scroll down to the <b>Recommendations</b> section on your profile and click <b>Ask to be recommended</b>.
+                </li>
+                <li>
+                    Type the name of the connection you'd like to ask for a recommendation in the <b>Who do you want to ask?</b> field.
+                </li>
+                <li>
+                    Start typing a name of your connection.
+                </li>
+                <li>
+                    Select the name from the dropdown that appears.
+                </li>
+                <li>
+                    You can include a personalized message with your request by changing the text in the message field.
+                </li>
+                <li>
+                    Click <b>Send</b>
+                </li>
+            </ol>
+            <p>To ask a recommendation from your Network:</p>
+            <ul>
+                <li>
+                    Click the <b>Network</b> icon at the side menu of your homepage.
+                </li>
+                <li>
+                    Go to connection's page
+                </li>
+                <li>
+                    Click the <img src="/assets/img/107.svg" alt="button"> dots icon and select <b>ask a recommendation</b>
+                </li>
+                <li>
+                    Fill out the <b>text box</b> with personalized message of the recommendations pop-up window, and click <b>send</b>.
+                </li>
+            </ul>
+            <p>
+                You can see sent requests from the <b>Request tab</b> on the recommendation section.
+            </p>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('recommendations-actions')">
+        <h3>How to accept, dismiss, and hide the recommendation you have received</h3>
+        <span *ngIf="toggle.view.active['recommendations-actions']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['recommendations-actions']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['recommendations-actions']">
+        <div class="help-content-text">
+            <p>
+                You can write a recommendation for anyone you are connected with. The recommendation recipient can choose to display it on their profile. If a contact requests a recommendation from you, the request will be sent to you via notification center. You can write or ignore the recommendation request.     
+            </p>
+            <p>
+                Recommending someone from their profile
+            </p>
+            <ol>
+                <li>
+                    Navigate to the profile of the connection you'd like to recommend.
+                </li>
+                <li>
+                    Click the <b>More</b> button in your introduction card.
+                </li>
+                <li>
+                    Select Recommend.
+                </li>
+                <li>
+                    Write your recommendation in the message field of the recommendations pop-up window and click <b>Send</b>.
+                </li>
+            </ol>
+            <p>
+                Responding to a recommendation request received through notifications
+            </p>
+            <ol>
+                <li>
+                    Click the <img src="/assets/img/4.svg" alt="button"> <b> notification</b> icon at the top of your homepage.
+                </li>
+                <li>
+                    Select the <b>see the request</b> button. You will be redirected to requests tab under the recommendation section on your profile.
+                </li>
+                <li>
+                    Click <b>write</b> button.
+                </li>
+                <li>
+                    Write your recommendation in the message field of the recommendations pop-up window and click <b>Send</b>.
+                </li>
+                <li>
+                    You can click <b>Ignore</b> if you don’t want to recommend your connection. 
+                </li>
+            </ol>
+            <p>
+                You can <b>edit</b> or <b>delete</b> recommendations you've sent at any time. The recipient won't be notified that you removed your recommendation. It's just removed from their profile. If you create a new recommendation, the recipient will be notified.
+            </p>
+            <p>
+                To delete a recommendation, you've given:
+            </p>
+            <ol>
+                <li>
+                    Go to your profile and scroll to the recommendations section.
+                </li>
+                <li>
+                    Click the <b>Given Tab</b>
+                </li>
+                <li>
+                    Locate the recommendation you want to remove and click <b>Delete</b>.
+                </li>
+            </ol>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('manage-security')">
+        <h3>How to manage security and Privacy settings?</h3>
+        <span *ngIf="toggle.view.active['manage-security']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['manage-security']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['manage-security']">
+        <div class="help-content-text">
+            <p>
+                The Security & Privacy page allows you to manage your Hypercube account settings and update your privacy and security settings.
+            </p>
+            <p>
+                From Security tab you can:
+            </p>
+            <ul>
+                <li>
+                    <b>
+                        Change Password -
+                    </b>
+                    Enter your current password, type your new password, and then retype it to confirm
+                </li>
+                <li>
+                    <b>
+                        See all the devices where you are signed in - 
+                    </b>
+                    On that page, you can also review all devices that are signed in to your account, when you last signed in, what browser was used, the IP address. You'll also see the option to sign out of an individual session or to sign out of all sessions together.
+                </li>
+                <li>
+                    <b>
+                        Enable two step verification - 
+                    </b>
+                    If you choose to add two-step verification as an additional layer of security, you'll be asked to scan the QR code using an authentication application, and then enter generated verification code in the box below and click Activate. You can Turn it off anytime.
+                </li>
+                <li>
+                    <b>
+                        Deactivate your account - 
+                    </b>
+                    deactivating your account means that:
+                    <ul>
+                        <li>
+                            People can’t see your Profile, or search for you
+                        </li>
+                        <li>
+                            Some information may remain visible (like messages you’ve sent)
+                        </li>
+                        <li>
+                            HyperCube saves your account info in case you reactivate
+                        </li>
+                    </ul>
+                    <p>
+                        To reactivate account, you should log in using old login username and Password.
+                    </p>
+                </li>
+            </ul>
+            <p>
+                From Privacy tab you can manage how others see your profile and network information
+            </p>
+            <ul>
+                <li>
+                    Profile picture
+                </li>
+                <li>
+                    List of your connections
+                </li>
+                <li>
+                    Your active status
+                </li>
+                <li>
+                    Profile edits
+                </li>
+                <li>
+                    Who can see your email?
+                </li>
+                <li>
+                    Who can see your phone number?
+                </li>
+            </ul>
+            <p>
+                You can choose to make visible these sections to several group of people. Select one of the following options from the dropdown menu:
+            </p>
+            <ul>
+                <li>
+                    Only me
+                </li>
+                <li>
+                    My Connections
+                </li>
+                <li>
+                    Hypercube Members
+                </li>
+            </ul>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('manage-notifications')">
+        <h3>How to manage notifications?</h3>
+        <span *ngIf="toggle.view.active['manage-notifications']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['manage-notifications']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['manage-notifications']">
+        <div class="help-content-text">
+            <ol>
+                <li>
+                    To manage notifications, click the Me icon at top of your Hypercube homepage.
+                </li>
+                <li>
+                    Go to Account settings page. 
+                </li>
+                <li>
+                    Click Notifications & Alerts tab on the left side menu. 
+                </li>
+                <li>
+                    Under the Notifications settings page, you can see the types of notification settings you can manage.
+                </li>
+                <li>
+                    Switch the toggle On or Off to the right of the notification you want to manage.
+                </li>
+            </ol>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('select-language')">
+        <h3>How to Select Language Setting?</h3>
+        <span *ngIf="toggle.view.active['select-language']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['select-language']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['select-language']">
+        <div class="help-content-text">
+            <p>
+                You can <b>select your language</b> from the <b>account</b> settings page.
+            </p>
+            <ol>
+                <li>
+                    Click the <b>Me</b> icon at the top of your homepage.
+                </li>
+                <li>
+                    Click account <b>Settings and then Personal information</b>.
+                </li>
+                <li>
+                    Under the <b>language</b> section, click <b>edit</b> and select the language you want from the dropdown.
+                </li>
+            </ol>
+            <p>
+                All Hypercube-generated content, such as page titles and menus, will display in the language you select. Member-generated content will display in the language in which it was written.
+            </p>
+            <p>
+                Once you select a language, the site will remember your selection for subsequent visits.
+            </p>
+            <p>
+                <b>Supported Languages</b>
+            </p>
+            <p>
+                On hypercube supported languages are: English and Georgian 
+            </p>
+        </div>
+    </ng-template>
+</div>

@@ -1,0 +1,48 @@
+<main>
+        
+    <div class="dark-blue-bg-for-network">
+        <div class="container dashboard-nav">
+          <!-- <div class="d-flex justify-content-between align-items-center">
+              <h1 class="page-title">Find the job of your dream</h1>
+          </div> -->
+          
+          <ul>
+              <li>
+                  <a [routerLink]="['saved']" routerLinkActive="active">Saved Jobs</a>
+              </li>
+              <li>
+                  <a [routerLink]="['applied']" routerLinkActive="active">Applied Jobs</a>
+              </li>
+              <li>
+                  <a [routerLink]="['invitations']" routerLinkActive="active">Jobs Invitations</a>
+              </li>
+              <li>
+                    <a [routerLink]="['skipped']" routerLinkActive="active">Skipped Jobs</a>
+              </li>
+          </ul>
+          <button class="backgroundless" [routerLink]="['/search/job']">Search for jobs</button>
+          
+      </div>
+    </div>
+    
+    <div class="container mt-3">
+         <div class="row">
+            <div class="col">
+                <router-outlet></router-outlet>
+            </div>
+
+            <div class="jobs-landing__sidebar col-lg-3 col-md-12 mt-3">
+                <div class="jobs-landing__sidebar__career-interest mb-3" [routerLink]="['/jobs/user/carrer-interest']">
+                    <div class="d-flex align-items-center mb-2">
+                        <img src="assets/img/260.svg" />
+                        <h4 class="jobs-landing__sidebar__career-interest__heading">Career interest</h4>
+                    </div>
+                    <span class="page-section-text-grey">Your answers determine which jobs we recommend </span>
+                </div>
+                <app-ads [isLeft]="true"></app-ads>
+            </div>
+            
+         </div>
+    </div>
+    
+</main>

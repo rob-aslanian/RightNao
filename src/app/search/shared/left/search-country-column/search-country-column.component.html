@@ -1,0 +1,45 @@
+<div class="search-groups__sidebar-section">
+    <app-search-column-header title="Country">
+        <div class="mt-2">
+            <div class="search-groups__sidebar-section__delivery-time-options search-groups__sidebar-section__wrap">
+                <div class="
+                    custom-control 
+                    custom-checkbox 
+                    page-section-text-grey
+                    ">
+                    <input (change)="selectCountry($event)" type="checkbox" class="custom-control-input" id="anywhere" name="country"
+                           value="anywhere">
+                    <label class="custom-control-label" for="anywhere">
+                        Anywhere
+                    </label>
+                </div>
+                <div class="
+                    custom-control 
+                    custom-checkbox 
+                    page-section-text-grey
+                    " *ngFor="let country  of countries">
+                    <input type="checkbox" [checked]="country.isSelected" class="custom-control-input" [id]="country.name" name="country"
+                           (change)="selectCountry($event)" [value]="country.name">
+                    <label class="custom-control-label" [for]="country.name"   >
+                        {{ country.name | country }}
+                    </label>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mt-2">
+                <div class="input-container">
+                    <input type="text" placeholder="Enter location" class="form-control"
+                            [ngbTypeahead]="searchCountry"
+                            (selectItem)="selectLocation($event)"
+                            [resultFormatter]="countryFormatter"
+                            [inputFormatter]="countryFormatter"
+                            class="form-control filter-search-inp"
+                            id="qf_location"
+                            placeholder="Country">
+                </div>
+                <button class="btn backgroundless search-btn">
+                    <img src="assets/img/right-arrow.svg" class="search-groups__sidebar-section__location__img"/>
+                </button>
+            </div>
+        </div>
+    </app-search-column-header>
+</div>

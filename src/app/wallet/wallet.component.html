@@ -1,0 +1,29 @@
+<div class="wallet-header">
+    <div class="profile container wallet-header-container">
+        <ul class="wallet-header-nav">
+            <li><a [routerLink]="['/wallet']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" > My wallet </a> </li>
+            <li> <a [routerLink]="['/wallet/accounts']" routerLinkActive="active" > Accounts </a> </li>
+            <li> <a [routerLink]="['/wallet/statistics']" routerLinkActive="active" >Statistics</a> </li>
+            <li> <a [routerLink]="['/wallet/earn']" routerLinkActive="active" >Earn HyperCoins </a> </li>
+            <li> <a [routerLink]="['/wallet/transfer']" routerLinkActive="active" >Transfer </a> </li>
+        </ul>
+        
+        <button class="btn btn-primary exchangesRates">Exchanges Rates</button>
+        
+    </div>
+</div>
+<div class="wallet-wrapper">
+    <div class="profile container">
+        <div class="row">
+            <div class="main col-12 col-lg-9"   style="margin-top: 100px;"> 
+                    <router-outlet></router-outlet>
+            </div>
+            <div class="right-bar col-12 col-lg-3"   style="margin-top: 100px;">
+                <app-user-profile-landing-languages></app-user-profile-landing-languages>
+                <app-wallet-offers></app-wallet-offers>
+                
+            </div>
+        </div>
+            
+    </div>
+</div>

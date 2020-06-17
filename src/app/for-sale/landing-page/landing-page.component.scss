@@ -1,0 +1,55 @@
+.profile {
+    max-width: 1255px;
+    width: 100%;
+};
+
+.side {
+    background-color: white;
+    width: 100%;
+    padding: 10px;
+    border-radius: 4px;
+};
+.categories {
+    padding-left: 31px;
+    padding-top: 13px;
+  p {
+      font-weight: 800;
+      color: #052337;
+
+  }
+ .menu {
+    padding-left: 0px;
+    li {
+        list-style: none;
+        padding-top: 10px;
+        color: #808080;
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+ }
+}
+.new-products { 
+    background: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    h4 {
+        color: #052337;
+    }
+}
+
+.top-right{
+    top: 3px;
+    right: 26px;
+
+}
+.bottom-left {
+    bottom: 0px;
+    left: 21px;
+    p{
+        color: white;
+        font-size: 18px;
+        cursor: pointer;
+    }
+}

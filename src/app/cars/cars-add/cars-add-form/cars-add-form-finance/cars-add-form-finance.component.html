@@ -1,0 +1,22 @@
+<form [formGroup]="form" class="col-12 basic-form">
+    <div class="form-group">
+        <p [ngClass]="{'custom-red':form.get('finance').invalid && isSubmitted}">Finance</p>
+        <div formGroupName="finance" class="row ml-1 mr-1">
+            <input type="number" class="form-control col-8 col-md-4" formControlName="firstInstalment">
+            <div class="form-group col-4 col-md-2">
+                    <select name="mth"
+                            id="selectMth" 
+                            class="form-control"
+                            (change)="parseToInt($event, 'mth')">
+                        <option value="" disabled>Mth</option>
+                        <option [value]="item" 
+                                *ngFor="let item of mthList">
+                                    {{ item }}
+                        </option>
+                    </select>
+            </div>
+            <button class="btn backgroundless col-md-3">Change Currency</button>
+    
+        </div>
+    </div>
+</form>

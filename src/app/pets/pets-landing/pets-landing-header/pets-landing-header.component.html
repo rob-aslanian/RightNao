@@ -1,0 +1,106 @@
+<div class="header mt-3">
+    <div class="header__nav d-flex justify-content-between p-0">
+        <div class="header__nav__item col-md-3 p-0" 
+             style="border-top-left-radius: .5rem ;"
+             [routerLink]="['/pets', 'landing', 'Category_Animals' ]" routerLinkActive="active-tab" >
+            <p>Animal</p>
+        </div>
+        
+        <div class="header__nav__item col-md-3 p-0"
+             [routerLink]="['/pets', 'landing', 'Category_Plants' ]" routerLinkActive="active-tab">
+            <p>Plants</p>
+        </div>
+
+        <div class="header__nav__item col-md-3 p-0"  
+            [routerLink]="['/pets', 'landing', 'Category_FoodAccessories' ]" routerLinkActive="active-tab">
+            <p>Food & Accessories</p>
+        </div>
+        
+        <div class="header__nav__item col-md-3 p-0"
+             [routerLink]="['/pets', 'landing', 'Category_Seeds' ]" routerLinkActive="active-tab">
+            <p>Seeds</p>
+        </div>   
+
+        <div class="manage-estate d-flex">
+              <!-- <div ngbDropdown>
+                <img src="assets/img/add-estate.svg" ngbDropdownToggle alt="add-estate"> 
+                <div ngbDropdownMenu >
+                    <button  class="btn d-block" [routerLink]="[ '/real-estate/add-estate' ]">Post</button>
+                    <button  class="btn d-block" [routerLink]="[ '/real-estate/add-estate' ]">Wanted</button>
+                </div>
+            </div> -->
+              <img src="assets/img/manage-estate.svg" class="pl-2" alt="manage-estate" [routerLink]="[ '/pets/manage' ]">
+        </div> 
+      
+
+        <!-- <div class="header__nav__item col-md-2 p-0"  
+             style="border-top-right-radius: .5rem ;"  
+             ngbDropdown
+             [ngClass]="{'active-tab': isMoreActive }"
+             (openChange)='isMoreActive = !isMoreActive'>
+            <p ngbDropdownToggle>More</p>
+            <div class="more-box"   ngbDropdownMenu>
+                <ul class="mb-0">
+                    <li ngbDropdownItem >Dealers</li>
+                    <li ngbDropdownItem>Repair</li>
+                    <li ngbDropdownItem>Renovation</li>
+                    <li ngbDropdownItem>Parts & Accessories</li>
+                    <li ngbDropdownItem>Other</li>
+                </ul>
+            </div>
+        </div>    -->
+    </div>
+    <div class="header__search d-flex p-4">
+        
+        <div class="header__search__dropdown col-10 w-100 p-0 d-flex">
+
+            <div class="col-2">
+                <select name="brand"
+                        class="form-control">
+                    <option value="" disabled>Deal Type</option>
+                    <option [value]="item" 
+                            *ngFor="let item of brandList">
+                                {{ item }} 
+                    </option>
+                </select>
+            </div>
+
+            <div class="col-2">
+                <select name="brand"
+                        class="form-control">
+                    <option value="" disabled>Category</option>
+                    <option [value]="item" 
+                            *ngFor="let item of brandList">
+                                {{ item }} 
+                    </option>
+                </select>
+            </div>
+            <div class="col-2">
+                <select name="brand"
+                        class="form-control">
+                    <option value="" disabled>Max Price</option>
+                    <option [value]="item" 
+                            *ngFor="let item of brandList">
+                                {{ item }} 
+                    </option>
+                </select>
+            </div>
+            <div class="col-6">
+                <input type="text" 
+                     class="form-control" 
+                     placeholder="Search" 
+                     >
+            </div>  
+
+        </div>
+      
+        <div class="header__search__button col-md-2">
+            <button class="btn btn-primary  w-100 h-100">Search</button>
+        </div>
+        
+    </div>
+    <div class="header__button-advanced col-12 d-flex justify-content-end">
+            <p class="pr-3" >Advanced Search</p>
+            <p>Saved Filtres</p>
+    </div>   
+</div>

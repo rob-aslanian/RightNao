@@ -1,0 +1,12 @@
+<label class="title-label">Landscape used </label>
+<div class="mt-1 d-flex custom-radio-input-god">
+        <div class="mt-2" *ngFor="let light of landNeeds">
+            <input  type="radio" [id]="light.id"  
+                    [formControl]='landCtrl' class="d-none" 
+                    name="landCtrl" [value]="light.id">
+
+            <label [for]="light.id" 
+                   class="btn btn-light-dark mr-3">{{ light.name }}</label>
+        </div>
+
+</div>

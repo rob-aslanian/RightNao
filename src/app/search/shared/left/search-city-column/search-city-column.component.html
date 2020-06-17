@@ -1,0 +1,32 @@
+<div class="search-groups__sidebar-section">
+        <app-search-column-header title="City">
+            <div class="mt-2">
+                <div class="search-groups__sidebar-section__delivery-time-options search-groups__sidebar-section__wrap">
+                    <div class="
+                        custom-control 
+                        custom-checkbox 
+                        page-section-text-grey
+                        " *ngFor="let city of cities">
+                        <input type="checkbox" [checked]="city.isSelected" class="custom-control-input" [id]="city.name" name="type"
+                               (change)="checkedCity($event)" [value]="city.name">
+                        <label
+                            class="custom-control-label" [for]="city.name" >
+                        {{ city.name }}
+                        </label>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mt-2">
+                    <div class="input-container">
+                        <input type="text" class="form-control" id="wanted-location" placeholder="Enter city"
+                                [ngbTypeahead]="searchLocation" [resultFormatter]="formatLocation"
+                                [inputFormatter]="formatLocation" (selectItem)="selectLocation($event)">
+                    </div>
+                    <div>
+                        <button class="btn backgroundless search-btn">
+                            <img src="assets/img/right-arrow.svg" class="search-groups__sidebar-section__location__img"/>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </app-search-column-header>
+    </div>

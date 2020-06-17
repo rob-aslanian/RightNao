@@ -1,0 +1,40 @@
+<!-- invite to apply modal - start -->
+<div class="popup-content default-modal" *ngIf="modalContent">
+    <form >
+        <div class="form-group" *ngIf="vm.errors">
+        <label>{{ vm.errors }}</label>
+        </div>
+        <div class="d-flex user-to-apply">
+            <img class="rounded-circle" src="{{ modalContent.avatar ? '/file/' + modalContent.avatar : 'assets/img/124.svg' }}" alt="Candidate">
+            <div class="d-flex flex-column justify-content-center">
+                <h2>{{ modalContent.firstname }} {{ modalContent.lastname }}</h2>
+                <ng-container *ngFor="let experience of modalContent.experiences; let first = first; trackBy:trackByFn">
+                    <p *ngIf="first">{{ experience.title }}</p>
+                    <p *ngIf="first">
+                        {{ experience.company }}
+                    </p>
+                </ng-container>                
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="posted-job">Posted Job</label>
+            <select class="form-control" [(ngModel)]="vm.jobId" (ngModelChange)="addJob($event)" name="jobId" id="jobId">
+                <option selected [ngValue]="''">Select Job</option>
+                <option *ngFor="let job of postedJobs; trackBy:trackByFn" [ngValue]="job.id">
+                    {{ job.job_details.title }}
+                </option>
+                <option value="add_job" >Add job</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="customize-invitation">Customize your invitation</label>
+            <textarea class="form-control" [(ngModel)]="vm.text" name="text" rows="5" id="customize-invitation" placeholder="Enter invitation text here"></textarea>
+        </div>
+        <div class="btn-container">
+            <button class="btn btn-primary" [attr.disabled]="(!vm.jobId || isInvitationToApplyInProgress) === true ? true : null" (click)="submit()">
+                {{ !isInvitationToApplyInProgress ? 'Submit' : 'Request in progress...'}}
+            </button>
+        </div>
+    </form>
+</div>
+<!-- invite to apply modal - end -->

@@ -1,0 +1,28 @@
+
+<div class="gallery" *ngIf="type !== 'preview'">
+  <p class="gallery-heading" *ngIf="type === 'Add'">
+    <b>Add File</b> <span class="star">*</span>
+    <span>(Supported files: JPG, PNG, GIF. Maximum file size: 25MB)</span>
+
+  <div class="gallery__content">
+    <form  enctype="multipart/form-data" >
+      <ngb-carousel>
+        <ng-container *ngFor="let slider of sliders; let i = index">
+            <ng-template ngbSlide [id]="slider">
+                <app-gallery-img-row (result)="getRowImages($event , slider , i)" *ngIf="type === 'Add'"></app-gallery-img-row>
+                <app-gallery-img-row (result)="getRowImages($event , slider , i)" *ngIf="type === 'Edit'" [files]="files[slider]"></app-gallery-img-row>
+            </ng-template>
+        </ng-container>
+      </ngb-carousel>
+      <div class="d-flex justify-content-end">
+        <button class="btn btn-primary" type="submit" (click)="submit()">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<!-- Preview -->
+<div class="slider" *ngIf="type === 'preview'">
+   <app-slider [files]="existFiles"></app-slider>
+</div>

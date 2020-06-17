@@ -1,0 +1,14 @@
+<div class="jobs mt-3">
+    <div>
+
+        <!-- Content in the center -->
+        <div class="col mr-3 px-0" *ngIf="(skippedJobs | async) as jobs">
+            
+            <h5 class="mb-3">Skipped Jobs {{ jobs.length }}</h5>
+            <div class="center-content-jobs">
+                  <app-company-box type="skipped" [jobs]="jobs"></app-company-box>
+            </div>
+
+        </div>
+    </div>
+</div>

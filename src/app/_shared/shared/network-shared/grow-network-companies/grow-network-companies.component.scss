@@ -1,0 +1,26 @@
+@import "src/variables";
+.center-heading {
+    padding-bottom: 22px;
+}
+
+.center-content-network.center-content-network--company {
+    // max-width: 100%;
+    min-width: 75%;
+}
+
+
+:host ::ng-deep ngb-rating {
+    align-items: center;
+    span {
+        font-size: 15px;
+        color: $background-dark-cyan;
+        margin: 0 2px;
+    }
+}
+.job_offers {
+    color: $background-dark-cyan;
+}
+
+.options.blocks-option {
+    left: -139px !important;
+}

@@ -1,0 +1,29 @@
+<div class="header__categories col-12 col-lg-5 d-flex justify-content-between">
+        <button class="btn btn-secondary"  
+                (click)='changeStatus("PostStatus_Active")'
+                [ngClass]="{'btn-dark': filter.status === 'PostStatus_Active'}">Active</button>
+    
+        <button class="btn btn-secondary"  
+                (click)='changeStatus("PostStatus_Expired")'
+                [ngClass]="{'btn-dark': filter.status === 'PostStatus_Expired'}">Expired</button>
+                
+        <button class="btn btn-secondary" 
+                (click)='changeStatus("PostStatus_Hidden")'
+                [ngClass]="{'btn-dark': filter.status === 'PostStatus_Hidden'}">Hidden</button>
+    </div>
+    <div class="header__search col-12 d-flex mt-4 pr-0">
+        <div class="col-md-9 p-0">
+            <input type="text" 
+                class="form-control mr-4" 
+                placeholder="Search"
+                [(ngModel)]="filter.keywords"
+                (keyup.enter)='emitSearch()'>
+        </div>
+        <div class="col-md-3 pr-0">
+            <select class="form-control" (change)='searchByCategory($event)'>
+                <!-- <option value="" selected disabled>Property type</option> -->
+                <option *ngFor="let item of category" 
+                        [value]='place == "for-sale" ? item["id"] : item["type"] '>{{ item.text }}</option>
+            </select>
+        </div>
+    </div>

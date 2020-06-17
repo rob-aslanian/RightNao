@@ -1,0 +1,113 @@
+@import 'src/variables';
+
+//local variables
+$light-grey: #ccc;
+
+
+
+.post-container {
+    width: 100%;
+    background-color: $white;
+    border-radius: 0.4rem;
+        .post-wrapper {
+            padding: 1.3rem;
+        }
+};
+ 
+:host::ng-deep .import-profile-wrap {
+    padding: 0px !important;
+}
+
+.add-working-hour {
+    cursor: pointer;
+    a {
+        font-size: 27px;
+        font-weight: 100;   
+        color: #00D4E3;
+    }
+    span {
+        font-size: 17px;
+        color: #00D4E3;
+    }
+}
+.working-hours-toggle {
+    .notification-checkbox {
+        text-align: inherit !important;
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 37px;
+            height: 18px;
+        }
+        
+        .switch input { 
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: $light-grey;
+            -webkit-transition: .3s;
+            transition: .3s;
+            border: solid 1px #e6e6e6;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 12px;
+            width: 12px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            -webkit-transition: .3s;
+            transition: .3s;
+        }
+        
+        input:checked + .slider {
+            background-color: $background-dark-cyan;
+        }
+            
+        input:checked + .slider:before {
+            -webkit-transform: translateX(19px);
+            -ms-transform: translateX(19px);
+            transform: translateX(19px);
+        }
+        
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+            margin-right:0;
+        }
+        
+        .slider.round:before {
+            border-radius: 50%;
+        }
+    }
+
+};
+.disabled-hours {
+    pointer-events: none;
+    opacity: .5;
+}
+.add-buesniess-hours {
+    color: #00D4E3 !important;
+    cursor: pointer;
+    margin-top: 9px;
+}
+
+ .remove-hour {
+    right: 98px;
+    position: absolute;
+    top: 32px;
+    font-size: 20px;
+    color: #808080 !important;
+    cursor: pointer;
+ }

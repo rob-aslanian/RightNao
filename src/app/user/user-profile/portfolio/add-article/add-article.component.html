@@ -1,0 +1,31 @@
+<div class="add-article-wrapper">
+      <p class="mt-4 mb-4"> Add a new article</p>
+      <div class="add-article">
+          <div class="row" style="padding: 27px 46px;">
+              <div class="upload col-6 p-0" [ngClass]="{'invalid': !this.file?.fileForView && submittedArticle }">
+
+                    <app-upload-file [supportedType]='"Photo"' 
+                                     (result)='getFiles( $event )' 
+                                     [fileEdit]='file.fileForView'></app-upload-file> 
+
+              </div>
+              <div class="col-6 mt-2">
+                  <h4>Headline</h4>
+                  <textarea placeholder="Type somethin...." 
+                            class="form-control no-border"  
+                            rows="24" 
+                            [(ngModel)]="description" 
+                            [ngClass]="{'invalid': !description && submittedArticle }"></textarea>
+              </div>
+          </div>
+          <div class="btn-publish">
+              <button class="btn btn-primary pt-1 pb-1" (click)='submitArticle()'>
+                      Publish
+              </button>
+          </div>
+          <div class="text-editor" [ngClass]="{'invalid': submittedArticle && text.errors}">
+              <app-text-editor [formControl]='text'></app-text-editor>
+          </div>
+      </div>
+
+</div>

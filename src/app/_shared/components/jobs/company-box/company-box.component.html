@@ -1,0 +1,178 @@
+
+ <div class="candidates-container mt-3" *ngIf="jobs">
+    <div class="job-vacancy activated" [ngClass]="{'active': isDetails[i]}" *ngFor="let job of jobs; let i = index; trackBy:trackByFn">
+      <span class="ad" *ngIf="job?.isAd">Ad</span>
+      <div class="visible"  (click)="toggle(i , $event , job)" [id]="'job_id' + job.id">
+        <ng-container *ngIf="type === 'invited'">
+            <h6>{{ job.company.name }} invite you to apply for this job</h6>
+            <p class="vacancy-description" *ngIf="job.text_invitation">{{ job.text_invitation }} </p>
+        </ng-container>
+         <!-- If type applied -->
+          <div class="detailed-view-line d-flex justify-content-between" *ngIf="type === 'applied'">
+            <ng-container *ngIf="job.application; let applicant">
+                <span>Submitted | {{ applicant.created_at || ''  }}</span>
+                <ng-container *ngIf="applicant.documents.length > 0">
+                    <button class="backgroundless" [ngbPopover]="jobInfo" [autoClose]="'outside'" #info="ngbPopover">
+                            <img class="click__disable" src="assets/img/172.svg" alt="i">
+                    </button> 
+                    <ng-template #jobInfo>
+                        <div class="options click__disable info d-block" >
+                            <div class="d-flex click__disable justify-content-between mb-2">
+                                <h6>Application Details</h6>
+                                <a (click)="info.close()">&#10005;</a>
+                            </div> 
+                            
+                            <!-- Documents -->                                     
+                            <ng-container *ngIf="applicant.documents && applicant.documents.length > 0">
+                                <span class="click__disable">Additional Documents</span>
+                                <div class="d-flex click__disable align-items-center justify-content-between docs">
+                                    <a class="click__disable" *ngFor="let doc of applicant.documents; trackBy:trackByFn">
+                                        <img [src]="doc.mime_type | fileIcon" alt="pdf">
+                                        {{ doc.name }}
+                                    </a>
+                                </div>
+                            </ng-container>
+                            <!-- Documents -->  
+                            
+                            <!-- Cover letter -->
+                            <ng-container *ngIf="applicant.cover_letter">
+                                <span class="click__disable">Cover Letter</span>
+                                <p class="click__disable">
+                                    {{ applicant.cover_letter }}
+                                </p>
+                            </ng-container>
+                            <!-- Cover letter -->
+                        </div>
+                    </ng-template>
+                </ng-container>
+                
+            </ng-container>
+            
+          </div>
+         <!-- If type applied -->
+
+    
+          <div class="line-one">
+              <img [src]="job.company.avatar ? '/file/' + job.company.avatar : 'assets/img/default-company.svg'" alt="candidate">
+              <div class="vacancy-content" *ngIf="job.job_details; let jobDetails">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h3 *ngIf="jobDetails.title">{{ jobDetails.title }}</h3>
+    
+                  <ng-container *ngIf="isDetails[i] && showDetail">
+                        <button class="backgroundless ml-auto" 
+                                    (click)="openChatBox(job.company.id , job.company)" 
+                                    *ngIf="isAuth && job.company.id !== currentCompanyId">
+                                    Message
+                            </button>
+                            <button class="btn btn-primary" 
+                                    (click)="isAuth ? open('apply' , job) : redirect()" 
+                                    *ngIf="type !== 'applied' && !isCompany && !job.is_applied">Apply
+                            </button>
+                    
+                        
+                        <button class="backgroundless"  
+                                [ngbPopover]="companyMore" 
+                                (click)="getLink(job.id)">
+                            <img src="assets/img/107.svg" alt="..." class="click__disable" style="height: 20px; width:20px;">
+                        </button>
+                    </ng-container>
+
+                    <ng-template #companyMore>
+                        <div class="options click__disable d-block">
+                            <div class="btn-more"  >
+                                <img class="click__disable company-more__icon mr-2" src="assets/img/84.svg" alt="Share" >
+                                Share
+                                <div class="social__networks">
+                                    <button (click)="share(job.company)" *ngIf="isAuth">
+                                        <img class="click__disable" src="assets/img/106.svg" alt="Share" class="mr-2">
+                                    </button>
+                                    <button shareButton="facebook" [url]="sharedLink">
+                                        <img class="click__disable" src="assets/img/87.svg" alt="Share" class="mr-2">
+                                    </button>
+                                    <button shareButton="linkedin" [url]="sharedLink">
+                                        <img class="click__disable" src="assets/img/90.svg" alt="Share" class="mr-2">
+                                    </button>
+                                    <button shareButton="vk" [url]="sharedLink">
+                                        <img class="click__disable" src="assets/img/vk.svg" alt="Share" class="mr-2">
+                                    </button>
+                                </div>
+                            </div>
+                            <button class="btn-more" (click)="open('report' , job)" *ngIf="isAuth && job.company.id !== currentCompanyId">
+                                <img class="click__disable  company-more__icon mr-2" src="assets/img/42.svg" alt="Report">
+                                Report / Block
+                            </button>
+                        </div>
+                    </ng-template>
+                  </div>
+                  <div class="job__link">
+                    <span [routerLink]="['/company/profile' , job.company.url , 'jobs' , job.company.id ]" [queryParams]="{'job_id': job.id}"  style="cursor: pointer;">
+                        {{ job.company.name }}
+                        <!-- {{ job.company.industry.id | industry  }} -->
+                    </span>
+                    <div class="vacancy-info mt-0">
+                        <span *ngIf="jobDetails.city || jobDetails.country">
+                            <!-- <img src="assets/img/24.svg" alt="tick">         -->
+                            {{ jobDetails.location.city ? jobDetails.location.city + ', ' : ''  }}
+                            {{  jobDetails.country | country }}
+                        </span>
+                        <!-- <span *ngIf="jobDetails.publish_day || jobDetails.publish_month || jobDetails.publish_year">
+                            <img src="assets/img/48.svg" alt="date">
+                            {{ jobDetails.publish_day + '/' + jobDetails.publish_month + '/' + jobDetails.publish_year }}   
+                            -                 
+                           
+                        </span>
+                        <span *ngIf="jobDetails.employment_types">
+                            <img src="assets/img/159.svg" alt="temporary">
+                            {{ jobDetails.employment_types | addDelimetr:',' }} 
+                        </span> -->
+                    </div>
+                  </div>
+              </div>
+              <div class="line-two click__disable" *ngIf="isAuth && !isCompany && !isLanding">
+                <button class="backgroundless" *ngIf="type !== 'saved' && type !== 'applied' ">
+                    <img class="click__disable" src="assets/img/152.svg" (click)="skipJob(job.id); jobs.splice(i , 1) "alt="btn" *ngIf="type !== 'skipped'" >
+                    <img class="click__disable" src="assets/img/169.svg" (click)="unskipJob(job.id); jobs.splice(i , 1) "alt="btn" *ngIf="type === 'skipped'" >
+                </button>
+                <button  class="backgroundless" *ngIf="type !== 'skipped'">
+                    <img class="click__disable" src="assets/img/44.svg" *ngIf="!job.is_saved" (click)="saveJob(job.id);   job.is_saved = true;" alt="favorite">
+                    <img class="click__disable" src="assets/img/99.svg" *ngIf="job.is_saved"  (click)="unsaveJob(job.id , i); job.is_saved = false" alt="favorite">
+                </button>
+              </div>
+
+          </div>
+
+      </div>
+                
+      <!-- Show company detial -->
+      <div *ngIf="(isDetails[i] && !isLanding && showDetail) then comapnyDetails" ></div>
+      <ng-template  #comapnyDetails>
+          <app-company-details [data]="job.job_details" [selectedLang]="descriptionLang"></app-company-details>
+      </ng-template>
+
+  </div>
+ </div>
+
+
+
+
+ <!-- Modals-->
+
+ <app-modal (closeModal)="modalType = null">
+     <!-- Apply -->
+    <ng-container *ngIf="modalType === 'apply'">
+        <app-apply-modal [userId]="userId" [jobId]="jobId" [company]="applyCompany" (closeModal)="close($event)"></app-apply-modal>
+    </ng-container>
+
+    <!-- Report -->
+    <ng-container *ngIf="modalType === 'report'">
+        <app-report-block-user type="jobs" [blockId]="jobId" (closeModal)="modal.close()"></app-report-block-user>
+    </ng-container>
+    
+ </app-modal>
+
+ <ng-container *ngIf="isCloseModal">
+    <app-notification-alert type="apply" [data]="applyCompany"></app-notification-alert>
+ </ng-container>
+ 
+
+ 

@@ -1,0 +1,162 @@
+<main>
+    <div class="wrapper">
+        <div class="jobs-landing d-flex flex-wrap">
+            <div class="jobs-landing__content col-lg-9 col-md-12">
+
+                <div class="center-content-search">
+                    <div class="d-flex my-0 search-bg">
+                      <input type="text" (keyup)="searchCandidate($event)" name="keyword" class="form-control mr-2 search mb-0"
+                        placeholder="Enter Job Title or Keyword">
+                      <button type="button"  class="filters btn btn-primary" [routerLink]="['/search/candidate']" >
+                        <img src="assets/img/105.svg" alt="" class="mr-2">Filters
+                      </button>
+                    </div>
+        
+                </div>
+                
+                <div class="jobs-landing__content__offers">
+                        <h2 class="jobs-landing__content__slider__title">What we offer</h2>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <div>
+                                    <img src="assets/img/450.svg"/>
+                                </div>
+                                <h4 class="jobs-landing__content__offers__title mt-2">Post a Job</h4>
+                                <p class="page-section-text-grey mb-0 jobs-landing__content__offers__description">
+                                    Rightnão offers the ability to 
+                                    create online job posting 
+                                    to advertise open positions 
+                                    at your company. You can 
+                                    edit or pause your active job 
+                                    any time.
+                                </p>
+                            </div>
+                            <div class="col-sm-3">
+                                <div>
+                                    <img src="assets/img/users.svg"/>
+                                </div>
+                                <h4 class="jobs-landing__content__offers__title mt-2">Candidates</h4>
+                                <p class="page-section-text-grey mb-0 jobs-landing__content__offers__description">
+                                    Unlimited access to candidate 
+                                    profiles. You can invite a 
+                                    qualified candidate to apply 
+                                    for your job. Applicants can 
+                                    apply for the job directly 
+                                    through the site.                                                                                      
+                                </p>
+                            </div>
+                            <div class="col-sm-3">
+                                <div>
+                                    <img src="assets/img/cl_3.svg"/>
+                                </div>
+                                <h4 class="jobs-landing__content__offers__title mt-2">Manage Applicants</h4>
+                                <p class="page-section-text-grey mb-0 jobs-landing__content__offers__description">
+                                    Matching score help you to 
+                                    review applicants more 
+                                    quickly. We display everything
+                                    in one place: resumes, cover 
+                                    letters, recommendations 
+                                    and any files submitted.  
+                                </p>
+                            </div>
+                            <div class="col-sm-3">
+                                <div>
+                                    <img src="../../assets/img/604.svg"/>
+                                </div>
+                                <h4 class="jobs-landing__content__offers__title mt-2">Company Ad</h4>
+                                <p class="page-section-text-grey mb-0 jobs-landing__content__offers__description">
+                                    Raise your brand 
+                                    awareness and promote 
+                                    your jobs to the 
+                                    professional audience by 
+                                    boosting your company 
+                                    profile. 
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                <div class="jobs-landing__content__recommended">
+                    <ng-container *ngIf="(candidates | async) as candidates; else:loading">
+                        <div class="d-flex justify-content-between">
+                          <div class="mr-auto d-flex ml-4">
+                            <h5>Candidates</h5>
+                            <span class="mr-auto ml-3">Showing {{candidates.amount_of_results}} results</span>
+                            <span class="see-all">See all</span>
+                          </div>
+                        </div>
+                        <div class="candidates-container mt-3">
+                            <app-user-box [companyID]="companyID" [applicants]="candidates.candidate_search_result" type="all"></app-user-box>
+                        </div>
+                       </ng-container>
+    
+                      
+                       <ng-template #loading>
+                         <app-spinner class="d-flex justify-content-center"></app-spinner>
+                       </ng-template>
+                </div>
+
+                <div class="jobs-landing__content__useful-articles">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h2 class="page-section-heading">Useful articles</h2>
+                        <span class="see-all">See all</span>
+                    </div>
+
+                    
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <div class="jobs-landing__content__useful-articles__left-img-container">
+                                <img src="assets/img/articles_images/shutterstock_645213181.jpg"  class="jobs-landing__content__useful-articles__left-img-container__img"/>
+                            </div>
+                            <h2 class="jobs-landing__content__useful-articles__title">How to answer the 31 most common interview questions</h2>
+                            <span class="page-section-text-grey-small">Thomas Barwick. July 23, 2019</span>
+                            <p class="page-section-text-grey mt-4">
+                                Wouldn’t it be great if you knew exactly what questions a hiring 
+                                manager would be asking you in your next job interview?
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="jobs-landing__content__useful-articles__right-img-container">
+                                        <img src="assets/img/articles_images/shutterstock_149002700.jpg" class="jobs-landing__content__useful-articles__right-img-container__img"/>
+                                    </div>
+                                    <h2 class="page-section-text-blue mt-2">How to answer the 31 most common interview questions</h2>
+                                </div>
+                                <div class="col-6">
+                                    <div class="jobs-landing__content__useful-articles__right-img-container">
+                                        <img src="assets/img/articles_images/shutterstock_270607577.jpg" class="jobs-landing__content__useful-articles__right-img-container__img"/>
+                                    </div>
+                                    <h2 class="page-section-text-blue mt-2">How to answer the 31 most common interview questions</h2>
+                                </div>
+                            </div>
+                            <div class="row jobs-landing__content__useful-articles__article-row">
+                                <div class="col-6">
+                                    <div class="jobs-landing__content__useful-articles__right-img-container">
+                                        <img src="assets/img/articles_images/shutterstock_417492994.jpg" class="jobs-landing__content__useful-articles__right-img-container__img"/>
+                                    </div>
+                                    <h2 class="page-section-text-blue mt-2">How to answer the 31 most common interview questions</h2>
+                                </div>
+                                <div class="col-6">
+                                    <div class="jobs-landing__content__useful-articles__right-img-container">
+                                        <img src="assets/img/articles_images/shutterstock_623206301.jpg" class="jobs-landing__content__useful-articles__right-img-container__img"/>
+                                    </div>
+                                    <h2 class="page-section-text-blue mt-2">How to answer the 31 most common interview questions</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="jobs-landing__sidebar col-lg-3 col-md-12">
+                <app-ads class="col-lg-3 col-md-12" [isLeft]="true"></app-ads>
+            </div>
+
+        </div>
+    </div>
+</main>
+

@@ -1,0 +1,63 @@
+.messagin-main-ctnr {
+    button.dropdown-item.active{
+        background-color: lightblue;
+        color: #2e2d2d;
+    }
+}
+
+.messaging-leave-group-modal .modal-content{
+    max-width: 440px;
+}
+
+.messaging-mute-chat-modal .modal-content{
+    max-width: 440px !important;
+}
+
+.messaging-mute-chat-modal .modal-content{
+    max-width: 440px !important;
+}
+
+.messaging-report-block-modal .modal-content{
+    max-width: 600px !important;
+}
+
+.messaging-manage-labels-modal .modal-content{
+    max-width: 440px !important;
+}
+
+.messaging-shared-photos-modal .modal-content{
+    max-width: 912px !important;
+    width: 912px;
+    @media(max-width: 912px) {
+        width: auto;
+    }
+}
+
+.messaging-shared-photos-modal .modalPhoto-drop_body{
+    top: 350% !important;
+}
+
+.messaging-shared-photos-modal .bs-popover-top{
+    border: 0;
+}
+
+.messaging-shared-photos-modal .popover .arrow{
+    display: none;
+}
+.sr-only{
+    width: 0!important;
+    height: 0 !important;
+}
+
+.popover{
+    background-color: transparent !important;
+    border: 0 !important;
+}
+
+.popover .arrow{
+    display: none
+}
+
+.main-light-blue.messagin-main-ctnr.before-footer {
+    padding-bottom: 0;
+}

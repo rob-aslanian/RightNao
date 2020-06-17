@@ -1,0 +1,113 @@
+@import "src/variables";
+@import 'src/mixins.scss';
+
+@mixin list-block($left, $right , $width: 11rem) {
+    position: absolute;
+    background: $white;
+    border-radius: 5px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+    top: $left;
+    right: $right;
+    z-index: 2;
+    width:$width;
+      button {
+        color: $dark-grey;
+        display: block;
+        font-size: 14px;
+        width: 100%;
+        text-align: left;
+        margin-top: 0.2rem;
+        text-decoration: none;
+            &:hover {
+                background: $light-grey;
+            }
+        }
+  }
+
+ 
+.scroll {
+  max-height: 835px;
+  overflow: hidden;
+  overflow-y: initial;
+  
+  &::-webkit-scrollbar-thumb {
+    background: $dark-blue;
+    border-radius: 2px; 
+    margin: 100px;
+  }
+  &::-webkit-scrollbar {
+    background: $light-grey;
+    width: 5px;
+    padding: 2px;
+    max-height: 90%;
+    margin: 100px;
+  }
+    
+    .shared-modal {
+
+        &__container {
+                min-width: 100%;
+                min-height: 11rem;
+                border: 1px solid $light-grey;
+                border-radius: 5px;
+                &__img{ 
+                    position: relative;
+                    &__popup {
+                        background: #000;
+                        @include list-block(26px,0px);
+                    }
+                    img {
+                    cursor: pointer; 
+                    }
+
+                }
+
+                &__user {
+                    img {
+                    height: 50px;
+                    width: 50px;
+                    border-radius: 50%;
+                }
+
+                }  
+
+                &__name {
+                    &__name {
+                        font-size: 18px;
+                    }
+                    &__date {
+                        font-size:13px;
+                        color: $dark-grey;
+                    }
+                }
+                
+                &__paragraph {
+                    &__text {
+                        color: $dark-grey;
+                    }
+                    &__link {
+                    float: unset !important;
+                    color: $background-dark-cyan !important; 
+                    text-decoration: none !important;
+                    }
+                }
+
+                &__emojies {
+                    cursor: pointer;
+                    &__numbers {
+                    margin: 0px;
+                    color: $dark-grey;
+                    margin-left: 1rem;
+                    }
+                    &__img {
+                    height: 28px;
+                    width: 28px;
+                    }
+                }
+
+        }
+    } 
+}
+.shared-modal__container__image {
+    width: 100%;
+}

@@ -1,0 +1,21 @@
+<form class="col-12 basic-form">
+    <div class="form-group">
+        <p  [ngClass]="{'custom-red':form.get('vehicleHistory').invalid && isSubmitted}">Vehicle history</p>
+        <div class="row">
+            <div class=" col-6 col-md-4" *ngFor="let item of carsHistory">
+                <div class="custom-control custom-checkbox options-wrapper">
+                    <input type="checkbox" 
+                        [value]="item['type']"
+                        (change)="changeHistory($event)" 
+                        name="carsHistory" 
+                        class="custom-control-input" 
+                        id="carsHistory-{{ item['type'] }}"
+                        [checked]="item.isSelected">
+                    <label class="custom-control-label" for="carsHistory-{{ item['type'] }}">
+                    {{ item['text'] }}
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

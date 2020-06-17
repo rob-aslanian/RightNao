@@ -1,0 +1,60 @@
+<div class="photo-modal add-milestone">
+
+    <form [formGroup]="milestoneForm" autocomplete="off">
+
+        <div class="form-row form-group">     
+            <div class="col-sm-2 pr-1">
+                <label for="milestone-year"> {{ '1582' | translate }} <span>*</span></label>
+                <select class="form-control" formControlName="year" id="milestone-year"  [ngClass]="{ 'is-invalid': submited && mil.year.errors }">
+                    <option value="" disabled selected>{{ '1582' | translate }} </option>
+                    <option *ngFor="let year of Years"  [value]="year" >
+                        {{year}}
+                    </option>
+                </select>
+
+            </div>
+            <!-- Error -->
+            <span class="error_message" *ngIf="submited && mil.year.errors">
+                {{ utils.$getErrors('required') }}
+            </span>
+            <!-- Error -->
+
+        </div> 
+
+        <div class="form-group">
+            <label for="milestone-title"> {{ '1416' | translate }} <span>*</span></label>
+            <input type="text" class="form-control" formControlName="title" id="milestone-title"  
+                  [ngClass]="{ 'is-invalid': submited && mil.title.errors }" maxlength="128">
+
+            <!-- Errors -->
+            <ng-container *ngIf="submited && mil.title.errors">
+                <span class="error_message"  *ngFor="let error of utils.getErrorsKey(mil.title.errors)">
+                    {{ utils.$getErrors(error) }}
+                </span>
+            </ng-container>
+            <!-- Errors -->
+
+        </div>
+
+        <div class="form-group mb-0">
+            <label for="milestone-description"> {{ '461' | translate }} </label>
+            <textarea class="form-control" id="milestone-description" 
+                      formControlName="description" maxlength="600" 
+                      placeholder="Content limited to 600 characters"  
+                      [ngClass]="{ 'is-invalid': submited && mil.description.errors}">
+            </textarea>
+
+            <!-- Error -->
+            <span class="error_message" *ngIf="submited && mil.description.errors">
+                {{ utils.$getErrors('symbolsAndLatin') }}
+            </span>
+            <!-- Error -->
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <button class="save-and-add backgroundless btn" (click)="remove()" *ngIf="data"> {{ '1185' | translate }} </button>
+            <button class="backgroundless mr-2" (click)="submit(true)" *ngIf="!data"> {{ '1233' | translate }}</button>
+            <button class="btn btn-primary" (click)="submit()" > {{ '1231' | translate }}</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,151 @@
+
+  <div class=" add-experience">
+      <form [formGroup]="experienceForm" autocomplete="off">
+        <div class="mobile-modal">
+          <div class="form-group">
+              <label for="add-title">{{ '1417'| translate }} <span>*</span></label>
+            
+              <input maxlength="128" 
+                     type="text" 
+                     class="form-control" 
+                     formControlName="position" 
+                     [ngClass]="{ 'is-invalid':  submitted && exp.position.errors   }" 
+                     id="add-title">
+          </div>
+                                    <!-- errors  -->
+          <ng-container *ngIf="submitted && exp.position.errors">
+                <span class="error_message"  *ngFor="let error of utils.getErrorsKey(exp.position.errors)">
+                    {{ utils.$getErrors(error) }}
+                </span>
+            </ng-container>
+
+                                    <!-- errors -->
+          <div class="form-group">
+              <label  for="add-company">{{ '333'| translate }} <span>*</span></label>
+              <input maxlength="128" type="text" class="form-control" formControlName="company" [ngClass]="{ 'is-invalid':  submitted && exp.company.errors}" id="add-company">
+          </div>
+                                     <!-- erors -->
+          <ng-container *ngIf="submitted && exp.company.errors">
+                <span class="error_message"  *ngFor="let error of utils.getErrorsKey(exp.company.errors)">
+                    {{ utils.$getErrors(error) }}
+                </span> 
+         </ng-container>     
+                                    <!-- errors -->
+       
+          <div class="row ">
+            <div class="col-md-6">
+             <label for="add-location">{{ '390'| translate }} <span>*</span></label>
+                <select class="form-control" id="location-street-address-4-right" (change)="selectCountry($event)" formControlName="country" [ngClass]="{ 'is-invalid':  submitted && exp.country.errors}" >
+                    <option value="" disabled>Country / Region</option>
+                    <option [value]="country.asc" *ngFor="let country of countries | async">
+                        {{ country.name }}
+                    </option>
+                </select>
+            </div>
+
+
+            <div class="col-md-6">
+            <label for="add-City">{{ '314'| translate }} <span>*</span></label>
+                <input type="text" class="form-control" id="location-street-address-3-left" (selectItem)="selectCity($event)" [(ngModel)]="selectedCity"
+                        [ngClass]="{ 'is-invalid':  submitted && exp.city_id.errors  }"
+                        formControlName="city_id" [ngbTypeahead]="searchCity" 
+                        [resultFormatter]="cityFormatter" [inputFormatter]="cityFormatter" [attr.disabled]="!selectedCountry ? '' : null">
+            </div>
+          </div>
+                                                           
+                                                          <!-- errors -->
+          <span class="error_message" *ngIf="(exp.city_id.errors || exp.country.errors) && submitted" >{{utils.$getErrors('required')}}</span>
+                                                          <!-- errors -->
+          <div class="row">
+              <div class="col-md-6 custom-padding-right">
+                  <div class="form-row form-group">
+
+                  
+                      <div class="col-7 pr-2">
+                          <label for="experience-from">{{ '649'| translate }} <span>*</span></label> 
+
+                          <select (change)='getDate()' class="form-control" formControlName="startMonth" [ngClass]="{ 'is-invalid':  submitted && exp.startMonth.errors }" id="experience-from" (change)='getDate()'>
+                              <option selected disabled value=""  selected>{{ '926'| translate }}</option>
+                              <option *ngFor="let month of Months" [value]="month.id" tabindex="10"> 
+                                      {{month.name}}
+                              </option>
+                          </select>
+                      </div>
+                      <div class="col-5 pl-2">
+                          <select (change)='getDate()' class="form-control  label-less" formControlName="startYear" [ngClass]="{ 'is-invalid':  submitted && exp.startYear.errors}">
+                              <option value=""  selected>{{ '1582'| translate }}</option>
+                              <option *ngFor="let year of Years"  [value]="year" >
+                                  {{year}}
+                              </option>
+                          </select>
+                      </div>
+
+                  </div>
+              </div>
+
+
+              <div class="col-md-6 custom-padding-left">
+                  <div class="form-row">
+
+                      <div class="col-7 pr-2">
+                          <label for="experience-to">{{ '1418'| translate }} <span>*</span></label>
+                          <select (change)='getDate()' class="form-control"   formControlName="endMonth"  [ngClass]="{ 'is-invalid':  submitted && exp.endMonth.errors }" (change)='getDate()'>
+                              <option selected disabled value=""  selected>{{ '649'| translate }} </option>
+                              <option *ngFor="let month of Months" [value]="month.id" tabindex="10"> 
+                                      {{month.name}}
+                              </option>
+                          </select>
+                          
+                      </div>
+                      <div class="col-5 pl-2">
+                          <select (change)='getDate()' class="form-control label-less"  formControlName="endYear"   [ngClass]="{ 'is-invalid':  submitted && exp.endYear.errors }">
+                              <option value=""  selected>{{ '1582'| translate }}</option>
+                              <option *ngFor="let year of Years"  [value]="year" >
+                                  {{year}}
+                              </option>
+                          </select>
+                      </div>
+
+                      <div class="form-check custom-control custom-checkbox i-currently">
+                          <input type="checkbox" class="custom-control-input" formControlName="currentlyWork"  (change)="currentWorkhere($event)"  id="i-work-here">  
+                          <label for="i-work-here" class="custom-control-label">{{ '732'| translate }}</label>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+                         
+                       
+         <ng-container *ngIf="submitted && (exp.endYear.errors || exp.endMonth.errors  )">
+                <span class="error_message"  *ngFor="let error of utils.getErrorsKey(exp.endYear.errors || exp.endMonth.errors)">
+                    {{ utils.$getErrors(error) }}
+                </span> 
+         </ng-container>  
+         
+         
+           
+          <div class="form-group mb-0 mt-4"> 
+
+              <div class="d-flex justify-content-between"> 
+                  <label for="add-description">{{ '461'| translate }}</label>
+                  <span class="letter-count"> {{ exp.description && exp.description.value !== null ?  
+                      exp.description.value.length : 0 }} / 800 
+                  </span>
+              </div>
+              <textarea class="form-control" rows="5" id="add-description"  formControlName="description" maxlength="800" [ngClass]="{ 'is-invalid':  submitted && exp.description.errors  }"></textarea>
+          </div>
+          <!-- START MEDIA AND LINK -->
+          <div class="form-group mt-2">
+             <app-media-and-link  [existFiles]="data" type="experience" (result) ="getFiles($event)"></app-media-and-link>
+          </div>                    
+          <!-- END MEDIA AND LINK -->
+        </div>
+
+        <div class="d-flex mobile-button">
+            <button class="backgroundless ml-auto" (click)="removeExperience()" *ngIf="data"> {{ '1185'| translate }} </button>
+            <button type="submit" class="backgroundless ml-auto" (click)="submit(experienceForm , false)"  *ngIf="!data">{{ '1233'| translate }}</button>
+            <button type="submit" class="btn btn-primary ml-3" (click)="submit(experienceForm)" >{{ '1231'| translate }}</button>
+        </div>
+
+      </form>
+  </div>

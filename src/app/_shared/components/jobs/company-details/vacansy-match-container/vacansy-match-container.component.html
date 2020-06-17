@@ -1,0 +1,104 @@
+<h5  style="text-transform: capitalize;" *ngIf="data">{{ type  === 'preterred' ? 'Preferred ' : type }} Qualifications</h5>
+<div class="row mt-2">
+
+  <!-- Left -->
+  <div class="col-6">
+      <!-- Experience -->
+      <ng-container *ngIf="data?.experience as exp">
+          <div class="detail-content" *ngIf="exp !== 'experience_unknown'">
+              <div class="left">
+                <h6>Experince level</h6>
+              </div>
+              <div class="right description">
+                  <div class="form-check custom-control custom-checkbox mr-5" >
+                      <input type="checkbox" class="custom-control-input"  checked disabled>
+                      <label class="custom-control-label page-section-text-grey" >
+                        {{ exp | experience }}
+                      </label>
+                  </div>
+              </div>
+          </div>
+      </ng-container>
+      <!-- Experience -->
+
+      <!-- Skills -->
+      <ng-container *ngIf="data?.skills as skills">
+          <div class="detail-content" *ngIf="skills.length > 0" >
+              <div class="left">
+                <h6>Skills</h6>
+              </div>
+              <div class="right description">
+                  <div class="form-check custom-control custom-checkbox mr-5" *ngFor="let skill of skills">
+                      <input type="checkbox" class="custom-control-input"  checked disabled>
+                      <label class="custom-control-label page-section-text-grey" >
+                        {{ skill }}
+                      </label>
+                  </div>
+              </div>
+          </div>
+      </ng-container>
+      <!-- Skills -->
+
+
+  </div>
+  <!-- Right -->
+  <div class="col-6">
+      <!-- Tools -->
+      <ng-container *ngIf="data?.tools as tools">
+          <div class="detail-content" *ngIf="tools.length > 0">
+              <div class="left">
+                <h6>Tools & Programs </h6>
+              </div>
+              <div class="right description">
+                  <div class="form-check custom-control custom-checkbox mr-5" *ngFor="let tool of tools">
+                      <input type="checkbox" class="custom-control-input"  checked disabled>
+                      <label class="custom-control-label page-section-text-grey" >
+                        {{ tool.tool  }}
+                        <ng-container *ngIf="tool.rank as rank">- {{ rank | rank }}</ng-container> 
+                      </label>
+                  </div>
+              </div>
+          </div>
+      </ng-container>
+      <!-- Tools -->
+
+      <!-- Languages -->
+      <ng-container *ngIf="data?.languages as languages">
+          <div class="detail-content" *ngIf="languages.length > 0">
+              <div class="left">
+                <h6>Language</h6>
+              </div>
+              <div class="right description">
+                  <div class="form-check custom-control custom-checkbox mr-5" *ngFor="let language of languages">
+                      <input type="checkbox" class="custom-control-input"  checked disabled>
+                      <label class="custom-control-label page-section-text-grey" >
+                        {{ language.language  }} 
+                        <ng-container *ngIf="language.rank as rank">- {{ rank | rank }}</ng-container>          
+                      </label>
+                  </div>
+              </div>
+          </div>
+      </ng-container>
+      <!-- Languages -->
+
+       <!-- Educations -->
+       <ng-container *ngIf="data?.education as educations">
+          <div class="detail-content" *ngIf="educations.length > 0">
+              <div class="left">
+                <h6>Education</h6>
+              </div>
+              <div class="right description">
+                  <div class="form-check custom-control custom-checkbox mr-5" *ngFor="let education of educations">
+                      <input type="checkbox" class="custom-control-input"  checked disabled>
+                      <label class="custom-control-label page-section-text-grey" >
+                        {{ education  }}  
+                      </label>
+                  </div>
+              </div>
+          </div>
+      </ng-container>
+      <!-- Educations -->
+
+
+  </div>
+</div>

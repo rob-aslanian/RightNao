@@ -1,0 +1,19 @@
+<div class="new-home-wrapper">
+    <div class="type-of-home">
+            <label class="label-control d-block" 
+                   [ngClass]="{'invalid-custom': isInvalid && isSubmitted }">
+                   {{ title }} 
+            </label>       
+            <div class="custom-control custom-checkbox d-inline-block mr-3 mb-2 checkbox-home" 
+                 *ngFor="let item of list; let i = index">
+                    <input class="custom-control-input" 
+                           type="checkbox" 
+                           [id]="item.id" 
+                           [(ngModel)]="item.checked" 
+                           [ngModelOptions]="{standalone: true}"
+                           autocomplete="off"
+                           (change)='handleFormValidations()'>
+                    <label class="custom-control-label" [for]="item.id">{{ item.name }}</label> 
+            </div>
+    </div>
+</div>

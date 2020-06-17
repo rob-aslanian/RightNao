@@ -1,0 +1,26 @@
+.award{
+    &:first-child > .awards-edit{ opacity: 1; }
+
+    &:hover{
+        .edit { opacity: 1; }
+    }
+    
+}
+
+.awards-edit {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    transition: .3s all ease-in-out;
+    opacity: 0;
+}
+
+.media__content__files {
+    height: 100%;
+    width: 100%;
+    border-radius: 4px;
+    max-height: 200px;
+    height: 200px;
+}
+
+// .edit { display: none; }

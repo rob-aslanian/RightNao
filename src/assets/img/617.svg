@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2018 (64-Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="18px" height="18px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 0.194 0.19"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil4 {fill:#001428}
+    .fil2 {fill:#00D4E3}
+    .fil1 {fill:#00F4FF}
+    .fil3 {fill:#264361}
+    .fil0 {fill:white}
+   ]]>
+  </style>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_2414406705712">
+   <rect class="fil0" width="0.044" height="0.044" rx="0.009" ry="0.009"/>
+   <rect class="fil1" x="0.075" width="0.044" height="0.044" rx="0.009" ry="0.009"/>
+   <rect class="fil2" x="0.151" width="0.044" height="0.044" rx="0.009" ry="0.009"/>
+   <rect class="fil1" y="0.073" width="0.044" height="0.044" rx="0.009" ry="0.009"/>
+   <rect class="fil2" x="0.075" y="0.073" width="0.044" height="0.044" rx="0.009" ry="0.009"/>
+   <rect class="fil3" x="0.151" y="0.073" width="0.044" height="0.044" rx="0.009" ry="0.009"/>
+   <rect class="fil2" y="0.147" width="0.044" height="0.044" rx="0.009" ry="0.009"/>
+   <rect class="fil3" x="0.075" y="0.147" width="0.044" height="0.044" rx="0.009" ry="0.009"/>
+   <rect class="fil4" x="0.151" y="0.147" width="0.044" height="0.044" rx="0.009" ry="0.009"/>
+  </g>
+ </g>
+</svg>

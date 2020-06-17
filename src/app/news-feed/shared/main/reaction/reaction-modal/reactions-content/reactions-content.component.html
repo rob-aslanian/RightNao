@@ -1,0 +1,44 @@
+<div class="col-12 mt-3">
+    <app-infinity-scroll (scrolled)="scrolled($event)">
+        <ng-container *ngIf="reactions.length > 0">
+            <div class="row align-items-center" *ngFor="let reaction of reactions">
+                <ng-container *ngIf="(reaction.profile) as profile">
+                    <div class="col-2 p-0">
+                        <img class="person-img" [src]="profile.avatar ? '/file/' + profile.avatar : 
+                                                profile.company_profile ? 'assets/img/default-company.svg' :
+                                                'assets/img/124.svg'"  alt="person">
+                        <img class="emoji-img" [src]="reactionsList[reaction.emoji].img" alt="emoji">
+                    </div>
+                  
+                    <div class="col-7 pl-0">
+                        <h4 class="mt-2">{{ profile.name ? 
+                               profile.name : profile.firstname + ' ' + profile.lastname }}</h4>
+                        <div *ngIf="profile?.experiences[0] as experience" class="mt-2">
+                          <span class="reactions-content-info">{{ experience.title }}</span>
+                          <span class="reactions-content-info">{{ experience.company }}</span>
+                        </div>
+                    </div>
+                    <div class="col-3 d-flex justify-content-end pr-2" *ngIf="!profile.me">
+                        <button class="m-0 backgroundless btn btn-outline-primary" 
+                                 *ngIf="profile.firstname && !isCompany"
+                                (click)="toggleConnect(profile)"> {{ !profile.friend ? 'Connect' : 'Disconnect' }}
+                        </button>
+
+                        <ng-container *ngIf="isCompany ||  profile.name">
+                                <button class="m-0 backgroundless btn btn-outline-primary" (click)="toggleFollow(profile)">
+                                    Follow
+                                </button>
+                        </ng-container>
+                        
+                    </div>
+                </ng-container>
+                <div class="border-thin"></div>
+            </div>
+
+        </ng-container>
+        
+    </app-infinity-scroll>
+
+    <app-spinner class="d-flex justify-content-center mt-4" *ngIf="isLoading"></app-spinner>
+</div>
+

@@ -1,0 +1,25 @@
+<div *ngIf="_file" class="file_content" [ngClass]="{'files_row': hasClass}">
+
+    <div [ngSwitch]="_file.type">
+        <div *ngSwitchCase="'image'" class="not__file">
+            <img [src]="_file.path | safe:'url'" >
+        </div>
+        <div *ngSwitchCase="'video'" class="not__file">
+            <video [controls]="controls" poster="assets/img/video.svg">
+                <source [src]="_file.path | safe:'url' " [type]="_file.mime_type">
+            </video>
+        </div>
+
+        <div *ngSwitchDefault>
+            <div class="mt-2">
+                <a  class="mr-3 download-document-link" [href]="'/file/' + _file.address" [download]="_file.name">
+                    <img [src]="_file.name | fileIcon" alt="pdf" class="small__icon">
+                    <span> {{ _file.name }} </span>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+
+    
+</div>

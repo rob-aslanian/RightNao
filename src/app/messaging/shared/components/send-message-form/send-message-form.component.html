@@ -1,0 +1,97 @@
+<div class="chatBox-form" appDragDrop (fileDroped)="onFileDrop($event)">
+
+    
+
+    <!-- <div *ngIf="selectedFilename !== ''" class="sms-sharedPhotos-box">
+        <img *ngIf="listenersService.isImage(getFileExt(selectedFilename)) == true" id="selectedImage" alt="photo" class="sms-shared-photo">
+        <img *ngIf="listenersService.isImage(getFileExt(selectedFilename)) == false" src="{{getFileExt(selectedFilename) | fileIcon}}" class="chatBox-sms-ballon-img file-icon-msg" alt="image">
+        <p>{{selectedFilename}}
+        <button class="btn-custom__link"  (click)="removeSelectedFile()">Remove</button>
+        </p>
+    </div> -->
+    <!-- <form> -->
+        <div class="teaxtarea-wrapper messageFormHeight">
+            <textarea (keyup.enter)="this.listenersService.getSendOnEnter && onSend()" [(ngModel)]="messageText" class="form-control chatBox-textarea" 
+                style="border: transparent; outline: none" placeholder="Write a message" autofocus #messageTextArea></textarea>
+
+
+                <div *ngIf="selectedFiles.length !== 0" class="sms-sharedPhotos-box sms-sharedPhotos-box--sending send-file-wrapper">
+                        <ng-container *ngFor="let file of selectedFiles; let i = index">
+                            <div class="img-content-wrapper">
+                                <img *ngIf="listenersService.isImage(getFileExt(file.name)) == true" src="{{file.imageSrc}}" id="selectedImage" alt="photo" class="sms-shared-photo with-message">
+                                <img *ngIf="listenersService.isImage(getFileExt(file.name)) == false" src="{{getFileExt(file.name) | fileIcon}}" class="chatBox-sms-ballon-img file-icon-msg" alt="image">
+                    
+                                <button class="remove-img-btn"  (click)="removeSelectedFile(i)"></button>
+                            </div>
+                
+                        </ng-container>
+                    </div>                
+        </div>
+
+        
+
+    <div class="d-flex justify-content-between">
+
+        <div class="d-flex">
+            <label for="atach-picture">
+                <div class="atach-picture-btn"></div>
+            </label>
+            <div class="d-none">
+                <input #fileInput1 (change)="fileChange($event)" accept="image/*" (click)="fileInput1.value=null" type="file" id="atach-picture" multiple>
+            </div>
+
+            <label for="atach-file">
+                <div class="atach-file-btn"></div>
+            </label>
+            <div class="d-none">
+                <input #fileInput2 (change)="fileChange($event)" (click)="fileInput2.value=null" type="file" id="atach-file" multiple>
+            </div>
+
+            <!-- <label for="atach-file">
+                <div class="send-record-btn"></div>
+            </label>
+            <div class="d-none">
+                <input #fileInput3 (change)="fileChange($event)" (click)="fileInput3.value=null" type="file" id="atach-file">
+            </div>
+
+            <label for="atach-file">
+                <div class="send-voice-btn"></div>
+            </label>
+            <div class="d-none">
+                <input #fileInput4 (change)="fileChange($event)" (click)="fileInput4.value=null" type="file" id="atach-file">
+            </div> -->
+
+            <div (click)="openSavedRepliesModal(savedRepliesModal)" class="saved-replies-btn"></div>
+        </div>
+
+        <div class="d-flex">
+            <button *ngIf="!this.listenersService.getSendOnEnter" (click)="onSend()" class="btn chat-send-btn">Send</button>
+            <div class="settings-selection">
+                <div [autoClose]="'outside'" [ngbPopover]="onlineVisibility" class="three-points-btn"></div>
+            </div>
+        </div>
+
+    </div>
+    <!-- </form> -->
+</div>
+
+<ng-template #savedRepliesModal>
+    <app-saved-replies [conversationName]="conversationName" (closeModal)="closeModal()" (onCreateReply)="onCreateReply($event)"
+        (applyReply)="applyReply($event)"></app-saved-replies>
+</ng-template>
+
+<ng-template #createReplyModal>
+    <app-create-reply [conversationName]="conversationName" [selectedReply]="selectedReply" (closeModal)="closeModal()"></app-create-reply>
+</ng-template>
+
+<ng-template #onlineVisibility>
+    <div class="settings-selection_body send-sms-enter">
+        Press Enter to Send
+        <div class="notification-checkbox">
+            <label class="switch">
+                <input [(ngModel)]="this.listenersService.sendOnEnterIsOn"  type="checkbox" id="connections">
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </div>
+</ng-template>

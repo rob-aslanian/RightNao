@@ -1,0 +1,104 @@
+<div class="business-to-follow p-3" >
+ 
+ 
+    <div class="business-to-follow__title d-flex justify-content-between">
+      <h4>{{ isUser ? 'People you may know' : 'Business profiles to follow' }}</h4>
+
+      <a  [routerLink]="[isUser ? '/network/grow-network/people' : '/network/grow-network/companies' ]">
+        <img src="assets/img/shortcut.svg" alt="">
+      </a>
+    </div>
+    <hr>
+
+    <div class="business-to-follow__card__content row d-flex" >
+      <ng-container *ngIf="slider.length ||  after">
+        <a (click)='prev()' >
+          <div class="swipe-left mt-4" [ngClass]="{'disabled-arrow': !after}">
+              <img src="assets/img/right-arrow.svg" style="height: 16px; width: 8px;">
+          </div>
+        </a>
+  
+        <a (click)='next()' >
+            <div class="swipe-right mt-4">
+                  <img src="assets/img/right-arrow.svg" alt="" style="height: 16px; width: 8px;">
+            </div>
+        </a>
+      </ng-container>
+      
+
+      <div class="business-to-follow__card__content__card col-md-4 p-2" *ngFor='let slide of slider; let i =  index'>
+ 
+ 
+        
+          <div class="business-to-follow__card__content__card__img">
+
+            <img  class="company-avatar" 
+                  [src]="slide.avatar | avatar: !isUser " 
+                   alt="avatar"
+                   [ngClass]="{ 'user-avatar': isUser}" >
+          </div>
+
+          <div class="business-to-follow__card__content__card__title mt-2 d-flex">
+
+            <h4  [routerLink]="[isUser ? '/user/profile/'+slide.url : '/company/profile/'+slide.url ]" > 
+                  {{ ( isUser ? slide.firstname + " " + slide.lastname : slide.name ) | addDots:"25" }}
+            </h4>
+
+          </div>
+          <div *ngIf="!isUser" 
+                class="business-to-follow__card__content__card__rating d-flex">
+                <div class="stars">
+                  <ngb-rating [rate]="slide.avarage_rating" 
+                              [readonly]="true" 
+                              max="5" 
+                              name='ratingF'
+                              >
+                  </ngb-rating>
+                </div>
+            <span>(584)</span>
+          </div>
+          
+          <div *ngIf="!isUser" class="business-to-follow__card__content__card__category">
+            <span> {{  ( slide.industry.id | industry ) | addDots:"20" }} </span>
+            <br>
+            <span *ngIf="slide.addresses.length > 0 "> 
+              {{  slide.addresses[0].city.city |  addDots:"15" }} , {{ (slide.addresses[0].country_id | country) | addDots:"8" }}
+            </span>
+          </div>
+          
+          
+          <div  class="business-to-follow__card__content__card__category" [ngClass]="{'customHeight': isUser}">
+            <ng-container *ngIf="isUser && slide.experiences.length > 0">
+              <span> {{  slide.experiences[0].title |  addDots:"15"  }}</span>
+              <br>
+              <span> {{ slide.experiences[0].company |  addDots:"15" }}</span>
+            </ng-container>
+          </div>
+
+          <div class="business-to-follow__card__content__card__button mt-2" *ngIf="!slide.follow"> 
+            
+                <button *ngIf="!isUser" 
+                        class="btn btn-outline-primary" 
+                        (click)="followCompany(slide.id, i)">
+                        Follow
+                </button>
+
+                <button *ngIf="isUser && !isCompanyActive" 
+                        class="btn btn-outline-primary" 
+                        (click)="connectUser(slide.id, i)">
+                        Connect
+                </button>
+                
+                <button *ngIf="isUser && isCompanyActive" 
+                        class="btn btn-outline-primary" 
+                        (click)="followUserToCompany(slide.id, i)">
+                        Follow
+                </button>
+                
+          </div>
+ 
+    </div>
+ 
+  </div>
+
+    

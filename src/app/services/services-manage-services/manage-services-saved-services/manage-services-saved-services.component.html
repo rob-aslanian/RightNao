@@ -1,0 +1,106 @@
+<div class="container">
+    <div class="row">
+        <div class="title col-12 mt-3 d-flex">
+            <h4 style="font-size: 1.25rem;">Saved Services</h4>
+            <p style="font-size: 1.25rem; padding-left: .5rem;"> {{ allSavedServices.length }} </p>
+        </div>
+        <div class="title-search col-6 mt-3 d-flex">
+            <input type="text" class="search form-control"  (keyup.enter) = 'filterSavedServices($event.target.value)'>
+        </div>
+        <div class="container  mt-3">
+            <div class="saved-services-content d-flex w-100 p-3 row">
+                <div class="col-12 justify-content-end mt-3 mb-2" style="text-align: end">
+                    <a (click)="toggleOptions(null)" style="cursor: pointer;">{{ optionTitle }}</a>
+                    <div class="options" *ngIf="isOptionsActive">
+                        <p (click)="toggleOptions('all')">All</p>
+                        <p (click)="toggleOptions('latest')">Latest</p>
+                        <p (click)="toggleOptions('low')">Price-Lowest First</p>
+                        <p (click)="toggleOptions('high')">Price - Highest First</p>
+                        <p (click)="toggleOptions('best')">Best Selling</p>
+                    </div>
+                </div>
+      
+        <ng-container *ngIf="!isFiltered; else showFiltered ">
+            <div class="card col-lg-4 mb-3" *ngFor="let item of allSavedServices">
+                <div class="card-img d-flex">
+                    <img [src]="'/file/' + item.files[0].address" alt="">
+                   </div>
+                        <div class="prices-tag justify-content-end d-flex">
+                            <p *ngIf="item.price === 'Price_Fixed'" class="price"> {{ item.fixed_price_amount + ' ' + item.currency  }} </p>
+                            <p *ngIf="item.price === 'Price_Hourly'" class="hourly-rate"> {{ item.min_price_amount + ' ' + item.currency }} </p>
+                            <p *ngIf="item.price === 'Price_Hourly'" class="hourly-rate"> {{ "=" + item.max_price_amount + ' ' + item.currency }} </p>
+                            <p *ngIf="item.price === 'Price_Negotiable'" class="hourly-rate"> Negotiable </p>
+                        </div>
+                <div class="role ml-3 mt-3">
+                    <h4 class="position">{{ item.title }}</h4>
+                    <div class="author d-flex">
+                        <img class="company-avatar" [src]="'/file/' + item.files[0].address" alt="">
+                        <!-- <img class="user-avatar" src="../" alt=""> -->
+                        <div class="author-description d-block col">
+                            <p class="author-name">Advantage Solutions</p>   
+                            <div class="raiting d-flex mt-1">
+                                <img src="assets/img/457.svg" alt="" class="author-raiting">
+                                <img src="assets/img/457.svg" alt="" class="author-raiting">
+                                <img src="assets/img/457.svg" alt="" class="author-raiting">
+                               <span class="raiting-length">(22)</span>
+                            </div> 
+                            <p *ngIf="item.is_Remote" class="type mt-1">Remote</p>
+                            <p *ngIf="item.is_Draft" class="type mt-1">Draft</p>
+                            <p *ngIf="item.is_Paused" class="type mt-1">Paused</p>
+                            <div class="like d-flex justify-content-end mb-3">
+                                <a href="#">
+                                   <img *ngIf="item.has_liked" src="../../assets/img/99.svg" alt="">
+                                   <img *ngIf="!item.has_liked" src="../../assets/img/44.svg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        
+
+         <ng-template #showFiltered>
+                <div class="card col-lg-4 mb-3" *ngFor="let item of allFilteredServices">
+                        <div class="card-img d-flex">
+                            <img [src]="'/file/' + item.files[0].address" alt="">
+                        </div>
+                                <div class="prices-tag justify-content-end d-flex">
+                                    <p *ngIf="item.price === 'Price_Fixed'" class="price"> {{ item.fixed_price_amount + ' ' + item.currency  }} </p>
+                                    <p *ngIf="item.price === 'Price_Hourly'" class="hourly-rate"> {{ item.min_price_amount + ' ' + item.currency }} </p>
+                                    <p *ngIf="item.price === 'Price_Hourly'" class="hourly-rate"> {{ "=" + item.max_price_amount + ' ' + item.currency }} </p>
+                                    <p *ngIf="item.price === 'Price_Negotiable'" class="hourly-rate"> Negotiable </p>
+                                </div>
+                        <div class="role ml-3 mt-3">
+                            <h4 class="position">{{ item.title }}</h4> 
+                            <div class="author d-flex">
+                                <img class="company-avatar" [src]="'/file/' + item.files[0].address" alt="">
+                                <!-- <img class="user-avatar" src="../" alt=""> -->
+                                <div class="author-description d-block col">
+                                    <p class="author-name">Advantage Solutions</p>
+                                    <div class="raiting d-flex mt-1">
+                                        <img src="assets/img/457.svg" alt="" class="author-raiting">
+                                        <img src="assets/img/457.svg" alt="" class="author-raiting">
+                                        <img src="assets/img/457.svg" alt="" class="author-raiting">
+                                       <span class="raiting-length">(22)</span>
+                                    </div> 
+                                    <p *ngIf="item.is_Remote" class="type mt-1">Remote</p>
+                                    <p *ngIf="item.is_Draft" class="type mt-1">Draft</p>
+                                    <p *ngIf="item.is_Paused" class="type mt-1">Paused</p>
+                                    <div class="like d-flex justify-content-end mb-3">
+                                        <a href="#">
+                                           <img *ngIf="item.has_liked" src="../../assets/img/99.svg" alt="">
+                                           <img *ngIf="!item.has_liked" src="../../assets/img/44.svg" alt="">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+         </ng-template>
+         
+      
+        </div>
+    </div>
+</div>
+</div>

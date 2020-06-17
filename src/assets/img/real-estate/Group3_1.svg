@@ -1,0 +1,24 @@
+<svg id="Group_3_1" data-name="Group 3_1" xmlns="http://www.w3.org/2000/svg" width="28.895" height="28.895" viewBox="0 0 28.895 28.895">
+  <g id="Rectangle_1" data-name="Rectangle 1" transform="translate(2.889 2.889)" fill="none" stroke="gray" stroke-width="1">
+    <rect width="23.116" height="23.116" stroke="none"/>
+    <rect x="0.5" y="0.5" width="22.116" height="22.116" fill="none"/>
+  </g>
+  <g id="Ellipse_1" data-name="Ellipse 1" fill="#00f4ff" stroke="gray" stroke-width="1">
+    <circle cx="3.612" cy="3.612" r="3.612" stroke="none"/>
+    <circle cx="3.612" cy="3.612" r="3.112" fill="none"/>
+  </g>
+  <g id="Ellipse_2" data-name="Ellipse 2" transform="translate(21.671)" fill="#00f4ff" stroke="gray" stroke-width="1">
+    <circle cx="3.612" cy="3.612" r="3.612" stroke="none"/>
+    <circle cx="3.612" cy="3.612" r="3.112" fill="none"/>
+  </g>
+  <g id="Ellipse_3" data-name="Ellipse 3" transform="translate(21.671 21.671)" fill="#00f4ff" stroke="gray" stroke-width="1">
+    <circle cx="3.612" cy="3.612" r="3.612" stroke="none"/>
+    <circle cx="3.612" cy="3.612" r="3.112" fill="none"/>
+  </g>
+  <g id="Ellipse_4" data-name="Ellipse 4" transform="translate(0 21.671)" fill="#00f4ff" stroke="gray" stroke-width="1">
+    <circle cx="3.612" cy="3.612" r="3.612" stroke="none"/>
+    <circle cx="3.612" cy="3.612" r="3.112" fill="none"/>
+  </g>
+  <path id="Path_435" data-name="Path 435" d="M0,9.55,10.367,0" transform="translate(18.94 8.889) rotate(90)" fill="none" stroke="gray" stroke-linecap="round" stroke-width="1"/>
+  <path id="Path_436" data-name="Path 436" d="M1389.964,129.518l10.367-9.55" transform="translate(-1380.573 -111.08)" fill="none" stroke="gray" stroke-linecap="round" stroke-width="1"/>
+</svg>

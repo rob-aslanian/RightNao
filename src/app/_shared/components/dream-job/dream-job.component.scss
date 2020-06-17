@@ -1,0 +1,20 @@
+@import 'src/variables';
+.post {
+    background-color: $dark-blue;
+    h1 {
+        color: white;
+        font-family: above;
+    }
+  
+           .post__service {
+                  margin-left: 2rem;
+                  color:#264361;
+                  cursor: pointer;
+                  border: 1px solid #264361;
+                  padding: 0.3rem;
+                  border-radius: 5%;
+                  text-align: center;
+              }
+          
+   }
+  

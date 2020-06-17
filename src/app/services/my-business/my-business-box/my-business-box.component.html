@@ -1,0 +1,41 @@
+
+    <div class="busniess-header">
+        <img src="assets/img/menu-icons/709_1.svg" alt="service-office">
+        <span>{{ selectedModel.title }}</span>
+    </div>
+
+    <div class="busniess-boxes-wrapper">
+
+            <div class="busniess-box" *ngFor="let office of offices" [ngClass]="{'disabled': office.isOut }">
+                <div ngbDropdown class="more-dots">
+                        <img src="assets/img/107.svg" alt="dots" class="more-dots" ngbDropdownToggle>
+
+                        <div class="options" ngbDropdownMenu>
+                                <a ngbDropdownItem style="font-size: 14px;"  [routerLink]="['/v-office', 'edit-office', office.id ]" >Edit</a>
+                                <a ngbDropdownItem style="font-size: 14px;" (click)='deactivate( office.id, office.isOut )'>{{ office.isOut ?  'Activate' : 'Deactivate' }}</a>
+                                <a ngbDropdownItem style="font-size: 14px;" (click)='deleteOffice( office.id )'>Delete</a>
+                        </div>
+
+                    </div>
+                <div class="d-flex "   [ngClass]="{'out': office.isOut }">
+                        <img [src]="office.cover ? '/file/'+office.cover : 'assets/img/default-office.svg'" 
+                             alt="profile-photo" 
+                             class="profile-photo" 
+                             [ngClass]="{'office-profile-photo': selectedModel.type === 'office',
+                                         'shop-profile-photo':   selectedModel.type === 'shop'}">
+                        <div class="profile-info mt-3  pl-4">
+                            <p [routerLink]="[ '/v-office/office/', office.id , profile, profileId ]"  style="max-width: 53%;">{{ office.name }}</p>
+                            <span>{{ office.category }}</span>
+                        </div>
+                </div>
+            </div>
+ 
+            <div class="busniess-box" *ngIf="offices?.length < 3"> 
+                       <div class="w-75 d-flex align-items-center pl-3" style="height: 100%">
+                           <img src="assets/img/add.svg" alt="add" [routerLink]="[selectedModel.path]"  style="cursor: pointer;" >
+                           <p class="pl-3">{{ selectedModel.open }}</p>
+                       </div>
+            </div>
+            
+    </div>
+  

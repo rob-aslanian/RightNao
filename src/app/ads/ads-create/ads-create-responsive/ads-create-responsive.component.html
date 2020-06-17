@@ -1,0 +1,104 @@
+<div class="wrapper">
+    <div class="upload-box" *ngIf="formType != 'single_image' && formType != 'image'">
+        <p>Upload image</p>
+        <div style="width: 138px; height: 138px;">
+                <app-ads-create-image (onSrc)="addImage($event)" (removeImage)="removeImage()"></app-ads-create-image>
+        </div>
+    </div>
+
+
+    <form [formGroup]="responsiveForm" class="w-100">
+        <ng-container *ngIf="formType=='responsive'">
+                <p>Ad Headline</p>
+                <input type="text" 
+                        class="form-control" 
+                        formControlName="line"
+                        placeholder="Enter headline"
+                        [ngClass]="{ 'is-invalid': (respForm.line.touched || 
+                                                    respForm.line.dirty ) && 
+                                                    respForm.line.errors }">
+        </ng-container>
+
+
+        <ng-template #descriptiopn>
+            <div class="d-flex align-items-center justify-content-between" *ngIf="formType != 'image'">
+                <p>Ad description</p>
+                <!-- <p> {{ responsiveForm.get('description').value.length }} /100</p> -->
+            </div>
+                <textarea cols="4" 
+                        *ngIf="formType != 'image'"
+                        class="form-control"
+                        formControlName="description"
+                        placeholder="Enter description"
+                        [ngClass]="{ 'is-invalid': (respForm.description.touched || 
+                                                    respForm.description.dirty ) && 
+                                                    respForm.description.errors }"></textarea>
+        </ng-template>
+
+
+        <ng-container   *ngIf="formType=='single_image';else descriptiopn">
+                <div class="d-flex align-items-center justify-content-between">
+                    <p>Introductory text</p>
+                    <!-- <p> {{ responsiveForm.get('description').value.length }} /100</p> -->
+                </div>
+                    <textarea cols="4"
+                            rows="3" 
+                            class="form-control"
+                            formControlName="description"
+                            placeholder="Enter text"
+                            [ngClass]="{ 'is-invalid': (respForm.description.touched || 
+                                                        respForm.description.dirty ) && 
+                                                        respForm.description.errors }"></textarea>
+
+                            <div class="upload-box">
+                                    <p>Upload image</p>
+                                    <app-ads-create-image [view]="'button'"  (onSrc)="addImage($event)" (removeImage)="removeImage()"></app-ads-create-image>
+                            </div>
+        </ng-container>
+
+
+        <ng-container *ngIf="formType=='spotlight'">
+                <p>Keyline</p>
+                <input type="text"
+                        class="form-control" 
+                        formControlName="line"
+                        placeholder="Enter keyline"
+                        [ngClass]="{ 'is-invalid': (respForm.line.touched || 
+                                                    respForm.line.dirty ) && 
+                                                    respForm.line.errors }">
+        </ng-container>
+
+
+        <ng-container *ngIf="formType=='single_image'">
+                <p>Headline</p>
+                <input type="text"
+                        class="form-control" 
+                        formControlName="line"
+                        placeholder="Enter headlineline"
+                        [ngClass]="{ 'is-invalid': (respForm.line.touched || 
+                                                    respForm.line.dirty ) && 
+                                                    respForm.line.errors }">
+        </ng-container>
+
+
+        <ng-container *ngIf="formType=='spotlight' || formType=='single_image'"> 
+            <p>Custom button</p>
+            <select name="" id="" 
+                    class="form-control" 
+                    style="width: 260px" 
+                    formControlName="btn" 
+                    [ngClass]="{ 'is-invalid': (respForm.btn.touched || 
+                                                respForm.btn.dirty ) && 
+                                                respForm.btn.errors }">
+                    <option [value]="text" *ngFor="let text of buttons"> {{ text }} </option>
+            </select>
+        </ng-container>
+
+        <div class="image-upload-wrapper" *ngIf="formType=='image'">
+            <p>Upload Image</p>
+            <div class="upload-image-box">
+                    <app-ads-create-image  (onSrc)="addImage($event)" (removeImage)="removeImage()"></app-ads-create-image> 
+            </div> 
+        </div>
+    </form>
+</div>

@@ -1,0 +1,52 @@
+@import "src/variables";
+.share {
+    &-wrapper {
+        background-color: $white;
+        padding: 30px 24px;
+        &-title {
+            font-size: 18px;
+            font-weight: 500;
+            margin-left: 20px;
+        }
+        &-section {
+            margin: 30px 0 ;
+            &-title {
+                font-size: 14px;
+                font-weight: 500;
+                margin: 0 0 10px 10px;
+            }
+            &-socialButton {
+                margin: 0;
+                margin-right: 24px;
+                padding: 0 !important;
+                &-img {
+                    width: 40px;
+                    height: 40px;
+                }
+            }
+        }
+    }
+}
+.referal__link{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    &__input{
+        width: 90%;
+        overflow: hidden;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: .25rem 1rem;
+        color: #808080;
+        white-space: nowrap;
+    }
+
+    button {
+        margin: 0 0 0 .5rem;
+
+        &:focus{
+            border: unset;
+            outline: unset !important;
+        }
+    }
+}

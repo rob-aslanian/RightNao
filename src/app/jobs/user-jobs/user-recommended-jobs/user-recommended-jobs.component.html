@@ -1,0 +1,30 @@
+<main class="main-light-blue">
+    <div class="dark-blue-bg-for-jobs">
+        <div class="background-content-wrap">
+            <h1>Find the job of your dream</h1>
+        </div>
+    </div>
+    
+
+    <div class="container jobs">
+        <div class="row justify-content-between">
+
+            <!-- Content in the center -->
+            <div class="col mr-3 px-0">
+
+                <h5>Recommended Jobs</h5>
+                <div class="center-content-jobs" *ngIf="(reccomendedJobs | async ) as jobs">
+                    <app-company-box [jobs]="jobs" type="reccomended"></app-company-box>
+                </div>
+                <button class="backgroundless d-block ml-auto" [routerLink]="['/jobs/user']"  >Go to jobs</button>
+            </div>
+            
+            <!-- Content in the center end -->
+
+            <!-- Content on the right -->
+               <app-ads class="col-lg-3 col-md-12" [isLeft]="true"></app-ads>
+            <!-- Content on the right end -->
+
+        </div>
+    </div>
+</main>

@@ -1,0 +1,62 @@
+@import 'src/variables.scss';
+
+
+
+.share {
+    background: #ffffff;
+    padding: 1.5rem;
+    &__user {
+       &__text {
+           margin: 0px;
+           font-size: 1rem;
+           font-weight: unset;
+       }
+       &__image {
+           height: 3.125rem;
+           width:  3.125rem;
+           border-radius: 50%;
+       }
+    }
+    textarea {
+       width: 100%;
+       border: 0px;
+        &::placeholder {
+           font-size: 1.25rem;
+        }
+    } 
+    &__post {
+      border: 1px solid $light-grey;
+      border-radius: 5px;
+        &__company {
+            &__image {
+                width:  2.1875rem;
+                height: 2.1875rem;
+            }
+            &__name {
+                font-size: 1rem;
+                margin: 0px;
+
+            }
+            &__date {
+                font-size: .75rem;
+                color: $dark-grey;
+            }
+        }
+        &__text {
+            color: $dark-grey;
+        }
+        &__image {
+            margin: 0px -30px;
+             &__item {
+                 width: 100%;
+                 object-fit: contain;
+             }
+        }
+    }
+    &--button {
+        font-size: 1rem;
+        height: 2rem;
+        width: 5.625rem;
+    }
+
+}

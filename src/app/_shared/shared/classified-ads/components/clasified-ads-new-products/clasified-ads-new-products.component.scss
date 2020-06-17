@@ -1,0 +1,24 @@
+
+.new-product-click {
+    position: relative;
+    top: 10px;
+    cursor: pointer;
+    
+
+}
+.new-product-left{
+    transform: rotate(90deg);
+    top: 6px;
+};
+
+.new-product-right {
+    transform: rotate(270deg);
+    top: 18px;
+}
+
+.product-navigation {
+    position: absolute;
+    top: -36px;
+    right: -19px;
+    z-index: 10;
+}

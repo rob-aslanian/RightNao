@@ -1,0 +1,35 @@
+@import "src/variables";
+.has_reppossed {
+    // opacity: 0.5;
+    background-color: $cool-grey;
+    pointer-events: none;
+}
+
+.post {
+    background-color: $dark-blue;
+    h1 {
+        color: white;
+        font-family: above;
+    }
+}
+
+
+.profile {
+    max-width: 1100px;
+    width: 100%;
+}
+
+.form-container {
+    margin: 15px auto;
+    border-radius: 5px;
+    background: white;
+    padding: 20px;
+}
+
+.price{
+    &-checkbox {
+        &-custom {
+            
+        }
+    }
+}

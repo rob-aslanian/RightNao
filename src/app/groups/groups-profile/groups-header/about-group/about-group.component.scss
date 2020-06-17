@@ -1,0 +1,51 @@
+@import 'src/variables';
+
+
+.left-content{
+    &__search{
+        input{
+            max-width: 17.95rem;
+            background: url(/../../../assets/img/search-black.svg) no-repeat 95% 50% $white;
+            font-size: 0.875rem;
+            border: 1px solid $light-grey;
+            border-radius: .5rem;
+        }
+    }
+    &__topics{
+        background-color: $white;
+        border-radius: .5rem;
+        border: 1px solid $light-grey;
+        border-radius: .5rem;
+        border-radius: .5rem;
+        h4{
+            font-size: 1rem;
+        }
+        span{
+            color: $dark-grey;
+            font-size: 0.875rem;
+        }
+    }
+    &__groups{
+        background-color: $white;
+        border: 1px solid $light-grey;
+        border-radius: .5rem;
+        border-radius: .5rem;
+        &__card{
+            img{
+                height: 2.1875rem;
+                width: 4.375rem;
+                border-radius: .3rem;
+            }
+            &-text{
+                p{
+                    font-size: 1rem;
+                    margin: 0;
+                }
+                span{
+                    font-size: 0.75rem;
+                    color: $dark-grey;
+                }
+            }
+        }
+    }   
+}

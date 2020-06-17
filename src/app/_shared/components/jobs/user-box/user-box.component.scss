@@ -1,0 +1,162 @@
+.center-content-jobs {
+    background: white;
+    border: solid 1px #e6e6e6;
+    padding: 20px;
+    position: relative;
+    border-radius: 5px;
+}
+
+.more__btn{
+    position: absolute;
+    right: 6px;
+    top: 0;
+    img {
+        height: 20px !important;
+        width: 20px !important;
+    } 
+}
+
+.canidate__block {
+    img {
+        height: 20px !important;
+        width: 20px !important;
+        border-radius: unset !important;
+        color: #808080;
+    } 
+}
+
+.skills{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    overflow: unset !important;
+    height: auto !important;
+}
+
+.skills-btn{
+    background: unset;
+    border: unset;
+    color: #808080;
+    font-size: 12px;
+}
+
+.uncheck-all{
+    &::after{
+        background-image:url(/assets/img/269.svg) !important; 
+        background-size: contain;
+    }
+}
+.detailed-view-line-wrapper {
+    margin: 0 12px;
+    border-bottom: 1px solid #dbdbdb;
+}
+.detailed-view-line{
+    justify-content: flex-end;
+    padding: 14px 0;
+    margin-left: 25px;
+    margin-right: 25px;
+    position: relative;
+    border-bottom: 1px solid #e6e6e6;
+}
+.candidate-btn-wrap {
+    position: relative;
+    right: -15px;
+    height: 24px;
+}
+
+.cheked-label{
+    position: relative;
+    &::before{
+        content: '\2713';
+        width: 4px;
+        position: absolute;
+        left: -5px;
+        top: 11px;
+        font-weight: bold;
+    }
+}
+
+.test{
+    position: absolute;
+    z-index: -2;
+}
+
+.options.d-block {
+    padding-top: 0 !important;
+    padding-left: 16px;
+    padding-right: 16px;
+    width: 245px;
+    top: 55px;
+
+    button {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    button:first-child {
+        padding: 0;
+        padding-top: 14px;
+        padding-bottom: 14px;
+        font-size: 12px;
+        &:hover {
+            background: transparent;
+        }
+        img {
+            margin-right: 5px;
+        }
+    }
+    button:last-child {
+        padding: 0;
+        padding-top: 14px;
+        padding-bottom: 14px;
+        font-size: 12px;
+        &:hover {
+            background: transparent;
+        }
+        img {
+            margin-right: 5px;
+        }
+    }
+    div {
+        span {
+            color: #808080;
+            font-size: 14px;
+            margin-left: 5px;
+        }
+    }
+}
+
+.options.sort-by.d-block {
+    width: 200px;
+    right: -18px;
+}
+
+.social__networks{
+    display: flex;
+    margin-left: 27px;
+    margin-top: 10px;
+    button.p-0 {
+      width: 44px;
+      img {
+          height: 22px;
+      }
+    }
+  }
+
+.form-control.search {
+    background-image: url("../../../../../assets/img/208.svg");
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: calc(100% - 12px);
+}
+
+.user-more-options-icon {
+    height: 20px;
+}
+
+.bordelss {
+    border: none !important; 
+}
+.activated {
+    visibility: visible !important;
+}

@@ -1,0 +1,61 @@
+
+<div class="angular-editor-toolbar" >
+
+  <label for="description-part-two" class="mr-4" *ngIf="headerText !== null" style="font-weight: bold;">
+        {{ headerText }}
+  </label>
+  <div class="angular-editor-toolbar-set">
+      <button type="button" title="Undo" class="angular-editor-button" (click)="triggerCommand('undo')" tabindex="-1"> <img src="assets/img/rotate-left.png" alt="rotate"> </button>
+      <button type="button" title="Redo" class="angular-editor-button" (click)="triggerCommand('redo')" tabindex="-1"><img src="assets/img/rotate.png"  alt="rotate"></button>
+  </div>
+
+
+  <div class="angular-editor-toolbar-set">
+    <button [id]="'bold-'+id" type="button" title="Bold" class="angular-editor-button" (click)="triggerCommand('bold')"
+            [disabled]="htmlMode" tabindex="-1">
+            <img src="assets/img/173.svg" alt="bold">
+      </button>
+    <button [id]="'italic-'+id" type="button" title="Italic" class="angular-editor-button"
+            (click)="triggerCommand('italic')"
+            [disabled]="htmlMode" tabindex="-1">
+            <img src="assets/img/174.svg" alt="italic">
+    </button>
+
+    <button [id]="'underline-'+id" type="button" title="Underline" class="angular-editor-button"
+            (click)="triggerCommand('underline')" [disabled]="htmlMode" tabindex="-1">
+            <img src="assets/img/175.svg" alt="underline">
+    </button>
+
+    <button [id]="'insertUnorderedList-'+id" type="button" title="Unordered List" class="angular-editor-button"
+            (click)="triggerCommand('insertUnorderedList')" [disabled]="htmlMode" tabindex="-1">
+            <img src="assets/img/176.svg" alt="bullet">
+    </button>
+
+    <button [id]="'insertOrderedList-'+id" type="button" title="Ordered List" class="angular-editor-button"
+            (click)="triggerCommand('insertOrderedList')" [disabled]="htmlMode" tabindex="-1">
+            <img src="assets/img/177.svg" alt="number">
+    </button>
+
+    <button [id]="'link-'+id" type="button" class="angular-editor-button" (click)="insertUrl()"
+            title="Insert Link" [disabled]="isLinkButtonDisabled" tabindex="-1">
+      <img src="assets/img/178.svg" alt="link">
+    </button>
+
+    <input style="display: none"
+           accept="image/*"
+           type="file" 
+           (change)="onFileChanged($event)"
+      #fileInput>
+      
+    <button [id]="'insertImage-'+id" type="button" class="angular-editor-button d-none" (click)="fileInput.click()" title="Insert Image"
+            [disabled]="htmlMode" tabindex="-1"> <img src="assets/img/51.svg" alt="upload"> </button>
+
+    <!-- <button [id]="'unlink-'+id" type="button" class="angular-editor-button" (click)="triggerCommand('unlink')"
+        title="Unlink" [disabled]="htmlMode || !linkSelected" tabindex="-1">
+      <i class="fa fa-chain-broken"></i>
+    </button> -->
+
+
+  </div>
+
+</div>

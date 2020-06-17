@@ -1,0 +1,82 @@
+
+<main class="main-light-blue">
+  <div class="dark-blue-bg-for-jobs">
+      <div class="background-content-wrap">
+          <h1>Find the job of your dream</h1>
+      </div>
+  </div>
+  
+
+  <div class="container jobs">
+      <div class="row justify-content-between">
+
+          <!-- Content in the center -->
+          <div class="col mr-3 px-0">
+
+              
+              <h5>Manage Jobs</h5>
+
+              <div class="center-content-jobs">
+
+
+                  <ngb-tabset title="Simple">
+                    <!-- START SAVED JOBS  -->
+                    <ngb-tab id="saved" *ngIf="(savedJobs | async) as jobs">
+                        <ng-template ngbTabTitle >
+                            <div >Saved Jobs (<span>{{ jobs.length }}</span>)</div>
+                        </ng-template>
+                        <ng-template ngbTabContent>
+                            <app-company-box type="saved" [jobs]="jobs"></app-company-box>
+                        </ng-template>
+                    </ngb-tab>
+                     <!-- END SAVED JOBS  -->
+
+                    <!-- START Applied JOBS  -->
+                    <ngb-tab id="applied" *ngIf="(appliedJobs | async) as jobs">
+                        <ng-template ngbTabTitle >
+                            <div >Applied Jobs (<span>{{ jobs.length }}</span>)</div>
+                        </ng-template>
+                        <ng-template ngbTabContent>
+                            <app-company-box type="applied" [jobs]="jobs"></app-company-box>
+                        </ng-template>
+                    </ngb-tab>
+                    <!-- END Applied JOBS  -->
+
+                    <!-- START Skipped JOBS  -->
+                    <ngb-tab id="skipped" *ngIf="(skippedJobs | async) as skippedJobs" >
+                      <ng-template ngbTabTitle >
+                          <div >Skipped Jobs (<span>{{ skippedJobs.length }}</span>)</div>
+                      </ng-template>
+                      <ng-template ngbTabContent>
+                          <app-company-box type="skipped" [jobs]="skippedJobs" ></app-company-box>
+                      </ng-template>
+                    </ngb-tab>
+                    <!-- END Skipped JOBS  -->
+
+                     <!-- START Invited JOBS  -->
+                     <ngb-tab id="invited" *ngIf="(invitedJobs | async) as invitedJobs" >
+                        <ng-template ngbTabTitle >
+                            <div >Job Invitations (<span>{{ invitedJobs.length }}</span>)</div>
+                        </ng-template>
+                        <ng-template ngbTabContent>
+                            <app-company-box type="invited" [jobs]="invitedJobs" ></app-company-box>
+                        </ng-template>
+                     </ngb-tab>
+                     <!-- END Invited JOBS  -->
+
+                  </ngb-tabset>
+                  
+              </div>
+              <button class="backgroundless d-block ml-auto" [routerLink]="['/jobs/user']"  >Go to jobs</button>
+          </div>
+          
+          <!-- Content in the center end -->
+
+
+          <!-- Content on the right -->
+           <app-ads class="col-lg-3 col-md-12" [isLeft]="true"></app-ads>
+          <!-- Content on the right end -->
+      </div>
+  </div>
+</main>
+

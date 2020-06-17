@@ -1,0 +1,24 @@
+ 
+ 
+.arrow-left {
+    position: absolute;
+    left: 0.3rem;
+    top: 43%;
+    transform: translate(0px, -15px);
+    cursor: pointer;
+};
+
+.arrow-right {
+    position: absolute;
+    right: 0.1rem;
+    top: 43%;
+    cursor: pointer;
+    transform: translate(0px, -15px);
+}; 
+ 
+.wrapper-of {
+    position: relative;
+    background: white;
+    border-radius: 4px;
+    border: 1px solid #c4c4c4;
+};

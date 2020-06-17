@@ -1,0 +1,86 @@
+<div class="transfer">
+    <div class="transfer-header row">
+        <div class="transfer-header-left col-12 col-md-5">
+            <h3>Transfer from</h3>
+            <div class="d-flex flex-column transfer-currencies"  *ngIf="!currency">
+                <div class="transfer-currencies-item {{ currency.name }}" *ngFor="let currency of currencies" (click) = "showCard(currency)">
+                    <p class=" transfer-currencies-item-title"> {{ currency.name }} </p>
+                    <p class="transfer-currencies-item-amount">
+                        <img src="assets/img/wallet/transactions/{{ currency.name }}.svg" alt="" class="transfer-currencies-item-img">
+                        {{ currency.amount }}
+                    </p>
+                </div>
+                <button class="btn">
+                     <img src="assets/img/wallet/147.svg" alt="" class="transfer-currencies-more"> 
+                </button>
+            </div>
+            <div class="transfer-currencies-card" *ngIf="currency">
+                    <app-currency-card [currency]="currency"></app-currency-card>
+                    <p class="transfer-currencies-card-number"> {{ currency.accountNumber }} </p>
+                    <button class="btn backgroundless transfer-currencies-card-change" (click)= "currency = null">Change</button>
+            </div>
+        </div>
+
+        <div class="transfer-header-right col-12 col-md-7">
+            <form [formGroup]="transferForm">
+                    <div class="transfer-header-right-name">
+                            <h3>Transfer</h3>
+                            <input type="text" class="form-control" placeholder="Enter name or account number"  formControlName="name">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox"  class="custom-control-input" id="checkbox_1"   formControlName="save">
+                                <label class="custom-control-label  " for="checkbox_1">
+                                Save account
+                                </label>
+                            </div>
+                    </div>
+        
+                    <div class="transfer-header-right-amount">
+                        <h3>Ammount</h3>
+                        <div class="transfer-header-right-amount-input">
+                            <input type="number" placeholder="0.00" class="form-control" id="amountInput"  formControlName="amount">
+                            <label for="amountInput" class="transfer-header-right-amount-label">
+                                HPC
+                            </label>
+                        </div>
+                    </div>
+        
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-primary" (click) = "submit()" [disabled]="transferForm.invalid">
+                            Transfer
+                        </button>
+                    </div>
+            </form>
+        </div>
+    </div>
+    <div class="transfer-section">
+        <h3>Regulars</h3>
+        <div class=" row">
+            <div class="user-box d-flex align-items-center justify-content-between flex-column">
+                    <div class="user-box-line-one d-flex">
+                        <img src="" alt="" class="user-box-avatar">
+                        <div>
+                            <p class="user-box-name">Alex Golden</p>
+                            <p class="user-box-profession">Graphic Design</p>
+                            <p class="user-box-profession">TO Simakin</p>
+                        </div>
+                    </div>
+                    <button class="user-box-transfer btn btn-outline-primary-dark">Transfer</button>
+            </div>
+        </div>
+    </div>
+    <div class="transfer-section">
+        <h3>Saved Accounts</h3>
+        <div class=" row">
+            <div class="user-box d-flex align-items-center justify-content-between flex-column">
+                    <div class="user-box-line-one d-flex">
+                        <img src="" alt="" class="user-box-avatar">
+                        <div>
+                            <p class="user-box-name">Alex Golden</p>
+                            <p class="user-box-profession">Graphic Design</p>
+                            <p class="user-box-profession">TO Simakin</p>
+                        </div>
+                    </div>
+                    <button class="user-box-transfer btn btn-outline-primary-dark">Transfer</button>
+            </div>
+        </div>
+    </div>

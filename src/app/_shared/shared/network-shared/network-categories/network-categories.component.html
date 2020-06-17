@@ -1,0 +1,118 @@
+<div class="center-content-network py-0 px-4">
+
+    <ul class="network-navigation">
+      <!-- All Categories -->
+        <li [ngClass]="{'active-categories': seleCtedCat === 'all'}">
+            <div class="network-navigation-item" (click)='getSubCategory("", "", "all")'>
+                <img src="assets/img/98.svg" alt="" >
+                <span>All categories</span>
+                <span> 0 </span>
+            </div>
+        </li>
+      <!-- Favourites -->
+        <li [ngClass]="{'active-categories': seleCtedCat === 'favourites'}">
+            <div class="network-navigation-item" (click)='getSubCategory("favourites", "", "favourites")'>
+                <img src="assets/img/99.svg" alt="">
+                <span> Favourite </span>
+                <span> 0 </span>
+            </div>
+        </li>
+
+      <!-- Friends & Family -->
+
+        <a ngbDropdown autoClose="outside">
+            <li class="d-flex align-items-center" >
+                <div  class="network-navigation-item" ngbDropdownToggle>
+                    <img src="assets/img/100.svg" alt="" >
+                    <span > Friends & Family </span>
+                    <span > 0 </span>
+                </div>
+                <span class="ml-1">&#9662;</span>
+
+                <div class="options business-option btn-more" ngbDropdownMenu>
+                    <button> Friends & Family </button>
+                    <button *ngFor="let item of categoriesList.friends_and_family; let i = index"  (click)='getSubCategory("friends_and_family", item)'> 
+                        {{ item }} 
+                     <span (click)='deleteCategorie( item, "friends_and_family" , i)'>×</span>
+                    </button>
+                    <div class="network-navigation_input btn-more">
+                            <input  type="text" placeholder="Add subcategory" (keyup.enter)='addSubCategory( "friends_and_family" )' [formControl]='subControl'>
+                    </div>
+                </div>
+            </li>
+        </a>
+
+     <!-- Work -->
+        <a ngbDropdown autoClose="outside">
+            <li class="d-flex align-items-center"  >
+                <div  class="network-navigation-item" ngbDropdownToggle> 
+                    <img  src="assets/img/101.svg" alt="" >
+                    <span > Work </span>
+                    <span > 0 </span>
+                </div>
+                <span class="ml-1">&#9662;</span>
+
+                <div class="options business-option btn-more" ngbDropdownMenu>
+                    <button> Work  </button>
+
+                    <button *ngFor="let item of categoriesList.work; let i = index" (click)='getSubCategory("work", item)'>
+                         {{ item }} 
+                    <span (click)='deleteCategorie(item, "work", i)'>×</span>
+                    </button>
+
+                    <div class="network-navigation_input btn-more">
+                            <input  type="text" placeholder="Add subcategory" (keyup.enter)='addSubCategory(  "work" )' [formControl]='subControl'>
+                    </div>
+                </div>
+
+            </li>
+        </a>
+     <!-- Bussiness -->
+        <a ngbDropdown autoClose="outside">
+            <li class="d-flex align-items-center" >
+                <div class="network-navigation-item" ngbDropdownToggle>
+                    <img  src="assets/img/102.svg" alt="" >
+                    <span > Business </span>
+                    <span> 0 </span>
+                </div>
+                <span class="ml-1">&#9662;</span>
+
+                <div class="options business-option btn-more" ngbDropdownMenu>
+                    <button> Business </button>
+                    <button *ngFor="let item of categoriesList.business; let i = index" (click)='getSubCategory("business", item)'>
+                         {{ item }} 
+                    <span (click)='deleteCategorie(item, "business", i )'>×</span>
+                    </button>
+                    <div class="network-navigation_input btn-more">
+                            <input  type="text" placeholder="Add subcategory" (keyup.enter)='addSubCategory(  "business" )' [formControl]='subControl'>
+                    </div>
+                </div>
+
+            </li>
+        </a>
+
+     <!-- Other    -->
+        <a ngbDropdown autoClose="outside">
+            <li class="d-flex align-items-center" >
+                <div class="network-navigation-item" ngbDropdownToggle>
+                    <img  src="assets/img/103.svg" alt="" >
+                    <span > Other </span>
+                    <span > 0 </span>
+                </div>
+                <span class="ml-1">&#9662;</span>
+
+                <div class="options business-option" ngbDropdownMenu>
+                    <button> Other </button>
+                    <button *ngFor="let item of categoriesList.other; let i = index" (click)='getSubCategory("other", item)' > 
+                        {{ item }} 
+                    <span (click)='deleteCategorie(item, "other", i)'>×</span>
+                    </button>
+                    <div class="network-navigation_input ">
+                            <input  type="text" placeholder="Add subcategory" (keyup.enter)='addSubCategory( "other" )' [formControl]='subControl'>
+                    </div>
+                </div>
+
+            </li>
+         </a>
+    </ul>
+</div>

@@ -1,0 +1,127 @@
+@import 'src/variables';
+.created_by{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+}
+.white-container {
+    background-color: $white;
+    padding: 15px;
+    border-radius: 5px;
+    @media(max-width:1250px) {
+        overflow: hidden;
+        overflow-x: scroll;
+    }
+}
+.advertImage {
+    width: 70px;
+    height: 70px;
+    object-fit: cover;
+    margin-right: 10px;
+    border-radius: 4px;
+}
+.manager-table {
+    width: 1200px;
+    // border-spacing: 50px;
+    // tr {
+    //     border-spacing: 50px;
+    // }
+    td,th {
+        padding: 15px;
+        font-weight: normal;
+        font-size: 14px;
+        color: $dark-grey;
+    }
+    
+    td:first-child {
+        h6,p {
+            margin: 0;
+            img {
+                vertical-align: middle;
+            }
+        }
+        h6 {
+            font-weight: 500 !important;
+            color: $light-black;
+        }
+    }
+    tbody{
+        tr {
+            border: 1px solid $cool-grey;
+            
+            // border-bottom: 1px solid $light-grey;
+            &:first-child{
+                border: none;
+                td {
+                    padding: 20px 0 20px 15px;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+}
+
+.campaignInfoContainer {
+    background-color: $background-light-blue;
+    td,h6 {
+        color: $white !important;
+    }
+}
+
+.search {
+    width: 350px;
+    position: relative;
+    &-img {
+        position: absolute;
+        top: 20%;
+        right: 20px;
+    }
+    @media (max-width: 768px) {
+        width: 300px;
+    }
+    input::placeholder {
+        color: $dark-grey;
+    }
+}
+
+.selectedItem {
+    background: $cool-grey;
+}
+.modalWrapper {
+    background-color: $white;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding: 30px;
+}
+.previewWrapper {
+    display: inline-block;
+    border: 1px solid $light-grey;
+    border-radius: 5px;
+    padding: 15px 0;
+    overflow: hidden;
+}
+.audience {
+    p {
+        margin: 0;
+        width: 180px;
+    }
+    span {
+        // margin: 0 5px;
+        font-size: 14px;
+        color: $dark-grey;
+    }
+    .line-flex {
+        display: inline-flex;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+}
+.dropDown-menu {
+    .btn {
+        color: $dark-grey;
+    }
+}
+.dark-grey {
+    color: $dark-grey;
+    font-size: 14px;
+}

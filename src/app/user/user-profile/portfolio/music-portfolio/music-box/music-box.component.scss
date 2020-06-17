@@ -1,0 +1,12 @@
+@import 'src/variables.scss';
+
+img {
+    cursor: pointer;
+}
+
+.box {
+    border: 1px solid  $dark-grey;
+    padding: 2px 16px;
+    border-radius: 12px;
+    color: $dark-grey;
+}

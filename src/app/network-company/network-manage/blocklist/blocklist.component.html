@@ -1,0 +1,31 @@
+<!-- Content in the center -->
+<div class="col mr-3 pl-0">
+    <div class="center-heading">
+        <h3>Blocklist <span> {{ blockList.length }} </span></h3>
+    </div>
+
+    
+    <div class="center-content-network">
+
+
+        <div class="network-boxes-container" *ngIf="blockList && blockList.length > 0">
+
+            <div class="network-box col-md-4" *ngFor="let item of blockList; let i = index" >
+                <div class="network-line-two extra-margin">
+                    <div class="left">
+                        <img [ngClass]="item.is_company ? 'company' : 'profile'" [src]="item.avatar == '' ? 'assets/img/default-company.svg' : '/file/'+item.avatar" alt="profile">
+                    </div>
+                    <div class="right">
+                        <h4 >{{ item.name }}</h4>
+                        <button class="btn btn-outline-primary short" (click)="unBlock(item , i)" >Unblock</button>
+                    </div>
+                </div>
+            </div>
+
+            
+        </div>
+
+        
+    </div>
+</div>
+<!-- Content in the center end -->

@@ -1,0 +1,138 @@
+
+<div class="fluid-container">
+    <div class="d-flex justify-content-center">
+    
+    <div class="container pt-4 mb-4">
+        <div class="d-flex posts justify-content-between">
+            <div class="add-post add-post-steps mt-4">
+                    <span>Add post in 3 step</span>
+                    <p class="mt-2">
+                        Select the advertising that fits your needs
+                    </p>
+                    <p [routerLink]="['/pets', 'add-pet']" [queryParams]='{id: "5ea17deb03b2c563e0f11c14"}' >
+                        Get premium placement to speed up the hiring process
+                    </p>
+    
+                    <div class="mt-3">
+    
+                        <div class="circles">
+                            <div class="mt-1 active-circle-pets" >
+                                <div class="d-flex align-items-center">
+                                    <div class="circle">
+                                        <div class="innter-circle"></div>
+                                    </div>
+                                    <p class="mb-0 ml-2">Choose Category</p>
+                                </div>
+                                <div class="spoon"></div>
+                            </div>
+    
+                            <div class="mt-2" [ngClass]="{'active-circle-pets': id }">
+                            <div class="d-flex align-items-center">
+                                <div class="circle">
+                                    <div class="innter-circle"></div>
+                                </div>
+                                <p class="mb-0 ml-2">Basic information</p>
+                            </div>
+                            <div class="spoon"></div>
+                            </div>
+    
+                            <div class="mt-2" [ngClass]="{'active-circle-pets': isPayment }"> 
+                                <div class="d-flex align-items-center">
+                                    <div class="circle">
+                                        <div class="innter-circle"></div>
+                                    </div>
+                                    <p class="mb-0 ml-2">Payment Method</p>
+                                </div>
+                           </div>
+    
+                        </div>
+                    </div>
+    
+            </div>
+    
+            <div class="add-post add-post-content">
+                <ng-container *ngIf="!isPayment">
+                        <h3>Choose Category</h3>
+        
+                        <div class="d-flex justify-content-between mt-4 categories">
+                            
+                            <button class="btn btn-light" [routerLink]="['/pets/add-pet/Category_Animals']" 
+                                    routerLinkActive="selected-button" 
+                                    queryParamsHandling='merge'>Animals</button>
+            
+                            <button class="btn btn-light" [routerLink]="['/pets/add-pet/Category_Plants']"  
+                                    routerLinkActive="selected-button"
+                                    queryParamsHandling='merge'>Plants</button>
+                                    
+                            <button class="btn btn-light" 
+                                    [routerLink]="['/pets/add-pet/Category_FoodAccessories']"   
+                                    routerLinkActive="selected-button"
+                                    queryParamsHandling='merge'>Food Acessories</button>
+            
+                            <button class="btn btn-light" [routerLink]="['/pets/add-pet/Category_Seeds']"   
+                                    routerLinkActive="selected-button"
+                                    queryParamsHandling='merge'>Seeds</button>
+            
+                        </div>
+                </ng-container>
+                
+    
+                <div class="mt-3" *ngIf="id && !isPayment">
+                    <label for="number" class="title-label">Deal Type</label>            
+                    <div class="mt-2">
+                            <ng-container *ngFor="let deal of dealTypes">
+                                <button [routerLink]="['/pets','add-pet', id,  deal.id ]" 
+                                        routerLinkActive="active-sub-button"
+                                        queryParamsHandling='merge' 
+                                        class="btn btn-light btn-light-dark mr-3 mt-2">
+                                    {{ deal.name }}
+                                </button>
+                            </ng-container>
+                    </div>
+                </div>
+    
+                    <ng-container *ngIf="subCategories?.length > 0 && !isPayment">
+                        <label for="number" class="title-label d-block">Category</label>
+                        <ng-container *ngFor="let deal of subCategories">
+                            <button  class="btn btn-light btn-light-dark mr-3 mt-2" 
+                                    (click)='handleSubCategories(deal.id); foodCategoryCtrl.setValue(deal.id)'
+                                    [ngClass]="{'active-sub-button': foodCategoryCtrl.value === deal.id }">
+                                    {{ deal.name }}
+                            </button>
+                        </ng-container>
+                    </ng-container>
+                    
+    
+            
+                <div class="mt-4">
+                    <ng-template #container></ng-template>
+                </div> 
+    
+                <ng-container *ngIf="!isPayment && ( _container && _container.length > 0 )">
+                    <app-information></app-information>
+                    <div class="mt-5" *ngIf="(this.petService.isEdit && this.petService.files.length > 0) || !this.petService.isEdit ">
+                       <app-service-slider (result)='getSlides($event)' [filesForEdit]='petService.files'></app-service-slider>
+                    </div>
+                </ng-container>
+                
+
+                 <ng-container *ngIf="isPayment">
+                     <app-payment-pets  (result)='getMoney()' 
+                                        [dealType]='dealType' [id]='id'></app-payment-pets>
+                 </ng-container>
+                 
+                <div class="mt-4" *ngIf="this.id && this.dealType && !isPayment">
+                    <div class="text-right">
+                        <button class='btn btn-primary' (click)='parseData()'>
+                            Next
+                        </button>
+                    </div>
+                </div>
+    
+            </div>
+        </div>
+    </div>
+    
+    </div>
+</div>
+    

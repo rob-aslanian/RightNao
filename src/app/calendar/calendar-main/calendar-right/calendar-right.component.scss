@@ -1,0 +1,25 @@
+@import "src/variables";
+@import 'src/mixins.scss';
+.calendar-right {
+    width: 347px;
+    height: calc(100vh - 124px);
+    background-color: $input-grey;
+    position: relative;
+    overflow-y: auto;
+    @include thin-scrollbar--vertical;
+    &__title {
+        font-size: $large-text;
+        color: $dark-blue;
+        padding: 12px 24px;
+        border-bottom: 1px solid $lighter-grey;
+        background-color: $white;
+        margin-bottom: 0;
+        position: sticky;
+        width: 100%;
+        top: 0;
+        z-index: 10;
+    }
+    &__container {
+        padding: 16px 24px 16px 16px;
+    }
+}

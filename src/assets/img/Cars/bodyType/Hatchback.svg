@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="52.778" height="24.454" viewBox="0 0 52.778 24.454">
+  <g id="Hatchback" transform="translate(0.5 0.501)">
+    <path id="Path_749" data-name="Path 749" d="M51.72,16.832c-1.515-5.15-2.711-3.936-3.8-5.855S44.985,2.2,44.985,2.2a1.087,1.087,0,0,0-.812-.727A77.419,77.419,0,0,0,31.535.011,27.413,27.413,0,0,0,17.685,3.2L11.832,6.969A7.674,7.674,0,0,1,8.64,8.141,10.809,10.809,0,0,0,0,14.984v2.342a1.563,1.563,0,0,0,1.563,1.563l48.075-.022C50.7,18.868,52.041,17.841,51.72,16.832Z" transform="translate(0 0.006)" fill="none" stroke="gray" stroke-width="1"/>
+    <path id="Path_750" data-name="Path 750" d="M52.228,10.278l2.529-1.642a25.911,25.911,0,0,1,12.081-3c.309,0,.618.006.924.015A76.433,76.433,0,0,1,78.986,6.861a.78.78,0,0,1,.591,1.021L78.7,10.466a.779.779,0,0,1-.739.53H52.44A.39.39,0,0,1,52.228,10.278Z" transform="translate(-36.282 -3.93)" fill="#fafafa" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1"/>
+    <g id="Group_357" data-name="Group 357" transform="translate(0 12.155)">
+      <g id="Group_356" data-name="Group 356">
+        <path id="Path_751" data-name="Path 751" d="M.77,43.32a13.344,13.344,0,0,1,1.4-2.46l.451.451A.62.62,0,0,1,2.7,42.1,9.56,9.56,0,0,0,2.03,43.32Z" transform="translate(-0.537 -40.636)" fill="none" stroke="gray" stroke-width="0.5"/>
+        <path id="Path_752" data-name="Path 752" d="M1.642,40.571l.327.327a.473.473,0,0,1,.061.6,9.922,9.922,0,0,0-.639,1.154H.47a13.285,13.285,0,0,1,1.172-2.078m-.024-.451A13.407,13.407,0,0,0,0,42.955H1.587a9.335,9.335,0,0,1,.7-1.294.779.779,0,0,0-.1-.975l-.566-.566Z" transform="translate(0 -40.12)" fill="none" stroke="gray" stroke-width="0.5"/>
+      </g>
+    </g>
+    <g id="Group_358" data-name="Group 358" transform="translate(45.706 7.069)">
+      <path id="Path_753" data-name="Path 753" d="M152.248,27.758l-.83-2.935a.751.751,0,0,1,.606-.972l1.212,3.908Z" transform="translate(-151.231 -23.692)" fill="none" stroke="gray" stroke-width="0.5"/>
+      <path id="Path_754" data-name="Path 754" d="M151.572,23.669l1.109,3.575h-.669l-.8-2.832a.6.6,0,0,1,.088-.533.609.609,0,0,1,.273-.209m.212-.339a.9.9,0,0,0-.86,1.172l.86,2.906h1.2l-1.2-4.078Z" transform="translate(-150.882 -23.33)" fill="none" stroke="gray" stroke-width="0.5"/>
+    </g>
+    <line id="Line_64" data-name="Line 64" y2="5.126" transform="translate(27.109 1.944)" fill="none" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1"/>
+    <line id="Line_66" data-name="Line 66" y2="1.733" transform="translate(17.506 5.337)" fill="none" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1"/>
+    <line id="Line_67" data-name="Line 67" y2="4.671" transform="translate(39.378 2.398)" fill="none" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1"/>
+    <line id="Line_65_1_" x1="2.315" stroke-width="1" transform="translate(19.326 8.895)" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" fill="none"/>
+    <line id="Line_68_1_" x1="2.315" stroke-width="1" transform="translate(36.079 8.895)" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" fill="none"/>
+    <g id="Group_413" data-name="Group 413" transform="translate(6.986 12.973)">
+      <ellipse id="Ellipse_32" data-name="Ellipse 32" cx="4.99" cy="4.99" rx="4.99" ry="4.99" transform="translate(0 0)" fill="#fff" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"/>
+      <circle id="Ellipse_33" data-name="Ellipse 33" cx="3.992" cy="3.992" r="3.992" transform="translate(0.333 8.138) rotate(-76.714)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </g>
+    <g id="Group_414" data-name="Group 414" transform="translate(38.255 12.973)">
+      <ellipse id="Ellipse_32-2" data-name="Ellipse 32" cx="4.99" cy="4.99" rx="4.99" ry="4.99" transform="translate(0 0)" fill="#fff" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"/>
+      <circle id="Ellipse_33-2" data-name="Ellipse 33" cx="3.992" cy="3.992" r="3.992" transform="translate(0.333 8.138) rotate(-76.714)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </g>
+  </g>
+</svg>

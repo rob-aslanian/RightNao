@@ -1,0 +1,149 @@
+<div class="find-work__content__card" *ngFor="let service of serviceRequestsList; let i = index">
+  <div class="find-work__content__card__heading">
+      <div class="find-work__content__card__heading--left">
+          <div class="find-work__content__card__heading__img-container">
+              <img 
+                  src="../assets/img/default-company.svg" 
+                  class="
+                      find-work__content__card__heading__img-container-img
+                      find-work__content__card__heading__img-container-img--company
+                  "/>
+          </div>
+          <div>
+              <h4 class="page-section-text-blue">The High Society</h4>
+              <div class="d-flex align-items-center">
+                  <span class="page-section-text-grey-small">{{ service.location.city.city }}</span> 
+                  <span  class="find-work__content__card__heading__divider">|</span>
+                  <!-- <div class="find-work__content__card__heading__stars">
+                      <img src="../assets/img/215.svg"/>
+                      <img src="../assets/img/215.svg"/>
+                      <img src="../assets/img/215.svg"/>
+                      <img src="../assets/img/215.svg"/>
+                      <img src="../assets/img/221.svg"/>
+                  </div> -->
+                  <span class="page-section-text-cyan-small">No Reviews</span>
+              </div>
+          </div>
+      </div>
+      <div class="find-work__content__card__heading--right">
+          <div class="find-work__content__card__heading__price-stamp">
+            
+              <span *ngIf="service.price === 'Price_Hourly' " 
+                     class="find-work__content__card__heading__price-stamp__amount">
+              {{ service.currency + " " + service.fixed_price_amount }}
+              </span>
+
+              <span *ngIf="service.price === 'Price_Fixed' " 
+                     class="find-work__content__card__heading__price-stamp__amount">
+             Fixed =)
+            </span>
+
+            <span *ngIf="service.price === 'Price_Negotiable' " 
+                class="find-work__content__card__heading__price-stamp__amount">
+                Negotiable
+            </span>
+
+          </div>
+      </div>
+  </div>
+  <div class="find-work__content__card__description">
+      <h2 class="page-section-sub-heading">{{ service.description }}</h2>
+  </div>
+  <div class="find-work__content__card__details">
+      <span 
+          class="
+          page-section-text-grey 
+          find-work__content__card__details-text
+          find-work__content__card__details-text--date
+          ">Posted 15 hrs ago
+        </span>
+      
+      <span 
+          class="
+          page-section-text-grey 
+          find-work__content__card__details-text
+          find-work__content__card__details-text--location
+          ">{{ convertLocationType(service.location_type) }}
+      </span>
+
+      <span 
+          class="
+          page-section-text-grey 
+          find-work__content__card__details-text
+          find-work__content__card__details-text--delivery-normal
+          ">{{ convertDeliveryTime(service.delivery_time) }}
+      </span>
+
+      <span 
+          class="
+          page-section-text-grey 
+          find-work__content__card__details-text
+          find-work__content__card__details-text--offers
+          ">9 Offers
+      </span>
+
+  </div>
+  <div class="find-work__content__card__favorite">
+      <img src="../assets/img/44.svg"/>
+  </div>
+</div>
+<!-- * * * * For User * * * * -->
+<div class="find-work__content__card">
+  <div class="find-work__content__card__heading">
+      <div class="find-work__content__card__heading--left">
+          <div class="find-work__content__card__heading__img-container">
+              <img src="../assets/img/user_photo.png" class="find-work__content__card__heading__img-container-img"/>
+          </div>
+          <div>
+              <h4 class="page-section-text-blue">Reichel Gardyn</h4>
+              <div class="d-flex align-items-center">
+                  <span class="page-section-text-grey-small">Tbilisi, Georgia</span> <span  class="find-work__content__card__heading__divider">|</span>
+                  <div class="find-work__content__card__heading__stars">
+                      <img src="../assets/img/215.svg"/>
+                      <img src="../assets/img/215.svg"/>
+                      <img src="../assets/img/215.svg"/>
+                      <img src="../assets/img/215.svg"/>
+                      <img src="../assets/img/221.svg"/>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="find-work__content__card__heading--right">
+          <div class="find-work__content__card__heading__price-stamp">
+              <span class="find-work__content__card__heading__price-stamp__amount">Negotiable</span>
+          </div>
+      </div>
+  </div>
+  <div class="find-work__content__card__description">
+      <h2 class="page-section-sub-heading">Graphic Designer / Developer to Design Email Marketing Content for our new Product</h2>
+  </div>
+  <div class="find-work__content__card__details">
+      <span 
+          class="
+          page-section-text-grey 
+          find-work__content__card__details-text
+          find-work__content__card__details-text--date
+          ">Posted 19 hrs ago</span>
+      
+      <span 
+          class="
+          page-section-text-grey 
+          find-work__content__card__details-text
+          find-work__content__card__details-text--location
+          ">Remote (Tbilisi, Georgia)</span>
+      <span 
+          class="
+          find-work__content__card__details-text
+          find-work__content__card__details-text--delivery-danger
+          ">Delivery up to 24 hours </span>
+      <span 
+          class="
+          page-section-text-grey 
+          find-work__content__card__details-text
+          find-work__content__card__details-text--offers
+          ">9 Offers</span>
+  </div>
+  <div class="find-work__content__card__favorite">
+      <img src="../assets/img/44.svg"/>
+  </div>
+</div>

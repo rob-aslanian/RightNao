@@ -1,0 +1,49 @@
+<div class="container">
+    <h1 >{{ '1150' | translate }}</h1>
+    <div class="row">
+        <div class="col-md-6 mt-4">
+            <div class="col-12 reg__box"  [routerLink]="['/registration/user']" (click)="setProfile('user')">
+                <img src="assets/img/users.svg" alt="users">
+                <h2>User</h2>
+                <p>
+                    for Social Interations, Work, Personal
+                    Business, Entertainment & more
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6 mt-4">
+            <div class="col-12 reg__box" [routerLink]="['/registration/user']" (click)="setProfile('proffesional')">
+                    <img src="assets/img/reg_proffesional.svg" alt="users">
+                    <h2>Professional</h2>
+                    <p>
+                        for Licence or registered
+                        Professionals
+                    </p>
+            </div>
+        </div>
+        <div class="col-md-6 mt-4">
+            <div class="col-12 reg__box" [routerLink]="['/registration/company_sign_in']"   (click)="setProfile('company')">
+                <img src="assets/img/reg_company.svg" alt="company">
+                <h2>Company</h2>
+                <p>
+                    for Sole Traders, Partnership,
+                    small Companies & LLCs
+                </p>
+            </div>
+        </div>
+        <div class="col-md-6 mt-4">
+            <div class="col-12 reg__box" [routerLink]="['/registration/company_sign_in']"  (click)="setProfile('organization')">
+                <img src="assets/img/reg_organization.svg" alt="users">
+                <h2>Organization</h2>
+                <p>
+                    for Public Companies, Holdings, 
+                    NGOs & Large Corporations 
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="already-registered ">
+        <p>{{ '146' | translate }}</p>
+        <a [routerLink]="['login']" class="ml-2">{{ '1314' | translate }}</a>
+    </div>
+</div>

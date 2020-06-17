@@ -1,0 +1,15 @@
+<ng-container  *ngIf="boxes.length > 0">
+    <div class="position-relative">
+        <div class="d-flex justify-content-end products-navigation mb-3">
+                <img src="147.svg" alt="" class="new-product-click new-product-left" (click)='_slider.back();'>
+                <img src="147.svg" alt="" class="new-product-click pl-4 new-product-right" (click)='_slider.next()'>
+        </div>
+        <app-slider-bad-boy-edition [amount]='5'>
+            <div class="row flex-nowrap">
+                  <div class="col-3" *ngFor="let box of boxes">
+                        <app-clasified-ads-box [box]='box' ></app-clasified-ads-box>
+                  </div>
+            </div> 
+        </app-slider-bad-boy-edition>
+    </div>
+</ng-container>

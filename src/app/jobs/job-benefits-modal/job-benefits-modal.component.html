@@ -1,0 +1,23 @@
+<!-- Insert benefits start -->
+<div class="modal-content insert-benefits">
+  <h1>Insert Benefits
+    <a href="" (click)="close($event)">&#10005;</a>
+  </h1>
+  <div class="popup-content default-modal">
+    <form>
+      <div class="row">
+          <div class="col-md-6" *ngFor="let benefit of benefits; let i = index">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" [value]="benefit.id" [(ngModel)]="benefit.is_selected" name="{{ benefit.name }}-is_selected" class="custom-control-input" id="checkbox_{{i}}">
+                <label class="custom-control-label benefit__label" for="checkbox_{{i}}">
+                  <img [src]="benefit.icon" [alt]="benefit.id" class="mr-2">
+                  {{ benefit.name | translate }}
+                </label>
+            </div>
+          </div>
+      </div>
+      <button class="btn btn-primary ml-auto d-block" (click)="submit()">Insert</button>
+    </form>
+  </div>
+</div>
+<!-- Insert benefits end -->

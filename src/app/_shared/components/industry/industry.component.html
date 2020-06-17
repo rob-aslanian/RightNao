@@ -1,0 +1,12 @@
+<ng-container *ngIf="dropdownListSubIndustry || dropdownListSubIndustrySelected">
+  
+    <ng-multiselect-dropdown 
+          [placeholder]="'Sub Industry'"
+          [data]="dropdownListSubIndustry"
+          [(ngModel)]="dropdownListSubIndustrySelected"
+          [settings]="dropdownSettingsSubIndustry"
+          (ngModelChange)="onChange($event)"
+          >
+    </ng-multiselect-dropdown>
+
+</ng-container>

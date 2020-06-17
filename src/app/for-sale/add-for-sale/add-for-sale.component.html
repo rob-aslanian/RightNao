@@ -1,0 +1,226 @@
+<form autocomplete="off" class="pb-4" [formGroup]="forSaleForm">
+    <div class="dark-blue-bg-for-jobs">
+        <div class="background-content-wrap post">
+            <div class="profile container">
+                <div class="row">
+                    <div class="col-md-9">
+                    <h1>ADD POST</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <div class="d-flex justify-content-center">
+      <div class="profile">
+          <div class="add-for-sale">
+                <div class="breed">
+                    <label for="animal-category" class="title-label">Select product</label>
+                    <select name="" id="" class="form-control" formControlName="product"
+                            [ngClass]="{'is-invalid': isSubmitted && saleCtrl.product.invalid }"
+                            (change)='toggleSubCategory($event.target.value)'>
+                        <option value="" disabled >Select product</option>
+                        <option *ngFor="let main of MAIN_CATEGORIES" 
+                                [value]="main">{{main}}</option>
+                    </select>
+                </div>
+
+                <div class="breed" *ngIf="saleCtrl.product.value === 'Home and garden'">
+                        <label for="animal-category" class="title-label">Subcategory</label>
+                        <select name="" id="" class="form-control" formControlName="sub_category"
+                                [ngClass]="{'is-invalid': isSubmitted && saleCtrl.sub_category.invalid }">
+                            <option value="" disabled >Select product</option>
+                            <option *ngFor="let sub of SUB_CATEGORIES" [value]="sub" >{{sub}}</option>
+                        </select> 
+                </div>
+
+                <ng-container *ngIf="( $listOfSubProducts | async ) as producs">
+                        <div class="breed mt-3" *ngIf="producs[saleCtrl.product.value] || producs[saleCtrl.sub_category.value]">
+                            <label for="animal-category" class="title-label">Select product category</label>
+                            <select name="" id="" class="form-control" 
+                                    formControlName="category"
+                                    [ngClass]="{'is-invalid': isSubmitted && saleCtrl.category.invalid }">    
+                                <option disabled value="">Select product category</option>
+    
+                                <ng-container *ngIf="producs[saleCtrl.product.value]">
+                                    <option    *ngFor="let product of producs[saleCtrl.product.value]" [value]="product" >{{product}}</option>
+                                </ng-container>
+    
+                                <ng-container *ngIf="producs[saleCtrl.sub_category.value]">                            
+                                    <option [value]="item" *ngFor="let item of  producs[saleCtrl.sub_category.value]">{{item}}</option>
+                                </ng-container> 
+    
+                            </select>
+                        </div>
+                </ng-container>
+                    
+                <ng-container formGroupName="price">
+                    <div class="breed mt-3">
+                            <label class="title-label">Price</label>
+                            <div class="mt-1 d-flex custom-radio-input-god">
+                                    <div class="mt-2" *ngFor="let cond of PRICE">
+                                        <input  type="radio" [id]="cond.id"  
+                                                formControlName='price_type' class="d-none" 
+                                                name="price_type" [value]="cond.id">
+                                        <label [for]="cond.id" 
+                                            class="btn btn-light-dark mr-3">{{ cond.name }}</label>
+                                    </div>
+                            </div>
+
+                            <ng-container *ngIf="saleCtrl.price.get('price_type').value === 'PriceType_AddPrice'">
+                                   <div class="d-flex mt-3">
+                                       <div class="">
+                                            <input type="number" class="form-control w-100" 
+                                                   placeholder="Enter amount" formControlName="fix_price"
+                                                   [ngClass]="{'is-invalid': isSubmitted && saleCtrl.price.get('fix_price').invalid }">
+                                       </div>
+                                       <div class="ml-3">
+                                         <select name="" id="" class="form-control w-100" formControlName="currency"
+                                                [ngClass]="{'is-invalid': isSubmitted && saleCtrl.price.get('currency').invalid }">
+                                            <option *ngFor="let sub of currency" [value]="sub" >{{sub}}</option>
+                                        </select>
+                                       </div>
+                                   </div>
+                            </ng-container>
+
+                            <ng-container *ngIf="saleCtrl.price.get('price_type').value === 'PriceType_PriceRange'">
+                                <div class="d-flex mt-3">
+
+                                    <div class="">
+                                         <input type="number" 
+                                                class="form-control w-100" 
+                                                placeholder="Min" 
+                                                formControlName="min_price"
+                                                [ngClass]="{'is-invalid': isSubmitted && saleCtrl.price.get('min_price').invalid }">
+                                    </div>
+
+                                    <div class="ml-3">
+                                        <input type="number" class="form-control w-100"
+                                               placeholder="Max" formControlName="max_price"
+                                               [ngClass]="{'is-invalid': isSubmitted && saleCtrl.price.get('max_price').invalid }">
+                                   </div>
+
+                                    <div class="ml-3">
+                                      <select name="" id="" class="form-control w-100" formControlName="currency"
+                                             [ngClass]="{'is-invalid': isSubmitted && saleCtrl.price.get('currency').invalid }">
+                                         <option *ngFor="let sub of currency" [value]="sub" >{{sub}}</option>
+                                     </select>
+                                    </div>
+                                </div>
+
+                            </ng-container> 
+                    </div>
+                </ng-container>
+            
+                <div class="breed mt-3">
+                    <label class="title-label">Condition</label>
+                    <div class="mt-1 d-flex custom-radio-input-god">
+                            <div class="mt-2" *ngFor="let cond of CONDITION">
+                                <input  type="radio" [id]="cond.id"  
+                                        formControlName='condition' class="d-none" 
+                                        name="condition" [value]="cond.id">
+                                <label [for]="cond.id" 
+                                    class="btn btn-light-dark mr-3">{{ cond.name }}</label>
+                            </div>
+
+                    </div>
+                </div>
+                <div class="breed mt-3" formGroupName="location">
+                        <label for="animal-category" class="title-label">Location</label>
+                        <select name="" id="" class="form-control" 
+                                formControlName="country_id"
+                                [ngClass]="{'is-invalid': isSubmitted && saleCtrl.location.get('country_id').invalid }">
+                            <option value="" disabled >Choose location</option>
+                            <ng-container *ngIf="($listOfCountries | async) as countries">
+                                <option *ngFor="let country of countries" [value]="country.asc">{{country.name}}</option>
+                            </ng-container>
+                        </select>
+                </div>        
+
+                <div class="d-flex mt-3">
+                    <div class="custom-control custom-checkbox ">
+                            <input  type='checkbox' class="custom-control-input" 
+                                    id="save-address" formControlName="pick_up"/>
+                            <label class="custom-control-label" for="save-address">Pick up </label>
+                    </div>
+    
+                    <div class="custom-control custom-checkbox ml-3">
+                            <input  type='checkbox' class="custom-control-input" 
+                                    id="delivery" formControlName="delivery"/>
+                            <label class="custom-control-label" for="delivery">Delivery</label>
+                    </div>
+                </div>
+
+               <div class="form-group">
+                      <label for="number" class="title-label">Phone Number</label>
+                      <ng-container *ngFor="let phone of forSaleForm.get('phones')['controls']; let i = index" 
+                                    formArrayName="phones">
+                          <div class="mb-3"  [formGroupName]="i">
+                              <div class="row">
+                                  <div class="col-2 pr-0"> 
+                                      <select class="form-control w-100" id="country-index" style="width: 100%" 
+                                              formControlName="country_code_id"  
+                                              [ngClass]="{'is-invalid': forSaleForm.get('phones').at(i).get('country_code_id').invalid &&  isSubmitted }">
+                                          <option value="" disabled>Country </option>
+                                          <ng-container *ngIf="( $countryCodes | async ) as countryCodes">
+                                              <option [value]="+(+code.id)"  
+                                                      [attr.data-code]="code.country_code" *ngFor="let code of countryCodes" >
+                                                  {{  code.country }}
+                                                  (+{{  code.country_code }}) 
+                                              </option>
+                                          </ng-container>
+                                      </select>
+                                  </div>
+                                  <div class="col-9">
+                                      <input type="number" 
+                                             class="form-control" 
+                                             placeholder="Enter phone number" id="number" 
+                                             formControlName="number"
+                                             [ngClass]="{'is-invalid': forSaleForm.get('phones').at(i).get('number').invalid &&  isSubmitted }">
+                                  </div>
+                              </div>
+                          </div>
+                      </ng-container>
+                      
+                      <div *ngIf="forSaleForm.get('phones').value.length < 3"
+                           class="add-another mt-3 d-flex align-items-center" (click)="addPhone()">
+                          <div class="add">
+                              <img src="assets/img/add-estate.svg" alt="">
+                          </div>
+                          <span class="ml-2">Add other phone number</span>
+                      </div>
+              
+                  <ng-container formGroupName="detail">
+                       <div class="phones">
+                           <label for="title" class="title-label">Title</label>
+                           <input type="text" class="form-control" 
+                                  placeholder="Enter phone number" id="title"
+                                  formControlName="title"
+                                  [ngClass]="{'is-invalid': saleCtrl.detail.get('title').invalid && isSubmitted }">
+                       </div>
+                  
+                       <div class="editor">
+                          <div class="text-editor">
+                              <label for="description" class="title-label">Description</label>
+                              <app-text-editor [placeholder]='"Enter Description"' 
+                                               [id]='"description"'
+                                               formControlName="description"
+                                               [ngClass]="{'is-invalid-custom': saleCtrl.detail.get('description').invalid && isSubmitted }">
+                              </app-text-editor>
+                          </div>
+                       </div>
+                  </ng-container>
+
+                  <ng-container *ngIf="(files.length > 0 && isEdit) || !isEdit">
+                      <app-service-slider [filesForEdit]='files' (result)='getSlides($event)'></app-service-slider>
+                  </ng-container>
+                
+                  <div class="pt-4  text-right">
+                      <button class="btn btn-primary" (click)='submit()'>Save</button>
+                  </div>
+              </div>
+          </div>
+      </div>
+    </div>   
+
+</form>

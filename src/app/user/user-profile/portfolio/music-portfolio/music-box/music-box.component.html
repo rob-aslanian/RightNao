@@ -1,0 +1,20 @@
+<div class="row mb-4">
+    <div class="col-4">
+         <span>{{ index +1 }}</span>
+         <a class="pl-3" *ngIf="!isAdd" [routerLink]="['../','Music', music.portfolioId, 'Music']" > {{ music.name | addDots:'25' }} </a>
+         <a class="pl-3" *ngIf="isAdd"> {{ music.name | addDots:'25' }} </a>
+    </div>
+
+    <div class="col">
+        <span class="box">{{ music.duration.time ? music.duration.time : music.duration }}</span>
+    </div>
+
+    <div class="col-3 text-right" *ngIf="!isAdd">
+          <img src="assets/img/71.svg" alt="download" class="pl-2" (click)='download(music)'>
+    </div>
+
+    <div class="col text-right" (click)='removeMusic()'>
+        <img src="assets/img/53.svg" alt="delete">
+    </div>
+
+</div>

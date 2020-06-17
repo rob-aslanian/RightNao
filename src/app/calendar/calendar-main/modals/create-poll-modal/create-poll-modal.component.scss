@@ -1,0 +1,320 @@
+@import "src/variables";
+@import 'src/mixins.scss';
+
+.form-control.calendar-input {
+    border: none;
+    background-color: $input-grey;
+    color: $dark-grey;
+    height: 32px;
+    font-size: 14px;
+
+    &:focus {
+        box-shadow: unset;
+    }
+
+    &.title-input {
+        font-size: 18px;
+    }
+}
+
+textarea.calendar-input {
+    height: 118px !important;
+}
+
+.create-poll {
+    &__field {
+        margin-bottom: 16px; 
+        &__icon-wrap {
+            height: 20px;
+            width: 20px;
+            margin-bottom: 4px;
+            img {
+                height: 100%;
+                width: 100%;
+            }
+        }
+        &__title {
+            color: $dark-blue;
+            font-size: 16px;
+        }
+    }
+
+
+    &__title {
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        font-weight: normal;
+        font-size: 20px;
+    }
+
+    &__subtitle {
+        color: $dark-blue;
+        font-size: 18px;
+        font-weight: normal;
+    }
+
+    &__label {
+        color: $dark-blue;
+        font-size: 16px;
+        font-weight: normal;
+        margin-bottom: 0;
+    }
+
+    &__options {
+        margin-top: 22px;
+        &__month {
+            min-height: 416px;
+            &__calendar {
+                border: 1px solid $input-grey;
+                height: 100%;
+                border-radius: 5px;
+                padding: 24px 32px;
+
+                &__header {
+                    margin-bottom: 30px;
+                    &__date {
+                        color: $dark-blue;
+                        font-size: $heading-medium;
+                        margin-bottom: 0;
+                        font-weight: normal;
+                    }
+                }
+            }
+            &__select-times {
+                position: relative;
+                border: 1px solid $input-grey;
+                height: 100%;
+                border-radius: 5px;
+                padding: 26px 24px;
+
+                .select-times-wrap {
+                    height: 100%;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    button {
+                        border-color: $dark-cyan;
+                        color: $dark-cyan;
+
+                        &:hover {
+                            color: $dark-blue;
+                        }
+                    }
+                }
+
+                &__content {
+                    h4 {
+                        font-size: 14px;
+                        color: $dark-blue;
+                    }
+                    &__timezone {
+                        position: absolute;
+                        bottom: 24px;
+                        left: 24px;
+
+                        span {
+                            color: $dark-grey;
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+        }
+
+        &__week {
+            &__text {
+                color: $dark-blue;
+                white-space: nowrap;
+                font-size: 14px;
+                margin-right: 10px;
+
+                &--grey {
+                    color: $dark-grey;
+                }
+            }
+        }
+
+        &__text {
+            &__number {
+                color: $dark-blue;
+                font-size: 20px;
+            }
+        }
+    }
+
+    &__switch {
+        span {
+            color: $dark-grey;
+            white-space: nowrap;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 37px;
+            height: 18px;
+        }
+        
+        .switch input { 
+        opacity: 0;
+        width: 0;
+        height: 0;
+        }
+        
+        .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: $light-grey;
+        -webkit-transition: .3s;
+        transition: .3s;
+        border: solid 1px #e6e6e6;
+        }
+        
+        .slider:before {
+        position: absolute;
+        content: "";
+        height: 12px;
+        width: 12px;
+        left: 2px;
+        bottom: 2px;
+        background-color: white;
+        -webkit-transition: .3s;
+        transition: .3s;
+        }
+        
+        input:checked + .slider {
+            background-color: $background-dark-cyan;
+        }
+            
+        input:checked + .slider:before {
+            -webkit-transform: translateX(19px);
+            -ms-transform: translateX(19px);
+            transform: translateX(19px);
+        }
+        
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+            margin-right:0;
+        }
+        
+        .slider.round:before {
+            border-radius: 50%;
+        }
+        label {
+            margin-bottom: 0 !important;
+        }
+    }
+
+    .calendar-outline {
+        border: 1px solid $lighter-grey;
+        color: $lighter-grey;
+        height: 32px;
+        padding: 0 20px;
+        background: none;
+        margin-top: 0;
+
+        &--left {
+            padding: 0 12px;
+            img {
+                transform: rotate(90deg)
+            }
+        }
+        &--right {
+            padding: 0 12px;
+            img {
+                transform: rotate(-90deg);
+            }
+        }
+    }
+}
+
+.add-event-dropdown {
+    &__menu {
+        @include calendar-popover($padding: 10px 0 10px 0);
+        &--full-width {
+            width: 100%;
+        }
+
+        &__btn {
+            margin: 0;
+            width: 100%;
+            color: $dark-grey;
+            background-color: unset;
+            padding: 5px 10px;
+            border-radius: unset;
+
+            &:hover {
+                background-color: $input-grey;
+            }
+            span {
+                font-size: 14px;
+            }
+        }
+    }
+
+    &__toggle {
+        background-color: $input-grey;
+        border-radius: 5px;
+        padding: 5px 10px;
+        height: 32px;
+        color: #4d4d4d;
+        display: flex;
+        align-items: center;
+        border: 1px solid transparent;
+        cursor: pointer;
+
+        &:after {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        &[aria-expanded="true"] {
+            border-color: $dark-blue;
+        }
+
+        &__calendar-bullet {
+            @include calendar-colored-bullets(16px, 16px, 14px, 7px);
+        }
+        
+    }
+}
+
+:host ::ng-deep ngb-tabset {
+    .nav.nav-tabs {
+        list-style-type: none;
+        padding: 0;
+        margin-left: -8px;
+        margin-right: -8px;
+        height: 30px;
+        border-bottom: 1px solid $input-grey;
+        margin-bottom: 32px;
+
+        .nav-item {
+            padding-right: 32px;
+            display: inline-block;
+            .nav-link {
+                border-bottom: 3px solid transparent;
+                padding-bottom: 5px;
+                padding-left: 8px;
+                padding-right: 8px;
+                font-size: 15px;
+                color: #808080;
+                display: block;
+
+                &.active {
+                    border-bottom-color: $dark-cyan;
+                    color: $dark-blue;
+                }
+            }
+        }
+    }
+}

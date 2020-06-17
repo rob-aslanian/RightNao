@@ -1,0 +1,18 @@
+
+<form [formGroup]="form"  class="col-12 basic-form">
+        <div class="form-group">
+                <p [ngClass]="{'custom-red':form.get('transmission').invalid && isSubmitted}">Transmission</p>
+                <div class="custom-control custom-radio custom-control-inline col-4 col-md-3 mr-0"  
+                        *ngFor="let item of transmissions; let i = index;">
+                        <input  type="radio" 
+                                class="custom-control-input" 
+                                [value]="item['type']" 
+                                id="transmission-{{ i}}" 
+                                name="transmission"
+                                formControlName="transmission">
+                        <label  for="transmission-{{ i }}" class="custom-control-label"> 
+                                {{ item['text'] }}
+                        </label>
+                </div>
+        </div>
+</form>

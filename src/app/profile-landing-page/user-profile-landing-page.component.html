@@ -1,0 +1,38 @@
+<main class="main-light-blue">
+    <div class="custom-container" style="max-width: 1555px">
+      <div class="row">
+        <div class="col-xl-10">
+          <div class="d-flex row">
+            <div class="col-xl-7 mt-3 pr-0">
+                <app-user-profile-landing-categories></app-user-profile-landing-categories>
+                <app-landing-page-recommended-jobs></app-landing-page-recommended-jobs>
+             
+            </div>
+            <div class="col-xl-5 mt-3">
+              
+                  <app-user-profile-landing-business-to-follow></app-user-profile-landing-business-to-follow>
+                <div class="mt-3">
+                  <app-user-profile-landing-people-you-know></app-user-profile-landing-people-you-know>
+                </div>
+            
+            </div>
+          </div>
+            <app-user-profile-landing-newsFeed></app-user-profile-landing-newsFeed>
+        </div>
+    
+        <div class="right-box col-xl-2 mt-3 p-0">
+  
+            <app-user-profile-landing-languages></app-user-profile-landing-languages>
+            <app-user-profile-landing-import-contacts></app-user-profile-landing-import-contacts>
+            <app-user-profile-landing-register-business *ngIf="!isCompanyActive"></app-user-profile-landing-register-business>
+            <app-landing-post-job *ngIf="isCompanyActive"></app-landing-post-job>
+            <app-user-profile-landing-become-candidate *ngIf="!isCompanyActive"></app-user-profile-landing-become-candidate>    
+            <app-landing-company-ad *ngIf="isCompanyActive"></app-landing-company-ad>
+            <app-user-profile-landing-active-connections *ngIf="!isCompanyActive"></app-user-profile-landing-active-connections>
+            <app-landing-register-brand *ngIf="isCompanyActive"></app-landing-register-brand>
+     
+        </div>
+        
+      </div>
+    </div>
+    </main>

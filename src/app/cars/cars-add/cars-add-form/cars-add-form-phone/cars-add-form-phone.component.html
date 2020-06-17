@@ -1,0 +1,23 @@
+<form  [formGroup]="form" class="col-12 basic-form" >
+    <div class="form-group">
+        <p  [ngClass]="{'custom-red':form.get('phoneNumber').invalid && isSubmitted}">Phone number</p>
+        <ng-container formArrayName="phoneNumber" *ngFor="let phone of Phones.controls; let i = index">
+            <div class="row mb-2 ml-1 mr-1">
+                <input type="text" 
+                        class="form-control col-10 col-md-5" 
+                        placeholder="Enter phone" 
+                        [formControlName]="i">
+                <button (click)="addAnother('')" 
+                        *ngIf="i == Phones.controls.length-1" 
+                        class="btn col-1">
+                        <img src="assets/img/148.svg" alt="plus" class="plus">
+                </button>
+                <button (click)="remove(i)"  
+                        *ngIf="i < (Phones.controls.length-1)"  
+                        class="btn col-1">
+                    <img src="assets\img\ads/38.svg" alt="remove">
+                </button>
+            </div>
+        </ng-container>
+    </div>
+</form>

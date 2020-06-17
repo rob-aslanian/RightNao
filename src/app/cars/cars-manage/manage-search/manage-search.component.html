@@ -1,0 +1,28 @@
+<div class="header__categories col-lg-5 d-flex justify-content-between" *ngIf="onlyMe">
+    <button class="btn btn-secondary"  
+            (click)='changeStatus("active")'
+            [ngClass]="{'btn-dark': filter.status === 'active'}">Active</button>
+
+    <button class="btn btn-secondary"  
+            (click)='changeStatus("expired")'
+            [ngClass]="{'btn-dark': filter.status === 'expired'}">Expired</button>
+            
+    <button class="btn btn-secondary" 
+            (click)='changeStatus("hidden")'
+            [ngClass]="{'btn-dark': filter.status === 'hidden'}">Hidden</button>
+</div>
+<div class="header__search col-12 d-flex mt-4 pr-0">
+    <div class="col-md-9 p-0">
+        <input type="text" 
+            class="form-control mr-4" 
+            placeholder="Search"
+            (keyup.enter)='emitSearch()'>
+    </div>
+    <div class="col-md-3 pr-0">
+        <select class="form-control" (change)='searchByType($event)'>
+            <!-- <option value="" selected disabled>Property type</option> -->
+            <option *ngFor="let item of carsType" 
+                    [value]='item.type'>{{ item.title }}</option>
+        </select>
+    </div>
+</div>

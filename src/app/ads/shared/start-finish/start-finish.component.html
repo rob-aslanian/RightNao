@@ -1,0 +1,37 @@
+<div class="row ads-section">
+    <div class="col-sm-6" [formGroup]="dateForm">
+        <h3 class="ads-smal-title ads-dBlue-title">Start date</h3>
+        <div class="row m-8">
+            <div class="col-3">
+                <div class="ads-custom-form">
+                    <select  class="form-control" formControlName="day" (change)="change($event)">
+                        <option value="" disabled>Day</option>
+                        <option [value]="day" *ngFor="let day of Days;">
+                            {{ day }}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="ads-custom-form">
+                    <select  class="form-control" formControlName="month" (change)="change($event)">
+                        <option value="" disabled>Month</option>
+                        <option [value]="month.id" *ngFor="let month of Months;">
+                               {{ month.name }}
+                       </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="ads-custom-form">
+                    <select  class="form-control" formControlName="year" (change)="change($event)">
+                        <option value="" disabled>Year</option>
+                        <option [value]="year" *ngFor="let year of Years">
+                               {{ year }}
+                       </option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

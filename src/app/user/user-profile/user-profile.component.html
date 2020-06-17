@@ -1,0 +1,224 @@
+<main class="main-light-blue before-footer">
+    <div class="white-bg"></div>
+
+    <app-spinner *ngIf="!user_info" class="spinner__center"></app-spinner>
+    <div class="container profile pl-0 pr-0"  *ngIf="user_info" [ngClass]="{'large-profile': isPortfolio }">
+        <div class="row justify-content-between profile-wrap ml-0 mr-0">
+
+            <!-- Content on the left -->
+ 
+               <div class="col-md-3" style="min-width: 303px;">
+                   <app-main-user-details (result) = 'getModalType($event)'></app-main-user-details>
+               </div>
+ 
+            <!--   Content on the left end -->
+
+            <!--  * * * * * M O D A L S * * * * * *  -->
+            <app-modal (closeModal)="modalType = null">     
+
+                    <ng-container *ngIf='modalType && modalType === "editProfile" '>
+                        <app-edit-profile-picture (result)="editProfileResult($event)" type="user">
+                        </app-edit-profile-picture>
+                    </ng-container>
+                    <ng-container *ngIf='modalType && modalType === "ask"'>
+                        <app-reccomendations-modal (closeModal)="close($event)" [modalType]="modalType" (result)="getResult($event)"
+                            [data]="reccomendations.user">
+                        </app-reccomendations-modal>
+                    </ng-container>
+                    <ng-container *ngIf='modalType && modalType === "recommend"'>
+                        <app-reccomendations-modal (closeModal)="close($event)" [modalType]="modalType" (result)="getResult($event)"
+                            [data]="reccomendations.user">
+                        </app-reccomendations-modal>
+                    </ng-container>
+
+            </app-modal>
+        
+
+            <!--  * * *  * *   C e n t e r   M e n u * * *  * *  -->
+
+            <div class="center-row col">
+                <div class="center-info col-md-7 mb-3 pb-0 col" [ngClass]="{'portfolio-links': isPortfolio}" >
+                    <ng-container *ngIf="isAuth && !isPortfolio">
+
+                        <div class="menu-item"
+                             [routerLink] = "['/user/profile/', user_info.getProfile.url]" 
+                             [routerLinkActiveOptions] = "{exact:true}"
+                             routerLinkActive = "active-link" >
+                            <div>
+                                <span>&nbsp;</span>
+                                <p> About</p> 
+                            </div>
+                        </div>
+
+                        <div class="menu-item"
+                            [routerLink]="['wall', user_info.getProfile.id]"
+                            routerLinkActive="active-link" [queryParams]="{isCompany: false}">
+                            <div>
+                                <span>&nbsp;</span>
+                                <p>Wall</p>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item"  [routerLink]="['user-recommendations']"  routerLinkActive="active-link">
+                            <div >
+                                <span>&nbsp;</span>
+                                <p>{{ '1171'| translate }}</p>
+                            </div>
+                        </div>
+
+                        <div class="menu-item" [routerLink]="['user-reviews' , user_info.getProfile.id]" routerLinkActive="active-link">
+                            <div>
+                                <span>&nbsp;</span>
+                                <p>{{ '1212'| translate }}</p>
+                            </div>
+                        </div>
+                    
+                    </ng-container>
+
+                    <ng-container *ngIf="( $portfolioStat | async  ) as portfolioStat">
+                        <ng-container *ngIf="isAuth && isPortfolio" >           
+                                <div class="menu-item"
+                                            [routerLink] = "['portfolio/', user_info.getProfile.id, 'Photo']" 
+                                            [ngClass]="{'active-link': routerEndPath === 'Photo'}"
+                                            *ngIf="portfolioStat.portfolio_amount.has_photo || isAdmin">
+                                    <div>
+                                        <span>&nbsp;</span>
+                                        <p> Photo </p> 
+                                    </div>
+                                </div>
+
+                                <div class="menu-item"
+                                            [routerLink] = "['portfolio/', user_info.getProfile.id, 'Video']" 
+                                            [ngClass]="{'active-link': routerEndPath === 'Video'}"
+                                            *ngIf="portfolioStat.portfolio_amount.has_video || isAdmin">
+                                    <div>
+                                        <span>&nbsp;</span>
+                                        <p> Video </p> 
+                                    </div>
+                                </div>
+
+                                <div class="menu-item" [routerLink] = "['portfolio/', user_info.getProfile.id, 'Music']"                       
+                                                        [ngClass]="{'active-link': routerEndPath === 'Music'}"
+                                                        *ngIf="portfolioStat.portfolio_amount.has_audio || isAdmin">
+                                    <div>
+                                        <span>&nbsp;</span>
+                                        <p> Audio </p> 
+                                    </div>
+                                </div>
+
+                                <div class="menu-item"
+                                    [routerLink] = "['portfolio/', user_info.getProfile.id, 'Article']"
+                                    [ngClass]="{ 'active-link': routerEndPath === ('Article' || 'add-article')}"
+                                    *ngIf="portfolioStat.portfolio_amount.has_article || isAdmin">  
+                                <div>
+                                    <span>&nbsp;</span>
+                                    <p> Articles </p> 
+                                </div>
+
+                            </div>
+                   </ng-container>
+                </ng-container>
+                    
+           
+                </div>  
+
+                <div *ngIf="showMainPage && isProfileIncomplete; else showProfile" class="inComplete-profile p-3">
+                        <div class="inComplete-profile__img d-flex justify-content-center">
+                            <img src="assets/img/nocontent.svg" alt="">
+                        </div>
+                        <div class="inComplete-profile__text d-flex justify-content-center mt-3">
+                            <p> {{ user_info.getProfile.firstname +  ' ' +  user_info.getProfile.lastname  +  ' has an incomplete profile' }}  </p>
+                        </div>
+                </div>
+
+                <ng-template #showProfile>
+                  <ng-container *ngIf="showMainPage">
+
+                    <!-- Story -->
+                    <div class="story-wrap">
+                        <app-story [data]='story'></app-story>
+                    </div>
+                    <!-- Story end -->
+                 
+                    <!-- Experience -->
+                    <div>
+                        <div class="experience-wrap">
+                            <app-experience [experiences]="experiences"></app-experience>
+                        </div>
+                    </div>
+
+                    <!-- Education -->
+                    <div class="education-wrap" >
+                        <app-education [educations]="education"></app-education>
+                    </div>
+                    <!-- Education end -->
+
+                    <!-- Tools & Technologies -->
+                    <div class="tools-wrap">
+                        <app-tools-technologies [data]="toolsTechnologies"></app-tools-technologies>
+                    </div>
+                    <!-- Tools & Technologies end-->
+
+                    <!-- Skills & Expertise -->
+                    <div class="skills-wrap">
+                        <app-skills-expertise [data]="skillsExpertise"></app-skills-expertise>
+                    </div>
+                    <!-- Skills & Expertise end -->
+
+
+                    <!-- Languages -->
+                    <div class="languages-wrap">
+                        <app-language [dataLanguage]='Languages'></app-language>
+                    </div>
+                    <!-- Languages end -->
+
+                    <!-- Accomplishments -->
+                    <div class="accomplishments-wrap">
+                        <app-accomplishment [data]="accomplishments"></app-accomplishment>
+                    </div>
+                    <!-- Accomplishments end -->
+
+                    <!-- portfolio-starts -->
+
+     
+                    <!-- portfolio-ends -->
+                    <!-- recomendations -->
+                    <div class="recommendations-wrap" *ngIf="isAuth">
+                        <app-recommendations [data]="reccomendations" 
+                                             [isClicked]="true"
+                                             [showMoreData]='showMoreRecommendations'
+                                             >
+                        </app-recommendations>
+                    </div>
+                    <!-- recomendations end -->
+
+                    <!-- Interests -->
+                    <div class="interests-wrap">
+                        <app-interest style="width: 100%;" [data]="interests"></app-interest>
+                    </div>
+                    <!-- Interests end -->
+
+                    </ng-container>
+                </ng-template>
+
+                <router-outlet></router-outlet>
+
+
+            </div>
+
+
+            <!-- Content in the center end -->
+
+            <!-- Content on the right -->
+            <div class="network-ads col-lg-3 col-md-12 user-ads-section-wrapper" *ngIf="!isPortfolio">
+                <div class="user-langs-section-wrapper">
+                    <app-profile-langs (changeLanguage)='getCurrectLanguage($event)' [data]="profileLangs"></app-profile-langs>
+                </div>
+
+                <app-ads [isLeft]="true"></app-ads>
+            </div>
+            <!-- Content on the right end -->
+
+        </div>
+    </div>
+</main>

@@ -1,0 +1,67 @@
+       
+       
+
+                        <!-- Location -->
+  <form [formGroup]='location'>
+      <div class="col-lg-8" style="padding:0px;">                        
+          <div class="d-flex  mt-5">
+              <img src="../../assets/img/60.svg" alt="location">
+              <h5 class="mt-1 ml-2">Location</h5>
+          </div>
+          <p class="pb-0 pt-1" >Where do you provide this service <span style="color: #00D4E3" >*</span> </p>
+      <div class="col-lg-13 ml-4 mt-2">
+          <div class="custom-radio-control custom-radio">
+
+                  <input    type="radio"  
+                            class="custom-control-input"  
+                            name="isRemote" 
+                            id="remotly" 
+                            value="Remote_only"
+                            formControlName='isRemote'>
+                  <label class="custom-control-label" for="remotly">Remote only</label>
+
+          </div>
+      
+          <div class="custom-radio-control custom-radio">
+                  <input type="radio"  
+                         class="custom-control-input" 
+                         name="isRemote" 
+                         id="on-site-work" 
+                         value='On_Site_Work'
+                         formControlName='isRemote'>
+                  <label class="custom-control-label" for="on-site-work">On-site work </label>
+          </div>
+      </div>
+  <ng-container *ngIf='location.get("isRemote").value === "On_Site_Work"' >
+      <div class="row">
+          <div class="col-lg-6  mt-3">
+
+              <input type="text" 
+                    class="form-control" 
+                    placeholder="Enter Country" 
+                    (selectItem)='selectCountry($event)'
+                    [ngbTypeahead]="searchCountry" 
+                    [resultFormatter]="countryFormatter" 
+                    [inputFormatter]="countryFormatter"
+                    class="form-control"
+                    [ngClass]="{ 'is-invalid': locCtrs.country.errors  &&  isSubmitted }"
+                    formControlName='country'>
+
+          </div>
+          <div class="col-lg-6  mt-3">
+
+            <input  type="text" 
+                    class="form-control" 
+                    [ngbTypeahead]="searchCity" 
+                    [inputFormatter]="cityFormatter"
+                    [resultFormatter]="cityFormatter" 
+                    placeholder="Enter City"
+                    [ngClass]="{ 'is-invalid': locCtrs.city.errors  &&  isSubmitted }"
+                    formControlName='city'
+                    [attr.disabled]='!location.get("country").value'>
+        </div>
+      </div>
+  </ng-container>
+  </div>    
+</form>
+

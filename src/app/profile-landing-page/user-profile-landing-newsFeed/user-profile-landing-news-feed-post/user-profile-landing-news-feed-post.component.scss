@@ -1,0 +1,49 @@
+@import "src/variables";
+.post-wrapper {
+    padding: 15px;
+    font-size: 14px;
+    color: $dark-grey;
+    min-height: 270px;
+    .post-header {
+        cursor: pointer;
+      img {
+        height: 35px;
+        width: 35px;
+      }
+      h6 {
+        font-size: 0.8rem;
+        color: $dark-grey;
+      }
+      h4 {
+        font-size: 1rem !important;
+      }
+    }
+    .post-content {
+      @media(max-width:1470px) {
+        flex-direction: column;
+      }
+    }
+    .post-comments {
+      padding-left: 10px;
+        p {
+            margin-bottom: 0;
+        }
+    }
+  }
+  .files_more{
+    background: $dark-blue;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px !important;
+    height: 100px !important;
+
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    
+    font-size: 1.5rem;
+    color:#fff;
+}
+
+

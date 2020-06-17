@@ -1,0 +1,40 @@
+@import "src/variables";
+@import 'src/mixins.scss';
+
+:host ::ng-deep app-file-container.files__row {
+    cursor: pointer;
+    background: #fff;
+    position: relative;
+    margin-right: 5px;
+    &:last-child {
+        margin-right: 0;
+    }
+    img , video { 
+        max-height: 55px;
+        min-height: 55px;
+        width: 55px;
+        opacity: 1;
+        transition: .3s all;
+    }
+    &::after{
+        content: 'x';
+        position: absolute;
+        top: 0;
+        height: 20px;
+        width: 20px;
+        right: 0;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        
+    }
+}
+
+.comment-files-container {
+    overflow-y: auto;
+    padding-bottom: 4px;
+
+    @include thin-scrollbar--horizontal;
+}

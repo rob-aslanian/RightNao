@@ -1,0 +1,121 @@
+/*Import variables file*/
+@import "../../../variables.scss";
+/*END OF Import variables file*/
+
+// ========================================================================
+// Start donation styles
+// ========================================================================
+.donation.container {
+    max-width:627px;
+    color:$dark-blue;
+    margin-bottom:32px;
+    h1 {
+        font-family: above;
+        font-size: 30px;
+        @media #{$break1}{
+            text-align: center;
+            margin:140px auto 60px;
+        }
+        @media #{$break2}{
+            text-align: center;
+            margin:60px auto;
+        }
+        @media #{$break3}{
+            text-align: left;
+            margin:60px auto;
+        }
+    }
+    .form-wrap {
+        margin-top:60px;
+    }
+    h2 {
+        font-size:20px;
+        font-weight:bold;
+        margin-bottom:15px;
+    }
+    label {
+        font-weight:bold;
+        white-space: nowrap;
+    }
+    .custom-checkbox > label {
+        color:$dark-grey;
+        font-size:14px;
+        font-weight: normal;
+    }
+    .custom-checkbox > label:before,  .custom-checkbox > label:after {
+        top:2px;
+    }
+    .custom-checkbox > label::before {
+        background:$background-soft-blue;
+        border: solid 1px $light-grey;
+    }
+    .star {
+        color:$background-light-cyan;
+    }
+    
+    .amount-buttons {
+        display:flex;
+        flex-wrap: wrap;
+        margin:20px 0;
+        a {
+            padding:10px 0;
+            text-align: center;
+            width:80px;
+            font-size: 18px;
+            background:$blue;
+            border-radius:5px;
+            color:white;
+            cursor: pointer;
+            &:hover {
+                color:$background-light-cyan;
+                background:$dark-blue;
+            }
+            margin-right:5px;
+            margin-bottom:5px;
+        }
+    }
+    textarea {
+        resize: none;
+    }
+    .we-accept {
+        margin:20px 0;
+        color:$dark-grey;
+        .cards {
+            margin-top:10px;
+        }
+        a {
+            margin-right:10px;
+            border: solid 1px $light-grey;
+            padding:10px;
+            background: white;
+            border-radius:5px;
+        }
+        img {
+            width: 40px;
+        }
+    }
+    .profile-information {
+        display: flex;
+        margin:20px 0;
+        img {
+            width:70px;
+            height:70px;
+            border-radius:50%;
+        }
+        div {
+            margin-left:10px;
+        }
+        h3 {
+            font-size: 16px;
+        }
+        span {
+            display: block;
+            font-size: 12px;
+            color:$dark-grey;
+        }
+    }
+}
+// ========================================================================
+// Finish donation styles
+// ========================================================================
+

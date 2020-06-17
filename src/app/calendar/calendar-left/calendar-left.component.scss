@@ -1,0 +1,32 @@
+@import "src/variables";
+@import 'src/mixins.scss';
+
+.calendar-left {
+    width: 262px;
+    height: calc(100vh - 60px);
+    background-color: $background-dark-blue;
+    padding: 16px 24px;
+    position: relative;
+    overflow-y: auto;
+    @include thin-scrollbar--vertical;
+
+    &__create {
+        &__btn {
+            border-radius: 20px;
+        }
+    }
+
+    &__icons {
+        position: fixed;
+        bottom: 0;
+        padding-bottom: 24px;
+        background-color: $background-dark-blue;
+        div {
+            margin-right: 28px;
+            &:last-child {
+                margin-right: 10px;
+            }
+            cursor: pointer;
+        }
+    }
+}

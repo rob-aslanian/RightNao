@@ -1,0 +1,35 @@
+<!-- Content in the center -->
+<div class="col"  *ngIf='( sentList | async ) as sendLists'>
+    <div class="center-heading">
+        <h3>Sent requests <span *ngIf='sendLists'> {{ sendLists.length }} </span></h3>
+    </div>
+
+    
+    <div class="center-content-network">
+
+      
+        <div class="network-boxes-container form-row" >
+            <div class="col-lg-4 col-md-6" *ngFor="let item of sendLists" >
+                <div class="network-box">
+                    <div class="network-line-one"></div>
+                    <div class="network-line-two mb-3">
+                        <div class="left">
+                            <img class="profile" [src]="item.friend.avatar == '' ? 'assets/img/124.svg' : '/file/'+item.friend.avatar" alt="profile">
+                        </div>
+                        <div class="right">
+                            <a [routerLink]="['/user/profile/'+item.friend.url]">
+                                <h4>{{ item.friend.first_name +" "+item.friend.last_name }}</h4>
+                            </a>
+                            <span>{{item.friend.last_experience.position}}</span>
+                            <span>{{item.friend.last_experience.company}}</span>
+                            <span class="date" *ngIf='item.created_at'><img src="assets/img/48.svg" alt="date">{{ item.created_at * 1000 | date:'dd/MM/yyyy' }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+</div>
+<!-- Content in the center end -->

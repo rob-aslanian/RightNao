@@ -1,0 +1,82 @@
+@import 'src/variables';
+
+$soft-grey: #EAEDF2;
+
+.review {
+    background: white;
+    padding: 0.8rem;
+    border-radius: 4px;
+}
+
+.review-border {
+    width: 95%;
+    height: 1px;
+    background: $light-grey;
+    margin: 0px auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+.btn-relative {
+   
+     color: $background-dark-cyan !important;
+}
+.most-recent {
+    position: absolute;
+    z-index: 10;
+    background-color: $white;
+    box-shadow: 0 0 20px 0 rgba(0,0,0,.75);
+    right: 13px;
+    border-radius: 5%;
+    width: 205px;
+        button {
+            width: 100%;
+            color: grey;
+            text-align: left;
+            margin-top: 3px;
+  
+            &:hover {
+                background: $soft-grey;
+            }
+        }
+
+}
+ 
+h5 {
+    font-size: 0.9rem !important;
+}
+.review {
+    span {
+        font-size: 0.9rem;
+        color: $dark-grey;
+    }
+}
+
+:host ::ng-deep .stars-rating{
+    img {
+        height: 18px !important;
+        width: 18px !important;
+    }
+}
+
+.profile {
+    img {
+        border-radius: 6px;
+    }
+}
+.user-photo {
+    border-radius: 50% !important;
+}
+.red-ball {
+    background: #FF6633;
+}
+.yellow-ball {
+    background: #00D4E3;
+}
+.blue-ball {
+    background: #FFE552;
+}
+.ball {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+}

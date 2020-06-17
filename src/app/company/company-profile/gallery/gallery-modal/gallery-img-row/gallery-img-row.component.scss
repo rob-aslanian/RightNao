@@ -1,0 +1,73 @@
+
+@import 'src/variables';
+
+.file_content{
+    padding: unset !important;
+    position: relative;
+}
+
+.upload_content_btn{ 
+  border: 1px solid #cccccc;
+  padding: 2px 22px;
+  border-radius: 7px;
+  display: none; 
+}
+.upload_content{
+    width: 100%;
+    max-height: 200px;
+    min-height: 200px;
+
+    border: 2px solid #ccc !important;
+    border-radius: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    &:hover {
+      .upload_content_btn {
+        display: block;
+        cursor: pointer;
+        }
+    }
+}
+
+:host ::ng-deep app-file-container  {
+    img , video{
+      width: 100%;
+      max-height: 200px;
+      min-height: 200px;
+      object-fit: cover;
+    }
+}
+
+.remove{
+    margin-top: unset !important;
+    position: absolute;
+    color: #fff;
+    background-color: $dark-blue;
+    border-radius: 50%;
+    right: 10px;
+    top: 10px;
+    font-weight: bold;
+    width: 25px;
+    height: 25px;
+    font-size: 0.75rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  
+  }
+  
+
+.progress {
+    margin: 24px 0 13px 0;
+    height: 3px;
+    }
+    
+    .progress-bar{
+    background-color: #00D4E3;
+    }
+    

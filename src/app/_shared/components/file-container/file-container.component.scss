@@ -1,0 +1,40 @@
+img , video {
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+.files_row{
+    cursor: pointer;
+    background: #fff;
+    position: relative;
+    min-width: 100px;
+    .not__file{
+        img , video { 
+            max-height: 100px;
+            min-height: 100px;
+            width: 100px;
+            opacity: 1;
+            transition: .3s all;
+        }
+    }
+    
+    &::after{
+        content: 'x';
+        position: absolute;
+        top: 0;
+        height: 20px;
+        width: 20px;
+        right: 0;
+        background: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+    }
+
+    .small__icon{
+        height: 25px;
+        width: 25px;
+    }
+    
+}

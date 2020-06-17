@@ -1,0 +1,78 @@
+<div class="review">
+    <div class="p-3">
+       <div class="profile mb-3">
+            <div class="d-flex">
+                <img [src]="profile.avatar | avatar" alt="avatar" [ngClass]="{'user_photo': !profile.isCompanyActive}">
+                 <div class="profile-info pl-3">
+                     <h6>{{  profile.name }}</h6>
+                     <span>{{ profile.location.city }}, {{ profile.location.country | country }}</span>
+                 </div>
+            </div>
+        </div> 
+
+        <div class="review-satification mt-5">
+              <div class="clarity">
+                <span class="title-satifcation" style="left: 151px;">Very  Unsatisfied</span>
+                <span class="title-satifcation" style="right: 167px;">Very  Satisfied</span>
+                <div class="d-flex align-items-center">
+                        <h6>Clarity in Specifications</h6>
+                        <ng-template #t let-fill='fill'>
+                              <span class="star" [class.full]='fill === 100'>
+                                  <span class="half" [style.width.%]='fill'><img src="assets/img/34.svg" alt="star"></span>
+                              </span>
+                        </ng-template>
+                        <ngb-rating [(rate)]='ratingClarity'  [starTemplate]='t' [readonly]='false' max='5'></ngb-rating>
+                   </div>
+
+                   <div class="d-flex align-items-center mt-3">
+                        <h6>Communication</h6>
+                        <ng-template #t let-fill='fill'>
+                                <span class="star" [class.full]='fill === 100'>
+                                    <span class="half" [style.width.%]='fill'><img src="assets/img/34.svg" alt="star"></span>
+                                </span>
+                        </ng-template>
+                        <ngb-rating [(rate)]='ratingComm'  [starTemplate]='t' [readonly]='false' max='5'></ngb-rating>
+                   </div>
+
+                   <div class="d-flex align-items-center mt-3">
+                        <h6>Payment Promptness</h6>
+                         <ng-template #t let-fill='fill'>
+                                <span class="star" [class.full]='fill === 100'>
+                                    <span class="half" [style.width.%]='fill'><img src="assets/img/34.svg" alt="star"></span>
+                                </span>
+                        </ng-template>
+                        <ngb-rating [(rate)]='ratingPromp'  [starTemplate]='t' [readonly]='false' max='5'></ngb-rating>
+
+                   </div>
+              </div>
+        </div>
+
+        <div class="review-rating mt-3">
+              <h6>Would you work for {{ profile.name }} again?</h6>
+              <div class="form-group">
+                  <div class="d-flex mt-2">
+
+                      <label for="will_hire" ><img src="assets/img/632.svg" alt="hire" [ngClass]="{'selected-hire': hire === 'will_hire' }"></label>
+                      <input type="radio" id="will_hire" name="hire" value="will_hire" title="will hire" [(ngModel)]="hire" >
+
+                      <label for="not_answer" ><img src="assets/img/634.svg" alt="not_answer" title="not answer" style="filter: grayscale(1) opacity(1.5);" [ngClass]="{'selected-hire': hire === 'not_answer' }"></label>
+                      <input type="radio" id="not_answer" name="hire" value="not_answer" [(ngModel)]="hire" >
+
+                      <label for="not_hire" ><img src="assets/img/633.svg" alt="not_hire" title="not hire" [ngClass]="{'selected-hire': hire === 'not_hire' }"></label>
+                      <input type="radio" id="not_hire" name="hire" value="not_hire" [(ngModel)]="hire" >
+
+                  </div>
+              </div>
+
+        </div>
+         <div class="mt-3">
+             <label for="description">Tell people what you think </label>
+             <textarea class="form-control" placeholder="Enter your text here" id="description" rows="6" [(ngModel)]="text"></textarea>
+        </div>
+        <div class="text-right">
+            <button class="btn btn-primary" (click)='submit()'>
+                Submit Review
+            </button>
+        </div>
+    </div>
+</div>    

@@ -1,0 +1,59 @@
+<div class="text-comment__input__comment-wrap mt-3">
+    <div class="text-comment__input__comment">
+        <div class="text-comment__input__comment" [ngClass]="{'new__comment': isNew}">
+            <div class="d-flex justify-content-between" style="height: 37px;">
+                <div class="text-comment__input__comment__info mt-2" *ngIf="(comment.user_profile || comment.company_profile) as profile">
+                    <img [src]="profile.avatar ? '/file/' + profile.avatar : 
+                              profile.company_profile ? 'assets/img/default-company.svg' :
+                            'assets/img/124.svg'" alt="profile-picture">
+                    <h3 class="ml-4 medium-font">
+                        {{ profile.name ? 
+                          profile.name : profile.firstname + ' ' + profile.lastname }}
+                    </h3>
+                </div>
+                <div class="text-comment__input__comment__funct d-flex align-items-center">
+                    <h3 class="mr-3 mb-0 content-small" *ngIf="comment?.created_at">
+                      {{ comment.created_at | date }}
+                    </h3>
+                    <div ngbDropdown *ngIf="(comment.user_profile || comment.company_profile) as profile">
+                      <button class="backgroundless hidden-dropdown-icon" type="button" ngbDropdownToggle>
+                          <img class="mr-3" src="assets/img/107.svg" alt="..." >
+                      </button>
+                   
+
+                      <div class="list-block-list-items" ngbDropdownMenu>
+                          <button *ngIf="ownerID === profile.id" class="backgroundless d-block" (click)="remove(comment.id)">
+                              Delete
+                          </button>
+                          <button class="backgroundless d-block">Report</button>
+                      </div>
+                    </div>  
+                </div>
+
+
+            </div>
+            <div class="col-12">
+                <p class="ml-2 pb-3" *ngIf="comment?.text">{{ comment.text }}</p>
+            </div>
+
+            <app-files-viewer *ngIf="comment?.files" [files]="comment.files"></app-files-viewer>
+
+        </div>
+    </div>
+    <div class="col-5 mt-3 ml-4">
+        <div class="d-flex justify-content-between align-items-center text-comment__input__comment--items"
+            style="max-width: 109px;">
+
+            <app-reaction *ngIf="comment.likes_amount" [postId]="postId" [commentId]="comment.id" [liked]="comment.liked"
+                        [commentLikes]="comment.likes_amount['like'] "></app-reaction>
+
+            <h4 class="m-0 pr-3 grey-item" (click)="reply()">
+                <img src="assets/img/491.svg" alt="comment">
+                {{ comment.replies_amount }}
+            </h4>
+            
+        </div>
+    </div>
+</div>
+
+<app-reply-comments *ngIf="showReply" [comment]="comment" [amount]="comment.replies_amount"></app-reply-comments>

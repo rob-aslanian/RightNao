@@ -1,0 +1,101 @@
+<form [formGroup]="hotelForm" autocomplete="off">
+    <div class="new-home-wrapper">
+            <div class="mt-3">
+                    <app-status-home></app-status-home>
+            </div> 
+     
+            <div class="col-6 pl-0 mt-3">
+                <div class="mt-1">
+                        <label for="total-rooms">Rooms</label>
+
+                        <input type="number" 
+                               id="total-rooms" 
+                               placeholder="Type number of bedrooms" 
+                               formControlName="rooms"
+                               class="form-control"
+                               [ngClass]="{'is-invalid': hotelForm.get('rooms').invalid && isSubmitted}">
+                </div>
+    
+                <div class="mt-1" style="position: relative">
+                        <label for="total-area">Total area</label>
+                        <input type="number" 
+                               id="total-area" 
+                               placeholder="type total area m" 
+                               formControlName="total_area"                               
+                               class="form-control"
+                               [ngClass]="{'is-invalid': hotelForm.get('total_area').invalid && isSubmitted}">
+    
+                        <div class="change-metrics" ngbDropdown>
+                                <button class="btn backgroundless p-0" 
+                                        ngbDropdownToggle
+                                        [ngClass]="{'invalid-custom': hotelForm.get('metrict_type').invalid && isSubmitted}">Change Metrics</button>
+            
+                                <div class="" ngbDropdownMenu>
+                                    
+                                        <div class="custom-control custom-radio">
+                                                <input class="custom-control-input" 
+                                                       type="radio" 
+                                                       id="PriceType_MetreSquare" 
+                                                       name="metrict_type" 
+                                                       value="PriceType_MetreSquare" 
+                                                       formControlName="metrict_type">
+    
+                                                <label class="custom-control-label" for="PriceType_MetreSquare">ft<sup>2</sup></label>
+                                        </div>
+                
+                                        <div class="custom-control custom-radio">
+                                                <input class="custom-control-input" 
+                                                       type="radio" 
+                                                       id="PriceType_FeetSquare" 
+                                                       name="metrict_type" 
+                                                       value="PriceType_FeetSquare" 
+                                                       formControlName="metrict_type">
+    
+                                                <label class="custom-control-label" for="PriceType_FeetSquare">m<sup>2</sup></label>
+                                        </div> 
+                                </div>
+                        </div>
+                </div>
+    
+                <div class="mt-1">
+                        <label for="total-floor">floor</label>
+                        <input type="number" 
+                               id="total-floor" 
+                               placeholder="Type number of bedrooms" 
+                               formControlName="floor"
+                               class="form-control"
+                               [ngClass]="{'is-invalid': hotelForm.get('floor').invalid && isSubmitted}">
+                </div>
+    
+                <div class="mt-1">
+                        <label for="total-floors">floors</label>
+                        <input type="number" 
+                               id="total-floors" 
+                               placeholder="Type number of bedrooms" 
+                               formControlName="floors"                               
+                               class="form-control"
+                               [ngClass]="{'is-invalid': hotelForm.get('floors').invalid && isSubmitted}">
+                </div>
+    
+            </div>
+            <div class="mt-3">
+                <app-more-information></app-more-information>
+            </div>
+            
+            <ng-container  *ngIf="categoryId === 'DealType_Rent'">
+                <app-avilability-home></app-avilability-home>
+            </ng-container>
+            
+        </div>
+    
+        <div class="col-8 pl-0 mt-3">
+                    <app-basic-information></app-basic-information>
+        </div>
+    
+        <div class="d-flex justify-content-between mt-5">
+                <button class="btn  backgroundless" (click)='goBack()'>
+                    Back</button>
+                <button class="btn btn-primary" (click)='logValue()'>
+                    Next</button>
+        </div>
+</form>

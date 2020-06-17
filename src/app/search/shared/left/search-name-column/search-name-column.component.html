@@ -1,0 +1,51 @@
+
+ <div class="search-groups__sidebar-section">
+    <app-search-column-header title="Name">
+        <div class="d-flex justify-content-between align-items-center mt-2">
+           <form  [formGroup]="form" >
+                <ng-container [ngSwitch]="type">
+                    <!-- User -->
+                    <ng-container *ngSwitchCase="'people'" >
+                        <div class="input-container d-flex">
+                            <input type="text" placeholder="Enter full name" class="form-control" formControlName="full_name">
+                            <button class="btn backgroundless search-btn" type="submit">
+                                <img src="assets/img/right-arrow.svg" class="search-groups__sidebar-section__location__img"/>
+                            </button>
+                        </div>
+                        <div class="input-container d-flex mt-2">
+                            <input type="text" placeholder="Enter nickname" class="form-control" formControlName="nickname">
+                            <button class="btn backgroundless search-btn" type="submit">
+                                <img src="assets/img/right-arrow.svg" class="search-groups__sidebar-section__location__img"/>
+                            </button>
+                        </div>
+                    </ng-container>
+
+                     <!-- Company -->
+                     <ng-container *ngSwitchCase="'company'" >
+                            <div class="input-container d-flex">
+                                <input type="text" placeholder="Enter name" class="form-control" formControlName="name">
+                                <button class="btn backgroundless" type="submit">
+                                    <img src="assets/img/147.svg" class="search-groups__sidebar-section__location__img"/>
+                                </button>
+                            </div>
+                            <div class="input-container d-flex mt-2">
+                                <input type="text" (keyup)="searchUser($event)" placeholder="Enter founder name" class="form-control" formControlName="founders_name">
+                                <button class="btn backgroundless search-btn" type="submit">
+                                    <img src="assets/img/right-arrow.svg" class="search-groups__sidebar-section__location__img"/>
+                                </button>
+                            </div>
+                            <div class="popup mt-2"  *ngIf="(users | async) as users">
+                                <ul class="list-group">
+                                    <li class="list-group-item" *ngFor="let user of users" (click)="selectUser(user)">
+                                        <span> {{  user.firstname }} {{ user.lastname }} </span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </ng-container>
+                </ng-container>
+           </form>
+        </div>
+    </app-search-column-header>
+    
+</div>
+

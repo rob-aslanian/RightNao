@@ -1,0 +1,12 @@
+<form [formGroup]="form" class="col-12">
+    <div class="form-group">
+        <p>Price</p>
+        <div formGroupName="price" class="row ml-1 mr-1">
+            <input type="number" 
+            class="form-control col-md-6" 
+            formControlName="amount"
+            [ngClass]="{'is-invalid':form.get('price').invalid && isSubmitted}">
+            <button class="btn backgroundless col-md-3">Change Currency</button>
+        </div>
+    </div>
+</form>

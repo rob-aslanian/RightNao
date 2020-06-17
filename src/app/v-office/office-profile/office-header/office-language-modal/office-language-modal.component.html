@@ -1,0 +1,55 @@
+<form [formGroup]="language">
+<div class="languages-wrapper">
+    <div class="col-12 p-3  pl-0">
+            <div class="d-flex justify-content-between">
+            <label for="language">Language</label>
+            <a (click)='importLanguages()'
+                style="color:#00D4E3; cursor: pointer;" 
+               [ngClass]="{'disabled': isImported }" 
+               *ngIf="!globalUserProService.isCompanyActive()">Insert from profile</a>
+            </div>
+
+                <input type="text" 
+                      [ngbTypeahead]="searchLanguage" 
+                      [resultFormatter]="languageFormatter" 
+                      [inputFormatter]="languageFormatter"
+                      class="form-control"
+                      id='language'
+                      placeholder="Enter Language"
+                      #input
+                      (selectItem)='getLanguage($event, input)'>
+            </div>
+
+            <div class="pt-3 pl-0">
+        
+            <div *ngFor="let lang of language.get('languages')['controls']; let i = index" >
+             <ng-container formArrayName='languages'>
+                <div class="lang ml-3 mr-3 pb-2 row align-items-center" [formGroupName]='i'>
+                    <div class="tool-name col-6">
+                        <h3 class="tool_name m-0" > {{ lang.value.language }} </h3>
+                    </div>
+                    
+                    <div class="tool-level col-5">
+                        <select  class="form-control tools-options"  formControlName="rank"  >                                                                                                               
+                            <option  value = "Level_Begginer" >Begginer</option>
+                            <option  value = "Level_Intermediate">Intermediate</option>
+                            <option  value = "Level_Advanced">Advanced</option>
+                            <option  value = "Level_Master">Master</option>
+                        </select>
+                    </div>
+
+                    <span class="delete-tool col-1" (click) = "removeLanguage(i, lang )" style="cursor: pointer">&#10005;</span>
+                    
+                </div>
+            </ng-container>
+            </div>
+    </div>
+
+    <div class="d-flex justify-content-end mr-3 ml-3 pb-3">
+        <button class="btn btn-primary" (click)='addLanguages()'>
+            Save
+        </button>
+    </div>
+
+</div>
+</form>

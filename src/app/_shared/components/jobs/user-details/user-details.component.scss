@@ -1,0 +1,17 @@
+@import "../../../../../variables";
+
+:host ::ng-deep ngb-rating {
+    span {
+        font-size: 15px;
+        color: $background-dark-cyan;
+        margin: 0 2px;
+    }
+}
+
+.download-document-link {
+    color: $dark-grey;
+    &:hover {
+        color: $dark-grey;
+        text-decoration: underline;
+    }
+}

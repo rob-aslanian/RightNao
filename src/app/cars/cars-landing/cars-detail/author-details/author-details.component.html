@@ -1,0 +1,47 @@
+
+
+        <ng-container *ngIf="!isLoading; else loading">
+                <div class="author">
+                        <div class="d-flex justify-content-center">
+                            <div class="author__img">
+                                    <img [src]="profile.avatar ? profile.avatar : 'assets/img/124.svg'" alt="avatar">
+                            </div>
+                        </div>
+                        <div class="author__name">
+                                <p class="m-0">{{ profile.firstname + " " + profile.lastname }}</p>
+                        </div>
+                        <div class="author__position">
+                            <p>Agent</p>
+                        </div>
+                        <div class="author__raiting d-flex justify-content-center">
+                            <img src="assets/img/215.svg" alt="star" class="mr-2">
+                            <span>4.0/5</span>
+                        </div>
+                        <div>
+                            <div>
+                                <p class="contact-title">Contact agent</p>
+                            </div>
+                            <div *ngIf="profile.phone" class="d-flex align-items-center kustify-content-start">
+                                <img src="assets/img/16.svg" alt="phone">
+                                <p class="m-0 ml-1">  +{{ profile.phone }}</p>
+                            </div>
+                            <div *ngFor="let item of phones"  class="d-flex align-items-center kustify-content-start">
+                                    <img src="assets/img/16.svg" alt="phone">
+                                    <p  class="m-0 ml-1">  {{ item }}</p>
+                            </div>
+                            <button class="btn"(click)="message()"  [ngClass]="{ 'has_reppossed': isMe }">
+                                <img src="assets/img/41.svg" alt="">
+                                Message
+                            </button>
+                            
+                        </div>
+                        <div class="author__all mt-4">
+                            <p>See all post (215)</p>
+                        </div>
+                    </div>
+        </ng-container>
+        <ng-template #loading>
+            <div class="d-flex justify-content-center">
+                <app-spinner></app-spinner>
+            </div>
+        </ng-template>

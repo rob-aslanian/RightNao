@@ -1,0 +1,32 @@
+@import "src/variables";
+@import 'src/mixins.scss';
+
+.add-calendar {
+    &__field {
+        margin-bottom: 30px;
+        label {
+            font-size: $large-text;
+            color: $dark-blue;
+        }
+    }
+
+    .form-control.calendar-input {
+        border: none;
+        background-color: $input-grey;
+        color: $dark-grey;
+        height: 32px;
+
+        &:focus {
+            box-shadow: unset;
+        }
+    }
+}
+.callendar-custom-radio-label {
+    @include calendar-colored-bullets(20px, 20px, 14px, 12px);
+}
+.callendar-custom-radio {
+    height: 0;
+    width: 0;
+    position: absolute;
+    top: 0;
+}

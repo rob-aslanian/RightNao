@@ -1,0 +1,42 @@
+<form autocomplete="off" style="position: relative;" [formGroup]="totalArea">
+
+        <app-radio-home [ctrl]='layout' 
+                        [data]='PropertyType_Garages.layot' 
+                        [title]='"Layout"'></app-radio-home>
+
+        <div class="mt-3">
+                <app-radio-home [ctrl]='buildingUse' 
+                                [data]='PropertyType_Garages.building_use' 
+                                [title]='"Building use"'></app-radio-home>
+        </div>
+
+        <div class="mt-3">
+                <app-status-home></app-status-home>
+        </div>
+
+        <div class="mt-3 pl-0">
+                <app-total-area></app-total-area>
+        </div>
+
+        <div class="mt-3">
+            <app-avilability-home></app-avilability-home>
+        </div>
+
+        <div class="mt-3">
+            <app-more-information></app-more-information>
+        </div>
+        <div class="col-8 pl-0">
+            <app-basic-information></app-basic-information>
+        </div>
+        
+
+        <div class="mt-3">
+            <div class="d-flex justify-content-between mt-5">
+                    <button class="btn  backgroundless" (click)='goBack()'>
+                        Back</button>
+                    <button class="btn btn-primary" (click)='logValue()'>
+                        Next</button>
+            </div>
+        </div>
+
+</form>

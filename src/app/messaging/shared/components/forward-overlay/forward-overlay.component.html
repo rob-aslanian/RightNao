@@ -1,0 +1,12 @@
+<div class="modalPhoto-drop_body">
+  <div class="modalPhoto-drop-forward">
+    <a class="close" (click)="closeOverlay()">&#10005;</a>
+    <h2>Forward in separate message </h2>
+    <div style="padding: 2px">
+      <app-search-n-select [selectedItems]="selectedItems"></app-search-n-select>
+    </div>
+    <div class="d-flex justify-content-end">
+      <button (click)="forwardPhoto()" class="btn btn-primary">Send</button>
+    </div>
+  </div>
+</div>

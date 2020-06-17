@@ -1,0 +1,17 @@
+<div class="search-groups__sidebar-section">
+    <app-search-column-header title="Age">
+        <div class="d-flex justify-content-between align-items-center mt-2">
+            <form [formGroup]="form" class="d-flex">
+                <div class="input-container d-flex justify-content-between">
+                    <input type="number" placeholder="From" class="form-control" formControlName="minAge">
+                    <input type="number" placeholder="To" class="ml-2 form-control" formControlName="maxAge">
+                </div>
+                <div>
+                    <button class="btn backgroundless search-btn">
+                        <img src="assets/img/right-arrow.svg" class="search-groups__sidebar-section__location__img"/>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </app-search-column-header>
+</div>

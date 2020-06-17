@@ -1,0 +1,92 @@
+<div class="ads-banner-cont">
+  <div class="ads-dBlue-title">
+    <img src="./assets/img/196.svg" alt="ico">
+    Advertisement Details
+  </div>
+
+  <form [formGroup]="bannerForm">
+      <div class="form-group ads-custom-formS">
+          <label for="name">Advertisement Name <span>*</span></label>
+          <input type="text" id="name" formControlName="name" placeholder="Enter campaign name" class="form-control">
+        </div>
+      
+        <div class="form-group ads-custom-formS ads-section">
+          <label for="url">Destionation URL
+            <span>*</span></label>
+          <input type="url" id="url"  formControlName="destination_url" placeholder="Enter website URL" class="form-control">
+        </div>
+      
+        <div class="form-group ads-section">
+          <h3 class="ad-details__title mb-3">Advertisement Format <span class="ad-details__title-star">*</span></h3>
+          <div class="custom-control custom-radio">
+            <input type="radio" name="is_responsive" class="custom-control-input" [value]="false" id="not_response"
+                    formControlName="is_responsive" >
+            <label class="custom-control-label" for="not_response">
+              <div class="top">
+                <img src="assets/img/310.svg" alt="" class="ad-details-icon">
+                <span class="ad-details__title">Image Ad</span>
+              </div>
+              <p class="ad-details__description mt-1">Upload image ads after you create them outside of HyperCube. Supported file types: JPG, PNG</p>
+            </label>
+          </div>
+      
+          <div class="custom-control custom-radio">
+            <input type="radio" name="is_responsive" class="custom-control-input" [value]="true" id="responsive"
+                   formControlName="is_responsive">
+            <label class="custom-control-label" for="responsive">
+              <div class="top">
+                <img src="assets/img/311.svg" alt="" class="ad-details-icon">
+                <span class="ad-details__title">Responsive Ad</span>
+              </div>
+              <p class="ad-details__description mt-1">Create responsive ads by uploading images and writing text. Responsive ads will automatically 
+                  adjust their size, appearance and format to fit ad space.</p>
+            </label>
+          </div>
+      
+        </div>
+      
+        <div class="form-group ads-section">
+            <h3 class="ad-details__title mb-3">Create Content <span class="ad-details__title-star">*</span></h3>
+            <div class="content__box col-sm-4">
+                <div class="content__box__main" *ngIf="content" [ngClass]="{'full-image-container': !isResponsive}">
+                    <img [src]="content._image" [ngClass]="{'full-image': !isResponsive}" class="content__box__main__img">
+                    <div class="content__box__main__content ml-2" *ngIf="isResponsive">
+                       <h4 *ngIf="content?.title">{{ content.title }}</h4>
+                       <p *ngIf="content?.description">{{ content.description }}</p>
+                    </div>
+                </div>
+                <button class="content__box__btn btn" type="button" 
+                        (click)="open('content')" *ngIf="!content">
+                    Create Content
+                </button>
+            </div>
+        </div>
+  </form>
+
+
+  <!-- Start banners footer -->
+  <div class="ads-banners-foot">
+    <div>
+      <button type="button" class="backgroundless" (click)="back.emit(true)">back</button>
+    </div>
+    <div>
+      <button class="backgroundless" (click)="open('review')">Review</button>
+      <button class="backgroundless" (click)="saveDraft()">Save as Draft</button>
+      <button class="btn btn-primary btn-primary--high" (click)="publish()">Publish</button>
+    </div>
+  </div>
+  <!-- End banners footer -->
+</div>
+
+<app-modal (closeModal)="modalType = null">
+      <!-- Create content modal -->
+      <app-create-content *ngIf="modalType === 'content'" (result)="getContent($event)"
+                            [isResponsive]="isResponsive">
+      </app-create-content>
+
+      <!-- Review Modal -->
+      <app-ads-review-modal *ngIf="modalType === 'review'" type="banner" (result)="getReview($event)"
+                            [data]="adsForReview" [isResponsive]="isResponsive">
+
+      </app-ads-review-modal>
+</app-modal>

@@ -1,0 +1,31 @@
+<div class="comments-wrapper">
+    <div class="d-flex justify-content-between mt-3">
+        <div class="likes" >
+            <ng-container *ngIf="portfolio.like_count > 0">
+                <img src="assets/img/99.svg" alt="like" style="width: 14px;">
+                <a class="pl-2"> {{ portfolio.like_count }} </a>
+            </ng-container>
+        </div> 
+        <div class="comments  pl-5">
+            <a (click)='isAddCommentOpen = !isAddCommentOpen'>{{ amountComments }} comments | </a>
+            <a>{{ portfolio.view_count }} views </a>
+        </div>
+    </div>
+
+    <div class="mt-3 d-flex">
+        <div class="add-likes" (click)="likeUnlikeUserPortfolio( portfolio.has_liked )">
+            <img [src]="portfolio.has_liked ? 'assets/img/99.svg' : 'assets/img/44.svg'" alt="like" style="cursor: pointer;  width: 19px;">
+            <a class="pl-2"> Like </a>
+        </div>
+        <div class="add-comments pl-3">
+            <img src="assets/img/41.svg" alt="commnet" style="cursor: pointer">
+            <a class="pl-2" (click)='isAddCommentOpen = !isAddCommentOpen'>Comment </a>
+        </div>
+    </div>
+</div>
+
+<ng-container *ngIf="isAddCommentOpen">
+    <div class="add-comment-wrapper p-4 mt-3">
+        <app-portfolio-comments [owner_id]='userId' [portfolio_id]='portfolio.id'></app-portfolio-comments>
+    </div>
+</ng-container>

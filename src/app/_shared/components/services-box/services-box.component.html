@@ -1,0 +1,66 @@
+<div  [ngClass]="{'card-view': isCardView, 'list-view':  !isCardView}" >
+  <div class="add-service-box boxes mb-3"  [ngClass]="{'list-box-padding': !isCardView }" >
+
+    <div class="row" (click)="adClick($event , service)">
+
+        <div [ngClass]="{'col-md-4': !isCardView, 'col-12': isCardView }">
+            <span class="ad" *ngIf="service?.isAd">Ad</span>
+            <ng-container *ngIf="service.files.length > 0">
+                <img [src]="'/file/'+service.files[0]['address']" alt="add" class="view-box-img" [routerLink]="['/v-office', 'service-detailed', service.id, service.officeID]">
+            </ng-container>        
+        </div>
+        
+        <div [ngClass]="{'col-8': !isCardView, 'col-12': isCardView }">
+            
+            <div class="info" [ngClass]="{'pl-3 pt-3': isCardView }">
+                    <span>{{ service.title }}</span>
+
+                    <p class="price" *ngIf="service.price !== 'Price_Negotiable'">{{  service.currency }} {{  service.fixed_price_amount }}</p>
+
+                    <p class="price" *ngIf="service.price === 'Price_Negotiable'">{{  service.currency }} {{ service.min_price_amount }}  - {{ service.max_price_amount }} <small>/hr</small></p>
+                    
+
+                    <ng-container *ngIf="!isCardView">
+                        <ng-container *ngFor="let skill of service.additional_details.qualifications.skills">
+                                <span class="skill-service">{{ skill.skill }}</span>
+                        </ng-container>
+                    </ng-container>
+
+                    <div class="profile">
+                     <div class="empty-content" *ngIf="loading"></div>
+                     <ng-container *ngIf="!loading">
+                       <div class="d-flex">
+                        <img   [src]="profileInfo.avatar | avatar: profileInfo.isCompanyActive" alt="avatar" [ngClass]="{'user-photo': !isCompanyActive}"> 
+                           <div class="right-side pl-3">
+                               <span style="margin-bottom: 0.4rem; cursor: pointer;" 
+                                   [routerLink]="[ profileInfo.isCompanyActive ? 
+                                                   '/company/profile/'+profileInfo.url : 
+                                                   '/user/profile/'+profileInfo.url ]" >
+                                                   {{ profileInfo.isCompanyActive ? profileInfo.name : profileInfo.firstname + " " + profileInfo.lastname }}
+                               </span>
+                               <div class="stars">
+                                   <app-stars-rating [avgNumber]='4'></app-stars-rating>
+                               </div>
+                           </div>
+                      </div>
+
+                        <div class="d-flex">
+                            <span style="padding-left: 48px;" >Remote
+                             <span *ngIf="service.location.city.city">
+                                \ {{ service.location.city.city  }},
+                            </span>  {{ service.location.country.country | country }}</span>
+                        </div>
+                        <div class="text-right" style="min-height:26px; ">
+                            <ng-container *ngIf="profileId !== service.companyID && profileId !== service.userID">
+                                <button class="backgroundless" (click)='saveOrUnsaveService(service.has_liked)'>
+                                    <img [src]="service.has_liked ? 'assets/img/99.svg' : 'assets/img/44.svg'" alt="heart" style="height: 14px;">
+                                </button>
+                            </ng-container>
+                        </div>
+                        </ng-container>
+                    </div>
+            </div> 
+        </div>
+    </div>
+</div>
+</div>      

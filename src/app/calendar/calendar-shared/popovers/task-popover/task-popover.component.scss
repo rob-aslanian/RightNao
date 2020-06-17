@@ -1,0 +1,83 @@
+@import "src/variables";
+@import 'src/mixins.scss';
+
+.tasks-popover {
+    @include calendar-popover($width: 440px);
+
+    &__heading {
+        display: flex;
+        margin-bottom: 10px;
+        &__title {
+            font-size: 20px;
+            color: $dark-blue;
+            font-weight: 400;
+            margin-bottom: 5px;
+        }
+
+        &__icon {
+            display: inline-block;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 18px;
+            width: 22px;
+            margin-right: 10px;
+            margin-top: 3px;
+        }
+
+        &__task-icon {
+            background-image: url("../../../../../assets/img/615.svg");  
+        }
+
+        &__reminder-icon {
+            background-image: url("../../../../../assets/img/153.svg");
+            background-size: 18px;
+        }
+
+        &__date {
+            color: $dark-grey;
+            font-size: $medium-text;
+        }
+
+    }
+    &__footer {
+        padding-top: 16px;
+        border-top: 1px solid $input-grey;
+
+        &__options {
+            display: flex;
+            align-items: center;
+            button {
+                height: 19px;
+                width: 19px;
+                padding-right: 28px;
+                display: block;
+
+                &:last-child {
+                    padding: 0;
+                    margin-right: -8px;
+                }
+            }
+
+            &__edit {
+                background-image: url("../../../../../assets/img/19.svg");
+                background-repeat: no-repeat;
+                background-position: center;
+                background-size: 16px;
+            }
+            &__delete {
+                background-image: url("../../../../../assets/img/53.svg");
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            &__more {
+                background-image: url("../../../../../assets/img/107.svg");
+                background-repeat: no-repeat;
+                background-position: center;
+                transform: rotate(90deg);
+                height: 19px;
+                width: 19px;
+                padding-right: 22px;
+            }
+        }
+    }
+}

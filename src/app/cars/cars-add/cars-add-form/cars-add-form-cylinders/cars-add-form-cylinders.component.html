@@ -1,0 +1,17 @@
+
+
+    <form [formGroup]="form" class="col-md-5">
+        <div class="form-group">
+                <label  for="selectBrand" class="label-control"> Cylinders </label>
+                <select name="cylinders"
+                        id="selectCylinders" 
+                        class="form-control"
+                        (change)="parseToInt($event, 'cylinders')">
+                    <option value="" disabled>Select cylinders</option>
+                    <option [value]="item" 
+                            *ngFor="let item of cylindersAmount">
+                                {{ item }} Cylinders 
+                    </option>
+                </select>
+            </div>
+    </form>

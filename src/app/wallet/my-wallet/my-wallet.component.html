@@ -1,0 +1,96 @@
+
+<div class="currencyCards {{ prevView }}">
+        <button class="btn nextSlideBtn prevBtn" (click)="nextSlide()"  *ngIf="prevBtn"> 
+                        <img src="assets/img/right-arrow.svg" alt="">
+        </button>
+        <div class="d-flex currencyCardsWrapper">
+                        <app-currency-card (click)="currencyInfoModal(currency)" *ngFor="let currency of sliderItems" [currency]="currency"></app-currency-card>
+        </div>
+        <button class="btn nextSlideBtn" (click)="nextSlide()" *ngIf="!prevBtn"> 
+                <img src="assets/img/right-arrow.svg" alt="">
+        </button>
+</div>
+        
+
+<div class="transactions">
+    <h3 class="transactions-title">
+        Last Transactions
+    </h3>
+
+
+
+
+
+    <div class="transactions-list">
+                <!-- <app-infinity-scroll (scrolled)="scroll()"> -->
+                      <!-- <div class="row"> -->
+                                <ul class="transactions-item row align-items-center" *ngFor="let item of transactions">
+                                        <li class="transactions-item-images col-12 col-md-1">
+                                                <img src="assets/img/wallet/transactions/Gold HyperCoins.svg" alt="" *ngIf="item['wallet_amount']['gold_coins']>0">
+                                                <img src="assets/img/wallet/transactions/Silver HyperCoins.svg" alt="" *ngIf="item['wallet_amount']['silver_coins']>0">
+                                                </li>
+                                        <li class="transactions-item-date col-12 col-md-2"> {{ item.transition_at | date  }} </li>
+                                        <li class="transactions-item-info col-12 col-md-4">
+                                                <img src="assets/img/wallet/transactions/{{item['status']}}.svg" alt="">
+                                                <span> {{ item['description'] }} </span>
+                                        </li>
+                                        <li class="transactions-item-type col-12 col-md-3">
+                                                <span> 
+                                                        {{ transactionType[item['transaction_type']] }} 
+                                                </span>
+                                        </li>
+                                        <li class="transactions-item-count col-12 col-md-2 d-flex align-items-center justify-content-end {{ item['status'] }}" >
+                                                <span>
+                                                        +{{ item['amount'] }} HPC 
+                                                </span> 
+                                                <img src="assets/img/wallet/147.svg" alt="" class="moreInfoButton" (click)="transactionInfoModal(item)" >
+                                        </li>
+                                </ul>
+                      <!-- </div> -->
+                <!-- </app-infinity-scroll> -->
+            </div>
+            <app-spinner *ngIf="isLoaded" class="d-flex align-items-center justify-content-center mb-4"></app-spinner>
+
+
+
+        <div class="d-flex justify-content-end" *ngIf="!(first + 12 > this.amount) && (first < amount && !isLoaded)">
+                <button class="btn-primary transactions-btn" 
+                (click)="showMoreTransactions()">
+                        <span *ngIf="!infinityScroll"> Transactions History </span> 
+                        <span *ngIf="infinityScroll"> Show more </span>
+                </button>
+        </div> 
+
+</div>
+
+
+
+
+
+
+
+
+
+<!-- test -->
+<!-- <ng-container  *ngIf="infinityScroll">
+                <app-infinity-scroll (scrolled)="scroll()" *ngIf="infinityScroll">
+                </app-infinity-scroll>
+</ng-container> -->
+<!-- test -->
+
+
+
+
+
+
+
+
+<app-modal (closeModal)="modalType = null">
+        <ng-container *ngIf=" modalType  && modalType === 'transactionInfo' " >
+                <app-transaction-info  (onClose)="onClose()"></app-transaction-info>
+        </ng-container>
+        <ng-container *ngIf=" modalType  && modalType === 'currencyInfo' " >
+                <app-currency-info (onClose)="onClose()" [currency] = "currency"></app-currency-info>
+        </ng-container>
+</app-modal>
+

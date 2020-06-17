@@ -1,0 +1,98 @@
+<div class="feed-box no-padding mb-3" style="height: 4rem;">
+  <div class="row align-items-center pl-3 pr-3" style="height: 100%;">
+    <div class="col-9">
+      <button class="no-padding-margin btn backgroundless" (click)="open()">Create a post</button>
+    </div>
+    <div class="col-3">
+      <div class="d-flex justify-content-between">
+        <!-- Image -->
+        <input type="file" id="image" multiple accept="image/*" class="d-none" (change)="loadFile($event , 'image')">
+        <label for="image" class="mb-0">
+          <img src="assets/img/275.svg" alt="image">
+        </label>
+        <!-- Image -->
+
+        <!-- Video -->
+        <input type="file" id="video" multiple accept="video/*" class="d-none" (change)="loadFile($event , 'video')">
+        <label for="video" class="mb-0">
+          <img src="assets/img/276.svg" alt="video">
+        </label>
+        <!-- Video -->
+
+        <!-- All File -->
+        <input type="file" id="files" class="d-none" multiple (change)="loadFile($event , 'other')"
+               accept=".xlsx,.xls,.doc,.docx , .ppt , .pptx , .txt , .pdf">
+        <label for="files" class="mb-0">
+          <img src="assets/img/277.svg" alt="files">
+        </label>
+        <!--  All File -->
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal-->
+<app-modal (closeModal)="close()">
+  <div *ngIf="isOpen">
+    <div class="post-news">
+      <div class="post-news-headline">
+        <div class="col-12">
+          <div class="row">
+            <div class="col-2 pr-0" style="max-width: 15%">
+              <img [src]="profileAvatar" alt="company-logo"
+                   [ngClass]="{'user-photo': !isCompany , 'company-photo' : isCompany}">
+            </div>
+            <div class="col d-flex align-items-center pl-0">
+              <h2 *ngIf="profileName">{{  profileName }}</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <form (ngSubmit)="submit()">
+        <div class="col-12">
+          <div class="col-12 mt-4 p-0">
+            <textarea class="form-control text no-border" cols="30" rows="5"
+              placeholder="What would you like to share?" [formControl]="textControl"></textarea>
+          </div>
+          <div class="col-12 p-0 d-flex post-news__img-container" *ngIf="files && files.length > 0">
+            <app-file-container [hasClass]="true" class="file_row" [file]="file" *ngFor="let file of files; let idx = index"
+                                (click)="removeFile(idx)">
+            </app-file-container>
+          </div>
+        </div>
+
+        <div class="col-12">
+          <div class="files-wrapper">
+            <div class="d-flex justify-content-between align-items-center mt-3">
+              <div class="files">
+                <!-- Image -->
+                <input type="file" id="image" accept="image/*" multiple class="d-none" (change)="loadFile($event)">
+                <label for="image" class="mb-0 pl-0 mr-3" [ngClass]="{'disable__btn': fileType !== 'none' && fileType !== 'image'}">
+                  <img src="assets/img/275.svg" alt="image">
+                </label>
+                <!-- Image -->
+
+                <!-- Video -->
+                <input type="file" id="video" accept="video/*"  multiple class="d-none" (change)="loadFile($event)">
+                <label for="video" class="mb-0 pl-0 mr-3" [ngClass]="{'disable__btn': fileType !== 'none' && fileType !== 'video'}">
+                  <img src="assets/img/276.svg" alt="video">
+                </label>
+                <!-- Video -->
+
+                <!-- All File -->
+                <input type="file" id="files" class="d-none" multiple (change)="loadFile($event)">
+                <label for="files" class="mb-0 pl-0 mr-3" [ngClass]="{'disable__btn': fileType !== 'none' && fileType !== 'other'}">
+                  <img src="assets/img/277.svg" alt="files">
+                </label>
+                <!--  All File -->
+              </div>
+              <button class="btn btn-primary pr-4 pl-4 mt-0" type="submit">Post</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</app-modal>
+<!-- Modal -->

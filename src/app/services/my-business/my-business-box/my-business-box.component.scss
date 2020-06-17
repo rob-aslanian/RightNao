@@ -1,0 +1,121 @@
+
+   .busniess-header {
+      background: #264361;
+      border-radius: 5px;
+      padding: 1rem;
+      span {
+           color: #fff;
+           padding-left: 26px;
+           vertical-align: middle;
+           font-size: 20px;
+      }
+   }
+   .busniess-boxes-wrapper {
+       .busniess-box {
+           margin-top: 14px;
+           background: #fff;
+           height: 100px;
+           border-radius: 5px;
+           padding-top: 5px;
+           padding-right: 10px;
+           padding-left: 10px;
+           position: relative;
+ 
+           p {
+                margin: 0px;
+                font-size: 18px;
+            }
+               .profile-photo {
+                   width: 84px;
+                   height: 84px;
+                   border-top-left-radius: 5px;
+               }
+               .profile-info {
+                   width: 60%;
+                    span {
+                        font-size: 14px;
+                        color: #808080;
+                    }
+                    p {
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                        cursor: pointer;
+                    }
+
+               }
+       }
+   }
+
+
+.office-profile-photo {
+   border-bottom-right-radius: 50%;
+   border-top-right-radius: 5px;
+   border-bottom-left-radius: 5px;
+}
+
+.shop-profile-photo {
+   border-top-right-radius: 50%;
+   border-bottom-right-radius: 5px;
+   border-top-left-radius: 5px;
+}
+
+.more-dots {
+   width: 17px;
+   height: 5px; 
+   cursor: pointer;
+   font-weight: 500;
+}
+
+.disabled {
+     &::before{
+        content: "Deactivated";
+        position: absolute;
+        height: 23px;
+        width: 138px;
+        left: -21px;
+        top: 21px;
+        transform: rotate(-37deg);
+        font-size: 14px;
+        text-align: center;
+        background-color: transparent;
+        color: #fff;
+        z-index: 3;
+        border-bottom: 23px solid #264361;
+        border-left: 18px solid transparent;
+        border-right: 30px solid transparent;
+     }
+
+     .items {
+         opacity: .5;
+     }
+}
+
+.dots {
+    position: absolute;
+    top: -69px;
+    right: 0px;
+}
+
+ .dropdown-menu {
+    left: -75px !important;
+    min-width: 8rem;
+    color: #808080;
+}
+
+.options {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+a {
+    color: inherit !important;
+    cursor: pointer;
+}
+.more-dots {
+   position: absolute;
+   right: 10px;
+   z-index: 10;
+   top: 8px;
+}
+.out {
+    opacity: .5;
+}

@@ -1,0 +1,103 @@
+/*Import variables file*/
+@import "../../../variables.scss";
+/*END OF Import variables file*/
+
+// ========================================================================
+// Start global jobs styles
+// ========================================================================
+.dark-blue-bg-for-jobs {
+    width:100%;
+    background-color: $dark-blue;
+    h1 {
+        font-family: above;
+        color: white;
+        align-self: center;
+        margin-bottom: 0;
+        font-size:30px;
+        @media #{$break1}{
+            text-align: center;
+        }
+        padding: 14px 0;
+    }
+    h2 {
+        color:white;
+        margin-bottom: 0;
+        font-size: 25px;
+        // margin:auto;
+    }
+    .backgroundless {
+        font-size: 20px;
+    }
+    .background-content-wrap {
+        max-width: 1447px;
+        margin: auto;
+        padding:0 110px;
+    }
+}
+.big-screen {
+    @media #{$break1}{
+        display: none;
+    }
+    @media #{$break2}{
+        display: block;
+    }
+    @media #{$break3}{
+        display: block;
+    }
+}
+.small-screen {
+    padding:40px 20px 10px;
+    justify-content: space-between;
+    align-items: center;
+    a {
+        text-align:center;
+        text-decoration: none;
+        color:$background-light-cyan;
+    }
+    h2 {
+        height:30px;
+        max-width:60vw;
+        white-space: nowrap;
+        overflow:hidden;
+        text-overflow: ellipsis;
+        position: absolute;
+        left:50%;
+        transform: translate(-50%);
+    }
+    img {
+        height:30px;
+    }
+    @media #{$break1}{
+        display:flex;
+    }
+    @media #{$break2}{
+        display: none;
+    }
+    @media #{$break3}{
+        display: none;
+    }
+}
+    
+.container.jobs {
+    max-width: 1257px;
+    h1,h2,h3,h4,h6 {
+        color: $dark-blue;
+    }
+    flex-wrap: wrap;
+    @media #{$break1}{
+        padding: 0;
+    }
+    @media #{$break2}{
+        padding-top: 20px;
+    }
+    @media #{$break3}{ 
+        padding-top: 20px;
+    }
+    h5 {
+        color:$dark-blue;
+    }
+}
+
+a#gotoJobs {
+    float: right;
+}

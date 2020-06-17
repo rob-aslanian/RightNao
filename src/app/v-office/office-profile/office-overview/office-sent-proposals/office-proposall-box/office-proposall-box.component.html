@@ -1,0 +1,41 @@
+<div class="proposal-box mb-3">
+     <div class="proposal-box-headline d-flex justify-content-between">
+        <span>{{  proposal.message }}</span>     
+        <div class="box-content-price">
+           <p class="price" *ngIf="proposal.price_type !== 'Price_Negotiable'">{{  proposal.currency }} {{ proposal.price_amount }}</p>
+           <p class="price" *ngIf="proposal.price_type === 'Price_Negotiable'">{{  proposal.currency }} {{ proposal.min_price }}  -  
+                                                                               {{  proposal.max_price }} <small>/hr</small>
+           </p>
+        </div>
+     </div>
+
+     <div class="proposal-box-content">
+        <p>{{ proposal.service.title }}</p>                 
+        <div >
+           <p class="price" *ngIf="proposal.service.price_type !== 'Price_Negotiable'">{{  proposal.service.currency }} {{ proposal.service.fixed_price_amount }}</p>
+           <p class="price" *ngIf="proposal.service.price_type === 'Price_Negotiable'">{{  proposal.service.currency }} {{ proposal.service.min_price }}  - 
+                                                                                       {{  proposal.service.max_price }} <small>/hr</small>
+           </p>                               
+        </div>
+
+        <p>
+                {{ proposal.service.description }}
+        </p>
+
+        <div class="d-flex justify-content-between align-items-center w-75 additional-information">
+                <div class="delivery">
+                     <img src="assets/img/492.svg" alt="delivery">
+                     <span class="pl-3">{{ deliveryTime[proposal.delivery_time] }}</span>
+                </div>
+                <div class="expire">
+                     <img src="assets/img/expire.svg" alt="expire">
+                     <span class="pl-3"> Will expire in  {{ proposal.expertaion_time  }} days </span>
+                </div>
+                <div class="sent-by">
+                     <img src="assets/img/264.svg" alt="sent-by">
+                     <span class="pl-3">Sent by Anastasia Richardson</span>
+                </div>
+        </div>
+         
+     </div>
+</div>

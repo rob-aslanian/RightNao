@@ -1,0 +1,154 @@
+<!-- Content in the center -->
+ 
+
+<div class="service-container">
+  <div class="col-lg-12 mt-1 ">
+    <div class="row">
+      <div class="bg-white">
+        <div class="col-12 mt-2 modern-design">
+          <!-- Title -->
+          <div class="col-12">
+           <div class="section-header1 d-flex">
+               <h4 style="margin-left: -15.2px;" class="title">Services ({{ servicesIds.length }})</h4>
+        
+                <div class="slider-buttons col" style="margin-right: -15.2px;">
+                  <div class="d-flex justify-content-end">
+         
+                  <span class="mr-2">{{ selectedIndex + 1 }} of {{ servicesIds.length }}</span>
+         
+                  <div (click)='previusService()' class="arrow arrow-right d-flex justify-content-center align-items-center mr-2">
+                    <img src="assets/img/509.svg" alt="arrow-left" />
+                  </div>
+                  
+                  <div (click)='nextService()' class="arrow arrow-left d-flex justify-content-center align-items-center">
+                    <img src="assets/img/508.svg" alt="arrow-right" />
+                  </div>
+                  
+                </div>
+              </div>
+            </div>
+            <hr style="margin-left: -15.2px;">
+          </div>
+          <div class="col-12">
+            <ng-container *ngIf="service.title">
+              <div class="d-flex justify-content-between" >
+                <h2 class="title">{{ service.title }}</h2>
+                  <img [src]="!service.has_liked ? 'assets/img/44.svg' : 'assets/img/99.svg'" alt="like" (click)='likeOrUnlike( service.has_liked )' style="cursor: pointer" *ngIf="!isMe">
+                  <ng-container *ngIf="isMe">
+                      <img src="assets/img/19.svg" alt="like" [routerLink]="['/v-office', 'edit-service', officeId, serviceId ]"   style="cursor: pointer" >
+                  </ng-container>   
+              </div>
+            </ng-container>
+          </div>
+
+          <!-- Title -->
+          
+
+          <!-- Money Money -->
+ 
+          <!-- Price Fixed -->
+          <ng-container *ngIf="service.price === 'Price_Fixed'">
+              <h3 class="bold">{{ service.fixed_price_amount }}$</h3>
+          </ng-container>
+
+          <ng-container *ngIf="service.price === 'Price_Hourly'">
+              <h3 class="bold">{{ service.fixed_price_amount }}$<span style="font-size: .9rem">/hr</span></h3>
+          </ng-container>
+          <!-- Price Fixed -->
+
+          <!-- Price Hourly -->
+          <ng-container *ngIf="service.price === 'Price_Negotiable'">
+              <h3 class="bold">{{ service.min_price_amount }} - {{ service.max_price_amount }}<span style="font-size: .9rem">/hr</span></h3>
+          </ng-container>
+          <!-- Price Hourly -->
+          
+          <!-- Money Money -->
+          <div class="row pl-3">
+            <!-- Price -->
+            <ng-container *ngIf="service.price">
+              <div class="services__remote">
+                <img src="assets/img/24.svg" alt="remote" />
+                <span class="pl-2">{{ price[service.price] }}</span>
+              </div>
+            </ng-container>
+            <!-- Price -->
+ 
+            <!-- DeliveryTime -->
+            <ng-container *ngIf="service.delivery_time">
+              <div class="services__delivery ml-4">
+                <img src="assets/img/492.svg" alt="delivery" />
+                <span class="pl-2"> {{ deliveryTime[service.delivery_time] }} </span>
+              </div>
+            </ng-container>
+            <!-- DeliveryTime -->
+          </div>
+        </div>
+ 
+
+    <ng-container *ngIf='service.files && service.files.length > 0'>
+        <app-service-slider-edition-two [files]='service.files'> </app-service-slider-edition-two>
+    </ng-container>
+    
+        <div class="col-12 mt-3">
+          <!-- Description -->
+          <ng-container *ngIf="service.description">
+            <p>
+              {{ service.description }}
+            </p>
+          </ng-container>
+          <!-- Description -->
+        </div>
+
+        <div class="col-9 mt-3">
+          <div class="user-info-container">
+            <div class="keywords-container">
+              <!-- Skills -->
+              <!-- <ng-container *ngIf='services.qualifications.skills.length > 0 ' >
+              <h5>Skills</h5>
+              <div class="services-skill d-flex flex-wrap">
+                <span *ngFor='let skill of  services.qualifications.skills'  >{{ skill }}</span> 
+              </div>
+          </ng-container> -->
+              <!-- Skills -->
+
+ <ng-container *ngIf="service &&  service.additional_details &&  service.additional_details.qualifications && service.additional_details.qualifications.toolTechnology.length > 0">
+      <h5 class="mt-3 mb-2">Tools & Technologies</h5>
+      <div class="services-tools d-flex flex-wrap mt-3 ">
+          <ng-container *ngFor="let tool of service.additional_details?.qualifications?.toolTechnology">
+            <span >{{ tool.tool_Technology }}</span>
+          </ng-container>
+      </div>
+</ng-container>
+
+
+<ng-container *ngIf="service &&  service.additional_details &&  service.additional_details.qualifications && service.additional_details.qualifications.skills.length > 0">
+    <h5 class="mt-3 mb-2">Skills</h5>
+
+    <div class="services-tools d-flex flex-wrap mt-3 ">
+
+          <ng-container *ngFor="let skill of service.additional_details?.qualifications?.skills">
+            <span >{{ skill.skill }}</span>
+          </ng-container>
+ 
+    </div>
+  </ng-container>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-end  mb-3" *ngIf="service.id &&! isMe">
+          <button class="btn btn-primary mr-3" (click)='openModal()'>Order now</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+ 
+<app-modal (closeModal)='modalType = null'>
+    <ng-container *ngIf="modalType === 'order'">
+          <app-order-now-modal [orderService]='orderService' (result)='closeModal()'> </app-order-now-modal>
+    </ng-container>
+</app-modal>

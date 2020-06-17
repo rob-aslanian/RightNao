@@ -1,0 +1,144 @@
+
+
+<div class="popup-content default-modal">
+    <div class="menu-progress-bar">
+        <ng-container *ngIf="!jobsService.newOpp; else:nextComponent">
+            <p>To apply for this job please register as a candidate by switching the toggle to yes</p>
+
+            <app-user-career-new-opp></app-user-career-new-opp>
+
+            <div class="d-flex justify-content-end align-items-end">
+                    <a [routerLink]="['/jobs/user/carrer-interest']"  class="career-interest-link" *ngIf="jobsService.newOpp">Career interest</a>
+                    <button class="btn" [ngClass]="{'btn-secondary': !jobsService.newOpp , 'btn-primary' : jobsService.newOpp}"
+                            [disabled]="!jobsService.newOpp" (click)="showNext = true">
+                      Next
+                    </button>
+
+            </div>
+        </ng-container>
+        <!--- Apply form -->
+        <ng-template #nextComponent>
+            <ng-container *ngIf="(user | async) as user">
+                <div class="applier-profile d-flex">
+                    <img [src]=" user.avatar ? '/file/'+ user.avatar : 'assets/img/124.svg' " alt="1">
+                    <div class="d-flex flex-column justify-content-center">
+                        <h2>{{ user.firstname  + ' ' + user.lastname }}</h2>
+                        <ng-container *ngIf="user.experiences.slice(-1); let experience"> 
+                            <p *ngIf="experience[0]">
+                                {{ experience[0].title }}
+                            </p>
+                            <p *ngIf="experience[0]">
+                               {{ experience[0].company }}
+                            </p>
+                        </ng-container>
+                        
+                    </div>
+                </div>
+                <p>Your profile will be included with your application. 
+                  <button class="backgroundless update-profile" [routerLink]="['/user/profile/' , user.url]"  >Update your profile</button>
+                </p>
+                <div class="static-progress">
+                    <div class="">
+                        <p class="mb-1">Profile Completion</p>
+                        <div class="static-progress">
+                            <div class="progress-splited">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div class="progress-hide"
+                                 [ngStyle]="{width: user.profile_complete_percent+'%'}">
+                                <div class="progress-splited cyan">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                            </div>
+                            <div class="progress-count" [ngStyle]="{left: user.profile_complete_percent +'%'}">
+                                {{ user.profile_complete_percent +'%' }}
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+
+                <!-- form -->
+                <form [formGroup]="applyForm">
+                    <div class="form-group">
+                        <label for="applier-email">Email <span>*</span></label>
+                        <select name="" id="applier-email" class="form-control" formControlName="email" 
+                                (change)="changeContact($event , 'email')" *ngIf="!newContact['email']; else:newEmail">
+                            <option value="" disabled>Select Email</option>
+                            <option [value]="email" *ngFor="let email of user.emails">
+                                {{ email }}
+                            </option>
+                            <option value="new">Add new</option>
+                        </select>
+
+                        <!-- New Email -->
+                        <ng-template #newEmail>
+                            <div class="d-flex align-items-center">
+                                <input type="email" class="form-control" formControlName="email" > 
+                                <a style=" cursor: pointer; padding-left: 15px;"  (click)="cancelNew('email')">X</a>
+                            </div>
+                        </ng-template>
+                        <!-- New Email -->
+                        
+                    </div>
+                    <div class="form-group">
+                        <label for="applier-phone">Phone <span>*</span></label>
+                        <select name="" id="applier-phone" class="form-control" formControlName="phone"
+                                (change)="changeContact($event , 'phone')" *ngIf="!newContact['phone']; else:newPhone">
+                            <option value="" disabled>Select Phone</option>
+                            <option  [value]="phone" *ngFor="let phone of user.phones">
+                                {{ phone }}
+                            </option>
+                            <option value="new">Add new</option>
+                        </select>
+
+                        <!-- New phone  -->
+                        <ng-template #newPhone>
+                            <div class="d-flex align-items-center">
+                                <app-phone (result)="setNewPhone($event)"></app-phone>
+                                <a style="padding-bottom: 23px; cursor: pointer; padding-left: 15px;"  (click)="cancelNew('phone')">X</a>
+                            </div>
+                        </ng-template>
+                        <!-- New phone  -->
+
+                        
+                    </div>
+                    <div class="additional-docs">
+                        <app-add-document>
+                            <p class="mb-1">Add external documents</p>
+                            <small>Add external documents, CV, portfolio and presentations</small>
+                            <div class="mt-2">
+                                <span style="color: #212529;" class="page-section-text-grey btn btn-outline-secondary hov">Upload</span>
+                            </div>
+                        </app-add-document>
+                    </div>
+                    <div class="form-group">
+                        <label for="cover-letter">Cover Letter</label>
+                        <textarea name="" id="cover-letter" rows="5" class="form-control" formControlName="cover_letter"></textarea>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input type="checkbox" class="custom-control-input" value="something" id="follow-company" [(ngModel)]="isFollow"
+                              [ngModelOptions]="{standalone: true}" (ngModelChange)="followUnfollow($event)">  
+                        <label for="follow-company" class="custom-control-label" *ngIf="company.name">Follow {{ company.name }}</label>
+                    </div>
+                    <div class="d-flex justify-content-end">
+                        <button class="btn btn-primary" type="submit" (click)="submit()">
+                            Submit
+                        </button>
+                    </div>
+                </form>  
+                <!-- form -->
+            </ng-container>
+        </ng-template>
+        <!--- Apply form -->    
+    </div>
+</div>
+
+

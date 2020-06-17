@@ -1,0 +1,23 @@
+<main class="main-light-blue">
+  <div class="container help-info">
+      <div class="row">
+          <div class="col-lg-3 mb-3">
+              <div class="help-menu">
+                  <a routerLink="people/view" routerLinkActive="active">People</a>
+                  <a routerLink="companies/view" routerLinkActive="active" >Company & Organization</a>
+                  <a routerLink="network/view" routerLinkActive="active" >Network</a>
+                  <a routerLink="jobs/view" routerLinkActive="active" >Jobs</a>
+                  <!-- <a href="">Ads</a>    not ready yet, but already created components for the future
+                  <a href="">Banking</a> -->
+              </div>
+          </div>
+          <div class="col">
+            <div class="help-content">
+                    
+                <router-outlet></router-outlet>
+                    
+            </div>
+          </div>
+      </div>
+  </div>
+</main>

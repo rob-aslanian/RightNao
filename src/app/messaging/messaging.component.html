@@ -1,0 +1,14 @@
+<div class="main-light-blue messagin-main-ctnr before-footer">
+    <div class="dark-blue-bg-for-network">
+        <div class="background-content-wrap">
+            <h1>Messaging</h1>
+        </div>
+    </div>
+
+    <div class="container messaging">
+        <div class="messaging-main">
+            <app-message-list *ngIf="!isHide"></app-message-list>
+            <router-outlet *ngIf="isMobile ? isHide :  true"></router-outlet>
+        </div>
+    </div>
+</div>

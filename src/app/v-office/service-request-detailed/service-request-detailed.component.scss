@@ -1,0 +1,215 @@
+@import 'src/variables'; 
+
+.details {
+    &__content {
+        border-radius: .5rem; 
+        background-color: $white; 
+        width: 100%;
+
+        &__service { 
+
+            &__avatar {
+                width: 3rem; 
+                height: 3rem;
+                img {
+                    width: 100%; 
+                    height: 100%; 
+                    border-radius: .5rem; 
+                }
+            }
+
+            &__info {
+                p {
+                    font-size: .875rem; 
+                    color: $dark-blue; 
+                }
+
+                span {
+                    font-size: .75rem; 
+                    color: $dark-grey; 
+                }
+
+                .message {
+                    p {
+                        font-size: .875rem; 
+                        color: $lignt-cyan;
+                        cursor: pointer;
+                    }
+                }
+            }
+
+            &__raiting {
+                span {
+                    font-size: 0.75rem; 
+                    color: $dark-grey; 
+                    margin-left: .5rem; 
+
+                }
+            }
+
+            &__title {
+                h4 {
+                    font-size: 1.25rem; 
+                    color: black; 
+                }
+                p {
+                    font-size: 1.5rem; 
+                    color: black;  
+                }
+            }
+
+            &__delivery {
+                &__remote {
+                    span{ 
+                        color: $dark-grey; 
+                        font-size: .875rem; 
+
+                    }
+                }
+            }
+
+            &__description {
+                font-size: .875rem; 
+                color: $dark-grey; 
+            }; 
+
+            &__services {
+                div {
+                    p {
+                        font-size: .87rem; 
+                    };
+    
+                    span {
+                        color: $dark-grey; 
+                        font-size: .875rem; 
+                        white-space: nowrap; 
+    
+    
+                    };
+                }
+            }
+
+            &__service-types {
+                h4 {
+                    font-size: .875rem; 
+                    white-space: nowrap;
+
+                }; 
+
+                p {
+                    font-size: .875rem; 
+                    color: $dark-grey; 
+                }
+            }
+
+        }; 
+
+        &__uploaded-file {
+            h4 {
+                font-size: .87rem; 
+                color: $dark-blue; 
+            }
+            &__file {
+                height: 12.9375rem;
+                width: 12.9375rem;  
+
+                img {
+                    width: 100%; 
+                    height: 100%;
+                    border-radius: .5rem; 
+                }
+            }
+
+            .doc {
+                &__img {
+                    width: 2rem; 
+                    height: 2rem; 
+
+                    img {
+                        width: 100%; 
+                        height: 100%; 
+                        cursor: pointer;
+                    }
+                }
+                span {
+                    font-size: .875rem; 
+                    color: $dark-grey; 
+
+                }
+            }
+        }
+    }
+}
+
+
+.ads {
+    &__invite-friend {
+        border-radius: .5rem; 
+        background-color: $light-black; 
+
+        p {
+            color: $white;
+            white-space: nowrap;
+        }
+    }
+}
+
+.user-profile-avatar {
+    border-radius: 50% !important;
+}
+.description {
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: 0;
+}
+.price {
+    font-weight: 600;
+    font-size: 22px;
+}
+.service-request-body {
+     span {
+         font-size: 14px;
+         color: $dark-grey;
+     }
+}
+.description-title {
+    color: $dark-grey;
+    font-size: 14px;
+    white-space: pre-wrap;
+}
+.project-type {
+    span {
+        color: $dark-grey;
+        font-size: 14px;
+    }
+    p {
+        font-size: 14px;
+        margin-bottom: 0;
+    }
+}
+
+:host ::ng-deep .files_row::after {
+   content: unset !important;
+};
+
+.btn-default {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+};
+
+.profile-center {
+    max-width: 1257px;
+}
+
+.review-border {
+    width: 95%;
+    height: 1px;
+    background: #CCCCCC;
+    margin: 0px auto;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+};
+
+.service-request-boxes {
+    padding: 10px;
+};

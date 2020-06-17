@@ -1,0 +1,29 @@
+<header class="landing-header" [ngClass]="{'login-page': isLogin}">
+
+    <nav class="header d-flex justify-content-between row">
+        <div class="landing-logo col-md-6" [routerLink]="['/']">
+            <img src="./assets/img/1.svg" alt="logo">
+            <div class="landing-logoText">
+                RIGHT
+                <span>NAO</span>
+            </div>
+        </div>
+
+        <div class="d-flex align-items-center col-md-6 justify-content-end p-0">
+            <div ngbDropdown>
+                <button ngbDropdownToggle class="backgroundless btn_tgl" >
+                    {{ '1314' | translate }}
+                </button>
+                <div ngbDropdownMenu class="signin__options" style="left: 370px">
+                    <button  class="btn" [routerLink]="['/registration/login']" [queryParams]="{type:'user'}">User or Professional</button>
+                    <button  class="btn" [routerLink]="['/registration/login']" [queryParams]="{type:'company'}">Company or Organization</button>
+                </div>
+         
+            </div>
+            <button class="btn btn-primary" [routerLink]="['/registration']">
+                {{ '1175' | translate }}
+            </button>
+        </div>
+    </nav>
+
+</header>

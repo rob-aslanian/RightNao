@@ -1,0 +1,383 @@
+<div class="account-right-content">
+    <h1> {{ "1255" | translate }} </h1>
+    <div class="boxes-for-account security-box">
+        <h2>Security</h2>
+        <hr>
+        <div class="row">
+            <div class="col-lg-6">
+                <h3>
+                    Change Password
+                </h3>
+            </div>
+            <div class="col-lg-5 col" >
+                <span *ngIf='lastChangedDate' >  Last changed: {{lastChangedDate}}</span>       
+            </div>
+            <div class="col button-col">                         
+                <button (click)="editDropDown($event,'changePassword' )"></button>
+            </div>
+        </div>
+
+        <!-- Area to display when changing password start -->
+        <div *ngIf="ngTemplate.changePassword then changePassword"></div>
+        <ng-template #changePassword>
+            <form [formGroup]="changePasswordForm" (ngSubmit)="changePasswordFun()">
+
+                <div class="password-wrap">
+                    <div class="form-group mt-0">
+                        <input type="password" autocomplete="off" class="form-control col-6" formControlName="oldPassword" [ngClass]="{ 'is-invalid': submittedchangePasswordForm && passFo.oldPassword.errors }" placeholder="Current Password">
+                    </div>
+                    <div class="password-criteria"  *ngIf="changePasswordForm.get('oldPassword').invalid && changePasswordForm.get('oldPassword').touched" >
+                        <div class="arrow"></div>
+                        <ul>
+                            <li> {{ "1035" | translate }} </li>
+                            <li [ngClass]="{ 'valid': !changePasswordForm.get('oldPassword').hasError('required') }" >Current Password is wrong</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="password-wrap">
+                    <div class="form-group">
+                        <input type="password"  autocomplete="off" (focus)="viewValidator = true" (blur)="viewValidator = false" class="form-control col-6" formControlName="newPassword" [ngClass]="{ 'is-invalid': submittedchangePasswordForm && passFo.newPassword.errors }" placeholder="New Password">
+                    </div>
+                <div class="password-wrap">
+                        <input type="password"  autocomplete="off" (focus)="viewValidator = true" (blur)="viewValidator = false" class="form-control col-6" formControlName="confirmPassword" [ngClass]="{ 'is-invalid': submittedchangePasswordForm && passFo.confirmPassword.errors }" placeholder="Confirm Password">
+                </div>
+                    <div class="password-criteria"  *ngIf="changePasswordForm.get('newPassword').invalid && viewValidator || changePasswordForm.get('newPassword').value !== changePasswordForm.get('confirmPassword').value ">
+                        <div class="arrow"></div>
+                        <ul>
+                            <li>Password Criteria</li>
+                            <li [ngClass]="{ 'valid': !changePasswordForm.get('newPassword').hasError('minLength') }" > {{ "193" | translate }} </li>
+                            <li [ngClass]="{ 'valid': !changePasswordForm.get('newPassword').hasError('uppercase') }" > {{ "194" | translate }} </li>
+                            <li [ngClass]="{ 'valid': !changePasswordForm.get('newPassword').hasError('number') }" >    {{ "195" | translate }} </li>
+                            <!-- <li [ngClass]="{ 'valid': !changePasswordForm.get('newPassword').hasError('symbols') }" >   {{ "196" | translate }} </li>
+                            <li [ngClass]="{ 'valid': !changePasswordForm.get('newPassword').hasError('initials') }" >
+                                {{  "1036" | translate }} <br> 
+                            </li> -->
+                            <li [ngClass]="{ 'valid': changePasswordForm.get('newPassword').value === changePasswordForm.get('confirmPassword').value && !changePasswordForm.get('newPassword').invalid }" >
+                                    The password and confirmation password do not match
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div *ngIf="MessageSuccess" >
+                    {{ MessageSuccess }}
+                </div>
+
+                <!-- <div class="form-group">
+                    <input type="text" class="form-control col-6" placeholder="Confirm Password">
+                </div> -->
+            
+                <div class="form-group">
+                    <button style="margin-top: 15px;"  type="submit" class="btn btn-primary" > {{ "1231" | translate }} </button>
+                </div>
+            </form>
+        </ng-template>
+        <!-- Area to display when changing password end -->
+
+        <div class="row">
+                <div class="col-lg-6">
+                    <h3>
+                        Where you`re signed in
+                    </h3>
+                </div>
+                <div class="col button-col">
+                    <button (click)="editDropDown($event,'changeSession' )"></button>
+                </div>
+            </div>
+            
+<div *ngIf="ngTemplate.changeSession then changeSession"></div>
+     <ng-template #changeSession>
+            <app-user-session>      
+            </app-user-session>
+    </ng-template>
+        
+        
+        <div class="row">
+            <div class="col-lg-6">
+                <h3>
+                    Deactivate my account
+                </h3>
+            </div>
+            <div class="col-lg-5 col-auto">
+                <span> Temporarily Disable Your Account</span>
+            </div>
+            <div class="col button-col">
+                <button (click)="openModal(deactivateCheckpass)" ></button>
+            </div>
+        </div>
+        
+        <div class="row">
+
+            <ng-container *ngIf='!isVerificationActive'>
+                <div class="col-lg-6">
+                    <h3>
+                            Two step verification
+                    </h3>
+                </div>
+                <div class="col-lg-5 col-auto">
+                    <span>   Activate this feature for enhanced account security </span>
+                </div>
+                
+                <div class="col button-col">
+                        <button (click)="openVerification(deactivateCheckpass)" ></button>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf='isVerificationActive'>
+                    <div class="col-lg-6">
+                        <h3>
+                                Two step verification
+                        </h3>
+                    </div>
+                    <button class="backgroundless" *ngIf='ngTemplate.changeVerification' (click)='turnOffVerification()'>Turn off</button>
+                    <div class="col-lg-5 col-auto" *ngIf='!ngTemplate.changeVerification'>
+                        <span>   Activated </span>
+                    </div>
+                    <div class="col button-col">
+                            <button (click)="editDropDown($event,'changeVerification' )"></button>
+                        </div>
+            </ng-container>
+
+            </div>   
+
+            <app-modal (closeModal)="modalType = null">    
+                <ng-container *ngIf="modalType === 'verification'">
+                        <app-verificaton (result)='getVerificationResult($event)' ></app-verificaton>
+                </ng-container>
+                <ng-container *ngIf="modalType === 'removeVerification'">
+                        <app-verificaton [isRemove]='true' (result)='getVerificationResult($event)' ></app-verificaton>
+                </ng-container>
+            </app-modal>
+
+ 
+        <!-- <tr>
+                <th scope="row">Where you are signed in</th>
+                <td></td>
+                <td></td>
+                <td class="button-td">
+                    <span>See your active sessions, and sign out if you’d like</span>
+                    <button></button>
+                </td>
+            </tr> -->
+
+            <!-- Area to display when click on where you are signed in start -->
+            <!-- <tr class="devices">
+                <th scope="row" colspan="4" class="d-flex long-th">
+                    <div class="image">
+                        <img src="assets/img/86.svg" alt="laptop">
+                    </div>
+                    <div class="device">
+                        <h3>Windows PC - Tbilisi, Georgia</h3>
+                        <span>Chrome - active now</span>
+                    </div>
+                </th>
+            </tr> -->
+
+            <!-- <tr class="devices">
+                <th scope="row" colspan="4" class="d-flex long-th">
+                    <div class="image">
+                        <img src="assets/img/85.svg" alt="mobile">
+                    </div>
+                    <div class="device">
+                        <h3>Android - Tbilisi, Georgia</h3>
+                        <span>Chrome - active now</span>
+                    </div>
+                </th>
+                <td></td>
+                <td></td>
+                <td class="button-td">                               
+                    <button class="backgroundless">Sign out</button>
+                </td>
+            </tr> -->
+                
+
+            <!-- <tr class="devices">
+                <th scope="row" colspan="4" class="d-flex long-th">
+                    <div class="image">
+                        <img src="assets/img/86.svg" alt="laptop">
+                    </div>
+                    <div class="device">
+                        <h3>Windows PC - Tbilisi, Georgia</h3>
+                        <span>Chrome - active now</span>
+                    </div>
+                </th>
+                <td></td>
+                <td></td>
+                <td class="button-td">                               
+                    <button class="backgroundless">Sign out</button>
+                </td>
+            </tr> -->
+
+            <!-- <tr class="devices">
+                <th scope="row" colspan="4" class="d-flex long-th">
+                    <div class="image">
+                        <img src="assets/img/85.svg" alt="laptop">
+                    </div>
+                    <div class="device">
+                        <h3>iPhone - Tbilisi, Georgia</h3>
+                        <span>Chrome - active now</span>
+                    </div>
+                </th>
+                <td></td>
+                <td></td>
+                <td class="button-td">                               
+                    <button class="backgroundless">Sign out</button>
+                </td>
+            </tr> -->
+
+            <!-- <tr>
+                <th scope="row">
+                    <button class="backgroundless">Show more</button>
+                </th>
+                <td></td>
+                <td></td>
+                <td class="button-td">                               
+                    <button class="backgroundless">Sign out of all these sessions</button>
+                </td>
+            </tr> -->
+            <!-- Area to display when click on where you are signed in end -->
+
+            <!-- <tr>
+                <th scope="row">Two step verification</th>
+                <td>
+                    <button class="backgroundless">Turn off</button>
+                </td>
+                <td></td>
+                <td class="button-td">
+                    <span>
+                        Activate this feature for enhanced account security 
+                    </span>
+                    <button></button>
+                </td>
+            </tr> -->
+
+
+        <!-- Privacy -->
+        <div class="boxes-for-account">
+            <h2> {{ "1101" | translate }} </h2>
+            <hr>
+            <h3>Discoverability</h3>
+            <div class="row" *ngIf="!!privacy">
+                <div class="col-lg-4 col-sm-6 mb-4" >
+                    <div class="account-box privacy" ngbDropdown  >
+                        <img src="assets/img/51.svg" alt="image" >
+                        <h3> {{ "1114" | translate }} </h3>
+                        <button ngbDropdownToggle >{{ privacies[privacy['profile_pictures']] }}</button>
+                    
+                            <div class="privacy-options" ngbDropdownMenu>
+                                <button (click)="ChangePrivacy('profile_pictures','my_connections')" [ngClass]="{ active: privacy.profile_pictures == 'my_connections' }" > {{ "943" | translate }} </button>
+                                <button (click)="ChangePrivacy('profile_pictures','members')" [ngClass]="{ active: privacy.profile_pictures == 'members' }" >  {{ "728" | translate }} </button>
+                                <button (click)="ChangePrivacy('profile_pictures','me')" [ngClass]="{ active: privacy.profile_pictures == 'me' }" > {{ "1002" | translate }} </button>
+                            </div>
+ 
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <div class="account-box privacy" ngbDropdown >
+                        <img src="assets/img/82.svg" alt="image">
+                        <h3> {{ "1558" | translate }} </h3>
+                        <button ngbDropdownToggle >{{ privacies[privacy['my_connections']] }}</button>
+ 
+                            <div class="privacy-options" ngbDropdownMenu>
+                                <button (click)="ChangePrivacy('my_connections','my_connections')" [ngClass]="{ active: privacy.my_connections == 'my_connections' }" > {{ "943" | translate }} </button>
+                                <button (click)="ChangePrivacy('my_connections','members')" [ngClass]="{ active: privacy.my_connections == 'members' }" >  {{ "728" | translate }} </button>
+                                <button (click)="ChangePrivacy('my_connections','me')" [ngClass]="{ active: privacy.my_connections == 'me' }" > {{ "1002" | translate }} </button>
+                            </div>
+ 
+                    </div>
+                </div>
+                <!-- <div class="col-lg-4 col-sm-6 mb-4">
+                    <div class="account-box privacy" ngbDropdown >
+                        <img src="assets/img/83.svg" alt="image">
+                        <h3>Who can see my active status?</h3>
+                        <button ngbDropdownToggle >{{ privacies[privacy['active_status']] }}</button>
+                        
+                            <div class="privacy-options" ngbDropdownMenu>
+                                <button (click)="ChangePrivacy('active_status','my_connections')" [ngClass]="{ active: privacy.active_status == 'my_connections' }" > My connections</button>
+                                <button (click)="ChangePrivacy('active_status','members')" [ngClass]="{ active: privacy.active_status == 'members' }" > HyperCube members</button>
+                                <button (click)="ChangePrivacy('active_status','me')" [ngClass]="{ active: privacy.active_status == 'me' }" > Only me</button>
+                            </div>
+     
+                    </div>
+                </div> -->
+                <div class="col-lg-4 col-sm-6 mb-4" >
+                    <div class="account-box privacy" ngbDropdown >
+                        <img src="assets/img/84.svg" alt="image">
+                        <h3> {{ "1303" | translate }} </h3>
+
+                        <button ngbDropdownToggle  >{{ privacies[privacy['sharing_edits']] }}</button>
+                            <div class="privacy-options" ngbDropdownMenu>
+                                <button  (click)="ChangePrivacy('sharing_edits','my_connections')" [ngClass]="{ active: privacy.sharing_edits == 'my_connections' }" > {{ "943" | translate }} </button>
+                                <button  (click)="ChangePrivacy('sharing_edits','members')" [ngClass]="{ active: privacy.sharing_edits == 'members' }" > {{ "728" | translate }} </button>
+                                <button  (click)="ChangePrivacy('sharing_edits','me')" [ngClass]="{ active: privacy.sharing_edits == 'me' }" > {{ "1002" | translate }} </button>
+                            </div>
+
+                    </div>
+                </div>
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <div class="account-box privacy" ngbDropdown>
+                        <img src="assets/img/22.svg" alt="image">
+                        <h3> {{ "1556" | translate }} </h3>
+                        <button ngbDropdownToggle  >{{ privacies['find_by_email'][privacy['find_by_email']] }} </button>
+              
+                            <div class="privacy-options" ngbDropdownMenu>
+                                <button (click)="ChangePrivacy('find_by_email','my_connections')" [ngClass]="{ active: privacy.find_by_email == 'my_connections' }" > {{  "943" | translate }} </button>
+                                <button (click)="ChangePrivacy('find_by_email','members')" [ngClass]="{ active: privacy.find_by_email == 'members' }" >  {{ "728" | translate }} </button>
+                                <button (click)="ChangePrivacy('find_by_email','me')" [ngClass]="{ active: privacy.find_by_email == 'me' }" >Nobody</button>
+                            </div>
+ 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Privacy end -->
+    </div>
+</div>
+
+
+
+<!-- Start Modals -->
+
+
+<!-- Deactivate my account -->
+<ng-template #deactivateCheckpass let-modal >
+    <div class="modal-content">
+        <h1>Deactivate my account<a (click)="modal.dismiss('Cross click')" >&#10005;</a></h1>
+        <div class="popup-content">
+            <form [formGroup]="checkPass" (ngSubmit)="checkPassFunc()" >
+                <div class="form-group">
+                    <label for="password-to-continue"> {{ "1071" | translate }} </label>
+                    <input type="password" class="form-control" formControlName="password" id="password-to-continue" placeholder="Password">
+                </div>
+                <span class="note">
+                        {{ "976" | translate }}
+                </span>
+                <br>
+                <small>
+                        You can disable your account instead of deleting it. This means your 
+                        account will be hidden until you reactivate it by logging back in.
+                </small>
+                <button type="submit" [disabled]="!checkPass.valid" class="btn btn-primary d-block ml-auto"> {{ "351" | translate }} </button>
+            </form>
+        </div>
+    </div>
+</ng-template>
+<!-- Deactivate my account end -->
+
+
+<!-- Deactivate my account are you sure? -->
+<ng-template #deactivate let-modal >
+    <div class="modal-content">
+        <h1>Deactivate my account<a (click)="modal.dismiss('Cross click')">&#10005;</a></h1>
+        <div class="popup-content">
+            <h3> {{ "179" | translate }} </h3>
+            <button (click)="deactivateAccountFun()" class="btn btn-primary mt-4 d-block ml-auto"> {{ "351" | translate }} </button>
+            
+        </div>
+    </div>
+</ng-template>
+<!-- Deactivate my account are you sure? end -->
+
+
+<!-- End Modals -->

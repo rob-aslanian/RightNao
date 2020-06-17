@@ -1,0 +1,68 @@
+<ng-container *ngIf="skills.length != 0">
+    <div class="section-header d-flex">
+        <h1>{{ '1323'| translate }}</h1>
+        <div class="col line">
+            <button class="add" *ngIf="isMe && skills.length <= 49" (click)="open('add')">
+                <img src="assets/img/50.svg" alt="add">
+            </button>
+            <button class="edit skills-edit"
+                *ngIf="isMe && skills.length > 0"
+                (click)="open('edit')">
+                <img src="assets/img/19.svg" alt="edit">
+            </button>
+        </div>
+    </div>
+
+    <div class="section-content" *ngIf="skills && skills.length > 0">
+        <div class="skill d-flex justify-content-between align-items-start" *ngFor="let skill of skills | slice: 0: startPage; let i = index">
+            <div class="skills-line-one d-flex flex-column">
+                <div class="d-flex">
+                    <h4>{{ skill.name }}</h4>
+                    <img src="assets/img/66.svg" appAppLazyImage alt *ngIf="hasPermission && !isSkillVerify(skill.id)" (click)="verifySkill(skill, i)">
+                    <img src="assets/img/67.svg" appAppLazyImage alt *ngIf="hasPermission && isSkillVerify(skill.id)" (click)="unVerifySkill(skill , i)">   
+                </div>
+                <span *ngIf="skill.endorsements" class="skill-count">{{ skill.endorsements.length  }}</span>
+            </div>
+            <div class="skills-line-two d-flex align-items-center" *ngIf="skill.endorsements && skill.endorsements.length > 0">
+                <div class="skills d-flex justify-content-end" >
+                    <ng-container *ngFor="let endorsement of skill.endorsements | slice: 0:endorsementCount">
+                    
+                            <img  alt [src]="endorsement.avatar ? '/file/' + endorsement.avatar : 'assets/img/124.svg' " appAppLazyImage>
+                    
+                    </ng-container>
+                    
+                
+                </div>
+                
+                <button class="mark" *ngIf="skill.endorsements.length > 16" (click)="toggleEndorsments(skill.id)"></button>                           
+            </div>
+
+        </div>
+    </div>
+</ng-container>
+
+<ng-container  *ngIf="isMe && skills.length === 0">
+        <div class="section-header d-flex">
+                <h1>{{ '1323'| translate }}</h1>
+                <div class="col line">
+                    <button class="add" *ngIf="isMe && skills.length <= 49" (click)="open('add')">
+                        <img src="assets/img/50.svg" alt="add">
+                    </button>
+                    <button class="edit skills-edit"
+                        *ngIf="isMe && skills.length > 0"
+                        (click)="open('edit')">
+                        <img src="assets/img/19.svg" alt="edit">
+                    </button>
+                </div>
+        </div>
+        
+        <app-empty-profile [key]='"skills"' (openModal)='openEmptyModal()'></app-empty-profile>
+</ng-container>
+
+<app-more-less  [dataLength]="skills.length" [startPage]='3' (start)="startPage = $event"></app-more-less>
+
+<app-modal (closeModal)="modalType = null">
+   <app-skills-modal [modalType]="modalType" *ngIf="modalType" 
+                     [data]="skills" (result)="getSkills($event)">
+   </app-skills-modal>
+</app-modal>

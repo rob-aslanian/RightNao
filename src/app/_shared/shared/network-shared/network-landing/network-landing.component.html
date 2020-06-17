@@ -1,0 +1,31 @@
+<app-network-redirect></app-network-redirect>
+<ng-container *ngIf='!isCompanyActive'>
+  <div class="col-12" *ngIf='(friendRequests | async ) as req'>
+    <div class="d-flex justify-content-between connections-wrapper align-items-center" style="border-radius: 5px;">
+      <div class="requests" >
+        <h3>Connections requests </h3>
+      </div>
+      <div class="manage">
+
+         <img src="assets/img/645.svg" alt="manage"  >
+         <a [routerLink]='["/network/manage/received-requests"]' >Manage</a>
+
+      </div>
+    </div>
+  </div>
+</ng-container>
+<!-- People -->
+<div class="mt-4">
+  <app-grow-network-people    [isLandingPage]='true'></app-grow-network-people>
+</div>
+<!-- People -->
+<!-- Company -->
+
+<div class="mt-4">
+  <app-grow-network-companies [isLandingPage]='true'></app-grow-network-companies>
+</div>
+
+<!-- Company -->
+<div class="col-12 mt-4">
+  <app-network-discorver></app-network-discorver>
+</div>

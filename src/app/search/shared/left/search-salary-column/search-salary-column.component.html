@@ -1,0 +1,44 @@
+<div class="search-groups__sidebar-section">
+    <app-search-column-header [title]="title">
+        <div class="mt-2">
+            <div class="search-groups__sidebar-section__delivery-time-options search-groups__sidebar-section__wrap">
+                    <form [formGroup]="form">
+                        <div class="
+                            custom-control 
+                            custom-radio 
+                            page-section-text-grey
+                            " *ngFor="let interlval of interlvals; let i = index;">
+                            <input  type="radio" class="custom-control-input" [id]="interlval.id" [value]="interlval.id" 
+                                        [name]="controlName"  [formControlName]="controlName">
+                            <label class="custom-control-label" [for]="interlval.id">
+                                {{ interlval.name  }}
+                            </label>
+                        </div>
+                        <div class="input-container d-flex justify-content-between mt-3" *ngIf="!price_type || price_type !== 'Any' ">
+                            <ng-container *ngIf="!price_type || price_type === 'Price_Negotiable'">
+                                    <input type="number" placeholder="Min" class="form-control" formControlName="min_salary">
+                                    <input type="number" placeholder="Max" class="ml-2 form-control" formControlName="max_salary">
+                            </ng-container>
+
+                            <ng-container *ngIf="price_type && price_type !== 'Price_Negotiable' ">
+                                <input type="number" placeholder="Fixed price" class="form-control" formControlName="fixed_price_amount">
+                            </ng-container>
+                            
+                            
+                            <div>
+                                <button class="btn backgroundless search-btn" type="submit">
+                                    <img src="assets/img/right-arrow.svg" class="search-groups__sidebar-section__location__img"/>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="form-group pl-0 mt-3">
+                            <select class="form-control filter-search-inp"  formControlName='currency'>
+                            <option selected disabled value="">Currency</option>
+                            <option *ngFor='let currency of currencies' [value]='currency'>{{ currency }}</option>
+                            </select>
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </app-search-column-header>
+</div>

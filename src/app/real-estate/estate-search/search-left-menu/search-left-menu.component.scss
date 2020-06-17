@@ -1,0 +1,206 @@
+@import 'src/variables'; 
+
+.left-menu {
+    background-color: white; 
+    border: 1px solid $grey-dark; 
+    border-radius: .5rem; 
+
+    &__deal {
+
+        border-bottom: 1px solid $grey-dark; 
+
+        &__title {
+            h4 {
+                font-size: .875rem; 
+                color: $light-black; 
+            }; 
+
+            p {
+                font-size: .87rem; 
+                color: $dark-grey; 
+                margin: 0; 
+                margin-top: .3rem; 
+                padding-left: 1rem; 
+                cursor: pointer; 
+            }; 
+
+            .show-more {
+                cursor: pointer; 
+                color: $background-dark-cyan;
+                font-size: .875rem; 
+             
+            }; 
+
+        };
+
+    };     
+
+    &__location {
+    
+        margin-top: 1rem; 
+        border-bottom: 1px solid $grey-dark; 
+
+        input {
+            font-size: .875rem;
+        };
+
+        label {
+            font-size: .875rem; 
+            margin-left: .5rem; 
+
+        };
+
+
+        &__title {
+            h4 {
+                font-size: .875rem; 
+                color: $light-black; 
+            }; 
+        }; 
+
+        &__search {
+
+            &__button {
+                border: 1px solid $light-grey; 
+                border-radius: .3rem; 
+                display: flex; 
+                justify-content: center; 
+                align-items: center; 
+
+                img {
+                    width: 0.5rem; 
+                    height: 1.125rem; ;
+                }
+            }
+        }
+    }; 
+
+    &__price {
+
+        border-bottom: 1px solid $grey-dark; 
+        margin-top: 1rem;
+
+        input {
+            font-size: .875rem;
+        };
+
+        label {
+            font-size: .875rem; 
+            color: $dark-grey; 
+            margin-left: .5rem; 
+
+        }; 
+
+        span {
+            font-size: .575rem;
+            color: $dark-grey; 
+            margin-top: -.2rem; 
+        }
+
+        &__title {
+            h4 {
+                color: $light-black; 
+                font-size: .875rem; 
+            }; 
+
+        }; 
+
+        &__search {
+
+            &__button {
+                border: 1px solid $light-grey; 
+                border-radius: .3rem; 
+                display: flex; 
+                justify-content: center; 
+                align-items: center; 
+
+                img {
+                    width: 0.5rem; 
+                    height: 1.125rem; ;
+                }
+            }
+        }
+
+        &__change-currency {
+            p {
+                color: $background-dark-cyan; 
+                font-size: .875rem; 
+                cursor: pointer;
+            }
+        }
+    }; 
+
+    &__size {
+
+        border-bottom: 1px solid $grey-dark; 
+        margin-top: 1rem;
+
+        input {
+            font-size: .875rem;
+        };
+
+        &__title {
+            h4 {
+                font-size: .875rem; 
+                color: $light-black; 
+            }
+        };
+
+        &__search {
+
+            &__button {
+                border: 1px solid $light-grey; 
+                border-radius: .3rem; 
+                display: flex; 
+                justify-content: center; 
+                align-items: center; 
+
+                img {
+                    width: 0.5rem; 
+                    height: 1.125rem; ;
+                }
+            }
+        }
+    }; 
+
+    &__publication {
+        border-bottom: 1px solid $grey-dark; 
+        margin-top: 1rem;
+
+        &__title {
+            h4 {
+                font-size: .875rem; 
+                color: $light-black; 
+            }
+        };
+
+        label {
+            font-size: .875rem; 
+            color: $dark-grey; 
+            margin-left: .5rem; 
+
+        }; 
+
+        &__search {
+
+            &__button {
+                border: 1px solid $light-grey; 
+                border-radius: .3rem; 
+                display: flex; 
+                justify-content: center; 
+                align-items: center; 
+
+                img {
+                    width: 0.5rem; 
+                    height: 1.125rem; ;
+                }
+            }
+        }
+    }
+
+
+}
+
+.down-arrow {
+    transform: rotate(180deg); 
+};   

@@ -1,0 +1,97 @@
+ <!-- Start global footer -->
+ <footer>
+        <div class="container">
+            <div class="footer-in">
+                <div class="footer-logo-box">
+                    <a href="#" class="footer-logo">
+                        <img src="./assets/img/footer-logo.svg" alt appAppLazyImage>
+                    </a>
+                    <div class="footer-license">
+                        © 2019 RightNão
+                    </div>
+                </div>
+                <ul class="footer-nav">
+                    <li>
+                        <h3>{{ '595' | translate }}</h3>
+                        <ul>
+                            <li><a href="#">{{ '35' | translate }}</a></li>
+                            <li><a href="#">{{ '295' | translate }}</a></li>
+                            <!-- <li><a href="#">Donate</a></li> -->
+                            <li><a [routerLink]="['/contact']"  >{{ '371' | translate }}</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h3>{{ '1148' | translate }}</h3>
+                        <ul>
+                            <li><a [routerLink]="[jobsLink]" >{{ '812' | translate }}</a></li>
+                            <li>
+                                <!-- Company -->
+                                <a *ngIf="isCompany; else:userPostJob" [routerLink]="[postJobLink]">{{ '1077' | translate }}</a>
+                                <!-- User --> 
+                                <ng-template #userPostJob>
+                                    <a href="#" (click)="open()" style="cursor: pointer;">{{ '1077' | translate }}</a>
+                                </ng-template>
+                                
+                            </li>
+                            <li><a href="#">{{ '330' | translate }}</a></li>
+                            <li><a href="#">{{ '126' | translate }}</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <h3>Legal</h3>
+                        <ul>
+                            <li><a href="#">Terms & Conditions</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="footer-additional">
+
+                    <div class="footer-questions">
+                        <img src="./assets/img/40.svg" alt appAppLazyImage>
+                        <div>
+                            <h3>{{ '1146' | translate }}</h3>
+                            <a [routerLink]="['/help-center']" class="d-block">{{ '1498' | translate }}</a>
+                        </div>
+                    </div>
+                    
+
+                    <div class="footer-followUs">
+                            <h3>{{ '632' | translate }}</h3>
+                            <div class="d-flex">
+                                <img src="./assets/img/240.svg" alt appAppLazyImage>
+                                <img src="./assets/img/242.svg" alt appAppLazyImage>
+                                <img src="./assets/img/241.svg" alt appAppLazyImage>
+                                <img src="./assets/img/243.svg" alt
+                                
+                                
+                                
+                                appAppLazyImage>
+                            </div>
+                    </div>
+
+                </div>
+
+                <div class="footer-lang">
+                    <form>
+                        <select #langSelect class="form-control" (change)="changeLanguge(langSelect.value)">
+                            <option [value]="lang" *ngFor="let lang of translate.getLangs(); trackBy:trackByFn"
+                                    [selected]="lang === translate.currentLang">
+                                {{ lang | lang }}
+                            </option>
+                        </select>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+    <!-- End global footer -->
+
+    <!-- Modals -->
+<app-modal (closeModal)="modalType = null">
+    <ng-container *ngIf="modalType === 'hiring'">
+        <app-user-hiring [link]="'/jobs/company/post-a-job'"></app-user-hiring>
+    </ng-container>
+</app-modal>

@@ -1,0 +1,48 @@
+<!-- Login Form -->
+<ng-container *ngIf="!isSelectUsers ; else:selectUsers">
+    <form [formGroup]="loginForm" class="w-100" (ngSubmit)="onSubmit($event)">
+            <input type="text" class="form-control" [placeholder]="'1483' | translate" formControlName="username"  
+                [ngClass]="{ 'is-invalid': submitted && f.username.errors }" autocomplete="username" 
+                *ngIf="selectedUser < 0 || !savedUsers; else:users">
+            <input *ngIf='selected' type="text" formControlName='two_fa_code' class="form-control" placeholder="2-step verification" >
+            <ng-template #users>
+                <div class="user d-flex align-items-center" *ngIf="savedUsers[selectedUser] as user">
+                    <img class="mr-3"   [src]=" user.avatar ? '/file/'+ user.avatar : 'assets/img/124.svg' " alt="user">
+                    <input type="hidden"  formControlName="username" [ngModel]="user.username" >
+                    <h3>{{ user.first_name }}  {{ user.last_name }}</h3>
+                    <img class="ml-auto" src="assets/img/147.svg" alt="tick"
+                            (click)="isSelectUsers = true;">
+                </div>
+            </ng-template>
+
+        <div class="password-wrap mt-3">      
+            <input  class="form-control" [placeholder]="'1034' | translate " [type]="hide ? 'password' : 'text'" formControlName="password"   
+                    [ngClass]="{ 'is-invalid': submitted && f.password.errors }" autocomplete="current-password" >
+            <span class="password-icon-1" (click)="hide = !hide" >
+                <img [src]="!hide ? '/assets/img/eye.svg' : '/assets/img/266.svg' " alt="eye">
+            </span>
+            <p class="err_mssg_forms_k" *ngIf="error_server != '' " ><strong> {{ error_server }}</strong></p>
+        </div>
+        <div class="d-flex justify-content-between align-items-center mt-2">
+            <div class="form-check custom-control custom-checkbox my-0 remember-me">
+                <input type="checkbox" class="custom-control-input" formControlName="remember" value="true" id="remember" >  
+                <label for="remember" class="custom-control-label" >{{ '1180' | translate }}</label>
+            </div>
+            
+            <a [routerLink]="['/registration/forget_password']" class="forgot-password">{{ '638' | translate }}</a>
+        </div>
+        <div class="d-flex justify-content-end mt-3 mb-3">
+            <button type="submit" class="btn btn-primary  sign_up pt-1 pb-1">Sign in</button>
+        </div> 
+
+
+    </form>
+        
+</ng-container>
+<!-- Login Form -->
+    
+<!-- Select Users -->
+<ng-template #selectUsers>
+    <app-saved-users style="width: 100%" (result)="getSelectedUser($event)"></app-saved-users>
+</ng-template>
+<!-- Select Users -->

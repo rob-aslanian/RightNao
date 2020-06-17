@@ -1,0 +1,110 @@
+<!-- Content in the center -->
+<div class="col">
+    <div class="center-heading" *ngIf='!isLandingPage'>
+        <h3>Companies & Organizations to follow</h3>
+    </div>
+
+
+    <div class="center-content-network">
+        <div class="connections-first-line" ngbDropdown *ngIf='!isLandingPage'>
+            <button ngbDropdownToggle class="ml-auto" [ngClass]="selectedView == 'card' ? 'blocks' : 'list'">
+            </button>
+           
+                <div ngbDropdownMenu class="options blocks-option" style="left: 370px">
+                    <button (click)="sort_and_wiew('card')" >Card view</button>
+                    <button (click)="sort_and_wiew('list')" >List view</button>
+                </div>
+     
+        </div>
+
+        
+        <!-- card view -->
+        <ng-template [ngIf]="selectedView == 'card'" >
+
+                <ng-container *ngIf='isLandingPage'>
+                    <div class="d-flex justify-content-between">
+                        <div class="center-heading pt-0 pl-0">
+                                <h3>Companies & Organizations you may know</h3>
+                        </div>
+                        <a style="color: #00D4E3" [routerLink]='[url.suggestionsComp]'>See all</a>
+                    </div>
+                </ng-container>
+
+            <div class="network-boxes-container form-row">
+                <div class="col-lg-4 col-md-6" *ngFor="let item of growNetworkList; let i = index; trackBy:trackByFn">
+                    <div class="network-box network-box--companies">
+
+                        <div class="network-line-one">
+                        </div>
+                        <div class="network-line-two">
+                            <div class="left">
+                                <img class="company" [src]="item.company_profile.avatar ?  '/file/'+item.company_profile.avatar  : 'assets/img/default-company.svg'" alt="profile">
+                            </div>
+                            <div class="right">
+                                <a [routerLink]="['/company/profile/'+item.company_profile.url]">
+                                    <h4> {{ item.company_profile.name }} </h4>
+                                </a>
+
+      
+                                <ngb-rating [rate]="item.company_profile.avarage_rating" [readonly]="true" max="5"></ngb-rating>
+                        <span *ngIf='item.company_profile.industry'>{{ utils.getInudsryName(item.company_profile.industry.id) }}</span>
+                                 <span *ngIf='item.company_profile.addresses.length > 0'> {{ utils.getCountryName( item.company_profile.addresses[0].country_id ) }} , {{ item.company_profile.addresses[0].city.city }} </span>
+
+                               <span> {{ item.company_profile.network_info.followers }} Followers </span>
+                               <span class="job_offers"> {{ item.company_profile.amount_jobs }} Job offers </span>
+                               
+                            </div>
+                        </div>
+                        <div class="network-line-three">
+                            
+                        </div>
+                        <div class="network-line-four">
+                          <button class="btn btn-outline-primary" (click)="follow(item.company_profile.id , i )" >Follow</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+
+            
+        <!-- list view -->
+        <ng-template [ngIf]="selectedView == 'list'" >
+            <div class="network-boxes-container-long-view" >
+                <div class="network-box" *ngFor="let item of growNetworkList ; let i = index; trackBy:trackByFn" >
+                    <div class="d-flex justify-content-between">
+                        <div class="network-box-component-one">
+                            <img class="company" [src]="item.company_profile.avatar ?  '/file/'+item.company_profile.avatar  : 'assets/img/default-company.svg'" alt="profile">
+                            <div class="one-right">
+                                <h4 [routerLink]="['/company/profile/'+item.company_profile.url]"> {{ item.company_profile.name | slice:0:15 }} </h4>
+                            </div>
+                        </div>
+                    <div class="network-box-component-four">
+                        <ngb-rating [rate]="item.company_profile.avarage_rating" [readonly]="true" max="5"></ngb-rating>
+                    </div>
+                        <div class="network-box-component-two">
+                            <span *ngIf='item.company_profile.addresses.length > 0'> {{ utils.getCountryName( item.company_profile.addresses[0].country_id ) }} , {{ item.company_profile.addresses[0].city.city }} </span>
+                        </div>
+
+                        <div class="network-box-component-three">
+                            <div class="d-flex">
+                                <span> {{ item.company_profile.network_info.followers }} Followers </span>
+                            </div>
+                        </div> 
+
+                        <div class="network-box-component-four">
+                          <button class="btn btn-outline-primary" (click)="follow(item.company_profile.id, i)" >Follow</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </ng-template>
+        <ng-container *ngIf="!isLandingPage">
+            <ngb-pagination [collectionSize]="amount" [pageSize]="first" [maxSize]="first"  [(page)]="page"  
+            (pageChange)="changePage($event)" class="d-flex justify-content-end mt-4">
+           </ngb-pagination>
+        </ng-container>
+    </div>
+</div>
+
+<!-- Content in the center end -->

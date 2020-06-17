@@ -1,0 +1,138 @@
+
+<div class="profile-wrapper">
+
+  <div class="profile-photo text-center pt-4" style="position: relative;">
+ 
+       <div class="profile-photo-edit-wrapper">
+
+         <img [src]="header.avatar ? '/file/'+header.avatar :  'assets/img/default-office.svg'" 
+               alt="profile-photo" 
+               class="uploaded-image"
+               [ngClass]="{'profile-photo-edit': isMe }">
+
+          <img *ngIf="isMe" src="assets/img/255.svg" alt="edit" class="edit-photo"   (click)='openModal("Profile Photo")' style="cursor: pointer;">
+          
+       </div>
+
+      <h1 class="pt-3">{{ header.name }}</h1>
+
+      <!-- <div class="overley-photo">
+        <img src="assets/img/255.svg" alt="edit">
+      </div>
+      -->
+
+
+      <p>{{ header.category }}</p>
+
+      <div class="out-office" *ngIf="isMe">
+        <span>Out of Office</span>
+
+        <div class="notification-checkbox ml-3 d-inline">
+            <label class="switch">
+              <input type="checkbox" id="new-followers"  (click)='toggleOutOfVOffice($event)' [formControl]='officeCntrl'/>
+               <span class="slider round"></span>
+            </label>
+          </div>
+
+      </div>
+      <div class="mt-2">
+        <span  *ngIf="!isMe" [ngClass]="{'is-out': !header.isOut, 'is-out-deactivated': header.isOut }"> {{ header.isOut ? 'Out of Office' : 'Avilable' }}</span>
+      </div>
+  </div>
+
+  <hr>
+ <ng-container *ngIf="( $profileInfo | async ) as profileinfo">
+
+  <div class="profile-details">
+
+ 
+       <div class="info" *ngIf="profileinfo.email">
+           <img src="assets/img/22.svg" alt="email">
+           <a>{{ profileinfo.email }}</a>
+       </div>
+    
+     
+       <div class="info" *ngIf="profileinfo.phone">
+          <img src="assets/img/23.svg" alt="">
+          <a>+{{ isCompanyActive ? profileinfo.phone.number : profileinfo.phone  }}</a>
+      </div>
+
+      <div class="info">
+          <img src="assets/img/24.svg" alt="location">
+          <a>{{ header.location.city }}, {{ header.location.country | country }}</a>
+      </div>
+
+      <div class="info">
+          <img src="assets/img/57.svg" alt="" style="height: 17px; width: 17px;">
+          <a>Memeber since - {{ header.created_at | date:'MMM y' }}</a>
+      </div>
+  </div>
+
+  <hr>
+
+  <div class="owner">
+     <p>Office owner</p>
+     <img [src]="profileinfo.avatar | avatar: isCompanyActive" alt="photo"   [ngClass]="{'company-profile': isCompanyActive}">
+     <a  [routerLink]="[profilePath+profileinfo.url]"> {{ isCompanyActive ?  profileinfo.name :  profileinfo.firstname + " " + profileinfo.lastname }} </a>
+  </div>
+
+  <hr>
+
+</ng-container>
+  <div class="description">
+
+     <div class="d-flex justify-content-between pb-3">
+         <span>Description</span>
+         <img src="assets/img/19.svg" alt="edit" (click)='openModal("Edit Description")' style="cursor: pointer" *ngIf="isMe">
+    </div>
+         <p>
+             {{ header.description }}
+         </p>
+
+  </div>
+
+  <hr>
+
+  <div class="languages">
+      <div class="d-flex justify-content-between pb-3">
+          <span>Languages</span>
+          <div class="edit" *ngIf="isMe">
+            <img src="assets/img/19.svg" alt="edit" (click)='openModal("Edit Language")'>
+            <img class="pl-3" src="assets/img/50.svg" alt="add" (click)='openModal("Add Language")'>
+          </div>
+     </div>
+         <p *ngFor="let lang of header.languages">{{ lang.language }} - {{ lang.rank | rank }} </p>
+  </div>
+
+</div>
+
+
+
+<app-modal (closeModal)='modalType = null'>
+
+  <ng-container *ngIf='modalType ===  "Profile Photo" '>
+    <div class="profile-photo-upload">
+      <app-add-image [img]="header.originAvatar !== '' ? header.originAvatar : null" [cropType]="'circle'" (deleteResult)='deleteResult($event)'></app-add-image>
+      <div class="d-flex justify-content-end">
+         <button class="btn btn-primary" (click)='UploadImage()'> Save </button>
+      </div>
+    </div>
+  </ng-container>
+  
+  <ng-container *ngIf='modalType ===  "add"'>
+    <app-out-office (result)='getResult($event)'> </app-out-office>
+  </ng-container>
+
+  <ng-container *ngIf="modalType === 'Edit Description'">
+    <app-description-modal [data]='description' (changeDescription)='changeDescription($event)'></app-description-modal>
+  </ng-container>
+
+  <ng-container *ngIf="modalType === 'Add Language'">
+      <app-office-language-modal (result)='getLanguages($event)'></app-office-language-modal>
+  </ng-container>
+
+  <ng-container *ngIf="modalType === 'Edit Language'">
+      <app-office-language-modal (result)='getLanguages($event)' [editLanguages]='header.languages'></app-office-language-modal>
+  </ng-container>
+
+</app-modal>

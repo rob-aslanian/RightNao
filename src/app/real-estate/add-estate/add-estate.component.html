@@ -1,0 +1,13 @@
+<app-dream-job [title]='"REAL ESTATE"'></app-dream-job>
+
+<div class="container estate-wrapper mt-3">
+    <div class="row">
+         <div class="col-lg-9 add-estate-wrapper">
+             <router-outlet></router-outlet>
+         </div>
+         <div class="col-lg-3">
+              <app-dynamic-steps  [stepAmount]='stepAmount' 
+                                  [currentStep]='currentStep'></app-dynamic-steps>
+         </div>
+    </div>
+</div>

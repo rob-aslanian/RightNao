@@ -1,0 +1,132 @@
+<div class="saved">
+                            <div class="saved__header">
+                                
+                        <div class="header col-12 d-flex justify-content-between row mt-4 pr-0 pl-0">
+                            
+                    <!--     <div class="header__offers col-lg-7 d-flex justify-content-end pr-0">
+                                    <button class="btn btn-secondary mr-4" (click)="openModal('offers')">offers (215)</button>
+                                    <button class="btn btn-secondary" (click)="openModal('alerts')">Allerts (2015)</button>
+                                    <div class="header__offers__notify">
+                                        <img style="cursor: pointer" 
+                                            src="assets/img/256.svg" alt="" 
+                                            (click)="openModal('notifications')"
+                                            >
+                                        <div class="header__offers__notify__counter">
+                                            <span>2</span>
+                                        </div>
+                                    </div>
+                            </div> -->
+                            
+                            <app-manage-search (search)="updateSearch($event)" class="col-12"></app-manage-search>
+
+                        </div>
+                            </div>
+<!--<div class="saved__slider mt-4">
+            <span> Saved all items </span>
+            <div style="position: relative;">     
+                    <app-slider-bad-boy-edition [amount]='4'>          
+                            <div class="row flex-nowrap">
+                                <div class="col-3">
+                                         <div class="home-box" style="height: 110px;">
+                                                <img src="assets/img/buildings/1.jpg" alt="">
+                                                <div class="home-description">
+                                                     <div class="d-flex justify-content-between align-items-center">
+                                                           <p>Buy</p>
+                                                           <span>42 Property</span>
+                                                     </div>
+                                                </div>
+                                         </div>
+                                </div>
+                                <div class="col-3">
+                                            <div class="home-box" style="height: 110px;">
+                                                <img src="assets/img/buildings/3.jpg" alt="">
+                                                <div class="home-description">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <p>Rent</p>
+                                                        <span>42 Property</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                </div>
+                                <div class="col-3">
+                                        <div class="home-box" style="height: 110px;">
+                                            <img src="assets/img/buildings/2.jpg" alt="">
+                                            <div class="home-description">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <p>Lease</p>
+                                                    <span>42 Property</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="col-3">
+                                        <div class="home-box" style="height: 110px;">
+                                            <img src="assets/img/buildings/4.jpg" alt="">
+                                            <div class="home-description">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <p>Share</p>
+                                                    <span>42 Property</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        
+                        </app-slider-bad-boy-edition>
+                        
+                        <div class="arrow-left" (click)='rotateLeft()'>
+                            <img src="assets/img/509.svg" alt="arrow-left">
+                        </div> 
+                        
+                        <div class="arrow-right" (click)='rotateRight()'>
+                            <img src="assets/img/508.svg" alt="arrow-rigt">
+                        </div>
+                    
+            </div>       
+    </div> -->
+
+    <div class="saved__box">
+        <div class="saved__box__title col-12">
+            <span>post {{ amount }} </span>
+        </div>
+        <div class="landing__announcements mt-3">
+            <ng-container *ngIf="!isLoading; else loading">
+                <div class="col-xl-12" *ngFor="let pet of pets">
+                    <app-pets-box [isCardView]='false' [pet]='pet' (onManage)="manage($event)"></app-pets-box>
+                </div>
+            </ng-container>
+
+            <ng-template #loading>
+                    <div class="d-flex justify-content-center align-items-center">
+                            <app-spinner></app-spinner>
+                    </div>
+            </ng-template>
+                
+        </div>
+        <ngb-pagination [collectionSize]="amount" 
+                        *ngIf="amount && amount > first"
+                        [pageSize]="first" 
+                        [(page)]="page"  
+                        (pageChange)="changePage($event)" 
+                        class="d-flex justify-content-end mt-4">
+        </ngb-pagination>
+    </div>
+    
+        <!-- * * * * Modals * * * *  -->
+        <!-- <app-modal>
+            <app-discounted-modal *ngIf="modalType === 'Discounted'" 
+                                    [pet]="petForManage"  
+                                    (onClose) = "closeModal($event)">
+            </app-discounted-modal>
+            <app-urgent-modal *ngIf="modalType === 'Urgent'" 
+                                [pet]="petForManage" 
+                                (onClose) = "closeModal($event)">
+            </app-urgent-modal>
+            <app-notifications-modal *ngIf="modalType === 'Notifications'" 
+                                        [pet]="petForManage" 
+                                        (oncClose) = "closeModal($event)">
+            </app-notifications-modal>
+        </app-modal> -->
+        <!-- * * * / * * *  -->
+
+</div>

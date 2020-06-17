@@ -1,0 +1,84 @@
+@import "src/_variables.scss";
+
+
+.newsfeed{
+    background-color: $white; 
+    border: 1px solid $cool-grey; 
+    border-radius: .5rem; 
+    min-height: 385px;
+
+    &__title{
+        justify-content: space-between; 
+        h4{
+            font-size: 1.25rem;
+            font-weight: 400;
+
+        }
+        img {
+            width: 0.875rem;
+            height: 0.875rem;
+        }
+    }
+}
+
+.newsfeed-content{
+    .newsfeed-card{
+        &__title{
+            img{
+                width: 2.1875rem; 
+                height: 2.1875rem;
+                border-radius: 50%; 
+            }
+            p{
+                font-size: 0.875rem; 
+                margin: 0; 
+            }
+            span{
+                color: $dark-grey; 
+                font-size: 0.75rem; 
+            }
+        }
+
+        &__description{
+            p{
+                font-size: 0.875rem; 
+                color: $dark-grey; 
+
+            }
+            img{
+                width: 6.25rem; 
+                height: 6.25rem;
+                border-radius: .5rem; 
+            }
+        }
+    }
+}
+
+:host ::ng-deep .not__file {
+
+
+    @media (max-width: 1200px) {
+        width: 100% !important; 
+    }; 
+    
+    img {
+        height: 100px;
+        width: 100%; 
+    }
+    video {
+        height: 100px;
+        width: 100%; 
+
+    }
+
+}; 
+
+
+.newsfeed-post:nth-child(2) {
+    border-left: 1px solid $cool-grey; 
+    border-right: 1px solid $cool-grey;
+    @media (max-width: 768px) {
+        border: none;
+    }
+}
+

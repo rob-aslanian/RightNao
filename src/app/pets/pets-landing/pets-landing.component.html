@@ -1,0 +1,50 @@
+<div class="cover-image">
+    <div class="container" style="position: relative; z-index: 2;">
+        <div class="row header">
+            <div class="header__title col-12 mt-4">
+                <P>FIND YOUR PET ON RIGHTNAO</P>
+            </div>
+            <div class="header__description col-12">
+                <span>Buy and sell vehicles locally</span>
+            </div>
+            <div class="landing__header col-12">   
+                <app-pets-landing-header></app-pets-landing-header>
+            </div>
+        </div>
+    </div>
+    <img src="" alt="">
+</div>
+
+<div class="container">
+    <div class="row">
+
+        <div class="landing col-md-9 pb-5">
+ 
+            <div class="landing__announcements mt-3">
+                
+                <ng-container *ngIf="!isLoading; else loading">
+                    <app-pets-landing-annousement [pets]='pets'></app-pets-landing-annousement>
+                </ng-container>
+
+                <ng-template #loading>
+                      <div class="d-flex justify-content-center align-items-center">
+                             <app-spinner></app-spinner>
+                      </div>
+                </ng-template>
+
+                <ngb-pagination [collectionSize]="amount" 
+                                *ngIf="amount && amount > first"
+                                [pageSize]="first" 
+                                [(page)]="page"  
+                                (pageChange)="changePage($event)" 
+                                class="d-flex justify-content-end mt-4">
+                </ngb-pagination>
+                
+            </div>
+
+        </div>
+        <div class="ads col-md-3 mt-4">
+            <app-user-profile-landing-languages></app-user-profile-landing-languages>
+        </div>
+    </div>
+</div>

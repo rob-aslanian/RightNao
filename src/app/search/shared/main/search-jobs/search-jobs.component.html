@@ -1,0 +1,22 @@
+<app-search-all-title [amount]="amount" type="job"></app-search-all-title>
+
+<div *ngIf="jobList.length > 0 && amount > 0" >
+    <div class="row">
+       <div class="col-4 bg-white" >
+            <span class="page-section-text-grey mt-2">Showing {{ amount }} results</span>
+            <app-company-box type="all" [jobs]="jobList" [showDetail]="false" (job)="job = $event"></app-company-box>
+       </div>
+       <div class="col p-0 ml-3 bg-white">
+            <div *ngIf="!job; else:jobView" class="no_result">
+                <h2>
+                    We`ve found  <strong>{{ amount  }}</strong> jobs <br>
+                    that could be the right fit!
+                </h2>
+            </div>
+            <ng-template #jobView>
+                <app-job-view [job]="job"></app-job-view>
+            </ng-template>
+            
+       </div>
+    </div>
+</div>

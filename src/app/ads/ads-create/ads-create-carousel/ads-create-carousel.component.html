@@ -1,0 +1,61 @@
+<form [formGroup]="carouselForm">
+        <ng-container formArrayName="cards" *ngFor="let item of Cards.controls; let i = index">
+            <ng-container [formGroupName]="i">
+                    <div class="carousel-card">
+                        <div class="d-flex align-items-center justify-content-between">
+                            <h5 class="carousel-card-title">
+                                    Card {{ i+1 }}
+                            </h5>
+                            <img src="assets/img/ads/38.svg" 
+                                alt="remove" 
+                                (click)="remove(i)" 
+                                style="cursor: pointer;" 
+                                *ngIf="Cards.controls.length > 2">
+                        </div>
+                        <div class="d-flex align-items-start">
+                            <div class="mr-4">
+                                    <p>Upload image</p>
+                                    <div style="width: 138px; height: 138px;">
+                                            <app-ads-create-image [i]="i" (carouselSrc)="addCardImage($event)" 
+                                                                        (removeCarouselSrc)="removeCardImage($event)">
+                                            </app-ads-create-image>
+                                    </div>
+                            </div>
+                            <div class="w-100 mb-4">
+                                <div>
+                                    <p>Ad Headline</p>
+                                    <input type="text"
+                                            style="margin-bottom: 26px;" 
+                                            class="form-control"
+                                            formControlName="headline"
+                                            [ngClass]="{ 'is-invalid': (item['controls']['headline'].touched || 
+                                                                        item['controls']['headline'].dirty ) && 
+                                                                        item['controls']['headline'].errors }">
+                                </div>
+                                <div>
+                                    
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <p>Destination URL</p>
+                                        <p> {{ item['controls']['url'].value.length }} /100</p>
+                                    </div>
+                                    <input type="text" 
+                                        class="form-control"
+                                        formControlName="url"
+                                        [ngClass]="{ 'is-invalid': (item['controls']['url'].touched || 
+                                                                    item['controls']['url'].dirty ) && 
+                                                                    item['controls']['url'].errors }">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </ng-container>
+        </ng-container>
+        <div class="add-card d-flex align-items-center backgroundless"  
+        (click)="addAnother()" 
+        style="cursor: pointer;"
+        *ngIf="Cards.controls.length < 5">
+                <span class="add-card-plus" style="font-size: 34px">+</span>
+                <span>Add another card ( {{ Cards.controls.length }} /5)</span>
+        </div>
+</form>
+

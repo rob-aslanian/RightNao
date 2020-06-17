@@ -1,0 +1,24 @@
+.location {
+    margin-bottom: 10px;
+}
+.edit {
+    transition: .3s all ease-in-out;
+    opacity: 0;
+}
+
+.location{
+    &:first-child{
+        .edit { opacity: 1; }
+    }
+
+    &:hover{
+        .edit { opacity: 1; }
+    }
+    
+}
+.borderise {
+    border: solid 1px red;
+}
+
+
+// .edit { display: none; }

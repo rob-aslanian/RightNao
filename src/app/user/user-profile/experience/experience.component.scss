@@ -1,0 +1,22 @@
+.experience-edit {
+    transition: .3s all ease-in-out;
+    opacity: 0;
+}
+
+.experience {
+    &:first-child {
+        .experience-edit {
+            opacity: 1;
+        }
+    }
+    &:hover {
+        .experience-edit {
+            opacity: 1;
+        }
+    }
+}
+.media__content {
+     .link-name {
+         color: #00D4E3;
+     }
+}

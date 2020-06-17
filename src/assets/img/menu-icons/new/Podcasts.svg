@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="26.08" height="42.64" viewBox="0 0 26.08 42.64">
+  <g id="Podcasts" transform="translate(0 0)">
+    <line id="Line_66" data-name="Line 66" y2="12.281" transform="translate(13.043 29.86)" fill="none" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="2.613" stroke-width="1"/>
+    <line id="Line_67" data-name="Line 67" x2="11.871" transform="translate(7.105 42.14)" fill="none" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="2.613" stroke-width="1"/>
+    <path id="Path_330" data-name="Path 330" stroke="gray" d="M23.883,19.38h1.7V32.622a4.041,4.041,0,0,1-4.03,4.029H4.529A4.041,4.041,0,0,1,.5,32.622V19.38H2.2" fill="none" transform="translate(0 -6.785)" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="2.613" stroke-width="1" fill-rule="evenodd"/>
+    <path id="Path_331" data-name="Path 331" d="M9.643.5H20.527A3.463,3.463,0,0,1,23.98,3.953V21.23a3.463,3.463,0,0,1-3.453,3.453H9.643A3.463,3.463,0,0,1,6.19,21.23V3.953A3.467,3.467,0,0,1,9.643.5Z" transform="translate(-2.045)" fill="#00f4ff" stroke="gray" stroke-miterlimit="2.613" stroke-width="1" fill-rule="evenodd"/>
+    <g id="Group_122" data-name="Group 122" transform="translate(16.176 7.412)">
+      <line id="Line_68" data-name="Line 68" x2="5.759" stroke-width="1" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="2.613" fill="none"/>
+      <line id="Line_69" data-name="Line 69" x2="5.759" transform="translate(0 2.588)" fill="none" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="2.613" stroke-width="1"/>
+      <line id="Line_70" data-name="Line 70" x2="5.759" transform="translate(0 5.183)" fill="none" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="2.613" stroke-width="1"/>
+      <line id="Line_71" data-name="Line 71" x2="5.759" transform="translate(0 7.771)" fill="none" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="2.613" stroke-width="1"/>
+      <line id="Line_72" data-name="Line 72" x2="5.759" transform="translate(0 10.365)" fill="none" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="2.613" stroke-width="1"/>
+    </g>
+    <g id="Group_125" data-name="Group 125" transform="translate(4.145 7.412)">
+      <line id="Line_83" data-name="Line 83" x2="5.759" stroke-width="1" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="2.613" fill="none"/>
+      <line id="Line_84" data-name="Line 84" x2="5.759" transform="translate(0 2.588)" fill="none" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="2.613" stroke-width="1"/>
+      <line id="Line_85" data-name="Line 85" x2="5.759" transform="translate(0 5.183)" fill="none" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="2.613" stroke-width="1"/>
+      <line id="Line_86" data-name="Line 86" x2="5.759" transform="translate(0 7.771)" fill="none" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="2.613" stroke-width="1"/>
+      <line id="Line_87" data-name="Line 87" x2="5.759" transform="translate(0 10.365)" fill="none" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="2.613" stroke-width="1"/>
+    </g>
+  </g>
+</svg>

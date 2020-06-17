@@ -1,0 +1,55 @@
+<app-clasified-ads-header></app-clasified-ads-header>
+<div class="d-flex justify-content-center">
+    <div class="profile">
+          <div class="mt-4">
+              <div class="container-fluid p-0">
+                  <div class="row">
+                    <div class="col-lg-3">
+                           <div class="categories side">
+                               <p>Categories</p>
+                               <ul class="menu">
+                                   <li *ngFor="let cat of Category">
+                                       {{cat.text}}
+                                   </li>
+                               </ul>
+                           </div>
+                    </div>
+                    <div class="col-lg-9">
+                        <div class="side slider  pb-4">
+                                <app-clasified-ads-landing-slider></app-clasified-ads-landing-slider>
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-3 mt-4" *ngFor="let more of MORE_CATEGORIES">
+                                            <app-categories-boxes [cat]='more'></app-categories-boxes>
+                                    </div>
+                               </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="mt-2">
+                  <app-categories-boxes [cat]='FINDYOURSOMETHING["car"]'></app-categories-boxes>
+              </div>
+
+              <div class="mt-4" *ngIf="products.length > 0">
+                  <div class="new-products">
+                        <h4>Products</h4>
+                        <app-clasified-ads-new-products [products]='products' type='"ads-service"'></app-clasified-ads-new-products>
+                  </div>
+              </div>
+
+              <div class="mt-4">
+                    <app-categories-boxes [cat]='FINDYOURSOMETHING["home"]'></app-categories-boxes>
+              </div> 
+
+              <div class="new-products mb-4">
+                  <h4 class="mb-2">New Products</h4>
+                  <div class="row">
+                        <div class="col-3 mb-4" *ngFor="let box of listOfNewProducts">
+                            <app-clasified-ads-box [box]='box'  (notify)='getNotified($event)'></app-clasified-ads-box>
+                        </div>
+                  </div>    
+              </div>
+          </div>            
+    </div> 
+</div> 

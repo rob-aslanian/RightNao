@@ -1,0 +1,84 @@
+<!-- when small chatbox is minimzed then add class => sms-nano-w-small -->
+<!-- example -->
+<!-- <div *ngIf="conversationLoaded" [style.right]="rightPositionStr" class="sms-nano-w chat-box-main sms-nano-w-small"> -->
+<div *ngIf="conversationLoaded" [ngStyle]="{'width' : showBody ? '500px' : '210px' }"  class="sms-nano-w chat-box-main">
+  <div class="sms-nano-head">
+    <div (click)="minimize()" class="sms-nano-head_in header-toggle-body">
+      <h2 *ngIf="conversation.is_group">{{conversation | conversationName }}</h2>
+      <h2 *ngIf="!conversation.is_group" [routerLink]="[participantLink]">
+        {{conversation | conversationName }}
+      </h2>
+
+      <div *ngIf="totalUnread !==0" class="sms-nano-unreadCount">{{totalUnread}}</div>
+    </div>
+    <div class="sms-nano-head_in">
+      <!-- <button class="sms-nano-addChat"></button> -->
+      <button *ngIf="showBody" (click)="showSearch=!showSearch" class="sms-nano-plus"></button>
+
+      <!-- <button class="sms-nano-options"></button> -->
+      <div *ngIf="showBody" ngbDropdown class="d-inline-block settings-selection" placement="bottom-right">
+        <div id="chatOptionsHeader" ngbDropdownToggle class="settings-selection_head"></div>
+        <div ngbDropdownMenu aria-labelledby="chatOptionsHeader">
+          <div class="settings-selection_body">
+            <div *ngIf="conversation.is_group" (click)="onRename()" class="settings-selection-item">
+              <img src="./assets/img/68.svg" alt="mute"> Rename
+            </div>
+            <div (click)="toggleMuteUnmute()" class="settings-selection-item">
+              <img src="{{conversation.muted ? './assets/img/256.svg' : './assets/img/125.svg'}}" alt="mute"> {{conversation.muted ? 'Unmute' : 'Mute'}} conversation
+            </div>
+            <div (click)="setReadUnread(conversation)" class="settings-selection-item">
+              <img src="./assets/img/126.svg" alt="mute"> Mark as {{conversation.unread ? 'read' : 'unread'}}
+            </div>
+            <div *ngIf="conversation.is_group" (click)="openLeaveGroupModal(leaveGroupModal)" class="settings-selection-item">
+              <img src="./assets/img/69.svg" alt="mute"> Leave Group
+            </div>
+            <div (click)="archiveConversation(conversation)" class="settings-selection-item">
+              <img src="{{conversation.archived ? './assets/img/265.svg' : './assets/img/127.svg'}}" alt="mute"> {{conversation.archived ? 'Unarchive' : 'Archive'}}
+            </div>
+            <div (click)="openDeleteChatModal(deleteChatConfirmModal)" class="settings-selection-item">
+              <img src="./assets/img/53.svg" alt="mute"> Delete
+            </div>
+            <div *ngIf="!conversation.is_group && !isBlocked" (click)="open('report' , getSecondParticipant())" class="settings-selection-item">
+              <img src="./assets/img/42.svg" alt="mute"> Report / Block
+            </div>
+            <div *ngIf="isBlocked" (click)="unBlockUser(getParticipant())"  class="settings-selection-item">
+                <img src="./assets/img/57.svg" alt="mute"  > Unblock
+            </div>
+          </div>
+        </div>
+      </div>
+      <button (click)="close()" class="sms-nano-close">&#10005;</button>
+    </div>
+  </div>
+
+  <div *ngIf="showBody" class="sms-nano-body">
+    <div class="sms-nano-search-sms">
+      <app-search-n-select *ngIf="showSearch" [selectedItems]="selectedItems" [currentProfile]="getAllParticipant()"></app-search-n-select>
+    </div>
+    <div class="chatBox-row" style="top: 10px">
+        <app-chat-container [conversation]="conversation" [(totalUnread)]="totalUnread"></app-chat-container>
+    </div> 
+    <app-send-message-form #sendMessageForm (handleAfterSending)="handleAfterSending()" [selectedItems]="selectedItems" [conversation]="conversation"></app-send-message-form>
+  </div>
+</div>
+
+<ng-template #leaveGroupModal>
+  <app-leave-group (closeModal)=" closeModal()" [conversationId]="conversation.id"></app-leave-group>
+</ng-template>
+
+<ng-template #muteChatModal>
+  <app-mute-chat [muteStatus]="conversation.muted" [conversationId]="conversation.id" (closeModal)="closeModal()"></app-mute-chat>
+</ng-template>
+
+<ng-template #deleteChatConfirmModal>
+  <app-delete-chat-confirm [archiveStatus]="conversation.archived" [conversationId]="conversation.id" (closeModal)="closeModal()"></app-delete-chat-confirm>
+</ng-template>
+
+
+<!-- Modals -->
+<app-modal (closeModal)="modalType = null">
+    <app-report-block-user *ngIf="modalType === 'report' " [type]="isCompany ? 'company' : 'user' " 
+          [blockId]="getSecondParticipant()" (closeModal)="modal.close()" (isBlocked)="isBlocked = true;">
+    </app-report-block-user >
+</app-modal>
+<!-- Modals -->

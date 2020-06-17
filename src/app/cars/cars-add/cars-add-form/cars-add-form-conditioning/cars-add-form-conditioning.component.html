@@ -1,0 +1,18 @@
+
+<form [formGroup]="form" class="col-12 basic-form">
+    <div class="form-group">
+            <p>Air Conditioning</p>
+            <div class="custom-control custom-radio custom-control-inline col-6 col-md-4 mr-0"  *ngFor="let item of airConditioning">
+                <input  type="radio" 
+                        class="custom-control-input" 
+                        [value]="item['type']" 
+                        id="airConditioning-{{ item['type'] }}" 
+                        name="airConditioning"
+                        formControlName="airConditioning">
+                <label  for="airConditioning-{{ item['type'] }}" class="custom-control-label"> 
+                    {{ item['text'] }}
+                </label>
+            </div>
+    </div>
+
+</form>

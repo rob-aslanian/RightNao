@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="62.549" height="23.156" viewBox="0 0 62.549 23.156">
+  <g id="Convertible_" data-name="Convertible " transform="translate(0.513 0.534)">
+    <path id="Path_780" data-name="Path 780" d="M54.532,18.054c-2.413.1-7.161.01-9.427.04H15.315c-2.172-.111-8.085-.044-9.415,0H2.326A2.173,2.173,0,0,1,.343,16.017L.014,13.308A4.154,4.154,0,0,1,2.432,8.923L5.71,7.775A49.781,49.781,0,0,1,20.816,4.965L29.249.149a1.293,1.293,0,0,1,1.578.3l.19.2a.374.374,0,0,1-.07.562l-8.34,4.766h0l17.345-.971.238-1.751a2.676,2.676,0,0,1,.443-1.169.37.37,0,0,1,.609-.04,2.073,2.073,0,0,1,.449,1.314v.572l.981-1.018a.978.978,0,0,1,.992-.286L49.8,4.453l9.522-.534c.35-.01.576.444.406.815l-.48,1.046-2.12.745a.883.883,0,0,0-.259,1.38l.2.221a1.036,1.036,0,0,0,.847.351l2.039-.171a1.5,1.5,0,0,1,1.493,1.169C62.234,12.046,56.236,17.9,54.532,18.054ZM5.892,9.7c-.145-.544-1.22-.615-2.4-.153s-2.017,1.277-1.872,1.824,1.22.615,2.4.153S6.037,10.248,5.892,9.7Z" transform="translate(0.007 0.002)" fill="none" stroke="gray" stroke-width="1"/>
+    <line id="Line_65_1_" x1="2.511" stroke-width="1" transform="translate(39.074 8.316)" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" fill="none"/>
+    <path id="Path_781" data-name="Path 781" d="M7375.265,2765.622s.951.478,1.146,1.147a2.261,2.261,0,0,1-.364,1.529" transform="translate(-7316.391 -2759.886)" fill="none" stroke="gray" stroke-width="1"/>
+    <g id="Group_427" data-name="Group 427" transform="translate(9.647 11.643)">
+      <ellipse id="Ellipse_32" data-name="Ellipse 32" cx="4.99" cy="4.99" rx="4.99" ry="4.99" transform="translate(0 0)" fill="#fff" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"/>
+      <circle id="Ellipse_33" data-name="Ellipse 33" cx="3.992" cy="3.992" r="3.992" transform="translate(0.333 8.138) rotate(-76.714)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </g>
+    <g id="Group_428" data-name="Group 428" transform="translate(41.582 11.643)">
+      <ellipse id="Ellipse_32-2" data-name="Ellipse 32" cx="4.99" cy="4.99" rx="4.99" ry="4.99" transform="translate(0 0)" fill="#fff" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"/>
+      <circle id="Ellipse_33-2" data-name="Ellipse 33" cx="3.992" cy="3.992" r="3.992" transform="translate(0.333 8.138) rotate(-76.714)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </g>
+  </g>
+</svg>

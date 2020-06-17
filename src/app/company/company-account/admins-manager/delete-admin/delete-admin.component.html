@@ -1,0 +1,29 @@
+<div class="modal-content popup-report" *ngIf='!delete'>
+    <div class="popup-content">
+        <form [formGroup]='deleteForm'>
+            <div class="form-group">
+                <label for="password-to-continue"> {{ "1071" | translate }} </label>
+                <input type="password" class="form-control" id="password-to-continue" placeholder="Password" formControlName='password' [ngClass]="{'is-invalid':deleteForm.controls.password.hasError && isInvalid }">
+            </div>
+            <button class="btn btn-primary" (click)='validate()' > {{ "351" | translate }} </button>
+        </form>
+    </div>
+</div>
+<!-- Delete admin end -->
+<!-- Delete admin -->
+<div class="modal-content popup-report" *ngIf='delete && _user'>
+        <div class="popup-content">
+            <form action="">
+                <h3>Are you sure you want to delete admin?</h3>
+                <div class="d-flex modal-profile-box">
+                    <img [src] ="_user.user.avatar? '/file/'  +  _user.user.avatar : 'assets/img/124.svg'" alt="admin">
+                    <div>
+                        <h3>{{ _user.user.firstname + " " +  _user.user.lastname}}</h3>
+                        <span *ngIf='_user.user.skills.length > 0'>{{ _user.user.skills[0].name}}</span>
+                        <span *ngIf='_user.user.experiences.length > 0'>{{_user.user.experiences[0].title}}</span>
+                    </div>                                                
+                </div>
+                <button class="btn btn-primary" (click)='deleteUser()'> {{ "351" | translate }} </button>
+            </form>
+        </div>
+    </div>

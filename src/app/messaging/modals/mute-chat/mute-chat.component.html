@@ -1,0 +1,28 @@
+<div class="smsModal-mute-Conversation">
+    <h1>Mute Conversation <a (click)="close()">&#10005;</a></h1>
+    <div class="popup-content">
+        
+            <div class="custom-control custom-radio">
+                <input type="radio" class="custom-control-input" value="30min" id="block" name="report-popup">  
+                <label for="30min" class="custom-control-label"> 30 Minutes </label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input type="radio" class="custom-control-input" value="report" id="1h" name="report-popup">  
+                <label for="1h" class="custom-control-label">1 hour</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input type="radio" class="custom-control-input" value="report" id="12h" name="report-popup">  
+                <label for="12h" class="custom-control-label">12 hour</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input type="radio" class="custom-control-input" value="report" id="24h" name="report-popup">  
+                <label for="24h" class="custom-control-label">24 hour</label>
+            </div>
+            <div class="custom-control custom-radio">
+                <input type="radio" class="custom-control-input" value="report" id="back" name="report-popup">  
+                <label for="back" class="custom-control-label">UNtil I turn it back</label>
+            </div>
+            <button (click)="onMuteClick()" class="btn btn-primary">Mute</button>
+        
+    </div>
+</div>

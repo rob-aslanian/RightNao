@@ -1,0 +1,39 @@
+<div class="search-groups__sidebar-section">
+    <app-search-column-header title="Company Name">
+        <div class="mt-2">
+            <div class="search-groups__sidebar-section__delivery-time-options search-groups__sidebar-section__wrap">
+                <div class="
+                    custom-control 
+                    custom-checkbox 
+                    page-section-text-grey
+                    " *ngFor="let companyName of companyNames">
+                    <input type="checkbox" [checked]="companyName.isSelected" class="custom-control-input" [id]="companyName.name" name="type"
+                           (change)="checkeCompanyName($event)" [value]="companyName.name">
+                    <label
+                        class="custom-control-label" [for]="companyName.name" >
+                    {{ companyName.name }}
+                    </label>
+                </div>
+            </div>
+            <div class="mt-2">
+                <div class="input-container d-flex align-items-center">
+                    <input type="text" (keyup)="searchCompany($event)" (keyup.enter)="selectCompany($event)" placeholder="Enter company name" class="form-control">
+
+                    <div>
+                        <button class="btn backgroundless search-btn" type="submit">
+                            <img src="assets/img/right-arrow.svg" class="search-groups__sidebar-section__location__img"/>
+                        </button>
+                    </div>
+        
+                </div>
+                <div class="popup mt-2"  *ngIf="(companies | async) as companies">
+                    <ul class="list-group">
+                        <li class="list-group-item" *ngFor="let company of companies" (click)="selectCompany(company)">
+                            <span> {{  company.name }} </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </app-search-column-header>
+</div>

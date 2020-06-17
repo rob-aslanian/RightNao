@@ -1,0 +1,21 @@
+<div class="search-groups__sidebar-section">
+    <app-search-column-header title="Delivery Time">
+        <div class="mt-2">
+            <div class="search-groups__sidebar-section__delivery-time-options search-groups__sidebar-section__wrap">
+                <form [formGroup]="form">
+                    <div class="
+                        custom-control 
+                        custom-radio 
+                        page-section-text-grey
+                        " *ngFor="let DeliveryTime of DeliveryTimes; let i = index;">
+                        <input  type="radio" class="custom-control-input" [id]="DeliveryTime.id" [value]="DeliveryTime.id" 
+                                    name="delivery_time"  formControlName="delivery_time">
+                        <label class="custom-control-label" [for]="DeliveryTime.id">
+                            {{ DeliveryTime.name  }}
+                        </label>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </app-search-column-header>
+</div>

@@ -1,0 +1,47 @@
+@import 'src/variables';
+
+.add-article-wrapper {
+
+  .add-article {
+       background: $white;
+       border-radius: 5px;
+       .upload {
+           width: 400px;
+           height: 393px;
+           border-radius: 5px;
+           border: 1px solid #CCCCCC;
+           background: #eaedf2;
+       }
+       border-bottom: 1px solid #CCCCCC;
+  }
+}
+
+.no-border {
+    border: 0px !important;
+}
+
+:host ::ng-deep .remove-file {
+    right: -8px !important;
+}
+
+:host ::ng-deep .angular-editor-toolbar {
+    border-top: 1px solid #ddd;
+}
+:host ::ng-deep .angular-editor {
+            .angular-editor-wrapper   {
+                height: 500px;
+                .angular-editor-textarea {
+                    height: 100% !important;
+             }
+        }
+    
+} 
+.btn-publish {
+    position: absolute;
+    right: 19px;
+    margin-top: 6px;
+    z-index: 10;
+}
+.invalid {
+    border: 1px solid red !important;
+}

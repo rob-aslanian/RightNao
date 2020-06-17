@@ -1,0 +1,60 @@
+   
+   
+   <ng-container *ngIf="type === 'landing'; else default">
+            <app-post 
+                [post]="post" 
+                (deletePost)="removePost($event)" 
+                *ngFor="let post of posts; trackBy:trackByFn"
+                [type] = "type"
+                class="col-md-4 p-1 pl-3 landingLine"
+                >
+            </app-post>
+  </ng-container>
+
+<ng-template #default>
+    <ng-container *ngIf="posts && posts.length > 0">
+            <app-infinity-scroll (scrolled)="scrolled($event)">
+                <app-post [post]="post" 
+                          (deletePost)="removePost($event)" 
+                          (removeProfilePosts)="removeOthersPosts($event)"
+                          *ngFor="let post of posts; trackBy:trackByFn"
+                          [type] = "type" class="landing">
+                </app-post>
+            </app-infinity-scroll>
+    </ng-container>
+</ng-template>
+  
+
+<app-spinner class="d-flex justify-content-center mt-4" *ngIf="isLoading"></app-spinner>
+
+<!-- No Post -->
+<ng-container *ngIf="posts.length === 0 && !isLoading">
+  <div class="create-first-post mt-3 p-5" *ngIf="type !== landing; else forLanding">
+      <div class="create-first-post__icon col-12 d-flex justify-content-center mt-5">
+          <img src="assets/img/create-post.svg" alt="">
+      </div>
+      <div class="create-first-post__title d-flex justify-content-center mt-3 mb-2">
+          <h4>Create the first post</h4>
+      </div>
+      <div class="create-first-post__description d-flex justify-content-center">
+          <span>Get the conversation going. Be the first to post in this group</span>
+      </div>
+  </div>  
+    <ng-template #forLanding>
+        <div class="create-first-post mt-3 p-5" style="cursor: pointer">
+            <div class="create-first-post__icon col-12 d-flex justify-content-center mt-5">
+                <img src="assets/img/create-post.svg" alt="">
+            </div>
+            <div class="create-first-post__title d-flex justify-content-center mt-3 mb-2">
+                <h4>Create the first post</h4>
+            </div>
+            <div class="create-first-post__description d-flex justify-content-center">
+                <span>Get the conversation going. Be the first to post in this group</span>
+            </div>
+        </div>  
+    </ng-template>
+    
+</ng-container>
+<!-- No Post -->
+
+

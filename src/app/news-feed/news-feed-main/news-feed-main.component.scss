@@ -1,0 +1,155 @@
+@import 'src/variables';
+
+.post-wrapper {
+    .list-view {
+
+        .list-block {
+            position: absolute;
+            background: $white;
+            border-radius: 5px;
+            box-shadow: 0 0 20px 0 rgba(0,0,0,.50);
+            top: 27px;
+            z-index: 2;
+              button {
+                  color: $dark-grey ;
+                  display: block;
+                  width: 100%;
+                  text-align: left;
+                  margin-top: .5rem;
+                  &:hover {
+                      background:$grey-dark;
+
+                  }
+              }
+        }
+    }
+  .post-header {
+    img {
+      height: 50px;
+      width: 50px;
+    }
+    h6 {
+      font-size: 0.8rem;
+    }
+    h4 {
+      font-size: 1.2rem;
+    }
+  }
+  }
+  .comments-container {
+    .comments {
+      width: fit-content;
+      margin-top: 1.5rem;
+      position: relative;
+      img {
+        height: 28px;
+        width: 28px;
+      }
+      h5 {
+        font-size: 1.1rem !important;
+        cursor: pointer;
+      }
+    }
+  }
+
+  .job-post-image {
+    width: 23px;
+    height: 17px;
+  }
+
+  .dark-content {
+    background-color: $dark-blue;
+    width: fit-content;
+    padding: 0px 15px;
+    border-radius: 5px;
+
+  }
+
+  .job-post-no-before {
+    &::before {
+        display: none;
+    }
+  }
+
+  .job-post {
+    margin-left: -20px;
+    margin-right: -20px;
+    background-color: $grey-dark;
+    &::before {
+      content: "";
+      width: 16px;
+      background-color: $background-dark-cyan;
+      display: block;
+    }
+    .jobs-post-wrapper {
+      width: 100%;
+      .porst-description {
+        h5 {
+          margin: 0px;
+        }
+        img{
+            width: 20px;
+            height: 20px;
+        }
+      }
+      .article-container {
+        margin: 1rem;
+
+        .jobs-post-headline {
+          padding: 2px 19px;
+          border: 1px solid $dark-grey;
+          border-radius: 4px;
+          h2 {
+            margin: 0px;
+          }
+        }
+      }
+    }
+  }
+
+  .bussniess {
+    .bussniess-header{
+    a {
+        color: $background-dark-cyan !important;
+        cursor: pointer;
+    }
+  }
+    .bussniess-box {
+        border: 1px solid $light-grey;
+        border-radius: 5px;
+        padding:15px 15px;
+        height: 100%;
+      .bussniess-img {
+          width: 70px;
+          height: 70px;
+          border-radius: 5px;
+      }
+      .bussniess-img-rounded {
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+      }
+      h5 {
+        font-size: 0.7rem;
+      }
+      .btn-electro {
+        border: 1px solid $background-dark-cyan;
+        color: $background-dark-cyan;
+        padding: 0px 16px;
+      }
+    }
+  }
+
+  .likes-wrapper {
+  border-bottom: 1px solid $light-grey;
+  padding-bottom: 1rem;
+
+  }
+
+  .load_more{
+    position: sticky;
+    top: 75px;
+    z-index: 999;
+    display: flex;
+    margin: 0 auto;
+  }

@@ -1,0 +1,28 @@
+<div class="share">
+    <form (ngSubmit)="submit()">
+        <div class="col-12 mt-4">
+            <!-- Your newsfeed -->
+            <div class="share__user d-flex  align-items-center" *ngIf="type === 'your_newsfeed'">
+              <img class="share__user__image" [src]="profileAvatar" alt="profile-image">
+              <h4 class="share__user__text ml-4">{{ profileName }}</h4> 
+           </div>
+            <!-- Your newsfeed -->
+        
+              <textarea [formControl]="textControl" class="form-cotrol mt-2"  placeholder="Say something about this"></textarea>
+          </div>
+          <div class="d-flex justify-content-center">
+              <div class="col-12">
+                 <div class="share__post">
+                     <div class="col-12 mt-4 mb-4">
+                        <app-post [post]="postToShare" type="share" *ngIf="postToShare"></app-post>
+                     </div>
+                 </div>
+              </div>
+          </div>
+          <div class="col-12">
+              <div class="d-flex justify-content between mt-3 mb-3">
+                  <button class="btn btn-primary share--button" type="submit" >Post</button>
+              </div>
+          </div>
+    </form>
+</div>

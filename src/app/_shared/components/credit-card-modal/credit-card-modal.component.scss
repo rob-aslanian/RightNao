@@ -1,0 +1,69 @@
+@import 'src/variables';
+
+
+input,
+select {
+  margin-bottom: 16px;
+}
+button {
+  font-size: 14px;
+}
+.custom-checkbox label {
+  font-weight: normal;
+  color: $dark-grey;
+  margin-top: 10px;
+}
+.we-accept {
+  margin: 22.5px 0 27px;
+  span {
+    color: $dark-grey;
+  }
+  .cards {
+    margin-top: 15px;
+  }
+  a {
+    margin-right: 10px;
+    border: solid 1px $light-grey;
+    padding: 10px;
+    background: white;
+    float: inherit;
+    border-radius: 5px;
+  }
+  img {
+    width: 40px;
+  }
+}
+.total-payment {
+  margin: 40px 0 30px;
+  background: $background-soft-blue;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 15px;
+  span {
+    color: $dark-blue;
+    font-weight: bold;
+    font-size: 15px;
+    &.count {
+      color: $background-light-cyan;
+    }
+  }
+}
+
+.custom-modal-box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 50px;
+  &.center {
+    padding-top: 0;
+    align-items: center;
+  }
+}

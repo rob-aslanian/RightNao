@@ -1,0 +1,9 @@
+<!-- "Founder request sent to" start -->
+<div class="founder-request" *ngIf="show && data">
+    <p>{{ texts[type] }} <a (click)="show = false;">&#10005;</a></p>
+    <img [src]="data.avatar ? '/file/' +  data.avatar : 'assets/img/124.svg' " alt="founder">
+    <span>
+      {{ data.name }}
+    </span>
+</div>
+<!-- "Founder request sent to" end -->

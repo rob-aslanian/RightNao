@@ -1,0 +1,15 @@
+@import "src/variables";
+
+.calendar-events {
+    &__upcoming {
+        background-color: $background-light-blue;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+
+        span {
+            color: $white;
+            font-size: $medium-text;
+        }
+    }
+}

@@ -1,0 +1,80 @@
+<div class="photo-modal add-service">
+
+  <div class="review">
+    <div class="preview">
+      <h3 class="ads-dBlue-title ml-0">Preview</h3>
+      <ng-container *ngIf="data.preview as preview">
+        <div class="preview__content col-6 p-0">
+          <!-- Banner -->
+          <ng-container *ngIf="type === 'banner' ; else:profile">
+            <div class="preview__content__box">
+                <img [src]="preview.image" *ngIf="preview?.image" class="preview__content__box__img" [ngClass]="{'full-image': !isResponsive}">
+                  <ng-container *ngIf="type === 'banner'">
+                    <div class="preview__content__box__content">
+                      <h4 *ngIf="preview?.top_title">{{ preview.top_title }}</h4>
+                      <p *ngIf="preview?.description">{{ preview.description }}</p>
+                    </div>
+                  </ng-container>
+               </div>
+          </ng-container>
+          <ng-template #profile>
+              <div class="profile__content__profile">
+                  <img [src]="preview?.image" alt="">
+                  <div class="d-flex flex-column">
+                     <h4 *ngIf="preview?.name" class="profile__content__profile__name">{{ preview.name }}</h4>
+                     <div class="mt-2">
+                        <h3 class="preview?.top_title" class="profile__content__profile__info">{{ preview.top_title }}</h3>
+                        <span class="preview?.bottom_title" class="profile__content__profile__info">{{ preview.bottom_title }}</span>
+                     </div>
+                  </div>
+              </div>
+          </ng-template>
+          
+        </div>
+      </ng-container>
+    </div>
+
+    <!-- For banner -->
+    <div class="url ads-section" *ngIf="data?.url && type === 'banner'">
+      <h3 class="ads-dBlue-title ml-0">Destionation URL</h3>
+      <span *ngIf="data?.url" class="preview-modal-text">{{ data.url }}</span>
+    </div>
+    <!-- For banner -->
+
+    <div class="plan ads-section">
+        <h3 class="ads-dBlue-title ml-0">Advertiting Plan</h3>
+      <div class="row">
+         <div class="col-3" *ngIf="data?.location as location">
+            <h3 class="preview-modal-title">Location</h3>
+            <span class="preview-modal-text">{{ location }}</span>
+         </div>
+         <!-- For banner -->
+         <div class="col-3" *ngIf="data?.places && type === 'banner';">
+            <h3 class="preview-modal-title">Show banner for</h3>
+            <span *ngFor="let place of data.places; trackBy:trackByFn" class="preview-modal-text">
+                {{ place }} <br>
+            </span>
+         </div>
+         <div class="col-3" *ngIf="type !== 'banner' ">
+              <h3 class="preview-modal-title">Advertisment type</h3>
+              <span class="preview-modal-text">Fiexed Price - $100</span>
+         </div>
+         
+         <div class="col-3" *ngIf="data?.start_date as date">
+            <h3 class="preview-modal-title">Start date</h3>
+            <span class="preview-modal-text">{{ date }}</span>
+         </div>
+      </div>
+    </div>
+    
+    <div class="d-flex justify-content-end preview__budget" *ngIf="data?.currency as currency">
+      <h3>Budget <span class="preview__budget__value">{{ currency }}0</span></h3>
+    </div>
+
+    <div class="d-flex justify-content-end">
+      <button class="backgroundless" (click)="emitData('draft')" *ngIf="type === 'banner'">Save as Draft</button>
+      <button class="btn btn-primary ml-2" (click)="emitData('publish')">Publish</button>
+    </div>
+
+  </div>
+</div>

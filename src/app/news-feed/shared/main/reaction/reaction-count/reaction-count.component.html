@@ -1,0 +1,10 @@
+<div class="emoji-likes" *ngIf="reactions">
+    <span *ngIf="reactionsCount > 0" class="emoji-likes__amount">{{ reactionsCount }}</span>
+    <ng-container *ngFor="let reaction of allReactions">
+       <ng-container *ngIf="reactions[reaction]">
+          <span *ngIf=" reactions[reaction] > 0" class="ml-1"> 
+              <img [src]="reactsInfo[reaction].img" alt="emoji">
+            </span>
+       </ng-container>
+    </ng-container>  
+</div>

@@ -1,0 +1,52 @@
+<div class="info__box">
+    <div class="row" *ngIf="(profile | async) as profile; else:spinner">
+        <div class="col info__box__right" *ngIf="(profile?.career_center) as career">
+            <h3 *ngIf="career?.title" >
+                {{ career.title }}
+            </h3>
+            <p *ngIf="career?.description">
+                {{ career.description }}
+            </p>
+            <div class="info__box__right__btns">
+                <button ngbDropdown *ngIf="career?.cv_button_enabled" type="button" 
+                    class="btn btn-primary"  ngbDropdownToggle > 
+                    Drop CV
+                    <div class="drop_cv__context" ngbDropdownMenu *ngIf="!isCompanyActive && role !== 'role_unknown'">
+                        <div class="custom-control  custom-radio page-section-text-grey" *ngFor="let option of DropCVOptions">
+                            <input   type="radio" class="custom-control-input" [id]="profile.id + option['value'] " 
+                                    [value]="option['value']" name="cv_options" [(ngModel)]="dropCvRadio"
+                                    [checked]="option['value'] === dropCvRadio">
+                            <label class="custom-control-label" [for]="profile.id +  option['value']" >
+                                {{ option['name'] }}
+                            </label>
+        
+                        </div>
+
+                        <button type="button" class="btn btn-primary mt-4" style="float: right" (click)="dropCv(profile.id)">Done</button>
+                    </div>
+                </button>  
+                <ng-container *ngIf="career?.custom_button_enabled">
+                    <a [href]="career.custom_button_url | getUrl" target="_blank" class="ml-4 btn btn-light">  {{  career.custom_button_title }} </a>
+                </ng-container>
+            </div>
+        </div>
+        <div class="col-3 info__box__left">
+            <img class="company__avatar" [src]="profile.avatar ? '/file/' + profile.avatar :  'assets/img/default-company.svg' ">
+            <h6 *ngIf="profile?.name" [routerLink]="['/company/profile/' , profile.url]" style="cursor: pointer;">
+                {{ profile.name }}
+            </h6>
+            <button type="button" class="btn backgroundless" *ngIf="(profile?.my_role) as role" (click)="companyProfileAction(profile)">
+                <ng-container *ngIf="isCompanyActive && role !== 'role_unknown';else:notYour">Edit</ng-container>
+                <ng-template #notYour>
+                    <ng-container *ngIf="profile?.follow">Followed</ng-container>
+                    <ng-container *ngIf="!profile?.follow">Follow</ng-container>     
+                </ng-template>
+            </button>
+        </div>
+    </div>
+
+    <ng-template #spinner>
+        <app-spinner class="d-flex justify-content-center m-4"></app-spinner>
+    </ng-template>
+    
+</div>

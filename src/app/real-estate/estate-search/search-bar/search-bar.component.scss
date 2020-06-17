@@ -1,0 +1,39 @@
+@import 'src/variables'; 
+
+.search-bar {
+    background-color: white; 
+    border: 1px solid $grey-dark;   
+    border-radius: .5rem; 
+
+    &__filters {
+        &__saved {
+            span {
+                font-size: .875rem; 
+                color: $dark-grey; 
+            }; 
+
+            img {
+                cursor: pointer;
+            };
+        }; 
+
+        &__saved-filters {
+            span {
+                font-size: .875rem; 
+                color: $dark-grey; 
+            };
+
+            img {
+                cursor: pointer;
+            };
+        };
+    };  
+    
+    &__keywords {
+        span {
+            font-size: 1rem; 
+            color: $background-dark-cyan; 
+            cursor: pointer; 
+        }
+    }
+};

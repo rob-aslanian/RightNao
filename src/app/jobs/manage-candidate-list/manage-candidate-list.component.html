@@ -1,0 +1,51 @@
+<!-- candidate list - start -->
+<div class="candidate" (click)="onSelectCandidate(candidate)" *ngFor="let candidate of candidates">
+  <div class="visible">
+    <div *ngIf="candidate_type === 'saved_candidate'" class="detailed-view-line d-flex">
+      <a (click)="toggleLanguageDropdown($event)">ENG &#9662;</a>
+      <div class="options languageOptions mt-4 {{ languageDropdownVisible && selectedCandidate === candidate ? 'open' : '' }}">
+        <button>English</button>
+        <button>Georgian</button>
+        <button>Other language</button>
+      </div>
+      <button class="backgroundless ml-auto" (click)="openInviteToApplyModal(candidate, $event)">Invite to apply</button>
+      <button class="btn btn-primary">Message</button>
+      <button class="backgroundless" (click)="toggleCandidateActionDropdown($event)">
+        <img src="assets/img/107.svg" alt="...">
+      </button>
+      <div class="options add-label-bottom {{ candidateActionDropdownVisible && selectedCandidate === candidate ? 'open' : '' }}">
+        <button>
+          <img src="assets/img/164.svg" alt="label"> Favorite
+        </button>
+        <button>
+          <img src="assets/img/220.svg" alt="label"> In Review
+        </button>
+        <button>
+          <img src="assets/img/219.svg" alt="label"> Disqualified
+        </button>
+      </div>
+    </div>
+    <div class="line-one">
+      <img src="{{candidate.user.avatar ? '/file/' + candidate.user.avatar : 'assets/img/124.svg'}}" alt="candidate">
+      <div class="candidate-content">
+        <h3>{{candidate.user.firstname + ' ' + candidate.user.lastname}}</h3>
+        <span>
+          <ng-container *ngFor="let experience of candidate.user.experiences; let last = last">
+            {{ experience.title }} / {{ experience.company }}
+            <span *ngIf="!last"> | </span>
+          </ng-container>
+        </span>
+        <div class="skills">
+          <span *ngFor="let skill of candidate.user.skills">
+            {{ skill.name }}
+          </span>
+        </div>
+      </div>
+    </div>
+    <button class="backgroundless d-block ml-auto">
+      <img (click)="unSaveCandidate(candidate, $event)" *ngIf="(candidate_type === 'saved_candidate') && !isRequestInProgress" src="assets/img/99.svg" alt="heart">
+      <img (click)="unSkipCandidate(candidate, $event)"  *ngIf="(candidate_type === 'skipped_candidate') && !isRequestInProgress" src="assets/img/169.svg" alt="skipped">
+      {{ isRequestInProgress && selectedCandidate === candidate ? 'Request in progress...' : '' }}
+    </button>
+  </div>
+</div>

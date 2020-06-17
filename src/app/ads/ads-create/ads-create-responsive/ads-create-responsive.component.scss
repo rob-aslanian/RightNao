@@ -1,0 +1,51 @@
+@import 'src/variables';
+.wrapper {
+    display: flex; 
+    align-items: flex-start; 
+    justify-content: center;
+    p {
+        font-size: 14px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+}
+.upload-box {
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-start; 
+    justify-content: center;
+    margin-right: 15px;
+    border-radius: 5px;
+    &-button {
+        background-color: $white; 
+        width: 138px; 
+        height: 138px; 
+        display: flex; 
+        flex-direction: column; 
+        align-items: center; 
+        justify-content: center;
+        p {
+            margin: 15px 0;
+            color: $dark-grey;
+        }
+    }
+    select {
+        width: 260px !important;
+    }
+}
+.image-upload-wrapper {
+    height: 195px;
+    width: 315px;
+    background-color: $background-soft-blue;
+    padding: 15px;
+    p {
+        margin: 0;
+        margin-bottom: 5px;
+        font-size: 14px;
+    }
+}
+.upload-image-box {
+    height: 138px;
+    width: 283px;
+    border-radius: 5px;
+}

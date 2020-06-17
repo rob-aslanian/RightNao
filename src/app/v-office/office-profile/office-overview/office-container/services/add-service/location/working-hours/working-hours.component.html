@@ -1,0 +1,48 @@
+<div class="week-days-wrapper">
+    
+    <div class="week-days-container">
+        <p class="selected-days" style="margin: 5px; color: #808080;">Select Days</p>
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="weekdays" *ngFor="let day of weekDays">
+                <input type="checkbox" 
+                       name='days' 
+                       [id]='day.days.id+id' 
+                       [value]="day.days.id" 
+                       class="days"
+                       [(ngModel)]="day.isSelected" (change)='getDays()'>
+                <label [for]="day.days.id+id" class="days" [ngClass]="{ 'days-enabled': day.isSelected, 
+                                                                         'days-disabled': !day.isSelected,
+                                                                         'invalid': hasErrors }">{{ day.days.name }}</label>
+          </div>
+
+          <div class="hours" style="width: 49%;">
+              <div class="d-flex justify-content-between">
+
+                <div class="hour" style="left: 4px;">
+                      <span>From</span>
+                      <ngb-timepicker [formControl]='fromCtrl' [spinners]='false' required ></ngb-timepicker>
+                  </div>
+                  
+                  <div class="hour-input" [ngClass]="{'invalid': (submited   && fromCtrl.errors), 
+                                                      'border-hour': !( submited   && fromCtrl.errors ) }" style="left: -1px;"></div>
+                  <div class="hour-input" [ngClass]="{'invalid': (submited   && fromCtrl.errors),
+                                                      'border-hour': !( submited   && fromCtrl.errors ) }" style="left: 79px;"></div>
+                  
+
+                  <div class="hour" style="right: 4px;">
+                      <span>To</span>
+                      <ngb-timepicker [formControl]='toCtrl'   [spinners]='false' required ></ngb-timepicker>
+                  </div>
+
+                 <div class="hour-input" [ngClass]="{'invalid': (submited && toCtrl.errors),
+                                                     'border-hour': !( submited   && toCtrl.errors ) }"  style="right: 102px;"></div>
+                 <div class="hour-input" [ngClass]="{'invalid': (submited && toCtrl.errors),
+                                                     'border-hour': !( submited   && toCtrl.errors ) }"  style="right: 22px;"></div>
+
+              </div>
+          </div>
+        </div>
+    </div>
+
+</div>
+

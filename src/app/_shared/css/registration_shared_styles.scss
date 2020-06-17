@@ -1,0 +1,276 @@
+/*Import variables file*/
+@import "../../../variables.scss";
+/*END OF Import variables file*/
+
+
+
+.container.register {
+    &.company-registration {
+        padding-top: 100px;
+        padding-bottom:60px;
+        max-width: 657px;
+    }
+    &.user-registration {
+        max-width:450px;
+        padding-top:80px;
+        h1 {
+            font-family: above;
+        }
+    }
+    &.user-registration h1, &.company-registration h1 {
+        font-size: 30px;
+        font-family: above;
+    }
+    &.register h2 {
+        font-size: 20px;
+        color:$dark-grey;
+        // margin-left:2px;
+    }
+    &.user-registration p, &.company-registration p {
+        margin-bottom: 0;
+        &.error-message {
+            font-size:12px;
+            color:$error;
+            margin-left: 36px;
+            margin-bottom:20px;
+        }
+    }
+    .imageless {
+        margin-left: 36px;
+    }
+
+    // Sheicvleba rogorc form row VVV
+    .form-row {
+        img {
+            height:37px;
+            width:20px;
+        }
+        input {
+            padding-left:0.75rem;
+        }
+    }
+    
+    
+    
+    .user-registration-form, .first-form, .form-row  {
+        input, .row, .gender, > select {
+            margin-bottom:32px;
+        }
+        .gender {
+            color:$dark-grey;
+        }
+    }
+
+    .custom-control-label::before {
+        border: solid 1px $light-grey;
+    }
+    .custom-control-label::before, .custom-control-label::after {
+        margin-top: -2px;
+    }
+    // .custom-control-label::after {
+    //     background-color:transparent;
+    // }
+    .fingerprint {
+        margin-bottom:10px;
+        margin-left: auto;
+        display:block;
+        border: none;
+        outline:none;
+        cursor: pointer;
+        height:50px;
+        width:50px;
+        background: url(../../../assets/img/fingerprint.svg) no-repeat;
+        background-size:cover;
+        &:hover {
+            background: url(../../../assets/img/fingerprint_2.svg) no-repeat;
+            background-size:cover;
+        }
+    }
+}
+
+
+
+
+
+
+
+// Basic Success Welcome Message
+.container.success {
+    max-width: 400px;
+    padding-top:30vh;
+    .resend {
+        width: 100%;
+        font-size: 14px;
+        a {
+            color: $background-dark-cyan;
+        }
+    }
+    > div p {
+        margin-bottom: 10px;
+    }
+    .grey {
+        color:$dark-grey;
+    }
+    h1 {
+        color:$dark-blue;
+    }
+}
+
+
+    
+/*End of user registration - login - forgot password - success*/
+
+
+//Basic "forgot password form" | "reset password form" | "Sign in form"  styles
+.forgot-pass.container, .reset-pass.container, .sign-in.container {
+    max-width: 400px;
+    padding-top:30vh;
+    h1 {
+        font-size: 30px;
+        color:$dark-blue;
+        // margin-bottom:0;
+    }
+
+}
+
+.register-company{
+    max-width: 450px;
+    padding-top: 25vh !important;
+    h2 {
+        font-size: 20px;
+    }
+    h3 {
+        font-size: 16px;
+        color:$dark-grey;
+    }
+}
+
+.sign-in {
+    .register__form{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+.sign-in p, .forgot-password, .forgot-pass p {
+    color: $dark-grey;
+    font-size: 12px;
+}
+.sign-in p.err_mssg_forms_k {
+    color: $error;
+}
+.forgot-password {
+    margin-bottom:2px;
+}
+.sign-in input {
+    margin-top:32px;
+}
+.remember-me > label {
+    font-size: 12px;
+}
+.user {
+    img:first-child, .add-account {
+        border-radius:50%;
+        width:70px;
+        height:70px;
+    }
+    h3 {
+        font-size: 16px;
+        font-weight: bold;
+    }
+}
+.select-account > div{
+    margin-bottom: 20px;
+}
+.add-account {
+    background: white;
+    cursor: pointer;
+    img {
+        width: 35px;
+    }
+}
+.sign-in h1 {
+    font-family: above;
+}
+
+
+
+//Login user registration password field
+.password-criteria {
+    color: #f32a2a;
+    font-size: 12px;
+    border-radius: 5px;
+    background: $dark-blue;
+    top: 0;
+    right: -285px;
+    position: absolute;
+    z-index: 4;
+    .arrow {
+        top:12px;
+        left: -6px;
+        width:.4rem;
+        height: 0.4rem;
+        position: absolute;
+        display: block;
+        &::before {
+            right:0;
+            border-width: .4rem .4rem .4rem 0;
+            position: absolute;
+            content: "";
+            border-color:transparent;
+            border-right-color:$dark-blue;
+            border-style: solid;
+        }
+    }
+    ul {
+        padding: 10px 20px 10px 30px;
+        margin-bottom: 0;
+    }
+    li {
+        margin: 5px 0;
+        &:first-child {
+            color: #ffffff;
+            font-size: 14px;
+            list-style: none;
+            margin-left: -16px;
+            margin-bottom: 10px;
+        }
+        &.valid{
+            color: $background-light-cyan;
+        }
+    }  
+}
+
+.password-wrap {
+    position: relative;
+    .password-icon-1, .password-icon-2 {
+        position: absolute;
+        top:6px;
+        cursor: pointer;
+    }
+    .password-icon-1 {
+        right: 10px;
+    }
+    input {
+        padding-right:36px;
+    }
+}
+
+// End basic forms
+
+
+.right-form {
+    @media (max-width:575px){
+        padding-left: 0;
+    }
+    @media (min-width:576px){
+        padding-left: 15px;
+    }
+}
+
+
+//Error
+.invalid-gender {
+    border: 1px solid $error;
+    border-radius: 50%;
+}

@@ -1,0 +1,46 @@
+@import 'src/variables';
+
+.container {
+    max-width: 700px;
+    padding-top: 13vh;
+}
+
+@media all and (max-width: 1001px) {
+    .container{
+        padding-top: 3vh;
+    }
+}
+
+.reg__box{
+    background: #fff;
+    border-radius: 5px;
+    padding: 2rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    height: 250px;
+
+    h2 {
+        margin: 1rem 0;
+        font-weight: 500;
+    }
+    p {
+        text-align: center;
+    }
+}
+
+
+
+h1 {
+    font-family: above;
+}
+h2{
+    font-size: 23px;
+}
+
+p{
+    color: grey;
+    font-size: 16px;
+}

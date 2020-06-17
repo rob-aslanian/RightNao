@@ -1,0 +1,532 @@
+<div class="help-content-heading">
+    <h2>Companies & Organizations</h2>
+</div>
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('how-to-register')">
+        <h3>How to Register a Company/Organization on HyperCube?</h3>
+        <span *ngIf="toggle.view.active['how-to-register']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['how-to-register']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['how-to-register']">
+        <div class="help-content-text">
+            <p>
+                A company helps members learn more about your business products and services, and job opportunities.
+            </p>
+            <p>
+                Before creating an account for your company, you’ll need to create a HyperCube account with your real first and last name. 
+            </p>
+            <p>
+                To create a Company or Organization:
+            </p>
+            <ol>
+                <li>
+                    Click the Profile picture icon in the top right corner of your homepage
+                </li>
+                <li>
+                    Select Company or Organization
+                </li>
+                <li>
+                    Enter details of your company or organization in <b>Registration Form</b> <br>
+                    HyperCube needs the following information:
+                    <ul>
+                        <li>
+                            Name 
+                        </li>
+                        <li>
+                            Industry
+                        </li>
+                        <li>
+                            Company/organization type
+                        </li>
+                        <li>
+                            Email 
+                        </li>
+                        <li>
+                            Phone
+                        </li>
+                        <li>
+                            Address – Street address, Building number, City, Country
+                        </li>
+                        <li>
+                            Vat number is optional
+                        </li>
+                        <li>
+                            Public URL will be automatically generated 
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Check the verification box to confirm you have the right to act on behalf of that company or Organization in the creation of the page
+                </li>
+                <li>
+                    Click <img src="/assets/img/12.svg" alt="button"> icon to register.
+                </li>
+                <li>
+                    You'll be prompted to verify your email address
+                </li>
+            </ol>
+            <p>
+                After creating Company/organization, you can enter further details to build your brand by going to Company Profile. Learn more about adding and editing Profile information.
+            </p>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('profile-overview')">
+        <h3>Company/Organization profile Overview</h3>
+        <span *ngIf="toggle.view.active['profile-overview']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['profile-overview']">&#9662;</span>
+    </div>
+
+    <ng-template [ngIf]="toggle.view.active['profile-overview']">
+        <div class="help-content-text">
+            <p>
+                You can add/edit/delete your company information such as:
+            </p>
+            <ul>
+                <li>
+                    About us
+                </li>
+                <li>
+                    Founders
+                </li>
+                <li>
+                    Milestones
+                </li>
+                <li>
+                    Awards
+                </li>
+                <li>
+                    Products
+                </li>
+                <li>
+                    Services
+                </li>
+                <li>
+                    Location
+                </li>
+            </ul>
+            <p>
+                At any time by clicking into the appropriate text box and making your changes.
+            </p>
+            <p>
+                You can upload a cover image (top of the page) and a profile image below that exemplifies your company and culture.
+            </p>
+            <p>
+                To add an image for the first time, click <b>Upload image from computer</b> to select a file, drag to reposition image and save it. 
+            </p>
+            <p>
+                <b>Logo image </b>
+                - RECOMMENDED IMAGE SIZE 180 (w) x 180 (h) pixels
+            </p>
+            <p>
+                <b>Cover image </b>
+                - RECOMMENDED IMAGE SIZE 1920 (w) x 240 (h) pixels
+            </p>
+            <p>
+                Your cover image may have to be adjusted to fit the screen which may involve trimming the image horizontally or vertically. We recommend uploading a high-quality image with as little text as possible to ensure an optimal display on all devices and screen sizes. Our accepted image formats for uploads are PNG or JPEG.
+            </p>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('add-sections')">
+        <h3>How to add sections to your company/Organization Profile?</h3>
+        <span *ngIf="toggle.view.active['add-sections']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['add-sections']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['add-sections']">
+        <div class="help-content-text">
+            <p>
+                After creating your Page, you can enter further details to build your brand by going to Company Profile
+            </p>
+            <ul>
+                <li>
+                    How to add/edit/delete about us section to Company/Organization Profile?
+                </li>
+                <li>
+                    How to add/edit/delete Founder
+                </li>
+                <li>
+                    How to add/edit/delete Milestone 
+                </li>
+                <li>
+                    How to add/edit/delete Award
+                </li>
+                <li>
+                    How to add/edit/delete Product or service
+                </li>
+                <li>
+                    How to add/edit/delete location
+                </li>
+            </ul>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('about-us')">
+        <h3>How to add/edit/delete about us section to Company/Organization Profile?</h3>
+        <span *ngIf="toggle.view.active['about-us']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['about-us']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['about-us']">
+        <div class="help-content-text">
+            <p>
+                To add about us section to your profile click on <img src="/assets/img/50.svg" alt="button"> <b> icon</b>
+            </p>
+            <p>
+                Enter a description in the <b>description</b> text box (up to 1000 characters) that provides an overview of your company.
+            </p>
+            <p>
+                Enter a <b>Mission</b> (up to 500 characters) of your company/organization.
+            </p>
+            <p>
+                You can edit your company/Organization information such as <b>Sub-industry, Type, Date founded, size</b> and <b>Parking </b>at any time by clicking into the appropriate text box 
+            </p>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('founder')">
+        <h3>How to add/edit/delete Founder to Company/Organization Profile?</h3>
+        <span *ngIf="toggle.view.active['founder']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['founder']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['founder']">
+        <div class="help-content-text">
+            <p>
+                To add founder to your profile, click on the <img src="/assets/img/50.svg" alt="button"> Plus icon beside the <b>Founders</b> section.
+            </p>
+            <p>
+                Enter <b>full name</b> of the founder and <b>title of position</b>.
+            </p>
+            <p>
+                If user with this name is already registered on Hypercube, you will see the list from where you can select the founder. Enter the title of position and click save.
+            </p>
+            <p>
+                You can still add the founder manually if he/she is not registered on hypercube. You will need to add his/her <b>picture</b>, enter <b>title of position</b> and click save.
+            </p>
+            <p>
+                To delete a founder, click on <img src="/assets/img/19.svg" alt="button"> pencil icon and click delete button.
+            </p>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('milestone')">
+        <h3>How to add/edit/delete Milestone to Company/Organization Profile?</h3>
+        <span *ngIf="toggle.view.active['milestone']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['milestone']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['milestone']">
+        <div class="help-content-text">
+            <p>
+                Milestones help to tell the story of your business.
+            </p>
+            <p>
+                Follow these steps to add the milestone:
+            </p>
+            <ol>
+                <li>
+                    Find the milestone section on company/Organization Profile and click on the <img src="/assets/img/50.svg" alt="button"> Plus icon.
+                </li>
+                <li>
+                    Upload a photo. Recommended image size for a milestone is <b>549 pixels wide by 309 pixels long</b>.
+                </li>
+                <li>
+                    Add the date.
+                </li>
+                <li>
+                    Add the title.
+                </li>
+                <li>
+                Add the Description (150 characters) – this is optional but Adding a story makes the milestone much more interesting.
+                </li>
+                <li>
+                    Click save.
+                </li>
+                <li>
+                    You have also option to save and add another.
+                </li>
+            </ol>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('award')">
+        <h3>How to add/edit/delete Award to Company/Organization Profile?</h3>
+        <span *ngIf="toggle.view.active['award']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['award']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['award']">
+        <div class="help-content-text">
+            <p>
+                Awards can boost your organization's reputation, setting you "apart from the crowd."
+            </p>
+            <p>
+                Follow these steps to add the award:
+            </p>
+            <ol>
+                <li>
+                Find the award section on company/Organization Profile and click on the <img src="/assets/img/50.svg" alt="button">  Plus icon.
+                </li>
+                <li>
+                    Add the title of Award
+                </li>
+                <li>
+                    Add the date.
+                </li>
+                <li>
+                    Click save.
+                </li>
+            </ol>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('product')">
+        <h3>How to add/edit/delete Product or service to Company/Organization Profile?</h3>
+        <span *ngIf="toggle.view.active['product']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['product']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['product']">
+        <div class="help-content-text">
+            <p>
+                You can add Products & Services section to your company profile.
+            </p>
+            <p>
+                Follow these steps to add the product or service:
+            </p>
+            <ol>
+                <li>
+                    Find the product or service section on company/Organization Profile and click on the <img src="/assets/img/50.svg" alt="button"> Plus icon.
+                </li>
+                <li>
+                    Upload a photo. Recommended image size for a milestone is <b>549 pixels wide by 309 pixels long</b>.
+                </li>
+                <li>
+                    Add the name.
+                </li>
+                <li>
+                    Add the website you want to redirect your customers.
+                </li>
+                <li>
+                    Click save.
+                </li>
+            </ol>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('location')">
+        <h3>How to add/edit/delete location to Company/Organization Profile?</h3>
+        <span *ngIf="toggle.view.active['location']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['location']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['location']">
+        <div class="help-content-text">
+            <p>
+                To add location section to your company profile 
+            </p>
+            <ol>
+                <li>
+                    Find the Location section on your Company/Organization Profile and click on the <img src="/assets/img/50.svg" alt="button"> Plus icon.
+                </li>
+                <li>
+                    Give name to location. <i>For example: <b>Dublin branch, Zara in Clarendon Centre</b></i>.
+                </li>
+                <li>
+                    Fill up address form. <b>Note</b>: you can set this address as the main office.
+                </li>
+                <li>
+                    You can add <b>Business Hours</b> for this location and <b>Phone Number</b>.
+                </li>
+                <li>
+                    Click save
+                </li>
+            </ol>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('reviews')">
+        <h3>Reviews - Overview</h3>
+        <span *ngIf="toggle.view.active['reviews']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['reviews']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['reviews']">
+        <div class="help-content-text">
+            <p>
+                To write a review on Hypercube:
+            </p>
+            <ol>
+                <li>
+                    Go to Company/Organization Profile 
+                </li>
+                <li>
+                    Click on <b>More button</b> and select <b>write a review</b>.
+                </li>
+                <li>
+                    On pop up window click on stars to rate. 
+                </li>
+                <li>
+                    The Headline field is required for submission.
+                </li>
+                <li>
+                    Add review description (optional) up to 500 character.
+                </li>
+                <li>
+                    Click <b>Post</b>.
+                </li>
+            </ol>
+            <p>
+                Note: you can submit only one review per company.
+            </p>
+            <p>
+                <b>
+                    To edit or delete submitted Review 
+                </b>
+            </p>
+            <ol>
+                <li>
+                    Go to your Profile 
+                </li>
+                <li>
+                    Select <b>Reviews Tab</b>
+                </li>
+                <li>
+                    Find the review you want to edit or delete
+                </li>
+                <li>
+                    Click on <img src="/assets/img/19.svg" alt="button"> icon
+                </li>
+                <li>
+                    Make changes and save.
+                </li>
+                <li>
+                    Or click delete button, if you want to remove it.
+                </li>
+            </ol>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('manage-admins')">
+        <h3>How to add or Remove Admins on Your Company Page?</h3>
+        <span *ngIf="toggle.view.active['manage-admins']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['manage-admins']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['manage-admins']">
+        <div class="help-content-text">
+            <p>
+                To add an admin to your Page:
+            </p>
+            <ol>
+                <li>
+                    Go to <b>Company/Organization account settings</b>.
+                </li>
+                <li>
+                    Select <b>Manage admins</b>.
+                </li>
+                <li>
+                    <b>
+                        To add a new admin
+                    </b>
+                    : Select the type of admin you want to add.
+                </li>
+                <li>
+                    Type the name of the member you’d like to add in the <b>Add new admin by name…</b> text field.
+                        <br>
+                        <b>Note</b>:  You must be connected to the requesting member to grant admin access.
+                </li>
+                <li>
+                    Enter your password and click <b>confirm</b>
+                </li>
+            </ol>
+
+            <p>
+                To remove an admin from your Page:
+            </p>
+            <ol>
+                <li>
+                    Go to <b>Company/Organization account settings</b>.
+                </li>
+                <li>
+                    Select <b>Manage admins</b>.
+                </li>
+                <li>
+                    Locate the admin’s name, click on delete icon on user’s card you want to remove.
+                </li>
+                <li>
+                    Enter your password and click <b>confirm</b>.
+                </li>
+            </ol>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('deactivate')">
+        <h3>How to Deactivate a Company or Organization account?</h3>
+        <span *ngIf="toggle.view.active['deactivate']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['deactivate']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['deactivate']">
+        <div class="help-content-text">
+            <p>
+                Your Hypercube Company or Organization Page can only be removed by designated admins of the page or the Hypercube customer support team.  
+            </p>
+            <p>
+                A <b>Company/Organization</b> must have fewer than 50 affiliated employees in order for us to remove the page. 
+            </p>
+            <p>
+                    Unlike your personal account, a Company Page affects all employees and not a single person or entity. If your company is no longer in operation or if it has been rebranded, please keep in mind that it does not mean you should remove the page from Hypercube. 
+            </p>
+            <p>
+                    You can deactivate your Company/Organization Page through your <b>Account / Admin Tools</b> if it meets all the following guidelines:
+            </p>
+            <ol>
+                <li>
+                    You are an <b>admin of the Company/Organization</b>
+                </li>
+                <li>
+                    The Company Page has fewer than 50 affiliated employees.
+                </li>
+                <li>
+                    The Company Page has no active ad campaigns.
+                </li>
+            </ol>
+            <p>
+                <b>
+                    To deactivate your Company or Organization:
+                </b>
+            </p>
+            <ol>
+                <li>
+                    Go to Company/organization account settings.
+                </li>
+                <li>
+                    Find <b>General settings</b> >>> <b>Additional settings</b> and click <b>Deactivate account</b>.
+                </li>
+                <li>
+                    In the pop-up window, click enter Password and then click confirm. 
+                </li>
+                <li>
+                    You'll receive a confirmation email that your Company/Organization was successfully deactivated. 
+                    <br>
+                    <b>Note:</b> If the Company Page couldn't be deactivated, you'll receive an error message.
+                </li>
+            </ol>
+        </div>
+    </ng-template>
+</div>

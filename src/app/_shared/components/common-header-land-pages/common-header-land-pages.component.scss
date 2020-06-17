@@ -1,0 +1,103 @@
+@import 'src/variables';
+
+.landing-header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $dark-blue;
+    position: fixed;
+    top: 0;
+    z-index: 5;
+    height: 80px !important;
+
+    @media screen and  (max-width: 767px) {
+        height: 111px !important;
+    };
+
+    button{
+        font-size: 18px;
+        padding: 2px 18px 3px 17px;
+        &.btn-primary{
+            margin-left: 13px;    
+        }
+    }  
+}
+
+.signin__options{
+    padding: 0.5rem;
+    right: 0 !important;
+    left: unset !important;
+    width: 300px;
+    @media #{$break1} {
+        width: unset !important;
+    }
+    button{
+        background: transparent;
+        color: $dark-grey;
+        width: 100%;
+        text-align: left;
+        font-style: 12px;
+
+    }
+}
+.btn_tgl{
+    &::after { content: unset !important; }
+}
+
+.landing-logo{
+    display: flex;
+    align-items: center;
+    img{
+        height: 51px;
+    }
+    .landing-logoText{
+        font: normal 30px above;
+        margin-left: 15px;
+        display: flex;
+        align-items: center;
+        color: #ffffff;
+        span{
+            color: $background-light-cyan;
+        }
+    }
+}
+
+.header{
+    width: 100%;
+    background-color: $dark-blue;
+    position: fixed;
+    padding: 0px 24px;
+    padding-right: 36px;
+}
+
+//LAnding Page for login
+.login-page {
+
+    .header  {
+            background: white;
+            margin-left: -24px;
+    };
+
+    .landing-logoText {
+        position: relative;
+        &::after {
+            content: "";
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            background-color: #052337;
+            border-top-right-radius: 4px;
+            left: -74px;
+            border-bottom-right-radius: 4px;
+            z-index: -2;
+        };
+    };
+
+    .landing-logoText {
+        color: $dark-blue !important;
+        padding-left: 25px;
+    };
+
+    background: white;
+};

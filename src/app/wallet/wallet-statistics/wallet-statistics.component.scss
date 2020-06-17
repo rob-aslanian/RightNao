@@ -1,0 +1,63 @@
+@import "src/variables";
+
+.statistics {
+    background-color: $white;
+    min-height: 90vh;
+    &-nav {
+        display: flex;
+        // overflow: hidden;
+        // overflow-x: scroll;
+        align-items: center;
+        margin-bottom: 16px;
+        &-item {
+            background-color: $white;
+            border-radius: 5px;
+            display: inline-flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 200px;
+            padding: 10px;
+            margin-right: 16px;
+            & > p {
+                margin: 0;
+                padding: 0;
+            }
+            &-title {
+                font-size: 14px;
+                color: $dark-grey;
+            }
+            &-amount {
+                margin: 0;
+                padding: 0;
+                font-size: 24px;
+                font-weight: 600;
+                color: $dark-grey;
+            }
+            &-img {
+                margin-right: 6px;
+                filter: grayscale(100%);
+                width: 9px;
+            }
+        }
+    }
+
+}
+
+
+
+.Gold {
+    background-color: $yellow;
+}
+.Silver {
+    
+    background-color: #8397AB;
+}
+.Dollar {
+    background-color: $green;
+}
+.Euro {
+    background-color: $blue-option;
+}
+.Yen {
+    background-color: $autumn-orange;
+}

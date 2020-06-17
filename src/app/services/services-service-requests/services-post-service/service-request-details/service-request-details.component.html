@@ -1,0 +1,64 @@
+<form [formGroup]="details">
+<div class="service-request__request-details__heading service-request-section-heading">
+    <div class="service-request__content__request-details__heading__icon-wrapper">
+        <img src="../assets/img/485.svg" class="service-request__content__request-details__heading__icon">
+    </div>
+    <h4 class="service-request__content__request-details__heading__title">Service Request Details</h4>
+</div>
+
+<div class="service-request__request-details__title">
+    <label class="page-section-text-blue heading-margin">What work do you need to have done? <span class="required-field-star">*</span></label>
+    <div>
+        <input type="text" 
+               placeholder="Give a title to your service request" 
+               class="form-control" 
+               formControlName="name" 
+               [ngClass]="{'is-invalid': isSubmitted && detailsCtrl.name.errors   }">
+    </div>
+</div>
+
+<div class="service-request__content__request-details__category-container d-flex justify-content-between">
+    <div class="service-request__content__request-details__category">
+        <h5 class="service-request__content__request-details__category-heading page-section-text-blue heading-margin">Category <span class="required-field-star">*</span></h5>
+        <div class="service-request__content__request-details__category-select">
+            <select class="form-control" 
+                    formControlName="category" 
+                    [ngClass]="{'is-invalid': isSubmitted && detailsCtrl.category.errors   }">
+                <option disabled value="" > Select one </option>
+                <option *ngFor="let cat of categories" [value]='cat.name' >{{ cat.name }}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="service-request__content__request-details__subcategory">
+        <h5 class="service-request__content__request-details__category-heading page-section-text-blue heading-margin">Subcategory <span class="required-field-star">*</span></h5>
+        <div class="service-request__content__request-details__category-select">
+            <select class="form-control" 
+                    formControlName="subCategory" 
+                    [attr.disabled]='!detailsCtrl.category.value ? true : null'
+                    [ngClass]="{'is-invalid': isSubmitted && detailsCtrl.subCategory.errors   }">
+
+                <option disabled value="" >Select Subcategory</option>
+                <option *ngFor="let subCat of subCategories" [value]='subCat.id'>{{ subCat.name }}</option>
+            </select>
+        </div>
+    </div>
+
+</div>
+
+<div class="service-request__content__request-details__description-container">
+    <div class="d-flex justify-content-between align-items-center">
+        <h5 class="page-section-text-blue heading-margin service-request__content__request-details__description-title">What do you like about the company? <span class="required-field-star">*</span></h5>
+        <span class="page-section-text-grey" >{{ detailsCtrl.description.value.length }}/1200</span>
+    </div>
+    <div class="service-request__content__request-details__description-text">
+        <textarea  class="form-control service-request__content__request-details__description-text__textarea" 
+                   placeholder="Provide more details about your service request"
+                   formControlName="description"
+                   [ngClass]="{'is-invalid': isSubmitted && detailsCtrl.description.errors  }"
+                   maxlength="1200"></textarea>
+    </div>
+</div>
+</form>
+ 
+ 

@@ -1,0 +1,14 @@
+<div class="search__left" [ngClass]="{'slide_in': searchService.showLeft , 'slide_out': !searchService.showLeft }">
+    <div class="search__left__header d-flex justify-content-between align-items-center">
+        <div class="pl-4">
+            <img src="assets/img/filter.svg" alt="filter" style="height: 15px;">
+            <strong class="ml-2">Filters</strong>
+        </div>
+        <button class="btn" style="color: #ffffffff;" (click)="searchService.showLeft = false;">
+            ✕
+        </button>
+    </div>
+    <div class="search-groups__sidebar">
+        <div  #container></div>
+    </div>
+</div>

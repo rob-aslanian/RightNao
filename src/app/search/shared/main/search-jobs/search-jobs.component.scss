@@ -1,0 +1,23 @@
+@import "src/_variables";
+
+.bg-white{
+    background: #fff;
+    border:1px solid #e6e6e6;
+    border-radius: 5px;
+    padding: 24px;
+}
+
+.no_result{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+
+    h2 {
+        color: $dark-grey;
+        font-weight: bold;
+        strong {
+            color: $background-light-cyan;
+        }
+    }
+}

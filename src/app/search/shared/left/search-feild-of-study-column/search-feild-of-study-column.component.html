@@ -1,0 +1,31 @@
+<div class="search-groups__sidebar-section">
+        <app-search-column-header title="Field of Study">
+            <div class="mt-2">
+                <div class="search-groups__sidebar-section__delivery-time-options search-groups__sidebar-section__wrap">
+                    <div class="
+                        custom-control 
+                        custom-checkbox 
+                        page-section-text-grey
+                        " *ngFor="let fieldOfStudy of fieldOfStudies">
+                        <input type="checkbox" [checked]="fieldOfStudy.isSelected" class="custom-control-input" [id]="fieldOfStudy.name" name="type"
+                               (change)="checkFieldOfStudy($event)" [value]="fieldOfStudy.name">
+                        <label
+                            class="custom-control-label" [for]="fieldOfStudy.name" >
+                        {{ fieldOfStudy.name }}
+                        </label>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-center mt-2">
+                    <div class="input-container">
+                        <input type="text" class="form-control" id="add-field" placeholder="Enter field of study"
+                            [ngbTypeahead]="searchFieldOfStudy" (selectItem)='selectFieldOfStudy($event)' />
+                    </div>
+                    <div>
+                        <button class="btn backgroundless search-btn" type="submit">
+                            <img src="assets/img/right-arrow.svg" class="search-groups__sidebar-section__location__img"/>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </app-search-column-header>
+    </div>

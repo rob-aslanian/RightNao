@@ -1,0 +1,14 @@
+<div class="total-wrapper">
+    <h3>Price information</h3>
+    <div class="price-container d-flex align-items-center justify-content-between">
+        <div class="left-content">
+            <div class="price-container-item" *ngFor="let item of totalPrice">
+                <p> {{ item['title'] }} </p>
+                <small>${{ item['price'] }} - {{ item['count'] }}</small>
+            </div>
+        </div>
+        <div>
+            <h4> Total <span>${{ total }}</span> </h4>
+        </div>
+    </div>
+</div>

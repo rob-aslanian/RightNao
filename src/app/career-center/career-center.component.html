@@ -1,0 +1,35 @@
+<div class="dark-blue-bg-for-network"  *ngIf="router.url.endsWith('user')">
+        <div class="background-content-wrap">
+          <div class="d-flex justify-content-between align-items-center">
+              <h1 class="page-title">Career Center</h1>
+          </div>
+    </div>
+</div>
+
+<div class="dark-blue-bg-for-network" style="height: 48px;" 
+    *ngIf="!router.url.endsWith('manage') && 
+           !router.url.endsWith('user') && 
+           !router.url.includes('detail')">
+    <div class="background-content-wrap">
+            <div class="row mx-0">
+                <ul class="col-7">
+                    <li>
+                        <a [routerLink]="['company/my_center']"  routerLinkActive="active" >My center</a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['company/candidates']" routerLinkActive="active">Candidates</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+</div>
+<div class="jumbotron">
+    <div class="container" style="max-width: 1248px !important;">
+        <div class="row">
+            <div class="col">
+                <router-outlet></router-outlet>
+            </div>
+            <app-ads class="col-3"></app-ads>
+        </div>
+    </div>
+</div>

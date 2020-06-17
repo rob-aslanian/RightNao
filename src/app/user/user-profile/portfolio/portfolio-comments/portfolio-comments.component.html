@@ -1,0 +1,32 @@
+<div class="add-comment">
+        <label for="add-comment" class="mb-0"> <h5> Add a Comment</h5></label>
+        <div class="d-flex justify-content-end text">
+             {{ comment.length }}/50
+        </div>
+
+        <input type="text" 
+               class="form-control" 
+               placeholder="What are you thoughts on this project?" 
+               maxlength="50"
+               id="add-comment"
+               style="height: 50px;"
+               [(ngModel)]="comment"
+               (keyup.enter)='addComment()'
+               autocomplete="off">
+ 
+       <ng-container *ngIf="!loading">
+            <app-portfolio-comments-preview *ngFor="let comment of comments"
+                                            [comment]='comment' 
+                                            (result)='deleteComment( $event )'></app-portfolio-comments-preview>
+       </ng-container>
+
+       <ng-container *ngIf="loading" >
+            <div class="d-flex justify-content-center">
+                 <app-spinner> </app-spinner>
+            </div>
+       </ng-container>
+       
+        <div class="d-flex justify-content-end">
+            <button class="backgroundless" style="margin-top: 10px; font-size: 1rem;" (click)='handlePagination()' *ngIf="amountOfComments > comments.length">Show more</button>
+        </div>
+   </div>

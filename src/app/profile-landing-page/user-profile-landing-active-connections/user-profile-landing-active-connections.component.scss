@@ -1,0 +1,52 @@
+@import "src/_variables.scss";
+
+.active-connections{
+    background-color: $white; 
+    border: 1px solid $cool-grey; 
+    border-radius: .5rem; 
+    height: 680px;
+    @media (max-width: 800px)
+    {
+        height: 350px;
+    }
+    h4{
+        font-size: 1rem; 
+        font-weight: 400;
+
+    }
+      
+    &__content {
+        height: 90%;
+        overflow-y: auto; 
+
+        &::-webkit-scrollbar {
+            width: .3rem; 
+        }
+        &::-webkit-scrollbar-track {    
+            background-color: $light-grey;     
+            border-radius: .5rem; 
+        }
+        &::-webkit-scrollbar-thumb {    
+            background-color: $blue;     
+            border-radius: .5rem; 
+        }
+        a{
+            font-size: 1rem; 
+            text-decoration: none; 
+            color: black !important; 
+        }
+        img{
+            border-radius: 50%;
+            width: 2.1875rem !important;
+            height: 2.1875rem;
+            margin-right: .5rem; 
+        }
+    }
+}
+
+a{
+    cursor: pointer; 
+}
+
+
+

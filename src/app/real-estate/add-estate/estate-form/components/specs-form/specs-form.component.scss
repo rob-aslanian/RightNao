@@ -1,0 +1,20 @@
+.invalid-custom {
+    color: red;
+};
+
+.change-metrics {
+    position: absolute;
+    left: 421px;
+    top: 38px;
+};
+
+.dropdown-menu {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    will-change: transform;
+    transform: translate(0px, 36px);
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    padding: 10px;
+};

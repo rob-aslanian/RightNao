@@ -1,0 +1,87 @@
+<a ngbDropdown autoClose="outside" *ngIf="categoriesList">
+    <button class='backgroundless' ngbDropdownToggle>
+        <img class="circle__img " src="assets/img/100.svg" alt="circle">
+        <!-- <img class="circle__img "
+            *ngIf="item.cat.work && !item.cat.friends_and_family && !item.cat.business && !item.cat.other && !item.cat.not_categorized"
+            src="assets/img/101.svg" alt="circle">
+        <img class="circle__img "
+            *ngIf="item.cat.business && !item.cat.friends_and_family && !item.cat.work && !item.cat.other && !item.cat.not_categorized"
+            src="assets/img/102.svg" alt="circle">
+        <img class="circle__img "
+            *ngIf="item.cat.other && !item.cat.friends_and_family && !item.cat.work && !item.cat.business && !item.cat.not_categorized"
+            src="assets/img/103.svg" alt="circle">
+        <img class="circle__img "
+            *ngIf="item.cat.not_categorized && !item.cat.friends_and_family && !item.cat.work && !item.cat.business && !item.cat.other"
+            src="assets/img/104.svg" alt="circle">
+        <img class="circle__img "
+            *ngIf="item.cat.favourites && !item.cat.not_categorized && !item.cat.friends_and_family && !item.cat.work && !item.cat.business && !item.cat.other"
+            src="assets/img/104.svg" alt="circle">
+        <img class="circle__img "
+            *ngIf="item.cat.friends_and_family && item.cat.work && item.cat.business && item.cat.other && !item.cat.not_categorized"
+            src="assets/img/108.svg" alt="circle">
+        <img class="circle__img "
+            *ngIf="item.cat.friends_and_family && item.cat.work && item.cat.business && !item.cat.other && !item.cat.not_categorized"
+            src="assets/img/109.svg" alt="circle">
+        <img class="circle__img "
+            *ngIf="!item.cat.friends_and_family && item.cat.work && item.cat.business && !item.cat.other && !item.cat.not_categorized"
+            src="assets/img/110.svg" alt="circle">
+        <img class="circle__img "
+            *ngIf="!item.cat.friends_and_family && !item.cat.work && item.cat.business && item.cat.other && !item.cat.not_categorized"
+            src="assets/img/112.svg" alt="circle">
+        <img class="circle__img "
+            *ngIf="item.cat.friends_and_family && !item.cat.work && item.cat.business && !item.cat.other && !item.cat.not_categorized"
+            src="assets/img/113.svg" alt="circle">
+        <img class="circle__img "
+            *ngIf="item.cat.friends_and_family && item.cat.work && !item.cat.business && !item.cat.other && !item.cat.not_categorized"
+            src="assets/img/114.svg" alt="circle">
+        <img class="circle__img "
+            *ngIf="item.cat.friends_and_family && !item.cat.work && !item.cat.business && item.cat.other && !item.cat.not_categorized"
+            src="assets/img/115.svg" alt="circle">
+        <img class="circle__img "
+            *ngIf="!item.cat.friends_and_family && item.cat.work && !item.cat.business && item.cat.other && !item.cat.not_categorized"
+            src="assets/img/116.svg" alt="circle">
+        <img class="circle__img "
+            *ngIf="!item.cat.friends_and_family && item.cat.work && item.cat.business && item.cat.other && !item.cat.not_categorized"
+            src="assets/img/117.svg" alt="circle">
+        <img class="circle__img "
+            *ngIf="item.cat.friends_and_family && item.cat.work && !item.cat.business && item.cat.other && !item.cat.not_categorized"
+            src="assets/img/118.svg" alt="circle">
+        <img class="circle__img "
+            *ngIf="item.cat.friends_and_family && !item.cat.work && item.cat.business && item.cat.other && !item.cat.not_categorized"
+            src="assets/img/119.svg" alt="circle"> -->
+
+        <div class="options network-option" ngbDropdownMenu>
+
+        <ng-container *ngFor="let item of subCat; let j = index">
+
+                <button (click)="subCategories( item.unique_name )">
+                    <img [src]="'assets/img/'+item.img" alt="blue">
+                    {{  item.name }}
+                </button>
+
+            <ng-container *ngIf="item.unique_name === subCategoriesMenu">
+
+                <button class="sub " *ngFor="let cat of item.children; let i = index" 
+                                     (click)='addRemoveInSubCategory( cat.unique_name ,  !cat.isSelected, j , i )' 
+                                     [ngClass]="{'active': cat.isSelected }" >
+
+                    {{ cat.name }}
+                </button>
+    
+                <div class="network-navigation_input ">
+                        <input type="text" placeholder="Add subcategory" (keyup.enter)='addSubCategory(  )' [formControl]='subControl'>
+                </div>
+
+            </ng-container>
+            
+
+        </ng-container>
+            <button>
+                <img src="assets/img/53.svg" alt="x">
+                Remove from All
+            </button>
+        </div>
+
+
+    </button>
+</a>

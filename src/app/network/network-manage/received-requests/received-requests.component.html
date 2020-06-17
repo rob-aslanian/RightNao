@@ -1,0 +1,56 @@
+<!-- Content in the center -->
+<div class="col">
+    <div class="center-heading">
+        <h3>Recieved requests <span *ngIf='recievedList.length > 0'> {{ recievedList.length }} </span></h3>
+    </div>
+
+    
+    <div class="center-content-network" >
+      <ng-container *ngIf='recievedList.length === 0'>
+          <div class="center-recived-requests">
+              <app-empty-profile [key]='"recived_request"'></app-empty-profile>
+          </div>
+      </ng-container>
+
+        <div class="network-boxes-container form-row">
+            <div class="col-lg-4 col-md-6" *ngFor="let item of recievedList; let i = index" >
+                <div class="network-box">
+                    <div class="network-line-one">
+                    </div>
+                    <div class="network-line-two">
+                        <div class="left">
+                            <img class="profile" [src]="item.friend.avatar == '' ? 'assets/img/124.svg' : '/file/'+item.friend.avatar" alt="profile">
+                        </div>
+                        <div class="right">
+                            <a [routerLink]="['/user/profile/'+item.friend.url]">
+                                <h4>{{ item.friend.first_name +" "+item.friend.last_name }}</h4>
+                            </a>
+                        <div class="experience-container" style="min-height: 36px;">
+                            <span>
+                                {{ item.friend.last_experience.position }}
+                            </span>
+                            <span>
+                                {{ item.friend.last_experience.company }}
+                            </span>
+                        </div>
+                            <span class="date" *ngIf='item.created_at'>
+                                <img src="assets/img/48.svg" alt="date">
+                                {{ item.created_at * 1000 | date:'dd/MM/yyyy'}}
+                            </span>
+                            <div class="buttons">
+                                <button class="btn btn-secondary" (click)="ignoreFriendRequest(item.id)" >Ignore</button>
+                                <button class="btn btn-primary" (click)="acceptFriendRequest(item.id)" >Accept</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+</div>
+<!-- Content in the center end -->
+    
+
+

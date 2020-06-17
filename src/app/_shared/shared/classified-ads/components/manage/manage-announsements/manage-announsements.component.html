@@ -1,0 +1,55 @@
+<div class="saved">
+    <div class="saved__header">
+        <div class="header col-12 d-flex justify-content-between row mt-4 pr-0 pl-0">
+            <app-manage-search (search)="updateSearch($event)" class="col-12" [place]="place"></app-manage-search>
+        </div>
+    </div>
+
+    <div class="saved__box">
+        <!-- <div class="saved__box__title col-12">
+            <span>{{ status }} post {{ amount }} </span>
+        </div> -->
+        <div class="landing__announcements mt-3">
+            <ng-container *ngIf="!isLoading; else loading">
+                <div class="row">
+                    <div class="col-12 col-md-6 col-lg-4 mb-4" *ngFor="let box of list">
+                        <app-clasified-ads-box [box]='box'
+                                                [isManage]="true" 
+                                                (notify)="manage($event)">
+                        </app-clasified-ads-box>
+                    </div>
+              </div> 
+            </ng-container>
+
+            <ng-template #loading>
+                    <div class="d-flex justify-content-center align-items-center">
+                            <app-spinner></app-spinner>
+                    </div>
+            </ng-template>
+                
+        </div>
+        <ngb-pagination [collectionSize]="amount" 
+                        *ngIf="amount && amount > first"
+                        [pageSize]="first" 
+                        [(page)]="page"  
+                        (pageChange)="changePage($event)" 
+                        class="d-flex justify-content-end mt-4">
+        </ngb-pagination>
+    </div>
+    
+        <!-- * * * * Modals * * * *  -->
+        <app-modal>
+            <app-urgent-modal *ngIf="modalType === 'Urgent'" 
+                                (onClose) = "closeModal($event)"
+                                [place]='place'
+                                [annousement]="itemForModal">
+            </app-urgent-modal>
+            <app-discounted-modal *ngIf="modalType === 'Discounted'" 
+                                        (onClose) = "closeModal($event)"
+                                        [place]='place'
+                                        [annousement]="itemForModal">
+            </app-discounted-modal>
+        </app-modal>
+        <!-- * * * / * * *  -->
+
+</div>

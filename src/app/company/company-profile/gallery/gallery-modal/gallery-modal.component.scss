@@ -1,0 +1,75 @@
+@import "src/variables";
+
+.gallery{
+    background: #fff;
+    padding: 32px 20px;
+    .gallery-heading {
+        margin-bottom: 10px;
+        margin-left: 12px;
+        .star {
+            color: $background-dark-cyan;
+            margin-right: 5px;
+        }
+    }
+}
+
+.btn.btn-primary {
+    height: 24px;
+    border-radius: 7px;
+}
+.gallery , .slider{
+    background: #fff;
+    padding: 32px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.gallery {
+    padding: 32px 24px;
+}
+
+
+
+:host ::ng-deep  {
+    .carousel-control-next{
+        width: 5% !important;
+        right: -30px !important;
+
+       span:first-child{
+        width: 0;
+        height: 0;
+        border-left: 8px solid rgba(128, 128, 128, 0.5);
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        position: relative;
+       }
+    }
+
+    .carousel-control-prev{
+        width: 5% !important;
+        left: -30px !important;
+
+        span:first-child{
+            width: 0;
+            height: 0;
+            border-left: 8px solid rgba(128, 128, 128, 0.5);
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            position: relative;
+            transform: rotateY(180deg);
+        
+           }
+    }
+}
+
+:host ::ng-deep app-gallery-img-row{
+        .col-4:first-child {
+               .upload_content {
+                   border: none; 
+                &_btn {
+                    display: block;
+                    cursor: pointer; 
+            }
+        }
+    }
+}
+  

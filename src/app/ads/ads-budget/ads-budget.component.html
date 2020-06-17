@@ -1,0 +1,182 @@
+<div class="main-cont-for-ads">
+        
+    <div class="custom-row">
+        <div class="budget-wrapper">
+            <h2 class="budget-wrapper-title">Budget</h2>
+
+            <div class="budget-box">
+                    <!-- relativeBox -->
+                <!-- <div class="disabled-box" *ngIf="openBox[1]['selectedCards']>=0"></div> -->
+                <div class="budget-box-header d-flex align-items-center justify-content-between" (click)="openBox[0]['open'] = !openBox[0]['open']">
+                        <h4 class="budget-box-title">
+                                Impressions
+                        </h4>
+                        <button class="btn" style="padding:  0 !important;" >
+                            <img src="assets/img/right-arrow.svg" alt="arrow" class="arrowDown" [ngClass]="{'arrowUp': openBox[0]['open']}">
+                        </button>
+                        
+                </div>
+                <div  class="row no-gutters" *ngIf="openBox[0]['open']">
+                        <app-ads-budget-box *ngFor="let model of impressions; let i = index;"
+                                            class="col-12 col-md-4" style="padding: 0 7px;" 
+                                            [modelItem]="model" 
+                                            [index]="i" 
+                                            [boxNumber]="0" 
+                                            [allCategory]="allCategory" 
+                                            [per]="false"
+                                            (onTotal)="total()"></app-ads-budget-box>
+                </div>
+        
+            </div>
+
+            <div class="budget-box">
+                    <div class="budget-box-header d-flex align-items-center justify-content-between"  (click)="openBox[1]['open'] = !openBox[1]['open']">
+                            <h4 class="budget-box-title">
+                                    Clicks
+                            </h4>
+                            <button class="btn" style="padding:  0 !important;">
+                                <img src="assets/img/right-arrow.svg" alt="arrow" class="arrowDown" [ngClass]="{'arrowUp': openBox[1]['open']}">
+                            </button>
+                            
+                    </div>
+                    <div  class="row no-gutters" *ngIf="openBox[1]['open']">
+                            <app-ads-budget-box *ngFor="let model of clicks; let i = index;" 
+                            class="col-12 col-md-4" style="padding: 0 7px;"
+                            [modelItem]="model" 
+                            [index]="i" 
+                            [boxNumber]="1" 
+                            [allCategory]="allCategory" 
+                            [per]="false"
+                            (onTotal)="total()"></app-ads-budget-box>
+                    </div>
+            
+            </div>
+
+
+
+
+            <div class="budget-box">
+                    <div class="budget-box-header d-flex align-items-center justify-content-between"  (click)="openBox[2]['open'] = !openBox[2]['open']">
+                        <div class="d-flex align-items-start justify-content-start">
+                            <h4 class="budget-box-title">
+                                    Forwarding
+                            </h4>
+                            <!-- <img src="assets/img/ads/455.svg" alt="info" style="width: 20px;"> -->
+                        </div>
+                            <button class="btn" style="padding:  0 !important;">
+                                <img src="assets/img/right-arrow.svg" alt="arrow" class="arrowDown" [ngClass]="{'arrowUp': openBox[2]['open']}">
+                            </button>
+                            
+                    </div>
+                    <div  class="row no-gutters" *ngIf="openBox[2]['open']">
+                            <app-ads-budget-box *ngFor="let model of forwards; let i = index;"
+                             
+                            class="col-12 col-md-4" style="padding: 0 7px;"
+                            [modelItem]="model" 
+                            [index]="i" 
+                            [boxNumber]="2" 
+                            [allCategory]="allCategory" 
+                            [per]="true"
+                            (onTotal)="total()"></app-ads-budget-box>
+                    </div>
+            
+            </div>
+
+
+            <div class="budget-box">
+                    <div class="budget-box-header d-flex align-items-center justify-content-between"  (click)="openBox[3]['open'] = !openBox[3]['open']">
+                        <div class="d-flex align-items-start justify-content-start">
+                            <h4 class="budget-box-title">
+                                    Refferals
+                            </h4>
+                            <!-- <img src="assets/img/ads/455.svg" alt="info" style="width: 20px;"> -->
+                        </div>
+                            <button class="btn" style="padding:  0 !important;">
+                                <img src="assets/img/right-arrow.svg" alt="arrow" class="arrowDown" [ngClass]="{'arrowUp': openBox[3]['open']}">
+                            </button>
+                            
+                    </div>
+                    <div  class="row no-gutters" *ngIf="openBox[3]['open']">
+                            <app-ads-budget-box *ngFor="let model of referrals; let i = index;"
+                            class="col-12 col-md-4" style="padding: 0 7px;" 
+                            [modelItem]="model" 
+                            [index]="i" 
+                            [boxNumber]="3" 
+                            [allCategory]="allCategory" 
+                            [per]="true"
+                            (onTotal)="total()"></app-ads-budget-box>
+                    </div>
+            
+            </div>
+
+            <div class="mt-2 currency">
+                <select id="currency" class="form-control" (change)="addCurrency($event)">
+                    <option value="" disabled>Currency</option>
+                    <option *ngFor="let currency of utils.getAllCurency()" [value]="currency">
+                      {{ currency  }}
+                    </option>
+                  </select>
+            </div>
+
+        <app-total-price *ngIf="result.length" [totalPrice]="result"></app-total-price>
+
+        <div>
+            <p>Schedule</p>
+            <div class="col-4 pl-0">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input ngbDatepicker 
+                                #d='ngbDatepicker' 
+                                placeholder="Date" 
+                                [navigation]='"arrows"'
+                                [minDate]='getToday'
+                                class="form-control date-input"
+                                [(ngModel)]="date">   
+                     <div class="input-group-append">
+                         <button class="btn date-button" (click)='d.toggle()'>
+                             <img src="assets/img/127.svg" alt="">
+                         </button>
+                     </div>
+                </div>
+            </div>
+            </div>
+        </div>
+
+
+        <div class="d-flex align-items-center justify-content-between mt-4">
+            <button class="btn backgroundless">
+                Back
+            </button>
+            <button class="btn btn-primary" (click)="saveBudget()" [disabled]="!date || !result.length" >
+                Next
+            </button>
+        </div>
+
+    </div>
+
+        <app-steps [stepAmount]="2" [description]="'Select the advertising plan that fits your needs'"></app-steps>
+    </div>
+
+</div>
+
+
+<app-modal >
+    <ng-container>
+        <div class="modalWrapper">
+            <div class="d-flex justify-content-between align-items-start">
+                    <h2>Name the Campaign</h2>
+                    <a (click) = "closeModal()" style="color: #ccc;">&#10005;</a>
+            </div>
+            
+            <input type="text" 
+                    placeholder="Enter campaign name" 
+                    class="form-control"  
+                    [(ngModel)]="campaignName" >
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-primary" (click)="createCampaign()" [disabled]="!campaignName">
+                    Next
+                </button>
+            </div>
+        </div>
+    </ng-container>
+</app-modal>

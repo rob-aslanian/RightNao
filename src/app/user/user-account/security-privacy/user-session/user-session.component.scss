@@ -1,0 +1,35 @@
+@import "../../../../../variables";
+
+.session-row {
+   margin-bottom: 14px;
+}
+
+.user-session-container {
+   margin-bottom: 20px;
+}
+
+.user-session-icon-container {
+   width: 50px;
+   text-align: center;
+}
+
+.item {
+  margin-left: 15%;
+  font-weight: lighter;
+  color: #808080;
+}
+.items-pc{
+   font-size: 15px;
+   font-weight: inherit;
+}
+.image-head{
+   position: absolute;
+   top: 20%;
+}
+img{
+ color: grey;
+}
+a{
+   color: $background-dark-cyan !important;
+   cursor: pointer  !important;
+}

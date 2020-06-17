@@ -1,0 +1,17 @@
+
+<div class="card {{ currency.name }}">
+        <div class="card-currency">
+            <img src="assets/img/wallet/transactions/white{{ currency.name }}.svg" alt="" class="card-currency-img">
+            <div>
+                <p class="card-currency-title"> {{ currency.name }} </p>
+                <p class="card-currency-count"> {{ currency.amount }} </p>
+            </div>
+        </div>
+        <p class="card-currency-exchangeRates" *ngIf="currency.exchangeRate && currency['name']=='Gold HyperCoins'">
+                1 HPC - 0.10 Dollar
+        </p>
+        <p class="card-currency-exchangeRates" *ngIf="currency.exchangeRate && currency['name']!='Gold HyperCoins'">
+                1 {{currency.name}} - {{ currency.exchangeRate }} HPC
+        </p>
+        <img src="assets/img/wallet/transactions/background{{ currency.name }}.svg" alt="" class="card-currency-background">
+</div>

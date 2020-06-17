@@ -1,0 +1,20 @@
+<div class="search-groups__sidebar-section">
+    <app-search-column-header title="Project Type">
+        <div class="mt-2">
+            <div class="search-groups__sidebar-section__delivery-time-options search-groups__sidebar-section__wrap">
+                <div class="
+                    custom-control 
+                    custom-checkbox 
+                    page-section-text-grey
+                    " *ngFor="let projectType  of projectTypes">
+                    <input type="checkbox" [checked]="projectType.isSelected" class="custom-control-input" [id]="projectType.id" name="project_type"
+                           (change)="selectProjectType($event)" [value]="projectType.id" >
+                    <label class="custom-control-label" [for]="projectType.id"   >
+                        {{ projectType.name  }}
+                    </label>
+                </div>
+            </div>
+
+        </div>
+    </app-search-column-header>
+</div>

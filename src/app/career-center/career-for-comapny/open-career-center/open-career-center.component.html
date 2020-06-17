@@ -1,0 +1,66 @@
+<div class="career__center__form">
+    <h5 class="mb-4">Career Center</h5>
+    <form  [formGroup]="careerForm" autocomplete="off">
+        <div class="form-group">
+            <label for="add-title">Headline<span>*</span></label>
+          
+            <input maxlength="128" 
+                   type="text" 
+                   class="form-control" 
+                   placeholder="Enter headline"
+                   [ngClass]="{'is-invalid': isSubmit && cf.title.errors}"
+                   id="add-title" formControlName="title">
+        </div>
+                                         
+      
+        <div class="form-group mb-0 mt-4"> 
+
+            <div class="d-flex justify-content-between"> 
+                <label for="add-description">About<span>*</span></label>
+                <span class="letter-count"> {{  cf.description.value !== null ?  
+                        cf.description.value.length : 0 }} / 1200 
+                </span>
+            </div>
+            <textarea class="form-control" rows="5" id="add-description" 
+                      formControlName="description"  maxlength="1200" 
+                      placeholder="Enter your text" [ngClass]="{'is-invalid': isSubmit && cf.description.errors}" ></textarea>
+        </div>
+
+        <div class="custom__options">
+            <div class="custom__options__top">
+                <div class="d-flex justify-content-between mb-4" >
+                    <span>Drop CV</span>
+                    <div class="ml-4 notification-checkbox">
+                        <label class="switch" style="height: 18px;">
+                            <input  id="connections" type="checkbox" value="drop_cv" formControlName="cv_button_enabled">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="d-flex justify-content-between" [formGroup]="customBtnForm">
+                    <span [ngClass]="{'disabled': !customBtnForm.get('enabled').value}">Custom button</span>
+                    <div class="ml-4 notification-checkbox">
+                        <label class="switch" style="height: 18px;">
+                            <input  id="connections" type="checkbox" value="custom_btn"  formControlName="enabled">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="custom__options__bottom" *ngIf="customBtnForm.get('enabled').value" [formGroup]="customBtnForm" >
+                <select class="form-control mb-2" formControlName="title">
+                    <option [value]="customBtnText" *ngFor="let customBtnText of customBtnTexts">
+                        {{ customBtnText }}
+                    </option>
+                </select>
+
+                <input type="text" class="form-control" formControlName="url" placeholder="URL" 
+                       [ngClass]="{'is-invalid': isSubmit && customBtnForm.get('url').errors}">
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary ml-3"  (click)="submit()">Publish</button>
+        </div>
+    </form>
+</div>

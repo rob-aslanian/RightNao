@@ -1,0 +1,21 @@
+@import "src/_variables.scss";
+
+.recommended-jobs {
+    background-color: $white; 
+    border-radius: .5rem;
+    border: 1px solid $cool-grey; 
+    min-height: 36.8rem; 
+
+    &__title {
+        justify-content: space-between; 
+        img {
+            width: 0.875rem;
+            height: 0.875rem; 
+        }
+        h4 {
+            font-size: 1.25rem; 
+            font-weight: 400;
+
+        }
+    }
+}

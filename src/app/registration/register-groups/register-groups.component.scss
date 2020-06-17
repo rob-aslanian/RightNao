@@ -1,0 +1,45 @@
+@import 'src/variables';
+
+.register-group-wrapper {
+    max-width: 610px;
+    margin: 0 auto;
+    padding: 0 10px;
+}
+
+.register-group {
+    padding-top: 95px;
+
+    &__heading {
+        margin-bottom: 30px;
+        &__title {
+            font-size: 30px;
+            color: $dark-blue;
+            margin-left: 6px;
+        }
+    }
+
+    &__input-field {
+        margin-bottom: 35px;
+
+        &__text {
+            margin-left: 6px;
+        }
+
+        &__radio-item {
+            margin-bottom: 15px;
+        }
+    }
+}
+
+.register-group-btn {
+    height: 32px;
+}
+
+.custom-control-label.group-register-label {
+    &::before {
+        top: 0;
+    }
+    &::after {
+        top: 0;
+    }
+}

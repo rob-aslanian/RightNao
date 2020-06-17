@@ -1,0 +1,16 @@
+@import 'src/variables'; 
+
+.center-content-jobs {
+    background-color: $white; 
+    border: 1px solid $cool-grey; 
+    border-radius: .5rem; 
+
+    h2 {
+        font-size: 1.25rem; 
+        padding-right: 1rem; 
+    }
+    span {
+        font-size: 0.8125rem; 
+        color: $background-dark-cyan; 
+    }   
+}

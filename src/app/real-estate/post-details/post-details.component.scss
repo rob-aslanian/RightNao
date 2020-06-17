@@ -1,0 +1,250 @@
+@import 'src/variables'; 
+
+
+.counter-offers {
+
+    &__title {
+
+        border-bottom: 1px solid $grey-dark; 
+
+        h4 {
+            color: $background-dark-cyan;
+            font-size: 1.875rem; 
+        }; 
+
+        span {
+            color: $dark-grey; 
+            font-size: 1rem; 
+        }; 
+
+
+    } ;
+
+    &__alert {
+        span {
+            font-size: .875rem; 
+            color: $light-grey; 
+        }; 
+
+        .switch {
+            span {
+                color: $dark-grey;
+                white-space: nowrap;
+            }
+            .switch {
+                position: relative;
+                display: inline-block;
+                width: 37px;
+                height: 18px;
+            }
+            
+            .switch input { 
+            opacity: 0;
+            width: 0;
+            height: 0;
+            }
+            
+            .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            width: 37px;
+            height: 18px;
+            background: $light-grey;
+            -webkit-transition: .3s;
+            transition: .3s;
+            border: solid 1px #e6e6e6;
+            }
+            
+            .slider:before {
+            position: absolute;
+            content: "";
+            height: 12px;
+            width: 12px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            -webkit-transition: .3s;
+            transition: .3s;
+            }
+            
+            input:checked + .slider {
+                background-color: $background-dark-cyan;
+            }
+                
+            input:checked + .slider:before {
+                -webkit-transform: translateX(19px);
+                -ms-transform: translateX(19px);
+                transform: translateX(19px);
+            }
+            
+            /* Rounded sliders */
+            .slider.round {
+                border-radius: 34px;
+                margin-right:0;
+            }
+            
+            .slider.round:before {
+                border-radius: 50%;
+            }
+            label {
+                margin-bottom: 0 !important;
+            }
+        }; 
+    }; 
+
+    &__offer {
+        p {
+            font-size: .875rem; 
+        }
+    }
+}; 
+.details {
+    background-color: white; 
+    border: 1px solid $grey-dark; 
+    border-radius: .5rem; 
+    // &__description {
+        &__content {
+
+            &__title {
+                div {
+                    h4 {
+                        font-size: 1.25rem; 
+                        font-weight: 400; 
+                    }; 
+
+                    span {
+                        font-size: .875rem; 
+                        color: $dark-grey; 
+                    }; 
+                }
+            }; 
+
+            &__description-details {
+                border: 2px solid $grey-dark;
+                border-radius: 3px; 
+                &__box {
+                    border-right: 2px solid $grey-dark; 
+                    
+                }
+
+                div {
+                    padding: 0;
+                    justify-content: center;
+                    span {
+                        font-size: 0.75rem; 
+                    }; 
+                    p {
+                        font-size: 1rem; 
+                    }
+
+                    img {
+                        margin-right: .5rem; 
+                    }
+                }
+                
+            };
+
+            &__description__text {
+                p {
+                    font-size: .875rem; 
+                    color: $dark-grey; 
+                }; 
+
+                h4 {
+                    font-size: 1rem; 
+                    white-space: nowrap; 
+                }; 
+
+                ul {
+                    li {
+                        font-size: .875rem; 
+                        color: $dark-grey; 
+                    }; 
+                }; 
+            }
+        }
+
+    // }
+
+}
+
+
+.similar-posts {    
+    background-color: white; 
+    border: 1px solid $grey-dark; 
+    border-radius: .5rem; 
+
+}; 
+
+.counter-offer {
+    border: 1px solid $grey-dark; 
+    border-radius: .5rem; 
+}; 
+
+.author-details {
+    border: 1px solid $grey-dark; 
+    border-radius: .5rem; 
+}; 
+
+.author__actions {
+    font-size: .875rem; 
+    color: $dark-grey; 
+
+    span {
+        cursor: pointer;
+    }
+    
+}
+
+
+:host ::ng-deep app-dream-job  {
+    .profile-container {
+        max-width: 1545px !important;
+
+    }; 
+}; 
+
+ 
+.arrow-left {
+    position: absolute;
+    top: -7%;
+    right: 3rem;
+    transform: translate(0px, -15px);
+    cursor: pointer;
+};
+
+.arrow-right {
+    position: absolute;
+    right: 2rem;
+    top: -7%;
+    cursor: pointer;
+    transform: translate(0px, -15px);
+};
+
+:host ::ng-deep .slider {
+    border: 1px solid #ccc;
+    padding-top: 9px;
+    border-radius: 4px;
+    padding-left: 10px;
+    padding-right: 10px;
+};
+
+@media screen and (max-width: 767px) {
+
+   .container-fluid {
+        width: 100% !important;
+   };
+   .ads {
+       display: none;
+   }
+
+};
+
+.has_reppossed {
+    opacity: 0.5;
+    pointer-events: none;
+}

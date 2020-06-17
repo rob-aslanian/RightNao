@@ -1,0 +1,141 @@
+            <div class="box w-100  mt-3" >
+                <div class="box__first col-12 pt-3 d-flex" (click)='navigateToServiceDetailed($event)'>
+                   
+                    <div  [ngClass]="{'draft':  item.status ===   'status_draft', 
+                                      'pause':  item.status ===   'status_paused', 
+                                      'closed': item.status ===   'status_closed', 
+                                      'activated': item.status ===   'status_paused' }">
+                    </div>
+
+                    <div class="buttons hover-buttons" *ngIf="item.status ===   'status_draft' || 
+                                                              item.status ===   'status_paused' || 
+                                                              item.status ===   'status_closed'">
+                            <div class="col-12 mt-2">
+                                <button class="btn btn-black w-100" 
+                                        *ngIf="item.status ===   'status_paused'" 
+                                        (click)="changeServicesRequestStatus( item.id, 'status_activate')">
+                                        Activate
+                                </button>
+                                <button class="btn btn-black w-100" 
+                                        *ngIf="item.status ===   'status_draft'"
+                                        (click)="changeServicesRequestStatus(item.id, 'status_activate')">
+                                        Publish
+                                </button>
+                            </div>
+                            <div class="col-12 mt-2">
+                                <button class="btn btn-white w-100" *ngIf="item.status ===   'status_paused' || 
+                                                                           item.status ===   'status_draft'" 
+                                 [routerLink]="['/services', 'requests', 'edit-service-request', item.id ]">Edit</button>
+                            </div>
+                            <div class="col-12 mt-2">
+                                <button class="btn btn-white w-100" 
+                                        *ngIf="item.status ===   'status_paused' || 
+                                               item.status ===   'status_draft'"
+                                        (click)="removeServicesRequest(item.id, i)">
+                                        Delete
+                                </button>
+                                
+                                <button class="btn btn-black w-100" 
+                                        *ngIf="item.status ===   'status_closed'" 
+                                        (click)="removeServicesRequest(item.id, i)">
+                                        Delete
+                                </button>
+                            </div>
+                        </div>
+
+                <div class="box__first__detail col-4 p-0 d-flex" [ngClass]="{'opacityBg': item.status ===   'status_draft' || 
+                                                                                          item.status ===   'status_paused' || 
+                                                                                          item.status ===   'status_closed', 
+                                                                                         'defaultOpacity': isActivated }">
+                    <div class="box__first__detail__avatar mr-3">
+                        <img   [src]="profileInfo.avatar | avatar: isCompanyActive" alt="avatar" [ngClass]="{'user-photo': !isCompanyActive}">
+                        
+                    </div>
+                    <div class="box__first__detail__text">
+                        <h6 style="margin-bottom: 0.4rem; cursor: pointer;" 
+                            [routerLink]="[ isCompanyActive ? 
+                                           '/company/profile/'+profileInfo.url : 
+                                           '/user/profile/'+profileInfo.url ]" 
+                            routerLinkActive="router-link-active" >{{ isCompanyActive ? profileInfo.name : profileInfo.firstname + " " + profileInfo.lastname }}</h6>
+                        <div class="d-flex">
+
+                            <span  *ngIf="!isCompanyActive">{{ profileInfo.location.city  }},  {{ profileInfo.location.country | country }}</span>
+
+                            <span  *ngIf="isCompanyActive && 
+                                          profileInfo.addresses.length > 0">
+                            {{ profileInfo.addresses[0]['city']['city'] }}, {{ profileInfo.addresses[0]['country_id'] | country }}</span>
+                            
+                        </div>
+                    </div>
+                   
+                </div>
+
+                <div class="price col-8" [ngClass]="{'opacityBg': item.status ===   'status_draft' || 
+                                                                  item.status ===   'status_closed' || 
+                                                                  item.status ===   'status_closed', 
+                                                     'defaultOpacity': isActivated }">
+                    <h4 *ngIf="item.price === 'Price_Negotiable'; else price"> Price: Negotiable </h4>
+                    <ng-template #price>
+                        <h4 *ngIf="item.price === Price_Fixed ">{{  item.fixed_price_amount + item.currency }}</h4>
+                        <h4 *ngIf="item.price === Price_Hourly ">{{ item.currency + item.min_price_amount + '-' + item.max_price_amount + 'hr' }}</h4>
+                    </ng-template>
+                    
+                </div>
+            </div>
+
+            <div class="box__second col-12 mt-3" [ngClass]="{'opacityBg': item.status ===   'status_draft' || 
+                                                                          item.status ===   'status_paused' ||
+                                                                          item.status ===   'status_closed' }">
+                <div class="box__second__text w-100">
+                    <h6> {{ item.description }} </h6>
+                </div>
+            </div>
+
+            <div class="box__third  mt-3 pl-3 pb-4 d-flex d-flex justify-content-between w-75" [ngClass]="{'opacityBg': item.status ===   'status_draft' || 
+                                                                                                                        item.status ===   'status_paused' || 
+                                                                                                                        item.status ===   'status_closed'  }">
+                <div class=" ">
+                    <img src="assets/img/48.svg" alt="logo">
+                    <span class="pl-2" style="width: 17px;">Posted {{ item.created_at  }}</span>
+                </div>
+                
+                <div class="" *ngIf="item.location.city.city || item.location.country.country">
+                    <img src="assets/img/24.svg" alt="logo">
+                    <span *ngIf="item.is_Remote; else location" class="pl-2">Remote</span>
+                    <ng-template #location>
+                      <span> {{ item.location.city.city }}, {{ item.location.country.country | country }} </span>
+                    </ng-template>
+                </div>
+
+                <div class="">
+                    <img src="assets/img/492.svg" alt="logo">
+                    <span class="pl-2">{{"Delivery " +  deliveryTime[item.delivery_time] }}</span>
+                </div>
+                
+                <div class="">
+                    <img src="assets/img/231.svg" alt="logo">
+                    <span class="pl-2">{{item.proposal_amount + ' Offers'}}</span>
+                </div>
+                
+            </div>               
+
+            <div class="box__four col-12 d-flex justify-content-end p-3 align-items-center" ngbDropdown *ngIf="item.status !==   'status_draft'   && 
+                                                                                                               item.status !==   'status_paused'  &&
+                                                                                                               item.status !==   'status_closed'">
+                <div class="edit" style="margin-right: -15px;">
+                    <img src="assets/img/19.svg"  [routerLink]="['/services', 'requests', 'edit-service-request', item.id ]"   >
+                </div>
+                
+                <div class="options ml-3">
+                    <img src="assets/img/648.svg" ngbDropdownToggle alt="" >
+                </div>
+
+                <div class="options-content p-2"  ngbDropdownMenu>
+                        <p ngbDropdownItem (click)="changeServicesRequestStatus(  item.id, 'status_paused' )">Pause</p>
+                        <p ngbDropdownItem >Share</p>
+                        <p ngbDropdownItem (click)="changeServicesRequestStatus(  item.id, 'status_closed')">Close</p>
+                        <p ngbDropdownItem (click)="removeServicesRequest(item.id, i)">Delete</p>
+                </div>
+            </div>
+            
+        </div>

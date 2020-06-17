@@ -1,0 +1,26 @@
+:host ::ng-deep ng-multiselect-dropdown {
+    .multiselect-dropdown {
+      div {
+        span {
+          color: #808080;
+          .dropdown-down  {
+              border: none !important;
+              width: 1.875rem !important; 
+              height: 1.25rem !important;
+              background-repeat: no-repeat;
+            //   background-image: url("../../../../assets/img/508.svg") !important;
+
+          }
+          .dropdown-up {
+              border: none !important;
+              width: 1.875rem !important; 
+              height: 1.25rem !important;
+              background-repeat: no-repeat;
+            //   background-image: url("../../../../assets/img/508.svg")  !important;
+          
+          }
+
+        }
+      }
+    }
+  }

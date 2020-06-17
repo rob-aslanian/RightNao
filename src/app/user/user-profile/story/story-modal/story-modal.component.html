@@ -1,0 +1,26 @@
+
+    <div class="modal-content">
+        <div class="popup-content add-story">
+            <div class="d-flex justify-content-between">
+                <h2>{{ '1361'| translate }}</h2>
+                <span> {{ editStoryForm.controls['story'].value.length}} /1200</span>
+            </div>
+            <form [formGroup]="editStoryForm">
+                <div class="form-group mb-3">
+                    <textarea class="form-control" 
+                    formControlName="story" rows="5"
+                    [ngClass]="{ 'is-invalid': stroySubmited && st.story.errors }"            
+                    [placeholder]="'91'| translate"
+                        maxlength="1200"></textarea>
+                </div>
+                <ng-container *ngIf="stroySubmited &&  st.story.errors">
+                        <span class="error_message"  *ngFor="let error of utils.getErrorsKey(st.story.errors)">
+                                {{ utils.$getErrors(error) }}
+                        </span> 
+                 </ng-container>
+                <button class="btn btn-primary d-block ml-auto" (click)="changeStory( )">Save</button>
+            </form>
+        </div>
+    </div>
+
+<!--End of Modal of change story-->

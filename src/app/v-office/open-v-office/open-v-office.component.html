@@ -1,0 +1,153 @@
+
+
+<app-dream-job></app-dream-job>
+
+
+  <div class="container profile">
+   <div class="row">
+    <div class="office-wrap col-lg-9">
+      <div class="office">
+        <div class="office__container">
+
+          <div class="office__content mb-4">
+            <h6 class="office__content--grey">
+              To post a service first open v-Office
+            </h6>
+            <div class="office_open mt-4">
+              <img src="assets/img/485.svg" alt="office" />
+              <span class="p-3">Open v-Office</span>
+            </div>
+
+        <form [formGroup]="officeForm" autocomplete="off"  >
+
+              <div class="col-12 pl-0 mt-3">
+                <label for="office-name" class="pb-1">What is the name of your v-Office?<span class="star">*</span></label>
+                <input 
+                    type="text"
+                    id="office-name" 
+                    class="form-control ml-0" 
+                    placeholder="Give a title to your v-office" 
+                    formControlName='name'
+                    [ngClass]="{'is-invalid': offCtrs.name.errors && isSubmited }"
+                />
+              </div>
+
+            <div class="col-md-8 pl-0 mt-4">
+              <label for="select-category" class="pb-1">Category<span class="star">*</span></label>
+
+                <select   id="select-category" 
+                          class="form-control" 
+                          formControlName='mainCategory'
+                          [ngClass]="{'is-invalid':  offCtrs.mainCategory.errors && isSubmited }">
+                  <option value="" selected disabled>Select one</option>
+                  <option  *ngFor='let cat of categories' [value]='cat'>  {{ cat }} </option>
+               </select>
+              </div>
+
+
+
+              <div class="col-12 mt-4  pl-0">
+                <label class="m-0" >Where are you located?<span class="star">*</span></label>
+                <div class="row">
+                <div class="col-md-4 mt-2" *ngIf='( $countries | async ) as countries'>
+
+                  <select  class="form-control  d-inline-block" 
+                           formControlName='country'
+                           [ngClass]="{'is-invalid': offCtrs.country.errors && isSubmited }">
+
+                     <option value="" selected disabled>Select Country</option>
+                     <option value="" *ngFor='let country of countries' [value]="country.asc">{{ country.name }}</option>
+                  </select>
+
+                </div>
+
+                <div class="col-md-4 mt-2">
+      
+                      <input type="text" 
+                            [ngbTypeahead]="searchCity" 
+                            [resultFormatter]="cityFormatter" 
+                            [inputFormatter]="cityFormatter"
+                            class="form-control"
+                            placeholder="Enter city"
+                            disabled
+                            formControlName='city'
+                            [ngClass]="{'is-invalid': offCtrs.city.errors && isSubmited }">
+                </div>
+
+                </div>  
+              </div>
+
+              <div class="col-12 pl-0 mt-4">
+                <div class="d-flex justify-content-between">
+                  <label for="description" class="pb-1">Description</label>
+                  <small>{{ officeForm.get('description').value.length }} / 1000</small>
+                </div>
+                <textarea class="form-control" id="description" rows="6" style="resize: none;" formControlName='description' maxlength="1000"></textarea>
+              </div>
+
+              <ng-container *ngIf="activeProfile === 'user'">
+
+                <div class="col-md-6 mt-3  pl-0">
+
+                <div class="d-flex justify-content-between">
+                  <label for="language">Language</label>
+                  <a (click)='importLanguages()' style="color:#00D4E3; cursor: pointer;">Insert from profile</a>
+                </div>
+
+
+                    <input type="text" 
+                          [ngbTypeahead]="searchLanguage" 
+                          [resultFormatter]="languageFormatter" 
+                          [inputFormatter]="languageFormatter"
+                          class="form-control"
+                          id='language'
+                          placeholder="Enter Language"
+                          #input
+                          (selectItem)='getLanguage($event, input)'>
+                </div>
+                <div class="col-9 mt-3 pl-0">
+            
+                  <div *ngFor="let lang of addedLanguages; let i = index">
+                      <div class="form-group tools-container justify-content-between">
+
+                          <div class="tool-name">
+                              <h3 class="tool_name m-0"> {{ lang.language }} </h3>
+                          </div>
+
+                          <div class="tool-level">
+
+                              <select  class="form-control tools-options" [(ngModel)]="lang.rank" [ngModelOptions]='{ standalone: true }'>                               
+                                                                                                                                
+                                  <option  value = "Level_Begginer" selected>Begginer</option>
+                                  <option  value = "Level_Intermediate">Intermediate</option>
+                                  <option  value = "Level_Advanced">Advanced</option>
+                                  <option  value = "Level_Master">Master</option>
+                                  
+                              </select>
+
+                          </div>
+                          <span class="delete-tool" (click) = "removeLanguage(i)">&#10005;</span>
+                          
+                      </div>
+                  </div>
+  
+                </div>
+                
+              </ng-container>
+
+              <div class="d-flex justify-content-end mt-3">
+                <button type="button" class="btn btn-primary pt-2 pb-2" (click)='onSubmit()'>Open</button>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3 ">
+       <app-ads> </app-ads>
+    </div>
+  </div>
+</div>
+ 

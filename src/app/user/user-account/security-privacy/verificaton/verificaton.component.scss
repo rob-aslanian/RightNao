@@ -1,0 +1,10 @@
+.popup-content {
+  &__qr{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+      &__image {
+        max-width: 270px;
+      }
+  }
+}

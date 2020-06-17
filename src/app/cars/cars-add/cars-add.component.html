@@ -1,0 +1,14 @@
+<app-dream-job [title]='"Car"'></app-dream-job>
+<div class="profile container mt-4">
+    <div class="row">
+        <div class="col-lg-9">
+            <div class="main-wrapper">
+                <router-outlet></router-outlet>
+            </div>
+            
+        </div>
+        <div class="col-lg-3">
+            <app-dynamic-steps  [stepAmount]='3' [currentStep]='1'></app-dynamic-steps>
+        </div>
+    </div>
+</div>

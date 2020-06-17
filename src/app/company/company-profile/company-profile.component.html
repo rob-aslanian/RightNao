@@ -1,0 +1,343 @@
+
+<ng-container  *ngIf="company_info">
+    <app-cover-image [data]="coverImage" (changeRole)="getCompanyProfile($event)" [type]='"company"'></app-cover-image>
+</ng-container>
+
+
+<main class="main-light-blue before-footer">
+    
+    <div class="white-bg">
+    </div>
+
+    <app-spinner *ngIf="!company_info" class="spinner__center"></app-spinner>
+
+    <app-modal (closeModal)="modalType = null">
+
+        <ng-container *ngIf="modalType === 'editProfile'">
+            <app-edit-profile-picture 
+                        (result)="editProfileResult($event)"
+                        type="company">
+            </app-edit-profile-picture>  
+        </ng-container>
+
+            <!--  * * * Following Modal * * * -->
+        <ng-container *ngIf="modalType && modalType === 'followers'">
+                <app-followers-modal [isCompany] = 'true'
+                                     [companyID] = 'company_info.id'
+                                     [followerListLenght] = 'company_info.network_info.followers'
+                                     (onCloseModal) = 'closeModal($event)'>
+                </app-followers-modal>
+        </ng-container>
+
+        <!--  * * * Followers  Modal * * * -->
+        <ng-container *ngIf="modalType && modalType === 'following'">
+                <app-following-modal [isCompany] = 'true'
+                                     [companyID] = 'company_info.id'
+                                     [followingListLength] = 'company_info.network_info.followings'
+                                     (onCloseModal) = 'closeModal($event)'>
+                </app-following-modal>
+        </ng-container>
+        <!--  * * * Connections  Modal * * * -->
+        <!-- <ng-container *ngIf="modalType && modalType === 'connections'">
+                <app-connections-modal [profileID] = 'company_info.id' 
+                                      >
+                </app-connections-modal>
+        </ng-container> -->
+
+    </app-modal>
+
+    <div class="container profile p-0"  *ngIf="company_info">
+        <div class="row justify-content-between company-wrap m-0">
+
+            <!-- Content on the left -->
+            <div class="col-md-3" style="min-width: 303px;">
+                <div class="left-row profile-left">
+                    <div class="profile-picture-wrap" (click)="isAdmin && openModal('editProfile')">
+                        <img class="company-logo" [src]="company_info.avatar ? '/file/'+ company_info.avatar : 'assets/img/default-company.svg' " alt="logo">
+                        <div class="for-company"  [ngClass]="{'overlay ': isAdmin }"  >
+                            <img src="assets/img/255.svg" alt="edit" class="company-profile-pic" *ngIf="isAdmin">
+                        </div>
+                    </div>
+                    <div class="buttons"  *ngIf="isAuth">
+                        
+                        <ng-container *ngIf="!isAdmin; else:accoutSetting "> 
+
+                            <!-- Not follow -->
+                            <button *ngIf="!isFollow" type="button" class="btn btn-primary mr-1" 
+                                    (click)="followCompany(company_info.id);" [disabled]="isClickedAsVisitor">
+                                 {{ '629'| translate  }}
+                            </button>
+
+                            <!-- Followed -->
+                            <button *ngIf="isFollow" type="button" class="btn btn-primary mr-1" 
+                                  (click)="openChatBox(company_info.name , company_info.avatar , company_info.id);"  [disabled]="isClickedAsVisitor">
+                                 {{ '905'| translate  }}
+                            </button>
+
+                        </ng-container>
+                        
+                        <div class="show-more-container">
+
+                            <!-- Moere Button -->
+                            <ng-container *ngIf="!isAdmin && profilePopUp">
+                                <button type="button" class="btn btn-secondary" #moreBtn="ngbPopover" [autoClose]="true"
+                                        [ngbPopover]="morePopUp" [disabled]="isClickedAsVisitor">
+                                {{ '929'| translate  }}
+                                </button>
+
+                              <app-more-popup #morePopUp [ngClass]="{'d-none': !moreBtn.isOpen() }" 
+                                             [data]="profilePopUp" (result)="getResultFromPopup($event)">
+
+                              </app-more-popup>
+                             
+                            </ng-container>
+
+
+                            <ng-template #accoutSetting>
+                                    <button type="button" style="width: 130px;" class="btn btn-primary mr-1" [routerLink]="['/company/account/' + company_info.url]" >
+                                      <span style="margin-left: -6px; font-size: 14px;">  Account Settings </span>
+                                    </button>
+                            </ng-template>
+
+
+                        </div>
+                    </div>
+                    <h2 class="company-heading"><a [routerLink] = "['/company/profile', url]"  
+                       class="company-heading" > {{ company_info.name }} </a></h2> 
+                    <h3>{{  utils.getInudsryName(company_info.industry.id) }}</h3>   
+                    <div class="stars">     
+                         <ngb-rating [rate]= "math.round(company_info.avarage_rating)" [readonly]="true" max="5"></ngb-rating>
+                    </div>     
+
+                    <!-- V-offices -->
+                    <ng-container *ngIf="( $vOffices | async ) as offices ">
+                        <ng-container *ngFor="let office of offices">
+                            <div class="offices-container p-2" *ngIf="!office.isOut">
+                                    <img src="assets/img/v_office.svg" alt="office">
+                                    <a [routerLink]="['/v-office', 'office', office.id, 'company', companyID ]" >{{ office.name }}</a>
+                            </div>
+                        </ng-container>
+                    </ng-container>
+                    <!-- V-offices -->
+  
+               
+
+                    <div class="contact-information">
+                            <!-- <div class="d-flex justify-content-between">
+                                <img src="assets/img/20.svg" alt="shop"> 
+                                <span>Advantage Solutions Shop</span>
+                            </div> -->
+                            
+                        
+
+                    </div>
+                    <div class="company-card mt-4 mb-4 p-2">
+                        <div class="company-card__category d-flex justify-content-between">
+                            <a *ngIf="!isAdmin" (click)="openModal('following')">Following</a>
+                            <a *ngIf="isAdmin" [routerLink]="[ '/network/following' ]">Following</a>
+                            <span> {{ company_info.network_info.followings }} </span>
+                        </div>  
+    
+                        <div class="company-card__category d-flex justify-content-between">
+                            <a *ngIf="!isAdmin" (click)="openModal('followers')">Followers</a>
+                            <a *ngIf="isAdmin" [routerLink]="[ '/network/followers' ]">Followers</a>
+                            <span> {{ company_info.network_info.followers }} </span>
+                        </div>  
+                    </div>
+        
+                    <div class="contact-information">     
+                        <h3 *ngIf=" company_info.email || company_info.phone.country_code || company_info.phone.number || company_info.url">{{ '372'| translate  }}</h3>
+                        <span *ngIf=" company_info.email" >
+                            <img src="assets/img/22.svg" alt="@"> 
+                            <a [href]="'mailto:' + company_info['email'] " style="color:inherit">{{ company_info['email'] }} </a>
+                        </span>
+                        <span *ngIf=" company_info.phone.country_code && company_info.phone.number">
+                            <img src="assets/img/23.svg" alt="phone"> 
+                            {{ company_info.phone.country_code }} {{ company_info.phone.number }}
+                        </span>
+
+                        <!-- Company address -->
+                        <ng-container *ngIf="company_info.addresses && company_info.addresses[0]">
+                            <span *ngIf="company_info.addresses[0]['street_address']" class="mb-2">
+                                <img src="assets/img/24.svg" alt="tick"> 
+                                {{ company_info.addresses[0]['street_address'] }} 
+                            </span>
+                            <span *ngIf="company_info.addresses[0]['apartment']" class="iconless mb-1"> 
+                                {{ company_info.addresses[0]['apartment'] }} 
+                            </span>
+                            <span *ngIf=" company_info.addresses" class="iconless">  
+                                {{ company_info.addresses[0].city['city']  }} 
+                                {{ company_info.addresses[0]['zip_code'] }} 
+                                {{ utils.getCountryName(company_info.addresses[0]['country_id']) }}  
+                            </span> 
+                        </ng-container>
+                        <!-- Company address -->
+
+                        <span *ngIf=" company_info.websites[0] as website">
+                            <img src="assets/img/25.svg" alt="globe">
+                            <a [href]="utils.getUrl(website)" target="_blank" style="color:inherit"> {{ website }} </a>
+                        </span>   
+                    </div>     
+                        <!-- <div class="socials">
+                            <a ><img src="assets/img/26.svg" alt="linkedin"></a>
+                            <a ><img src="assets/img/27.svg" alt="instagram"></a>
+                            <a ><img src="assets/img/28.svg" alt="whatsapp"></a>
+                            <a ><img src="assets/img/29.svg" alt="twitter"></a>
+                            <a ><img src="assets/img/30.svg" alt="youtube"></a>
+                            <a ><img src="assets/img/31.svg" alt="instagram"></a>
+                            <a ><img src="assets/img/32.svg" alt="pinterest"></a>
+                            <a ><img src="assets/img/33.svg" alt="facebook"></a>
+                        </div> -->
+                </div>
+            </div>
+
+
+            <!-- Content in the center -->
+          
+
+            <div class="center-row col">
+                <div class="center-info pb-0 mb-3" style="max-width: 300px;">
+                            <div class="menu-item"
+                                [routerLink]="['/company/profile/'+company_info.url]"
+                                routerLinkActive="active"
+                                [routerLinkActiveOptions]='{ exact: true }'
+                                >
+                            <div>
+                                <span>&nbsp;</span>
+                                <p> {{ '34'| translate  }}</p>
+                            </div>
+                        </div>
+
+                        <div class="menu-item"
+                                [routerLink]="['wall' , company_info.id]"
+                                routerLinkActive="active" [queryParams]="{isCompany: true}">
+                            <div>
+                                <span>&nbsp;</span>
+                                <p> {{ '967'| translate  }}</p>
+                            </div>
+                        </div>
+                      
+
+                        
+
+                        <!-- <div  class="menu-item" [routerLink]="['employees']" routerLinkActive="active">
+                                <div>
+                                    <span>{{ company_info.network_info.employees }}</span>
+                                    <p>Employees</p>
+                                </div>
+                        </div> -->
+
+                        <div class="menu-item" 
+                        [routerLink]="['jobs', company_info.id]" 
+                        routerLinkActive="active">
+                            <div>
+                                <p> {{ '829'| translate  }}</p>
+                            </div>
+                        </div>
+
+                        <div  class="menu-item" [routerLink]="['raiting' , company_info.id ]" 
+                        [queryParams]="{admin: company_info['my_role'] !== 'role_unknown' }" routerLinkActive="active">
+                                <div>
+                                    <p> {{ '1158'| translate  }}</p>
+                                </div>
+                        </div>
+                </div>
+               
+
+                <ng-container *ngIf="showMainPage && !isViewedProfileEmpty">
+                    <!-- About Us -->
+                    <div class="about-us-wrap">
+                        <app-about-us [companyProfile]="company_info" [isAdmin]="isAdmin"></app-about-us>   
+                    </div>
+                    <!-- About us end -->
+
+                    <!-- Founders -->
+                    <div class="founders-wrap">
+                        <app-founders [data]="founders"></app-founders>
+                    </div>
+                    <!-- Founders end -->
+
+                                                  
+                    <!-- Milestones -->
+                    <div class="milestones-wrap">
+                            <app-milestones [data]="milestones"></app-milestones>
+                    </div>
+                    <!-- Milestones end -->
+
+                    <!-- Awards -->
+                    <div class="awards-wrap">
+                        <app-awards [data]="awards"></app-awards>
+                    </div>
+                    <!-- Awards end -->
+
+
+                    <!-- Services -->
+                    <div class="services-wrap">
+                        <app-services [data]="services"></app-services>
+                    </div>
+                    <!-- Services end -->
+
+                    <!-- Products -->
+                    <div class="products-wrap">
+                        <app-products [data]="products"></app-products>
+                    </div>
+                    <!-- Products end -->
+
+                    <!-- Benefits  -->
+                    <div class="products-wrap">
+                        <app-benefits [data]="benefits"></app-benefits>
+                    </div>
+                    <!-- Benefits end -->
+
+                    <!-- Gallery -->
+                    <div class="products-wrap">
+                        <app-gallery [data]="gallery"></app-gallery>
+                    </div>
+                    <!-- Gallery -->
+
+                    <!-- Location -->
+                    <div class="location-wrap">
+                       <app-location [companyProfile]="company_info" [isAdmin]="isAdmin"></app-location>
+                    </div>
+                    <!-- Location end -->
+
+                </ng-container>
+
+
+                <ng-container *ngIf=" ( isViewedProfileEmpty &&  route.url === '/company/profile/'+company_info.url )
+                                         ||
+                                      ( !isAdmin && !company_info.amount_jobs && route.url === '/company/profile/'+company_info.url+'/jobs/'+company_info.id )
+                                         ||
+                                      ( !isAdmin && !company_info.avarage_rating  && route.url ===  '/company/profile/'+company_info.url+'/raiting/'+company_info.id+'?admin=false')">
+                      <div class="empty-profile">
+                           <div class="empty-wrapper">
+                                <div  class="text-center">
+                                        <img src="assets/img/nocontent.svg" alt="empty">
+                                        <p class="pt-3">{{ company_info?.name }} has an incomplete profile </p>
+                                </div>
+                           </div>
+                      </div>
+                </ng-container>
+                
+                
+
+                <router-outlet></router-outlet>
+
+            </div>
+            <!-- Content in the center end -->
+
+            <!-- Content on the right -->
+            <div class="network-ads col-lg-3 col-md-12 pl-0">
+                <div class="company-langs-section-wrapper">
+                    <app-profile-langs [data]="profileLangs" (changeLanguage)="changeProfileLang($event)"></app-profile-langs>
+                </div>
+                <div class="mt-3">
+                    <app-ads [isLeft]="true"></app-ads>
+                </div>
+            </div>
+            <!-- Content on the right end -->                  
+        </div>
+    </div>
+
+
+</main>

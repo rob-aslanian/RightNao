@@ -1,0 +1,16 @@
+.progress__meter {
+    stroke: rgb(226, 226, 226);
+}
+
+.progress__value {
+    stroke: #02d4df;
+    transition: all; 
+  
+}
+
+.progress__value-text {
+    position: absolute;
+    top: 40px;
+    left: 60px;
+    font-size: 17px;
+}

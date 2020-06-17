@@ -1,0 +1,39 @@
+<div class="request-wrapper">
+      
+      <div class="d-flex justify-content-between align-items-center">
+            <h4>Saved Requests <small>({{ services.service_amount }})</small> </h4>
+            <div ngbDropdown>
+                        <a class="backgroundless d-block" style="color: grey;" ngbDropdownToggle>{{ sortedBy }} ▾</a>
+                        <div class="most-recent" ngbDropdownMenu>
+                              <button ngbDropdownItem class="backgroundless d-block" (click)='sort("Most recent")'>Latest</button>
+                              <button ngbDropdownItem class="backgroundless d-block" (click)='sort("Oldest first")'>Oldest</button>
+                              <button ngbDropdownItem class="backgroundless d-block" (click)='sort("Price - Lowest First")'>Price - Lowest First</button>
+                              <button ngbDropdownItem class="backgroundless d-block mb-1" (click)='sort("Price - Highest First")'>Price - Highest First</button>
+                        </div>
+                  </div>
+      </div>
+    <ng-container *ngIf="!loading">
+          <ng-container *ngFor="let service of services?.services">
+                <ng-container *ngIf="service.has_liked">
+                      <app-service-request-box [service]='service'></app-service-request-box>
+                </ng-container>
+          </ng-container>
+      
+       <div class="pagination-requests">
+             <ngb-pagination [collectionSize]="services?.service_amount" 
+                             *ngIf="services?.service_amount > 6"
+                             [pageSize]="'6'" 
+                             [(page)]="page"  
+                             (pageChange)="onPageChange($event)" 
+                             class="d-flex justify-content-end mt-4">
+             </ngb-pagination>
+       </div>
+    </ng-container>
+
+    <ng-container *ngIf="loading">
+           <div class="d-flex justify-content-center">
+                 <app-spinner></app-spinner>
+           </div>
+    </ng-container>
+    
+</div>

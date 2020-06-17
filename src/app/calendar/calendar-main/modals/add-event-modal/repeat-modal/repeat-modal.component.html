@@ -1,0 +1,117 @@
+<div class="popup-content">
+  <div class="calendar-repeat-modal">
+    <div class="calendar-repeat-modal__field">
+      <h4 class="calendar-repeat-modal__field__title">Repeat every</h4>
+      <div class="col-6 p-0">
+        <div class="row">
+          <div class="col-4 pr-0">
+            <input type="text" class="form-control calendar-input"/>
+          </div>
+          <div class="col-8">
+            <select class="form-control calendar-input">
+              <option>Days</option>
+              <option>Week</option>
+              <option>Month</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <!--If week is chosen-->
+      <div class="calendar-repeat-modal__week-days mt-3">
+          <div class="d-flex align-items-center">
+            <div class="position-relative mr-2">
+              <label for="sunday" class="callendar-custom-radio-label callendar-custom-radio-label--active"><span>S</span></label>
+              <input type="radio" class="callendar-custom-radio" id="sunday" name="week-day"/>
+            </div>
+            <div class="position-relative mr-2">
+              <label for="monday" class="callendar-custom-radio-label"><span>M</span></label>
+              <input type="radio" class="callendar-custom-radio" id="monday" name="week-day"/>
+            </div>
+            <div class="position-relative mr-2">
+              <label for="tuesday" class="callendar-custom-radio-label"><span>T</span></label>
+              <input type="radio" class="callendar-custom-radio" id="tuesday" name="week-day"/>
+            </div>
+            <div class="position-relative mr-2">
+              <label for="wednesday" class="callendar-custom-radio-label"><span>W</span></label>
+              <input type="radio" class="callendar-custom-radio" id="wednesday" name="week-day"/>
+            </div>
+            <div class="position-relative mr-2">
+              <label for="thursday" class="callendar-custom-radio-label"><span>T</span></label>
+              <input type="radio" class="callendar-custom-radio" id="thursday" name="week-day"/>
+            </div>
+            <div class="position-relative mr-2">
+              <label for="friday" class="callendar-custom-radio-label"><span>F</span></label>
+              <input type="radio" class="callendar-custom-radio" id="friday" name="week-day"/>
+            </div>
+            <div class="position-relative mr-2">
+              <label for="saturday" class="callendar-custom-radio-label"><span>S</span></label>
+              <input type="radio" class="callendar-custom-radio" id="saturday" name="week-day"/>
+            </div>
+          </div>
+      </div>
+      <!--If month is chosen-->
+      <div class="mt-3">
+        <div class="custom-control custom-radio mb-2" for="same-date">
+          <input class="custom-control-input form-control calendar-input" id="same-date" type="radio" name="repeat-month">
+          <label class="custom-control-label" for="same-date">On the same date: the 20</label>
+        </div>
+        <div class="custom-control custom-radio  d-flex align-items-center mb-2 row" for="month-date">
+          <div class="col-3">
+            <input class="custom-control-input form-control calendar-input" id="month-date" type="radio" name="repeat-month">
+            <label class="custom-control-label" for="month-date">On the</label>
+          </div>
+          <div class="col-9 row">
+            <div class="col-5 pr-0">
+              <select class="form-control calendar-input">
+                <option>Third</option>
+              </select>
+            </div>
+            <div class="col">
+              <select class="form-control calendar-input">
+                <option>Friday</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="calendar-repeat-modal__field">
+      <h4 class="calendar-repeat-modal__field__title">Ends</h4>
+      <div>
+        <div class="custom-control custom-radio mb-2" for="never">
+          <input class="custom-control-input form-control calendar-input" id="never" type="radio" name="repeat-type">
+          <label class="custom-control-label" for="never">Never</label>
+        </div>
+        <div class="custom-control custom-radio  d-flex align-items-center mb-2 row" for="on">
+          <div class="col-2">
+            <input class="custom-control-input form-control calendar-input" id="on" type="radio" name="repeat-type">
+            <label class="custom-control-label" for="on">On</label>
+          </div>
+          <div class="col-7">
+            <input type="text" placeholder="Sep 20, 2020" class="form-control calendar-input"/>
+          </div>
+        </div>
+
+        <div class="custom-control custom-radio d-flex align-items-center mb-2 row" for="after">
+          <div class="col-2">
+            <input class="custom-control-input form-control calendar-input" id="after" type="radio" name="repeat-type">
+            <label class="custom-control-label" for="after">After</label>
+          </div>
+          <div class="col-7 row align-items-center">
+            <div class="col-5 pr-0">
+              <input type="text" placeholder="Sep 20, 2020" class="form-control calendar-input" disabled/>
+            </div>
+            <div class="col">
+              <span>Occurences</span>
+            </div>
+          </div>
+
+        </div>
+        <div class="d-flex justify-content-end">
+          <button (click)="close.emit()" class="btn btn-primary btn-primary--high">Done</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

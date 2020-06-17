@@ -1,0 +1,47 @@
+<div class="search-groups__sidebar-section">
+    <app-search-column-header title="Show only">
+        <div class="mt-2">
+            <div class="search-groups__sidebar-section__delivery-time-options search-groups__sidebar-section__wrap">
+               <form [formGroup]="form">
+                  <!-- For people-->
+                  <ng-container *ngIf="type === 'people'">
+                    <div class="
+                        custom-control 
+                            custom-checkbox 
+                            page-section-text-grey
+                            ">
+                            <input formControlName="isStudent" type="checkbox" class="custom-control-input" id="isStudent" name="isStudent"><label
+                                class="custom-control-label" for="isStudent">Students</label>
+                        </div>
+                        <div class="
+                            custom-control 
+                            custom-checkbox 
+                            page-section-text-grey
+                            ">
+                            <input  formControlName="isMyConnection" type="checkbox" class="custom-control-input" id="isMyConnection" name="isMyConnection"><label
+                                class="custom-control-label" for="isMyConnection">My connections</label>
+                        </div>
+                  </ng-container>
+                  <!-- For people-->
+
+                  <!-- For Service -->
+                  <ng-container *ngIf="type === 'service' || type === 'service_request'">
+                        <div class="
+                            custom-control 
+                            custom-radio 
+                            page-section-text-grey
+                            " *ngFor="let ownerType of SERVICE_OWNER">
+                            <input   type="radio" class="custom-control-input" [id]="ownerType.id" [value]="ownerType.id" name="services_ownwer" formControlName="services_ownwer">
+                            <label class="custom-control-label" [for]="ownerType.id">
+                                {{ ownerType.name  }}
+                            </label>
+                        </div>
+                  </ng-container>
+                  <!-- For Service -->
+                  
+
+               </form>
+            </div>
+        </div>
+    </app-search-column-header>
+</div>

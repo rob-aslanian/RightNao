@@ -1,0 +1,10 @@
+<div class="search-groups__sidebar__heading" style="cursor: pointer;" (click)="isOpen = !isOpen">
+    <h4 class="page-section-text-blue mb-0"> {{ title }}</h4>
+    <div>
+        <span class="search-groups__sidebar__heading__caret search-groups__sidebar__heading__caret--{{ isOpen  ? 'up' : 'down' }} "></span>
+    </div>
+</div>
+    
+<div  class="mt-3 pb-4" [ngClass]="{'pb-4': isOpen}">
+    <ng-content *ngIf="isOpen"></ng-content>
+</div>

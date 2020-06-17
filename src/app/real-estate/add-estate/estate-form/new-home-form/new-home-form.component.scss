@@ -1,0 +1,33 @@
+@import 'src/variables';
+.new-home-wrapper {
+   .custom-control {
+       label {
+           color: $dark-grey;
+       }
+   }
+    .type-of-home {
+        max-width: 614px;
+        margin-bottom: 1rem;
+        .checkbox-home {
+            width: 187px;
+        }
+    }
+    
+    .change-metrics {
+        position: absolute;
+        left: 408px;
+        top: 32px;
+    }
+}
+.dropdown-menu {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    will-change: transform;
+    transform: translate(0px, 36px);
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    padding: 10px;
+}
+
+ 

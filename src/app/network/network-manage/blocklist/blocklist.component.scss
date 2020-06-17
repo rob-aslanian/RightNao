@@ -1,0 +1,30 @@
+@import "src/variables";
+
+.right {
+    max-height: 32px;
+    min-height: 32px;
+    margin-bottom: 8px;
+    button {
+        height: 32px;
+        line-height: 16px;
+        color: $background-dark-cyan;
+        border-color: $background-dark-cyan;
+    }
+}
+
+.blocklist-name {
+    font-size: 16px;
+    margin-left: 5px;
+    margin-bottom: 0;
+    color: $dark-blue;
+}
+
+.center-content-network {
+    padding-bottom: 10px;
+}
+
+.btn.btn-outline-primary.short {
+    &:hover {
+        color: $dark-blue;
+    }
+}

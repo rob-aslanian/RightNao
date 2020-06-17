@@ -1,0 +1,116 @@
+<main class="main-light-blue">
+
+    <div class="container main-cont-for-ads">
+        <div class="ads-trn-title">
+            Banner Ad
+        </div>
+        <div class="ads-banner-cont" [ngClass]="{'d-none': page !== 1}" >
+            <app-ads-placement type="banner"></app-ads-placement>
+
+            <form [formGroup]="bannerForm">
+                <div class="ads-section">
+                    <app-location-currency [form]="bannerForm"></app-location-currency>
+                </div>
+
+                <div class="banner_for">
+                    <div class="ads-dBlue-title ads-section">
+                        Show banner for
+                    </div>
+
+                    <div class="check__box custom-control custom-checkbox" formArrayName="places"  *ngFor="let place of places.controls; let i = index; trackBy:trackByFn">
+                        <input type="checkbox" [id]="i"  [formControlName]="i" class="custom-control-input">
+                        <label [for]="i" class="custom-control-label label-grey-normal">
+                            {{ _places[i].name }}
+                        </label>
+                    </div>
+                </div>
+
+                <!-- <div class="audience">
+                    <div class="ads-dBlue-title">
+                        <b>The number of audience</b>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-4">
+                            <select class="form-control">
+                                <option value="0">Select</option>
+                                <option value="" *ngIf="(amount | async ) as amount">{{ amount }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div> -->
+
+
+                <app-start-finish formControlName="start_date"></app-start-finish>
+            </form>
+
+
+            <div class="col-12" *ngIf="showTotal">
+                <div class="ads-section row ads-bann-result">
+                    <div class="col-9">
+                        <div class="row">
+                            <div class="col-4">
+                                <h3 class="ads-bann-result__title">Location</h3>
+                            </div>
+                            <div class="col-4">
+                                <h3 class="ads-bann-result__title">Show banner for</h3>
+                            </div>
+                            <!-- <div class="col-4">
+                                <h3>Audience</h3>
+                            </div> -->
+                            <div class="col-4">
+                                <h3 class="ads-dBlue-title ads-bann-result__title">Start date</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="ads-bann-result__text">{{ utils.getCountryName(form.location.value) }}</div>
+                            </div>
+                            <div class="col-4">
+                                <h3 *ngFor="let place of advert['places']; let i = index; trackBy:trackByFn"
+                                    style="text-transform: capitalize" class="ads-bann-result__text">
+                                    {{ place }}
+                                </h3>
+                            </div>
+                            <!-- <div class="col-4">
+                                <h3>1000</h3>
+                            </div> -->
+                            <div class="col-4">
+                                <h3 class="ads-bann-result__text">{{ form.start_date.value }}</h3>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-3 d-flex align-items-center ads-bann-result__budget">
+                        <h2>Budget <span>0 {{ form.currency.value  }}</span></h2>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Start banners footer -->
+            <div class="ads-banners-foot">
+                <div>
+                    <!-- <a href="#" class="backgroundless">back</a> -->
+                </div>
+                <div>
+                    <button class="btn btn-primary btn-primary--high" (click)="next()">Next</button>
+                </div>
+            </div>
+            <!-- End banners footer -->
+        </div>
+
+        <!-- Seond page -->
+            <app-ads-banner-second  (back)="back()" [ngClass]="{'d-none': page !== 2}"></app-ads-banner-second>
+        <!-- Seond page -->
+
+        <div class="ads-trn-foot">
+            <a [routerLink]="['/ads']" class="backgroundless">Go to Ads</a>
+        </div>
+    </div>
+
+
+</main>
+

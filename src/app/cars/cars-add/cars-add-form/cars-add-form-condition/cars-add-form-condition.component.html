@@ -1,0 +1,18 @@
+
+<form [formGroup]="form" class="col-12 basic-form">
+    <div class="form-group">
+        <p [ngClass]="{'custom-red':form.get('condition').invalid && isSubmitted}">Car Condition</p>
+            <div class="custom-control custom-radio custom-control-inline  col-3"  *ngFor="let item of conditions;let i = index;">
+                <input  type="radio" 
+                        class="custom-control-input" 
+                        [value]="item['type']" 
+                        id="condition-{{ i }}" 
+                        name="condition"
+                        formControlName="condition"
+                        [ngClass]="{'is-invalid':form.get('condition').invalid && isSubmitted}">
+                <label  for="condition-{{ i }}" class="custom-control-label">  
+                        {{ item['text'] }}
+                </label>
+            </div>
+    </div>
+</form>

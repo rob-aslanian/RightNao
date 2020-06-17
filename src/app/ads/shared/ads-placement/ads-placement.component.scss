@@ -1,0 +1,22 @@
+@import "../../../../variables";
+
+.ads-placement-description {
+    font-size: 16px;
+    color: $dark-grey;
+    margin-left: 6px;
+}
+.ads-placement-view {
+    color: $background-dark-cyan;
+    font-size: 16px;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+
+.modal-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    background: #fff;
+    
+}

@@ -1,0 +1,15 @@
+@import 'src/variables';
+
+.groups {
+    h5 {
+      font-size: 0.7rem;
+    }
+    img {
+      width: 75px;
+      height: 46px;
+    }
+    a {
+      color: $background-dark-cyan;
+      text-decoration: none;
+    }
+  }

@@ -1,0 +1,124 @@
+@import 'src/variables';
+
+.ads {
+    &-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        @media (max-width: 1200px) {
+            justify-content: center;
+        }
+    }
+    &-box {
+        margin: 7px;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 120px;
+        width: 225px;
+        @media (max-width: 740px) {
+            width: 160px;
+        }
+    }
+    &-section {
+        background-color: #fff;
+        padding: 24px;
+        border-radius: 5px;
+        font-family: gisha;
+        max-width: 1200px;
+        margin: 35px auto;
+        &-title {
+            font-size: 20px;
+        }
+        &-description {
+            color: $dark-grey;
+            font-size: 14px;
+        }
+
+    }
+}
+
+.format {
+    &-wrapper {
+        width: 100%;
+        margin: 0 auto;
+        display: flex;
+        flex-wrap: wrap;
+        @media (max-width: 1200px) {
+            justify-content: center;
+        }
+    }
+    &-box {
+        position: relative;
+        width: 270px;
+        height: 180px;
+        border: 2px solid #E6E6E6;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px 9px;
+        z-index: 1;
+        &-title {
+            text-align: center;
+        }
+        &-description {
+            color: $dark-grey !important;
+            display: none;
+            background-color: $white;
+            border-radius: 5px;
+            height: 70px;
+            font-size: 14px;
+            position: absolute;
+            width: 320px;
+            top: -90px;
+            left: 50%;
+            transform: translate(-50%, 0);
+            box-shadow: 0px 2px 17px -2px rgba(0, 0, 0,0.4);
+            color: #000000;
+            z-index: 2;
+            padding: 15px;
+            
+
+        }
+        &-checkbox {
+            position: absolute;
+            top: 7px;
+            left: 7px;
+        }
+        
+        &::after {
+            content: '';
+            display: none;
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translate(-50%, 0);
+            border: 10px solid transparent;
+            border-top: 10px solid $white;
+            z-index: 3;
+        }
+        
+    }
+}
+
+.format-box:hover {
+    .format-box-description {
+        display: block ;
+
+    }
+    &:after {
+        display: block;
+    }
+} 
+.btn:disabled {
+        background: $light-grey !important;
+        color: #000 !important;
+        text-decoration: none !important;
+}
+.modalListContainer {
+    background-color: $white;
+    width: 100%;
+    padding: 15px;
+}

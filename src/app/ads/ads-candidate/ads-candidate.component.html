@@ -1,0 +1,55 @@
+<main class="main-light-blue">
+  <div class="container main-cont-for-ads">
+    <div class="ads-trn-title">
+      Candidate Ad
+    </div>
+
+    <div class="ads-banner-cont" [ngClass]="{'d-none': page !== 1}">
+      <app-ads-placement type="candidate"></app-ads-placement>
+
+      <form [formGroup]="candidateForm">
+        <app-location-currency [form]="candidateForm"></app-location-currency>
+
+        <div class="ads-dBlue-title ads-section">Advertisement type</div>
+
+        <div class="row m-6">
+          <div class="col-3">
+            <label for="customCheck1" class="ads-banner-cost sm">
+              <div class="cost-title">
+                100$
+              </div>
+              <div class="ads-banner-body">
+                <div class="desc">
+                  Fixed Price
+                </div>
+                <div class="cyan-custom-radio">
+                  <input type="radio" checked id="customCheck1" />
+                  <div class="ads-bann-checked"></div>
+                  <label for="customCheck1"></label>
+                </div>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <app-start-finish formControlName="start_date"></app-start-finish>
+      </form>
+
+      <!-- Start banners footer -->
+      <div class="ads-banners-foot">
+        <div>
+        </div>
+        <div>
+          <button class="btn btn-primary btn-primary--high" (click)="next()">Next</button>
+        </div>
+      </div>
+      <!-- End banners footer -->
+    </div>
+
+    <app-ads-candidate-second [ngClass]="{'d-none': page !== 2}" (back)="back()"></app-ads-candidate-second>
+
+    <div class="ads-trn-foot">
+      <a [routerLink]="['/ads']" class="backgroundless">Go to Ads</a>
+    </div>
+  </div>
+</main>

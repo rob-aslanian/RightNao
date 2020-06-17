@@ -1,0 +1,9 @@
+<app-search-all-title [amount]="amount" type="service"></app-search-all-title>
+
+<div class="row m-0">
+    <div *ngFor="let service of serviceList" [ngClass]="{'col-md-6 col-lg-4': searchService.view === 'card', 
+                                                         'col-12': searchService.view === 'list'}">
+
+        <app-services-box [service]='service' [view]='searchService.view'></app-services-box>
+    </div>
+</div>

@@ -1,0 +1,62 @@
+@import 'src/variables';
+
+.milestone{
+    display: flex;
+    align-items: flex-start;
+    position: relative;
+    &:first-child{
+        .milestone__box__content:first-child{
+            .milestones-edit { opacity: 1; }
+        }
+        .milestone__box__content:not(:first-child){
+            &:hover{
+                .milestones-edit{ opacity: 1; }
+            }
+        }
+       
+    }
+
+    &__box{
+        width: 100%;
+        margin-left: 3rem;
+        &__content{
+            
+            &:hover{
+                .milestones-edit{ opacity: 1; }
+            }
+            position: relative;
+            padding-bottom: 2rem;
+            &::after{
+                content: '';
+                width: 15px;
+                height: 15px;
+                border-radius: 50%;
+                position: absolute;
+                background: $background-dark-cyan;
+                top:0;
+                left: calc(-1rem - 6px);
+            }
+            &::before{
+                content: '';
+                position: absolute;
+                height: 100%;
+                width: 2px;
+                background-color: $light-grey;
+                left: -1rem;
+                
+            }
+        }
+    }
+}
+
+.milestone-text{
+    margin-left: .75rem;
+}
+
+.milestones-edit{
+    transition: .3s all ease-in-out;
+    opacity: 0;
+    top: -22px;
+    right: -22px;
+    height: 20px;
+}

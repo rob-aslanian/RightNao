@@ -1,0 +1,73 @@
+<div class="smsModal-labels">
+    <h1>Manage Labels
+        <a (click)="close()">&#10005;</a>
+    </h1>
+    <div class="popup-content">
+        <!-- <form action=""> -->
+        <div class="add-label mb-0" >
+            <span [ngbPopover]="newLabelsTemplate">
+                <img  src="{{selectedLabelImg}}" alt="ico">
+                &#9662;
+            </span>
+            <input (keyup.enter)="createLabel()" [(ngModel)]="name" type="text" class="form-control" placeholder="Add a Label">
+
+            <ng-template #newLabelsTemplate>
+                    <div class="labels-box">
+                            <button (click)="setColor('light-blue', './assets/img/133.svg')" [ngClass]="{'selected' : name == 'light-blue' }">
+                                <img src="./assets/img/133.svg" alt="ico">
+                            </button>
+                            <button (click)="setColor('slate-blue', './assets/img/132.svg')" [ngClass]="{'selected' : name == 'slate-blue' }">
+                                <img src="./assets/img/132.svg" alt="ico">
+                            </button>
+                            <button (click)="setColor('orange', './assets/img/131.svg') " [ngClass]="{'selected' : name == 'orange' }">
+                                <img src="./assets/img/131.svg" alt="ico">
+                            </button>
+                            <button (click)="setColor('green', './assets/img/130.svg')" [ngClass]="{'selected' : name == 'green' }">
+                                <img src="./assets/img/130.svg" alt="ico">
+                            </button>
+                            <button (click)="setColor('blue', './assets/img/129.svg')" [ngClass]="{'selected' : name == 'blue' }">
+                                <img src="./assets/img/129.svg" alt="ico">
+                            </button>
+                            <button (click)="setColor('pink', './assets/img/128.svg')" [ngClass]="{'selected' : name == 'pink' }">
+                                <img src="./assets/img/128.svg" alt="ico">
+                            </button>
+                        </div>
+            </ng-template>
+            
+        </div>
+        <button [disabled]="name==''" (click)="createLabel()" class="backgroundless">Done</button>
+        <div class="clear"></div>
+        <!-- </form> -->
+
+        <div *ngFor="let label of labels" class="border-label" (click)="onLabelClick(label)">
+            <img [ngbPopover]="labelsTemplate" src="{{'./assets/img/labels/' +label.color + '.svg'}}" alt="ico"> {{label.name}}
+            <div class="d-flex mLA">
+                <span>{{label.count}}</span>
+                <button (click)="deleteLabel(label.id)" class="delete-label"></button>
+            </div>
+        </div>
+
+        <ng-template #labelsTemplate>
+            <div class="labels-box labels-box--change">
+                <button (click)="updateLabel('light-blue', './assets/img/133.svg')" [ngClass]="{'selected' : name == 'light-blue' }">
+                    <img src="./assets/img/133.svg" alt="ico">
+                </button>
+                <button (click)="updateLabel('slate-blue', './assets/img/132.svg')" [ngClass]="{'selected' : name == 'slate-blue' }">
+                    <img src="./assets/img/132.svg" alt="ico">
+                </button>
+                <button (click)="updateLabel('orange', './assets/img/131.svg') " [ngClass]="{'selected' : name == 'orange' }">
+                    <img src="./assets/img/131.svg" alt="ico">
+                </button>
+                <button (click)="updateLabel('green', './assets/img/130.svg')" [ngClass]="{'selected' : name == 'green' }">
+                    <img src="./assets/img/130.svg" alt="ico">
+                </button>
+                <button (click)="updateLabel('blue', './assets/img/129.svg')" [ngClass]="{'selected' : name == 'blue' }">
+                    <img src="./assets/img/129.svg" alt="ico">
+                </button>
+                <button (click)="updateLabel('pink', './assets/img/128.svg')" [ngClass]="{'selected' : name == 'pink' }">
+                    <img src="./assets/img/128.svg" alt="ico">
+                </button>
+            </div>
+        </ng-template>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+
+  <h2 class="pb-2">Select account</h2>
+  <div class="select-account w-100">
+      <div class="user d-flex align-items-center" *ngFor="let user of savedUsers; let i = index" >
+          <div (click)="result.emit(i)" class="d-flex align-items-center">
+              <img class="mr-3"   [src]=" user.avatar ? '/file/'+ user.avatar : 'assets/img/124.svg' " alt="user">
+              <h3>{{ user.first_name }}  {{ user.last_name }}</h3>
+          </div>
+          <img class="ml-auto" src="assets/img/54.svg" alt="tick" (click)="removeUser(user.id)">
+      </div>
+
+      <div class="user d-flex align-items-center justify-content-between">
+          <span class="add-account mr-3 text-center" (click)="result.emit(true)">
+              <img class="w-50"src="assets/img/148.svg" alt="plus">
+          </span>
+          <h3 class="mr-auto">Add account</h3>
+      </div>
+  </div>

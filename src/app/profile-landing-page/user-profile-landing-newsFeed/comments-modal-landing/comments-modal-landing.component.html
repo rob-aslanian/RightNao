@@ -1,0 +1,71 @@
+<div class="post p-3">
+    <div class="post__header d-flex justify-content-between" *ngIf="(post.user_profile || post.company_profile) as profile">
+        <div class="post__header__avatar colmd-1 pr-0" [routerLink]="profile.company_profile ? '/company/profile/' + profile.url : 
+                                        '/user/profile/' + profile.url "  >
+  
+          <img [src]="profile.avatar ? '/file/' + profile.avatar : 
+                      profile.company_profile ? 'assets/img/default-company.svg' :
+                    'assets/img/124.svg'"alt="img" [ngClass]="{'company-photo': !!profile.company_profile , 'user-photo':!!profile.user_profile }">
+        </div>
+        <div class="post__header__name col-8">
+          <h4 [routerLink]="profile.company_profile ? '/company/profile/' + profile.url : 
+                             '/user/profile/' + profile.url ">{{
+                          profile.name ?  profile.name : 
+                          profile.firstname + ' ' + profile.lastname }}
+          </h4>
+          <h6 *ngIf="(post?.changed_at || post?.created_at) as time">{{ time | date:'medium' }}</h6>
+        </div>
+        <div class="post__header__close col-3 pr-0">
+          <a (click)="closeModal()" >
+            <img src="assets/img/636.svg" alt="">
+          </a>
+        </div>
+      </div>  
+      <div class="d-block">
+          <!-- <div class="col-md-8 p-0"> -->
+            <!--  *ngIf="post?.text" -->
+            <h5 class="col-md-12 mt-3 mb-3 pl-0">
+                <app-shared-slider [files] = 'files' [hasSlides]='false'></app-shared-slider>
+            
+            </h5>
+          <!-- </div> -->
+          <div class="col-md-12 post-image mt-2 p-0" >
+              <!-- <app-files-viewer *ngIf="post?.files" 
+                                [files]="post.files"
+                                >
+              </app-files-viewer> -->
+              <app-read-more [text]="post.text" 
+              [maxLength]="150" 
+              split="#" 
+              [tags]="post.tags">
+</app-read-more>
+          </div>
+    </div>
+    <div class="likes-wrapper pb-3" >
+        <!-- <div class="d-flex mb-2"> -->
+          <div class="comment-count col-5 pl-2 d-flex align-items-end">
+            <div class="d-flex col align-items-end" style="white-space: nowrap;">
+                <!-- <app-reaction-count [postId]="post.id" [reactions]="post.likes_amount"></app-reaction-count> -->
+                <app-reaction [liked]="post.liked" [postId]="post.id"></app-reaction>
+            </div>
+            <div class="d-flex col align-items-center ">
+              <img src="assets/img/491.svg" 
+                   class="pr-2"  
+                   style="cursor: pointer;" 
+                   (click)="showComment = !showComment" 
+                   alt="comments-img"
+                   >
+              <h5 class="d-flex mt-1"  >
+                {{ post.comments_amount }}
+              </h5>
+            </div>
+            <div class="d-flex col align-items-center">
+                <app-share class="mr-2" [post]="post">
+                    {{ post.shares_amount }}
+                </app-share>
+            </div>
+          </div>
+    </div>
+  <app-comments *ngIf="showComment" [postId]="post.id" [commentAmount]="post.comments_amount"></app-comments>
+  </div>
+

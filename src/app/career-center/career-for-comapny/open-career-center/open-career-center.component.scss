@@ -1,0 +1,16 @@
+.career__center__form{
+    background: #fff;
+    border: solid 1px #E6E6E6;
+    border-radius: 3px;
+    padding: 1.5rem;
+}
+
+.custom__options{
+    margin-top: 0.75rem;
+    max-width: 30%;
+    &__top{
+        margin-bottom: 0.75rem;
+    }
+}
+
+.disabled{ opacity: 0.6; }

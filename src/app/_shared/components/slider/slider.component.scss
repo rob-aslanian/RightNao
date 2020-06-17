@@ -1,0 +1,93 @@
+@import "src/variables";
+@import 'src/mixins.scss';
+
+
+.slider__content{
+    background: #fff;
+    padding: 1rem;
+}
+.slider__content__main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider__content__row{
+    display: flex;
+    overflow-x: auto; 
+    margin-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    @include thin-scrollbar--horizontal;
+}
+
+:host ::ng-deep app-file-container.img__row {
+    cursor: pointer;
+    img , video { 
+        max-height: 55px;
+        min-height: 55px;
+        width: 55px;
+        opacity: .5;
+        transition: .3s all;
+    }
+
+    &.is-active{
+        img , video { opacity: 1; }
+    }
+}
+
+
+
+:host ::ng-deep app-file-container.active__img {
+    img , video { 
+        max-height: 475px;
+        min-height: 475px;
+        width: 100%;
+    }
+
+    .file_content{
+        max-width: 700px;
+    }
+    
+}
+
+
+
+.previous_btn, .next_btn{
+    width: 30px;
+    height: 30px;
+    position: relative;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: transparent;
+    outline: none;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    &::after{
+        content: '';
+        width: 0;
+        height: 0;
+        border-left: 8px solid rgba(128,128,128,0.5);
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+        position: relative;
+    }
+    &.previous_btn{
+        &::after{
+            transform: rotateY(180deg);
+        }
+    }
+
+    &:hover{
+        &::after{
+            border-left-color: rgba(128,128,128,1);
+        }
+    }
+}
+
+
+
+

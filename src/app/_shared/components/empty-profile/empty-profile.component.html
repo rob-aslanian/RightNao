@@ -1,0 +1,13 @@
+ 
+<ng-container *ngIf='EMTY_PROFILE[key] as emptyItem'>
+
+  <div class="white-box-container" (click)='emitOpen()' >
+    <div class="white-box-wrapper">
+      <img [src]="emptyItem.image" alt="">
+      <span>{{ emptyItem.text }}</span>
+    </div>
+  </div>
+
+</ng-container>
+
+ 

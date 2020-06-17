@@ -1,0 +1,52 @@
+@import 'src/variables';
+
+.article-box {
+    height: 250px;
+    .article-photo {
+        height: 100%;
+        width: 100%;
+    }
+ 
+    .article-title {
+        font-weight: 600;
+    }
+    
+    .post-time {
+        font-size: 0.85rem;
+        color: $dark-grey;
+        margin-bottom: 1rem;
+    }
+
+    .article-paragraph {
+        color: $dark-grey;
+        height: 133px;
+        overflow: hidden;
+    }
+
+    p {
+        margin: 0px
+    }
+
+}
+.box {
+    background: $white;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    // width: 100%;
+    // height: 229px;
+    height: 100%;
+}
+.info {
+    cursor: pointer;
+    margin-top: 15px;
+    span {
+        padding-left: 3px;
+        padding-right: 3px;
+   }
+}
+ 
+.dots {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+};

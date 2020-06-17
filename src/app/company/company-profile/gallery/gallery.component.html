@@ -1,0 +1,84 @@
+<div class="section-header d-flex">
+    <h1>Gallery</h1>
+    <div class="col line">
+        <button class="add" (click)="open('Add')" *ngIf="isAdmin">
+            <img src="assets/img/50.svg" alt="add">
+        </button>
+        <button class="edit skills-edit" (click)="open('Edit')" *ngIf="isAdmin && galleries.length > 0">
+            <img src="assets/img/19.svg" alt="edit">
+        </button>
+    </div>
+</div>
+
+<div class="section-content" *ngIf="galleries && galleries.length > 0">
+    <div class="row" >
+        <ng-container *ngIf="galleries.length < 4; else:moreImages">
+            <!-- One Files-->
+            <div class="col-12" *ngIf="galleries.length === 1">
+                <app-file-container [file]="galleries[0]"></app-file-container>
+            </div>
+
+            <!-- Two Files -->
+            <ng-container *ngIf="galleries.length === 2">
+                <div class="col-6" *ngFor="let file of galleries">
+                    <app-file-container [file]="file"></app-file-container>
+                </div>
+            </ng-container>
+
+            <!-- Three Files -->
+            <ng-container *ngIf="galleries.length === 3">
+                
+                <div class="col-12">
+                    <app-file-container [file]="galleries[0]"></app-file-container>
+                </div>
+
+                <div class="col-6 mt-2" *ngFor="let file of galleries.slice(1)">
+                    <app-file-container [file]="file"></app-file-container>
+                </div>
+
+            </ng-container>
+
+        </ng-container>
+
+        <!-- More Files-->
+        <ng-template #moreImages>
+            <ng-container *ngIf="(galleries) as files">
+                <div class="col-6">
+                    <app-file-container class="more_image_first" [file]="files[0]"></app-file-container>
+                </div>
+                <div class="col-6">
+                    <div class="col-12" style="padding: unset;">
+                        <app-file-container [file]="files[1]"></app-file-container>
+                    </div>
+
+                    <div class="row mt-4">
+                        <div class="col-6">
+                            <app-file-container [file]="files[2]"></app-file-container>
+                        </div>
+                        <div class="col-6">
+                            <app-file-container [file]="files[3]" *ngIf="galleries.length === 4;else:showMore">
+                            </app-file-container>
+                            <ng-template #showMore>
+                                <div class="files_more" (click)="open('preview')">
+                                    <span> +{{ galleries.length - 4 }}</span>
+                                </div>
+                            </ng-template>
+
+                        </div>
+                    </div>
+
+                </div>
+            </ng-container>
+        </ng-template>
+
+    </div>
+</div>
+
+<ng-container *ngIf="!(galleries && galleries.length > 0) && isAdmin" >
+        <app-empty-profile [key]='"gallery"' (openModal)='openEmptyModal()'></app-empty-profile>
+</ng-container>
+
+<app-modal (closeModal)="modalType = null" [width]="897">
+    <app-gallery-modal *ngIf="modalType" (result)="getFiles($event)" [type]="modalType">
+    </app-gallery-modal>
+</app-modal>

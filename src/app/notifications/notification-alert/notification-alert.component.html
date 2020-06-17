@@ -1,0 +1,47 @@
+<div style="position: relative;">
+
+  <!-- Mobile -->
+  <ng-container *ngIf="isMobile; else:pcContent">
+    <div class="notification" [routerLink]="['/all-nottification']">
+      <img src="assets/img/notification.svg" alt="bell" />
+      <div class="unread-count-display" *ngIf="newNottificationCount > 0">
+        {{ newNottificationCount }}
+      </div>
+
+    </div>
+  </ng-container>
+
+  <!-- From PC -->
+  <ng-template #pcContent>
+    <div ngbDropdown #popup="ngbDropdown" >
+      <div class="notification" ngbDropdownToggle (click)="showNotify(popup)">
+        <img src="assets/img/notification.svg" alt="bell" />
+        <div class="unread-count-display" *ngIf="newNottificationCount > 0">
+          {{ newNottificationCount }}
+        </div>
+
+      </div>
+      <div class="notf-header-dropD" ngbDropdownMenu>
+        <div class="notf-header-dropD_head">
+          <div class="not-blue-title">
+            Notifications
+          </div>
+          <a [routerLink]="settingLink" class="notf-cyan">Settings</a>
+        </div>
+
+        <ng-container *ngIf="notifications.length > 0;">
+          <app-notification-row *ngFor="let notification of notifications" [data]="notification"
+            (result)="removeNottification($event)">
+          </app-notification-row>
+        </ng-container>
+
+
+        <div class="notf-header-dropD_foot" *ngIf="notifications.length > 0">
+          <a [routerLink]="['/all-nottification']" class="notf-cyan">See all</a>
+        </div>
+      </div>
+
+    </div>
+  </ng-template>
+
+</div>

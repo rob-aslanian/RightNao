@@ -1,0 +1,35 @@
+<div class="share-wrapper">
+    <h3  class="share-wrapper-title" *ngIf="modalType == 'share'">Invite people and get rewarded</h3>
+    <h3  class="share-wrapper-title" *ngIf="modalType == 'registeredUser'">Registered user and get rewarded</h3>
+    <h3  class="share-wrapper-title" *ngIf="modalType == 'registeredCompany'">Registered companies and get rewarded</h3>
+    <div class="share-wrapper-section">
+            <p  class="share-wrapper-section-title">Copy the link</p>
+    <div class="referal__link">
+            <div class="referal__link__input" *ngIf="referalLink">
+               {{ referalLink }}
+            </div>
+            <button class="btn backgroundless" (click)="copyReferalLink($event)">Copy</button>
+    </div>
+    </div>
+    <div class="share-wrapper-section"  *ngIf="modalType == 'share'" >
+            <p  class="share-wrapper-section-title">Or share on social media</p>
+            <div class="d-flex align-items-center ml-2">
+                            <button shareButton="linkedin" [url]="referalLink" (closed)="EarnCoinsForShare()" class="btn share-wrapper-section-socialButton">
+                                <img src="assets/img/wallet/linkedin.svg" alt="Share"  class="share-wrapper-section-socialButton-img">
+                            </button>
+                            <button shareButton="facebook" [url]="referalLink" (closed)="EarnCoinsForShare()"  class="btn share-wrapper-section-socialButton">
+                                <img src="assets/img/wallet/facebook.svg" alt="Share"  class="share-wrapper-section-socialButton-img">
+                            </button>
+                            <button shareButton="vk" [url]="referalLink" (closed)="EarnCoinsForShare()"  class="btn share-wrapper-section-socialButton">
+                                <img src="assets/img/wallet/vk.svg" alt="Share"  class="share-wrapper-section-socialButton-img">
+                            </button>
+                            <button shareButton="twitter" [url]="referalLink" (closed)="EarnCoinsForShare()"  class="btn share-wrapper-section-socialButton">
+                                    <img src="assets/img/wallet/twitter.svg" alt="Share"  class="share-wrapper-section-socialButton-img">
+                            </button>
+                            <button shareButton="pinterest" [url]="referalLink" (closed)="EarnCoinsForShare()"  class="btn share-wrapper-section-socialButton">
+                                    <img src="assets/img/wallet/92.svg" alt="Share"  class="share-wrapper-section-socialButton-img">
+                            </button>
+            </div>
+    </div>
+
+</div>

@@ -1,0 +1,27 @@
+<div class="search-groups__sidebar-section">
+        <app-search-column-header title="Offers">
+            <div class="mt-2">
+                <div class="search-groups__sidebar-section__delivery-time-options search-groups__sidebar-section__wrap">
+                    <form [formGroup]="form">
+                        <div *ngIf="searchService.type !== 'job' " class="
+                            custom-control 
+                            custom-checkbox 
+                            page-section-text-grey
+                            ">
+                            <input   type="checkbox" class="custom-control-input" id="with_jobs" name="with_jobs"  formControlName="with_jobs">
+                            <label class="custom-control-label" for="with_jobs">
+                                Jobs
+                            </label>
+                        </div>
+
+                        <!-- Job -->
+                        <ng-container *ngIf="searchService.type === 'job' ">
+                                searchService
+                        </ng-container>
+                        
+                    </form>
+
+                </div>
+            </div>
+        </app-search-column-header>
+    </div>

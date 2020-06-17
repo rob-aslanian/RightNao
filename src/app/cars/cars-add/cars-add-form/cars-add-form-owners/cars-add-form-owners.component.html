@@ -1,0 +1,15 @@
+<form [formGroup]="form" class="col-md-5 basic-form">
+        <div class="form-group">
+                <p>Number of owners</p>
+                <select name="ownersAmount"
+                        class="form-control"
+                        (change)="parseToInt($event, 'ownersAmount')"
+                        [ngClass]="{'is-invalid':form.get('ownersAmount').invalid && isSubmitted}">
+                    <option value="" disabled>Select number of owners</option>
+                    <option *ngFor="let item of owners" 
+                            [value]="item['type']">
+                            {{ item['text'] }}
+                    </option>
+                </select>
+        </div>
+</form>

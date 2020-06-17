@@ -1,0 +1,22 @@
+@import 'src/variables';
+
+//local variables
+$light-grey: #ccc;
+
+
+ 
+.custom-radio-control {
+    display: inline-block;
+    width: 143px;
+}
+ .large-plus {
+    font-size: 1.6rem;
+
+ }
+ label {
+    color:$dark-grey;
+ }
+ 
+ h5 {
+     font-size: 18px;
+ }

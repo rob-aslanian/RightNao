@@ -1,0 +1,239 @@
+<!-- Start dark blue container for ads -->  
+        <div class="landing-top container" *ngIf="isMainPage; else otherContent">
+            <div class="content d-flex row justify-content-between">
+                <div class="hire mt-3 col-md-6 d-block">
+                    <div class="hire-content">
+                        <p>Need to hire?</p>
+                        <a [routerLink]="[ 'post-service-request']">Post Your Service Request</a>
+                    </div> 
+                    </div>
+                    <div class="work mt-3 col-md-6">  
+                            <p>Ready to work?</p>
+                            <a href="#">Open Your Virtual Office</a>
+                    </div>
+            </div>
+            
+            <div class="sponsored row mt-3">
+                
+                <div class="col-12">
+                    <div class="sponsored-headline d-flex justify-content-center col-12">
+                            <h4>Sponsored Services</h4>
+                            <div class="sponsored-ads">
+                                    <img src="assets/img/72.svg" alt="">
+                            </div>
+                    </div>
+
+                    <div class="sponsored-gallery-content">
+
+                        <app-slider-bad-boy-edition [amount]='4' *ngIf="!isLoading; else loader">  
+                            <div class="row flex-nowrap">
+                                <div class="col-3" *ngFor="let service of services" 
+                                     [routerLink]="['/v-office', 'service-detailed', service.id, service.officeID]" 
+                                     style="cursor: pointer;">
+                                        <div class="sponsored-gallery row d-flex">  
+                                                <div class="sponsored-card">
+
+                                                    <img class="sponsored-card-img" [src]="service['files'].length > 0 ?
+                                                                                        '/file/'+service['files'][0]['address'] : 'assets/img/skill.jpg'" alt="">
+                                                    <div class="mt-2 text-center">
+
+                                                        <p class="sponsored-card-title mb-2">{{ service.title }} </p>
+
+                                                        <p class="sponsored-card-location"
+                                                            *ngIf="service.location.country.country && service.location.city.city">
+                                                            {{ service.location.city.city }}, {{ service.location.country.country | country }}</p>
+
+                                                        <p class="sponsored-card-price">{{ service.currency }} 
+                                                                                        {{ service.price === 'Price_Negotiable' ? 
+                                                                                            service.min_price_amount + '-' + service.max_price_amount : 
+                                                                                            service.fixed_price_amount }} /hr</p>
+                                                </div>
+                                                </div>                            
+                                        </div>
+                                </div>
+                            </div>
+                        </app-slider-bad-boy-edition>
+
+                        <ng-template #loader>
+                            <div class="d-flex justify-content-center align-items-center" style="height: 55%;">
+                                 <app-spinner></app-spinner>
+                            </div>
+                        </ng-template>
+                        
+        
+                    <div class="right-arrow" (click)='rotateRight()'>
+                            <a >
+                                <img src="assets/img/right-arrow.svg" alt="">
+                            </a>
+                        </div>
+
+                        <div class="left-arrow"  (click)='rotateLeft()'>
+                            <a >
+                                <img src="assets/img/right-arrow.svg" alt="">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="categories mt-3 row">
+                <div class="col-12 d-flex justify-content-between">
+                    <div class="categories-title">
+                        <h4>Categories</h4>
+                    </div>
+                    <div class="see-all">
+                        <a [routerLink]="[ 'categories' ]" >See all</a>
+                    </div>
+                </div>
+
+                <div class="categories-line  d-flex  flex-wrap">
+
+                    <div class="programming-tech">   
+                        <img src="assets/img/475.svg" alt="">
+                        <p>Programming & Tech</p>
+                    </div>
+
+                    <div class="programming-tech">
+                        <img src="assets/img/476.svg" alt="">
+                        <p>Graphics & Design</p>
+                    </div>
+
+                    <div class="programming-tech">   
+                        <img src="assets/img/477.svg" alt="">
+                        <p>Writing & Translation</p>
+                    </div>
+
+                    <div class="programming-tech">
+                        <img src="assets/img/478.svg" alt="">
+                        <p>Sales & Marketing</p>
+                    </div>
+
+                    <div class="programming-tech">
+                        <img src="assets/img/479.svg" alt="">
+                        <p>Admin & Data Support</p>
+                    </div>
+
+                    <div class="programming-tech">
+                        <img src="../../assets/img/480.svg" alt="">
+                        <p>Engineering & Architecture </p>
+                    </div>
+
+                    <div class="programming-tech">
+                        <img src="../../assets/img/481.svg" alt="">
+                        <p>Business & Finance</p>
+                    </div>
+
+                    <div class="programming-tech">
+                        <img src="../../assets/img/482.svg" alt="">
+                        <p>Legal</p>
+                    </div>
+
+                    <div class="programming-tech">
+                        <img src="../../assets/img/483.svg" alt="">
+                        <p>Home & Handyman</p>
+                    </div>
+
+                    <div class="programming-tech">
+                        <img src="../../assets/img/484.svg" alt="">
+                        <p>Auto Repair & Maintenance</p>
+                    </div>
+
+                    <div class="programming-tech">
+                        <img src="../../assets/img/485p.svg" alt="">
+                        <p>Photography & Videograph</p>
+                    </div>
+
+                    <div class="programming-tech">
+                        <img src="../../assets/img/486.svg" alt="">
+                        <p>Others <br> Services</p>
+                    </div>
+
+            </div>
+            </div>
+
+            <div class="popular-services mt-3 row ">
+                <div class="popular-services-headline d-flex col-12 justify-content-between">
+                    <h4>Popular Services in your Location</h4>
+                    <a href="#">See all</a>
+                </div>
+                
+                <div class="popular-service-card mt-3 col-md-4" *ngFor="let service of servicesByLocation" 
+                     [routerLink]="['/v-office', 'service-detailed', service.id, service.officeID]"
+                     style="cursor: pointer;">
+
+                    <div class="popular-service-card-content">
+                            <img style="width: 100%; height: 192px;" class="sponsored-card-img" [src]="service['files'].length > 0 ?
+                                                                           '/file/'+service['files'][0]['address'] : 'assets/img/skill.jpg'" alt="">
+                        <div class="price">
+                            <p>{{ service.currency }} 
+                                {{ service.price === 'Price_Negotiable' ? 
+                                    service.min_price_amount + '-' + service.max_price_amount : 
+                                    service.fixed_price_amount }} /hr</p>
+                        </div>
+                        <h3 class="popular-services-title" style="margin-top: 11px; font-weight: 100;">{{ service.title }}</h3>
+                        <div class="pupular-services-author-info d-flex">
+                            <div class="pupular-services-author-info-details col-lg-10">
+                                    <p class="sponsored-card-location"
+                                        *ngIf="service.location.country.country && service.location.city.city">
+                                        {{ service.location.city.city }}, {{ service.location.country.country | country }}
+                                    </p>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+                             <!-- * * *  Invite Friend * * * --> 
+            
+           <!-- <app-serivces-invite-friend></app-serivces-invite-friend> -->
+           <div class="invite-friend mt-3 row p-4">
+                <div class="col-md-12">
+                    <h4>Invite Friend and get Payed</h4>
+                </div>
+                <div class="col-md-12">
+                    <p>Introduce your friend and to the easiest way to get things done</p>
+                </div>
+                <div class="d-flex justify-content-center w-100">
+                    <button class="btn btn-primary" (click)="routeToInviteFriend()">Invite Friend</button>
+                </div>
+           </div>
+            
+           <div class="useful-articles mt-3 mb-4 row">
+                <div class="col-12 headline mt-3 d-flex justify-content-between">
+                    <h4>Useful articles</h4>
+                    <a href="#">See all</a>
+                </div>
+                <div class="main-content col-md-6">
+                    <img src="assets/img/44ab262b00f4497042128ee5d88ecbfc.png" alt="">
+                    <h4>Everything you need to know before starting your animation project </h4>
+                    <div class="d-flex mt-3">
+                        <p class="fullname">Thomas Barwick.</p>
+                        <p class="date">July 23, 2019</p>
+                    </div>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do 
+                        eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                </div>
+                <div class="right-contnet row col-md-6">
+                    <div class="col-md-6">
+                        <img src="assets/img/44ab262b00f4497042128ee5d88ecbfc.png" alt="">
+                        <p>3 Simple tips to help you be a faster writer</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="assets/img/44ab262b00f4497042128ee5d88ecbfc.png" alt="">
+                        <p>Digital marketing skills you should consider outsourcing</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="assets/img/44ab262b00f4497042128ee5d88ecbfc.png" alt="">
+                        <p>Digital marketing skills you should consider outsourcing</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="assets/img/44ab262b00f4497042128ee5d88ecbfc.png" alt="">
+                        <p>Digital marketing skills you should consider outsourcing</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ng-template #otherContent>
+            <router-outlet></router-outlet>
+        </ng-template>

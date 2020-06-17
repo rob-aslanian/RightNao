@@ -1,0 +1,37 @@
+<div class="comments mt-3">
+        <div class="comment-box">
+             <div class="d-flex justify-content-between pt-3 pb-3">
+                   <div class="profile">
+                     <div class="d-flex">
+
+                        <ng-container *ngIf="comment?.company_profile?.id">
+                            <img class="profile-img" [src]="comment.company_profile.avatar | avatar:'true'" alt="">
+                        </ng-container>
+
+                        <ng-container *ngIf="!comment?.company_profile?.id">
+                                <img class="profile-img" [src]="comment.user_profile.avatar | avatar"    alt="">
+                        </ng-container>
+
+                        <div class="profile-info pl-3" 
+                             [routerLink]="[ comment?.company_profile?.id ?
+                                            '/company/profile/'+comment?.company_profile.url :
+                                            '/user/profile/'+comment?.user_profile?.url
+                                           ]"  >
+                            <a> {{ comment?.company_profile?.id ? 
+                                   comment?.company_profile.name : 
+                                   comment?.user_profile?.name || comment?.user_profile?.firstname + ' ' + comment?.user_profile?.lastname }} </a>
+                            <p> {{ comment?.comment }} </p>
+                        </div>
+                     </div>
+                   </div>
+                   <div class="details">
+                       <div class="text-right" style="cursor: pointer" (click)='deleteComment()' *ngIf="commentProfileId === profileId">X</div>
+                       <div class="time">
+                           <img src="assets/img/48.svg" alt="time">
+                           <span>{{ comment?.created_at | date  }}</span>
+                       </div>
+                   </div>
+                   
+             </div>
+        </div>
+</div>

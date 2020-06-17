@@ -1,0 +1,49 @@
+<ng-container *ngIf="_data.story">
+
+      <div class="section-header d-flex">
+          <h1>{{ '1361'| translate }}</h1>
+          <div class="col line">
+              <button class="add" (click)="openStoryModal('add')"
+                  *ngIf="!_data.story && _data.me">
+                  <img src="assets/img/50.svg" alt="add">
+              </button>
+          </div>
+      </div>
+      
+      <div *ngIf="_data.story">
+          <div class="section-content">
+              <button class="story-edit edit" *ngIf="_data.me"
+                  (click)="openStoryModal('edit')">
+                  <img src="assets/img/19.svg" alt="edit">
+              </button>
+              <p class="mb-0 mr-4" *ngIf="_data" style="word-wrap: break-word;">
+
+                <app-read-more [text]="_data.story" [maxLength]="300"></app-read-more>
+
+              </p>
+          </div>
+      </div>
+
+</ng-container>   
+
+    <ng-container *ngIf='!_data.story && _data.me'>
+        <div class="section-header d-flex">
+                <h1>{{ '1361'| translate }}</h1>
+                <div class="col line">
+                    <button class="add" (click)="openStoryModal('add')"
+                        *ngIf="!_data.story && _data.me">
+                        <img src="assets/img/50.svg" alt="add">
+                    </button>
+                </div>
+        </div>
+        <app-empty-profile [key]='"story"' (openModal)=openEmptyModal()></app-empty-profile>
+    </ng-container>
+    
+
+    <app-modal (closeModal)="modalType = null" >
+
+        <ng-container *ngIf="modalType === 'add'">
+            <app-story-modal [data]='editStory' [userInfo]='userInfo'  (result)="getStory($event)"></app-story-modal>
+        </ng-container>
+
+  </app-modal>

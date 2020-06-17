@@ -1,0 +1,56 @@
+@import 'src/variables'; 
+
+
+span {
+    font-size: .875rem; 
+    color: $dark-grey; 
+};
+
+.arrow-left {
+    position: absolute;
+    top: -9%;
+    right: 3rem;
+    transform: translate(0px, -15px);
+    cursor: pointer;
+};
+
+.arrow-right {
+    position: absolute;
+    right: 2rem;
+    top: -9%;
+    cursor: pointer;
+    transform: translate(0px, -15px);
+};
+.home-box{
+   width: 100%;
+   height: 100%;
+   position: relative;
+ 
+   img {
+       width: 100%;
+       height: 100%;
+       border-radius: 4px;
+   }
+   
+};
+.home-description {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    padding: 0px 10px;
+
+    p {
+        color: $white;
+        margin: 0px;
+        font-weight: 700;
+    };
+
+    span {
+        color: $white;
+    };
+}
+:host ::ng-deep .sponsored {
+    border: unset !important;
+    margin-left: -15px;
+    margin-right: -15px;
+}

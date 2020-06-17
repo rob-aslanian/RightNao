@@ -1,0 +1,17 @@
+<main class="main-light-blue">
+
+    <!-- Start dark blue container for ads -->
+    <div class="dark-blue-bg-for-network" style="margin-bottom: 35px;">
+        <div class="main-cont-for-ads d-flex justify-content-between align-items-center">
+            <h1>ads</h1>
+            <button class="btn btn-primary adsManager" [routerLink]="['manager']" *ngIf="headerBtn['type']=='manager'">Ads Manager</button>
+            <button class="btn btn-primary adsManager" [routerLink]="['/ads']"  *ngIf="headerBtn['type']=='campaign'">Create  new Campaign</button>
+            <button class="btn btn-primary adsManager" (click)="newAd()"   *ngIf="headerBtn['type']!='campaign' && headerBtn['type']!='manager'">Create new Ad</button>
+            
+        </div>
+        
+    </div>
+    <!-- End dark blue container for ads -->
+    <router-outlet></router-outlet>
+
+</main>

@@ -1,0 +1,39 @@
+
+<form autocomplete="off">
+    <div>
+        <div class="breed">
+            <label for="animal-category" class="title-label">Breed</label>
+            <select name="" id="" class="form-control" [formControl]='breedCtrl' [ngClass]="{ 'is-invalid-custom': isSubmitted && breedCtrl.invalid }">
+                <option value="" disabled >Select one</option>
+                <option [value]="loc" *ngFor="let loc of breeds">{{ loc }}</option>
+            </select>
+        </div>
+    </div>
+    
+    <div class="select-gender"> 
+        <label for="" class="title-label">Gender</label>
+        <div class="d-flex">
+            <div class="male">
+                <input type="radio" class="d-none" 
+                       id="male-1" [formControl]='genderCtrl'  
+                       name='gender' value="male-1">
+ 
+                <button class="btn btn-light-dark pl-4 pr-4" 
+                        [ngClass]="{'active-sub-button': genderCtrl.value === 'Gender_Male'}"
+                        (click)='genderCtrl.setValue("Gender_Male")'>Male</button>
+            </div>
+
+            <div class="male ml-3">
+
+                <input type="radio"  class="d-none" 
+                       id="female-1"   [formControl]='genderCtrl' 
+                       name='gender' value="female">
+                       
+                    <button class="btn btn-light-dark pl-3 pr-3"
+                            (click)='genderCtrl.setValue("Gender_Female")'
+                            [ngClass]="{'active-sub-button': genderCtrl.value === 'Gender_Female'}" for>Female</button>
+            </div>
+            
+        </div>
+    </div>
+</form>

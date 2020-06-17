@@ -1,0 +1,28 @@
+.section-header {
+    width: 100% !important; 
+}
+
+:host ::ng-deep .nav-item .nav-link {
+    border-bottom: 3px solid transparent !important;
+    padding-bottom: 5px;
+    font-size: 15px;
+    color: #808080;
+    display: block;
+    padding-bottom: 10px;
+}
+:host ::ng-deep .nav-item .nav-link.active {
+    border-bottom-color: #00d4e3 !important;
+    padding-bottom: 10px;
+    
+}
+
+.recommendation-margin {
+    margin-top: 45px;
+    margin-bottom: -13px;
+}
+h3 {
+    &:hover {
+        text-decoration: underline;
+    }
+    cursor: pointer;
+}

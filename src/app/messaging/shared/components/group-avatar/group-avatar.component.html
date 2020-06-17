@@ -1,0 +1,13 @@
+<ng-container *ngIf="conversation.avatar !== ''">
+    <div class="chatbox-mainMember-img">
+        <img src="{{conversation.avatar | filepath}}" alt="photo">
+    </div>
+</ng-container>
+
+<ng-container *ngIf="conversation.avatar == ''">
+    <div class="{{'chatbox-mainMember-img _' + participantsCount + '-items'}}">
+        <ng-container *ngFor="let participant of conversation.participants | slice:0:4">
+            <img *ngIf="!participant.has_left" src="{{participant.avatar | defaultAvatar}}" alt="photo">
+        </ng-container>
+    </div>
+</ng-container>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2018 (64-Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="3.26389in" height="1.83594in" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 1945.11 1094.12"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil0 {fill:none}
+    .fil2 {fill:#00F4FF}
+    .fil1 {fill:#052337}
+   ]]>
+  </style>
+    <clipPath id="id0">
+     <path d="M41.38 0l1862.34 0c22.76,0 41.38,18.62 41.38,41.38l0 1011.36c0,22.76 -18.62,41.38 -41.38,41.38l-1862.34 0c-22.76,0 -41.38,-18.62 -41.38,-41.38l0 -1011.36c0,-22.76 18.62,-41.38 41.38,-41.38z"/>
+    </clipPath>
+     <clipPath id="id1">
+      <path d="M41.38 0l1862.34 0c22.76,0 41.38,18.62 41.38,41.38l0 1011.36c0,22.76 -18.62,41.38 -41.38,41.38l-1862.34 0c-22.76,0 -41.38,-18.62 -41.38,-41.38l0 -1011.36c0,-22.76 18.62,-41.38 41.38,-41.38z"/>
+     </clipPath>
+     <clipPath id="id2">
+      <path d="M41.38 0l1862.34 0c22.76,0 41.38,18.62 41.38,41.38l0 1011.36c0,22.76 -18.62,41.38 -41.38,41.38l-1862.34 0c-22.76,0 -41.38,-18.62 -41.38,-41.38l0 -1011.36c0,-22.76 18.62,-41.38 41.38,-41.38z"/>
+     </clipPath>
+     <clipPath id="id3">
+      <path d="M1787.85 762.75l99.32 0 0 273.43 -99.32 0 0 -273.43z"/>
+     </clipPath>
+    <clipPath id="id4">
+     <rect x="1796.12" y="771.03" width="82.77" height="256.88"/>
+    </clipPath>
+     <clipPath id="id5">
+      <path d="M1060.7 626.22l182.11 0 0 43.13 -182.11 0 0 -43.13z"/>
+     </clipPath>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_2218680215296">
+   <g>
+   </g>
+   <g style="clip-path:url(#id0)">
+    <g id="_2218680216224">
+    </g>
+    <g style="clip-path:url(#id1)">
+     <image x="-886.73" y="-165.37" width="3076.84" height="1894.43" xlink:href="contact-map_Images\contact-map_ImgID1.png"/>
+    </g>
+    <g style="clip-path:url(#id2)">
+    </g>
+   </g>
+   <path class="fil0" d="M41.38 0l1862.34 0c22.76,0 41.38,18.62 41.38,41.38l0 1011.36c0,22.76 -18.62,41.38 -41.38,41.38l-1862.34 0c-22.76,0 -41.38,-18.62 -41.38,-41.38l0 -1011.36c0,-22.76 18.62,-41.38 41.38,-41.38z"/>
+   <g id="_2218680217504">
+    <g style="clip-path:url(#id3)">
+     <image x="1787.85" y="762.75" width="99.32" height="273.43" xlink:href="contact-map_Images\contact-map_ImgID2.png"/>
+    </g>
+   </g>
+   <g style="clip-path:url(#id4)">
+    <image id="map_x0020_3.png" x="1796.12" y="771.02" width="82.77" height="256.88" xlink:href="contact-map_Images\contact-map_ImgID3.png"/>
+   </g>
+   <g id="_2218680214208">
+    <g style="clip-path:url(#id5)">
+     <image x="1060.7" y="626.22" width="182.11" height="43.13" xlink:href="contact-map_Images\contact-map_ImgID4.png"/>
+    </g>
+   </g>
+   <path class="fil1" d="M1151.76 667.92c-33.73,-63.05 -82.78,-105.72 -82.78,-151.43 0,-45.72 37.06,-82.78 82.78,-82.78 45.72,0 82.78,37.06 82.78,82.78 0,45.72 -49.05,88.38 -82.78,151.43z"/>
+   <path class="fil2" d="M1187.11 516.49c0,-19.52 -15.83,-35.35 -35.35,-35.35 -19.52,0 -35.35,15.83 -35.35,35.35 0,19.53 15.83,35.35 35.35,35.35 19.52,0 35.35,-15.83 35.35,-35.35z"/>
+  </g>
+ </g>
+</svg>

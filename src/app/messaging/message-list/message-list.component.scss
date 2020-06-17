@@ -1,0 +1,27 @@
+// .settings-selection_body.active-status{
+//     position: relative !important;
+// }
+
+.settings-selection .popover-body{
+    padding: 0 !important;
+}
+
+.mute-icon{
+    width: 12px;
+}
+
+.chatBox-row.messaging-main-left__search-container {
+    height: auto;
+    margin-left: 5px;
+    margin-right: 13px;
+}
+
+@media(max-width: 768px) {
+    .messaging-main_left {
+        width: 100%;
+    }
+}
+
+.dropdown-toggle::after {
+    display: block !important;
+}

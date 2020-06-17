@@ -1,0 +1,65 @@
+<div class="smsModal-reporting">
+    <h1>Reporting
+        <a (click)="close()">&#10005;</a>
+    </h1>
+    <div class="popup-content">
+        <h2>
+            Why do you want to report this conversation?
+        </h2>
+        <!-- <form action="" class=""> -->
+        <div class="custom-control custom-radio">
+            <input [(ngModel)]="reason" type="radio" class="custom-control-input" value="It is a spam." id="spam">
+            <label for="spam" class="custom-control-label">It is a spam </label>
+        </div>
+
+        <div class="custom-control custom-radio">
+            <input [(ngModel)]="reason" type="radio" class="custom-control-input" value="Content is inappropriate"
+                id="inappropriate">
+            <label for="inappropriate" class="custom-control-label">The content is offensive or inappropriate </label>
+        </div>
+
+        <div class="custom-control custom-radio">
+            <input [(ngModel)]="reason" type="radio" class="custom-control-input"
+                value="It includes harassment or mobbing" id="harassment">
+            <label for="harassment" class="custom-control-label">It includes harassment or mobbing </label>
+        </div>
+
+        <div class="custom-control custom-radio">
+            <input [(ngModel)]="reason" type="radio" class="custom-control-input" value="It include blackmail or threat"
+                id="blackmail">
+            <label for="blackmail" class="custom-control-label">It include blackmail or threat </label>
+        </div>
+
+
+        <div class="custom-control custom-radio">
+            <input [(ngModel)]="reason" type="radio" class="custom-control-input"
+                value="It includes sexually explicit or violent content" id="violent">
+            <label for="violent" class="custom-control-label">It includes sexually explicit or violent
+                content</label>
+        </div>
+
+        <div class="custom-control custom-radio">
+            <input [(ngModel)]="reason" type="radio" class="custom-control-input"
+                value="It includes hate or discriminatory content " id="discriminatory">
+            <label for="discriminatory" class="custom-control-label">It includes hate or discriminatory content </label>
+        </div>
+
+        <div class="custom-control custom-radio">
+            <input [(ngModel)]="reason" type="radio" class="custom-control-input"
+                value="This person may cause self-injury or be suicidal" id="suicidal">
+            <label for="suicidal" class="custom-control-label">This person may cause self-injury or be suicidal
+            </label>
+        </div>
+
+        <div class="custom-control custom-radio">
+            <input [(ngModel)]="reason" type="radio" class="custom-control-input"
+                value="Something else" id="else">
+            <label for="else" class="custom-control-label">Something else
+            </label>
+        </div>
+
+
+        <button (click)="reportConversation()" class="btn btn-primary">Report</button>
+        <!-- </form> -->
+    </div>
+</div>

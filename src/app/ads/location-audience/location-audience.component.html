@@ -1,0 +1,154 @@
+<div class="main-cont-for-ads">
+        
+        <div class="d-flex">
+            <div class="location-wrapper">
+                <h3 class="location-wrapper-title">
+                    Location & Audience
+                </h3>
+                <div class="location-target">
+                    <h4 class="location-target-title">
+                            Where  is your target location?
+                    </h4>
+                    <!-- <div class="d-flex align-items-center location-target-line-one">
+                        <p style="color: #808080; font-size: 14px;">Recent and Permanent Location</p>
+                                <div ngbDropdown class="dropDown" >
+                                    <button ngbDropdownToggle class="btn">
+                                            <img src="assets/img/right-arrow.svg" alt="arrow" class="arrowDown">
+                                    </button>
+                                    <div ngbDropdownMenu class="options dropDown-menu">
+                                            <div class="dropDown-menu-item" ngbDropdownItem>
+                                                <h5>Recent and Permanent Location</h5>
+                                                <p>People who recently visited and permanently live or work in the selected location(s)</p>
+                                            </div>
+                                            <div class="dropDown-menu-item" ngbDropdownItem>
+                                                <h5>Permanent Location</h5>
+                                                <p>People who permanently live or work in the selected location(s)</p>
+                                            </div>
+                                            <div class="dropDown-menu-item" ngbDropdownItem>
+                                                <h5>Recent Location</h5>
+                                                <p>People who recently cisited work in the selected location(s)</p>
+                                            </div>
+                                    </div>
+                                </div>
+                    </div> -->
+                </div>
+
+                <div class="location-include">
+                    <div class="location-include-header">
+                        <h4 class="location-include-title">
+                                Include Location
+                        </h4>
+                        <p class="location-include-description">
+                            At least one location be included
+                        </p>
+                    </div>
+
+                    <!-- Search city -->
+                    <app-search-city (onCitySelect)="updateLocationList($event)"></app-search-city>
+                    <!-- Search city -->
+                    
+                    <!-- search country -->
+                    <app-search-country (onCountrySelect)="updateLocationList($event)"></app-search-country>
+                    <!-- search country -->
+                </div>
+
+
+
+                <div class="mt-2">
+                    <p>Audience by gender</p>
+                    <form [formGroup]="ageGenderForm">
+                        <div>
+                            <div class="custom-control custom-radio custom-control-inline  radioWrap">
+                                <input type="radio" 
+                                        class="custom-control-input" 
+                                        id="male"
+                                        (change)="radioTypeChange()"  
+                                        value="male" 
+                                        formControlName="gender">  
+                                <label for="male" class="custom-control-label"   style="font-size: 14px;">  Male </label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline  radioWrap">
+                                    <input type="radio" 
+                                            class="custom-control-input" 
+                                            id="female"
+                                            (change)="radioTypeChange()"  
+                                            value="female" 
+                                            formControlName="gender">  
+                                    <label for="female" class="custom-control-label"   style="font-size: 14px;">  Female </label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline  radioWrap">
+                                    <input type="radio" 
+                                            class="custom-control-input" 
+                                            id="both"
+                                            (change)="radioTypeChange()"  
+                                            value="both" 
+                                            formControlName="gender">  
+                                    <label for="both" class="custom-control-label"   style="font-size: 14px;">  Both </label>
+                            </div>
+                        </div>
+                        <p  class="mt-2">Audience by age</p>
+                        <div class="row">
+                            <div class="form-group col-6">
+                                <label for="from" class="label-control" style="font-size: 14px;">
+                                    From 
+                                    <small>(13-120)</small>
+                                </label>
+                                <input type="number"  
+                                        class="form-control" 
+                                        placeholder= "Age from" 
+                                        id="from" 
+                                        formControlName="from"
+                                        [ngClass]="{ 'is-invalid': (agf.from.touched || agf.from.dirty ) && agf.from.errors }">
+                            </div>
+                            <div class="form-group  col-6">
+                                <label for="to" class="label-control"  style="font-size: 14px;">
+                                    To
+                                    <small>(13-120)</small>
+                                </label>
+                                <input type="number"  
+                                        class="form-control" 
+                                        placeholder= "Age to" 
+                                        id="to" 
+                                        formControlName="to"
+                                        [ngClass]="{ 'is-invalid': (agf.to.touched || agf.to.dirty ) && agf.to.errors }">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+
+                <div class="location-language">
+                    <p>
+                        Audience by profile language
+                    </p>
+                    <select class="lang-selector" (change)="addLang($event)">
+                        <option [value]="lang.item_text" *ngFor="let lang of allLangs;">
+                            {{ lang.item_text }}
+                        </option>
+                    </select>
+                    <div class="selected-city-container">
+                            <div class="selected-city-item" *ngFor="let lang of selectedLangs">
+                                <span> {{ lang }} </span>
+                                <button class="btn" (click)="removeLang(lang)">&#10005;</button>
+                            </div>
+            
+                        </div>
+                </div>
+        
+                <div class="d-flex align-items-center justify-content-between mt-4">
+                    <button class="btn backgroundless">
+                        Back
+                    </button>
+                    <button class="btn btn-primary" 
+                            (click)="next()"
+                            [disabled]="!selectedLocations.length || !ageGenderForm.valid">
+                        Next
+                    </button>
+                </div>
+                
+            </div>
+
+            <app-steps [stepAmount]="1" [description]="'Tighten up your target audience'" class=""></app-steps>
+        </div>
+
+</div>

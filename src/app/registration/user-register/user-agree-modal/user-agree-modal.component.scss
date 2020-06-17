@@ -1,0 +1,33 @@
+@import "../../../../variables";
+.agree-modal{
+    max-height: 50vh;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+    
+    /* Track */
+    &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 4px grey; 
+    border-radius: 10px;
+    }
+
+    
+    
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+    // background:$light-grey;
+    background: $dark-blue; 
+    border-radius: 10px;
+        // &:hover {
+            
+        // }
+    }
+}
+
+.btn {
+    font-size: 18px;
+    background-color: #00f4ff;
+    line-height: 18px;
+}

@@ -1,0 +1,86 @@
+<main class="main-light-blue">
+    <div class="container contact" *ngIf="!isSend; else:sent">
+        <div class="col-md-8">
+        <h1>Get In Touch!</h1>
+    </div>
+        <div class="row">
+            <div class="col-md-8 pr-3">
+                <div class="feedback">
+                  <h2>Give us your Feedback</h2>
+                  <p class="feedback__instruction">Please send your comments , problems and suggestions. <br>
+                     We will try to answer as soon as possible.</p>
+                    <form [formGroup]="feedbackForm" (ngSubmit)="submit()">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" formControlName="name" class="form-control" id="name" placeholder="Enter your name"
+                                   [ngClass]="{ 'is-invalid': submited && form.name.errors} ">
+                        </div>
+                        <!--Error -->
+                        <span class="error_message" *ngIf="submited && form.name.errors">
+                          {{ utils.$getErrors('required') }}
+                        </span>
+                        <!--Error -->
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="text"  formControlName="email"  class="form-control" id="email" placeholder="Enter your Email"
+                                  [ngClass]="{ 'is-invalid': submited && form.email.errors} ">
+
+                            <!-- Errors -->
+                            <ng-container *ngIf="submited && form.email.errors">
+                                <span class="error_message" *ngFor="let error of utils.getErrorsKey(form.email.errors)">
+                                  {{ utils.$getErrors(error) }}
+                                </span>
+                            </ng-container>
+                            <!-- Errors -->
+                        </div>
+                        <div class="form-group mb-4">
+                            <label for="message">Message</label>
+                            <textarea name="message" formControlName="message" id="message" rows="5" placeholder="Enter your message here" class="form-control"
+                                    [ngClass]="{ 'is-invalid': submited && form.message.errors} ">
+
+                            </textarea>
+
+                              <!--Error -->
+                            <span class="error_message" *ngIf="submited && form.message.errors">
+                                {{ utils.$getErrors('required') }}
+                              </span>
+                              <!--Error -->
+                        </div>
+                        <button class="btn btn-primary d-block ml-auto" >Send</button>
+                    </form>
+                </div>
+            </div>
+            <!-- <div class="col-md-4">
+                <div class="contact-us">
+                    <h2>Contact us!</h2>
+                    <span class="mail">
+                        rightnao@hypercube.com
+                    </span>
+                    <span class="number">
+                        555 55 88 45
+                    </span>
+                    <span class="location">
+                        Zhiuli shartava street 51/54 <br>
+                        0160, Tbilisi, Georgia
+                    </span>
+                    <div class="map">
+
+                    </div>
+                    <h2>Sign up for our Newsletter</h2>
+                    <form>
+                        <div class="form-group mb-4">
+                            <label for="sign-up-email">Email</label>
+                            <input type="text" class="form-control" placeholder="Enter email address">
+                        </div>
+                        <button class="btn btn-primary d-block ml-auto">Submit</button>
+                    </form>
+                </div>
+            </div> -->
+        </div>
+    </div>
+
+    <ng-template #sent>
+      <h1 class="feedback-success-message">Your feedback is sent!</h1>
+    </ng-template>
+    
+</main>

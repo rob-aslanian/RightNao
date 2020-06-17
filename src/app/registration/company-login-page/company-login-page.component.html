@@ -1,0 +1,40 @@
+<div class="wrap main-light-blue">
+  <div class="container register sign-in">
+    <div class="row mx-0 register__form">
+      <h1>{{ "1220" | translate }}</h1>
+      <form class="w-100" >
+
+        <div class="user d-flex align-items-center mt-3" *ngIf="user">
+          <img  [src]=" user.avatar ? '/file/'+ user.avatar : 'assets/img/124.svg' " alt="user">
+          <h3 class="ml-3">{{ user.name }} </h3>
+        </div>
+
+        <div class="popup__wrapper mt-3">
+            <div class="user__companies" [ngClass]="{'is-invalid': submited && !selectedCompany }" (click)="showPopup = !showPopup">
+                <span>{{ dropDownText }}</span>
+                <span>&#9662;</span>
+            </div>
+            <div class="popup"  *ngIf="showPopup">
+                <ul class="list-group" *ngIf="(companies | async) as companies">
+                      <li class="list-group-item" *ngFor="let company of companies" (click)="selectCompany(company)">
+                        <img [src]="company.avatar ? '/file/' + company.avatar : 'assets/img/default-company.svg' " class="company-photo">
+                        <span>
+                          {{  company.name }}
+                        </span>
+                      </li>
+                </ul>
+                <button class="backgroundless mt-1"  [routerLink]="['/registration/company_sign_in']"  >
+                  <span class="mr-2">+</span>
+                  Add another account
+                </button>
+             </div>
+        </div>
+  
+
+        <div class="d-flex justify-content-end mt-3 mb-3">
+          <button type="submit" class="btn btn-primary pt-1 pb-1" (click)="login()">Log in</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

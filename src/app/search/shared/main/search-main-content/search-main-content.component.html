@@ -1,0 +1,49 @@
+<div [ngSwitch]="type">
+    <app-search-peoples          *ngSwitchCase="'people'"            [peopleList]="data"></app-search-peoples>
+    <app-search-companies        *ngSwitchCase="'company'"           [companyList]="data"></app-search-companies>
+    <app-search-jobs             *ngSwitchCase="'job'"               [jobList]="data"  [amount]="amount" ></app-search-jobs>
+    <app-search-candidates       *ngSwitchCase="'candidate'"         [candidateList]="data"></app-search-candidates>
+    <app-search-services         *ngSwitchCase="'service'"           [serviceList]="data"></app-search-services>
+    <app-search-service-request  *ngSwitchCase="'service_request'"   [requestList]="data"></app-search-service-request>
+    <app-search-real-estate      *ngSwitchCase="'real_estate'"       [estateList]="data"></app-search-real-estate>
+
+
+    <!-- If All -->
+    <ng-container *ngSwitchCase="'all'">
+
+        <app-search-peoples   *ngIf="data['profiles'] as userData"  
+                              [peopleList]="userData['data']"
+                              [amount]="userData['amount']">
+        </app-search-peoples>
+
+        <app-search-companies  *ngIf="data['company']  as companyData"  
+                               [companyList]="companyData['data']"
+                               [amount]="companyData['amount']">
+        </app-search-companies>
+
+        <app-search-jobs   *ngIf="data['job_search_result'] as jobData" 
+                            [jobList]="jobData['data']"
+                            [amount]="jobData['amount']">
+        </app-search-jobs>
+
+        <app-search-services  *ngIf="data['service_search_result'] as serviceData"
+                              [serviceList]="serviceData['data']"
+                              [amount]="serviceData['amount']">
+
+        </app-search-services>
+
+        <app-search-service-request  *ngIf="data['service_request_search_result'] as serviceRequestData"
+                                     [requestList]="serviceRequestData['data']"
+                                     [amount]="serviceRequestData['amount']">
+
+        </app-search-service-request>
+
+        <ng-container *ngIf="isCompany">
+            <app-search-candidates *ngIf="data['candidate_search_result'] as candidateData" 
+                                   [candidateList]="candidateData['data']"
+                                   [amount]="candidateData['amount']">
+            </app-search-candidates>
+        </ng-container>
+    </ng-container>
+    
+</div>

@@ -1,0 +1,85 @@
+@import 'src/variables';
+.budget {
+    &-wrapper {
+        background-color: $white;
+        width: 100%;
+        padding: 20px;
+        margin-right: 25px;
+        &-title {
+            font-size: 20px;
+        }
+    }
+
+}
+
+
+
+.budget-box {
+    border: 2px solid $cool-grey;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 25px 0; 
+    &-title {
+        font-size: 18px;
+        
+    }
+}
+
+.arrowUp {
+    transform: rotate(-90deg);
+}
+
+.modalWrapper {
+    background-color: $white;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+:host ::ng-deep .ngb-dp-weekday {
+    color: #808080 !important;   
+    font-style: unset;
+    border-radius: 5px;
+ }
+ 
+ :host ::ng-deep .ngb-dp-week {
+     background: white !important;
+ }
+ :host ::ng-deep .ngb-dp-header {
+     background: white !important;
+ }
+ :host ::ng-deep .dropdown-menu {
+     box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.15);
+ }
+.relativeBox {
+    position: relative;
+    .disabled-box {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #000;
+        opacity: 0.1;
+        z-index: 2;
+    }
+}
+
+.currency {
+    width: 160px;
+}
+.date {
+    &-input {
+        border-right: inherit;
+        &:focus {
+            border-top: 1px solid #ced4da !important;
+            border-left: 1px solid #ced4da !important;
+            border-bottom: 1px solid #ced4da !important;
+            border-right: none !important;
+        }
+    }
+    &-button {
+        border-top: 1px solid #ced4da;
+        border-right: 1px solid #ced4da;
+        border-bottom: 1px solid #ced4da;
+    }
+}

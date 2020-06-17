@@ -1,0 +1,21 @@
+<div class="payment-box" (click)='makeActive()' [ngClass]="{'selected': isSelected}">
+      <div class="payment-box-container d-flex justify-content-center align-items-center">
+          <div class="payment-box-payment-container">
+              <p class="payment-box-container__paragraph text-center mb-1">
+                   {{ price }}
+              </p>
+ 
+              <p class="payment-box-container__text" *ngIf="price !== 'Custom' || !isSelected ; else custom">
+                   {{ days }}
+              </p>
+
+              <ng-template #custom>
+                     <select class="form-control w-100" (change)='dayss($event.target.value)'>
+                          <option *ngFor="let day of JobMetaDays[3].select" [value]='day.days'>{{ day.name }}</option>
+                     </select>
+              </ng-template>
+
+          </div>
+
+      </div>
+</div>

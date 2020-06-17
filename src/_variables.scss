@@ -1,0 +1,86 @@
+//Rules
+
+// Colors
+$dark-blue:#052337;
+$blue:#264361;
+$background-dark-cyan:#00D4E3;
+$background-light-cyan:#00f4ff;
+$background-soft-blue:#EAEDF2;
+$dark-grey:#808080;
+$light-grey:#cccccc;
+$white:#ffffff;
+$error:#ff6633;
+$grey-dark: #dce1e6;
+$autumn-orange: #FF6633;
+$light-black: #052337;
+
+$pastel-green: rgba(91, 179, 112, 0.2);
+$pastel-blue: rgba(87, 150, 252, 0.2);
+$pastel-purple: rgba(150, 102, 201, 0.2);
+$pastel-yellow: rgba(255, 204, 0, 0.2);
+$pastel-pink: rgba(232, 127, 159, 0.2);
+
+$dark-cyan: #00D4E3;
+$lignt-cyan: #00F4FF;
+$purple: #9666C9;
+$dark-blue-option: #1E4FD6;
+$blue-option: #5796FC;
+$green: #5BB370;
+$yellow: #FFCC00;
+$pink: #E87F9F;
+$orange: #FF9452;
+$dark-red: #AD2636;
+$lavender: #A3BAFF;
+$white: #FFFFFF;
+
+$background-dark-blue: #052337;
+$background-light-blue: #264361;
+
+$dark-grey: #808080;
+$light-grey: #CCCCCC;
+$lighter-grey: #E6E6E6;
+
+$input-grey: #EAEDF2;
+
+$autumn-orange: #FF6633;
+$neutral-yellow: #FFE552;
+$cool-grey: #E6E6E6; 
+
+
+// Font sizes
+$page-title: 30px;
+$page-title-small: 24px;
+$heading-large: 22px;
+$heading-medium: 20px;
+$heading-small: 18px;
+$large-text: 16px;
+$medium-text: 14px;
+$small-text: 12px;
+
+
+
+// Breakpoints 
+$break1:"(max-width:499px)";
+$break2:"(min-width:500px) and (max-width:999px)";
+$break3:"(min-width:1000px)";
+$break4:"(min-width:768px)";
+
+
+//  * * * Buttons * * * 
+
+.btn-black {
+    color: $white; 
+    background-color: $background-dark-blue; 
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3); 
+    font-size: 1rem; 
+     
+}
+
+.btn-white {
+    color: $dark-blue; 
+    background-color: $white; 
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3); 
+    font-size: 1rem; 
+    border-color: $light-grey; 
+     
+}

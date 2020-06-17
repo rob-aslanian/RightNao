@@ -1,0 +1,65 @@
+
+<div class="order-box-container" *ngIf="newOrders.length">
+    <div class="order-box"> 
+        <div class="d-flex justify-content-between">
+            <h5>New Orders ({{ newOrders.length }})</h5>
+            <button class="backgroundless">All</button>
+        </div>
+        <div class="mt-3">
+            <div class="header-wrapper">
+                <div class="d-flex justify-content-between" style="width: 92%;">
+                      <span>Buyer</span>
+                      <span>Service</span> 
+                      <span>Due on</span>
+                      <span style="padding-right: 125px;">Price</span>
+                </div>
+            </div>
+        </div>
+
+        <ng-container *ngFor="let newOrder of newOrders">
+            <app-order-box [order]='newOrder' [type]='"new"' (result)='getResult($event)'></app-order-box>
+        </ng-container>
+    </div>
+</div>
+
+<div class="order-box-container mt-4" *ngIf="orders.length">
+        <div class="order-box">
+            <div class="d-flex justify-content-between">
+                <h5>Orders ({{ orders.length }})</h5>
+                <button class="backgroundless">All</button>
+            </div>
+            <div class="mt-3">
+                <div class="header-wrapper">
+                    <div class="d-flex justify-content-between">
+                          <div class="buyer">
+                            <span>Buyer</span>
+                            <span style="margin-left: 15px;">Service</span>
+                          </div>
+                          <span style="margin-right: 50px;"> Status </span>
+                          <span style="margin-right: 59px;">Due on</span>
+                          <span style="margin-right: 84px;">Note</span>
+                          <span style="margin-right: 15%;">Price</span>
+                    </div>
+                </div>
+            </div>
+
+            <ng-container *ngFor="let newOrder of orders">
+                <app-order-box [order]='newOrder' [type]='newOrder.status' (result)='getResult($event)'></app-order-box>
+            </ng-container>
+
+             <ng-container *ngIf="orderLength > 6">
+                 <ngb-pagination [collectionSize]="orderLength" 
+                                 [pageSize]="'6'"   
+                                 [(page)]="page"  
+                                 (pageChange)="changePage($event)" 
+                                 class="d-flex justify-content-end mt-4"></ngb-pagination> 
+             </ng-container> 
+        </div>
+</div>
+
+
+    <app-modal (closeModal)='modalType = null'>
+        <ng-container *ngIf="modalType === 'review'">
+                <app-write-review-service [profile]='selectedReviewToWrite' (result)='getWrittenReview($event)'></app-write-review-service>
+        </ng-container>
+    </app-modal>

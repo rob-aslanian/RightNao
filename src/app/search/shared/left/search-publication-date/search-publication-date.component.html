@@ -1,0 +1,54 @@
+<div class="search-groups__sidebar-section">
+    <app-search-column-header title="Publication date">
+        <div class="mt-2">
+            <div class="search-groups__sidebar-section__delivery-time-options search-groups__sidebar-section__wrap">
+                <form [formGroup]="form">
+                    <div class="
+                        custom-control 
+                        custom-radio 
+                        page-section-text-grey
+                        " *ngFor="let publicationDate of publicationDates">
+                        <input   type="radio" class="custom-control-input" [id]="publicationDate['id']" 
+                                [value]="publicationDate['id']" [name]="formName" [formControlName]="formName">
+                        <label class="custom-control-label" [for]="publicationDate['id']">
+                            {{ publicationDate['name']  }}
+                        </label>
+                    </div>
+                    <div class="mt-2">
+                        <div class="
+                            custom-control 
+                            custom-checkbox 
+                            page-section-text-grey
+                            ">
+                            <input  type="checkbox" class="custom-control-input" id="by_reposssed" name="by_reposssed"   formControlName="by_reposssed">
+                            <label class="custom-control-label" for="by_reposssed">
+                                Repossessed
+                            </label>
+                        </div>
+                        <div class="
+                            custom-control 
+                            custom-checkbox 
+                            page-section-text-grey
+                            ">
+                            <input  type="checkbox" class="custom-control-input" id="by_agent" name="by_agent"   formControlName="by_agent">
+                            <label class="custom-control-label" for="by_agent">
+                                By agents only
+                            </label>
+                        </div>
+                        <div class="
+                            custom-control 
+                            custom-checkbox 
+                            page-section-text-grey
+                            ">
+                            <input  type="checkbox" class="custom-control-input" id="by_user" name="by_agent"   formControlName="by_user">
+                            <label class="custom-control-label" for="by_user">
+                                By users only
+                            </label>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </app-search-column-header>
+</div>

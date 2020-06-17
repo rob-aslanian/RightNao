@@ -1,0 +1,83 @@
+<aside class="post-a-job__sidebar__box post-a-job__sidebar__pricing-info" 
+    *ngIf="form.get('job_plan_price').value !== 0 &&
+           form.get('job_plan').value ||
+           form.get('num_of_languages').value !== 1 || 
+           form.get('renewal').value  !== 0 || 
+           form.get('anonymous').value ">
+    <h2 class="post-a-job__content__section-title mb-4">Pricing information</h2>
+
+    <div class="post-a-job__sidebar__pricing-info__section pt-0">
+        <h4 class="page-section-text-grey">Advertising Plan in Georgia</h4>
+        <div>
+            <div class="d-flex justify-content-between pt-1 pb-1">
+                <span class="page-section-text-grey">Standard</span>
+                <span class="page-section-text-grey">$20</span>
+            </div>
+            <div class="d-flex justify-content-between pt-1 pb-1">
+                <span class="page-section-text-grey">Premium - 10 days</span>
+                <span class="page-section-text-grey">$50</span>
+            </div>
+            <div class="d-flex justify-content-between pt-1 pb-1">
+                <span class="page-section-text-grey">Frame</span>
+                <span class="page-section-text-grey">$40</span>
+            </div>
+            <div class="d-flex justify-content-between pt-1 pb-1">
+                <span class="page-section-text-grey">Renewal - 1x</span>
+                <span class="page-section-text-grey">$10</span>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between mt-3">
+            <h2 class="page-section-heading mb-0">Total</h2>
+            <h2 class="page-section-text-cyan mb-0">
+                <ng-content select="div[role=total]"></ng-content>
+            </h2>
+        </div>
+
+    </div>
+</aside>
+
+              <!-- <div class="total d-flex" *ngIf="form.get('job_plan_price').value !== 0 &&
+                                             form.get('job_plan').value ||
+                                             form.get('num_of_languages').value !== 1 || 
+                                             form.get('renewal').value  !== 0 || 
+                                             form.get('anonymous').value ">
+
+                <div class="features-1" formArrayName="advertisements">
+                  <div class="headings">
+                    <span>Location</span>
+                    <span>Advertising Plan</span>
+                    <span>Renewal</span>
+                    <span>Total</span>
+                  </div>
+                  <div class="option" *ngFor="let price of totalPricesCountries">
+                    <span>{{ utils.getCountryName(price.country) }}</span>
+                    <span
+                      *ngIf=" planPrices[form.get('job_plan').value]">{{ planPrices[form.get('job_plan').value]['name'] }}
+                      - {{ price.plan_price }}&nbsp;{{ jobAdvertisements.value.currency }}</span>
+                    <span>{{ form.get('renewal').value }}x -
+                      {{ price.renewal_price }}&nbsp;{{ jobAdvertisements.value.currency }}</span>
+                    <span>{{ price.total_price }}&nbsp;{{ jobAdvertisements.value.currency }}</span>
+                  </div>
+                </div>
+                <div class="border-between">
+
+                </div>
+                <div class="features-2">
+                  <div class="headings">
+                    <span>Additional Features</span>
+                  </div>
+                  <div class="option d-flex flex-column">
+                    <span>Language {{ form.value.num_of_languages }} - 0 &nbsp;
+                      {{ form.value.currency }} </span>
+                    <span>Anonymous - {{ anonymusPrice  }}&nbsp; {{ form.value.currency }} </span>
+                  </div>
+                </div>
+                <div class="border-between">
+
+                </div>
+                <div class="total-price">
+                  <span>Total
+                    <span class="price"> {{ totalPrice  }}&nbsp; {{ form.value.currency }} </span>
+                  </span>
+                </div>
+              </div> -->

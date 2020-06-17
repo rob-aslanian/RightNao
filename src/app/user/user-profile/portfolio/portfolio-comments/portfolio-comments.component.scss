@@ -1,0 +1,36 @@
+@import 'src/variables';
+
+.add-comment {
+    h5 {
+        color: $dark-blue;
+        margin-bottom: 0px;
+        font-size: 1rem;
+    }  
+}
+.text {
+     font-size: .75rem;
+     color: $dark-grey;
+     padding-bottom: 4px;
+}
+.sort {
+    a {
+        color: $dark-grey;
+        display: block;
+        font-size: 0.9rem;
+    }
+    .options {
+        width: 114px;
+        margin-top: -1px;
+        box-shadow: 0 0 20px 0 rgba(0,0,0,.15);
+        margin-left: 15px;
+        min-width: unset !important;
+        a {
+            width: 100%;
+            padding: 5px 0px;
+            padding-left: 15px;
+            &:hover {
+                background: #eaedf2;
+            }   
+        }
+    }
+}

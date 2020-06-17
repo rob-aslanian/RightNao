@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2018 (64-Bit) -->
+<<<<<<< HEAD
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="0.213354in" height="0.263894in" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 2.04 2.52"
+=======
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="19px" height="18px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 0.87 0.836"
+>>>>>>> 18d538651371b30484b7aadb3205a7c7831f1d30
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+<<<<<<< HEAD
+    .str1 {stroke:gray;stroke-width:0.13;stroke-miterlimit:2.61313}
+    .str0 {stroke:gray;stroke-width:0.13;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2.61313}
+    .fil0 {fill:#00F4FF}
+=======
+    .str1 {stroke:#DCE1E6;stroke-width:0.046;stroke-miterlimit:2.61313}
+    .str2 {stroke:#DCE1E6;stroke-width:0.093;stroke-linecap:round;stroke-miterlimit:2.61313}
+    .str3 {stroke:#DCE1E6;stroke-width:0.093;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2.61313}
+    .str0 {stroke:#00D4E3;stroke-width:0.046;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2.61313}
+    .str4 {stroke:#00D4E3;stroke-width:0.046;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2.61313}
+    .fil2 {fill:none}
+    .fil0 {fill:#00D4E3}
+    .fil1 {fill:white}
+>>>>>>> 18d538651371b30484b7aadb3205a7c7831f1d30
+   ]]>
+  </style>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+<<<<<<< HEAD
+  <g id="_2903561364384">
+   <path class="fil0 str0" d="M0.25 1.13c0,-0.34 0.22,-0.63 0.53,-0.73l0 -0.12c0.01,-0.12 0.11,-0.21 0.24,-0.21 0.12,0 0.22,0.09 0.24,0.21l0 0.12c0.31,0.1 0.53,0.39 0.53,0.73 0,0.55 -0.06,0.52 0.18,1.02 0.02,0.03 -0,0.07 -0.04,0.07l-0.91 0 -0.91 0c-0.03,0 -0.05,-0.04 -0.04,-0.07 0.25,-0.5 0.18,-0.46 0.18,-1.02z"/>
+   <path class="fil0 str1" d="M0.76 2.21c0.01,0.14 0.12,0.24 0.26,0.24 0.14,0 0.25,-0.11 0.26,-0.24l-0.51 0z"/>
+=======
+  <g id="_1167777980576">
+   <polygon class="fil0 str0" points="0.437,0.023 0.023,0.357 0.023,0.44 0.435,0.776 0.847,0.44 0.847,0.357 "/>
+   <path class="fil1 str1" d="M0.082 0.731l0 -0.615c0,-0.01 0.008,-0.017 0.019,-0.017l0.668 0c0.01,0 0.019,0.007 0.019,0.017l0 0.622 -0.706 -0.007z"/>
+   <line class="fil2 str2" x1="0.232" y1="0.398" x2="0.638" y2= "0.398" />
+   <line class="fil2 str3" x1="0.302" y1="0.241" x2="0.568" y2= "0.241" />
+   <path class="fil0 str4" d="M0.04 0.813l0.789 0c0.01,0 0.018,-0.008 0.018,-0.018l0 -0.381c0,-0.008 -0.005,-0.014 -0.012,-0.016l-0.07 0.057 -0.33 0.273 -0.4 -0.33c-0.007,0.002 -0.012,0.008 -0.012,0.016l0 0.381c0,0.01 0.008,0.018 0.017,0.018z"/>
+>>>>>>> 18d538651371b30484b7aadb3205a7c7831f1d30
+  </g>
+ </g>
+</svg>

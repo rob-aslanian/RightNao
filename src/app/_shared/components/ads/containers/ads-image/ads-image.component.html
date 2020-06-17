@@ -1,0 +1,9 @@
+<ng-container *ngIf="data">
+    <ng-container *ngFor="let advert of data">
+        <a  (click)="click($event , advert?.id , advert?.campaing_clicks)" class="ads-box image-advert " [href]="advert?.url | getUrl" target="_blank">
+            <ng-container *ngIf="advert?.files[0] as file">
+                <div [ngStyle]="{'background-image': 'url(/file/' + file.address + ')' }" ></div>
+            </ng-container>
+        </a>
+    </ng-container>
+</ng-container>

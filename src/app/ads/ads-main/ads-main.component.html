@@ -1,0 +1,76 @@
+    <div class="ads-wrapper">
+        <ng-container *ngFor="let category of adCategories">
+            <div class="ads-box box"
+                (click)="chooseCategory(category)"
+                [ngClass]="{activeBox: activeCategory == category['type']}"
+                *ngIf="(isCompany && category['title'] == 'Job Ad') || 
+                        (!isCompany && category['title'] == 'Candidate Ad') || 
+                        (category['title'] !== 'Candidate Ad' && category['title'] !== 'Job Ad')">
+            <img [src]="category.icon" alt="category" class="ads-box-icon">
+            <p class="ads-box-title" style="margin: 0;"> {{ category.title }} </p>
+            </div>
+        </ng-container>
+    </div>
+
+
+
+    <div class="ads-section" *ngIf="formatsArray.length">
+
+        <h3 class="ads-section-title">Ad format</h3>
+        <p class="ads-section-description">Select your Ad format</p>
+
+        <div class="format-wrapper">
+            <label class="format-box box"
+                    for="checkbox_{{i}}" 
+                    *ngFor="let format of formatsArray; let i = index;" 
+                    [ngClass]="{'activeBox': format.selected}"
+                    (click)="generalFormat(format['type'])">
+                <div class="custom-control custom-checkbox format-box-checkbox" *ngIf="activeCategory != 'banner'">
+                    <input type="checkbox"  
+                            class="custom-control-input" 
+                            id="checkbox_{{i}}" 
+                            [(ngModel)]="format.selected" 
+                            (change)="getSelectedFormats()">
+                    <label class="custom-control-label" for="checkbox_{{i}}"></label>
+                </div>
+                <p class="format-box-title">
+                    {{ format['title'] }}
+                </p>
+                <div class="d-flex align-items-center justify-content-center" style="width: 100%; height: 80%;">
+                    <img [src]="format['icon']" alt="format" class="format-box-img">
+                </div>
+                <p class="format-box-description">
+                    {{ format['description'] }}
+                </p>
+            </label>
+        </div>
+
+        <div class="d-flex align-items-center justify-content-end mt-4">
+            <button class="btn btn-primary" 
+            
+            [disabled]="!selectedFormatsArray.length || !this.adsService.inputContent['id']"
+                *ngIf="activeCategory != 'banner'"
+                    (click)="next()">
+                    <!-- || !adsService.input.company_id -->
+                Next
+            </button>
+        </div>
+    </div>
+    
+
+<app-modal>
+    <ng-container>
+        <div class="modalListContainer" *ngIf="modalList.length">
+            <select class="form-control" (change)="getModalListItem($event)">
+                <option disabled>Select one</option>
+                <option [value]="i" *ngFor="let item of modalList; let i = index;"> {{ item['name'] }} </option>
+            </select>
+            <div class="d-flex align-items-center justify-content-end" >
+                <button class="btn btn-primary" (click)="selectModalItem()" [disabled]="!listIndex">Select</button>
+        </div>
+        </div>
+    </ng-container>
+</app-modal>
+
+
+

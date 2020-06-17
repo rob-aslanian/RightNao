@@ -1,0 +1,185 @@
+@import "src/variables";
+@import 'src/mixins.scss';
+
+.days-events-popover {
+    padding: 12px;
+    background-color: $white;
+    border-radius: 5px;
+    border: 1px solid $input-grey;
+    box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.50);
+    color: $dark-grey;
+
+    .close-btn {
+        position: absolute;
+        background-image: url("../../../../assets/img/35.svg");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-color: transparent;
+        right: 2px;
+        top: 5px;
+    }
+
+    h4 {
+        font-weight: normal;
+    }
+
+    .days-events__list {
+        &__item {
+            color: $dark-blue;
+            font-size: $medium-text;
+            border-radius: 4px;
+            padding: 0 5px;
+            margin-bottom: 5px;
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            &--pastel-blue {
+                background-color: $pastel-blue;
+            }
+
+            &--pastel-yellow {
+                background-color: $pastel-yellow;
+            }
+        }
+    }
+}
+
+.calendar-item {
+    position: relative;
+    height: 161px;
+    width: 187px;
+    background-color: $white;
+    transition: all .3s ease-in-out;
+    &:before {
+        content: "";
+        height: 6px;
+        width: 100%;
+        background-color: $dark-cyan;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: all .3s ease-in-out;
+    }
+
+
+    &__date {
+        font-size: 14px;
+        color: $dark-grey;
+        margin: 0;
+        padding: 8px 14px;
+    }
+
+    &__event-list {
+        padding-left: 8px;
+        padding-right: 8px;
+
+        &__item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            overflow: hidden;
+
+            border-radius: 20px;
+            padding: 2px 8px;
+
+            margin-bottom: 4px;
+            &:last-child {
+                margin-bottom: 0;
+            }
+
+            &.pastel-green {
+                background-color: $pastel-green;
+            }
+            &.pastel-blue {
+                background-color: $pastel-blue;
+            }
+            &.pastel-purple {
+                background-color: $pastel-purple;
+            }
+            &.pastel-yellow {
+                background-color: $pastel-yellow;
+            }
+            &.pastel-pink {
+                background-color: $pastel-pink;
+            }
+            &.shared-calendar {
+                border: 1px solid $input-grey;
+            }
+            .shared-event-bullet {
+                @include calendar-colored-bullets($height: 12px, $width: 12px, $bg-size: 12px, $mr: 5px);
+                display: inline-block;
+                bottom: 0;
+            }
+
+            &__title {
+                color: $dark-blue;
+                font-size: 12px;
+                white-space: nowrap;
+                overflow: hidden;
+            }
+
+            &__img {
+                height: 16px;
+                width: 16px;
+            }
+        }
+    }
+
+    &__more-btn {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        text-align: center;
+        cursor: pointer;
+        // opacity: 0;
+        // transition: all .3s ease-in-out;
+    }
+
+
+    &__popover-btn {
+        border: none;
+        background: none;
+        outline: none;
+        background-color: $background-light-blue;
+        width: 100%;
+        color: $white;
+        font-size: 14px;
+        border-radius: 20px;
+        padding: 6px;
+        margin-top: 15px;
+        box-shadow: 0px 0px 15px 0px rgba(0, 0, 0, 0.4);
+        cursor: pointer;
+    }
+
+    .dropdown-menu.calendar-item__dropup {
+        border: none;
+        background: none;
+        width: calc(100% - 16px);
+        padding-bottom: 0;
+        top: -148px !important;
+    }
+
+    .dropdown-toggle.without-arrow {
+        &:after {
+            content: unset;
+        }
+    }
+
+    &:hover {
+        opacity: 1;
+        background-color: #F5F6F9;
+        &:before {
+            opacity: 1;
+        }
+
+        .calendar-item__date {
+            color: $dark-blue;
+        }
+
+        // .calendar-item__more-btn {
+        //     opacity: 1;
+        // }
+    }
+}

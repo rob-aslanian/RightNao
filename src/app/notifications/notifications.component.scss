@@ -1,0 +1,12 @@
+.notif-set-link {
+    display: none;
+    @media(max-width: 990px) {
+        display: block;
+    }
+}
+
+.notif-sett-butt {
+    @media(max-width: 990px) {
+        display: none;
+    }  
+}

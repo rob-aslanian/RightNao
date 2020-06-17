@@ -1,0 +1,42 @@
+<div class="add-service">
+  <form [formGroup]="servicesForm" autocomplete="off">
+      <div class="mobile-modal">
+      <h3> {{ '751'| translate  }}<span>*</span> </h3>
+        <app-add-image [img]="data ? data.image : null"></app-add-image>
+        <!-- Error -->
+        <span class="error_message"  *ngIf="submited && !image?.getFile?.file">
+            {{ utils.$getErrors('required') }}
+        </span>
+        <!-- Error -->
+      <br>
+
+      <div class="form-group">
+          <label for="service-title">  {{ '950'| translate  }} <span>*</span></label>
+          <input type="text" class="form-control" id="service-title" formControlName="name"  
+                 [ngClass]="{ 'is-invalid': submited && serv.name.errors }" maxlength="128">
+            <!-- Errors -->
+            <ng-container *ngIf="submited && serv.name.errors">
+                <span class="error_message"  *ngFor="let error of utils.getErrorsKey(serv.name.errors)">
+                    {{ utils.$getErrors(error) }}
+                </span>
+            </ng-container>
+            <!-- Errors -->
+      </div>
+
+      <div class="form-group mb-0">
+          <label for="service-website"> {{ '1531'| translate  }} </label>
+          <input type="text" class="form-control" id="service-website" formControlName="website"  [ngClass]="{ 'is-invalid': submited && serv.website.errors }" >
+          <!-- Error -->
+            <span class="error_message"  *ngIf="submited && serv.website.errors">
+                {{ utils.$getErrors('url') }}
+            </span>
+          <!-- Error -->
+      </div>
+    </div>
+      <div class="d-flex justify-content-end mobile-button">
+         <button class="save-and-add backgroundless btn" (click)="remove()" *ngIf="data"> {{ '1185'| translate  }} </button>
+         <button class="backgroundless ml-auto" (click)="submit(true)" *ngIf="!data"> {{ '1233'| translate  }}</button>
+          <button class="btn btn-primary ml-2" (click)="submit()" > {{ '1231'| translate  }}</button>
+      </div>
+  </form>
+</div>

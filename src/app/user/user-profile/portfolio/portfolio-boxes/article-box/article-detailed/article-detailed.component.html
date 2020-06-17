@@ -1,0 +1,28 @@
+<ng-container *ngIf="selectedArticle">
+
+    <div class="article" >
+
+        <div class="article-header">
+            <ng-container  *ngIf="selectedArticle?.files.length > 0">
+                <img [src]="'/file/'+selectedArticle.files[0]['address']" class="mb-4 mr-4"  (click)='openModal(selectedArticle.files[0]["address"])'>
+            </ng-container>
+
+            <h3 class="d-inline">{{ selectedArticle.title }}</h3>
+
+            <p> {{ selectedArticle.created_at | date }} </p>
+
+            <p [innerHTML]='selectedArticle.description'></p>
+
+        </div>
+        <div class="clear-fix"></div>
+        <div class="content">
+             <app-article-comments [portfolio]='selectedArticle' [userId]='userId'></app-article-comments>
+        </div>
+    </div>
+
+</ng-container>
+
+<ng-container *ngIf="zoomImage && src"> 
+    <app-photo-modal [src]='src' (onSrc)='zoomImage = false'></app-photo-modal>
+</ng-container>
+

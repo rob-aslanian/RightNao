@@ -1,0 +1,24 @@
+
+<form [formGroup]="form">
+    <div class="form-group col-md-5">
+        <label  for="inputModel" class="label-control">Title<span>*</span></label>
+        <input type="text" 
+            class="form-control" 
+            id="inputTitle"
+            placeholder="Enter title"
+            formControlName="title"
+            [ngClass]="{'is-invalid':form.get('title').invalid && isSubmitted}">
+    </div>
+        
+    <div class="form-group col-md-8">
+        <label  for="inputDescription" class="label-control">Description<span>*</span></label>
+        <textarea  class="form-control" 
+                    id="inputDescription"
+                    autocomplete="off" 
+                    placeholder="Description"
+                    formControlName="desciption"
+                    rows="6"
+                    [ngClass]="{'is-invalid':form.get('desciption').invalid && isSubmitted}">
+        </textarea>
+    </div>
+</form>

@@ -1,0 +1,94 @@
+ 
+    <div class="groups-top-center col-12 d-flex">
+        <div class="groups-top-center__content pt-3 col-12">
+            <div class="groups-top-center__content__title col-12 d-flex justify-content-between mt-3 p-0">
+                <h4 *ngIf='data.name as name'>{{ name }}</h4>
+                <span>Members {{ data.amount_of_members  }}</span>
+            </div>
+            <div class="groups-top-center__content__title col-12 d-flex justify-content-between mt-2 mb-2 p-0">
+                <div class="d-flex">
+                    <p *ngIf='data.type as type' >{{ type }}  </p>
+                    <div class="vertical-line"></div>
+                    <p *ngIf='data.privacy_type as privacy_type'> {{ privacy_type | titlecase }} Group</p> 
+                </div>
+                <img src="../../assets/img/services/user_999.png" alt="">
+            </div>
+            <div class="groups-top-center__content__title col-12 d-flex justify-content-between p-0">
+
+                              <!-- Change Tagline -->
+                    <ng-container *ngIf='!data.tagline' >
+                              <div class="d-flex" style="cursor: pointer"  (click)='openDescriptionModal()'>
+                                  <a>
+                                      <img class="add mb-1" src="assets/img/612.svg" alt="plus">
+                                  </a>
+                                  <a>Add a short description or catchphrase about your group </a>
+                              </div>
+                    </ng-container>
+
+                    <ng-container *ngIf='data.tagline'>
+
+                    <div class="edit-content d-flex">
+                      <p>{{ data.tagline }}</p>
+                      
+                       <button class="backgroundless" (click)='openDescriptionModal()'>
+                          <img src="assets/img/19.svg" alt="edit" class="pl-3">
+                       </button>
+                    
+                    </div>
+
+                    </ng-container>
+
+                              <!-- Change Tagline -->
+                <button class="btn btn-outline-primary" (click)='inviteFriends()'>Invite Members</button>
+            </div>
+            <hr>
+            <div class="groups-top-center__content__bottom d-flex justify-content-between row">
+                <div class="groups-top-center__content__bottom-left justify-content-between col-lg-4 col-md-12 d-flex">
+                    <a  [routerLink]='["about"]'   routerLinkActive='active-group' >About this group</a>
+                    <a  [routerLink]='["post"]'    routerLinkActive='active-group' >Posts</a>
+                    <a  [routerLink]='["members"]' routerLinkActive='active-group' >Members</a>
+                </div>
+                
+                <div class="groups-top-center__content__bottom-right col-md-6 d-flex">
+                    <a class="manage"[ngClass]='{
+                        "manage-disabled": rla.isActive,
+                         "manage": !rla.isActive 
+                        }' [routerLink]='["manage"]' routerLinkActive  #rla='routerLinkActive'>
+
+                       <ng-container *ngIf='!rla.isActive'>
+                                <img class="blue-settings-icon" src="assets/img/39.svg" alt="blue-settings-icon">
+                       </ng-container>
+
+                        <ng-container *ngIf='rla.isActive'>
+                                <img class="blue-settings-icon" src="assets/img/settings-gray.svg" alt="grey-settings-icon">
+                        </ng-container>
+
+                        Manage Group
+                    </a>
+                    
+                    <a href="#">
+                        <img class="blue-bell"     src="assets/img/647.svg" alt="blue-bell-icon">
+                    </a>
+
+                    <a href="#">
+                        <img class="vertical-dots" src="assets/img/648.svg" alt="vertical-dots.icon">
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <app-modal (closeModal)='modalType = null'>
+        <ng-container *ngIf='modalType === "add"'>
+            <app-description-modal [edit]='data.tagline' (result)='getResultTagline( $event )'></app-description-modal>
+       </ng-container>
+
+       <ng-container *ngIf='modalType === "invations"'>
+          <app-invite-members  (result)='inviteUsers($event)' ></app-invite-members>
+      </ng-container>
+
+   </app-modal>
+
+

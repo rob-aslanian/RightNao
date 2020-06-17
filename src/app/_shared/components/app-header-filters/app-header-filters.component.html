@@ -1,0 +1,38 @@
+<form (ngSubmit)="submit();">
+  <div class="search" style="cursor: pointer; position: relative;">
+    <input type="search" class="form-control btn-more" [formControl]="searchParam" [ngbPopover]="filter" 
+      #popup="ngbPopover" [autoClose]="true">
+  </div>
+</form>
+
+<ng-template #filter>
+  <div class="backgroundless ml-auto">
+    <div class="search-filters-option">
+      <h3 class="search">Search for</h3>
+      <div (click)="submit('people')" class="fillter-block">
+        <img src="assets/img/235.svg" alt="icon" />
+        <span style="display: inline-block">People</span>
+      </div>
+      <div (click)="submit('company')" class="fillter-block">
+        <img src="assets/img/13.svg" alt="icon" />
+        <span style="display: inline-block">Companies & Organizations </span>
+      </div>
+      <div (click)="submit('job')" class="fillter-block">
+        <img src="assets/img/236.svg" alt="icon" />
+        <span style="display: inline-block">Jobs</span>
+      </div>
+      <div (click)="submit('candidate')" class="fillter-block" *ngIf='isCompany'>
+        <img src="assets/img/234.svg" alt="icon" />
+        <span style="display: inline-block">Candidates</span>
+      </div>
+      <div (click)="submit('service')" class="fillter-block" >
+        <img src="assets/img/711.svg" alt="icon"/>
+        <span style="display: inline-block">Services</span>
+      </div>
+      <div (click)="submit('service_request')" class="fillter-block" >
+        <img src="assets/img/712.svg" alt="icon" />
+        <span style="display: inline-block">Service Reqeusts</span>
+      </div>
+    </div>
+  </div>
+</ng-template>

@@ -1,0 +1,62 @@
+<div class="box row col-12 p-0 mt-4">
+    <div class="col-lg-6 box__img pr-0">
+        <div class="box__img__content">
+            <img (click)="routeToDetails('id')" src="assets/img/Music/4.jpg" alt="">
+        </div>
+    </div>
+    <div class="col-lg-6 box__details pl-0 pb-3">
+        <div class="col-12 box__details__title d-flex justify-content-between mt-3">
+            <h4 (click)="routeToDetails('id')">Portalouise 4 bedroon detahed house for sale </h4>
+            <img src="assets/img/107.svg" style="cursor: pointer" alt="options" (click)="toggle()">
+            <div class="options p-3" *ngIf="isOptionActive">
+                <p>Forwards</p>
+                <p>Edit</p>
+                <p>Share</p>
+                <p>Hidden</p>
+                <p>Make a sold</p>
+                <p>Delete</p>
+            </div>
+        </div>
+        <div class="col-12 box__details__price">
+           <p>$150,000</p>   
+        </div>
+
+        <div class="col-12 box__details__rooms d-flex justify-content-between">
+            <div class="box__details__rooms__item col-md-4 d-flex">
+                <img src="assets/img/Group2.svg" alt="area-logo" class="mr-2 mt-1">
+                <p>Area 90m</p>
+            </div>
+            <div class="box__details__rooms__item col-md-4 d-flex">
+                <img src="assets/img/Group3.svg" alt="room-logo" class="mr-2 mt-1">
+                <p>Room 7</p>
+            </div>
+            <div class="box__details__rooms__item col-md-4 d-flex">
+                <img src="assets/img/Group5.svg" alt="bedroom-logo" class="mr-2 mt-1">
+                <p>Bedrooom 5</p>
+            </div>
+        </div>
+
+        <div class="box__details__description col-12 mt-3">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis voluptatem nulla quibusdam! Debitis, perspiciatis. Fuga minus, illum ad iure repellat alias facere magnam reiciendis? Ea odit iste eos eligendi consequuntur?</p>
+        </div>
+
+        <div class="box__details__buttons col-12 d-flex pr-0">
+            <button class="btn btn-secondary" (click)="openModal('urgent')"> Urgent</button>
+            <button class="btn btn-secondary ml-2"> Boost </button>
+            <button class="btn btn-secondary ml-2" (click)="openModal('discounted')"> Discounted </button>
+        </div>
+
+        <div class="box__details__alert">
+                <div class="box__details__alert__notify">
+                    <img style="cursor: pointer" 
+                            src="assets/img/256.svg" alt=""
+                            (click)="openModal('notifications')"
+                            >
+                    <div class="box__details__alert__notify__counter">
+                        <span>2</span>
+                    </div>
+                </div>
+        </div>
+
+    </div>
+</div>

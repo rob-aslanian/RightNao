@@ -1,0 +1,43 @@
+
+.services-text {
+    overflow: hidden;
+    max-height: 102px;
+    min-height: 102px;
+}
+
+.section-header {
+    margin-bottom: 2px;
+}
+.service-name {
+    // max-height: 25px;
+    // white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 240px;
+    white-space: nowrap;
+}
+
+.bottom-edit {
+    transition: .3s all ease-in-out;
+    opacity: 0;
+}
+
+.service{
+    &:first-child{
+        .service__content {
+            .bottom-edit { opacity: 1; }
+        }
+    }
+
+    &__content{
+        &:hover{
+            .bottom-edit { opacity: 1; }
+        }
+    }
+}
+
+.col.line {
+    margin-bottom: 10px;
+}
+
+// .bottom-edit { display: none; }

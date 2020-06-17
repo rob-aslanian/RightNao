@@ -1,0 +1,48 @@
+@import 'src/variables';
+.steps-second-edition-bozish {
+    .steps {
+        &-wrapper {
+            width: 100%;
+            background-color: $white;
+            padding: 20px;
+            border-radius: 5px;
+            &-title {
+                font-size: 18px;
+            }
+        }
+        &-amount {
+            display: flex;
+            align-items: center;
+            margin: 20.7px 0;
+        }
+        &-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $light-grey;
+            width: 36px;
+            height: 24px;
+            border: 1px solid $light-grey;
+            border-radius: 50%;   
+            font-size: 16px;
+        }
+        &-line {
+            width: 65px;
+            margin: 10px;
+            border-top: 1px solid $light-grey;
+        }
+        &-description {
+            color: $dark-grey;
+            font-size: 14px;
+        }
+        &-success {
+            width: 25px;
+            height: 35px;
+        }
+    
+    }
+    .activeSteps {
+        color: $dark-cyan;
+        border: 1px solid $dark-cyan;
+    }
+}

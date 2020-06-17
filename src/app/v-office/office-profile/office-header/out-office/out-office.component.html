@@ -1,0 +1,34 @@
+   <div class="office-wrapper" style="background: white">
+    <div class="col-12">
+      <form [formGroup]='dateForm'>
+        <label for="day" class="label-control  mt-3">Returning date</label>
+        <div class="row">
+          <div class="col-sm-4 mt-2">
+            <select id="day" class="form-control" formControlName='day'>
+              <option selected disabled value="">Day</option>
+              <option *ngFor='let day of Days' [value]='day'>{{ day }}</option>
+            </select>
+          </div>
+          <div class="col-sm-4 mt-2">
+            <select id="day" class="form-control" formControlName='month'>
+              <option selected disabled value="">Month</option>
+              <option *ngFor='let month of MONTHS'  [value]='month.id' > {{ month.name }}</option>
+            </select>
+          </div>
+          <div class="col-sm-4 mt-2">
+            <select id="day" class="form-control" formControlName='year'>
+              <option selected disabled value="">Year</option>
+              <option [value]=' Year + 1'>{{ Year + 1 }}</option>
+              <option [value]=' Year + 2'>{{ Year + 2 }}</option>
+            </select>
+          </div>
+
+        </div>
+      </form>
+      <div class="d-flex justify-content-end pb-3">
+        <button class="btn btn-primary" (click)='activate()'>Activate</button>
+      </div>
+    </div>
+  </div>
+    
+ 

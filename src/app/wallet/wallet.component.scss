@@ -1,0 +1,81 @@
+@import "src/variables";
+@import 'src/mixins.scss';
+
+
+.wallet {
+    &-wrapper
+    {
+        background-color: $background-soft-blue;
+        // min-height: 95vh;
+        min-height: calc(100vh - 258px);
+    }
+    &-header {
+        position: fixed;
+        left: 0;
+        right: 0;
+        top: 60px;
+        z-index: 9;
+        height: 58px;
+        background-color: $dark-blue;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &-nav {
+            padding:0;
+            margin: 5px 0 0 0;
+            display: inline-flex;
+            overflow: hidden;
+            overflow-x: initial;
+            list-style-type: none;
+            > li {
+                > a {
+                    text-decoration: none; 
+                    white-space: nowrap;
+                    color:$dark-grey;
+                    padding-bottom:16px;
+                    display: block; 
+                    font-size: 16px;
+                    &.active {
+                        color: $white;
+                        border-bottom:3px solid $background-dark-cyan;
+                    }
+                    
+                }
+            }
+        }
+        &-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    
+    }
+
+}
+.exchangesRates
+{
+    padding: 5px 20px !important;
+}
+
+a {
+    display: block;
+    padding: 10px 25px;
+    background:none;
+    border:none;
+    cursor:pointer;
+    color:$dark-grey;
+    font-size:14px;
+    width:100%;
+    text-align: left;
+}
+
+
+.container {
+    max-width: 1238px !important;
+}
+
+@media print {
+    .wallet-header, .right-bar {
+        display: none;
+    }
+}

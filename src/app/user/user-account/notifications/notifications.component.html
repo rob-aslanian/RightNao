@@ -1,0 +1,333 @@
+<div class="account-right-content">
+    <h1> {{ "979" | translate }} </h1>
+
+    <form [formGroup]="notificationsForms"  >
+
+    <!-- First table, "Activity" start -->
+    <div class="boxes-for-account">
+        <h2> {{ "48" | translate }} </h2>
+        <hr>
+        <div class="form-row">
+            <div class="col-9">
+                <label for="connections">
+                    {{ "364" | translate }}
+                </label>
+            </div>
+            <div class="col notification-checkbox">
+                <label class="switch">
+                    <input type="checkbox" formControlName="new_connection" id="connections" value="new_connection" >
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="col-9">
+                <label for="accept_invitations">
+                    {{ "365" | translate }}
+                </label>
+            </div>
+            <div class="col notification-checkbox">
+                <label class="switch">
+                    <input type="checkbox" formControlName='approved_connection'  id="accept_invitations" >
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="col-9">
+                <label for="new-followers">
+                        {{ "964" | translate }}
+                </label>
+            </div>
+            <div class="col notification-checkbox">
+                <label class="switch">
+                    <input type="checkbox" formControlName="new_follow" id="new-followers" value="new_follow" >
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+        
+        <!-- <div class="form-row">
+            <div class="col-9">
+                <label for="messages">
+                    New Chat Messages
+                </label>
+            </div>
+            <div class="col notification-checkbox">
+                <label class="switch">
+                    <input type="checkbox"  id="messages" >
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div> -->
+
+        <!-- <div class="form-row">
+            <div class="col-9">
+                <label for="admin-requests">
+                    Admin Requests
+                </label>
+            </div>
+            <div class="col notification-checkbox">
+                <label class="switch">
+                    <input type="checkbox" id="admin-requests">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div> -->
+
+        <div class="form-row">
+            <div class="col-9">
+                <label for="recommendation-requests">
+                    {{ "1170" | translate }}
+                </label>
+            </div>
+            <div class="col notification-checkbox">
+                <label class="switch">
+                    <input type="checkbox" id="recommendation-requests" formControlName="recommendation_request" value="recommendation_request">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+
+         <div class="form-row">
+            <div class="col-9">
+                <label for="new-recommendations">
+                    {{ "963" | translate }}
+                </label>
+            </div>
+            <div class="col notification-checkbox">
+                <label class="switch">
+                    <input type="checkbox" id="new-recommendations" formControlName="new_recommendation" value="new_recommendation">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div> 
+        
+        <div class="form-row">
+            <div class="col-9">
+                <label for="skill-endorsements">
+                    {{ "1322" | translate }}
+                </label>
+            </div>
+            <div class="col notification-checkbox">
+                <label class="switch">
+                    <input type="checkbox" value="new_endorsement" formControlName="new_endorsement" id="skill-endorsements">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <!-- First table, "Activity" end -->
+
+    <!-- Second table, "Network" start -->
+    <!-- <div class="boxes-for-account">
+        <h2>Network</h2>
+        <hr>
+        <div class="form-row">
+            <div class="col-9">
+                <label for="birthdays">
+                    Birthdays
+                </label>
+            </div>
+            <div class="col notification-checkbox">
+                <label class="switch">
+                    <input type="checkbox"  id="birthdays"  >
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+        
+        <div class="form-row">
+            <div class="col-9">
+                <label for="job-changes">
+                    Job changes in your Network
+                </label>
+            </div>
+            <div class="col notification-checkbox">
+                <label class="switch">
+                    <input type="checkbox"  id="job-changes">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+    </div> -->
+    <!-- Second table, "Network" end -->
+
+    <!-- Third table, "Jobs" start -->
+    <div class="boxes-for-account">
+        <h2> {{  "829" | translate }} </h2>
+        <hr>
+        <!-- <div class="form-row">
+            <div class="col-9">
+                <label for="recommend-jobs">
+                    Recommend jobs
+                </label>
+            </div>
+            <div class="col notification-checkbox">
+                <label class="switch">
+                    <input type="checkbox"  id="recommend-jobs">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+         -->
+        <div class="form-row">
+            <div class="col-9">
+                <label for="job-invitations">
+                    {{  "817" | translate }}
+                </label>
+            </div>
+            <div class="col notification-checkbox">
+                <label class="switch">
+                    <input type="checkbox" id="job-invitations" formControlName="job_invitation" value="job_invitation">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+        
+        <!-- <div class="form-row">
+            <div class="col-9">
+                <label for="job-alerts">
+                    Job alerts
+                </label>
+            </div>
+            <div class="col notification-checkbox">
+                <label class="switch">
+                    <input type="checkbox" id="job-alerts">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+         -->
+        <!-- <div class="form-row">
+            <div class="col-9">
+                <label for="saved-jobs">
+                        Saved jobs reminder
+                </label>
+            </div>
+            <div class="col notification-checkbox">
+                <label class="switch">
+                    <input type="checkbox" id="saved-jobs">
+                    <span class="slider round"></span>
+                </label>
+            </div> -->
+        <!-- </div> -->
+        
+        <!-- <div class="form-row">
+            <div class="col-9">
+                <label for="job-posts">
+                    Job posts from companies you are following
+                </label>
+            </div>
+            <div class="col notification-checkbox">
+                <label class="switch">
+                    <input type="checkbox" id="job-posts">
+                    <span class="slider round"></span>
+                </label>
+            </div> -->
+        <!-- </div> -->
+        
+    </div>
+    <!-- Third table, "Jobs" end -->
+
+    <!-- Forth table, "ads" start -->
+    <!-- <div class="boxes-for-account">
+        <h2>Ads</h2>
+        <hr>
+        <div class="form-row">
+            <div class="col-9">
+                <label for="advertisment-updates">
+                    Advertisment Updates
+                </label>
+            </div>
+            <div class="col notification-checkbox">
+                <label class="switch">
+                    <input type="checkbox" id="advertisment-updates">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+    </div> -->
+    <!-- Forth table, "ads" end -->
+
+    <!-- Fifth table, "email updates" start -->
+    <!-- <div class="boxes-for-account">
+        <h2>Email Updates</h2>
+        <hr>
+        <div class="form-row">
+            <div class="col-9">
+                <label for="connection-requests">
+                    Email Updates
+                </label>
+            </div>
+            <div class="col notification-checkbox">
+                <label class="switch">
+                    <input type="checkbox"  id="connection-requests"  >
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-9">
+                <label for="email-messages">
+                    Messages
+                </label>
+            </div>
+            <div class="col notification-checkbox">
+                <label class="switch">
+                    <input type="checkbox" id="email-messages">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-9">
+                <label for="email-jobs">
+                    Jobs
+                </label>
+            </div>
+            <div class="col notification-checkbox">
+                <label class="switch">
+                    <input type="checkbox" id="email-jobs">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-9">
+                <label for="email-news">
+                    News
+                </label>
+            </div>
+            <div class="col notification-checkbox">
+                <label class="switch">
+                    <input type="checkbox" id="email-news">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="col-9">
+                <label for="email-offers">
+                    Offers
+                </label>
+            </div>
+            <div class="col notification-checkbox">
+                <label class="switch">
+                    <input type="checkbox" id="email-offers">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+    </div> -->
+    <!-- Fifth table, "email updates" end -->
+
+<!-- Table finish -->
+    </form>
+</div>           

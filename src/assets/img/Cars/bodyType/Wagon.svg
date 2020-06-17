@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="54.497" height="22.457" viewBox="0 0 54.497 22.457">
+  <g id="Wagon" transform="translate(0.5 0.5)">
+    <path id="Path_770" data-name="Path 770" d="M.714,11.919s-.575-4.3,10.533-4.6a2.844,2.844,0,0,0,1.981-.858C15.084,4.543,20.631,0,31.587,0,47.41,0,50.644,7.3,50.644,7.3V10.1l2.064,1.032a1.424,1.424,0,0,1,.789,1.275c0,3.965-.5,3.876-3.566,4.6H1.428A1.428,1.428,0,0,1,0,15.582V12.741a.712.712,0,0,1,.36-.62Z" fill="none" stroke="gray" stroke-width="1"/>
+    <ellipse id="Ellipse_37" data-name="Ellipse 37" cx="2.139" cy="2.139" rx="2.139" ry="2.139" transform="translate(42.703 18.778) rotate(-80.782)" fill="#fafafa"/>
+    <g id="Group_380" data-name="Group 380" transform="translate(47.078 7.304)">
+      <path id="Path_771" data-name="Path 771" d="M170.79,28.206a.222.222,0,0,1-.13-.2v-.888a.217.217,0,0,1,.219-.219h3.071v2.72Z" transform="translate(-170.522 -26.762)" fill="#fafafa"/>
+      <path id="Path_772" data-name="Path 772" d="M173.45,26.677v2.368l-2.966-1.325a.082.082,0,0,1-.047-.072V26.76a.08.08,0,0,1,.08-.08h2.933m.277-.279h-3.209a.358.358,0,0,0-.357.357v.888a.359.359,0,0,0,.21.326l3.356,1.5V26.4Z" transform="translate(-170.16 -26.4)" fill="gray"/>
+    </g>
+    <path id="Path_773" data-name="Path 773" d="M82.852,7.735a.707.707,0,0,0-.457-.664,32,32,0,0,0-11.349-1.9c-9.957,0-14.94,3.752-16.545,5.259a.356.356,0,0,0,.243.617H82.139a.714.714,0,0,0,.714-.714Z" transform="translate(-39.341 -3.74)" fill="none" stroke="gray" stroke-width="1"/>
+    <g id="Group_381" data-name="Group 381" transform="translate(0.695 8.643)">
+      <path id="Path_775" data-name="Path 775" d="M4.867,31.807,5.4,31.24Zm0,0c-3.3,1.428-2.869,3.552-2.869,3.552l1.544-.357L5.4,31.24Z" transform="translate(-2.513 -31.24)" fill="none" stroke="gray" stroke-width="0.3"/>
+    </g>
+    <line id="Line_73" data-name="Line 73" y2="5.322" transform="translate(26.502 1.818)" fill="none" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1"/>
+    <line id="Line_75" data-name="Line 75" y2="4.933" transform="translate(39.945 2.371)" fill="none" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1"/>
+    <line id="Line_76" data-name="Line 76" y2="2.938" transform="translate(18.617 4.366)" fill="none" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1"/>
+    <line id="Line_65_1_" x1="2.511" stroke-width="1" transform="translate(22.782 9.647)" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" fill="none"/>
+    <line id="Line_65_1_2" data-name="Line_65_1_" x1="2.511" transform="translate(36.088 9.647)" fill="none" stroke="gray" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="1"/>
+    <g id="Group_421" data-name="Group 421" transform="translate(4.324 10.977)">
+      <ellipse id="Ellipse_32" data-name="Ellipse 32" cx="4.99" cy="4.99" rx="4.99" ry="4.99" transform="translate(0 0)" fill="#fff" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"/>
+      <circle id="Ellipse_33" data-name="Ellipse 33" cx="3.992" cy="3.992" r="3.992" transform="translate(0.333 8.138) rotate(-76.714)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </g>
+    <g id="Group_422" data-name="Group 422" transform="translate(38.92 10.977)">
+      <ellipse id="Ellipse_32-2" data-name="Ellipse 32" cx="4.99" cy="4.99" rx="4.99" ry="4.99" transform="translate(0 0)" fill="#fff" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" stroke-width="2"/>
+      <circle id="Ellipse_33-2" data-name="Ellipse 33" cx="3.992" cy="3.992" r="3.992" transform="translate(0.333 8.138) rotate(-76.714)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </g>
+  </g>
+</svg>

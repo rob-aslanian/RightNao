@@ -1,0 +1,237 @@
+<app-dream-job [title]='"REAL ESTATE"'></app-dream-job>
+
+<div class="container-fluid " style="width: 80%;">
+    <div class="row pb-5 mt-2" *ngIf="selectedHome; else loading">
+        <div class="col-md-10  p-0 mb-3">
+           <div class="details">
+               <div class="details__photo-gallery  col-12 p-0">
+                   <app-service-slider-edition-two [files]='selectedHome.files'></app-service-slider-edition-two>
+               </div>
+               <div class="details__content row p-3">
+                   <div class="details__content__description col-lg-9">
+                       <div class="details__content__title col-12">
+                           <!-- <div class="col-md-6"> -->
+                               <div class="w-100 d-flex justify-content-between">
+                                   <h4>{{ selectedHome['rental_details'][0]['title'] }}</h4>
+                                   <span>{{ postedDate }} </span>
+                               </div>
+                               <div class="d-flex" *ngIf="selectedHome['rental_info']['location']['country'] && 
+                                                          selectedHome['rental_info']['location']['city'] ">
+                                   <img src="assets/img/24.svg" alt="location" >
+                                   <span class="ml-3">{{ selectedHome['rental_info']['location']['country'] | country }}, 
+                                                      {{ selectedHome['rental_info']['location']['city'] }}  
+                                   </span>
+                               </div>
+                           <!-- </div> -->       
+                       </div>  
+                       <div class="details__content__description-details row justify-content-between mt-3 m-1 d-print-none" >
+                           <div class="col-xl-2 d-flex details__content__description-details__box align-items-center ">  
+                               <img src="assets/img/real-estate/NewHouses.svg" alt="Home">
+                               <div class="">
+                                   <span>{{ selectedHome['rental_info']['property_type'] | property }}</span>
+                                   <p>{{ selectedHome['rental_info']['deal_type']  | property }}</p>
+                               </div>
+                           </div>
+                           <div class="col-xl-2 d-flex details__content__description-details__box align-items-center ">  
+                               <img src="assets/img/real-estate/Bedroom.svg" alt="Area">
+                               <div class="">
+                                   <span>{{ selectedHome['badrooms']  }} Beds</span>
+                                   <p>Bedrooms</p>
+                               </div>
+                           </div>
+                           <div class="col-xl-2 d-flex details__content__description-details__box align-items-center ">  
+                               <img src="assets/img/real-estate/Group417.svg" alt="Baths">
+                               <div class="">
+                                   <span>{{  selectedHome['bathrooms']  }} Baths</span> 
+                                   <p>Bathrooms</p>
+                               </div>
+                           </div>
+                           <div class="col-xl-2 d-flex details__content__description-details__box align-items-center ">  
+                               <img src="assets/img/real-estate/Group412.svg" alt="Cars">
+                               <div class="">
+                                   <span>{{ selectedHome['car_spaces']  }} Cars</span>
+                                   <p>Car spaces</p>
+                               </div>
+                           </div>
+                           <div class="col-xl-2 d-flex details__content__description-details__box align-items-center ">  
+                               <img src="assets/img/real-estate/Group3_1.svg" alt="Area">
+                               <div class="">
+                                   <span>{{ selectedHome['total_area']  }} 
+                                       {{ selectedHome['metrict_type'] === "PriceType_Any" || 
+                                                                           "PriceType_MetreSquare" ? "m": "ft"  }}<sup>2</sup> </span>
+                                   <p>Area</p>
+                               </div>
+                           </div>
+                           <div class="col-xl-2 d-flex " style="border-right: none;">  
+                               <img src="assets/img/real-estate/Subtraction1.svg" alt="Floors">
+                               <div class="">
+                                   <span>{{ selectedHome['floor']  }}/{{selectedHome['floors']}}</span>
+                                   <p>Floors</p>
+                               </div>
+                           </div>
+                       </div>
+                       <div class="details__content__description__text w-100 mt-4">
+                           <p> {{ selectedHome['rental_details'][0]['description'] }} </p>
+                           <div class="row mt-5">
+
+                               <div class="col-md-4" *ngIf="selectedHome.additional_filters.length > 0">
+                                   <h4>Addational Details</h4>
+                                   <ul>
+                                       <li *ngFor="let item of selectedHome.additional_filters">{{ item | property }}</li>
+                                   </ul>
+                               </div>
+
+                               <div class="col-md-4" *ngIf="selectedHome.climat_control.length > 0">
+                                   <h4>Climate control</h4>
+                                   <ul>
+                                        <li *ngFor="let item of selectedHome.climat_control">{{ item | property }}</li>
+                                   </ul>
+                               </div>
+
+                               <div class="col-md-4" *ngIf="selectedHome.indoor_features.length > 0">
+                                    <h4>Indoor features</h4>
+                                    <ul>
+                                        <li *ngFor="let item of selectedHome.indoor_features">{{ item | property }}</li>
+                                    </ul>
+                                </div>
+
+                                <div class="col-md-4" *ngIf="selectedHome.outdoor_features.length > 0">
+                                        <h4>Outdoor features</h4>
+                                    <ul>
+                                        <li *ngFor="let item of selectedHome.outdoor_features">{{ item | property }}</li>
+                                    </ul>
+                                </div>
+
+                                <div class="col-md-4" *ngIf="selectedHome.type_of_land.length > 0">
+                                        <h4>Type of Land</h4>
+                                    <ul>
+                                        <li *ngFor="let item of selectedHome.type_of_land">{{ item | property }}</li>
+                                    </ul>
+                                </div>
+
+                                <div class="col-md-4" *ngIf="selectedHome.type_of_property.length > 0">
+                                        <h4>Type of Property</h4>
+                                    <ul>
+                                        <li *ngFor="let item of selectedHome.type_of_property">{{ item | property }}</li>
+                                    </ul>
+                                </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-lg-3 d-print-none" >
+                       <div class="counter-offer py-3">
+                            <div class="counter-offers">
+                                    <div class="counter-offers__title p-3">
+                                        <h4>{{ selectedHome['price']['min_price'] }} $</h4>
+                                        <span>1m - 1,052</span>
+                                    </div>
+                                    <div class="counter-offers__alert d-flex justify-content-between p-3">
+                                        <span >Recieve an alert</span>
+                                        <div class="" style="position: absolute; right: 3rem;">
+                                                <label class="switch ml-2">
+                                                    <input type="checkbox" 
+                                                           [ngClass]="{ 'has_reppossed': selectedHome.rental_info.is_me }"
+                                                           [ngModel]="selectedHome.rental_info.has_subscribed"
+                                                           (click)='toggleSubscription(selectedHome.rental_info.has_subscribed, 
+                                                                                       selectedHome.rental_info.has_subscribed, 
+                                                                                       $event )'><span class="slider round"></span>   
+                                                </label>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="counter-offers__offer p-3"
+                                         [ngClass]="{ 'has_reppossed': selectedHome.rental_info.has_offered || selectedHome.rental_info.is_me }">
+                                
+                                        <p>Make a counter offer</p>
+                                        
+                                        <div class="d-flex align-items-center">
+                                            <input type="number"
+                                                   class="form-control" 
+                                                   placeholder="Enter price or price range" 
+                                                   [(ngModel)]="price" >
+                                            <button class="btn btn-primary ml-2" (click)='makeCounterOffer()'>Send</button>
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                       </div>
+
+                       <div class="author-details mt-3 p-3">
+                            <ng-container *ngIf="!profileLoading; else loading">
+                                <app-author-details [profile]='profileData'></app-author-details>
+                            </ng-container>
+                            <ng-template #loading>
+                                <div class="d-flex justify-content-center">
+                                    <app-spinner></app-spinner>
+                                </div>
+                            </ng-template>
+                            
+                            
+                       </div>
+                       
+                       <div class="author__actions mt-3 row">
+                           
+                           <div class="col-md-4 d-flex">
+                               <img class="mr-2" [src]="selectedHome.has_liked  ? 'assets/img/99.svg' : 'assets/img/98.svg' " alt="">
+                               <span *ngIf="selectedHome.has_liked">Saved</span>
+                           </div>
+
+                           <div class="col-md-4 d-flex">
+                               <img class="mr-2" src="assets/img/84.svg" alt="">
+                               <span>Share</span>
+                           </div>
+                           <div class="col-md-4 d-flex">
+                               <img class="mr-2" src="assets/img/625.svg" alt="">
+                               <span (click)='print()'>Print</span>
+                           </div>
+                           <div class="col-12 d-flex justify-content-end mt-2">
+                               <div class="" style="border-right: 1px solid grey; padding-right: .5rem; ">
+                                   <p class="m-0">21,542 view</p>
+                               </div>
+                               <div class="ml-2">
+                                   <p class="m-0">2 share</p>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+            
+            <div class="similar-posts  d-print-none mt-3">
+                <h4 style="font-weight: lighter; padding-left: 17px; padding-top: 10px; "> Similar posts </h4>
+                    <div style="position: relative;">
+                        <app-slider-bad-boy-edition [amount]='4' *ngIf="slider.length > 0"> 
+                                <div class="row flex-nowrap">
+                                    <div class="col-3" *ngFor="let slide of slider">
+                                             <app-box-slider [slide]='slide'></app-box-slider>
+                                    </div>
+                                </div>
+                            
+                        </app-slider-bad-boy-edition>
+                            
+                            <div class="arrow-left" (click)='rotateLeft()'>
+                                <img src="assets/img/509.svg" alt="arrow-left">
+                            </div> 
+                            
+                            <div class="arrow-right" (click)='rotateRight()'>
+                                <img src="assets/img/508.svg" alt="arrow-rigt">
+                            </div>
+                        
+                    </div>
+                        
+            </div>
+            
+        </div>  
+        <!--  * * *  Languages Bar * * *  -->
+        <div class="ads d-print-none col-md-2">
+            <app-user-profile-landing-languages></app-user-profile-landing-languages>
+        </div>
+
+    </div>
+    <ng-template #loading>
+        <div class="d-flex justify-content-center">
+              <app-spinner></app-spinner>
+        </div>
+    </ng-template>
+    
+</div>

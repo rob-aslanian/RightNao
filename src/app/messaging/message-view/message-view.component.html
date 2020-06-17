@@ -1,0 +1,77 @@
+<div class="messaging-head">
+    <div *ngIf="conversationLoaded" class="messaging-head_right">
+        <button type="button" *ngIf="isMobile" (click)="showMessageList()">Back</button>
+        <h2>{{conversation | conversationName }}</h2>
+        <div class="head-chat-settings">
+            <div (click)="onAddParticipants()" class="blue-plus"></div>
+
+            <!-- <div class="settings-selection">
+                <div class="settings-selection_head"></div>
+            </div> -->
+
+            <div ngbDropdown class="d-inline-block settings-selection" placement="bottom-right">
+                <div id="chatOptionsHeader" ngbDropdownToggle class="settings-selection_head"></div>
+                <div ngbDropdownMenu aria-labelledby="chatOptionsHeader">
+                    <div class="settings-selection_body">
+                        <div *ngIf="conversation.is_group" (click)="onRename()" class="settings-selection-item">
+                            <img src="./assets/img/68.svg" alt="mute"> Rename
+                        </div>
+                        <div (click)="toggleMuteUnmute()" class="settings-selection-item">
+                            <img src="{{conversation.muted ? './assets/img/256.svg' : './assets/img/125.svg'}}" alt="mute"> {{conversation.muted ? 'Unmute' : 'Mute'}} conversation
+                        </div>
+                        <div (click)="setReadUnread()" class="settings-selection-item">
+                            <img src="./assets/img/126.svg" alt="mute"> Mark as {{conversation.unread ? 'read' : 'unread'}}
+                        </div>
+                        <div *ngIf="conversation.is_group" (click)="openLeaveGroupModal(leaveGroupModal)" class="settings-selection-item">
+                            <img src="./assets/img/69.svg" alt="mute"> Leave Group
+                        </div>
+                        <div (click)="archiveConversation(conversation)" class="settings-selection-item">
+                            <img src="{{conversation.archived ? './assets/img/265.svg' : './assets/img/127.svg'}}" alt="mute"> {{conversation.archived ? 'Unarchive' : 'Archive'}}
+                        </div>
+                        <div (click)="openDeleteChatModal(deleteChatConfirmModal)" class="settings-selection-item">
+                            <img src="./assets/img/53.svg" alt="mute"> Delete
+                        </div>
+                        <div *ngIf="!conversation.is_group && !isBlocked" (click)="open('report' ,getParticipant() )" class="settings-selection-item">
+                            <img src="./assets/img/42.svg" alt="mute"> {{conversation.blocked ? 'Report / Unblock' : 'Report / Block'}} 
+                        </div>
+                        <div *ngIf="isBlocked" (click)="unBlockUser(getParticipant())"  class="settings-selection-item">
+                            <img src="./assets/img/57.svg" alt="mute"  > Unblock
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="messaging-main-content">
+    <div class="messaging-main_center">
+        <app-message-interface *ngIf="conversationLoaded" [conversation]="conversation"></app-message-interface>
+    </div>
+    <div class="messaging-main_right">
+        <app-message-details *ngIf="conversationLoaded" [conversation]="conversation"></app-message-details>
+    </div>
+</div>
+
+<ng-container>
+    <ng-template #leaveGroupModal>
+        <app-leave-group (closeModal)=" closeModal()" [conversationId]="conversation.id"></app-leave-group>
+    </ng-template>
+
+    <ng-template #muteChatModal>
+        <app-mute-chat [muteStatus]="conversation.muted" [conversationId]="conversation.id" (closeModal)="closeModal()"></app-mute-chat>
+    </ng-template>
+
+    <ng-template #deleteChatConfirmModal>
+        <app-delete-chat-confirm [archiveStatus]="conversation.archived" [conversationId]="conversation.id" (closeModal)="closeModal()"></app-delete-chat-confirm>
+    </ng-template>
+</ng-container>
+
+<!-- Modals -->
+<app-modal (closeModal)="modalType = null">
+    <app-report-block-user *ngIf="modalType === 'report' "  [type]="isCompany ? 'company' : 'user' "  
+            [blockId]="getParticipant()" (closeModal)="modal.close()" (isBlocked)="isBlocked = true">
+    </app-report-block-user >
+</app-modal>
+<!-- Modals -->

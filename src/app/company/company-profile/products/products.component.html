@@ -1,0 +1,42 @@
+<div class="section-header d-flex">
+    <h1 class="mb-0"> {{ '1110' | translate }} </h1>
+    <div class="col line">
+        <button class="add" (click)="open()" *ngIf="isAdmin">
+            <img src="assets/img/50.svg" alt="add">
+        </button>
+    </div>
+</div>
+    
+
+<div class="products row" *ngIf="products && products.length > 0" >
+    <div class="col-12 col-lg-6 mt-3 product" *ngFor="let product of products | slice: 0: startPage">
+        <div class="section-content p-0 product__content">
+            <img class="section-image"  [src]="product.image && product.image !== '' ? '/file/' + product.image :'assets/img/image_products.svg'" alt appAppLazyImage>
+
+            <div class="products-text">
+                <h3 class="product-name">{{product.name}}</h3>     
+                <a [href]="product.website" target="_blank" >{{product.website}}</a>                                       
+                <button class="edit bottom-edit" (click)="open(true , product)" *ngIf="isAdmin">
+                    <img src="assets/img/19.svg" alt="edit">
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-container *ngIf="!(products && products.length > 0) && isAdmin" >
+        <app-empty-profile [key]='"products"' (openModal)='openEmptyModal()'></app-empty-profile>
+</ng-container>
+
+
+<!-- More less buttons -->
+<app-more-less [dataLength]="products.length" (start)="startPage = $event;"></app-more-less>
+
+<app-modal (closeModal)="modalType = null">
+    <ng-container *ngIf="modalType === 'add'">
+        <app-products-modal [comapnyID]="data.companyId" (result)="getProduct($event)"></app-products-modal>
+    </ng-container>
+    <ng-container *ngIf="modalType === 'edit'">
+        <app-products-modal  [comapnyID]="data.companyId" [data]="editableData" (result)="getProduct($event)"></app-products-modal>
+    </ng-container>
+  </app-modal>

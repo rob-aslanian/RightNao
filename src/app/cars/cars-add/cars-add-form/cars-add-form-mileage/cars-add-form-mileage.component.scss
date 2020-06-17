@@ -1,0 +1,11 @@
+@import 'src/variables';
+
+.basic-form {
+    & label {
+        font-size: 14px;
+        color: $dark-grey;
+    }
+    .custom-red {
+        color: red;
+    }
+}

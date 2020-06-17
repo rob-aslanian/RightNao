@@ -1,0 +1,8 @@
+<label class="title-label">Organic</label>
+<div class="mt-1 d-flex custom-radio-input-god">
+        <div class="mt-2" *ngFor="let light of SUB_CATEGORY">
+            <input  type="radio" [id]="light.id"  [formControl]='oranicCtrl' class="d-none" name="oranicCtrl" [value]="light.id">
+            <label [for]="light.id" 
+                   class="btn btn-light-dark mr-3">{{ light.name }}</label>
+        </div>
+</div>

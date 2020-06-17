@@ -1,0 +1,32 @@
+@import 'src/variables';
+
+.white-bg-tab {
+  background: $white;
+  height: 70px;
+  position: absolute;
+  left: 0px;
+  width: 100%;
+    .services-review {
+        height: 100%;
+        min-width: 524px;
+            a {
+                font-size: 1rem;
+                cursor: pointer;
+                color: #808080 ;
+                text-decoration: none;
+                padding-top: 22px;
+            }         
+        .activatedLink{
+            border-bottom: 3px solid #00D4E3;
+            color: black;
+        }
+    }
+}
+
+@media ( max-width: 991px ) {
+      .white-bg-tab  {
+          position: unset ;
+          overflow: hidden;
+          overflow-x: auto;
+      }
+}

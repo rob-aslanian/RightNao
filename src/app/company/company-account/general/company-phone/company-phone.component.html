@@ -1,0 +1,56 @@
+<h2> {{ "1059" | translate }} </h2>
+<button class="dark-button" (click)="toggle('add')"></button>
+<hr>
+
+<ng-container *ngFor="let phone of data; let i = index">
+    <div class="row">
+        <div class="col-lg-3" *ngIf="phone.country !== null && phone.country_code !== null ">
+            <h3>
+                {{ phone.country + "  +" + phone.country_code + " " + phone.number }}
+            </h3>
+        </div>
+        <div class="col d-none d-lg-block">
+
+        </div>
+        <div class="col button-col">
+            <span *ngIf="phone.is_primary" > {{ "1097" | translate }} </span>
+            <button  (click)="toggle('edit' , i ,  phone)" [ngClass]="{'active': isOpenEditForm[i]}"></button>
+        </div>
+    </div>
+
+    <!-- Edit -->
+    <div *ngIf="isOpenEditForm[i] then editPhone" ></div>
+    <ng-template #editPhone>
+        <form>
+            <label> {{ "497" | translate }} </label>
+            <div class="form-group row mt-0">
+                    <app-phone (result)="getPhones($event)" [data]="editableData" [disabled]="true"></app-phone>
+            
+                    <button class="backgroundless mr-3" (click)="submit(true , phone)" *ngIf="!phone.is_primary"> {{ "880" | translate }} </button>
+                    <button class="backgroundless" (click)="remove()"> {{ "1185" | translate }} </button>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" (click)="submit()"> {{ "1231" | translate }} </button>
+            </div>
+        </form>
+    </ng-template>
+</ng-container>
+
+
+<div *ngIf="isOpenForm then addPhone" ></div>
+<ng-template #addPhone>
+
+    <div class="button-col">
+        <button  class="active" (click)="isOpenForm = false" ></button>
+    </div>
+
+    <form>
+        <label> {{ "82" | translate }} </label>
+        <div class="form-group row mt-0">
+            <app-phone (result)="getPhones($event)" ></app-phone>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" (click)="submit()"> {{ "1231" | translate }} </button>
+        </div>
+    </form>
+</ng-template>

@@ -1,0 +1,21 @@
+@import "src/variables";
+.offers {
+    &-wrapper {
+        background-color: $white;
+        border-radius: 0.5rem;
+        padding: 20px 25px;
+        margin: 10px 0;
+    }
+    &-title {
+        margin-bottom: 15px;
+    }
+    &-title-img {
+        margin-right: 9px;
+    }
+    &-title-text {
+        font-size: 16px;
+    }
+    &-text {
+        color: $dark-grey;
+    }
+}

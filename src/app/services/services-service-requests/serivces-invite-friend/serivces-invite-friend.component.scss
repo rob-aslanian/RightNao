@@ -1,0 +1,268 @@
+@import '../../../../variables';
+
+.invite-friend{
+    background-color: $white;
+    border-radius: .5rem;
+    padding: 1rem;
+    border: 1px solid $light-grey;
+    .invite-friend-title{
+        h4{
+            font-size: 1.25rem;
+            text-align: left;
+        }
+    }
+    .invite-friend-description{
+        p{
+            color: $dark-grey;
+            font-size: 1rem;
+            margin: 0;
+            padding-bottom: .3rem;
+        }
+    }
+    .invite-by-email{
+        &-title{
+            h4{
+                font-size: 1.25rem;
+                text-align: left;
+            }
+        }
+        &-input{
+            input{
+                max-width: 26rem;
+                margin-right: .7rem;
+            }
+        }
+    }
+    .share{
+        &-title{
+            h4{
+                font-size: 1.25rem;
+                text-align: left;
+            }
+        }
+        .social{
+            div{
+                border: 1px solid $light-grey;
+                border-radius: .5rem;
+                padding: .4375rem;
+                margin-right: .5rem;
+                img{
+                    // border-radius: 50%;
+                    width: 2rem;
+                    height: 2rem;
+                }
+            }
+        }
+    }
+
+    .sent-invitations{
+        padding: 1rem;
+        .invitations-title{
+            h4{
+                font-size: 1.25rem;
+
+            }
+        }
+        .table{
+            .top-table{
+                div{
+                    p{
+                        font-size: 0.875rem;
+                    }
+                }
+            }
+            .bottom-table{
+                align-items: center;
+                padding: .5rem;
+                div{
+                    p{
+                        font-size: .875rem;
+                        color: $dark-grey;
+                        margin: 0;
+                    }
+                }
+                .status{
+                    img{
+                        widows: 1rem;
+                        height: 1rem;
+                        padding-right: .4rem;
+                        margin-top: .2rem;
+                    }
+                }
+                .actions{
+                    button{
+                        margin: 0;
+                        white-space: nowrap;
+                        font-size: 0.875rem;
+                    }
+                }
+                .border-line-bottom{
+                    margin: 0;
+                    height: 1.7rem;
+                }
+            }
+        }
+    }
+}
+
+.top-table{
+    background-color: $blue;
+    border-radius: .5rem;
+
+    div{
+        padding-left: 1rem;
+        p{
+            color: $white;
+            padding-right: 1rem;
+            margin-top: .6rem;
+        }
+    }
+    @media (max-width:992px){
+        // background-color: red;
+    }
+    @media (max-width:992px){
+        justify-content: space-between;
+        div{
+            border-bottom: 1px solid $light-grey;
+            height: 100px;
+            // padding: 1rem;
+        }
+    }
+    @media #{$break3}{
+        
+     
+    }
+    .service{
+        @media (max-width:992px){
+            margin-top: 5rem;
+        }
+    }
+}
+
+.bottom-table{
+    @media #{$break1}{
+        // background-color: red;
+    }
+    @media (max-width:992px){
+        justify-content: space-between;
+        background-color: $white;
+        // height: 70px;
+        
+        div{
+            border-bottom: 1px solid $light-grey;
+            // height: 100px;
+        }
+    }
+    @media #{$break3}{
+        
+     
+    }
+    border: 1px solid $light-grey;
+    border-radius: .5rem;
+    div{
+        padding-left: 1rem;
+     
+    }
+    .seller-img{
+        align-items: center;
+        justify-content: center;
+
+        @media (max-width:992px){
+            height: 6.6875rem;
+        }
+        img{
+            height: 2.1875rem;
+            width: 2.1875rem;
+        }
+    }
+    .service-description{
+        line-height: 1.2rem;
+        padding-bottom: .6rem;
+        padding-top: .6rem;
+        p{
+            font-size: 0.875rem; 
+            margin: 0rem;
+            padding-bottom: .2rem;
+        }
+        span{
+            line-height: 1rem;
+            font-size: 0.8125rem;
+            color: $dark-grey;
+           
+        }
+    }
+    .delivery-date{
+        padding-right: .5rem;
+        align-items: center;
+        p{
+            font-size: 0.875rem;
+            color: $dark-grey;
+        }
+    }
+    .price{
+        align-items: center;
+        p{
+            font-size: 1rem;
+            color: $background-light-cyan;
+        }
+
+        @media (max-width:992px){
+            height: 2.3125rem;
+        }
+    }
+    .note{
+        height: 1.5rem;
+        width: 1.5rem;
+
+        @media (max-width:992px){
+                    width: 100%;
+                }
+
+        img{
+            margin-top: 1.6rem;
+            height: 1.5rem;
+            width: 1.5rem;
+
+            @media (max-width:992px){
+                    margin: 0;
+                    }
+            }
+        
+    }
+    .action{
+
+        button{
+            margin-top: 1.6rem;
+            background-color: $light-grey;
+            border-color: $light-grey;
+            color: $dark-blue;
+            padding-top: 0.05rem;
+            width: 2.5rem;
+            height: 1.5rem;
+        }
+    }
+}
+
+.border-line{
+    border-right: 1px solid $dark-grey;
+    height: 1.5rem;
+    margin-top: .6rem;
+    @media (max-width:992px){
+        display: none;
+    }
+    @media (max-width:992px){
+        display: none;
+    }
+}
+
+.border-line-bottom{
+    border-right: 1px solid $dark-grey;
+    height: 2.5rem;
+    margin-top: 1.4rem;
+    @media (max-width:992px){
+        display: none;
+    }
+    @media (max-width:992px){
+        display: none;
+    }
+}

@@ -1,0 +1,72 @@
+@import 'src/variables';
+
+
+
+.member-reported-content{
+    background: $white;
+    border-radius: .5rem;
+    border: 1px solid $light-grey;
+    &__title{
+        h4{
+            font-size: 1rem;
+        }
+    }
+    &__line{
+        background-color: $background-soft-blue;
+        border-radius: .5rem;
+        align-items: center;
+        padding: .5rem;
+        p{
+            font-size: 0.875rem;
+            padding-right: .3rem;
+            margin: 0;
+        }
+        span{
+            color: $dark-grey;
+            font-size: 0.875rem;
+        }
+    }
+    &__user{
+        &__avatar{
+            img{
+                width: 2.1875rem;
+                height: 2.1875rem;
+                border-radius: 50%;
+                margin-right: .5rem;
+            }
+        }
+        &__fullName{
+            p{
+                font-size: 0.875rem;
+                margin: 0;
+            }
+        }
+        &__description{
+            span{
+                color: $dark-grey;
+                font-size: .875rem;
+            }
+            img{
+                width: 6.25rem;
+                height: 6.25rem;
+                border-radius: .5rem;
+                margin-left: .5rem;
+            }
+        }
+        &__date{
+            padding-left: 2.7rem;
+            span{
+                color: $dark-grey;
+                font-size: 0.8125rem;
+            }
+        }
+        &__date__post{
+            // padding-left: 2.7rem;
+            span{
+                color: $dark-grey;
+                font-size: 0.8125rem;
+            }
+        }
+    }
+
+}

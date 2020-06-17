@@ -1,0 +1,729 @@
+<div class="help-content-heading">
+    <h2>Network</h2>
+</div>
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('how-to-grow')">
+        <h3>How to Grow your Network?</h3>
+        <span *ngIf="toggle.view.active['how-to-grow']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['how-to-grow']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['how-to-grow']">
+        <div class="help-content-text">
+            <p>
+                There are several ways to find people you may know and to grow your Hypercube network.
+            </p>
+            <ul>
+                <li>
+                    Import contacts from emails 
+                </li>
+                <li>
+                    Visit People you may know section
+                </li>
+                <li>
+                    Visit Companies & Organizations to follow
+                </li>
+                <li>
+                    Use the Search bar on the Hypercube homepage
+                </li>
+            </ul>
+            <p>
+                <b>
+                    How to synchronize your email contacts and invite them to connect?
+                </b>
+            </p>
+            <p>
+                You can build your network by importing a list of your contacts from the network page on Hypercube.
+            </p>
+            <p>
+                We will import and store details about your address book contacts to suggest relevant contacts for you to connect with. We'll never email anyone without your permission.
+            </p>
+            <p>
+                To import email contacts from your address book:
+            </p>
+            <ol>
+                <li>
+                    Click the <b>Network</b> icon at the side menu of your homepage.
+                </li>
+                <li>
+                    Choose a service provider from the list. <br>
+                    <b>Note:</b> if your email provider is not supported, you can still invite people to connect by email. 
+                </li>
+                <li>
+                    You can also import contacts from this file formats: csv, txt, vcf.
+                </li>
+                <li>
+                    After contacts are imported, you’ll be redirected to a list of your contacts who are already on Hypercube. Click <b>connect</b> to send invitations. We automatically select all contacts on the displayed list to be invited. If you don't want to send invitations to everyone on the list, be sure to uncheck the <b>Select All</b> box and individually check the boxes next to contacts you want to connect with.
+                </li>
+                <li>
+                    From Next Tab called <b>Follow companies & Organizations</b> you will have list of your contacts which are registered as companies or Organizations on Hypercube. By clicking Follow button, you can follow them.
+                </li>
+                <li>
+                    On <b>Invite contacts</b> tab you will have a list of your contacts who are not yet on Hypercube. 
+                    <br>Click <b>Invite</b> to invite them to join Hypercube and connect with you. You can also customize your invitation request by adding text to the email.
+                </li>
+            </ol>
+            <p>
+                <b>
+                    Visit “People you may know” section
+                </b>
+            </p>
+            <p>
+                Under this section we will display suggested people for you to connect with. Click the <b>Connect</b> button below the member's name to send connection invitation request.
+            </p>
+            <p>
+                <b>
+                    Visit “Companies & Organizations to follow” section
+                </b>
+            </p>
+            <p>
+                Under this section we will suggest companies & Organizations to follow.
+            </p>
+            <p>
+                <b>
+                    How to use the Search bar?
+                </b>
+            </p>
+            <p>
+                You can use the Search bar to look for people with similar interests, skills, professions and jobs to broaden your professional network and expertise. Once you've found the person you're looking for, select the member's name to view his or her profile.  From any search results page, click the connect button on User’s card to connect.
+            </p>
+            <p>
+                You can use the Search bar to look for companies and organizations which you are interested in and follow them to see their updates.
+            </p>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('how-to-invite')">
+        <h3>How to Invite or Connect with People?</h3>
+        <span *ngIf="toggle.view.active['how-to-invite']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['how-to-invite']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['how-to-invite']">
+        <div class="help-content-text">
+            <p>
+                You can ask someone to join your professional network by sending them an invitation to connect. If they accept your invitation, they'll become your connection. 
+            </p>
+            <p>
+                You can invite people to connect from: 
+            </p>
+            <ol>
+                <li>
+                    <b>
+                        A member's profile 
+                    </b>
+                    - Click the <b>Connect</b> button on their profile page.
+                </li>
+                <li>
+                    <b>
+                        The search results page
+                    </b>
+                    - Click <b>Connect</b> to the right of the member's information.
+                </li>
+                <li>
+                    <b>
+                        The Grow Your Network page 
+                    </b>
+                    in <b>The "People You May Know"</b> section.
+                </li>
+                <li>
+                    <b>
+                        The My Network page 
+                    </b>
+                    - from <b>import contacts</b> section.
+                </li>
+                <li>
+                    <b>
+                        The My Network page 
+                    </b>
+                    - If you have any pending invitations, they will be displayed in “Received requests” section. 
+                </li>
+            </ol>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('how-to-categorize')">
+        <h3>How to categorize your Connections? </h3>
+        <span *ngIf="toggle.view.active['how-to-categorize']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['how-to-categorize']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['how-to-categorize']">
+        <div class="help-content-text">
+            <p>
+                You can organize your Contacts (Connections and companies you are following) from the network page on Hypercube. 
+            </p>
+            <p>
+                Use the built-in color categories:
+            </p>
+            <ul>
+                <li>
+                    Yellow for <b>Friends and Family</b>
+                </li>
+                <li>
+                    Purple for <b>Work</b>
+                </li>
+                <li>
+                    Blue for <b>Business</b>
+                </li>
+                <li>
+                    Orange for <b>Other</b>
+                </li>
+            </ul>
+            <p>
+                You can categorize a connection or a company/organization (you are following) by clicking on grey circle on contacts card’s right side.
+            </p>
+            <p>
+                When you connect with a person or when you start following a company, you can also assign person or company to a color category from their Profile page from <b>More Button</b>.
+            </p>
+            <p>
+                It is also possible to categorize multiple connections by check individually check the boxes next to contacts you want to categorize.
+            </p>
+            <p>
+                In each category you can add as many subcategories as you want.
+            </p>
+            <p>
+                To make a connection or a company as your favorite - Find the contact you wish to add as a favorite and click on heart icon on the card’s right side.
+            </p>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('how-to-report')">
+        <h3>How to Report a User?</h3>
+        <span *ngIf="toggle.view.active['how-to-report']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['how-to-report']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['how-to-report']">
+        <div class="help-content-text">
+            <p>
+                You can report a Profile if
+            </p>
+            <ul>
+                <li>
+                    This Profile violates Terms of Use
+                </li>
+                <li>
+                    This Person does not represent a real Individual
+                </li>
+                <li>
+                    This Person is pretending to be someone 
+                </li>
+                <li>
+                    This account may have been hacked
+                </li>
+                <li>
+                    This Profile Picture is not of a person
+                </li>
+                <li>
+                    This Profile picture is offensive or inappropriate
+                </li>
+                <li>
+                    Something else (tell us the reason)
+                </li>
+            </ul>
+
+            <p>To report a profile:</p>
+            <ol>
+                <li>
+                    Click the <b>More</b> icon on the member's profile.
+                </li>
+                <li>
+                    Click <b>Report/Block</b>.
+                </li>
+                <li>
+                    Select <b>Report this profile</b>.
+                </li>
+                <li>
+                    In pop-up window select the applicable reason for reporting the profile.
+                </li>
+                <li>
+                    Click <b>Report</b> to proceed.
+                </li>
+            </ol>
+
+
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('how-to-block')">
+        <h3>How to block a Member?</h3>
+        <span *ngIf="toggle.view.active['how-to-block']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['how-to-block']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['how-to-block']">
+        <div class="help-content-text">
+            <p>
+                You can block a Hypercube member. We won't notify the member that you blocked them, and only you'll be able to unblock them.
+            </p>
+            <p>
+                When you block a member 
+            </p>
+            <ul>
+                <li>
+                    You won't be able to access each other's profiles 
+                </li>
+                <li>
+                    You won't be able to message each other 
+                </li>
+                <li>
+                    If you're connected, you won't be connected anymore
+                </li>
+                <li>
+                    We'll remove any endorsements and recommendations from that member
+                </li>
+                <li>
+                    We'll stop suggesting you to each other in features such as People You May Know.
+                </li>
+            </ul>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('how-to-unblock')">
+        <h3>How to unblock a Member?</h3>
+        <span *ngIf="toggle.view.active['how-to-unblock']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['how-to-unblock']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['how-to-unblock']">
+        <div class="help-content-text">
+            <p>
+                To unblock a member, go to network page on Hypercube, under the section <b>Manage</b>, find the <b>Block list Tab</b>. On the Member's card click <b>Unblock button</b>.
+            </p>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('how-to-message')">
+        <h3>How do I send a message?</h3>
+        <span *ngIf="toggle.view.active['how-to-message']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['how-to-message']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['how-to-message']">
+        <div class="help-content-text">
+            <p>
+                You can send a message to all hypercube members directly from the hypercube Messaging page, your network page, or a member’s profile page. 
+            </p>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('how-to-block-conversation')">
+        <h3>How to block a conversation?</h3>
+        <span *ngIf="toggle.view.active['how-to-block-conversation']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['how-to-block-conversation']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['how-to-block-conversation']">
+        <div class="help-content-text">
+            <p>
+                <b>
+                    To block messages from someone on hypercube messenger
+                </b>
+            </p>
+            <ol>
+                <li>
+                    Open the conversation with the person you'd like to block
+                </li>
+                <li>
+                    Click <img src="/assets/img/settings-gray.svg" alt="button"> settings icon at the top right of the page
+                </li>
+                <li>
+                    Click <b>Report/Block</b> and select book.
+                </li>
+            </ol>
+
+            <p>
+                When you block messages from someone, they can't:
+            </p>
+            <ul>
+                <li>
+                    Send you messages.
+                </li>
+                <li>
+                    Search for you in hypercube messenger. 
+                </li>
+            </ul>
+
+            <p>
+                When you block messages from someone, they can still:
+            </p>
+            <ul>
+                <li>
+                    See your profile on Hypercube.
+                </li>
+                <li>
+                    See your messages if you're both in the same group conversation. If you and the person you block are in a group conversation together, you'll be notified before you enter the conversation.
+                </li>
+            </ul>
+
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('how-to-report-conversation')">
+        <h3>How to report a conversation?</h3>
+        <span *ngIf="toggle.view.active['how-to-report-conversation']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['how-to-report-conversation']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['how-to-report-conversation']">
+        <div class="help-content-text">
+            <ol>
+                <li>
+                    Open the conversation with the person you'd like to Report.
+                </li>
+                <li>
+                    Click <img src="/assets/img/settings-gray.svg" alt="button"> settings icon at the top right of the page.
+                </li>
+                <li>
+                    Click <b>Report/Block</b> and Select <b>Report this profile</b>.
+                </li>
+                <li>
+                    In pop-up window select the applicable reason for reporting the conversation. 
+                </li>
+                <li>
+                    Click <b>Report</b> to proceed.
+                </li>
+            </ol>
+            <ul>
+                <li>
+                    It is spam
+                </li>
+                <li>
+                    It is scam
+                </li>
+                <li>
+                    The content is offensive or inappropriate
+                </li>
+                <li>
+                    It includes harassment or mobbing
+                </li>
+                <li>
+                    It includes blackmail or threat
+                </li>
+                <li>
+                    It includes sexually explicit or violent content
+                </li>
+                <li>
+                    It includes hate or discriminatory content
+                </li>
+                <li>
+                    This person may cause self-injury or be suicidal
+                </li>
+                <li>
+                    Something else
+                </li>
+            </ul>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('how-to-manage-labels')">
+        <h3>How to add / remove labels in messenger?</h3>
+        <span *ngIf="toggle.view.active['how-to-manage-labels']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['how-to-manage-labels']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['how-to-manage-labels']">
+        <div class="help-content-text">
+            <p>
+                You can create and apply labels to your messages to organize them by category, topic or importance. You can apply more than one label to a message, and you can filter your inbox to see all messages with that label.
+            </p>
+            <p>
+                To create a label:
+            </p>
+            <ol>
+                <li>
+                    Go to messenger.
+                </li>
+                <li>
+                    Click <b>Message Labels</b> next to <b>Labels</b> on the right.
+                </li>
+                <li>
+                    Enter the name of the label, then click <b>create</b>.
+                </li>
+            </ol>
+            <p>
+                To apply a label to a message:
+            </p>
+            <ol>
+                <li>
+                    Click a conversation on the left.
+                </li>
+                <li>
+                    Below <b>Labels</b> on the right, click <b>Add Label</b> and begin typing the label you want to apply, then select it from the list that appears.
+                </li>
+            </ol>
+            <p>
+                To filter your inbox by a label, click <img src="/assets/img/208.svg" alt="button">  in the top left, enter a label name and then select the label from the list that appears or just click on the label and all the messages with this label will be displayed.
+            </p>
+            <p>
+                To manage all of your Page's labels, click <b>Manage Labels</b> next to <b>Labels</b> on the right. From here, you can change a label's color or delete it. Deleting a label won't delete messages with that label.
+            </p>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('how-to-manage-replies')">
+        <h3>How to create replies and manage them?</h3>
+        <span *ngIf="toggle.view.active['how-to-manage-replies']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['how-to-manage-replies']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['how-to-manage-replies']">
+        <div class="help-content-text">
+            <p>
+                You can create saved replies to use as templates when you respond to your messages.
+            </p>
+            <p>
+                Create, Edit and Delete Saved Replies
+            </p>
+            <p>
+                To create a saved reply:
+            </p>
+            <ol>
+                <li>
+                    Go to Messenger.
+                </li>
+                <li>
+                    Select the <img src="/assets/img/137.svg" alt="button"> icon in the bottom right.
+                </li>
+                <li>
+                    Click on the <img src="/assets/img/50.svg" alt="button"> icon on the top right of a pop-up window.
+                </li>
+                <li>
+                    Enter the reply title and message. You can also add an image or personalize the reply.
+                </li>
+                <li>
+                    Click <b>Save</b>.
+                </li>
+            </ol>
+            <p>
+                To edit or delete a saved reply:
+            </p>
+            <ol>
+                <li>
+                    Go to Messanger.
+                </li>
+                <li>
+                    Select the <img src="/assets/img/137.svg" alt="button"> icon in the bottom right.
+                </li>
+                <li>
+                    Click the saved reply you want to edit or delete.
+                </li>
+                <li>
+                    Edit your reply, then click <b>save reply</b> or click <b>Delete</b> to delete it.
+                </li>
+            </ol>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('how-to-use-saved-reply')">
+        <h3>How to use a Saved Reply in a Message?</h3>
+        <span *ngIf="toggle.view.active['how-to-use-saved-reply']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['how-to-use-saved-reply']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['how-to-use-saved-reply']">
+        <div class="help-content-text">
+            <p>
+                To use a saved reply in a message:
+            </p>
+            <ol>
+                <li>
+                    Go to Messenger.
+                </li>
+                <li>
+                    Click the conversation on the left you want to reply to. 
+                </li>
+                <li>
+                    Click <img src="/assets/img/137.svg" alt="button"> at the bottom, then click the saved reply you want to use. You can search with the reply name in a search bar as well. 
+                </li>
+                <li>
+                    Click <b>Send</b>.
+                </li>
+            </ol>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('how-to-create-group')">
+        <h3>How to create a group conversation?</h3>
+        <span *ngIf="toggle.view.active['how-to-create-group']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['how-to-create-group']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['how-to-create-group']">
+        <div class="help-content-text">
+            <p>
+                To add someone to a group conversation:
+            </p>
+            <ol>
+                <li>
+                    Go to Messenger.
+                </li>
+                <li>
+                    Open the conversation you want to add people to.
+                </li>
+                <li>
+                    Clik <img src="/assets/img/50.svg" alt="button"> and type the names of people you want to add.
+                </li>
+                <li>
+                    Click <b>Done</b>.
+                </li>
+            </ol>
+            <p>
+                <b>Note:</b> 
+                Anyone you add will see all previous messages in the conversation.
+            </p>
+            <p>To leave a group conversation:</p>
+            <ol>
+                <li>
+                    Go to the conversation.
+                </li>
+                <li>
+                    Click <img src="/assets/img/settings-gray.svg" alt="button"> <b> Options</b> menu.
+                </li>
+                <li>
+                    Select <b>Leave Group</b>.
+                </li>
+            </ol>
+            <p>
+                The other people in the conversation will be notified that you left and you will no longer receive messages from the conversation.
+            </p>
+            <p>
+                If you are admin of the group (creator) you can upload a profile picture for this group or rename it by clicking on the top right side of window.
+            </p>
+            <p>
+                You can message up to 50 people at once.
+            </p>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('how-to-use-search')">
+        <h3>How to use the Search bar on the Hypercube homepage?</h3>
+        <span *ngIf="toggle.view.active['how-to-use-search']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['how-to-use-search']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['how-to-use-search']">
+        <div class="help-content-text">
+            <p>
+                You can use the Search bar to look for people with similar interests, skills, professions and jobs to broaden your professional network and expertise. You can use the Search bar to look for companies and organizations which you are interested in and follow them to see their updates.
+            </p>
+            <p>
+                The Search bar at the top HyperCube page allows you to search for <b>people</b>, <b>companies</b>, <b>jobs</b> and <b>candidates</b>. 
+            </p>
+            <p>
+                To run a keyword search without selecting any of this above-mentioned categories 
+            </p>
+            <ol>
+                <li>
+                    Enter your keyword in the <b>Search bar</b> at the top of the page end click enter.
+                </li>
+                <li>
+                    You'll be redirected to the search results page. On this page search results will be displayed with this order:
+                    <ul>
+                        <li>
+                            Peoples results for your “keyword”
+                        </li>
+                        <li>
+                            Companies & Organizations results 
+                        </li>
+                        <li>
+                            Jobs Results
+                        </li>
+                        <li>
+                            Candidates Results (if you are a company)
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    You can select category of search from the top of search page. 
+                </li>
+                <li>
+                    The most frequently used search filters such as Location and Industry are located at the top of search page.
+                </li>
+                <li>
+                    The advanced search filters are located in <b>Filters</b> section. To use them click on Filter button and in the pop-up window customize your search experience.
+                </li>
+                <li>
+                    You can save your selection of your search filters by clicking on save end entering the name of search.
+                </li>
+                <li>
+                    Your saved filters will appear in the top right corner of the Search page. 
+                </li>
+            </ol>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('manage-filters')">
+        <h3>How to save or delete custom search filters?</h3>
+        <span *ngIf="toggle.view.active['manage-filters']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['manage-filters']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['manage-filters']">
+        <div class="help-content-text">
+            <p>
+                You can save your selection of your search filters by clicking on save end entering the name of search.
+            </p>
+            <p>
+                Your saved filters will appear in the top right corner of the Search page.
+            </p>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('save-filters')">
+        <h3>To save a custom filter:</h3>
+        <span *ngIf="toggle.view.active['save-filters']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['save-filters']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['save-filters']">
+        <div class="help-content-text">
+            <ol>
+                <li>
+                    Click on “save” next to entered filters
+                </li>
+                <li>
+                    Type a name for your filter and click save.
+                </li>
+            </ol>
+            <p>
+                <b>Note:</b> you can’t edit custom filters. Instead, you can <b>save</b> new filter and <b>delete</b> the old one. 
+            </p>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('delete-filters')">
+        <h3>To delete a custom filter:</h3>
+        <span *ngIf="toggle.view.active['delete-filters']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['delete-filters']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['delete-filters']">
+        <div class="help-content-text">
+            <ol>
+                <li>
+                    Click on “My filters” on the below right corner of search bar
+                </li>
+                <li>
+                    Find the filter you want to delete from the dropdown menu and click on delete icon.
+                </li>
+            </ol>
+        </div>
+    </ng-template>
+</div>

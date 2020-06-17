@@ -1,0 +1,13 @@
+<div class="dark-blue-bg-for-network" *ngIf="header">
+    <div class="search-groups pt-0 d-flex justify-content-between align-items-center">
+        <h1 class="page-title">
+           search for  {{ header['text'] }}
+        </h1>
+        <div class="d-flex align-items-center" *ngIf="header['btns'] as btns">
+            <button [class]="'btn ' +  btn['class']"
+                    [routerLink]="[btn['path']]"  *ngFor="let btn of btns">
+                {{ btn['text'] }}
+            </button>
+        </div>
+    </div>
+</div>

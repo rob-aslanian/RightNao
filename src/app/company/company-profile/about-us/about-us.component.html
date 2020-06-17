@@ -1,0 +1,109 @@
+<div class="section-header d-flex">
+    <h1> {{ '35'| translate  }}</h1>
+    <div class="col line">
+        <button class="add" (click)="open()" *ngIf="!hasAbout && isAdmin">
+            <img src="assets/img/50.svg" alt="add">
+        </button>
+    </div>
+</div>
+
+<div class="section-content col" *ngIf="aboutUsContent && hasAbout">
+    <button class="edit about-edit" (click)="open(true)" *ngIf="isAdmin">
+        <img src="assets/img/19.svg" alt="edit">
+    </button>
+    <p *ngIf="aboutUsContent.description">  
+        <app-read-more [text]="aboutUsContent.description" [maxLength]="300"></app-read-more>
+    </p>
+    
+ 
+        <ng-container *ngIf="aboutUsContent.mission">
+            <h2> {{ '920'| translate  }}</h2>
+            <p>
+                {{ aboutUsContent.mission }}
+            </p>
+        </ng-container>
+        <h2> {{ '662'| translate  }} </h2>
+        <div class="row">
+            <div class="col">
+                <!-- Sub industry  -->
+                <ng-container *ngIf="subindustries && subindustries.length > 0">
+                    <h3> {{ '1367'| translate  }}</h3>
+                    <p>
+                        {{ subindustries  | addDelimetr:',' }} 
+                    </p>
+                </ng-container>
+                 <!-- Sub industry  -->
+                       
+                <!--- Company type -->
+                <ng-container *ngIf="aboutUsContent.type &&  aboutUsContent.type !== 'type_unknown' ">
+                    <h3> {{ '346'| translate  }} </h3>
+                    <p> {{ companyType[aboutUsContent.type] }} </p>
+                </ng-container>
+                <!-- Company type-->
+        
+                <!-- Year founded  -->
+
+    
+                <ng-container *ngIf="aboutUsContent.foundation_date !== '' ">
+                    <h3>Year founded </h3>
+                    <p >{{aboutUsContent.foundation_date}}</p>
+                </ng-container>
+                <!-- Year founded  -->
+
+            </div>
+            <div class="col">
+                <!-- Company Size -->
+                <ng-container *ngIf="aboutUsContent.size && aboutUsContent.size !== 'size_unknown' ">
+                    <h3> {{ '339'| translate  }} </h3>
+                    <p> {{  companyEmployee[aboutUsContent.size] }}</p>
+                </ng-container>
+                <!-- Company Size -->
+                
+                <!-- Parking -->
+                <ng-container *ngIf="aboutUsContent.parking && aboutUsContent.parking !== 'parking_unknown' ">
+                    <h3> {{ '1027'| translate  }}</h3>
+                    <p>{{  companyParking[aboutUsContent.parking] }}</p>
+                </ng-container>
+                <!-- Parking -->
+
+                <!-- Business hours -->
+                <ng-container *ngIf="aboutUsContent.business_hours && aboutUsContent.business_hours.length > 0">
+                    <h3> {{ '257'| translate  }}</h3>
+                    <ng-container *ngFor="let business_hour of aboutUsContent.business_hours">
+                        <p>
+                            <ng-container *ngIf="business_hour.week_days.length > 1; else: oneDay">
+                                    {{ business_hour.week_days[0] | capitalize }} - {{ business_hour.week_days[business_hour.week_days.length - 1] | capitalize }}
+                            </ng-container>
+
+                            <ng-template #oneDay>
+                                    {{ business_hour.week_days[0] | capitalize }}
+                            </ng-template>
+
+                            <!-- {{ business_hour.week_days[0] }} - {{ business_hour.week_days[business_hour.week_days.length - 1] }} -->
+                            <ng-container *ngIf="business_hour.hour_from && business_hour.hour_to">
+                                | {{ business_hour.hour_from }} - {{ business_hour.hour_to }}
+                            </ng-container>
+                        </p>
+                    </ng-container>
+                    
+               
+                </ng-container>
+                <!-- Business hours -->
+             
+            </div>
+        </div>
+ 
+
+
+</div>
+ 
+<ng-container *ngIf="!(aboutUsContent && hasAbout) && isAdmin" >
+        <app-empty-profile [key]='"about"' (openModal)='openEmptyModal()'></app-empty-profile>
+</ng-container>
+
+
+<app-modal>
+  <app-about-us-modal [data]="aboutUsContent" (changedData)="updateData($event)">
+
+  </app-about-us-modal>
+</app-modal>

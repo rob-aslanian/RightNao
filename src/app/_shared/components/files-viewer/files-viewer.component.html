@@ -1,0 +1,69 @@
+<div class="row" *ngIf="files.length > 0" (click)="open()">
+    <ng-container *ngIf="files.length < 4; else:moreImages">
+        <!-- One Files-->
+        <div class="col-12" *ngIf="files.length === 1">
+            <app-file-container [file]="files[0]"></app-file-container>
+        </div>
+
+        <!-- Two Files -->
+        <ng-container *ngIf="files.length === 2">
+            <div class="col-lg-6 p-1" *ngFor="let file of files; trackBy:trackByFn">
+                <app-file-container [file]="file"></app-file-container>
+            </div>
+        </ng-container>
+
+        <!-- Three Files -->
+        <ng-container *ngIf="files.length === 3">
+            
+            <div class="col-12">
+                <app-file-container [file]="files[0]"></app-file-container>
+            </div>
+
+            <div class="col-6 mt-2" *ngFor="let file of files.slice(1)">
+                <app-file-container [file]="file"></app-file-container>
+            </div>
+
+        </ng-container>
+
+    </ng-container>
+
+    <!-- More Files-->
+    <ng-template #moreImages>
+        <ng-container *ngIf="files">
+            <div class="col-6 pr-1">
+                <app-file-container class="more_image_first" 
+                                    [file]="files[0]"
+                                   >
+                </app-file-container>
+            </div>
+            <div class="col-6 pl-1">
+                <div class="col-12" style="padding: unset;">
+                    <app-file-container [file]="files[1]"></app-file-container>
+                </div>
+
+                <div class="row mt-2">
+                    <div class="col-6 pr-1">
+                        <app-file-container [file]="files[2]"></app-file-container>
+                    </div>
+                    <div class="col-6 pl-1">
+                        <app-file-container [file]="files[3]" *ngIf="files.length === 4;else:showMore">
+                        </app-file-container>
+                        <ng-template #showMore>
+                            <div class="files_more" (click)="open()">
+                                <span> +{{ files.length - 4 }}</span>
+                            </div>
+                        </ng-template>
+
+                    </div>
+                </div>
+
+            </div>
+        </ng-container>
+    </ng-template>
+</div>
+
+<app-modal (closeModal)="isOpen = false" [width]="897">
+    <div class="slider" *ngIf="isOpen">
+        <app-slider [files]="files"></app-slider>
+     </div>
+</app-modal>

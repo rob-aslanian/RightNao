@@ -1,0 +1,219 @@
+@import 'src/variables';
+
+.headline{
+    h4,span{
+        font-size: 1.25rem;
+    }
+    
+}
+.offers-content{
+    background-color: $white;
+    width: 100%;
+    height: 100%;
+    border-radius: .3125rem;
+    .top-items{
+        margin-top: 1rem;
+        select{
+            width: 20rem;
+        }
+    }
+
+    &__select {
+        p {
+            font-size: .875rem; 
+            color: $dark-grey;
+        }
+
+    }
+
+
+    .options{
+        width: 9.375rem;
+        .btn.more{
+            white-space: nowrap;
+            font-size: 0.8125rem;
+            cursor: pointer;
+            width: 100%;
+            text-align: start;
+            &:hover{
+                background-color:#eaedf2;
+                
+            }
+        }
+    }
+
+    &-details{
+        margin-top: 1.5rem;
+        border: 1px solid $light-grey;
+        padding: 1rem; 
+        border-radius: .3125rem;
+
+            .offer-img{
+                width: 12.75rem;
+                height: 13.75rem;
+                img{
+                    width: 100%;
+                    height: 13.75rem;
+                    border-radius: .5rem;
+                }
+            }
+
+            .offer-description{
+                p{
+                    color: $dark-grey;
+                }
+                .user-name{
+                    color: $dark-blue;
+                    font-size: 0.875rem;
+                }
+                .location{
+                    p{
+                    font-size: 0.75rem;
+                    }
+                    .country{
+                        padding-left: 0.2rem;
+                    }
+                }
+                .author{
+                    .message{
+                        img{
+                            height: 1.37rem;
+                        }
+                        .message-btn{
+                            font-size: 0.875rem;
+                            color: $background-light-cyan;
+                            font-weight: 500;
+                        }
+                    }
+
+                    .v-office{
+                        margin-top: 1.69rem;
+                        p{
+                            padding-left: .3rem;
+                            font-size: 0.75rem;
+                        }
+
+                    }
+                    .raiting{
+                        margin-top: 1.49rem;
+                        span{
+                            font-size: .75rem;
+                        }
+                       
+                    }
+                    .line-border{
+                        height: 1.3rem;
+                        padding-left: 1rem;
+                        margin-top: 1.66rem;
+                    }
+                }
+                .user-img{
+                    border-radius: 50%;
+                    width: 2.1875rem;
+                    height: 2.1875rem;
+                }
+
+                .v_office-logo{
+                    height: 1rem;
+                }
+
+                .price{
+                    position: absolute;
+                    right: 0;
+                    background-color: $dark-blue;
+                    width: 5.75rem;
+                    height: 1.5rem;
+                    border-top-left-radius: .5rem;
+
+                    border-bottom-left-radius: .5rem;
+                    p{
+                        color: $background-light-cyan;
+                        font-size: 1rem;
+                        text-align: center;
+                        white-space: nowrap; 
+                    }
+                }
+
+                .user-raiting{
+                    height: 1rem;
+                }
+
+                .user-raiting-total{
+                    color: $dark-grey;
+                }
+
+                .offer-text{
+                    font-size: .875rem;
+                }
+                .offer-text-title{
+                    h4{
+                        font-size: 1rem;
+                        font-weight: 500;
+                    }
+                }
+                .time{
+                    p{
+                        font-size: .875rem;
+                    }
+                }
+                
+                .user-name{
+                    margin-bottom: .3125rem;
+                }
+
+                .location{
+                    margin-bottom: .3125rem;
+                }
+
+                .buttons{
+                    margin-top: -1.5rem;
+                    .btn-ignore{
+                        cursor: pointer;
+                        color: $background-light-cyan;
+                        text-decoration: none;
+                    }
+                    button{
+                        height: 1.5rem; 
+                        width: 5rem;
+                        color: $dark-blue;
+                        background-color: $background-light-cyan;
+                        border-color: $background-light-cyan;
+                        font-size: .875rem;
+                        padding-top: 0rem;
+                        font-weight: 500;
+                    }
+                }
+            }
+        
+        }
+
+}
+
+.options {
+    position: absolute; 
+    top: 2rem; 
+    background-color: #eeeeee;
+    z-index: 3; 
+    border-radius: .5rem; 
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.7); 
+    white-space: nowrap;
+    text-align: center;
+
+    p {
+        cursor: pointer; 
+        font-size: .875rem; 
+
+        &:hover {
+            cursor: pointer; 
+            background-color: $light-grey; 
+            transition: .3s; 
+        }
+    }
+}
+
+:host ::ng-deep .stars-rating{
+    img {
+        height: 18px !important;
+        width: 18px !important;
+    }
+}

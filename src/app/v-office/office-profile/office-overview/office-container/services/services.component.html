@@ -1,0 +1,99 @@
+ 
+<div class="services-wrap">
+     <div class="service-container">
+         <div class="d-flex justify-content-between">
+             <h3 class="title pb-2">Services ({{ services.length }})</h3>
+             <div class="service-office-view" ngbDropdown   style="padding-bottom: 20px;">
+                <button ngbDropdownToggle class="ml-auto" [ngClass]="toggleBar == 'card' ? 'blocks-service' : 'list-service'"  ></button>
+                <div ngbDropdownMenu >
+                    <button ngbDropdownItem (click)="toggleView('card')" ><img src="assets/img/blocks.svg" alt="card"> Card view</button>
+                    <button ngbDropdownItem (click)="toggleView('list')" ><img src="assets/img/semi-blocks.svg" alt="list"> List view</button>
+                </div>
+            </div>
+         </div>
+             <div class="row">
+                 
+                  <div   [ngClass]="{'card-view col-md-4': toggleBar === 'card', 'list-view col-12': toggleBar === 'list' }" *ngIf="isMe">
+                      <div class="add-service-box mb-3" style="height: 92%;">
+                           <div class="d-flex justify-content-center align-items-center add flex-wrap">
+                               <div class="add-service" [routerLink]="['/v-office', 'add-service', officeId ]">
+                                   <img src="assets/img/add.svg" alt="add">
+                                   <h3 class="title pt-2"  >Add a Service</h3>
+                               </div>
+                           </div>
+                      </div>
+                  </div>
+                <ng-container *ngFor="let service of services; let i = index">
+                  <ng-container *ngIf="isMe ||  (!service.is_Draft && !service.is_Paused)">
+                        <div [ngClass]="{'card-view col-md-4': toggleBar === 'card', 'list-view col-12': toggleBar === 'list' }">
+                                <div class="add-service-box boxes mb-3" 
+                                    [ngClass]="{'list-box-padding': toggleBar === 'list', 'draft': service.is_Draft, 'paused': service.is_Paused  }" >
+                                    <!-- activate draft or paused service -->
+                                    <ng-container *ngIf="service.is_Draft || service.is_Paused">
+                                                <div class="activate">
+                                                    <button class="btn btn-dark"  (click)='activateOrPublish( service.is_Draft ,service.id, i )' >{{ service.is_Draft ? 'Publish' : 'Activate' }}</button>
+                                                    <button class="btn btn-light" [routerLink]="['/v-office', 'edit-service',  officeId, service.id ]"> Edit </button>
+                                                    <button class="btn btn-light" (click)='deleteService( service.id, i )'> Delete </button>
+                                                </div>
+                                    </ng-container>
+                                    
+                                        <div class="row" [ngClass]="{ 'disabled-service': service.is_Draft || service.is_Paused  }">
+
+                                            <div [ngClass]="{'col-md-4': toggleBar === 'list', 'col-12': toggleBar === 'card' }">
+                                                    <ng-container *ngIf="service.files.length > 0">
+                                                        <img [src]="'/file/'+service.files[0]['address']" alt="add" class="view-box-img" [routerLink]="['../service',service.id]">
+                                                    </ng-container>        
+                                            </div>
+
+                                            <div [ngClass]="{'col-8': toggleBar === 'list', 'col-12': toggleBar === 'card' }">
+
+                                                <div class="info" [ngClass]="{'pl-3 pt-3': toggleBar === 'card' }">
+                                                        <span>{{ service.title }}</span>
+
+                                                        <p class="price" *ngIf="service.price !== 'Price_Negotiable'">${{ service.fixed_price_amount }} <small>/hr</small></p>
+                                                       <ng-container *ngIf="service.price === 'Price_Negotiable'">
+                                                           <p class="price" *ngIf="service.min_price_amount && 
+                                                                                   service.max_price_amount ; else negotiable">${{ service.min_price_amount }}  - {{ service.max_price_amount }} </p>
+                                                       </ng-container>
+                                                       
+                                                        <ng-template #negotiable>
+                                                            <p class="price" >Negotiable</p>
+                                                        </ng-template>
+                                                        
+                                                        
+                                                        <ng-container *ngIf="toggleBar === 'list'">
+                                                            <p> {{  service.description }}  </p>
+                                                            <ng-container *ngFor="let skill of service.additional_details.qualifications.skills">
+                                                                    <span class="skill-service">{{ skill.skill }}</span>
+                                                            </ng-container>
+                                                        </ng-container>
+
+                                                </div>
+
+                                                <div class="d-flex justify-content-end edit pr-1" *ngIf="(!service.is_Draft && !service.is_Paused) && isMe">
+                                                        <img src="assets/img/19.svg" alt="edit" [routerLink]="['/v-office', 'edit-service',  officeId, service.id]">
+                                                        
+                                                        <div class="service-office-view" ngbDropdown >
+                                                                <img src="assets/img/107.svg" ngbDropdownToggle alt="pause" style="margin-left: 6px; transform: rotate(90deg);"> 
+                                                                <div ngbDropdownMenu >
+                                                                    <button ngbDropdownItem (click)="pauseService( service.id, i )" *ngIf="!service.is_Draft"> Pause </button>                                                           
+                                                                    <button ngbDropdownItem (click)="toggleView('card')" > Share </button>
+                                                                    <button ngbDropdownItem (click)='deleteService( service.id, i )'> Delete </button>
+                                                                </div>
+                                                        </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                </div>
+                        </div>      
+                 </ng-container>
+               </ng-container>
+             </div>
+     </div>
+</div>
+ 
+
+<app-office-review [officeId]='officeId'></app-office-review>
+
+ 

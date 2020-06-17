@@ -1,0 +1,38 @@
+<div class="recommended-jobs p-3 mt-3">
+  <div class="recommended-jobs__title d-flex">
+    <h4 *ngIf="!isCompanyActive">Jobs you may be interested </h4>
+    <h4 *ngIf="isCompanyActive">Candidates</h4>
+      <a [routerLink]="[ '/search/job']">
+        <img src="assets/img/shortcut.svg" alt="">
+      </a>
+  </div>
+  <hr>
+  <div class="recommended-jobs__content">
+    
+    <ng-container *ngIf = "!isCompanyActive && (reccomendedJobs | async ) as jobs; else showCandidates">
+      <app-company-box  
+                        type = "reccomended" 
+                        [jobs] = "jobs"
+                        [isLanding] = "true"
+                        >
+      </app-company-box>
+    </ng-container>
+    
+
+    <ng-template #showCandidates>
+
+        <ng-container *ngIf="isCompanyActive && (candidates | async) as candidates">
+            <div class="candidates-container mt-3">
+                <app-user-box [companyID]="companyID" 
+                              [applicants]="candidates.candidate_search_result" 
+                              [isLanding] = 'true'
+                              type="all">
+                </app-user-box>
+            </div>
+           </ng-container>
+         
+    </ng-template>
+    
+  
+  </div>
+</div>

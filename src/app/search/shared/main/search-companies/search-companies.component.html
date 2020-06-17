@@ -1,0 +1,8 @@
+
+<app-search-all-title [amount]="amount" type="company"></app-search-all-title>
+
+<div class="network-boxes-container form-row">
+    <app-profile-box [profile]="company" *ngFor="let company of companyList; let i = index" [isCompany]="true"
+                     [view]="searchService.view" >
+    </app-profile-box>
+</div>

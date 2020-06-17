@@ -1,0 +1,39 @@
+@import '../../../../variables';
+// ========================================================================
+// Start error styles
+// ========================================================================
+.error-content {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    min-height: calc(100vh - 258px);
+    align-items: center;
+    background-color: $input-grey;
+}
+.left-text {
+    width:483px;
+    padding: 13px;
+    padding-top:50px;
+    h1 {
+        font-size:50px;
+        color:$dark-blue;
+    }
+    p {
+        margin-bottom: 0;
+        color:$dark-grey;
+        margin: 40px 0 60px;
+        font-size: 20px;
+    }
+    a {
+        color:$background-dark-cyan;
+    }
+}
+.right-image {
+    img {
+        width:38vh;
+        height:38vh;
+    }
+}
+// ========================================================================
+// Finish error styles
+// ========================================================================

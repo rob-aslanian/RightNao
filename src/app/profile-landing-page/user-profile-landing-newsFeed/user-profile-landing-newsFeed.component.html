@@ -1,0 +1,42 @@
+<div class="newsfeed mt-3 p-2 pt-3">
+  <div class="newsfeed__title d-flex col-12 justify-content-between">
+      <h4>Newsfeed</h4>
+        <a [routerLink] = "['/news_feed' ]">
+          <img src="/assets/img/shortcut.svg" alt="">
+        </a>
+      </div>
+      <hr>
+ 
+  <!-- <div class="newsfeed-content d-flex">
+      <app-posts 
+          class = "row w-100 justify-content-between d-flex ml-3"
+          type  = 'landing'
+                  >   
+     </app-posts>
+
+    </div> -->
+
+
+    <div class="create-first-post mt-3 p-5" style="cursor: pointer"  *ngIf="!posts && !isLoaded">
+      <div class="create-first-post__icon col-12 d-flex justify-content-center mt-5">
+          <img src="assets/img/create-post.svg" alt="">
+      </div>
+      <div class="create-first-post__title d-flex justify-content-center mt-3 mb-2">
+          <h4>Create the first post</h4>
+      </div>
+      <div class="create-first-post__description d-flex justify-content-center">
+          <span>Get the conversation going. Be the first to post in this group</span>
+      </div>
+  </div>  
+
+
+
+    <div class="row no-gutters">
+      <ng-container *ngIf="posts">
+          <app-user-profile-landing-news-feed-post *ngFor="let post of posts" [post]="post" class="col-12 col-md-4 newsfeed-post pl-3">
+
+            </app-user-profile-landing-news-feed-post>
+      </ng-container>
+    </div>
+    <app-spinner class="d-flex  justify-content-center mt-4 mb-4" *ngIf="isLoaded"></app-spinner>
+</div>

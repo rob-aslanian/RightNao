@@ -1,0 +1,53 @@
+<div class="row">
+    
+<!-- Content on the left -->
+<div class="left-row-network col-3 px-0">
+
+
+        <a [routerLink]="['/network/connection']" class="network-left-box">
+            <img src="assets/img/93.svg" alt="profile">
+            <span> {{ (connectionList | async)?.length }} </span>
+            <h3>Connections</h3>
+        </a> 
+        
+        
+        <a [routerLink]="['/network/following']" class="network-left-box">
+            <img src="assets/img/94.svg" alt="profile">
+            <span> {{ (followingPeople | async)?.length + (followingCompanies | async)?.length }} </span>
+            <h3>Following</h3>
+        </a>
+    
+        <a [routerLink]="['/network/followers']" class="network-left-box">
+            <img src="assets/img/95.svg" alt="profile">
+            <span> {{ (followersPeople | async)?.length + (followersCompanies | async)?.length }} </span>
+            <h3>Followers</h3>
+        </a>
+    
+        <a [routerLink]="['/network/grow-network']" class="network-left-box">
+            <img src="assets/img/96.svg" alt="profile">
+            <br>
+            <h3>Grow Your Network</h3>
+        </a>
+    
+        <a [routerLink]="['/network/manage']" class="network-left-box">
+            <img src="assets/img/97.svg" alt="profile">
+            <span> {{ (manageReceivedRequest | async)?.length }} </span>
+            <h3>Manage Connections</h3>
+        </a>
+    </div>
+    
+
+    <!-- Content in the center -->
+    <div class="center-content-network col mx-3">
+        <h2>Invite your email contacts to connect on HyperCube</h2>
+        <form action="">
+            <div class="form-group row my-0">
+                <input type="text" class="form-control col-7 mr-2" placeholder="Enter email addresses separated by comma"> 
+                <input type="submit" class="col button-main" id="invite">
+                <label for="invite">Invite</label>
+            </div>
+        </form>
+    </div>
+    <!-- Content in the center end -->
+    
+</div>

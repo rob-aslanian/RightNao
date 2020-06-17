@@ -1,0 +1,507 @@
+/*
+    Start header
+*/
+.landing-header{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 24px 0px 20px;
+    background-color: $dark-blue;
+    position: fixed;
+    top: 0;
+    z-index: 5;
+    button{
+        font-size: 18px;
+        padding: 2px 18px 3px 17px;
+        &.btn-primary{
+            margin-left: 13px;
+        }
+    }
+}
+.landing-logo{
+    display: flex;
+    align-items: center;
+    height: 80px;
+    img{
+        width: 44px;
+        height: 51px;
+    }
+    .landing-logoText{
+        font: normal 30px above;
+        margin-left: 15px;
+        display: flex;
+        align-items: center;
+        color: #ffffff;
+        span{
+            color: $background-light-cyan;
+        }
+    }
+}
+/*
+    End header
+*/
+.landing-blue-side{
+    margin-top: 80px;
+    background: linear-gradient( to right, #EAEDF2, #ffffff );
+}
+.landing-blue-gradient{
+    background: linear-gradient( to bottom, $dark-blue, $blue );
+    position: relative;
+    z-index: 2;
+    display: flex;
+}
+.landing-blue-left{
+    width: 50%;
+    img{
+        width: calc( 100% - 11vw );
+        height: auto;
+        margin-top: 6vw;
+        margin-bottom: -23vw;
+        pointer-events: none;
+    }
+}
+.landing-blue-right{
+    width: 50%;
+    .landing-blue-desc{
+        position: relative;
+        top: 9vw;
+        padding-left: 0.7vw;
+        padding-right: 70px;
+        margin-bottom: 30px;
+    }
+    h2{
+        font-size: 40px;
+        color: #ffffff;
+        margin: 0 0 2vw 0;
+        /* margin bottom 40px */
+    }
+    h3{
+        font-size: 22px;
+        color: #ffffff;
+        margin: 0 0 1.3vw 0;
+        /* margin bottom 30px */
+    }
+    div.text{
+        color: #A3AEBA;
+        font-size: 18px;
+        margin: 0 0 2vw 0;
+        /* margin bottom 40px */
+    }
+}
+.btn-primary-custom{
+    padding: 2px 24px 3px 24px;
+    font-size: 18px;
+    background-color: #00f4ff;
+    color: #052337!important;
+}
+.landing-blue-mountains{
+    position: relative;
+    z-index: 1;
+    margin-top: -1px;
+    img{
+        width: 100%;
+        pointer-events: none;
+    }
+}
+.landing-offer{
+    margin-top: -8.1vw;
+    padding-bottom: 118px;
+    z-index: 3;
+    position: relative;
+    h2{
+        text-align: center;
+    }
+}
+.landing-above{
+    font: normal 40px above;
+    margin: 0px;
+    line-height: 27px;
+    color: $dark-blue;
+}
+.landing-offer-cont{
+    display: flex;
+    max-width: 1178px;
+    margin: 65px auto 0 auto;
+    justify-content: space-between;
+    padding: 0 70px;
+}
+.landing-offer-item{
+    display: block;
+    img{
+        display: block;
+        margin: 0 auto;
+    }
+    div{
+        margin-top: 35px;
+        font-size: 24px;
+        color: $dark-blue;
+        text-align: center;
+    }
+}
+.landing-network{
+    background: linear-gradient( to left, #EAEDF2, #ffffff );
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.landing-network-img{
+    width: 39vw;
+    margin-right: 5.3vw;
+}
+.landing-network-cont{
+    margin-left: 18.02vw;
+    max-width: 560px;
+}
+.landing-gray-text{
+    font-size: 22px;
+    color: $dark-grey;
+    margin-top: 42px;
+}
+.landing-link-more{
+    color: $background-light-cyan;
+    font-size: 22px;
+    margin-top: 42px;
+    display: block;
+    line-height: 17px;
+    display: inline-block;
+    &:hover{
+        color: $background-light-cyan;
+    }
+}
+.landing-interact{
+    background: linear-gradient( to right, #EAEDF2, #ffffff );
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 86px 0;
+    position: relative;
+}
+.landing-interact-cont{
+    max-width: 596px;
+    position: relative;
+    margin-right: 9.95vw;
+    z-index: 2;
+}
+.landing-interact-img{
+    margin-left: 6.25vw;
+    width: 46.5vw;
+    position: relative;
+    z-index: 2;
+}
+.landing-interact-back{
+    position: absolute;
+    left: 0;
+    z-index: 1;
+    height: calc( 100% + 8.1vw );
+    pointer-events: none;
+}
+.landing-work{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient( to left, #EAEDF2, #ffffff );
+    position: relative;
+    padding: 148px 0 148px 9.67vw;
+}
+.landing-work-in{
+    display: flex;
+    flex-direction: column;
+    width: 42.85vw;
+}
+.landing-work-h3{
+    color: $dark-blue;
+    font-size: 30px;
+    margin: 65px 0 0 0;
+}
+.landing-work-cont{
+    // margin-left: 9.67vw;
+    position: relative;
+    z-index: 2;
+}
+.landing-work-img{
+    width: 43.8vw;
+    // height: 53.17vw;
+    // margin-right: 4.11vw;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img{
+        position: absolute;
+        width: 100%;
+        height: auto;
+        &.png{
+            width: 43.8vw;
+            
+        }
+        &.svg{
+            width: 36.42vw;
+        }
+    }
+}
+.landing-work-back{
+    position: absolute;
+    right: 0;
+    bottom: 3.28vw;
+    width: 33vw;
+    z-index: 1;
+    pointer-events: none;
+}
+.landing-work-btns{
+    display: flex;
+    align-items: center;
+    margin-top: 42px;
+    .landing-link-more{
+        margin: 0 0 0 27px;
+    }
+}
+.landing-work-cont-in{
+    // width: 510px;
+    margin-top: 55px;
+    // margin-left: 26.02vw;
+    align-self: flex-end;
+}
+.landing-ads{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    background: linear-gradient( to right, #EAEDF2, #ffffff );
+    min-height: 47.7vw;
+    padding-bottom: 212px;
+}
+.landing-ads-back{
+    position: absolute;
+    height: 41.97vw;
+    top: 4.7vw;
+    left: 0;
+    z-index: 1;
+}
+// .landing-ads-cont{
+//     display: flex;
+//     flex-wrap: wrap;
+//     z-index: 2;
+//     position: relative;
+//     width: 786px;
+//     margin-left: 9vw;
+//     flex-shrink: 0;
+// }
+// .landing-ads-item{
+//     width: 11.97vw;
+//     height: 7.39vw;
+//     border-radius: 5px;
+//     box-shadow: 0 0 15px rgba(0,0,0,0.2);
+//     margin: 16px;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: center;
+//     text-align: center;
+//     align-items: center;
+//     background-color: #ffffff;
+//     div{
+//         font-size: 20px;
+//         color: $dark-blue;
+//         margin-top: 18px;
+//     }
+// }
+.landing-ads-img{
+    width: 41.5vw;
+    margin-left: 9.67vw;
+    position: relative;
+    z-index: 2;
+}
+.landing-ads-txtCont{
+    margin-right: 9.7vw;
+    position: relative;
+    z-index: 2;
+}
+.landing-ads-mount{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 55.3vw;
+    z-index: 1;
+}
+.landing-cSoon{
+    background-color: #EAEDF2;
+    min-height: 300px;
+    padding: 55px 0 0px 0;
+    h2{
+        text-align: center;
+    }
+}
+.landing-cSoon-cont{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1360px;
+    justify-content: space-between;
+    margin: 40px auto 0 auto;
+}
+.landing-cSoon-item{
+    // max-width: 140px;
+    width: 25%;
+    font-size: 24px;
+    color: $dark-blue;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+    margin: 25px 0px 70px 0px;
+}
+.landing-support{
+    text-align: center;
+    padding: 92px 0;
+}
+.landing-support-cont{
+    max-width: 1060px;
+    font-size: 22px;
+    color: $dark-grey;
+    margin: 37px auto 37px auto;
+}
+
+
+/* Start global footer styles */
+
+footer{
+    width: 100%;
+    min-height: 169px;
+    background-color: $blue;
+    padding: 30px 0;
+    .container{
+        max-width: 1257px;
+        height: 100%;
+    }
+    .footer-in{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    .footer-logo{
+        margin-top:-9px;
+        margin-bottom: 24px;
+        display: inline-block;
+        img{
+            width: 88px;
+        }
+    }
+    .footer-license{
+        font-size: 14px;
+        color: #A3AEBA;
+    }
+    h3{
+        color: #ffffff;
+        font-size: 14px;
+        display: inline-block;
+        margin-bottom: 0;
+    }
+    a{
+        font-size: 12px;
+        color: #A3AEBA;
+        &:hover{
+            color: #A3AEBA;
+        }
+    }
+    .footer-nav{
+        display: flex;
+        justify-content: space-between;
+        list-style: none;
+        margin: 0 0 0 50px;
+        padding: 0;
+        > li{
+            margin-right: 97px;
+            &:last-child{
+                margin-right: 0;
+            }
+        }
+        h3{
+            margin-bottom: 18px;
+        }
+        ul{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            li{
+                line-height: 11px;
+                margin-bottom: 8px;
+            }
+        }
+    }
+    .footer-additional{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .footer-questions{
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: auto;
+        img{
+            margin-right: 15px;
+            margin-top: 3px;
+        }
+        > div{
+            display: flex;
+            flex-direction: column;
+        }
+    }
+    .footer-followUs{
+        h3{
+            margin-bottom: 10px;
+        }
+        img{
+            height: 20px;
+            margin-right: 16px;
+            &:last-child{
+                margin-right: 0;
+            }
+        }
+    }
+    .footer-lang{
+        width: 149px;
+        select{
+            background-color: $blue;
+        }
+        // &:focus{
+        //     // background-color: $blue;
+
+        // }
+    }
+}
+
+
+/* End global footer styles */
+
+
+
+
+/* 
+======================
+    Start landing page responsive 
+======================
+*/
+
+@media ( max-width: 1600px ){
+    .landing-blue-right{
+        h2{
+            font-size: 30px;
+        }
+        h3{
+            font-size: 16px;
+        }
+        div.text{
+            font-size: 14px;
+        }
+        a.btn-primary{
+            font-size: 16px;
+        }
+    }
+}
+
+/* 
+======================
+    End landing page responsive 
+======================
+*/

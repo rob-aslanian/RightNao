@@ -1,0 +1,7 @@
+@import "src/variables";
+.form-container {
+    max-width: 280px;
+}
+label >  span {
+    color: $dark-cyan;
+}

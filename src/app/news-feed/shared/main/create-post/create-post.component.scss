@@ -1,0 +1,79 @@
+@import "src/variables";
+@import 'src/mixins.scss';
+
+.post-news {
+    padding: 1rem;
+    background: $white;
+    .post-news-headline  {
+            h2 {
+                font-weight: unset;
+                font-size: 1rem;
+                margin: 0px;
+            }
+            img {
+                height: 50px;
+                width: 50px;
+                object-fit: cover;
+            }
+    }
+    .no-border {
+        border: 0px;
+    
+        
+        &::placeholder{
+            font-size: 20px;
+        }
+    }
+
+    textarea.form-control {
+        padding: 0;
+        padding-right: 10px;
+        @include thin-scrollbar--vertical;
+        &:focus {
+            box-shadow: unset !important;
+        }
+    }
+
+    &__img-container {
+        overflow-x: auto;
+        @include thin-scrollbar--horizontal;
+
+        padding-bottom: 24px !important;
+        padding-top: 24px !important;
+    }
+}
+
+.file_row {
+    margin-right: 5px;
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
+.disable__btn{
+    opacity: .25;
+    pointer-events: none;
+}
+
+.files-wrapper {
+    border-top: 1px solid $light-grey;
+    img {
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+        &:not(:first-child) {
+            margin-left: 1rem;
+        }
+
+    }
+}
+.files-container {
+    width: 250px;
+    height: 300px;
+    border: 1px solid red;
+}
+
+.backgroundless:hover{
+    color: $background-dark-cyan;
+}
+

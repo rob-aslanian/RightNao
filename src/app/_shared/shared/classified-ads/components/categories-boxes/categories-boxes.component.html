@@ -1,0 +1,5 @@
+<div class="box-container position-relative"  [routerLink]="cat.path ? [cat.path] : []"  >
+    <img [src]="cat.src" alt="">
+    <h1 *ngIf="cat?.title" class="header-title">{{ cat.title }}</h1>
+    <span class="cat-title">{{ cat.name }}</span>
+</div>

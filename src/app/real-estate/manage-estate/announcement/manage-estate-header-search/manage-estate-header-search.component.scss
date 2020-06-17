@@ -1,0 +1,59 @@
+@import 'src/variables'; 
+
+.header {
+
+    &__categories {
+        &__box {
+            border: 1px solid $lighter-grey; 
+            background-color: $lighter-grey; 
+            border-radius: .2rem; 
+            padding: .2rem 1.4rem .2rem 1.4rem; 
+            cursor: pointer;
+            color: $dark-grey; 
+            margin: 0; 
+            padding: 0; 
+            
+            p {
+                color: $dark-grey; 
+                margin: 0; 
+                padding: 0; 
+            }
+        }
+    }; 
+
+    &__offers {
+        &__notify {
+            img {
+                margin-top: .3rem; 
+                margin-right: .5rem; 
+            }
+            &__counter {
+                position: absolute; 
+                right: 0;
+                top: 0; 
+                background-color: $autumn-orange; 
+                width: 0.875rem; 
+                height: 0.875rem;
+                border-radius: .2rem;
+                display: flex; 
+                justify-content: center; 
+                align-items: center;  
+                
+                span {
+                    color: white; 
+                    font-size: 0.75rem; 
+                }
+            }
+        }
+    }
+}
+
+
+// button {
+//     background-color: $lighter-grey !important; 
+//     color: $dark-grey !important;     
+//     font-size: .875rem; 
+//     white-space: nowrap;
+//     padding-top: .5rem; 
+//     padding-bottom: .5rem; 
+// }

@@ -1,0 +1,22 @@
+<div class="sms-nano-w chat-box-main">
+    <div class="sms-nano-head">
+        <div class="sms-nano-head_in">
+            <h2>New Message</h2>
+            <!-- <div class="sms-nano-unreadCount">2</div> -->
+        </div>
+        <div class="sms-nano-head_in">
+            <!-- <button class="sms-nano-addChat"></button> -->
+            <!-- <button class="sms-nano-plus"></button> -->
+            <button (click)="close()" class="sms-nano-close">&#10005;</button>
+            <!-- <button class="sms-nano-close">&#10005;</button> -->
+        </div>
+    </div>
+    <div class="sms-nano-body">
+        <div class="sms-nano-search-sms">
+            <app-search-n-select [selectedItems]="selectedItems"></app-search-n-select>
+        </div>
+        <div class="sms-nano-body-row sms-nano-search-margin">
+        </div>
+        <app-send-message-form #sendMessageForm (handleAfterSending)="handleAfterSending($event)" [selectedItems]="selectedItems" [conversation]="conversation"></app-send-message-form>
+    </div>
+</div>

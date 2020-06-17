@@ -1,0 +1,117 @@
+<!-- Content in the center -->
+<div class="col">
+        <div class="center-heading" *ngIf='!isLandingPage'>
+                <h3>People you may know</h3>
+            </div>
+    
+        <div class="center-content-network">
+            <div class="connections-first-line" ngbDropdown  *ngIf='!isLandingPage'>
+                <button ngbDropdownToggle class="ml-auto" [ngClass]="toggleBar == 'card' ? 'blocks' : 'list'"  >
+                </button>
+
+                    <div ngbDropdownMenu class="options blocks-option">
+                        <button (click)="sort_and_wiew('card')" >Card view</button>
+                        <button (click)="sort_and_wiew('list')" >List view</button>
+                    </div>
+
+            </div>
+    
+            
+            <!-- card view -->
+            <ng-template [ngIf]="toggleBar == 'card'" >
+
+                 <ng-container *ngIf='isLandingPage'>
+                     <div class="d-flex justify-content-between">
+                        <div class="center-heading pt-0 pl-0">
+                                <h3>People you may know</h3>
+                        </div>
+                        <a style="color: #00D4E3" [routerLink]='[url.suggestionsUser]'>See all</a>
+                    </div>
+                </ng-container>
+                    
+                <div class="network-boxes-container form-row">
+                    <div class="col-lg-4 col-md-6" *ngFor="let item of growNetworkList; let i = index; trackBy:trackByFn" >
+                        <div class="network-box d-flex flex-column justify-content-between">
+                            <div>
+                            <div class="network-line-one">
+                            </div>
+                            <div class="network-line-two">
+                                <div class="left">
+                                    <img class="profile" [src]="item.avatar == '' ? 'assets/img/124.svg' : '/file/'+item.avatar" alt="profile">
+                                </div>
+                                <div class="right">
+                                    <a [routerLink]="['/user/profile/'+item.url]">
+                                        <h4> {{ item.firstname +' '+item.lastname }} </h4>
+                                    </a>
+                                <ng-container *ngIf='item.experiences.length > 0'>
+                                    <span  > {{ item.experiences[0].company }} </span>
+                                    <span > {{ item.experiences[0].title }} </span>
+                                </ng-container>
+                                    <div class="d-flex">
+
+                                            <img src="assets/img/121.svg" alt="mutual">
+                                            <span> {{ item.network_info.mutual_connections_amount }} mutual connections</span>
+
+                                    </div>
+                     
+                                </div>
+                            </div>
+                            <div class="network-line-three">
+                                
+                            </div>
+                        </div>
+                            <div class="network-line-four">
+                              <button *ngIf='!isCompanyActive' class="btn btn-outline-primary" (click)="connect( item.id , i )" >Connect</button>
+                              <button *ngIf='isCompanyActive' class="btn btn-outline-primary" (click)="follow( item.id , i )" >Follow</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+    
+                
+            <!-- list view -->
+            <ng-template [ngIf]="toggleBar == 'list'" >
+                <div class="network-boxes-container-long-view" >
+                    <div class="network-box" *ngFor="let item of growNetworkList ; let i = index; trackBy:trackByFn" >
+                        <div class="d-flex justify-content-between">
+                            <div class="network-box-component-one">
+                                <img class="profile" [src]="item.avatar == '' ? 'assets/img/124.svg' : '/file/'+item.avatar" alt="profile">
+                                <div class="one-right">
+                                    <h4> {{ item.firstname +' '+item.lastname }} </h4>
+                                </div>
+                            </div>
+    
+                            <div class="network-box-component-two">
+                              <ng-container *ngIf='item.experiences.length > 0'>
+                                <span>  {{ item.experiences[0].company  }} </span>
+                                <span>  {{ item.experiences[0].company  }} </span>
+                            </ng-container>
+                        </div>
+                            <div class="network-line-three">
+                            <div class="d-flex align-items-center" style="height: 100%">
+                                <img src="assets/img/121.svg" alt="mutual">
+                                <span> {{ item.network_info.mutual_connections_amount }} mutual connections</span>
+                            </div>
+                  
+                            </div>
+                            <div class="network-box-component-three">
+                            </div>
+                            <div class="network-box-component-four">
+                              <button class="btn btn-outline-primary" (click)="connect( item.user.id , i )" >Connect</button>
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+                
+            </ng-template>
+               <ng-container *ngIf="!isLandingPage">
+                    <ngb-pagination [collectionSize]="amount" [pageSize]="first" [maxSize]="first"  [(page)]="page"  
+                    (pageChange)="changePage($event)" class="d-flex justify-content-end mt-4">
+                   </ngb-pagination>
+                </ng-container>
+    
+        </div>
+    </div>
+    <!-- Content in the center end -->

@@ -1,0 +1,841 @@
+/*Import variables file*/
+@import "../../../variables.scss";
+/*END OF Import variables file*/
+
+
+// Modal styles start
+.modal-content {
+    // @media (min-width:769px){
+    //     width: 597px;
+    // }
+    & > div {
+        @media (max-width: 768px){
+            // min-height: calc(100vh - 55px);
+        }
+    }
+    background-color: transparent;
+    position: relative;
+    // Styles specific for account modals start
+    &.account-modal {
+        width: 440px;
+        label {
+            color:$dark-blue;
+        }
+        .qr-img {
+            margin: 30px auto 20px;
+            display: block;
+        }
+        .note {
+            color:$dark-blue;
+            font-weight:bold;
+        }
+    }
+    .modal-profile-box {
+        margin: 20px 0;
+        & > div {
+            margin-left: 20px;
+            align-self: center;
+        }
+        span {
+            display: block;
+            font-size: 12px;
+        }
+        img {
+            width:70px;
+            height:70px;
+            border-radius:50%;
+        }
+    }
+    // Styles specefic for account modals end
+
+    border: none;
+    -webkit-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.75);
+    h1 {
+        color: white;
+        font-size: 18px;
+        background: $dark-blue;
+        padding: 17px 32px;
+        @media (min-width:769px){
+            border-radius: 5px 5px 0 0;
+        }
+        margin-bottom: 0;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+    h2 {
+        color:$dark-blue;
+        font-size: 16px;
+        font-weight:bold;
+    }
+    h3 {
+        color:$dark-blue;
+        font-weight: bold;
+        font-size: 14px;
+    }
+    a {
+        float: right;
+        text-decoration: none;
+        color:#ccc;
+        &:hover {
+            color: white;
+            cursor: pointer;
+        }
+    }
+    .popup-content {
+        padding:32px;
+        background: white;
+        @media (min-width:769px){
+            border-radius: 0 0 5px 5px;
+        }
+        color:$dark-grey;
+        font-size: 14px;
+    }
+    input, label, select, textarea {
+        font-size: 14px;
+        color:$dark-blue;
+    }
+    label {
+        padding-left:5px;
+        padding-bottom: 2px;
+        color: #808080;
+    }
+    select {
+        padding-left:6px;
+        padding-right:0;
+    }
+    .custom-control-label::before {
+        background-color: transparent;
+        border: solid 1px $light-grey;
+    }
+    .custom-control-label::before, .custom-control-label::after {
+        // margin-top: 10px;
+    }
+    .custom-control-input:checked ~ .custom-control-label::before {
+        background-color:$background-dark-cyan;
+    }
+    .custom-control-input:focus ~ .custom-control-label::before {
+        box-shadow: none;
+    }
+    textarea {
+        resize:none;
+        &::placeholder {
+            color:$dark-grey;
+            font-size:14px;
+        }
+    }
+    button {
+        font-size:14px;
+        margin-top:32px;
+        height: 32px;
+    }
+}
+
+// Report / Block 1st part
+.popup-report {
+    form div:last-child {
+        // margin-right: 117px;
+    }
+    .report-ptions-container {
+        margin-right: 95px;
+    }
+}
+// Report / Block 2nd part
+.popup-report-2 {
+    .custom-control.custom-radio {
+        margin: 9px 0;
+    }
+}
+
+// Report / Block 3rd part
+.popup-report-3 {
+    img {
+        width:70px;
+        height:70px;
+        margin-right:10px;
+        object-fit: cover;
+        object-position: center;
+    }
+    .to-block {
+        margin:20px 0;
+    }
+    p {
+        font-size:14px;
+        margin-bottom:0;
+    }
+}
+
+
+// Photo modal styles
+.photo-modal {
+    padding: 32px 0;
+    background-color: #fff;  // until content-
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    form {
+        @media (max-width: 768px){
+            padding:24px;
+        }
+        @media (min-width:769px){
+            padding: 0 24px;
+        }
+        margin:auto;
+    }
+    .range {
+        margin:20px auto;
+        width:80%;
+        text-align: center;
+    }
+    label {
+        color: $dark-grey;
+    }
+}
+.image-area {
+    background:$light-grey;
+    margin: auto;
+    border-radius:5px;
+    @media (max-width: 768px){
+        width:100%;
+    }
+    @media (min-width:769px){
+        width:549px;
+    }
+    img {
+        // object-fit: cover;
+        border-radius:5px;
+        // width:100%;
+        // height:100%;
+    }
+}
+
+
+
+// Default modal with input
+.default-modal {
+    span {
+        color:$background-dark-cyan;
+        font-weight: normal;
+        &.letter-count {
+            color: $dark-grey;
+        }
+    }
+    label {
+        color:$dark-blue;
+    }
+    .label-less {
+        margin-top: 31px;
+    }
+    .i-currently label {
+        margin-top: 16px;
+        margin-left: 5px;
+        font-weight: normal;
+        color:$dark-grey;
+    }
+    .file {
+        display:inline-block;
+        margin-top:10px;
+        margin-right: 5px;
+        label {
+            font-size:14px;
+            padding:2px !important;
+            width:70px;
+            font-weight:normal;
+            color: $dark-grey;
+            border:solid 1px $dark-grey;
+            &:hover {
+                color: white;
+            }
+        }
+    }
+}
+
+
+// Add experience
+.add-experience {
+    @extend .default-modal;
+}
+
+//Add edication
+.add-education {
+    @extend .default-modal;
+}
+
+
+// // Add skill
+// .add-skills {
+//     .form-group button {
+//         display:inline-block;
+//         color:$dark-blue;
+//         background:$light-grey;
+//         border:none;
+//         border-radius:5px;
+//         padding:5px 10px;
+//         margin-right:5px;
+//     }
+// }
+
+
+// Edit skills 
+.edit-skills {
+    .skill-lines-wrap {
+        max-height: 780px;
+        overflow-y: auto;
+        /* width */
+        &::-webkit-scrollbar {
+            width: 4px;
+        }
+        
+        /* Track */
+        &::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 4px grey; 
+        border-radius: 10px;
+        }
+
+        
+        
+        /* Handle */
+        &::-webkit-scrollbar-thumb {
+        background:$light-grey;
+        border-radius: 10px;
+            &:hover {
+                background: $dark-blue; 
+            }
+        }
+    }
+    .skill-line {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom:10px;
+        span, p {
+            color:$dark-blue;
+        }
+        button {
+            display: inline-block;
+            margin-top:0;
+            padding: 0 10px;
+            border:none;
+            outline:none;
+            background: none;
+            &.recycle {
+                margin-left: auto;
+            }
+            &.pointers {
+                margin-left:0;
+            }
+            img {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+
+// Add interest 
+.add-interest {
+    & > span {
+        margin-left: 24px;
+        font-size: 14px;
+    }
+    .form-group label {
+        color:$dark-blue;
+        font-size: 14px;
+        span {
+            color:$background-dark-cyan;
+            font-weight:normal;
+        }
+    }
+}
+        
+
+// Ask for recommendation
+.ask-for-recommendation {
+    label {
+        color:$dark-blue;
+    }
+}
+.recommendator-in-recommendation {
+    // margin: 0 0 45px 0;
+    // padding-top: 16px;
+    p {
+        margin-bottom:0;
+        font-size:12px;
+    }
+    img {
+        border-radius:50%;
+        width:70px;
+        height:70px;
+        margin-right:10px;
+    }
+}
+// .recommendator-in-recommendation.ask {
+//     margin-top: 32px;
+// }
+.user-connections-wrapper {
+    margin-bottom: 32px;
+    position: relative;
+}
+.recommendation-label {
+    // margin-top: 37px;
+}
+.recommendator-in-recommendation {
+    margin-bottom: 8px;
+}
+.recommendator-in-recommendation.with-margin {
+    margin-bottom: -24px;
+}
+
+// Write recommendation
+.write-recommendation {
+    @extend .ask-for-recommendation;
+}
+.person-to-write-recommendation {
+    @extend .recommendator-in-recommendation;
+}
+
+
+// Add accomplishments
+.add-accomplishments {
+    h2 {
+        margin-bottom: 20px;
+    }
+    .custom-control {
+        margin:10px 0;
+    }
+}
+// Add certification
+.add-certification {
+    @extend .default-modal;
+}
+.add-license {
+    @extend .default-modal;
+}
+.add-honors-and-awards {
+    @extend .default-modal;
+}
+.add-project {
+    @extend .default-modal;
+}
+.add-publication {
+    @extend .default-modal;
+}
+.add-test-scores {
+    @extend .default-modal;
+}
+.add-language {
+    @extend .default-modal;
+}
+// Modal styles for user end
+
+
+
+// Modal styles for company start
+
+// Add about us
+.add-about-us-wrap {
+    @media (min-width:769px){
+        max-height: 730px;
+        // padding: 0 15px 0 3px;
+        padding: 0 31px 0 20px;
+        overflow-y: scroll;
+    }
+    
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+    
+    /* Track */
+    &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 4px $light-grey; 
+    border-radius: 10px;
+    }
+
+    
+    
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+    background:$dark-blue;
+    color: $light-grey;
+    border-radius: 10px;
+        &:hover {
+            background: $dark-blue; 
+        }
+    }
+}
+.sub-industry-items-wrap {
+    button {
+        display: inline-block;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 10px;
+        margin: 10px 5px; 
+    }
+    a {
+        color: black;
+        margin-left: 5px;
+    }
+}
+.business-hours {
+    .custom-control label {
+        color: $dark-grey;
+        font-weight:normal;
+    }
+}
+
+
+
+// Add founder
+.founder-in-add-founder {
+    @extend .recommendator-in-recommendation;
+}
+.add-founder {
+    @extend .add-interest;
+}
+
+
+// Add Milestone
+.add-milestone {
+    @extend .add-interest;
+}
+
+// Add Product
+.add-product {
+    @extend .add-interest;
+}
+
+// Add Service
+.add-service {
+    @extend .add-interest;
+}
+
+// Add Location
+.add-location {
+    @extend .add-interest;
+}
+.add-location-wrap {
+    @extend .add-about-us-wrap;
+    padding: 0 31px 0 20px;
+    .map-area {
+        @extend .image-area;
+        height: 232px;
+    }
+}
+
+// Modal styles for company end
+
+
+
+// Modal styles for network start
+.invitation-items-wrap {
+    @extend .sub-industry-items-wrap;
+    margin-bottom: 10px;
+}
+// Modal styles for network end
+
+
+
+.user-to-apply {
+    @extend .popup-report-3;
+    margin-bottom:20px;
+}
+
+// Modal styles for company jobs start
+
+.modal-content.insert-benefits {
+    width:755px;
+    label {
+        color:$dark-grey;
+        font-weight:normal;
+        margin-bottom:10px;
+    }
+}
+.modal-content.post-a-job {
+    // width:912px;
+    .buttons {
+        button {
+            margin:0 10px;
+        }
+    }
+    .post-a-job-wrap {
+        @extend .add-about-us-wrap;
+    }
+    .company-posting-job {
+        margin-bottom:30px;
+        .line-one {
+            display:flex;
+            & > img {
+                width: 70px;
+                height:70px;
+                border-radius:4px;
+            }
+        }
+        .vacancy-content {
+            margin-left:20px;
+            span {
+                font-size: 14px;
+                color:$dark-grey;
+                padding-right:20px;
+                &.package {
+                    color:$background-light-cyan;
+                }
+            }
+            width:100%;
+        }
+        .vacancy-info {
+            margin-top:10px;
+            span {
+                font-size:12px;
+            }
+            img {
+                width:16px;
+                height:16px;
+                margin-bottom:5px;
+            }
+        }
+        
+        .skills span {
+            border-radius: 5px;
+            padding:5px;
+            display: inline-block;
+            color:$dark-blue;
+            margin-right:5px;
+            background:#DCE1E6;
+            margin-bottom:5px;
+        }
+        .description {
+            .job-description-textarea {
+                width:100%;
+                min-height:300px;
+                border:none;
+                outline:none;
+                font-size:14px;
+                color:$dark-grey;
+                resize:none;
+            }
+            .why-us-textarea {
+                @extend .job-description-textarea;
+                min-height:200px;
+            }
+        }
+    }
+    .detail-content h5 {
+        color:$dark-blue;
+    }
+    .detail-content span {
+        color:$dark-grey;
+    }
+    .company-posting-job:hover .active {
+        background: black;
+    }
+    .detailed-info {
+        border:none;
+        padding-top:0;
+    }
+}
+// Modal styles for company jobs end
+
+// Modal styles for user jobs start
+.modal-content {
+    .opportunities-checkbox {
+        text-align: right;
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 37px;
+            height: 18px;
+        }
+        
+        .switch input { 
+        opacity: 0;
+        width: 0;
+        height: 0;
+        }
+        
+        .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: $light-grey;
+        -webkit-transition: .3s;
+        transition: .3s;
+        border: solid 1px #e6e6e6;
+        }
+        
+        .slider:before {
+        position: absolute;
+        content: "";
+        height: 12px;
+        width: 12px;
+        left: 2px;
+        bottom: 2px;
+        background-color: white;
+        -webkit-transition: .3s;
+        transition: .3s;
+        }
+        
+        input:checked + .slider {
+            background-color: $background-dark-cyan;
+        }
+            
+        input:checked + .slider:before {
+            -webkit-transform: translateX(19px);
+            -ms-transform: translateX(19px);
+            transform: translateX(19px);
+        }
+        
+        /* Rounded sliders */
+        .slider.round {
+            border-radius: 34px;
+            margin-right:0;
+        }
+        
+        .slider.round:before {
+            border-radius: 50%;
+        }
+        display: flex;
+        .switch {
+            margin-left: 30px;
+            margin-top:2px;
+        }
+    }
+    .applier-profile {
+        margin-bottom:15px;
+        p {
+            margin-bottom:0;
+            font-size:12px;
+        }
+        img {
+            border-radius:50%;
+            width:70px;
+            height:70px;
+            margin-right:10px;
+        }
+    }
+    &.applier {
+        .update-profile, .additional-docs button, .form-group button {
+            display:inline-block;
+            margin:0;
+        } 
+        .form-group button {
+            margin-top:8px;
+        }
+        .additional-docs {
+            margin: 16px 0;
+        }
+    }
+}
+.user-job-report {
+    label {
+        color:$dark-grey;
+        font-weight:normal;
+        margin-bottom:10px;
+    }
+}
+.choose-hirer-company {
+    img {
+        width:35px;
+        height:35px;
+        border-radius:5px;
+    }
+    .custom-control {
+        label::before {
+            margin-top:5px;
+        }
+        label::after {
+            margin-top:5px;
+        }
+    }
+}
+.create-alert .also-get label {
+    color:$dark-grey;
+    font-weight:normal;
+}
+// Modal styles for user jobs end
+
+
+// Modal styles for credit card info start
+.modal-content.credit-card-info {
+    width:912px;
+    input, select {
+        margin-bottom:16px;
+    }
+    button {
+        font-size: 14px;
+    }
+    .custom-checkbox label {
+        font-weight: normal;
+        color:$dark-grey;
+        margin-top: 10px;
+    }
+    .we-accept {
+        margin:22.5px 0 27px;
+        span {
+            color:$dark-grey;
+        }
+        .cards {
+            margin-top:15px;
+        }
+        a {
+            margin-right:10px;
+            border: solid 1px $light-grey;
+            padding:10px;
+            background: white;
+            float: inherit;
+            border-radius:5px;
+        }
+        img {
+            width: 40px;
+        }
+    }
+    .total-payment {
+        margin:40px 0 30px;
+        background: $background-soft-blue;
+        border-radius:5px;
+        display: flex;
+        justify-content: space-between;
+        padding:10px 15px;
+        span {
+            color:$dark-blue;
+            font-weight: bold;
+            font-size: 18px;
+            &.count {
+                color:$background-light-cyan;
+            }
+        }
+    }
+}
+.custom-modal-box{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.5);
+    width: 100%;
+    height: 100%;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 50px;
+    &.center{
+        padding-top: 0;
+        align-items: center;
+    }
+}
+// Modal styles for credit card info end
+
+
+// Calendar modal
+
+.calendar-modal-header {
+    font-size: 20px !important;
+    font-weight: normal !important;
+    color: $dark-blue;
+    margin: 0;
+    background-color: #ffffff;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 16px 16px 0px 30px;
+}

@@ -1,0 +1,60 @@
+.user__companies{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    cursor: pointer;
+
+ 
+
+}
+
+.popup__wrapper{
+    position: relative;
+    & > .popup{
+        position: absolute;
+        top: 30px;
+        box-shadow: 0px 0px 4px -1px rgba(0, 0, 0, 0.75);
+        border-radius: 3px;
+        background: #fff;
+        padding: 10px;
+        width: 100%;
+        z-index: 2;
+        button{
+            padding: 0;
+            line-height: .75;
+            display: flex;
+            align-items: center;
+
+            span { font-size: 25px }
+        }
+        & > .list-group {
+            .list-group-item{
+                border: none !important;
+                padding: 0.5rem 0.25rem;
+                display: flex;
+                align-items: center;
+                transition: .3s all;
+                cursor: pointer;
+                img{
+                    width: 35px;
+                    height: 35px;
+                    margin-right: 20px;
+                }
+                &:hover { background: #ccc; }
+            }
+        }
+    }
+}
+
+.is-invalid{
+    border: 1px solid #ff6633;
+  }

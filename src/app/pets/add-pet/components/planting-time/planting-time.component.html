@@ -1,0 +1,20 @@
+
+<form [formGroup]="plantingTime">
+    <label class="title-label">Organic</label>
+    <div class="mt-1 d-flex custom-radio-input-god">
+            <div class="mt-2" *ngFor="let light of plantingTime.get('planting_time')['controls']; let i = index" 
+                                    formArrayName="planting_time">
+                <ng-container [formGroupName]="i">
+                    <input  type="checkbox" 
+                            [id]="light.value.id"  
+                            (change)='check(i)' 
+                            class="d-none" 
+                            name="oranicCtrl" 
+                            [value]="light.value.id">
+                    <label [for]="light.value.id"
+                           [ngClass]="{'checked-active':  plantingTime.get('planting_time').at(i).get('checked').value }" 
+                           class="btn btn-light-dark mr-3">{{ light.value.name }}</label>
+                </ng-container>
+            </div>
+    </div>
+</form> 

@@ -1,0 +1,44 @@
+<div class="add-product">
+    <form [formGroup]="productsForm" autocomplete="off">
+        <div class="mobile-modal">
+        <h3> {{ '751' | translate }} <span>*</span> </h3>
+            <app-add-image [img]="data ? data.image : null"></app-add-image>
+            <!-- Error -->
+            <span class="error_message"  *ngIf="submited && !image?.getFile?.file">
+                {{ utils.$getErrors('required') }}
+            </span>
+            <!-- Error -->
+
+        <br>
+
+        <div class="form-group">
+            <label for="product-title"> {{ '950' | translate }} <span>*</span></label>
+            <input type="text" class="form-control" formControlName="name"  
+                   [ngClass]="{ 'is-invalid': submited && prod.name.errors }" id="product-title" maxlength="128">
+
+             <!-- Errors -->
+             <ng-container *ngIf="submited && prod.name.errors">
+                <span class="error_message"  *ngFor="let error of utils.getErrorsKey(prod.name.errors)">
+                    {{ utils.$getErrors(error) }}
+                </span>
+            </ng-container>
+            <!-- Errors -->
+        </div>
+        
+        <div class="form-group mb-0">
+            <label for="product-website"> {{ '1531' | translate }} </label>
+            <input type="text" class="form-control" formControlName="website"  [ngClass]="{ 'is-invalid': submited && prod.website.errors}" id="product-website">
+             <!-- Error -->
+             <span class="error_message"  *ngIf="submited && prod.website.errors">
+                {{ utils.$getErrors('url') }}
+            </span>
+            <!-- Error -->
+        </div>
+      </div>
+        <div class="d-flex justify-content-end mobile-button">
+            <button class="save-and-add backgroundless btn" (click)="remove()" *ngIf="data"> {{ '1185' | translate }} </button>
+            <button class="backgroundless ml-auto" (click)="submit(true)" *ngIf="!data"> {{ '1233' | translate }}</button>
+            <button class="btn btn-primary" (click)="submit()" > {{ '1231' | translate }}</button>
+        </div>
+    </form>
+</div>

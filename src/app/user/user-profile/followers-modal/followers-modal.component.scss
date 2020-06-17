@@ -1,0 +1,30 @@
+@import 'src/variables'; 
+
+:host ::ng-deep ngb-tabset {
+    
+    .nav-tabs .nav-link.active {
+        border-bottom: 3px solid $background-dark-cyan !important; 
+    }
+
+    ul {
+        background:  $white; 
+        border: none; 
+        margin: 0;
+        li {
+            font-size: 1rem; 
+            color: $light-black; 
+            margin-top: .5rem; 
+            border-bottom: 3px solid transparent; 
+            margin-left: 1.5rem; 
+
+            a {
+                color: $light-grey; 
+                font-size: 1rem; 
+                border: none !important; 
+                &:hover {
+                    color: $dark-blue; 
+                }
+            }
+        }
+    }
+}

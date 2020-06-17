@@ -1,0 +1,27 @@
+.comments-wrapper {
+    a {
+        color: #808080;
+        cursor: pointer;
+    }
+}
+
+.add-comment-wrapper {
+    background: #fff;
+    border-radius: 5px;
+    .add-comment {
+        position: relative;
+        img {
+            width: 30px;
+            height: 30px;
+            border: 5px;
+        }
+        .profile {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+        }
+    }
+}
+.user-avatar {
+    border: 50% !important;
+}

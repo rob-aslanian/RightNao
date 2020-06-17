@@ -1,0 +1,11 @@
+<form [formGroup]="form" class="col-5">
+    <div class="form-group">
+        <label for="numberOfBeds">Number of beds</label>
+        <input type="text" 
+                class="form-control" 
+                formControlName="numberOfBeds"
+                placeholder="Enter Numbers"
+                id="numberOfBeds">
+        <!-- [ngClass]="{'is-invalid':form.get('numberOfBeds').invalid && isSubmitted}" -->
+    </div>
+</form>

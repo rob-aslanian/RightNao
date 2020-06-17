@@ -1,0 +1,82 @@
+@import 'src/variables';
+.week-days-wrapper {
+    .week-days-container {
+        max-width: 681px;
+        position: relative;
+        margin-top: 1rem;
+
+        input[type='checkbox'] {
+            opacity: 0;
+            position: absolute;
+            z-index: -5;
+        };
+        label {
+            margin: 0px;
+        }
+        
+        .days {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            text-align: center;
+            padding-top: 3px;
+        }
+
+        .days-disabled {
+            background: #EAEDF2;
+            color: $dark-grey;
+        }
+
+        .days-enabled {
+            background: #00D4E3;
+            color: white;
+        }
+
+    }
+    .hours {
+     position: relative;
+        .hour {
+            width: 90%;
+            span {
+                position: absolute;
+                top: -28px;
+                color: #808080;
+            }
+        }
+
+    }
+};
+
+
+.invalid {
+    border: 1px solid red;
+}
+
+.hour-input {
+    position: absolute;
+    height: 40px;
+    width: 66px;
+    top: -1px;
+    border-radius: 4px;
+    display: block;
+    opacity: 1 !important;
+    opacity: 0;
+
+};
+.border-hour {
+    border: 1px solid #CCC;
+
+}
+
+.time {
+}
+
+:host ::ng-deep .ngb-tp-input {
+    border: unset;
+    position: relative;
+    z-index: 2;
+    &:focus {
+        outline: none ;
+    }
+}

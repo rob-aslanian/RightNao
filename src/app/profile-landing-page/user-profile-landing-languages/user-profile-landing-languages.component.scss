@@ -1,0 +1,21 @@
+@import "src/_variables.scss";
+
+.languages-content {
+    background-color: $dark-blue; 
+    border-radius: .5rem; 
+    a{
+        color: $dark-grey; 
+        font-size: .875rem; 
+        text-decoration: none; 
+        cursor: pointer; 
+        &:hover{
+            color: $white; 
+            text-decoration: none; 
+            transition: .3s; 
+        }
+    }
+}
+
+.active {
+    color: $white !important;
+}

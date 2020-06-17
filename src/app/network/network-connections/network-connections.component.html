@@ -1,0 +1,711 @@
+ 
+<div class="col">
+      
+
+
+        <div class="center-heading">
+            <h3>{{ isContact ? 'Contacts' : 'Connections' }}<span> {{ connListlength }} </span></h3>
+            <div class="d-flex center-heading__filter-wrapper">
+                <form [formGroup]="searchForm" class="mr-2">
+                    <input type="text" formControlName="search" class="form-control search">
+                </form>
+                <button class="btn btn-primary" [routerLink]='["/search/people"]'>
+                    <img src="assets/img/105.svg" alt="">
+                    Filters
+                </button>
+            </div>
+
+        </div>
+
+
+        <div class="center-content-network py-0 px-4" *ngIf="isContact" >
+
+            <ul class="network-navigation" *ngIf="allCategoriesList" >
+                <li [ngClass]="{'clicked' : toggle.subNavSelected['all']}">
+                    <div (click)="myToggle('all'); subCategoryEv('')" class="network-navigation-item">
+                        <img src="assets/img/98.svg" alt="" class="btn-more">
+                        <span>All categories</span>
+                        <span> </span>
+                    </div>
+                </li>
+
+
+                <li [ngClass]="{'clicked' : toggle.subNavSelected['favourites']}" >
+                    <div (click)="myToggle('favorite'); subCategoryEv('favourites')" class="network-navigation-item">
+                        <img src="assets/img/99.svg" alt="">
+                        <span class="btn-more"> {{ allCategoriesList.favorite.name }} </span>
+                        <span> {{ allCategoriesSize.favourites }} </span>
+                    </div>
+                
+                </li>
+                
+                <li   [ngClass]="{'clicked' : toggle.subNavSelected['friends_and_family']}" class="d-flex align-items-center">
+                    <div class="btn-more" (click)="myToggle('friends_and_family')" class="network-navigation-item">
+                        <img src="assets/img/100.svg" alt="" class="btn-more">
+                        <span class="btn-more"> {{ allCategoriesList.friends_and_family.name }} </span>
+                        <span class="btn-more"> {{ allCategoriesSize.friends_and_family }} </span>
+                    </div>
+                    <span class="ml-1">&#9662;</span>
+                    <ng-template [ngIf]="toggle.main.active['friends_and_family']" class="btn-more" >
+                        <div class="options business-option btn-more">
+                            <button (click)="subCategoryEv(allCategoriesList.friends_and_family.unique_name)" > {{ allCategoriesList.friends_and_family.name }} </button>
+                            <button (click)="subCategoryEv(item.unique_name)" *ngFor="let item of allCategoriesList.friends_and_family.children">
+                                {{ item.name }}
+                                <span (click)="removeSubCategory($event,item.unique_name)"  >&#215;</span>
+                            </button>
+                            <div class="network-navigation_input btn-more">
+                                <form class="btn-more" [formGroup]="allCatFrAFmForm" (ngSubmit)="addCategoryEvent('friends_and_family')" >
+                                    <input  class="btn-more"  type="text" formControlName="addCategory" placeholder="Add subcategory" autofocus tabindex="1">
+                                </form>
+                            </div>
+                        </div>
+                
+                    </ng-template>
+                </li>
+                <li [ngClass]="{'clicked' : toggle.subNavSelected['work']}" class="d-flex align-items-center">
+                    <div class="btn-more" (click)="myToggle('work')" class="network-navigation-item">
+                        <img  class="btn-more" src="assets/img/101.svg" alt="" class="btn-more">
+                        <span class="btn-more"> {{ allCategoriesList.work.name }} </span>
+                        <span class="btn-more"> {{ allCategoriesSize.work}} </span>
+                    </div>
+                    <span class="ml-1">&#9662;</span>
+                    <ng-template [ngIf]="toggle.main.active['work']" >
+                        <div class="options business-option">
+                            <button (click)="subCategoryEv(allCategoriesList.work.unique_name)" > {{ allCategoriesList.work.name }} </button>
+                            <button  (click)="subCategoryEv(item.unique_name)" *ngFor="let item of allCategoriesList.work.children" >
+                                {{ item.name }}
+                                <span (click)="removeSubCategory($event,item.unique_name)" >&#215;</span>
+                            </button>
+                            <div class="network-navigation_input btn-more">
+                                <form class="btn-more" [formGroup]="allCatWorkForm" (ngSubmit)="addCategoryEvent('work')" >
+                                    <input class="btn-more" type="text" formControlName="addCategory" placeholder="Add subcategory" autofocus tabindex="2">
+                                </form>
+                            </div>
+                        </div>
+                    </ng-template>
+                </li>
+                <li [ngClass]="{'clicked' : toggle.subNavSelected['business']}" class="d-flex align-items-center">
+                    <div (click)="myToggle('business')" class="network-navigation-item">
+                        <img class="btn-more" src="assets/img/102.svg" alt="" class="btn-more">
+                        <span class="btn-more"> {{ allCategoriesList.business.name }} </span>
+                        <span class="btn-more"> {{ allCategoriesSize.business}} </span>
+                    </div>
+                    <span class="ml-1">&#9662;</span>
+                    <ng-template [ngIf]="toggle.main.active['business']" >
+                        <div class="options business-option">
+                            <button (click)="subCategoryEv(allCategoriesList.business.unique_name)" > {{ allCategoriesList.business.name }} </button>
+                            <button  (click)="subCategoryEv(item.unique_name)" *ngFor="let item of allCategoriesList.business.children" >
+                                {{ item.name }}
+                                <span (click)="removeSubCategory($event,item.unique_name)" >&#215;</span>
+                            </button>
+                            <div class="network-navigation_input btn-more">
+                                <form class="btn-more" [formGroup]="allCatBusinessForm" (ngSubmit)="addCategoryEvent('business')" >
+                                    <input class="btn-more" type="text" formControlName="addCategory" placeholder="Add subcategory" autofocus tabindex="3">
+                                </form>
+                            </div>
+                        </div>
+                    </ng-template>
+                </li>
+                <li [ngClass]="{'clicked' : toggle.subNavSelected['other']}" class="d-flex align-items-center">
+                    <div  (click)="myToggle('other')" class="network-navigation-item">
+                        <img class="btn-more"  src="assets/img/103.svg" alt="" class="btn-more">
+                        <span class="btn-more"> {{ allCategoriesList.other.name }} </span>
+                        <span class="btn-more"> {{ allCategoriesSize.other}} </span>
+                    </div>
+                    <span class="ml-1">&#9662;</span>
+                    <ng-template [ngIf]="toggle.main.active['other']" >
+                        <div class="options business-option">
+                            <button (click)="subCategoryEv(allCategoriesList.other.unique_name)" > {{ allCategoriesList.other.name }} </button>
+                            <button  (click)="subCategoryEv(item.unique_name)" *ngFor="let item of allCategoriesList.other.children" autofocus>
+                                {{ item.name }}
+                                <span (click)="removeSubCategory($event,item.unique_name)" >&#215;</span>
+                            </button>
+                            <div class="network-navigation_input btn-more">
+                                <form class="btn-more" [formGroup]="allCatOtherForm" (ngSubmit)="addCategoryEvent('other')" >
+                                    <input class="btn-more" type="text" formControlName="addCategory" placeholder="Add subcategory" appAutoFocus>
+                                </form>
+                            </div>
+                        </div>
+                    </ng-template>
+                </li>
+            <!-- </a> -->
+            </ul>
+        </div>
+        <div class="center-content-network">
+            <!-- <h3 class="network_cat_subCat">{{ selectedCatAndScat }}</h3> -->
+            <div class="connections-first-line">
+                <form [formGroup]="checkAllConnForm">
+
+                    <div class="custom-control custom-checkbox box" *ngIf='selectedArr.length === 0'>
+                               <input type="checkbox" class="custom-control-input  custom-control-label" formControlName="check"  id="check-connections">
+                               <label class="custom-control-label" for="check-connections"></label>
+                    </div>
+                             
+                    <div class="custom-control custom-checkbox box" *ngIf='selectedArr.length > 0'>
+                        <input type="checkbox" class="custom-control-input  custom-control-label"    id="check-connectionss">
+                        <label class=" custom-control-label  custom-checkbox-minus" for="check-connectionss" (click)="resetFormCheck()"></label>
+                 </div>
+    
+
+                </form>
+
+              <ng-template [ngIf]="isSelectedConn" >
+                    <div class="position-relative btn-more">
+                        <button class="categories btn-more" (click)="myToggle('__addToCategories')" >
+                            <img src="assets/img/104.svg" alt="ico">
+                            <span class="btn-more">Add To Categories &#9662;</span>
+                        </button>
+                        <ng-template [ngIf]="toggle.main.active['__addToCategories']" >
+                            <div class="options categories-option btn-more">
+                                <button (click)="myToggle('__friends_and_family','sub')" class="btn-more" >
+                                    <img  src="assets/img/100.svg" alt="blue">
+                                    {{ allCategoriesList.friends_and_family.name }}
+                                </button>
+                                <ng-template [ngIf]="toggle.sub.active['__friends_and_family']" >
+                                    <button   class="btn-more sub" *ngFor="let item of allCategoriesList.friends_and_family.children" (click)="toggleCategoryToUser(item.unique_name,false,'AddToCategory')">
+                                        {{ item.name }}
+                                    </button>
+                                </ng-template>
+                                <button (click)="myToggle('__work','sub')" class="btn-more" >
+                                    <img  src="assets/img/101.svg" alt="blue"> {{ allCategoriesList.work.name }}
+                                </button>
+                                <ng-template [ngIf]="toggle.sub.active['__work']" >
+                                    <button  class="btn-more sub" *ngFor="let item of allCategoriesList.work.children" (click)="toggleCategoryToUser(item.unique_name,false,'AddToCategory')" >
+                                        {{ item.name }}
+                                    </button>
+                                </ng-template>
+                                
+                                <button class="btn-more" (click)="myToggle('__business','sub')" >
+                                    <img class="btn-more" src="assets/img/102.svg" alt="blue"> {{ allCategoriesList.business.name }}
+                                </button>
+                                <ng-template [ngIf]="toggle.sub.active['__business']" >
+                                    <button class="btn-more sub" *ngFor="let item of allCategoriesList.business.children" (click)="toggleCategoryToUser(item.unique_name,false,'AddToCategory')" >
+                                        {{ item.name }}
+                                    </button>
+                                </ng-template>
+                                
+                                <button class="btn-more" (click)="myToggle('__other','sub')" >
+                                    <img class="btn-more" src="assets/img/103.svg" alt="blue"> {{ allCategoriesList.other.name }} 
+                                </button>
+                                <ng-template [ngIf]="toggle.sub.active['__other']" >
+                                    <button class="btn-more sub" *ngFor="let item of allCategoriesList.other.children" (click)="toggleCategoryToUser(item.unique_name,false,'AddToCategory')" >
+                                        {{ item.name }}
+                                    </button>
+                                </ng-template>
+        
+                                <button (click)="removeAllCatFromUser()" >
+                                    <img src="assets/img/53.svg" alt="x">
+                                    Remove from All
+                                </button>
+                            </div>
+                        </ng-template>
+                    </div>
+                    
+                    <button *ngIf='!removeFavourites' class="favorites btn-more" (click)="toggleCategoryToUser('favourites',false,'AddToCategory')" >
+                        <img class="btn-more" src="assets/img/44.svg" alt="heart">
+                        Favorites
+                    </button>
+     
+
+                    <button *ngIf='removeFavourites' class="favorites btn-more" (click)="toggleCategoryToUser('favourites',false,'RemoveFromCategory')" >
+                            <img class="btn-more" src="assets/img/99.svg" alt="heart">
+                            Favorites
+                        </button>
+                </ng-template>
+                
+                <div class="position-relative ml-auto d-flex align-items-center">
+                    
+                    <button  class="sort btn-more" (click)="myToggle('f_sort')" >
+                        {{ toggle.sort.selectedText === "" ? "Sort by" : toggle.sort.selectedText}} &#9662;
+                    </button> 
+                    <ng-template [ngIf]="toggle.main.active['f_sort']" >
+                        <div class="options sort-by-option">
+                            <button  class="btn-more"  (click)="sort_and_wiew($event,'sort','first_name')" > First Name</button>
+                            <button  class="btn-more"  (click)="sort_and_wiew($event,'sort','last_name')" > Last Name</button>
+                            <button  class="btn-more"  (click)="sort_and_wiew($event,'sort','recently_added')" > Recently added</button>
+                        </div>
+                    </ng-template>
+        
+                    <button [ngClass]="toggle.view.selected == 'card' ? 'blocks btn-more' : 'list btn-more'" (click)="myToggle('f_view')" >
+                    </button>
+                    <ng-template class="btn-more" [ngIf]="toggle.main.active['f_view']" >
+                        <div class="options blocks-option btn-more">
+                            <button class="btn-more" (click)="sort_and_wiew($event,'view','card')" >Card view</button>
+                            <button class="btn-more" (click)="sort_and_wiew($event,'view','list')" >List view</button>
+                        </div>
+                    </ng-template>
+    
+                </div>
+            </div>
+
+            <app-spinner class="loader" *ngIf="isLoaded"></app-spinner>
+
+
+            <!-- card view -->
+            
+            <ng-container  *ngIf="alertType && alertData">
+                <app-notification-alert [type]="alertType" [data] = "alertData"></app-notification-alert>
+            </ng-container>
+             <ng-template [ngIf]="toggle.view.selected == 'card'   && !isLoaded" >
+                    <form [formGroup]="connectionsForm" >
+                        <div class="network-boxes-container form-row" formArrayName="checkbox" >
+                            <div class="col-lg-4 col-md-6"  *ngFor="let item of connectionsList; let i = index" >
+                                <div class="network-box btn-more d-flex flex-column justify-content-between" [ngClass]="connectionsForm.controls.checkbox.controls[item.index].value ? 'selected' : null">
+                                    <div>
+                                    <div class="network-line-one">
+                                        <div class="custom-control custom-checkbox" >
+                                            <input type="checkbox" [formControlName]="item.index" class="custom-control-input" [id]="'check-connection'+item.index" (click)='clickedCheckbox($event)'>
+                                            <label class="custom-control-label " [for]="'check-connection'+item.index"></label>
+                                        </div>
+
+                                        <button class="btn-more" (click)="myToggle('dots'+item.index)" >
+                                            <img class="btn-more" src="assets/img/107.svg" alt="...">
+                                        </button>
+                                    </div>
+
+                                    <div class="network-line-two">
+                                        <ng-template [ngIf]="toggle.main.active['dots'+item.index]" >
+                                            <div class="options connection-option btn-more">
+                                                <button class="ask " (click)='getRecommend("ask",i)'>Ask for a Recommendation</button>
+                                                <button class="recommend " (click)='getRecommend("recommend",i)'>Recommend</button>
+                                                <button class="save"  (click)="saveToPDF(item.friend_profile)">Save to PDF</button>
+                                                <button class="disconnect btn-more" (click)="disconnect(item.friend_profile.id, i)" >Disconnect</button>
+                                                <button class="unfollow btn-more" *ngIf="item.following" (click)="unfollow(item.friend_profile.id, i )" >Unfollow</button>
+                                                <button class="follow btn-more" *ngIf="!item.following" (click)="follow(item.friend_profile.id, i )" >Follow</button>
+                                                <button class="report" (click)="reportBlock(item.friend_profile,i)" >Report / block</button>
+                                                <button class="info btn-more" (click)='infoView(i)' [ngbPopover]="infoPopover">Info</button>
+                                            </div>    
+                                        </ng-template>
+                                        <div class="left">
+                                            <img class="profile" [src]="item.friend_profile.avatar == '' ? 'assets/img/124.svg' : '/file/'+item.friend_profile.avatar" alt="profile">
+                                            <button class="chat" (click)="openSmallChatBox( item.friend_profile)">
+                                                <img src="assets/img/106.svg" alt="chat">
+                                            </button>
+        
+                                        </div>
+                                        <div class="right">
+                                            <a [routerLink]="['/user/profile/'+item.friend_profile.url]">
+                                                <h4> {{ item.friend_profile.firstname + ' ' + item.friend_profile.lastname }} </h4>
+                                            </a>
+            
+                                    <span *ngIf='item.friend_profile.experiences.length > 0'> {{ item.friend_profile.experiences[0].company}} </span>
+                                    <span *ngIf='item.friend_profile.experiences.length > 0'> {{ item.friend_profile.experiences[0].title}} </span>
+    
+                                        </div>
+                                    </div>
+                                    <div class="network-line-three">
+                                        <div class="d-flex">
+                                            <img src="assets/img/22.svg" alt="@" *ngIf='item.friend_profile.email '> 
+                                            <span> {{ item.friend_profile.email }} </span>
+                                        </div>  
+                                        <div class="d-flex" *ngIf='item.friend_profile.phone'>
+                                            <img src="assets/img/23.svg" alt="number" *ngIf='item.friend_profile.phone'> 
+                                            <span> {{ item.friend_profile.phone }} </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <div class="network-line-four">
+                                        <button (click)="toggleCategoryToUser('favourites',item.friend_profile.id); showAlert(item.friend_profile.firstname , item.friend_profile.lastname, item.friend_profile.avatar)" >
+                                            <img [src]="item.cat.favourites ? 'assets/img/99.svg' : 'assets/img/44.svg'" alt="heart" >
+                                        </button>
+                                        <button class='btn-more' (click)="myToggle(item.index)" >
+            
+                                            <img class="circle__img btn-more" *ngIf="item.cat.friends_and_family && !item.cat.work && !item.cat.business && !item.cat.other && !item.cat.not_categorized" src="assets/img/100.svg" alt="circle">
+                                            <img class="circle__img btn-more" *ngIf="item.cat.work && !item.cat.friends_and_family && !item.cat.business && !item.cat.other && !item.cat.not_categorized" src="assets/img/101.svg" alt="circle">
+                                            <img class="circle__img btn-more" *ngIf="item.cat.business && !item.cat.friends_and_family && !item.cat.work && !item.cat.other && !item.cat.not_categorized" src="assets/img/102.svg" alt="circle">
+                                            <img class="circle__img btn-more" *ngIf="item.cat.other && !item.cat.friends_and_family && !item.cat.work && !item.cat.business && !item.cat.not_categorized" src="assets/img/103.svg" alt="circle">
+                                            <img class="circle__img btn-more" *ngIf="item.cat.not_categorized && !item.cat.friends_and_family && !item.cat.work && !item.cat.business && !item.cat.other" src="assets/img/104.svg" alt="circle">
+                                            <img class="circle__img btn-more" *ngIf="item.cat.favourites && !item.cat.not_categorized && !item.cat.friends_and_family && !item.cat.work && !item.cat.business && !item.cat.other" src="assets/img/104.svg" alt="circle">             
+                                            <img class="circle__img btn-more" *ngIf="item.cat.friends_and_family && item.cat.work && item.cat.business && item.cat.other && !item.cat.not_categorized" src="assets/img/108.svg" alt="circle">
+                                            <img class="circle__img btn-more" *ngIf="item.cat.friends_and_family && item.cat.work && item.cat.business && !item.cat.other && !item.cat.not_categorized" src="assets/img/109.svg" alt="circle">
+                                            <img class="circle__img btn-more" *ngIf="!item.cat.friends_and_family && item.cat.work && item.cat.business && !item.cat.other && !item.cat.not_categorized" src="assets/img/110.svg" alt="circle">
+                                            <img class="circle__img btn-more" *ngIf="!item.cat.friends_and_family && !item.cat.work && item.cat.business && item.cat.other && !item.cat.not_categorized" src="assets/img/112.svg" alt="circle">
+                                            <img class="circle__img btn-more" *ngIf="item.cat.friends_and_family && !item.cat.work && item.cat.business && !item.cat.other && !item.cat.not_categorized" src="assets/img/113.svg" alt="circle">
+                                            <img class="circle__img btn-more" *ngIf="item.cat.friends_and_family && item.cat.work && !item.cat.business && !item.cat.other && !item.cat.not_categorized" src="assets/img/114.svg" alt="circle">
+                                            <img class="circle__img btn-more" *ngIf="item.cat.friends_and_family && !item.cat.work && !item.cat.business && item.cat.other && !item.cat.not_categorized" src="assets/img/115.svg" alt="circle">
+                                            <img class="circle__img btn-more" *ngIf="!item.cat.friends_and_family && item.cat.work && !item.cat.business && item.cat.other && !item.cat.not_categorized" src="assets/img/116.svg" alt="circle">
+                                            <img class="circle__img btn-more" *ngIf="!item.cat.friends_and_family && item.cat.work && item.cat.business && item.cat.other && !item.cat.not_categorized" src="assets/img/117.svg" alt="circle">
+                                            <img class="circle__img btn-more" *ngIf="item.cat.friends_and_family && item.cat.work && !item.cat.business && item.cat.other && !item.cat.not_categorized" src="assets/img/118.svg" alt="circle">
+                                            <img class="circle__img btn-more" *ngIf="item.cat.friends_and_family && !item.cat.work && item.cat.business && item.cat.other && !item.cat.not_categorized" src="assets/img/119.svg" alt="circle">
+                                            
+                                        </button>
+                                    </div>
+
+                                    <!-- connection item categories -->
+                                    
+                                    <ng-template [ngIf]="toggle.main.active[item.index]" >
+                                                    <!-- <div class="options network-option">
+                                                        <button class="btn-more" (click)="myToggle('_friends_and_family','sub')" >
+                                                            <img class="btn-more" src="assets/img/100.svg" alt="blue">
+                                                            {{ allCategoriesList.friends_and_family.name }}
+                                                        </button>
+                                                    </div> -->
+                                                    <div class="network-line-two">
+                                                        <ng-template [ngIf]="toggle.main.active['dots'+item.index]" >
+                                                            <div class="options connection-option btn-more">
+                                                                <button class="ask " (click)='getRecommend("ask",i)'>Ask for a Recommendation</button>
+                                                                <button class="recommend " (click)='getRecommend("recommend",i)'>Recommend</button>
+                                                                <button class="save"   (click)="saveToPDF(item.friend_profile)">Save to PDF</button>
+                                                                <button class="disconnect btn-more" (click)="disconnect(item.friend_profile.id, i )" >Disconnect</button>
+                                                                <button class="unfollow btn-more" *ngIf="item.following" (click)="unfollow(item.friend_profile.id,i)" >Unfollow</button>
+                                                                <button class="follow btn-more" *ngIf="!item.following" (click)="follow(item.friend_profile.id,i)" >Follow</button>
+                                                                <button class="report" (click)='reportBlock(item.friend_profile,i)' >Report / block</button>
+                                                                <button class="info btn-more" (click)='infoView(i)' [ngbPopover]="infoPopover">Info</button>
+                                                            </div>    
+                                                        </ng-template>
+                                                        <!-- <div class="left">
+                                                            <img class="profile" [src]="item.friend.avatar == '' ? 'assets/img/124.svg' : '/file/'+item.friend.avatar" alt="profile">
+                                                            <button class="chat" [routerLink]="['/messaging/v/'+item.friend.id]">
+                                                                <img src="assets/img/106.svg" alt="chat">
+                                                            </button>
+                                                        </div>
+                                                        <div class="right">
+                                                            <a [routerLink]="['/user/profile/'+item.friend.url]">
+                                                                <h4> {{ item.friend.first_name + ' ' + item.friend.last_name }} </h4>
+                                                            </a>
+                                                            <span> {{ item.friend.last_experience.position }} </span>
+                                                            <span> {{ item.friend.last_experience.company }} </span>
+                                                        </div> -->
+                                                    </div>
+                                                    <!-- <div class="network-line-three">
+                                                        <div class="d-flex">
+                                                            <img src="assets/img/22.svg" alt="@"> 
+                                                            <span> {{ item.friend.primary_email }} </span>
+                                                        </div>  
+                                                        <div class="d-flex" *ngIf='item.friend_profile.phone'>
+                                                            <img src="assets/img/23.svg" alt="number"> 
+                                                            <span> {{ item.friend_profile.phone }} </span>
+                                                        </div>
+                                                    </div> -->
+                                                    <!-- <div class="network-line-four"> -->
+                                                        
+                                                        <!-- <button (click)="toggleCategoryToUser('favourites',item.friend.id)" >
+                                                            <img [src]="item.cat.favourites ? 'assets/img/99.svg' : 'assets/img/44.svg'" alt="heart">
+                                                        </button> -->
+
+                                                        <!-- <button (click)="myToggle(item.index)" >
+                    
+                                                            <img class="btn-more" *ngIf="item.cat.friends_and_family && !item.cat.work && !item.cat.business && !item.cat.other && !item.cat.not_categorized" src="assets/img/100.svg" alt="circle">
+                                                            <img class="btn-more" *ngIf="item.cat.work && !item.cat.friends_and_family && !item.cat.business && !item.cat.other && !item.cat.not_categorized" src="assets/img/101.svg" alt="circle">
+                                                            <img class="btn-more" *ngIf="item.cat.business && !item.cat.friends_and_family && !item.cat.work && !item.cat.other && !item.cat.not_categorized" src="assets/img/102.svg" alt="circle">
+                                                            <img class="btn-more" *ngIf="item.cat.other && !item.cat.friends_and_family && !item.cat.work && !item.cat.business && !item.cat.not_categorized" src="assets/img/103.svg" alt="circle">
+                                                            <img class="btn-more" *ngIf="item.cat.not_categorized && !item.cat.friends_and_family && !item.cat.work && !item.cat.business && !item.cat.other" src="assets/img/104.svg" alt="circle">
+                                                            <img class="btn-more" *ngIf="item.cat.favourites && !item.cat.not_categorized && !item.cat.friends_and_family && !item.cat.work && !item.cat.business && !item.cat.other" src="assets/img/104.svg" alt="circle">
+                                                            
+                                                            <img class="btn-more" *ngIf="item.cat.friends_and_family && item.cat.work && item.cat.business && item.cat.other && !item.cat.not_categorized" src="assets/img/108.svg" alt="circle">
+                                                            <img class="btn-more" *ngIf="item.cat.friends_and_family && item.cat.work && item.cat.business && !item.cat.other && !item.cat.not_categorized" src="assets/img/109.svg" alt="circle">
+                                                            <img class="btn-more" *ngIf="!item.cat.friends_and_family && item.cat.work && item.cat.business && !item.cat.other && !item.cat.not_categorized" src="assets/img/110.svg" alt="circle">
+                                                            <img class="btn-more" *ngIf="!item.cat.friends_and_family && !item.cat.work && item.cat.business && item.cat.other && !item.cat.not_categorized" src="assets/img/112.svg" alt="circle">
+                                                            <img class="btn-more" *ngIf="item.cat.friends_and_family && !item.cat.work && item.cat.business && !item.cat.other && !item.cat.not_categorized" src="assets/img/113.svg" alt="circle">
+                                                            <img class="btn-more" *ngIf="item.cat.friends_and_family && item.cat.work && !item.cat.business && !item.cat.other && !item.cat.not_categorized" src="assets/img/114.svg" alt="circle">
+                                                            <img class="btn-more" *ngIf="item.cat.friends_and_family && !item.cat.work && !item.cat.business && item.cat.other && !item.cat.not_categorized" src="assets/img/115.svg" alt="circle">
+                                                            <img class="btn-more" *ngIf="!item.cat.friends_and_family && item.cat.work && !item.cat.business && item.cat.other && !item.cat.not_categorized" src="assets/img/116.svg" alt="circle">
+                                                            <img class="btn-more" *ngIf="!item.cat.friends_and_family && item.cat.work && item.cat.business && item.cat.other && !item.cat.not_categorized" src="assets/img/117.svg" alt="circle">
+                                                            <img class="btn-more" *ngIf="item.cat.friends_and_family && item.cat.work && !item.cat.business && item.cat.other && !item.cat.not_categorized" src="assets/img/118.svg" alt="circle">
+                                                           <img *ngIf="item.cat.friends_and_family && !item.cat.work && item.cat.business && item.cat.other && !item.cat.not_categorized" src="assets/img/119.svg" alt="circle">
+                                                            
+                                                        </button> -->
+                                                       
+                                                        <!-- connection item categories -->
+                                                       
+                                                        <ng-template [ngIf]="toggle.main.active[item.index]" >
+                                                            <div class="options network-option">
+                                                                <button class="btn-more" (click)="myToggle('_friends_and_family','sub')" >
+                                                                    <img class="btn-more" src="assets/img/100.svg" alt="blue">
+                                                                    {{ allCategoriesList.friends_and_family.name }}
+                                                                </button>
+                                                                <ng-template [ngIf]="toggle.sub.active['_friends_and_family']" >
+                                                                    <button [ngClass]="{ 'active' : item.cat[cat.unique_name]}" class="sub btn-more" *ngFor="let cat of allCategoriesList.friends_and_family.children" (click)="toggleCategoryToUser(cat.unique_name,item.friend_profile.id) " >
+                                                                        {{ cat.name }}
+                                                                    </button>
+                                                                    <div class="network-navigation_input btn-more">
+                                                                        <form class="btn-more" [formGroup]="allCatFrAFmForm" (ngSubmit)="addCategoryEvent('friends_and_family')" >
+                                                                            <input  class="btn-more"  type="text" formControlName="addCategory" placeholder="Add subcategory" appAutoFocus>
+                                                                        </form>
+                                                                    </div>
+                                                                </ng-template>
+                                                                    
+                                                                <button class="btn-more" (click)="myToggle('_work','sub')" >
+                                                                    <img class="btn-more" src="assets/img/101.svg" alt="blue"> {{ allCategoriesList.work.name }}
+                                                                </button>
+                                                                <ng-template [ngIf]="toggle.sub.active['_work']" >
+                                                                    <button [ngClass]="{ 'active' : item.cat[cat.unique_name]}" class="sub btn-more" *ngFor="let cat of allCategoriesList.work.children" (click)="toggleCategoryToUser(cat.unique_name,item.friend_profile.id)" >     
+                                                                        {{ cat.name }}
+                                                                    </button>
+                                                                    <div class="network-navigation_input btn-more">
+                                                                        <form class="btn-more" [formGroup]="allCatWorkForm" (ngSubmit)="addCategoryEvent('work')" >
+                                                                            <input class="btn-more" type="text" formControlName="addCategory" placeholder="`Add subcategory" appAutoFocus>
+                                                                        </form>
+                                                                    </div>
+                                                                </ng-template>
+
+                                                                    
+                                                                <button class="btn-more" (click)="myToggle('_business','sub')" >
+                                                                    <img class="btn-more" src="assets/img/102.svg" alt="blue"> {{ allCategoriesList.business.name }}
+                                                                </button>
+                                                                <ng-template [ngIf]="toggle.sub.active['_business']" >
+                                                                    <button [ngClass]="{ 'active' : item.cat[cat.unique_name]}" class="sub btn-more" *ngFor="let cat of allCategoriesList.business.children" (click)="toggleCategoryToUser(cat.unique_name,item.friend_profile.id)" >
+                                                                        
+                                                                        {{ cat.name }}
+                                                                    </button>
+                                                                    <div class="network-navigation_input btn-more">
+                                                                        <form class="btn-more" [formGroup]="allCatBusinessForm" (ngSubmit)="addCategoryEvent('business')" >
+                                                                            <input class="btn-more" type="text" formControlName="addCategory" placeholder="Add subcategory" appAutoFocus>
+                                                                        </form>
+                                                                    </div>
+                                                                </ng-template>
+                                                                    
+                                                                <button class="btn-more" (click)="myToggle('_other','sub')" >
+                                                                    <img class="btn-more" src="assets/img/103.svg" alt="blue"> {{ allCategoriesList.other.name }} 
+                                                                </button>
+                                                                <ng-template [ngIf]="toggle.sub.active['_other']" >
+                                                                    <button [ngClass]="{ 'active' : item.cat[cat.unique_name]}" class="sub btn-more" *ngFor="let cat of allCategoriesList.other.children" (click)="toggleCategoryToUser(cat.unique_name,item.friend_profile.id)" >
+                                                                        
+                                                                        {{ cat.name }}
+                                                                    </button>
+                                                                    <div class="network-navigation_input btn-more">
+                                                                        <form class="btn-more" [formGroup]="allCatOtherForm" (ngSubmit)="addCategoryEvent('other')" >
+                                                                            <input class="btn-more" type="text" formControlName="addCategory" placeholder="Add subcategory" appAutoFocus>
+                                                                        </form>
+                                                                    </div>
+                                                                </ng-template>
+                                        
+                                                                <button (click)="removeAllCatFromUser(item.friend_profile.id)" >
+                                                                    <img src="assets/img/53.svg" alt="x">
+                                                                    Remove from All
+                                                                </button>
+                                                            </div>
+                                                        </ng-template>
+                                                    <!-- </div> -->
+                                    
+                                    </ng-template>
+                                </div>
+                            </div>
+                        </div>
+
+                    <!-- </ng-template> -->
+
+                    
+                    
+                </form>
+            </ng-template>
+            
+         
+                
+            <!-- list view -->
+            <ng-template [ngIf]="toggle.view.selected == 'list'    && !isLoaded" >
+                <form [formGroup]="connectionsForm">
+                <div class="network-boxes-container-long-view" formArrayName="checkbox" >
+                    <div class="network-box btn-more list" [ngClass]="connectionsForm.controls.checkbox.controls[item.index].value ? 'selected' : null" *ngFor="let item of connectionsList; let i = index"  >
+                        <div class="custom-control custom-checkbox" >
+                            <input type="checkbox" [checked]="false" class="custom-control-input" [formControlName]="item.index" [id]="'check-network'+item.index"  (click)='clickedCheckbox($event)'>
+                            <label class="custom-control-label " [for]="'check-network'+item.index"></label>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <div class="network-box-component-one">
+                                <img class="profile" [src]="item.friend_profile.avatar == '' ? 'assets/img/124.svg' : '/file/'+item.friend_profile.avatar" alt="profile">
+                                <div class="one-right">
+                                    <a [routerLink]="['/user/profile/'+item.friend_profile.url]">
+                                        <h4> {{ item.friend_profile.firstname + ' ' + item.friend_profile.lastname }} </h4>
+                                    </a>
+                                    <button class="chat" (click)="openSmallChatBox( item.friend_profile)">
+                                        <img src="assets/img/106.svg" alt="chat">
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="network-box-component-two">
+                            <ng-container *ngIf='item.friend_profile.experiences.length > 0'>
+                                <span> {{ item.friend_profile.experiences[0].company}} </span>
+                                <span> {{ item.friend_profile.experiences[0].title}} </span>
+                            </ng-container>
+                            </div>
+
+                            <div class="network-box-component-three">
+                                <div class="d-flex mb-1">
+                                    <img src="assets/img/22.svg" alt="@" *ngIf='item.friend_profile.email'> 
+                                    <span> {{ item.friend_profile.email }} </span>
+                                </div>  
+                                <div class="d-flex" *ngIf='item.friend_profile.phone'>
+                                    <img src="assets/img/23.svg" alt="number"> 
+                                    <span> {{ item.friend_profile.phone }} </span>
+                                </div>
+                            </div>
+
+                            <div class="network-box-component-four">
+                                <button (click)="toggleCategoryToUser('favourites',item.friend_profile.id); showAlert(item.friend_profile.firstname , item.friend_profile.lastname, item.friend_profile.avatar)">
+                                    <img [src]="item.cat.favourites ? 'assets/img/99.svg' : 'assets/img/44.svg'" alt="heart">
+                                </button>
+                                <button class="btn-more" (click)="myToggle('list'+item.index)" >
+                                    <img class="circle__img  btn-more" *ngIf="item.cat.friends_and_family && !item.cat.work && !item.cat.business && !item.cat.other && !item.cat.not_categorized" src="assets/img/100.svg" alt="circle">
+                                    <img class="circle__img  btn-more" *ngIf="item.cat.work && !item.cat.friends_and_family && !item.cat.business && !item.cat.other && !item.cat.not_categorized" src="assets/img/101.svg" alt="circle">
+                                    <img class="circle__img  btn-more" *ngIf="item.cat.business && !item.cat.friends_and_family && !item.cat.work && !item.cat.other && !item.cat.not_categorized" src="assets/img/102.svg" alt="circle">
+                                    <img class="circle__img  btn-more" *ngIf="item.cat.other && !item.cat.friends_and_family && !item.cat.work && !item.cat.business && !item.cat.not_categorized" src="assets/img/103.svg" alt="circle">
+                                    <img class="circle__img  btn-more" *ngIf="item.cat.not_categorized && !item.cat.friends_and_family && !item.cat.work && !item.cat.business && !item.cat.other" src="assets/img/104.svg" alt="circle">
+                                    <img class="circle__img  btn-more" *ngIf="item.cat.favourites && !item.cat.not_categorized && !item.cat.friends_and_family && !item.cat.work && !item.cat.business && !item.cat.other" src="assets/img/104.svg" alt="circle">
+                                    
+                                    <img class="circle__img btn-more" *ngIf="item.cat.friends_and_family && item.cat.work && item.cat.business && item.cat.other && !item.cat.not_categorized" src="assets/img/108.svg" alt="circle">
+                                    <img class="circle__img btn-more" *ngIf="item.cat.friends_and_family && item.cat.work && item.cat.business && !item.cat.other && !item.cat.not_categorized" src="assets/img/109.svg" alt="circle">
+                                    <img class="circle__img btn-more" *ngIf="!item.cat.friends_and_family && item.cat.work && item.cat.business && !item.cat.other && !item.cat.not_categorized" src="assets/img/110.svg" alt="circle">
+                                    <img class="circle__img btn-more" *ngIf="!item.cat.friends_and_family && !item.cat.work && item.cat.business && item.cat.other && !item.cat.not_categorized" src="assets/img/112.svg" alt="circle">
+                                    <img class="circle__img btn-more" *ngIf="item.cat.friends_and_family && !item.cat.work && item.cat.business && !item.cat.other && !item.cat.not_categorized" src="assets/img/113.svg" alt="circle">
+                                    <img class="circle__img btn-more" *ngIf="item.cat.friends_and_family && item.cat.work && !item.cat.business && !item.cat.other && !item.cat.not_categorized" src="assets/img/114.svg" alt="circle">
+                                    <img class="circle__img btn-more" *ngIf="item.cat.friends_and_family && !item.cat.work && !item.cat.business && item.cat.other && !item.cat.not_categorized" src="assets/img/115.svg" alt="circle">
+                                    <img class="circle__img btn-more" *ngIf="!item.cat.friends_and_family && item.cat.work && !item.cat.business && item.cat.other && !item.cat.not_categorized" src="assets/img/116.svg" alt="circle">
+                                    <img class="circle__img btn-more" *ngIf="!item.cat.friends_and_family && item.cat.work && item.cat.business && item.cat.other && !item.cat.not_categorized" src="assets/img/117.svg" alt="circle">
+                                    <img class="circle__img btn-more" *ngIf="item.cat.friends_and_family && item.cat.work && !item.cat.business && item.cat.other && !item.cat.not_categorized" src="assets/img/118.svg" alt="circle">
+                                    <img class="circle__img btn-more" *ngIf="item.cat.friends_and_family && !item.cat.work && item.cat.business && item.cat.other && !item.cat.not_categorized" src="assets/img/119.svg" alt="circle">
+                                    
+                                </button>
+                            </div>
+                        </div>
+
+                        <button class="network-dots-btn btn-more" (click)="myToggle('list_dots'+item.index)" >
+                            <img class="btn-more" src="assets/img/107.svg" alt="...">
+                        </button>
+
+
+                        <!-- connection item categories -->
+                        <ng-template [ngIf]="toggle.main.active['list'+item.index]" >
+                            <div class="options network-option">
+                                <button class="btn-more" (click)="myToggle('_friends_and_family','sub')" >
+                                    <img class="btn-more" src="assets/img/100.svg" alt="blue">
+                                    {{ allCategoriesList.friends_and_family.name }}
+                                </button>
+                                <ng-template [ngIf]="toggle.sub.active['_friends_and_family']" >
+                                    <button [ngClass]="{ 'active' : item.cat[cat.unique_name]}" class="sub btn-more" *ngFor="let cat of allCategoriesList.friends_and_family.children" (click)="toggleCategoryToUser(cat.unique_name,item.friend_profile.id)" >
+                                        {{ cat.name }}
+                                    </button>
+                                    <div class="network-navigation_input btn-more">
+                                        <form class="btn-more" [formGroup]="allCatFrAFmForm" (ngSubmit)="addCategoryEvent('friends_and_family')" >
+                                            <input  class="btn-more"  type="text" formControlName="addCategory" placeholder="Add subcategory" appAutoFocus>
+                                        </form>
+                                    </div>
+                                </ng-template>
+                                    
+                                <button class="btn-more" class="btn-more" (click)="myToggle('_work','sub')" >
+                                    <img class="btn-more" src="assets/img/101.svg" alt="blue"> {{ allCategoriesList.work.name }}
+                                </button>
+                                <ng-template [ngIf]="toggle.sub.active['_work']" >
+                                    <button [ngClass]="{ 'active' : item.cat[cat.unique_name]}" class="sub btn-more" *ngFor="let cat of allCategoriesList.work.children" (click)="toggleCategoryToUser(cat.unique_name,item.friend_profile.id)" >
+                                        
+                                        {{ cat.name }}
+                                    </button>
+                                    <div class="network-navigation_input btn-more">
+                                        <form class="btn-more" [formGroup]="allCatWorkForm" (ngSubmit)="addCategoryEvent('work')" >
+                                            <input class="btn-more" type="text" formControlName="addCategory" placeholder="Add subcategory" appAutoFocus>
+                                        </form>
+                                    </div>
+                                </ng-template>
+                                    
+                                <button class="btn-more" (click)="myToggle('_business','sub')" >
+                                    <img class="btn-more" src="assets/img/102.svg" alt="blue"> {{ allCategoriesList.business.name }}
+                                </button>
+                                <ng-template [ngIf]="toggle.sub.active['_business']" >
+                                    <button [ngClass]="{ 'active' : item.cat[cat.unique_name]}" class="sub btn-more" *ngFor="let cat of allCategoriesList.business.children" (click)="toggleCategoryToUser(cat.unique_name,item.friend_profile.id)" >
+                                        
+                                        {{ cat.name }}
+                                    </button>
+                                    <div class="network-navigation_input btn-more">
+                                        <form class="btn-more" [formGroup]="allCatBusinessForm" (ngSubmit)="addCategoryEvent('business')" >
+                                            <input class="btn-more" type="text" formControlName="addCategory" placeholder="Add subcategory" appAutoFocus>
+                                        </form>
+                                    </div>
+                                </ng-template>
+                                    
+                                <button class="btn-more" class="btn-more" (click)="myToggle('_other','sub')" >
+                                    <img class="btn-more" class="btn-more" src="assets/img/103.svg" alt="blue"> {{ allCategoriesList.other.name }} 
+                                </button>
+                                <ng-template [ngIf]="toggle.sub.active['_other']" >
+                                    <button [ngClass]="{ 'active' : item.cat[cat.unique_name]}" class="sub btn-more" *ngFor="let cat of allCategoriesList.other.children" (click)="toggleCategoryToUser(cat.unique_name,item.friend_profile.id)" >
+                                        
+                                        {{ cat.name }}
+                                    </button>
+                                    <div class="network-navigation_input btn-more">
+                                        <form class="btn-more" [formGroup]="allCatOtherForm" (ngSubmit)="addCategoryEvent('other')" >
+                                            <input class="btn-more" type="text" formControlName="addCategory" placeholder="Add subcategory" appAutoFocus>
+                                        </form>
+                                    </div>
+                                </ng-template>
+
+                                <button (click)="removeAllCatFromUser(item.friend_profile.id)" >
+                                    <img src="assets/img/53.svg" alt="x">
+                                    Remove from All
+                                </button>
+                            </div>
+                        </ng-template>
+                        <ng-template [ngIf]="toggle.main.active['list_dots'+item.index]" >
+                            <div class="options connection-option btn-more">
+                                <button class="ask " (click)='getRecommend("ask",i)'>Ask for a Recommendation</button>
+                                <button class="recommend " (click)='getRecommend("recommend",i)'>Recommend</button>
+                                <button class="save"   (click)="saveToPDF(item.friend_profile)">Save to PDF</button>
+                                <button class="disconnect btn-more" (click)="disconnect(item.friend_profile.id)" >Disconnect</button>
+                                <button class="unfollow btn-more" *ngIf="item.following" (click)="unfollow(item.friend_profile.id , i)" >Unfollow</button>
+                                <button class="follow btn-more" *ngIf="!item.following" (click)="follow(item.friend_profile.id , i)" >Follow</button>
+                                <button class="report" (click)="reportBlock(item.friend_profile,i)" >Report / block</button>
+                                <button class="info btn-more" (click)='infoView(i)' [ngbPopover]="infoPopover">Info</button>
+                            </div>    
+                        </ng-template>
+                     </div>
+                   </div>
+                </form>
+            </ng-template>
+ 
+        <!---START SAVE TO PDF -->
+
+                
+            <div *ngIf='selectedUser'>
+                <app-save-to-pdf 
+                    [data]="selectedUser" class="d-none">
+            </app-save-to-pdf>
+            </div>
+                        
+
+
+     <!-- END SAVE TO PDF --> 
+ 
+        </div>
+        <!-- report/block starts -->
+    <app-modal (closeModal)="modalType = null">
+        <ng-container *ngIf='modalType && modalType === "reportBlock" '>
+        <app-report-block-user
+        (closeModal)='close($event)' 
+        [blockId]='reportBlockUer' type="user"
+        (isBlocked)='isBlockedUser($event)'
+        >
+        </app-report-block-user>
+    </ng-container>
+
+<!-- report/block ends -->
+        <!-- ask modal starts -->
+    <ng-container  *ngIf='modalType && modalType === "ask"'>
+        <app-reccomendations-modal 
+        (closeModal)="close($event)" 
+        [modalType]="modalType" 
+        (result)="getResult($event)"
+        [data]="connectionsList[recommendIndex].friend_profile"
+        >
+        </app-reccomendations-modal>
+    </ng-container>
+
+    <ng-container  *ngIf='modalType && modalType === "recommend"'>
+        <app-reccomendations-modal 
+        (closeModal)="close($event)" 
+        [modalType]="modalType" 
+        (result)="getResult($event)"
+        [data]="connectionsList[recommendIndex].friend_profile"
+        >                           
+        </app-reccomendations-modal>
+    </ng-container>
+    </app-modal>
+  <!-- ask modal ends -->
+
+<!-- info box starts -->
+<ng-template #infoPopover>
+        <app-small-info-box [data]="connectionsList[indexInfo].friend_profile"></app-small-info-box>
+</ng-template>
+<!-- info start ends -->
+
+
+
+    <!-- End modals -->

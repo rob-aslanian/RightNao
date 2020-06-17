@@ -1,0 +1,56 @@
+
+
+
+
+<form [formGroup]="bhForm" autocomplete="off" class="p-0">
+  <div class="row align-items-center justify-content-beetwen" style="padding: 0 0 20px 15px">
+      <div class="custom-control custom-radio custom-control-inline  radioWrap col-5">
+          <input type="radio" class="custom-control-input" id="open-on-selected-hours"(change)="radioTypeChange($event)"  value="select" formControlName="business_hours"  >  
+          <label for="open-on-selected-hours" class="custom-control-label">  {{ '1004'| translate  }} </label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline radioWrap col-3">
+          <input type="radio" class="custom-control-input" id="always-open" (change)="radioTypeChange($event)" value="open" formControlName="business_hours"  >  
+          <label for="always-open" class="custom-control-label">  {{ '152'| translate  }}</label>
+      </div>   
+      <div class="custom-control custom-radio custom-control-inline radioWrap col-4">
+          <input type="radio" class="custom-control-input" id="permanently-closed" (change)="radioTypeChange($event)" value="closed" formControlName="business_hours"  >  
+          <label for="permanently-closed" class="custom-control-label">  {{ '1050'| translate  }}</label>
+      </div>
+  </div>
+
+  <div
+  style="margin-bottom: 5px"
+    class="row align-items-center justify-content-beetwen"
+    formArrayName="hours"
+    *ngFor="let item of Hours.controls; let i = index; trackBy:trackByFn"
+  >
+    <ng-container [formGroupName]="i">
+      <div class="col-4 d-flex flex-column justify-content-end">
+        <span class="dropdown-icon">▾</span>
+        <span class="days-title"> {{ '440'| translate  }}</span>
+        <ng-multiselect-dropdown
+          placeholder="Days"
+          [data]="dropdownListDays"
+          name="days_business_hour"
+          [settings]="dropdownSettingsDays"
+          formControlName="week_days"
+          [disabled]="disabledWeeks"
+        >
+        </ng-multiselect-dropdown>
+      </div>
+      <div class="col-3 pl-2 pr-2">
+        <span class="days-title"> {{ '649'| translate  }}</span>
+        <ngb-timepicker formControlName="hour_from" (keyup)="removeAlphabet($event)"></ngb-timepicker>
+      </div>
+      <div class="col-1 line"> &#8212; </div>
+      <div class="col-3 pl-2 pr-2">
+        <span class="days-title">To</span>
+        <ngb-timepicker formControlName="hour_to" (keyup)="removeAlphabet($event)"></ngb-timepicker>
+      </div>
+    </ng-container>
+    <button class="col-1 backgroundless"  style="padding: 0; margin-top: 22px;"  (click)="removeItem(i)" *ngIf="multiple"> {{ '1185'| translate  }}</button>
+  </div>
+  <div class="row">
+    <button class="backgroundless" style="margin: 5px 0 0 15px;" (click)="addAnother()" *ngIf="multiple && Hours.length < 7"> {{ '61'| translate  }}</button>
+  </div>
+</form>

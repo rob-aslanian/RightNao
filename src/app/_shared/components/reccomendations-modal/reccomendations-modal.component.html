@@ -1,0 +1,121 @@
+ <form [formGroup]="modalForm"  (ngSubmit)="submitForm(modalForm , $event)" autocomplete="off" >
+    <div class="popup-content ask-for-recommendation">
+
+
+
+ <!-- IF MODAL TYPE IS ASK -->
+      <div  *ngIf="modalType === 'ask'">
+  <!-- other user -->
+
+     <ng-container *ngIf='!data.me'>
+        <div class="recommendator-in-recommendation d-flex">
+
+            <img   [src]=" data.avatar ?  '/file/' + data.avatar : 'assets/img/124.svg'" alt="1"> 
+            <div class="d-flex flex-column justify-content-center">
+              <h2>{{ data.firstname  + " " +  data.lastname }}</h2>
+                <p>
+                  {{   data?.position  }}
+                </p>
+                <p>
+                  {{   data?.company  }}
+                </p>
+            </div>
+          </div>
+
+          <div class="mt-2 mb-2" >
+              <label for="relation">Relation</label>
+              <select class="form-control" id="relation" formControlName="relation" (change)="selectTitle($event)">
+                  <option value="no_relation" disabled>Select</option>
+                  <option [value]="relation['id']" *ngFor="let relation of relations">
+                    {{ relation['name'] }}
+                  </option>
+              </select>  
+          </div>
+
+      </ng-container>
+
+  <!--  me  -->
+
+      <ng-container *ngIf='data.me'>
+        <div class="user-connections-wrapper">
+            <label for="user-connections">{{ '1559'| translate }} <span>*</span> </label>
+            <input type="text" class="form-control" id="user-connections" formControlName="user"
+                      (keyup)="search($event)"
+                      [ngClass]="{ 'is-invalid': submitedForm && modalForm.get('user').errors }" >
+                <div class="popup"  *ngIf="(searhUsers | async) as users">
+                    <ul class="list-group">
+                      <li class="list-group-item" *ngFor="let user of users | slice:0:4; trackBy:trackByFn " (click)="selectUser(user)">
+                        <img [src]="user.avatar ? '/file/' + user.avatar : 'assets/img/124.svg' " class="user-photo">
+                        <span>
+                          {{  user.firstname }}
+                          {{  user.lastname  }}
+                        </span>
+                      </li>
+                    </ul>
+              </div>       
+              <div class="mt-2" *ngIf="isSelectUser">
+                  <label for="relation">Relation</label>
+                  <select class="form-control" id="relation" formControlName="relation" (change)="selectTitle($event)">
+                      <option value="no_relation" disabled>Select</option>
+                      <option [value]="relation['id']" *ngFor="let relation of relations">
+                        {{ relation['name'] }}
+                      </option>
+                  </select>  
+              </div>     
+         </div>
+      </ng-container>
+
+
+    </div>
+    
+      <!-- END MODAL TYPE ASK  -->
+
+
+
+
+
+      <!-- IF MODAL TYPE IS  WRITE RECOMMENDATIOS  -->      
+      <ng-container *ngIf="modalType === 'recommend' || isSelectUser || modalType === 'writeRecommendation'">
+          <div class="recommendator-in-recommendation ask d-flex"  >
+              <img   [src]="selectedUser.avatar || data?.avatar  ? selectedUser.avatar || '/file/'+data?.avatar   : 'assets/img/124.svg'"  alt="avatar">        
+                <div class="d-flex flex-column justify-content-center">    
+                  <h2> {{ isSearch ?  selectedUser?.fullName : data.firstname  + " " +  data.lastname }} </h2>        
+                  <p>
+                    {{ isSearch  ? selectedUser?.company : data?.position  }}
+                  </p>
+                  <p>
+                    {{  isSearch ? selectedUser?.position : data?.company  }}
+                  </p>
+                </div>
+          </div>
+          <div class="mt-2" *ngIf="!isSelectUser">
+              <label for="relation">Relation</label>
+              <select class="form-control" id="relation" formControlName="relation" (change)="selectTitle($event)">
+                  <option value="no_relation" disabled>Select</option>
+                  <option [value]="relation['id']" *ngFor="let relation of relations">
+                    {{ relation['name'] }}
+                  </option>
+              </select>  
+          </div>  
+      </ng-container>
+    
+      <!-- END WRITE RECOMMENDATIOS -->
+
+
+
+      <div class="form-group">
+        <label for="ask-for-recommendation" class="recommendation-label">{{ textAreatTitle  }}</label>
+        <textarea class="form-control" rows="5" id="ask-for-recommendation" formControlName="text"
+                 [ngClass]="{'is-invalid':modalForm.controls.text.errors && submitedForm}"  [maxlength]="textAreaLength">
+        </textarea>
+      </div>
+
+      <ng-container *ngIf="submitedForm &&  modalForm.controls.text.errors">
+          <span class="error_message"  *ngFor="let error of  utils.getErrorsKey(modalForm.controls.text.errors) ">
+                  {{ utils.$getErrors(error) }}
+          </span> 
+   </ng-container>  
+
+      <button class="btn btn-primary d-block ml-auto" type="submit">{{ '1270' | translate }}</button>
+    </div>
+  </form>

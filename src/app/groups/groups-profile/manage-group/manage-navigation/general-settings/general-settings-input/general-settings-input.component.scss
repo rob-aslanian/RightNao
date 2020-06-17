@@ -1,0 +1,10 @@
+@import 'src/variables';
+a {
+    font-size: .875rem !important;
+    color: $background-light-cyan !important;
+}
+
+
+.custom-control-label::after { 
+    top: 0.15rem;
+}

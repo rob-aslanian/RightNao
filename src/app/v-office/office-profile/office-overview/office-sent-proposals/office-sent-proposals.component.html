@@ -1,0 +1,8 @@
+<div class="sent-proposals-wrapper">
+<h5 class="pb-3">Sent Proposals ({{ propsals.proposal_amount }})</h5>
+    <ng-container *ngIf="propsals.proposals">
+        <ng-container *ngFor="let proposal of propsals.proposals">
+            <app-office-proposall-box [proposal]='proposal'></app-office-proposall-box>
+        </ng-container>
+    </ng-container>
+</div>    

@@ -1,0 +1,50 @@
+<div class="wrapper">
+    <div class="service-request d-flex flex-wrap">
+        <!-- <div class="service-request__content-wrap col-lg-9 col-md-12"> -->
+            <form style="width: 100%;">
+                <h2 class="page-section-heading ml-1">Post a Service Request </h2>
+                <section class="service-request__content">
+
+                    <div class="service-request__content__box">
+                        <app-service-request-details></app-service-request-details>
+                        <!-- <app-service-details 
+                            [isSubmit]='isSubmit' 
+                            [details] = 'details'
+                            [type] = 'serviceRequest'>
+                        </app-service-details> -->
+                        <app-type-of-project [projectType] = 'projectType'></app-type-of-project>
+                        <app-upload-service-file (result) = 'getFiles($event)' ></app-upload-service-file>
+                    </div>
+
+
+                    <div class="service-request__content__box">
+ 
+                    </div>
+
+                    <div class="service-request__content__box">
+                        <app-delivery-time></app-delivery-time>
+                    </div>
+                    
+                    <div class="service-request__content__box">
+                        <app-service-location></app-service-location>
+                    </div>
+                    
+                    <div class="service-request__content__box">
+                        <app-additinioal-details [qualifications]='qualifications'></app-additinioal-details>
+                    </div>
+
+                    <div class="service-request__content__visibility">
+                        <!-- <app-visibility [visibility]='visibility'></app-visibility> -->
+                    </div>
+
+                    <div class="service-request__content__publish">
+                        <button class="backgroundless service-request__content__publish__btn">Save as Draft</button>
+                        <button class="btn btn-primary service-request__content__publish__btn" (click)="onSubmitForm()">Publish</button>
+                    </div>
+
+                </section>
+            </form>
+        <!-- </div> -->
+
+    </div>
+</div>

@@ -1,0 +1,16 @@
+
+
+  @media screen and ( max-width:767px )
+  {
+      .user-info {
+        display: none;
+      }
+      .main-content {
+        padding: 0px !important;
+      }
+  }
+
+  .rounder-image {
+    border-radius: 0.6rem;
+
+  }

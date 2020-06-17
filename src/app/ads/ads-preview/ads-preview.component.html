@@ -1,0 +1,10 @@
+<div class="preview-wrapper">
+    <p class="preview-header">
+        Preview
+    </p>
+    <div class="preview-content">
+            <app-ads-preview-responsive *ngIf="activeFormat!='single_image' && activeFormat!='carousel'"></app-ads-preview-responsive>
+            <app-ads-preview-spotlight *ngIf="activeFormat=='single_image'"></app-ads-preview-spotlight>
+            <app-ads-preview-carousel  *ngIf="activeFormat=='carousel'"></app-ads-preview-carousel>
+    </div>
+</div>

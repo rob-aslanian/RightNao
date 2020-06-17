@@ -1,0 +1,27 @@
+.order-box-container {
+    background: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    overflow: hidden;
+    overflow-x: auto; 
+    .order-box {
+        min-width: 500px;
+        @media screen and ( max-width: 820px ) {
+           min-width: 800px !important;    
+        }
+        h5 {
+            font-weight: 400;
+        }
+        .header-wrapper {
+             padding: 5px 15px;
+             background-color: #264361;
+             span {
+                 color: white;
+             }
+             border-radius: 5px;
+        }
+    }
+}
+:host ::ng-deep .files_row::after  {
+        display: none !important; 
+ };

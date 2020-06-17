@@ -1,0 +1,9 @@
+.phones {
+    width: 45%;
+}
+
+.is-invalid-custom {
+    ::ng-deep .dropdown-btn{
+       border: 1px solid red !important;
+    }
+}

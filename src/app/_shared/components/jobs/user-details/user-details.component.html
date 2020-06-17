@@ -1,0 +1,289 @@
+<div class="detailed-info click__disable" *ngIf="data">
+
+  <!-- Contact -->
+  <div class="detail-content" *ngIf="data.application; let contact ">
+    <div class="left">
+      <h5>Contact</h5>
+    </div>
+    <div class="right container pl-0">
+      <div class="row">
+        <div class="col-6">
+          <h6>Email</h6>
+          <span *ngIf="contact.email">{{ contact.email }}</span>
+        </div>
+        <div class="col-6">
+          <h6>Phone</h6>
+          <span *ngIf="contact.phone">{{ contact.phone }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Contact -->
+  <hr>
+
+  <!-- Career interest -->
+  <div class="detail-content" *ngIf="data.career_interests || data.candidate_description; let career;">
+    <div class="left">
+      <img src="assets/img/62.svg" alt="image">
+      <h5>Career&nbsp;interest</h5>
+    </div>
+    <div class="right container pl-0">
+      <div class="row">
+        <div class="col-6">
+          <h6>Job Title</h6>
+          <span *ngFor="let title of career.jobs; trackBy:trackByFn">
+            {{ title }}
+          </span>
+        </div>
+        <div class="col-6">
+          <h6>Company Size</h6>
+          <span *ngIf="career.company_size">
+            {{ career.company_size | companySize }}
+          </span>
+        </div>
+        <div class="col-6">
+          <h6>Industry</h6>
+          <span *ngIf="career.industry">
+            {{ career.industry | industry }}
+          </span>
+        </div>
+        <div class="col-6">
+          <h6>Salary</h6>
+          <span>
+            {{ career.salary_min + '-' + 
+              career.salary_max + ' ' + career.salary_currency +
+              ' Per '  +  career.salary_interval }}
+          </span>
+        </div>
+        <div class="col-6">
+          <h6>Job Type</h6>
+          <span *ngIf="career.job_types && career.job_types.length > 0">
+             <ng-container *ngFor="let type of career.job_types; trackBy:trackByFn">
+                {{ type }}
+             </ng-container>
+          </span>
+        </div>
+        <div class="col-6">
+          <h6>Location</h6>
+          <span *ngIf="career.cities">
+             <ng-container *ngFor="let citie of career.cities; trackBy:trackByFn">
+                {{ citie.city }}
+             </ng-container>
+          </span>
+        </div>
+        <div class="col-6 mb-0">
+          <h6>Experience level</h6>
+          <span *ngIf="career.experience">
+            {{ career.experience | experience }}
+          </span>
+        </div>
+        <div class="col-6 mb-0">
+          <h6>Mobility</h6>
+          <span *ngIf="career.travel">Willing to travel</span>
+          <span *ngIf="career.remote">Open to working remotely</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Career interest -->
+  <hr>
+
+  <!-- Experiences -->
+  <ng-container *ngIf="data.user.experiences.length > 0">
+    <div class="detail-content" *ngIf="data.user.experiences ; let experiences">
+      <div class="left">
+        <h5>Experience</h5>
+      </div>
+        <div class="right ">
+          <div *ngFor="let experience of (!isShowMore['experience'] ? (experiences | slice:0:1) : experiences); let i = index; trackBy:trackByFn" [ngClass]="{'mt-4': i > 0}">
+              <h6 *ngIf="experience.title">{{ experience.title }}</h6>
+              <span *ngIf="experience.company">{{ experience.company }}</span>
+              <span>  {{ experience.start_date | monthPipe }} - 
+                <ng-container *ngIf="!experience.currently"> {{ experience.finish_date | monthPipe }} </ng-container> 
+                <ng-container *ngIf="experience.currently"> Present </ng-container> 
+              </span>
+              <br>
+              <p>{{ experience.description }}</p>
+              <span class="more click__disable" (click)="showMore('experience')"  *ngIf="experiences.length > 1">
+                
+                {{ !isShowMore['experience']  ? '&#9662;' : ' &#9652;' }}
+              </span>
+            </div>
+        </div>
+    </div>
+    <hr>
+  </ng-container>
+  <!-- Experiences -->
+
+  <!-- Education -->
+  <ng-container *ngIf="data.user.educations.length > 0">
+    <div class="detail-content" *ngIf="data.user.educations ; let educations">
+      <div class="left">
+        <h5>Education</h5>
+      </div>
+      <div class="right">
+        <div  *ngFor="let education of (!isShowMore['education'] ? (educations | slice:0:1) : educations); let i = index; trackBy:trackByFn" [ngClass]="{'mt-4': i > 0}">
+            <h6>{{  education.school }}</h6>
+            <span>{{ education.degree }}</span>
+            <span>  {{ education.start_date | monthPipe }} - 
+              <ng-container *ngIf="!education.currently_study"> {{ education.finish_date | monthPipe }} </ng-container> 
+              <ng-container *ngIf="education.currently_study"> Present </ng-container> 
+            </span>
+            <span class="more click__disable" (click)="showMore('education')"  *ngIf="educations.length > 1"> 
+                {{ !isShowMore['education']  ? '&#9662;' : ' &#9652;' }}
+            </span>
+        </div>
+      </div>
+    </div>
+    <hr>
+  </ng-container>
+  <!-- Education -->
+
+  <!-- Accomplishment -->
+  <ng-container *ngIf="data.user.accomplishments.length > 0">
+    <div class="detail-content" *ngIf="data.user.accomplishments ; let accomplishments">
+      <div class="left">
+        <h5>Accomplishments</h5>
+      </div>
+      <div class="right">
+        <div *ngFor="let accomp of (!isShowMore['accomplishments'] ? (accomplishments | slice:0:1) : accomplishments); let i = index; trackBy:trackByFn" [ngClass]="{'mt-4': i > 0}">
+            <h6>{{  accomp.__typename }}</h6>
+            <span *ngIf="accomp.name || accomp.title ">{{ accomp.name ? accomp.name : accomp.title }}</span>      
+            <span *ngIf="accomp.certification_authority">{{ accomp.certification_authority }}</span>
+            <span *ngIf="accomp.license_number">{{ accomp.license_number }}</span>
+            <a  *ngIf="accomp.url && accomp.url !== null" [href]="accomp.url" target="_blank" >
+              {{ accomp.url }}
+            </a>
+            <span *ngIf="accomp.issuer && accomp.issuer !== null">
+              {{ accomp.issuer }}
+            </span>
+            <span *ngIf="accomp.date && accomp.date !== null">
+                {{ accomp.date }}
+            </span>
+            <span *ngIf="accomp.from && accomp.from !== null && (accomp.to && accomp.to !== null) ">
+                {{ accomp.from }} - {{ accomp.to}}
+            </span>
+            <span *ngIf="accomp.description && accomp.description !== null">
+                {{ accomp.description }}
+            </span>
+            <span *ngIf="accomp.publisher && accomp.publisher !== null">
+                {{ accomp.publisher }}
+            </span>
+            <span *ngIf="accomp.score && accomp.score !== null">
+                {{ accomp.score }}
+            </span>
+        </div>
+        <span class="more click__disable" (click)="showMore('accomplishments')"  *ngIf="accomplishments.length > 1"> 
+            {{ !isShowMore['accomplishments']  ? '&#9662;' : ' &#9652;' }}
+        </span>
+      </div>
+    </div>
+    <hr>
+  </ng-container>
+  <!-- Accomplishment -->
+
+
+  <!-- Languages -->
+  <ng-container  *ngIf="data.user.languages.length > 0">
+      <div class="detail-content" *ngIf="data.user.languages ; let languages">
+        <div class="left">
+          <h5>Languages</h5>
+        </div>
+        <div class="right container pl-0">
+          <div class="row">
+            <div class="col-6" *ngFor="let language of (!isShowMore['languages'] ? (languages | slice:0:2) : languages); let i = index; trackBy:trackByFn" [ngClass]="{'mt-4': i > 1}">
+              <h6>
+                {{ language.language | lang }}
+              </h6>
+              <span>
+                <ngb-rating 
+                    [(rate)]="language.rate" 
+                    max="5" 
+                    [readonly]="true">
+                </ngb-rating>
+              </span>
+              <span>{{ langEnum[language.rate] }}</span>
+            </div>
+          </div>
+          <span class="more click__disable" (click)="showMore('languages')"  *ngIf="languages.length > 2"> 
+              {{ !isShowMore['languages']  ? '&#9662;' : ' &#9652;' }}
+          </span>
+        </div>
+      </div>
+      <hr>
+  </ng-container>
+  <!-- Languages -->
+
+
+  <!-- Interests -->
+  <ng-container *ngIf="data.user.interests.length > 0">
+    <div class="detail-content" *ngIf="data.user.interests ; let interests">
+      <div class="left">
+        <h5>Interests</h5>
+      </div>
+      <div class="right">
+        <span class="interest" *ngFor="let interest of interests; trackBy:trackByFn">
+          {{ interest.interest  }}
+        </span>
+      </div>
+    </div>
+    <hr>
+  </ng-container>
+  <!-- Interests -->
+
+
+  <!-- Reccomendations -->
+  <ng-container *ngIf="data.user.recieved_recommendation.length > 0">
+    <div class="detail-content"  *ngIf="data.user.recieved_recommendation ; let reccomendations">
+      <div class="left">
+        <h5>Recommendations</h5>
+      </div>
+      <div class="right">
+        <div *ngFor="let reccomendation of (!isShowMore['recommendations'] ? (reccomendations | slice:0:1) : reccomendations); let i = index; trackBy:trackByFn" [ngClass]="{'mt-4': i > 0}">
+          <div class="profile d-flex" *ngIf="reccomendation.recommendator; let profile">
+            <img [src]="profile.avatar ? '/file/' + profile.avatar : 'assets/img/124.svg' " alt="recommendator">
+            <div class="recommendator-info">
+              <h5>{{ profile.firstname + ' ' + profile.lastname }}</h5>
+              <ng-container *ngIf="profile.experiences.slice(-1); let experience">
+                 <span *ngIf="experience[0]" >{{ experience[0].title }}</span>
+                 <span *ngIf="experience[0]" >{{ experience[0].company }}</span>
+              </ng-container>
+            </div>
+          </div>
+          <p>{{ reccomendation.text }}</p>
+          <span class="more click__disable" (click)="showMore('recommendations')"  *ngIf="reccomendations.length > 1"> 
+              {{ !isShowMore['recommendations']  ? '&#9662;' : ' &#9652;' }}
+          </span>
+        </div>
+      </div>
+    </div>
+    <hr>
+  </ng-container>
+  <!-- Reccomendations -->
+
+  <!-- Application -->
+   <ng-container *ngIf="data.application; let application">
+      <div class="detail-content" *ngIf="data.application.documents.length > 0">
+          <div class="left">
+            <h5>Additional Documents</h5>
+          </div>
+          <div class="right d-flex align-items-center">
+            <a *ngFor="let document of data.application.documents; trackBy:trackByFn" class="mr-5 download-document-link" [href]="'/file/' + document.address" [download]="document.name">
+              <img [src]="document.name | fileIcon" alt="pdf">
+              {{ document.name }}
+            </a>
+          </div>
+        </div>
+        <hr>
+        <div class="detail-content" *ngIf="application.cover_letter">
+          <div class="left">
+            <h5>Cover Letter</h5>
+          </div>
+          <div class="right">
+            <p>{{ application.cover_letter  }}</p>
+          </div>
+        </div>
+   </ng-container>
+
+   <!-- Application -->
+</div>

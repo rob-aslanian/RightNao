@@ -1,0 +1,18 @@
+<div class="slider__content" *ngIf="files">
+   <div class="slider__content__main" [ngClass]="{'justify-center': files.length === 1}">
+      <button  (click)="prev($event)" class="previous_btn" *ngIf="files.length > 1" ></button>
+        <app-file-container  [file]="activeFile" class="active__img"></app-file-container>
+      <button  (click)="next($event)" class="next_btn"  *ngIf="files.length > 1" ></button>
+   </div>
+   <div class="slider__content__row" *ngIf="files.length > 1"  #sliderRow>
+     
+    <div #activeContent *ngFor="let file of files; let i = index; trackBy:trackByFn" class="mr-3">
+        <app-file-container class="img__row"  [file]="file" 
+              (click)="setActive($event , i)" [ngClass]="{'is-active': activeIndex === i}" [controls]="false" >
+        </app-file-container>
+    </div>
+      
+   </div>
+</div>
+
+<app-spinner *ngIf="!files"></app-spinner>

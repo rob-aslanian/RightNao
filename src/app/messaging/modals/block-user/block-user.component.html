@@ -1,0 +1,49 @@
+<div>
+    <h1>Blocking
+        <a (click)="close()">&#10005;</a>
+    </h1>
+    <div class="popup-content popup-report-3">
+        <ng-container *ngIf="!getParticipant().is_company">
+            <h2>Are you sure you want to block Conversation with {{user?.firstname}}?</h2>
+            <p>
+                Stop getting messages from {{user?.firstname}}
+            </p>
+            <div class="to-block d-flex">
+                <img src="{{user?.avatar | defaultAvatar}}" class="sms-block-profile-img" alt="1">
+                <div class="d-flex flex-column justify-content-center">
+                    <h2>{{user?.firstname}} {{user?.lastname}}</h2>
+                    <p>
+                        {{user?.headline}}
+                    </p>
+                    <p>
+                        {{user?.experiences[0]?.title}}
+                    </p>
+                </div>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="getParticipant().is_company">
+            <h2>Are you sure you want to block Conversation with {{company?.name}}?</h2>
+            <p>
+                Stop getting messages from {{company?.name}}
+            </p>
+            <div class="to-block d-flex">
+                <img src="{{company?.cover | defaultAvatar}}" class="sms-block-profile-img" alt="1">
+                <div class="d-flex flex-column justify-content-center">
+                    <h2>{{company?.name}}</h2>
+                    <p>
+                        {{company?.description}}
+                    </p>
+                    <p>
+                        {{company?.mission}}
+                    </p>
+                </div>
+            </div>
+        </ng-container>
+
+        <p>
+            <!-- You can also block this maria domingez on hyperCube -->
+        </p>
+        <button (click)="blockUser()" class="btn btn-primary">Block</button>
+    </div>
+</div>

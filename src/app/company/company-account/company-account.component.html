@@ -1,0 +1,53 @@
+
+<!-- Company Account main content -->
+<main class="account-main before-footer">
+  <div class="dark-blue-bg" *ngIf="(profile | async) as companyProfile ">
+        <div class="account-main-data d-flex justify-content-between">
+            <div class="profile">
+                <img class="company-img" [src]="companyProfile.avatar ? '/file/' +  companyProfile.avatar : 'assets/img/default-company.svg' " alt="profile-picture">
+                <div class="profile-headings">
+                    <h2>{{  companyProfile.name }}</h2>
+                    <span> {{ parseIndusty(companyProfile.industry.id) }} </span>
+                    <ng-container *ngIf="companyProfile.addresses &&  companyProfile.addresses.length > 0">
+                            <ng-container *ngFor="let address of companyProfile.addresses">
+                                <span *ngIf="address.primary">
+                                    {{ 
+                                        address.city.city + ' , ' +
+                                        parseCountry(address.country_id)
+                                     }}
+                                </span>
+                            </ng-container>
+                    </ng-container>
+                </div>
+            </div>
+            <div class="member-since align-self-end">
+                <h3>Member since {{  companyProfile.foundation_date | monthPipe  }}</h3>
+            </div>
+      </div>
+  </div>
+  <div class="container account-wrap">
+      
+      <div class="account-two-box-wrap row">
+        <div class="col-lg-3">
+            <div class="account-left-navigation">
+                <a  routerLinkActive="active-border" [routerLink]="['general']" class="link-border">
+                    <span>{{ "663" | translate }}</span>
+                </a>
+                <a routerLinkActive="active-border" [routerLink]="['notifications']" class="link-border">
+                    <span>{{ "979" | translate }}</span>
+                </a>
+                <!-- <h2>Accounts & Third Party</h2> -->
+                <a routerLinkActive="active-border" [routerLink]="['admins']" class="link-border">
+                    <span>Manage</span>
+                    <span> Admins</span>
+                </a>
+                <!-- <h2>Analytics</h2> -->
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <router-outlet></router-outlet>
+        </div>
+      </div>
+  </div>
+</main>
+<!-- Company Account main content end -->

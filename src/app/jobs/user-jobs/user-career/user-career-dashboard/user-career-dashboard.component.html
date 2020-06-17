@@ -1,0 +1,65 @@
+<div class="career-interest mt-5" *ngIf="career">
+    <div class="career-interest__title d-flex justify-content-between p-3">
+        <h4 *ngIf="career.jobs[0] as title">{{ title }}</h4>
+        <button type="button" class="backgroundless" [routerLink]="['/jobs/user/carrer-interest/manage']"  >
+             <img src="assets/img/658.svg" alt="edit logo" style="width: 16px; height:16px;">
+        </button>
+    </div>
+    <div class="career-interest__content">
+        <div class="career-interest__content__item justify-content-between d-flex mt-3">
+            <div class="career-interest__content__item__box col-md-6" *ngIf="career.experience as exp">
+                <p>Experience level</p>
+                <span>{{ exp | experience }}</span>
+            </div>
+            <div class="career-interest__content__item__box col-md-6">
+                <p>Salary</p>
+                <span *ngIf="career.salary_min > 0 && career.salary_max > 0">
+                    <ng-container *ngIf="career.salary_currency as currency"> {{ currency }} </ng-container>
+                    <ng-container *ngIf="career.salary_min as s_min"> {{ s_min }} </ng-container>
+                    <ng-container *ngIf="career.salary_max as s_max">-{{ s_max }} </ng-container>
+                    <ng-container *ngIf="career.salary_interval as interval">&nbsp;{{ interval }} </ng-container>
+                </span>
+            </div>
+        </div>
+        <div class="career-interest__content__item justify-content-between d-flex mt-3">
+            <div class="career-interest__content__item__box col-md-6" *ngIf="career.industry as ind">
+                <p>Industry</p>
+                <span> {{ ind | industry }} </span>
+            </div>
+            <div class="career-interest__content__item__box col-md-6" *ngIf="career.cities[0]?.city as city">
+                <p>Location</p>
+                <span>{{ city }}</span>
+            </div>
+        </div>
+        <div class="career-interest__content__item justify-content-between d-flex mt-3">
+            <div class="career-interest__content__item__box col-md-6" *ngIf="career.company_size as company_size">
+                <p>Company size</p>
+                <span>{{ company_size | companySize }}</span>
+            </div>
+            <div class="career-interest__content__item__box col-md-6" 
+                 *ngIf="career.remote || career.travel">
+                <p>Mobility</p>
+                <span>
+                    <ng-container *ngIf="career.travel">Willing to travel</ng-container> 
+                    <ng-container *ngIf="career.remote">Open to working remotely</ng-container>
+                </span>
+            </div>
+        </div>
+        <div class="career-interest__content__item justify-content-between d-flex mt-3 mb-3">
+            <div class="career-interest__content__item__box col-md-6" *ngIf="career.job_types as job_types">
+               <ng-container *ngIf="job_types.length > 0">
+                    <p>Job type</p>
+                    <span>{{ job_types | addDelimetr:", " }}</span>
+               </ng-container>
+            </div>
+            <div class="career-interest__content__item__box col-md-6" *ngIf="career.suitable_for as suitable_for">
+              <ng-container *ngIf="suitable_for.length > 0">
+                    <p>Suitable for</p>
+                    <span style="text-transform: capitalize;">{{ suitable_for | addDelimetr:", " | beautify }}</span>
+              </ng-container>
+              
+            </div>
+        </div>
+
+    </div>
+</div>

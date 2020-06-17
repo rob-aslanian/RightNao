@@ -1,0 +1,58 @@
+<div class="search-groups__sidebar-section">
+    <div class="deal__type" *ngIf="showMain; else:showDealTypesMenu">
+        <h4>Deal type</h4>
+        <div class="deal__type__column">
+            <ng-container *ngFor="let dealType of dealTypes | slice:0:startPage">
+                <button type="button" (click)="selectItem($event , dealType , 'deal_type')">
+                    {{ dealType['name'] }}
+                </button>
+            </ng-container>
+        </div>
+        <div class="mt-1">
+            <app-more-less  class="d-flex" [dataLength]="dealTypes.length" [startPage]="startPage" (start)="startPage = $event"></app-more-less>
+        </div>
+    </div>
+    <ng-template #showDealTypesMenu>   
+        <div class="deal__type" *ngIf="!showSub">
+            <div class="d-flex align-items-center">
+                <img class="mr-1"
+                     style="cursor: pointer; transform: rotate(-90deg)"
+                     src="assets/img/Path351.svg" 
+                     (click)="showMain = true; showSub = false;">
+                <h4 style="color: #808080">Deal type</h4>
+            </div>
+
+            <h4>{{ selectedDealType['name'] }}</h4>
+            <div class="deal__type__column" *ngIf="selectedDealType['properties'] as properties">
+                <ng-container *ngFor="let property of properties">
+                    <button type="button" (click)="selectItem($event , property , 'property_type')">
+                        {{ property['name'] }}
+                    </button>
+                </ng-container>
+            </div>
+          
+        </div>
+    
+        <div class="deal__type" *ngIf="showSub && selectedProperty">
+            <div class=" d-flex align-items-center">
+                <img class="mr-2"
+                     style="cursor: pointer; transform: rotate(-90deg)" 
+                     src="assets/img/Path351.svg" 
+                     (click)="showMain = true;"  
+                >
+                <h4 style="color: #808080">Deal type</h4>
+            </div>
+            <div class="d-flex align-items-center">
+                <img class="mr-2"
+                style="cursor: pointer; transform: rotate(-90deg)" 
+                src="assets/img/Path351.svg" 
+                (click)="showSub = false;"   
+               >
+                <h4 style="color: #808080"> {{ selectedDealType['name'] }} </h4>
+            </div>
+            <p style="color: #052337"> {{ selectedProperty['name'] }} </p>
+        </div>
+    
+    </ng-template>
+        
+</div>

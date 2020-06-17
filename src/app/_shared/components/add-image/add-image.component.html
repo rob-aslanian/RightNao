@@ -1,0 +1,27 @@
+<div class="d-flex flex-column ">
+    <div id="image-context" class="img-content">
+
+        <button type="button" (click)="rotate()" class="rotate-button"  *ngIf="img">
+          <img src="assets/img/270.svg" alt="button">
+        </button>
+    </div>
+ 
+    <span *ngIf="!fileSizeValid" class="error-message">
+            File size must be less than 5 MB
+    </span>
+
+    <div class="file" style="text-align: right;">
+        <div class="d-flex justify-content-between">
+    
+            <label for="delete-image" class="backgroundless " (click)='deleteImage()' *ngIf="img">
+                Delete Image
+            </label>
+
+            <label for="upload-image" class="backgroundless ml-auto">{{ '1470'| translate }}</label>
+
+        </div>
+        <input type="file" accept="image/*" (change)="onSelectFile($event)" class="file d-none" id="upload-image">
+    </div>
+
+
+</div>

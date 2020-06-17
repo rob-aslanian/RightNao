@@ -1,0 +1,56 @@
+<div class="calendar-tasks">
+  <div class="calendar-tasks__header mb-3">
+    <h4 class="calendar-tasks__header__title">Tasks</h4>
+    <div class="calendar-tasks__header__progress-bar">
+      <span  class="calendar-tasks__header__progress-bar__info">1/2</span>
+      <div class="calendar-tasks__header__progress-bar__bar-container">
+        <div class="bar bar--grey-bar"></div>
+        <div class="bar bar--cyan-bar"></div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="calendar-tasks__list">
+    
+    <div class="calendar-tasks__list__item event-green position-relative" 
+      [ngbPopover]="taskInfo" 
+      [autoClose]="'outside'" 
+      #info="ngbPopover" 
+      container="body" 
+      [placement]="['left', 'left-bottom']" 
+      popoverClass="task-popover-container">
+
+      <div class="custom-control custom-checkbox">
+        <input class="custom-control-input"  type="checkbox" id="task1">
+        <label class="custom-control-label event-green" for="task1">Pay rent for apartment</label>
+      </div>
+      <div class="calendar-tasks__list__item__icon">
+        <img src="../../../../../assets/img/613.svg"/>
+      </div>
+    </div>
+        
+    <div class="calendar-tasks__list__item event-purple" 
+      [ngbPopover]="taskInfo" 
+      [autoClose]="'outside'" 
+      #info="ngbPopover" 
+      container="body" 
+      [placement]="['left', 'left-bottom']" 
+      popoverClass="task-popover-container">
+      <div class="custom-control custom-checkbox">
+        <input class="custom-control-input"  type="checkbox" id="task2">
+        <label class="custom-control-label event-purple" for="task2">Learn 20 new word in Georgian</label>
+      </div>
+      <div class="calendar-tasks__list__item__icon">
+        <img src="../../../../../assets/img/613.svg"/>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<ng-template #taskInfo>
+  <app-task-popover></app-task-popover>
+</ng-template>
+

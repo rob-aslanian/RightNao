@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<!-- Creator: CorelDRAW 2018 (64-Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="38px" height="40px" version="1.0" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 1.192 1.251"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str1 {stroke:gray;stroke-width:0.037;stroke-miterlimit:2.61313}
+    .str0 {stroke:gray;stroke-width:0.037;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2.61313}
+    .fil0 {fill:none}
+    .fil2 {fill:#00F4FF}
+    .fil1 {fill:#EAEDF2}
+    .fil3 {fill:white}
+   ]]>
+  </style>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_1871622257328">
+   <path class="fil0 str0" d="M0.479 1.122l-0.439 0c-0.012,0 -0.022,-0.01 -0.022,-0.022 0,-0.353 0,-0.706 0,-1.06 0,-0.012 0.01,-0.022 0.022,-0.022l0.591 0 0.25 0.25 0 0.316"/>
+   <path class="fil1 str0" d="M0.881 0.268l-0.228 0c-0.012,0 -0.022,-0.009 -0.022,-0.021l0 -0.229 0.25 0.25z"/>
+   <rect class="fil2 str0" x="0.589" y="0.791" width="0.584" height="0.442" rx="0.057" ry="0.052"/>
+   <path class="fil0 str0" d="M0.589 0.905c0.087,0.036 0.148,0.059 0.229,0.091 0.02,0.008 0.035,0.016 0.063,0.016 0.028,0 0.043,-0.008 0.063,-0.016 0.081,-0.032 0.143,-0.057 0.229,-0.091"/>
+   <path class="fil3 str0" d="M0.945 0.998l0 0.083 -0.128 0 0 -0.083 0.128 0z"/>
+   <path class="fil0 str0" d="M0.753 0.757c0,-0.035 0.029,-0.063 0.063,-0.063l0.13 0c0.035,0 0.063,0.028 0.063,0.063"/>
+   <path class="fil2 str1" d="M1.173 0.905l0 -0.062c0,-0.029 -0.023,-0.052 -0.052,-0.052l-0.48 0c-0.029,0 -0.052,0.023 -0.052,0.052l0 0.062c0.087,0.036 0.148,0.059 0.229,0.091 0.009,0.003 0.017,0.007 0.025,0.01l0.016 0.004c0.007,0.001 0.014,0.002 0.022,0.002 0.007,0 0.014,-0.001 0.02,-0.002l0.02 -0.005c0.008,-0.003 0.015,-0.006 0.023,-0.009 0.081,-0.032 0.142,-0.057 0.229,-0.091z"/>
+   <path class="fil0 str0" d="M0.364 0.5l0.38 0"/>
+   <path class="fil0 str0" d="M0.364 0.307l0.193 0"/>
+   <path class="fil0 str0" d="M0.364 0.666l0.307 0"/>
+   <path class="fil0 str0" d="M0.364 0.833l0.132 0"/>
+   <path class="fil0 str0" d="M0.167 0.297l0.041 0.041 0.062 -0.062"/>
+   <path class="fil0 str0" d="M0.167 0.49l0.041 0.041 0.062 -0.062"/>
+   <path class="fil0 str0" d="M0.167 0.656l0.041 0.042 0.062 -0.063"/>
+   <path class="fil0 str0" d="M0.167 0.823l0.041 0.041 0.062 -0.062"/>
+  </g>
+ </g>
+</svg>

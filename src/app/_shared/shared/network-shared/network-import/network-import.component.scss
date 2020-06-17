@@ -1,0 +1,32 @@
+@import "src/variables";
+
+.network-import-wrapper {
+    margin-top: 20px;
+}
+
+.import-section-title {
+    color: $dark-blue;
+}
+
+.import-section-subtitle {
+    color: $dark-grey;
+}
+
+
+//invite form start 
+.invitation-form-wrapper {
+    h3 {
+        font-size: 20px;
+        font-weight: 500;
+    }
+    .invitation-btn {
+        border-radius: 5px;
+    }
+    label {
+        color: $dark-grey;
+    }
+
+}
+
+
+//invite form end

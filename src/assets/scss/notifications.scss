@@ -1,0 +1,252 @@
+@import 'src/variables';
+
+.mt-30{
+    margin-top: 30px;
+}
+.left-row-notifications{
+    margin-top: 30px;
+    max-width: 283px;
+    padding: 0 15px;
+}
+.notif-sett-butt{
+    height: 150px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    display: block;
+    border: 1px solid #e6e6e6;
+    color: $dark-blue;
+    font-size: 20px;
+    text-align: center;
+    &:hover{
+        text-decoration: none;
+        color: $dark-blue;
+    }
+    img{
+        width: 58px;
+        height: 55px;
+        margin: 28px auto 20px auto;
+    }
+    @media(max-width: 990px) {
+        display: none;
+    }  
+}
+.not-blue-title{
+    color: $dark-blue;
+    font-size: 20px;
+    line-height: 16px;
+    padding-left: 23px;
+}
+.not-white-back{
+    width: 100%;
+    margin: 16px 0;
+    border-radius: 5px;
+    padding: 12px 0px 4px 0px;
+    background-color: #ffffff;
+    border: 1px solid #e6e6e6;
+    > .notification-item:last-child{
+        .notf-desc{
+            border-bottom: none;
+        }
+    }
+}
+
+.notf-buttons-box{
+    display: flex;
+    justify-content: flex-end;
+    position: absolute;
+    right: 25px;
+    bottom: 15px;
+}
+
+.notification-item{
+    width: 100%;
+    padding: 12px 24px 0 24px;
+    position: relative;
+    &.unread{
+        background-color: $background-soft-blue;
+    }
+    .notf-desc{
+        border-bottom: 1px solid #cccccc;
+        display: flex;
+        align-items: center;
+        padding-bottom: 12px;
+        @media(max-width: 450px) {
+            height: 130px;
+        }
+    }
+    .small-date{
+        height: 10px;
+        font-size: 12px;
+        color: $dark-grey;
+        line-height: 10px;
+        height: 10px;
+        text-align: right;
+    }
+    .notf-sms{
+        font-size: 14px;
+        color: $dark-grey;
+        line-height: 15px;
+        height: 15px;
+        margin-bottom: 15px;
+        @media(max-width: 450px) {
+            margin-bottom: 0;
+        }
+    }
+    .notf-img{
+        width: 50px;
+        height: 50px;
+        margin-right: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0;
+        img{
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center;
+        }
+        &.company{
+            img{
+                border-radius: 5px;
+            }
+        }
+        &.site{
+            img{
+                border-radius: 0;
+                width: auto;
+                height: auto;
+                max-width: 35px;
+                max-height: 35px;
+                object-fit: contain;
+            }
+        }
+    }
+    .notf-title{
+        font-size: 14px;
+        color: $dark-grey;
+        span{
+            color: $dark-blue;
+            font-weight: bold;
+        }
+    }
+
+    .notf-gray-text{
+        color: $dark-grey;
+        font-size: 12px;
+        display: flex;
+        justify-content: space-between;
+
+    }
+    button{
+        font-size: 14px;
+    }
+    .btn-clear{
+        padding: 0 15px;
+        display: inline-block;
+        background-color: transparent;
+        color: $background-dark-cyan;
+    }
+    a.notf-cyan{
+        color: $background-dark-cyan;
+        font-size: 14px;
+    }
+}
+
+/*
+    Start notification header button and dropdown styles
+*/
+
+.header .top-items .notification{
+    position: relative;
+}
+.unread-count-display{
+    width: 14px;
+    height: 14px;
+    border-radius: 2px;
+    font-size: 12px;
+    color: #ffffff;
+    background-color: #ff6633;
+    position: absolute;
+    top: -2px;
+    right: -7px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.notf-header-dropD{
+    @media(max-width: 500px) {
+        width: calc(100vw - 70px);
+        right: 2px;
+    }
+    width: 440px;
+    max-height: calc(100vh - 70px);
+    min-height: 100px;
+    position: absolute;
+    right: 22px;
+    top: 34px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    z-index: 10;
+    padding-bottom: 4px;
+    overflow-y: auto;
+
+    /* Scrollbar start*/
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+    
+    /* Track */
+    &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 4px grey; 
+    border-radius: 10px;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+    background:$light-grey;
+    border-radius: 10px;
+        &:hover {
+            background: $dark-blue; 
+        }
+    }
+
+    /* Scrollbar end */
+
+
+    > .notification-item:last-child{
+        border-bottom: none;
+    }
+    a.notf-cyan{
+        color: $background-dark-cyan;
+        font-size: 14px;
+    }
+    .notf-header-dropD_head{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin: 16px 16px 0px 16px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid #ccc;
+    }
+    .notification-item{
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    .not-blue-title{
+        padding-left: 0;
+        font-size: 16px;
+    }
+    .notf-header-dropD_foot{
+        display: flex;
+        justify-content: flex-end;
+        padding: 12px 16px;
+    }
+}
+
+/*
+    End notification header button and dropdown styles
+*/
+

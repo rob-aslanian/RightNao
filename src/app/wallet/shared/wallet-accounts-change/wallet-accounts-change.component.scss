@@ -1,0 +1,121 @@
+@import "src/variables";
+.currency-type {
+    &-wrapper {
+        transition: 0.3s;
+        border-radius: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 20px;
+        border-radius: 5px;
+        // margin: 50px 0;
+        // margin-bottom: 16px;
+        color: $white;
+        & p {
+            margin: 0;
+        }
+    }
+    &-img {
+        width: 50px;
+        height: 50px;
+        margin-right: 22px;
+    }
+    &-info {
+        &-title {
+            font-size: 16px;
+            font-weight: 500;
+        }
+        &-number {
+            font-size: 14px;
+        }
+        &-count {
+            font-size: 30px;
+            margin-right: 20px !important;
+        }
+    }
+}
+.dropDown {
+    &-open-btn {
+        padding: 0 !important;
+    }
+    &-menu {
+        &-header { 
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            &-title {
+                color: $light-black;
+                font-weight: 500;
+
+            }
+            &-btn {
+                padding: 0 !important;
+            }
+            &-img {
+                transform: rotate(180deg);
+            }
+        }
+        &-item {
+            cursor: pointer;
+            color: $dark-grey;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 6px 0px;
+            padding: 0;
+            &-title {
+                &-img {
+                    margin-right: 12px;
+                }
+            }
+            &-count {
+                color: $light-black;
+                font-weight: 500;
+            }
+        }
+    }
+}
+.options.blocks-option {
+    padding: 10px;
+    width: 340px !important;
+    top: -10px !important;
+    right: -10px !important;
+    left: unset !important;
+    transform: none !important;
+    width: 200px;
+}
+
+
+
+.Gold {
+    background-color: $yellow;
+}
+.Silver {
+    
+    background-color: #8397AB;
+}
+.Dollar {
+    background-color: $green;
+}
+.Euro {
+    background-color: $blue-option;
+}
+.Yen {
+    background-color: $autumn-orange;
+}
+
+
+@media print {
+    .currency-type-wrapper {
+        display: none;
+    }
+}
+
+@media (max-width: 700px) {
+    .currency-type-wrapper {
+        flex-direction: column;
+    }
+    .options.blocks-option {
+        right: -130px !important;
+    }
+}

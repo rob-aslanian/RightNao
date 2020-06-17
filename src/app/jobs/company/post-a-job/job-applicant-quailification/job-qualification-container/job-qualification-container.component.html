@@ -1,0 +1,67 @@
+
+<span *ngIf="!data;"class="text__cnt">Add experience level, Skills, Tools & Programs, Languages, education, Work Authorization and License & Certificates</span>
+
+<div class="post-a-job__content__qualifications__container" *ngIf="data">
+  
+   <!-- Experience -->
+    <div *ngIf="data['experience'] && data['experience'] !== 'experience_unknown' ">
+        <h4 class="page-section-text-blue mb-0">Experience level</h4>
+        <ul class="post-a-job__content__qualifications__container__list">
+            <li class="page-section-text-grey">{{ data['experience'] | experience }}</li>
+        </ul>
+    </div>
+   <!-- Experience -->
+
+   <!-- Skills  -->
+    <div *ngIf="data['skills'] as skills ">
+        <ng-container *ngIf="skills.length > 0">
+            <h4 class="page-section-text-blue mb-0">Skills</h4>
+            <ul class="post-a-job__content__qualifications__container__list">
+                <li class="page-section-text-grey" *ngFor="let skill of skills">
+                   {{ skill }}
+                </li>
+            </ul>
+        </ng-container>
+    </div>
+   <!-- Skills  -->
+
+   <!-- Tools  -->
+    <div *ngIf="data['tools'] as tools ">
+        <ng-container *ngIf="tools.length > 0">
+            <h4 class="page-section-text-blue mb-0">Tools & Programs</h4>
+            <ul class="post-a-job__content__qualifications__container__list">
+                <li class="page-section-text-grey" *ngFor="let tool of tools">
+                    {{ tool.tool }} - {{ tool.rank | rank }}
+                 </li>
+            </ul>
+        </ng-container>  
+    </div>
+   <!-- Tools  -->
+
+   <!-- Languages  -->
+    <div *ngIf="data['languages'] as languages ">
+        <ng-container *ngIf="languages.length > 0">
+            <h4 class="page-section-text-blue mb-0">Language</h4>
+            <ul class="post-a-job__content__qualifications__container__list">
+                <li class="page-section-text-grey" *ngFor="let language of languages ">
+                    {{ language.language }} - {{ language.rank | rank }}
+                 </li>
+            </ul>
+        </ng-container>
+    </div>
+   <!-- Languages  -->
+
+   <!-- Education -->
+    <div *ngIf="data['education'] as educations">
+        <ng-container *ngIf="educations.length > 0">
+            <h4 class="page-section-text-blue mb-0">Education</h4>
+            <ul class="post-a-job__content__qualifications__container__list">
+                <li class="page-section-text-grey" *ngFor="let education of educations">
+                    {{ education }}
+                 </li>
+            </ul>
+        </ng-container>  
+    </div>
+   <!-- Education -->
+
+</div>

@@ -1,0 +1,144 @@
+<div class="account-right-content">
+    
+    <h1>Manage Admins</h1>
+    <div class="boxes-for-account">
+        <h2>
+            Admin
+        </h2>
+        <button class="dark-button"  (click)='addAdmin()'></button>
+        <hr>
+
+ <app-modal (closeModal)="modalType = null">
+   <ng-container *ngIf='modalType  && modalType === "company"'>
+        <app-add-admin 
+        (closeModal)='close($event)' 
+        (result)='getResult($event)'
+        [companyId]='companyId'
+        [companyAdmins]='companyAdmins'
+        >
+        </app-add-admin>
+    </ng-container>
+    
+    <ng-container *ngIf='modalType  && modalType === "deleteCompany"'>
+        <app-delete-admin 
+            (closeModal)='close($event)' 
+            (result)='getResult($event)'
+            [companyId]='companyId'
+            [user]='user'
+         >
+        </app-delete-admin>
+    </ng-container>
+
+</app-modal>
+
+    <div class="row" *ngFor='let admins of companyAdmins'>
+        <div class="col-lg-4 mb-4 col-sm-6">
+            <div class="d-flex admin-box">
+                <img [src]="admins.user.avatar? '/file/' + admins.user.avatar : 'assets/img/124.svg' " alt="admin">
+                <div>
+                    <h3>{{admins.user.firstname + " " + admins.user.lastname}}</h3>
+                    <span *ngIf='admins.user.skills[0]'>{{admins.user.skills[0].name}}</span>
+                    <span *ngIf='admins.user.experiences[0]'>{{admins.user.experiences[0].title}}</span>
+                </div>                                                
+                <button class="trash" *ngIf='!admins.user.me' (click)='deleteAdmin(admins)'></button>
+            </div>
+        </div>
+    </div>
+
+
+     <!-- First table "Admin" end -->
+
+    <!-- Second table, "Job Admin" -->
+    <!-- <div class="boxes-for-account">
+        <h2>
+            Job admin
+        </h2>
+        <button class="dark-button"></button>
+        <hr>
+        <div class="row">
+            <div class="col-lg-4 mb-4 col-sm-6">
+                <div class="admin-box d-flex">
+                    <img src="assets/img/profile-picture.png" alt="admin">
+                    <div>
+                        <h3>Charlotte Martinez</h3>
+                        <span>Social media coordinator</span>
+                        <span>Advantage solutions</span>
+                        <button class="trash"></button>
+                    </div>                                                
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4 col-sm-6">
+                <div class="admin-box d-flex">
+                    <img src="assets/img/profile-picture.png" alt="admin">
+                    <div>
+                        <h3>Charlotte Martinez</h3>
+                        <span>Social media coordinator</span>
+                        <span>Advantage solutions</span>
+                        <button class="trash"></button>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4 col-sm-6">
+                <div class="admin-box d-flex">
+                    <img src="assets/img/profile-picture.png" alt="admin">
+                    <div>
+                        <h3>Charlotte Martinez</h3>
+                        <span>Social media coordinator</span>
+                        <span>Advantage solutions</span>
+                        <button class="trash"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+-->
+    <!-- Second table "Job Admin" end -->
+
+    <!-- Third table, "Commercial Admin" -->
+    <!-- <div class="boxes-for-account">
+        <h2>
+            Commercial Admin
+        </h2>
+        <button class="dark-button"></button>
+        <hr>
+        <div class="row">
+            <div class="col-lg-4 mb-4 col-sm-6">
+                <div class="admin-box d-flex">
+                    <img src="assets/img/profile-picture.png" alt="admin">
+                    <div>
+                        <h3>Charlotte Martinez</h3>
+                        <span>Social media coordinator</span>
+                        <span>Advantage solutions</span>
+                        <button class="trash"></button>
+                    </div>                                                
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4 col-sm-6">
+                <div class="admin-box d-flex">
+                    <img src="assets/img/profile-picture.png" alt="admin">
+                    <div>
+                        <h3>Charlotte Martinez</h3>
+                        <span>Social media coordinator</span>
+                        <span>Advantage solutions</span>
+                        <button class="trash"></button>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4 col-sm-6">
+                <div class="admin-box d-flex">
+                    <img src="assets/img/profile-picture.png" alt="admin">
+                    <div>
+                        <h3>Charlotte Martinez</h3>
+                        <span>Social media coordinator</span>
+                        <span>Advantage solutions</span>
+                        <button class="trash"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- Third table "Commercial Admin" end -->
+<!-- </div>  -->
+

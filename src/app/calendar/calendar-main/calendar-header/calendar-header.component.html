@@ -1,0 +1,46 @@
+<header class="main-calendar-header d-flex align-items-center justify-content-between">
+  <div class="d-flex">
+    <div class="d-flex align-items-center mr-4">
+      <button class="btn calendar-outline">Today</button>
+    </div>
+    <div class="d-flex align-items-center mr-4">
+      <button class="btn calendar-outline calendar-outline--left mr-2">
+        <img src="../../../../assets/img/147.svg"/>
+      </button>
+      <button class="btn calendar-outline calendar-outline--right">
+        <img src="../../../../assets/img/147.svg"/>
+      </button>
+    </div>
+    <div class="d-flex align-items-center">
+      <h2 class="main-calendar-header__date">September 2019</h2>
+    </div>
+  </div>
+
+
+  <div class="d-flex">
+    <div class="main-calendar-header__dropdown d-flex align-items-center" ngbDropdown [placement]='["bottom-right"]'>
+      <div class="dropdown-toggle" ngbDropdownToggle>
+        <span class="main-calendar-header__dropdown__text calendar-month">Month</span>
+      </div>
+      <div class="dropdown-menu" ngbDropdownMenu>
+        <button class="main-calendar-header__dropdown__option calendar-day">Day</button>
+        <button class="main-calendar-header__dropdown__option calendar-week">Week</button>
+        <button class="main-calendar-header__dropdown__option calendar-month">Month</button>
+        <button class="main-calendar-header__dropdown__option calendar-year">Year</button>
+        <button class="main-calendar-header__dropdown__option calendar-list">List</button>
+      </div>
+    </div>
+    <div class="dropdown main-calendar-header__dropdown d-flex align-items-center">
+      <div class="dropdown-toggle">
+        <span class="main-calendar-header__dropdown__text calendar-share">Share</span>
+      </div>
+      <div class="dropdown-menu">
+        <button class="main-calendar-header__dropdown__option">Day</button>
+      </div>
+    </div>
+    <button class="print-btn">
+      <img src="../../../../assets/img/625.svg"/>
+      <span>Print</span>
+    </button>
+  </div>
+</header>

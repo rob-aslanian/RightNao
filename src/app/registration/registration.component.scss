@@ -1,0 +1,24 @@
+
+
+.ceneter__content{
+    width: 85%;
+}
+
+@media all and (max-width: 1000px) {
+    .ceneter__content{
+        width: 100%;
+    }
+}
+.no-cover {
+    background: unset !important;
+}
+
+.top__content{
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
+
+.user-photo {
+     border-radius: 50%;
+}

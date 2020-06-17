@@ -1,0 +1,21 @@
+<div class="steps-wrapper">
+    <h3 class="steps-wrapper-title">
+        Create Ad in 3 steps
+    </h3>
+    <div class="steps-amount" >
+        <div class="steps-item" [ngClass]="{'activeSteps': stepAmount>0}">
+            <span *ngIf="stepAmount==1">1</span>
+            <img src="assets/img/459.svg" alt="" *ngIf="stepAmount>1" class="steps-success">
+        </div>
+        <div class="steps-line" [ngClass]="{'activeLine': stepAmount>0}"></div>
+        <div class="steps-item" [ngClass]="{'activeSteps': stepAmount > 1}">
+            <span>2</span>
+        </div>
+        <div class="steps-line" [ngClass]="{'activeLine': stepAmount>1}"></div>
+        <div class="steps-item">
+            <span>3</span>
+        </div>
+    </div>
+    <p class="steps-description"> {{ description }} </p>
+    
+</div> 

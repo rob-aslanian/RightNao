@@ -1,0 +1,56 @@
+<div class="preview-carousel-wrapper">
+    <div class="carousel-user">
+        <div class="">
+            <img [src]="user.avatar == '' ? 'assets/img/124.svg' : '/file/'+user.avatar"  alt="">
+            <span>
+                {{ user.name }}
+            </span>
+        </div>
+    </div>
+
+    <div class="cards">
+
+        <div class="cards-item" *ngFor="let item of cards; let i = index;" #card>
+            <div class="cards-item-img">
+                <img [src]="item['image']" 
+                    alt="image" 
+                    class="showImage" 
+                    *ngIf="item['image'];else emptyImage">
+                <ng-template #emptyImage>
+                    <img src="assets/img/ads/36.svg" alt="" class="empty">
+                </ng-template>
+            </div>
+            <div class="carousel-line">
+                <div>
+                    <h6>
+                            <span *ngIf="item['headline'];else headline">{{ item['headline'] }}</span>
+                            <ng-template #headline>Headline</ng-template> 
+                    </h6>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn btn-backgroundless prevBtn" (click)="prevCard()" *ngIf="translate>1">
+            <img src="assets/img/wallet/147.svg" alt="prev">
+        </button>
+        <button class="btn btn-backgroundless nextBtn" (click)="nextCard()" *ngIf="translate < transMaxLength"> 
+                <!-- *ngIf="translate != transMaxLength" -->
+            <img src="assets/img/wallet/147.svg" alt="next">
+        </button>
+
+    </div>
+    <div class="carousel-footer">
+        <button class="btn btn-backgroundless">
+            <img src="assets/img/506.svg" alt="">
+            Like
+        </button>
+        <button class="btn btn-backgroundless">
+            <img src="assets/img/491.svg" alt="">
+            Comment
+        </button>
+        <button class="btn btn-backgroundless">
+            <img src="assets/img/84.svg" alt="">
+            Share
+        </button>
+    </div>
+</div>

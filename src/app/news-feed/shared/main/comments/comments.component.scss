@@ -1,0 +1,124 @@
+@import "src/variables";
+@import 'src/mixins.scss';
+
+
+
+
+@mixin comments {
+    .grey-item {
+      color: $dark-grey;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .text-comment__input__comment--items {
+      img {
+        height: 20px;
+        width: 20px;
+      }
+      .like-img {
+        height: 22px;
+        width: 26px;
+      }
+    }
+    .text-comment__input__comment {
+      background: #EAEDF2;
+      border-radius: 8px;
+      .text-comment__input__comment__info {
+        position: relative;
+        img {
+          position: absolute;
+          width: 35px;
+          height: 35px;
+          bottom: 13px;
+          left: -16px;
+          border-radius: 50%;
+        }
+        .medium-font {
+          font-size: 14px;
+        }
+      }
+      .text-comment__input__comment__funct {
+        position: relative;
+        .content-small {
+          color: #808080;
+          font-size: 12px;
+        }
+        .list-block-list-items {
+          @include list-block(26px, 5%);
+        }
+      }
+    }
+  }
+
+  
+.text-comment {
+    border-top: 1px solid $light-grey;
+    padding-left: 16px;
+    p { word-break: break-word; font-size: 14px; color: $dark-grey}
+    .text-comment__input {
+      position: relative;
+      height: 37px;
+      .text-comment__input--big {
+        height: 36px !important;
+          padding-left: 1.35rem;
+          font-size: 1rem;
+      }
+      .label-upload {
+        padding: 0px 5px;
+        border-radius: 10%;
+        z-index: 1;
+        cursor: pointer;
+        position: absolute;
+        left: 92%;
+        @media (max-width: 482px) {
+          left: 88%;
+        }
+        top: 4px;
+  
+        img {
+          height: 25px;
+          width: 27px;
+        }
+      }
+      .form-control-image {
+        position: absolute;
+        width: 35px;
+        height: 35px;
+        bottom: 13px;
+        left: -16px;
+        border-radius: 50%;
+      }
+    }
+    .comments-list {
+      position: relative;
+      .grey {
+        color: $dark-grey;
+      }
+      button {
+        text-decoration: none;
+      }
+      .list-block-list {
+        @include list-block(32px, 1%);
+      }
+    }
+    .inputfile {
+      width: 0.1px;
+      height: 0.1px;
+      opacity: hidden;
+      z-index: -1;
+    }
+    .text-comment__input__comment-wrap {
+      @include comments;
+    }
+    .text-comment__input__comment__container {
+      display: flex;
+      justify-content: flex-end;
+      .sub__comment{
+        width: 93%;
+        margin-left: 5rem;
+        @include comments;
+      }
+    }
+  }
+  
+  

@@ -1,0 +1,137 @@
+@import 'src/variables'; 
+
+.saved-services-content{
+    background-color: $white;
+
+    .card{
+        padding: 0rem;
+        max-width: 270px;
+        margin-left: .7rem;
+        border-radius: .5rem; 
+
+
+        @media #{$break2}{
+            max-width: 100%;
+        }
+        @media (max-width: 1200px){
+        //    background-color: black;
+            margin: 0;
+           max-width: 100%;
+        }
+    }
+}
+
+.title{
+    padding-right: 0 !important;
+    &-search {
+        .search{
+            width: 15.625rem;
+            margin-right: auto;
+            background: url(/assets/img/208.svg) 95% 50% no-repeat $white;
+        }
+    }
+}
+.card-img{
+    img{
+        width:100%;
+        max-height: 11.8125rem;
+        border-top-left-radius: .5rem; 
+        border-top-right-radius: .5rem; 
+        // max-width: 17.6875rem;
+    }
+}
+
+.prices-tag{
+    background-color: $dark-blue;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    height: 1.5rem;
+    position: absolute;
+    right: 0;
+    top: 1.5rem;
+    border-top-left-radius: .5rem;
+    border-bottom-left-radius: .5rem;
+    p{
+        color: $background-light-cyan;
+    }
+}
+
+.role{
+    .author{
+        .company-avatar{
+            height: 2.1875rem;
+            width: 2.1875rem;
+            border-radius: .5rem;
+        }
+        .user-avatar{
+            height: 2.1875rem;
+            width: 2.1875rem;
+            border-radius: 50%;
+        }
+        .author-name{
+            font-size: 0.875rem;
+            color: $dark-grey;
+            margin: 0;
+        }
+        .raiting{
+            img{
+                height: 1rem;
+                width: 1rem; 
+                &:not(:first-child){
+                    margin-left: .5rem;
+                }
+            }
+            .raiting-length{
+                padding-left: .5rem;
+                font-size: .75rem;
+                color: $dark-grey;
+            }
+        }
+        .author{
+            color: $dark-grey;
+            font-size: .75rem;
+        }
+        .type{
+            color: $dark-grey;
+            font-size: 0.75rem;
+            margin: 0;
+
+        }
+        .like{
+            img{
+                width: 1.3rem;
+                
+            }
+        }
+    }
+    .position{
+        font-size: 1rem;
+        // white-space: nowrap;
+    }
+
+   
+}
+
+.options {
+    position: absolute;
+    right: 1rem;
+    top: 2rem; 
+    background-color: $white; 
+    z-index: 2;
+    border-radius: .5rem; 
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); 
+    text-align: center; 
+       
+
+    p {
+        color: $dark-grey; 
+        cursor: pointer;
+        
+        &:hover {
+            background-color: $light-grey;
+            cursor: pointer;
+            transition: .3s; 
+
+        }
+    }
+}

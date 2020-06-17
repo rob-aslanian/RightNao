@@ -1,0 +1,209 @@
+@import "src/variables";
+.transactions {
+    background-color: $white;
+    border-radius: 5px;
+    border: 2px solid $light-grey;
+    padding: 25px;
+    margin: 16px 0 50px 0;
+    &-sort {
+        color: red !important;
+        &-type {
+            font-size: 16px;
+            padding: 0 !important;
+            padding-bottom: 20px !important;
+            margin-right: 40px;
+            &.active {
+                color: $light-black;
+                font-weight: 500;
+                border-bottom: 3px solid $dark-cyan;
+            }
+        }
+        &-line {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            &:first-child {
+                border-bottom: 1px solid $light-grey;
+            }
+            &:last-child {
+                padding: 24px 0;
+            }
+            @media (max-width: 768px) {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        &-search {
+            width: 350px;
+            position: relative;
+            &-img {
+                position: absolute;
+                top: 20%;
+                right: 20px;
+            }
+            @media (max-width: 768px) {
+                width: 300px;
+            }
+        }
+    }
+    &-history {
+        &-header {
+                width: 100%;
+                text-decoration: none;
+                list-style-type: none;
+                padding: 5px 0;
+                margin: 0;
+                color: $white;
+                background-color: $blue;
+                border-radius: 5px;
+                // display: flex;
+                // flex-direction: column  !important;
+                // justify-content: flex-start !important;
+                // align-items: flex-start !important;
+                &-button {
+                    text-align: end;
+                }
+        }
+        &-list {
+
+        }
+        &-item {
+            width: 100%;
+            text-decoration: none;
+            list-style-type: none;
+            padding: 10px 0;
+            margin: 0;
+            border-bottom: 1px solid $light-grey;
+            border-top: 1px solid $light-grey;
+            color: $dark-grey;
+            &-button {
+                text-align: end;
+            }
+        }
+    }
+}
+.moreInfoButton {
+    transform: rotate(-90deg); margin-left: 10px;
+    cursor: pointer;
+}
+
+.options {
+    &-status {
+        right: 0px !important;
+        left: unset !important;
+        width: 140px;
+        &-img {
+            margin-right: 15px;
+        }
+
+    }
+    &-category {
+        right: 0px !important;
+        left: unset !important;
+        width: 430px !important;
+        height: 240px !important;
+        overflow: hidden;
+        overflow-y: scroll;
+        padding: 10px 0;
+        font-size: 14px;
+        &-item {
+            display: inline-block;
+            margin: 5px 0;
+        }
+        &::-webkit-scrollbar {
+            width: 5px;
+        }
+        
+        &::-webkit-scrollbar-track {
+        border-radius: 10px;
+        background: grey;
+        }
+
+        &::-webkit-scrollbar-thumb {
+        background:$dark-blue;
+        border-radius: 10px;
+        }
+        @media (max-width: 768px) {
+            width: 250px !important;
+            
+        }
+    }
+    &-calendar {
+        padding: 10px;
+        border-radius: 10px;
+    }
+}
+// transaction status
+.done {
+    color: #0BDE3C;
+}
+.pending {
+    color: $yellow;
+}
+.rejected {
+    color: $dark-red;
+}
+// transaction status
+.btn {
+    color: $dark-grey;
+}
+
+//calendar 
+.custom-day {
+    text-align: center;
+    padding: 0.185rem 0.25rem;
+    display: inline-block;
+    height: 2rem;
+    width: 2rem;
+    &.focused {
+        background-color: #e6e6e6;
+    }
+    &.faded {
+        border-radius: 0 !important;
+    }
+}
+.custom-day.range, .custom-day:hover {
+    background-color: $light-grey;
+    color: white;
+}
+
+//calendar
+
+.transactions-item-balance {
+    text-align: center;
+}
+
+
+.bold {
+    font-weight: 700;
+}
+
+@media print {
+    .transactions-sort, .moreInfoButton, .pagination {
+        display: none !important;
+    }
+    .transactions-item-count {
+        justify-content:flex-start  !important;
+        color: #000000 !important;
+    }
+}
+@media (max-width: 700px) {
+    .transactions-history, .transaction-history-list {
+        display: flex;
+    }
+    .transaction-history-list {
+        overflow: hidden;
+        overflow-x: scroll;
+    }
+    .transactions-history-header {
+        border-radius: 0;
+    }
+
+}
+.arrowDown {
+    margin-left: 7px;
+    opacity: 0.5;
+    width: 6px;
+    transform: rotate(90deg);
+    filter: brightness(-100%);
+}

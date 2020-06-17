@@ -1,0 +1,206 @@
+@import 'src/variables.scss';
+
+
+@mixin isOut ( $color: #00F4FF) {
+    border: 2px solid $color;
+    color: $color !important;
+    padding: 3px 29px;
+    border-radius: 21px;
+    font-size: 15px;
+    font-weight: 500;
+};
+ 
+.notification-checkbox {
+    text-align: right;
+    vertical-align: middle;
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 37px;
+        height: 18px;
+    }
+    
+    .switch input { 
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+    
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: $light-grey;
+        -webkit-transition: .3s;
+        transition: .3s;
+    }
+    
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 12px;
+        width: 12px;
+        left: 2px;
+        bottom: 2px;
+        background-color: white;
+        -webkit-transition: .3s;
+        transition: .3s;
+    }
+    
+    input:checked + .slider {
+        background-color: $background-dark-cyan;
+    }
+        
+    input:checked + .slider:before {
+        -webkit-transform: translateX(19px);
+        -ms-transform: translateX(19px);
+        transform: translateX(19px);
+    }
+    
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+        margin-right:0;
+        border: 1px solid #052337;
+    }
+    
+    .slider.round:before {
+        border-radius: 50%;
+    }
+}
+ 
+
+.profile-wrapper {
+    position: sticky;
+    top: 61px;
+    width: 90%;
+    padding-left: 60px;
+    .profile-photo {
+        h1 {
+            color: $white;
+            font-weight: 300;
+        }
+        p {
+            color: $dark-grey;
+            font-size: 18px;
+        }
+        span {
+            color: $dark-grey;
+            font-size: 14px;
+        }
+    }
+    .profile-details {
+         .info{
+            padding-bottom: 8px;
+             a {
+                 cursor: pointer;
+                 color: $dark-grey;
+                 vertical-align: middle;
+                 padding-left: 10px;
+                
+             }
+         }
+    }
+    hr {
+        background: #264361;
+    }
+    .owner {
+       p {
+           font-size: 14px;
+           color: $dark-grey;
+       }
+       img {
+           height: 50px;
+           width: 50px;
+           border-radius: 50%;
+       }
+       a {
+           color: $white;
+           font-size: 16px;
+           font-weight: 300;
+           padding-left: 9px;
+       }
+    }
+    .description {
+        span {
+            color: $white;
+            font-size: 16px;
+        }
+        p {
+            color: $dark-grey;
+            font-size: 14px;
+        }
+    }
+    .languages {
+        span {
+            color: $white;
+            font-size: 16px;
+        }
+        p {
+            color: $dark-grey;
+        }
+    }
+}
+ 
+a {
+    &:hover {
+        text-decoration: underline !important;
+        cursor: pointer;
+    }
+}
+p {
+    margin-bottom: 0.3rem;
+}
+.company-profile {
+    border-radius: 4px !important;
+}
+
+.is-out {
+  @include isOut();
+}
+
+.is-out-deactivated {
+    @include isOut( #CCC );
+};
+  
+.profile-photo-upload {
+    background: $white;
+    padding: 26px;
+}
+.uploaded-image {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+   
+}
+.profile-photo-edit {
+    &:hover {
+           background: #CCC;
+           opacity: .5;
+           transition: 0.5s ease;
+    }
+}
+.profile-photo-edit-wrapper {
+    position: relative;
+    &:hover {
+        .edit-photo {
+            opacity: 1;
+            transition: 0.5s ease;
+        }
+        .uploaded-image{
+            background: #CCC;
+        }
+    }
+
+}
+.edit-photo {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    left: 50%;
+    top: 44%;
+    opacity: 0;
+}

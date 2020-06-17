@@ -1,0 +1,93 @@
+<div class="ads-details" *ngIf="data">
+    <div class="row">
+        <div class="col-6 position-relative">
+             <img class="big-one" [src]="'/file/'+src" alt="">
+             <div class="pointers"  *ngIf="data.files.length > 4">
+                 <div class="bitvh pointer-left d-flex justify-content-center" (click)='_slider.back()'>
+                      <img src="assets/img/147.svg" alt="" style="transform: rotate(90deg);">
+                 </div>
+                 <div class="bitvh pointer-right d-flex justify-content-center">
+                        <img src="assets/img/147.svg" alt="" style="transform: rotate(-90deg);" (click)='_slider.next()'>
+                 </div>
+             </div>
+             <app-slider-bad-boy-edition [amount]='5'>
+                    <div class="row flex-nowrap god mt-2">
+                        <div class="col-3 backgr-image" *ngFor="let item of data.files; let i = index" >
+                              <img [src]="'/file/'+item.address" 
+                                   class="small-ones" alt="" [ngClass]="{'active-one': activeIndex === i }"
+                                   (click)="makeActive(i, item.address)">
+                        </div>
+                    </div>
+            </app-slider-bad-boy-edition>
+            <div class="mt-4">
+                <img style="cursor: pointer" 
+                     [src]="data.has_liked ? 
+                             'assets/img/99.svg' : 
+                             'assets/img/44.svg' " 
+                              alt="heart" (click)='getNotified(data.id, data.has_liked)'>
+            </div>
+        </div>
+        <div class="col-6">
+            <h3>{{ data.detail.title }}</h3>
+            <div class="mt-2">
+                <div class="d-flex justify-content-between">
+                    <div class="locationn" *ngIf="data.location">
+                        <img src="assets/img/24.svg" alt="">
+                        <span class="pl-3">{{ data.location.country | country }}</span>
+                        <span class="pl-3">{{ data.location.city  }}</span>
+                    </div>
+                    <div class="from-to">
+                        <span>{{ utils.dateFromNow(data.created_at) }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-2 price d-flex currency">
+                <h3 class="mr-2">{{ data.price.currency }}</h3>
+                <ng-container *ngIf="data.price.price_type === 'PriceType_PriceRange'">
+                    <h3>
+                        {{ data.price.min_price }} -
+                        {{ data.price.max_price }}
+                    </h3>
+                </ng-container>
+
+                <ng-container *ngIf="data.price.price_type === 'PriceType_AddPrice'">
+                    <h3>
+                        {{ data.price.fix_price }}  
+                    </h3>
+                </ng-container> 
+            </div>
+            <div class="mt-2 category d-flex">
+                <p>
+                    Category: 
+                </p>
+                <p>{{ data.category.split('_').join(' ') }}</p> 
+            </div>
+            <div class="mt-2 profile align-items-center">
+                   <div class="d-flex align-items-center">
+                       <img style="border-radius:50%;height: 50px;width: 50px;" 
+                            [src]="data.user_profile.avatar ? 
+                                  '/file/'+data.user_profile.avatar: 'assets/img/defaultAvatar.svg'" alt="">
+                        <p class="pl-2 m-0">
+                           {{ data.user_profile.firstname }}
+                           {{ data.user_profile.lastname }}
+                       </p>
+                   </div>
+                   <div class="d-flex mt-3">
+                        <div class="phone d-flex mt-2">
+                            <img src="assets/img/16.svg" alt="">   
+                            <p class="m-0 pl-2">
+                            + {{ data.user_profile.phone }}
+                            </p>                         
+                        </div>
+                        <div class="chatnao ml-3 d-flex align-items-center" *ngIf="!data.user_profile.isMe">
+                            <img src="assets/img/41.svg" alt="">
+                            <p class="m-0 pl-2">Chatnao</p>
+                        </div>
+                   </div>                   
+            </div>
+            <div class="description mt-2">
+                {{data.detail.description}}
+            </div>
+        </div>
+    </div>
+</div>

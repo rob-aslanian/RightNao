@@ -1,0 +1,62 @@
+<div class="popup-content">
+    <div class="qualifications-modal">
+        <form [formGroup]="form" class="qualifications-modal__content" >
+            <div>
+                <h5 class="page-section-text-blue">Experience level</h5>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <select id="experience-level" formControlName="experience" class="form-control col-6">
+                          <option *ngFor="let experience_level of experienceLevels" [value]="experience_level.id"
+                            [disabled]="experience_level.id === 'experience_unknown' ">
+                            {{ experience_level.name }}
+                          </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+    
+            <app-import-from-profile [qualifications]="form" [isOpen]="{open:false}" style="padding: 0;"></app-import-from-profile>
+
+            <div class="qualifications-modal__content__section">
+                <h5 class="page-section-text-blue">Education</h5>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <input type="text" class="form-control" #education [ngbTypeahead]="searchgDegree"
+                                (selectItem)="onSelectDegree($event); education.value = ''"
+                                (keyup.enter)="addEducation(education.value); education.value = ''" id="applicant-education"
+                                placeholder="Add degree" maxlength="128">
+
+                          <button type="button" class="btn keyword" (click)="removeEducation(i)"
+                            *ngFor="let education of educations.controls; let i = index">
+                            {{ education.value }} &#10005;
+                          </button>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="qualifications-modal__content__section">
+                <h5 class="page-section-text-blue">License & Certificates</h5>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <input type="text" formControlName="license" placeholder="Add License & Certificates" class="form-control">
+                    </div>
+                </div>
+            </div>
+    
+            <div class="qualifications-modal__content__section">
+                <h5 class="page-section-text-blue">Work Authorization</h5>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <input type="text" formControlName="work" placeholder="Add eligibility" class="form-control">
+                    </div>
+                </div>
+            </div>
+    
+            <div class="d-flex justify-content-end mt-1">
+                <button class="btn btn-primary" type="button" (click)="submit()">Save</button>
+            </div>
+          </form>
+    </div>
+
+    
+</div>

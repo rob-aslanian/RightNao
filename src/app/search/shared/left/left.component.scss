@@ -1,0 +1,35 @@
+@import 'src/mixins.scss';
+
+.search__left {
+    position: sticky;
+    top: 14%;
+    transform: translateX(-100%);
+    // transition-timing-function: ease-in;
+    opacity: 1;
+    height: 0;
+    &__header{
+        background: #264361 !important;
+        color: #ffffff;
+    }
+}
+
+.slide_in{
+    transition: .3s all;
+    transform: translateX(0) !important;
+    height: auto;
+    opacity: 1;
+}
+
+.slide_out{
+    transition: .3s transform;
+    transform: translateX(-100%)  !important;
+    height: 0;
+    opacity: 0;
+}
+
+.search-groups__sidebar {
+    overflow-y: auto;
+    max-height: 85vh;
+    @include thin-scrollbar--vertical;
+}
+

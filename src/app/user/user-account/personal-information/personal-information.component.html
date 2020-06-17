@@ -1,0 +1,810 @@
+<div class="account-right-content" *ngIf="user_info" >
+    <h1> {{ "1052"  | translate }} </h1>
+
+    <!-- Name start -->
+    <div class="boxes-for-account">
+        <h2> {{  "950" | translate }} </h2>
+        <hr>
+        <div class="row">
+            <div class="col-lg-3">
+                <h3>
+                    {{ "620" | translate }}
+                </h3>
+            </div>
+            <div class="col">
+                <span> {{ user_info.getAccount.firstname }} </span>
+            </div>
+            <div class="col">
+
+            </div>
+            <div class="col button-col">
+                <button *ngIf="user_info.getAccount.editable" (click)="myToggle('firstName',user_info.getAccount)" [ngClass]="{active: toggle.active['firstName'] }" ></button>
+            </div>
+        </div>
+
+        <ng-template [ngIf]="toggle.active['firstName']" >
+            <form  [formGroup]="firstNameForm">
+                <div class="form-group">
+                    <input type="text" class="form-control col-6" formControlName="name" [ngClass]="{ 'is-invalid': submittedFirstNameForm && fnFo.name.errors }" placeholder="Type first name here">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" (click)="changeFirstName()" > {{ "1231" | translate }} </button>
+                </div>
+            </form>
+        </ng-template>
+
+        <div class="row">
+            <div class="col-lg-3">
+                <h3>
+                    {{ "601" | translate }}
+                </h3>
+            </div>
+            <div class="col" >
+                <span> {{ user_info.getAccount.patronymic.patronymic }} </span>
+            </div>
+            <div class="col" *ngIf='user_info.getAccount.patronymic.patronymic.length > 0' >
+                <span *ngIf="user_info.getAccount.patronymic.permission.type == 'members' " > {{ "1133" | translate }} </span>
+                <span *ngIf="user_info.getAccount.patronymic.permission.type == 'my_connections' " > {{ "938" | translate }} </span>
+                <span *ngIf="user_info.getAccount.patronymic.permission.type == 'me' " > {{ "1002" | translate }} </span>
+            </div>
+            <div class="col button-col">
+                <button (click)="myToggle('fatherName',user_info.getAccount.patronymic)" [ngClass]="{active: toggle.active['fatherName'] }" ></button>
+            </div>
+        </div>
+        
+
+
+        <!-- Area to display when editing father's name -->
+        <ng-template [ngIf]="toggle.active['fatherName']">
+            <form [formGroup]="fatherNameForm" >
+                <div class="form-group d-flex">
+                    <input type="text" maxlength="64" class="form-control w-50 mr-3" formControlName="name" [ngClass]="{ 'is-invalid': submittedFatherNameForm && fatnFo.name.errors }" placeholder="Type father's name here">
+                    <button class="backgroundless"> {{ "1611" | translate }} </button>
+                </div>
+                                       <!-- errors -->
+                <ng-container *ngIf="submittedFatherNameForm &&  fatnFo.name.errors">
+                        <span class="error_message"  *ngFor="let error of  utils.getErrorsKey(fatnFo.name.errors) ">
+                                {{ utils.$getErrors(error) }}
+                        </span> 
+                 </ng-container>  
+                                        <!-- errors -->
+
+                <div class="form-group" > 
+                    <select class="form-control w-25" formControlName="connections"  >
+                        <option value="my_connections" selected> {{ "938" | translate }} </option>
+                        <option value="members"> {{ "1133" | translate }} </option>
+                        <option value="me"> {{ "1000" | translate }} </option>
+                    </select>
+                </div>
+            
+                <div class="form-group">
+                    <button class="btn btn-primary" (click)="changeFatherName()" > {{ "1231" | translate }} </button>
+                </div>
+                
+            </form>
+        </ng-template>
+        <!-- Area to display when editing father's name end  {{ user_info.getAccount.middlename }} -->
+        
+ 
+
+
+
+        <div class="row">
+            <div class="col-lg-3">
+                <h3>
+                    Middle Name
+                </h3>
+            </div>
+            <div class="col">
+                <span> {{ user_info.getAccount.middlename.middlename }} </span>
+            </div>
+            <div class="col" *ngIf='user_info.getAccount.middlename.middlename.length > 0'>
+                <span *ngIf="user_info.getAccount.middlename.permission.type == 'members' " > {{  "1133" | translate }} </span> 
+                <span *ngIf="user_info.getAccount.middlename.permission.type == 'my_connections' " > {{ "938" | translate }} </span>
+                <span *ngIf="user_info.getAccount.middlename.permission.type == 'me' " > {{ "1000" | translate }}</span>
+            </div>
+            <div class="col button-col">
+                <button (click)="myToggle('middleName',user_info.getAccount.middlename)" [ngClass]="{active: toggle.active['middleName'] }" ></button>
+            </div>
+        </div>
+
+        <!-- Area to display when editing Middle name -->
+        <ng-template [ngIf]="toggle.active['middleName']">
+            <form [formGroup]="middleNamesForm" > 
+                <div class="form-group">
+                    <input maxlength="64" type="text" class="form-control w-50" formControlName="name" [ngClass]="{ 'is-invalid': submittedMiddleNameForm && midFo.name.errors }" placeholder="Type your middle name here">
+                </div>
+                                  <!-- errors -->
+                        <ng-container *ngIf="submittedMiddleNameForm &&  midFo.name.errors ">
+                            <span class="error_message"  *ngFor="let error of  utils.getErrorsKey(midFo.name.errors ) ">
+                                    {{ utils.$getErrors(error) }}
+                            </span> 
+                        </ng-container>  
+                                 <!-- errors -->
+                <div class="form-group ">
+                    <select class="form-control w-25" formControlName="connections" >
+                        <option value="my_connections" selected> {{ "938" | translate }} </option>
+                        <option value="members"> {{ "1133" | translate }} </option>
+                        <option value="me"> {{ "1000" | translate }} </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" (click)="changeMiddleName()" > {{  "1231" | translate }} </button>
+                </div>
+            </form>
+        </ng-template>
+        <!-- Area to display when editing Middle name end -->
+
+        <div class="row">
+            <div class="col-lg-3">
+                <h3>
+                    {{ "849" | translate }}
+                </h3>
+            </div>
+            <div class="col">
+                <span> {{ user_info.getAccount.lastname }} </span>
+            </div>
+            <div class="col">
+                
+            </div>
+            <div class="col button-col">
+                <button *ngIf="user_info.getAccount.editable" (click)="myToggle('lastName',user_info.getAccount)" [ngClass]="{active: toggle.active['lastName'] }" ></button>
+            </div>
+        </div>
+
+        <!-- Area to display when editing Last name -->
+        <ng-template [ngIf]="toggle.active['lastName']">
+            <form [formGroup]="lastNamesForm" >
+                <div class="form-group">
+                    <input type="text" class="form-control w-50" formControlName="name" placeholder="Type your last name here">
+                </div>
+                
+                <div class="form-group">
+                    <button class="btn btn-primary" (click)="changeLastName()" > {{ "1231" | translate }} </button>
+                </div>
+            </form>
+        </ng-template>
+        <!-- Area to display when editing last name end -->
+
+
+        <div class="row">
+            <div class="col-lg-3">
+                <h3>
+                    {{ "970" | translate  }}
+                </h3>
+            </div>
+            <div class="col">
+                <span> {{ user_info.getAccount.nickname.nickname }} </span>
+            </div>
+            <div class="col" *ngIf='user_info.getAccount.nickname.nickname.length > 0'>
+                <span *ngIf="user_info.getAccount.nickname.permission.type == 'members' " > {{ "1133" | translate }} </span> 
+                <span *ngIf="user_info.getAccount.nickname.permission.type == 'my_connections' " > {{ "938" | translate }} </span>
+                <span *ngIf="user_info.getAccount.nickname.permission.type == 'me' " > {{ "1002" | translate }} </span>
+            </div>
+            <div class="col button-col">
+                <button (click)="myToggle('nickName',user_info.getAccount.nickname)" [ngClass]="{active: toggle.active['nickName'] }" > </button>
+            </div>
+        </div>
+
+        <!-- Area to display when editing Nick name -->
+        <ng-template [ngIf]="toggle.active['nickName']">
+            <form [formGroup]="nickNameForm" >
+                <div class="form-group">
+                    <input type="text" maxlength="64" class="form-control w-50" formControlName="name" [ngClass]="{ 'is-invalid': submittedNickNameForm && nickFo.name.errors }" placeholder="Type your nick name here">
+                </div>
+                <ng-container *ngIf="submittedNickNameForm &&  nickFo.name.errors">
+                        <span class="error_message"  *ngFor="let error of  utils.getErrorsKey(nickFo.name.errors ) ">
+                                {{ utils.$getErrors(error) }}
+                        </span> 
+                </ng-container>  
+
+                <div class="form-group">
+                    <select class="form-control w-25" formControlName="connections" >
+                        <option value="my_connections" selected> {{ "938" | translate }} </option>
+                        <option value="members"> {{ "1133" | translate }} </option>
+                        <option value="me"> {{ "1000" | translate }} </option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-primary" (click)="changeNickName()" > {{ "1231" | translate }} </button>
+                </div>
+            </form>
+        </ng-template>
+        <!-- Area to display when editing nick name end -->
+    </div>
+    <!-- Name end -->
+
+    <!-- Basic information start -->
+    <div class="boxes-for-account">
+        <h2>
+            {{ "216" | translate }}
+        </h2>
+        <hr>
+        <div class="row">
+            <div class="col-lg-3">
+                <h3>
+                    {{ "227" | translate }}
+                </h3>
+            </div>
+            <div class="col">
+                <span> {{ user_info.getAccount.birthday.birthday  | monthPipe}} </span>
+            </div>
+            <div class="col">
+                <span *ngIf="user_info.getAccount.birthday.permission.type == 'members' " > {{ "1133"  | translate  }} </span> 
+                <span *ngIf="user_info.getAccount.birthday.permission.type == 'my_connections' " > {{ "938" | translate }} </span>
+                <span *ngIf="user_info.getAccount.birthday.permission.type == 'me' " > {{ "1002" | translate }} </span>
+            </div>
+            <div class="col button-col">
+                <button (click)="myToggle('birthDay',user_info.getAccount.birthday);editDropDown('birthDay',user_info.getAccount.birthday.permission.type )" [ngClass]="{active: toggle.active['birthDay'] }" ></button>
+            </div>
+        </div>
+
+        <!-- Area to display when editing birthday -->
+        <ng-template [ngIf]="toggle.active['birthDay']">
+            <form [formGroup]="birthDayForm" >
+                <div class="form-row mx-0 form-group">
+                    <!-- <div class="w-25 mr-3">
+                        <select class="form-control" formControlName="day"  [ngClass]="{ 'is-invalid': submittedbirthDayForm && birthFo.day.errors }"  >
+                            <option value="" disabled selected>Day</option>
+                            <option *ngFor="let day of days" [value]="day" tabindex="9"  > {{day}} </option>
+                        </select>
+                    </div>
+                    <div class="w-25 mr-3">
+                        <select class="form-control" formControlName="month" [ngClass]="{ 'is-invalid': submittedbirthDayForm && birthFo.month.errors }" >
+                            <option value="" disabled selected>Month</option>
+                            <option *ngFor="let month of Months" [value]="month.id" tabindex="10"> 
+                                    {{month.name}}
+                            </option>
+                            
+                        </select>
+                    </div>
+                    <div class="w-25">
+                        <select class="form-control" formControlName="year" [ngClass]="{ 'is-invalid': submittedbirthDayForm && birthFo.year.errors }">
+                            <option value="" disabled selected>Year</option>
+                            <option *ngFor="let year of years_arr"  [value]="year" >
+                                {{year}}
+                            </option>
+                        </select>
+                    </div> -->
+                </div> 
+
+                <div class="form-group">
+                    <select class="form-control col-3" formControlName="connections">
+                        <option value="my_connections" selected> {{ "938" | translate }} </option>
+                        <option value="members"> {{ "1133" | translate }} </option>
+                        <option value="me"> {{ "1000" | translate }} </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-primary" (click)="changeBirthDate()" > {{ "1231" | translate }} </button>
+                </div>
+            </form>
+        </ng-template>
+        <!-- Area to display when editing birthday end -->
+
+
+        <div class="row">
+            <div class="col-lg-3">
+                <h3>
+                    {{ "661" | translate }}
+                </h3>
+            </div>
+            <div class="col">
+                    <span> {{ user_info.getAccount.gender.gender}} </span>
+           </div>
+            <div class="col">
+                <span *ngIf="user_info.getAccount.gender.permission.type == 'members' " > {{ "1133" | translate }} </span> 
+                <span *ngIf="user_info.getAccount.gender.permission.type == 'my_connections' " >  {{ "938" | translate }} </span>
+                <span *ngIf="user_info.getAccount.gender.permission.type == 'me' " > {{ "1002" | translate }} </span>
+            </div>
+            <div class="col button-col">
+                <button   (click)="myToggle('Gender');editDropDown('gender',user_info.getAccount.gender.permission.type)" [ngClass]="{active: toggle.active['Gender'] }" ></button>
+            </div>
+        </div>
+
+        <!-- Area to display when editing gender start -->
+        <ng-template [ngIf]="toggle.active['Gender']">
+            <form [formGroup]="genderForm" >
+                <!-- <div class="form-group gender mt-0">
+                    <input type="radio" id="female" formControlName="gender" value="female"  [checked] = "user_info.getAccount.gender.gender === 'female'"  name="gender">                  
+                    <label for="female" class="female"></label>
+                    <input type="radio" id="male"  formControlName="gender" value="male" [checked] = "user_info.getAccount.gender.gender === 'male'" name="gender">
+                    <label for="male" class="male"></label>             
+                </div> -->
+
+                <div class="form-group">
+                    <select class="form-control col-3" formControlName="connections">
+                        <option value="my_connections" selected> {{ "938" | translate }} </option>
+                        <option value="members"> {{ "1133" | translate }} </option>
+                        <option value="me"> {{ "1000" | translate }} </option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-primary" (click)="changeGender()" > {{ "1231" | translate }} </button>
+                </div>
+            </form>
+        </ng-template>
+        <!-- Area to display when editing gender end -->
+
+       
+    </div>
+    <!-- Basic information end -->
+
+    <!-- Email start -->
+
+    <div class="boxes-for-account">
+        <h2>
+            {{ "507" | translate }}
+        </h2>
+        <button class="dark-button" (click)="myToggle('email')" [ngClass]="{'d-none': toggle.active['email'] }" ></button>
+        <hr>
+        <ng-container *ngFor="let email of user_info.getAccount.email; let i = index " >
+            <div class="row">
+            <div class="col-lg-3">
+                    <h3>
+                        <img class="box__image" [src]="utils.getImageForEmail(email.email).img" alt="email">
+                        <span style="margin-left:15px" *ngIf='utils.getImageForEmail(email.email).text'>{{utils.getImageForEmail(email.email).text}}</span>
+                    </h3>
+                </div>
+                <div class="col">
+                    <span> {{ email.email }} </span>
+                </div>
+                
+                <div class="col">
+                    <span *ngIf="email.permission.type == 'members' " > {{  "1133" | translate }} </span> 
+                    <span *ngIf="email.permission.type == 'my_connections' " > {{ "938" | translate }} </span>
+                    <span *ngIf="email.permission.type == 'me' " > {{ "1002" | translate }} </span>
+                </div>
+                <div class="col button-col">
+                    <span *ngIf=" email.primary == true " > {{  "1097" | translate }}  </span>
+                    <button [ngClass]="{'active': toggle.active['editEmail'+i] }" (click)="myToggle('editEmail'+i);editDropDown('editEmail',email)" ></button>
+                </div>
+            </div>
+
+            <!-- Area to display while editing email -->
+            <ng-template [ngIf]="toggle.active['editEmail'+i]">
+                <form  [formGroup]="editEmailForm" >
+                    <div class="form-group d-flex mt-0">
+                        <input type="hidden" formControlName="id"   />
+                        <input type="email" class="form-control col-5 mr-5"  placeholder="email" formControlName="email">
+                        <div class="d-flex">
+                            <input type="checkbox" formControlName="primary" id="primary-mail" [ngClass]="{'d-none': email.primary}">
+                            <label for="primary-mail" *ngIf="!email.primary && email.activated" class="backgroundless font-weight-normal mt-2 mr-3" (click)='makeEmailPrimary(email.id)'>Make Primary</label>
+                            <button class="backgroundless" *ngIf="!email.activated">Verification is sent</button>
+                            
+                        </div>
+                        <button class="backgroundless mr-3" *ngIf="!email.primary" (click)="deleteEmailFun($event,email.id)" > {{ "1185" | translate }} </button>
+                    </div>
+                    
+                    <div class="form-group w-25">
+                        <select class="form-control" formControlName="connections"  [ngClass]="{ 'is-invalid': submittededitEmailForm && editemFo.connections.errors }" >
+                            <option value="my_connections" selected> {{ "943" | translate }} </option>
+                            <option value="members"> {{ "1133" | translate }} </option>
+                            <option value="me"> {{ "1000" | translate }} </option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button class="btn btn-primary" (click)="editEmailFun($event)"> {{ "1231" | translate }} </button>
+                    </div>
+
+                </form>
+           </ng-template>
+            <!-- Area to display while editing email end -->   
+        </ng-container>
+
+        <!-- Area to display while ADDING email -->
+        <ng-template [ngIf]="toggle.active['email']">
+        <div class="row">
+            <div class="col-6">
+                <h3>
+                    {{ "67" | translate }}
+                </h3>
+            </div>
+            <div class="col">
+
+            </div>
+            <div class="col button-col">
+                <button (click)="myToggle('email')" class="active"></button>
+            </div>
+        </div>
+
+
+        <form [formGroup]="addEmailForm" >
+            <div class="form-group d-flex">
+                <input maxlength="72"  type="email" class="form-control col-5 mr-5" formControlName="email" placeholder="Enter new mail here" [ngClass]="{ 'is-invalid': submittedaddEmailForm && addemFo.email.errors }" >
+                <button class="backgroundless"> {{ "1275" | translate }} </button>
+            </div>
+
+            <span class="error_message" *ngIf="submittedaddEmailForm && addemFo.email.errors" >
+                    {{ utils.$getErrors('email') }}
+           </span>
+           
+            <div class="w-25 form-group">
+                <select class="form-control" formControlName="connections"   [ngClass]="{ 'is-invalid': submittedaddEmailForm && addemFo.connections.errors }" >
+                    <option [value]="connection.id" *ngFor="let connection of connections" >
+                        {{ connection.name }}
+                    </option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <button class="btn btn-primary mr-2" (click)="addEmail($event)" > {{  "1231" | translate }} </button>
+            </div>
+        </form>
+        </ng-template>
+        <!-- Area to display while ADDING email end -->  
+    </div>
+    <!-- Email end -->
+
+    <!-- Phone start -->
+    <div class="boxes-for-account">
+        <h2>
+            {{ "1059" | translate }}
+        </h2>
+        <button class="dark-button" (click)="myToggle('addPhone' , null , 'addPhone')" [ngClass]="{'d-none': toggle.active['addPhone'] }" ></button>
+        <hr>
+        <ng-container *ngFor="let phone of user_info.getAccount.phone; let i = index" >
+            
+            <div class="row">
+                <div class="col-lg-3 col" *ngIf='phone.country_code'>
+                    <h3> {{ getPhoneAbbr( phone.country_code ) }}  +{{ phone.country_code }}  {{ phone.number }}</h3>
+                </div>
+                <div class="col empty-col">
+                    
+                </div>
+                <div class="col">
+                    <span *ngIf="phone.permission.type == 'members' " > {{ "1133" | translate }} </span> 
+                    <span *ngIf="phone.permission.type == 'my_connections' " > {{ "938" | translate }} </span>
+                    <span *ngIf="phone.permission.type == 'me' " > {{ "1002" | translate }} </span>
+                </div>
+                <div class="col button-col">
+                    <span *ngIf="phone.primary == true "> {{ "1097" | translate }} </span>
+                    <button [ngClass]="{'active': toggle.active['editPhone'+i] }" (click)="myToggle('editPhone'+i);editDropDown('editPhone',phone) "></button>
+                </div>
+            </div>
+
+            <!-- Area to display while editing phone number -->
+        <ng-template [ngIf]="toggle.active['editPhone'+i]">
+            <form [formGroup]="editPhoneForm">
+                <label for=""> {{ "497" | translate }} </label>
+                <div class="form-group d-flex mt-0">
+
+                    <input type="hidden" maxlength="32" formControlName="id" />
+
+  
+
+                    <select class="form-control col-2 mr-3" formControlName="country_code" >
+                        <option disabled selected value=""> {{ "392" | translate }} </option>
+                        <option *ngFor="let code of countryCodes" [value]="code.country_code">
+                            {{  code.country }}
+                        (+{{  code.country_code }}) 
+                        </option>
+                    </select>
+                    <input  type="number" class="form-control col-4 mr-3" formControlName="number" placeholder="Your Number">
+
+                    <!-- <button class="backgroundless mr-3">Resend Verification</button> -->
+                    <div class="d-flex">
+                        <input type="checkbox" maxlength="32" formControlName="primary" id="primary-phone" [ngClass]="{'d-none': phone.primary}" />
+                        <label for="primary-phone" *ngIf="!phone.primary" class="backgroundless mt-2 mr-3 font-weight-normal" (click)='makePhonePrimary(phone.id)'> {{ "880" | translate }} </label>
+                    </div>
+                    <button class="backgroundless" *ngIf="!phone.primary" (click)="deletePhoneFun($event,phone.id)" > {{ "1185" | translate }} </button>
+                </div>
+                
+                <div class="form-group w-25">
+                    <select class="form-control" formControlName="connections"  [ngClass]="{ 'is-invalid': submittededitPhoneForm && editPho.connections.errors }" >
+                        <option value="my_connections" selected> {{ "938" | translate }} </option>
+                        <option value="members"> {{ "1133" | translate }} </option>
+                        <option value="me"> {{ "1000" | translate }} </option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <button class="btn btn-primary" (click)="editPhoneFun($event)"> {{ "1231" | translate }} </button>
+                </div>
+            </form>
+        </ng-template>
+
+        
+        </ng-container>
+
+        <ng-template [ngIf]="toggle.active['addPhone']">
+            <div class="row" id="addPhone">
+                <div class="col-6">
+                    <h3>
+                        {{ "82" | translate }}
+                    </h3>
+                </div>
+                <div class="col">
+
+                </div>
+                <div class="col button-col">
+                    <button (click)="myToggle('addPhone')"  class="active"></button>
+                </div>
+            </div>
+            <form [formGroup]="addPhoneForm">
+                <div class="form-group d-flex mt-0">
+                    <select class="form-control col-2 mr-3" formControlName="country_code" [ngClass]="{ 'is-invalid': submittedaddPhoneForm && addPho.country_code.errors }">
+                        <option disabled selected  value="" > {{ "392" | translate }} </option>
+                        <option *ngFor="let code of countryCodes; let idx = index" [value]="code.id"> 
+                            {{  code.country }}
+                            (+{{  code.country_code }}) 
+                        </option>
+                    </select>
+                    <input  class="form-control col-4 mr-3" formControlName="number" [ngClass]="{ 'is-invalid': submittedaddPhoneForm && addPho.number.errors }" placeholder="Enter your number here" maxlength="32">
+                </div>
+                <span class="error_message" *ngIf="submittedaddPhoneForm && addPho.number.errors" >
+                        {{ utils.$getErrors('phone') }}
+               </span>
+                <div class="form-group w-25">
+                    <select class="form-control" formControlName="connections"  [ngClass]="{ 'is-invalid': submittedaddPhoneForm && addPho.connections.errors }" >
+                         <option [value]="connection.id" *ngFor="let connection of connections">  
+                             {{ connection.name }}
+                         </option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <button class="btn btn-primary mr-2" (click)="addPhoneFun($event)" > {{ "1231" | translate }} </button>
+                </div>
+            </form>
+               
+            
+            </ng-template>
+
+
+    </div>
+    <!-- Phone end -->
+
+
+    <!-- My Addresses start -->
+    <div class="boxes-for-account">
+        <h2> {{ "937" | translate }} </h2>
+        <button class="dark-button" [ngClass]="{'d-none': toggle.active['addAddress']}" (click)="myToggle('addAddress' , null , 'addAddress')" ></button>
+        <hr>
+        <div class="row" *ngIf="user_info.getAccount.my_address" >
+
+            <div class="col-lg-4 col-sm-6 mb-4" *ngFor="let address of user_info.getAccount.my_address ">
+                <div class="account-box">
+                    <div class="address-type">
+                        <h3>{{ address.name }}</h3>
+                        <span class="primary" *ngIf="isAddressPrimary[address.id]"> {{ "1097" | translate }} </span>
+                    </div>
+                    <div class="address-content">
+                        <h3> {{ address.firstname }} {{ address.lastname }} </h3>
+                        <span>{{ address.street }}</span>
+                        <span>{{ address.apartment }}</span> 
+                        <div class="d-flex ml-0">
+                            <span>{{ address.zip }},</span>
+                            <span class="ml-1">{{ address.city.city }}</span>
+                        </div>  
+                        <span> {{ utils.getCountryName( address.country_id )}} </span>
+                        <button (click)="mySingleToggle('editAddress');editDropDown('editAddress', address)"></button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Area to display while ADDING and editing address start -->
+        
+        <ng-template [ngIf]="toggle.active['addAddress']">
+            <form [formGroup]="addAddressForm" id="addAddress">
+                <div class="form-group mt-0">
+                    
+                    <div class="d-flex">
+                        <label for="address-name"> {{ "116" | translate }} </label>
+                        <button (click)="myToggle('addAddress')"  class="edit-btn active"></button>
+                    </div>
+                        
+                    <input type="text" class="form-control col-6" id="address-name" formControlName="name" [ngClass]="{ 'is-invalid': submittedaddAddressForm && addAdd.name.errors }" placeholder="Address Name">
+                </div>
+                <label for="adding-address"> {{ "60" | translate }} </label>
+
+                <div class="form-group mt-0">
+                    <input type="text" class="form-control col-6" id="adding-address" formControlName="fname"   placeholder="First Name">
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control col-6" id="adding-address" formControlName="lname"   placeholder="Last Name">
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control col-6" formControlName="street_address"   placeholder="Street Address" >
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control col-6" formControlName="apartment"   placeholder="Apartment, Unit, Building, Foor, etc.">
+                </div>
+
+                <div class="form-group">
+                    <select class="form-control col-6" formControlName="country" (change)="selectCountry($event)" [ngClass]="{ 'is-invalid': submittedaddAddressForm && addAdd.country.errors }">
+                        <option selected disabled value=""> {{ "390" | translate }}  </option>
+                        <option *ngFor="let country of countries" [value]="country.asc">{{ country.name }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control col-6" id="city"
+                    formControlName="city_code" 
+                    [(ngModel)]="cityTypeahead"
+                    [ngbTypeahead]="searchCity" 
+                    [resultFormatter]="cityFormatter" 
+                    [inputFormatter]="cityFormatter"
+                    [ngClass]="{ 'is-invalid': submittedaddAddressForm && addAdd.city_code.errors }"  
+                    disabled
+                    placeholder="City">
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" class="form-control col-6" formControlName="zip"  placeholder="Postal Code">
+                </div>
+                
+                
+                <div class="form-group">
+                    <button class="btn btn-primary mr-2" (click)="addAddressFun($event)" > {{ "1231" | translate }} </button>
+                </div>
+            </form>
+        </ng-template> 
+
+        <ng-template [ngIf]="toggle.active['editAddress']">
+            
+            <form [formGroup]="editAddressForm">
+                <div class="form-group mt-0">
+                    
+                    <div class="d-flex">
+                        <label for="address-name">Edit Address Name</label>
+                        <button (click)="myToggle('editAddress')"  class="edit-btn active"></button>
+                    </div>
+
+                    <input type="hidden" formControlName="id"  />
+                    <input type="text" class="form-control col-6" id="address-name" formControlName="name" [ngClass]="{ 'is-invalid': submittededitAddressForm && editAdd.name.errors }" placeholder="Address Name">
+                </div>
+
+                <label for="adding-address">Edit Address</label>
+                <div class="form-group">
+                    <input type="text" class="form-control col-6" id="adding-address" formControlName="fname" [ngClass]="{ 'is-invalid': submittededitAddressForm && editAdd.fname.errors }" placeholder="First Name">
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control col-6" id="adding-address" formControlName="lname" [ngClass]="{ 'is-invalid': submittededitAddressForm && editAdd.lname.errors }" placeholder="Last Name">
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control col-6" formControlName="street_address" [ngClass]="{ 'is-invalid': submittededitAddressForm && editAdd.street_address.errors }" placeholder="Street Address" >
+                </div>
+
+                <div class="form-group">
+                    <input type="text" class="form-control col-6" formControlName="apartment" [ngClass]="{ 'is-invalid': submittededitAddressForm && editAdd.apartment.errors }" placeholder="Apartment, Unit, Building, Foor, etc.">
+                </div>
+
+                <div class="form-group">
+                    <select class="form-control col-6" formControlName="country" (change)="selectCountry($event)" [ngClass]="{ 'is-invalid': submittededitAddressForm && editAdd.country.errors }">
+                        <option selected disabled value=""> {{ "390" | translate }}  </option>
+                        <option *ngFor="let country of countries" [value]="country.asc">{{ country.name }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                        <input type="text" class="form-control col-6" id="city" formControlName="city_code" 
+                                            
+                                           [(ngModel)]="cityTypeahead"  [ngbTypeahead]="searchCity" [resultFormatter]="cityFormatter" [inputFormatter]="cityFormatter"
+                                           [ngClass]="{ 'is-invalid': submittededitAddressForm && editAdd.city_code.errors }"  placeholder="City">
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" class="form-control col-6" formControlName="zip" [ngClass]="{ 'is-invalid': submittededitAddressForm && editAdd.zip.errors }" placeholder="Postal Code">
+                </div>
+                
+                <!-- <div class="form-group"> -->
+                    <button class="btn btn-primary mr-3" (click)="editAddressFun($event)" >  {{ "1231" | translate }} </button>
+                    <button class="backgroundless" *ngIf="!editaddressID.primary" (click)="deleteAddressFun($event,editaddressID.id)"> {{ "1185" | translate }} </button>
+                    <div class="d-flex">
+                        <button type="checkbox"  class="backgroundless" *ngIf="!editaddressID.primary" id="primary-address" (click)="makePrimaryAddress(editaddressID.id)">Make Primary</button>
+                    </div>
+                <!-- </div> -->
+            </form>
+        </ng-template> 
+        <div  id="addAddress" ></div>
+        <!-- Area to display while ADDING and editing address end -->
+    </div>
+    <!-- My Addresses end -->
+
+
+  <!-- Table Language Start -->
+  <!-- <div class="boxes-for-account">
+  <table class="table table-borderless table-sm">
+      <thead>
+          <tr>
+              <th class="language-title" scope="col" colspan="3">Language</th>
+              <th scope="col" colspan="1" class="button-th">
+                  <button class="dark-button"></button>
+              </th>
+          </tr>
+      </thead>
+          <hr>
+      <tbody>
+          <tr>
+              <th scope="row" colspan="1">English</th>
+              <td></td>
+              <td class="button-td"><span class="select-language-text">Select the language you use in HyperCube</span></td>
+              <td class="button-td"><img src="assets/img/19.svg" alt="edit"></td>
+          </tr>
+          <tr>
+              <th scope="row">Georgian</th>
+              <td></td>
+              <td class="button-td"><span class="select-language-text">Hypercube members</span></td>
+              <td class="button-td"><img src="assets/img/19.svg" alt="edit"></td>
+          </tr> 
+                <div *ngIf="ngTemplate.editLanguage then editLanguage"></div>
+        <ng-template #editLanguage>
+          <tr>
+              <th scpope="row" colspan="4">
+                  <form class="">
+                      <label for="">Edit Language</label>
+                      <div class="form-group row mt-0">
+                          <select class="form-control col-2 mr-3">
+                              <option value="1">English</option>
+                              <option value="2">Economics</option>
+                              <option value="3">Programming</option>
+                              <option value="4">Zuka</option>
+                              <option value="5">Table</option>
+                              <option value="6">Car</option>
+                              <option value="7">Awesome</option>
+                              <option value="8">Red</option>
+                              <option value="9">Color</option>
+                              <option value="10">Skills</option>
+                          </select>
+                      </div>                                    
+                      <div class="form-group">
+                          <button class="btn btn-primary">Save</button>
+                      </div>
+                  </form>
+              </th>
+          </tr>
+        </ng-template>
+      </tbody>
+  </table>
+</div> -->
+  <!-- Table Language End -->
+<!-- </div> -->
+
+
+
+<!-- Languages  -->
+<div class="boxes-for-account">
+        <h2> {{ "837" | translate }} </h2>
+        <hr>
+        <div class="row">
+            <div class="col-lg-3">
+                <h3 *ngIf="!toggle.active['language']"> {{ "524" | translate }} </h3>
+                <h3 *ngIf="toggle.active['language']">Edit Language</h3>
+            </div>
+            <div class="col button-col">
+                <span  *ngIf="!toggle.active['language']" class="language_text"> {{ "1267" | translate }} </span>
+                <button [ngClass]="{'active': toggle.active['language']}" 
+                        class="edit edit-language"  
+                        (click)="myToggle('language') ;editDropDown('language')" >
+                </button>
+            </div>
+        </div>
+
+        <ng-template [ngIf]="toggle.active['language']">
+            <div class="form-group"> 
+                <form [formGroup] = "editLanguageForm">
+                    <select class="form-control w-25" formControlName="language" disabled>
+                        <option value ="" selected> {{ "524" | translate }} </option>
+                        <option value ="lang_ge">Georgian</option>
+                        <option value ="lang_ru">Russian</option>
+                    </select>
+                </form>
+            </div>
+            <div class="form-group">
+                    <button class="btn btn-primary" disabled> {{ "1231" | translate }} </button>
+                </div>
+        </ng-template>
+    </div>
+
+</div>

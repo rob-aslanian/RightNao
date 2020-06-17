@@ -1,0 +1,103 @@
+<button (click)='openModal("add")'>
+  Add event modal
+</button>
+
+
+
+<ng-template #addEvent>
+  <app-add-event-popover></app-add-event-popover>
+</ng-template>
+
+
+<ng-template #addTask>
+  <app-add-task-popover></app-add-task-popover>
+</ng-template>
+
+<button
+  [ngbPopover]="daysEvents" 
+  [autoClose]="'outside'" 
+  container="body" 
+  [placement]="['right-top']" 
+  popoverClass="task-popover-container">
+  Days events
+</button>
+
+<ng-template #daysEvents>
+  <div class="days-events-popover position-relative">
+    <span>Wednesday</span>
+    <h4>12</h4>
+    <button class="btn close-btn"></button>
+
+    <div class="days-events__list">
+      <div class="days-events__list__item days-events__list__item--pastel-blue">11:00am Projects Planning</div>
+      <div class="days-events__list__item days-events__list__item--pastel-yellow">1:30pm Lunch with girls</div>
+    </div>
+  </div>
+</ng-template>
+
+
+
+<button (click)='openModal("poll")'>
+  Poll modal
+</button>
+
+<div class="calendar-item">
+  <h2 class="calendar-item__date">18</h2>
+  <div class="calendar-item__event-list">
+    <div class="calendar-item__event-list__item pastel-purple">
+      <span class="calendar-item__event-list__item__title">8:00am Yoga class</span>
+      <img class="calendar-item__event-list__item__img" src="../../../../assets/img/614.svg"/>
+    </div>
+    <div class="calendar-item__event-list__item pastel-blue">
+      <span class="calendar-item__event-list__item__title">11:00am Projects Planning</span>
+    </div>
+    <div class="calendar-item__event-list__item pastel-yellow">
+      <span class="calendar-item__event-list__item__title">1:30pm Lunch with girls </span>
+    </div>
+    <div class="calendar-item__event-list__item shared-calendar">
+      <span class="calendar-item__event-list__item__title"><span class="shared-event-bullet bullet-dark-red"></span>9:00pm Anastasia’s birthd</span>
+    </div>
+  </div>
+  <div class="calendar-item__more-btn" ngbDropdown placement="top" autoClose="false">
+    <div ngbDropdownToggle class="without-arrow">
+      <img src="../../../../assets/img/107.svg"/>
+    </div>
+    <div ngbDropdownMenu class="calendar-item__dropup">
+      <div>
+        <button 
+          [ngbPopover]="addEvent" 
+          [autoClose]="'outside'" 
+          container="body" 
+          [placement]="['right', 'right-top', 'right-bottom']" 
+          popoverClass="task-popover-container"
+          class="calendar-item__popover-btn">
+          New Event
+        </button>
+      </div>
+      <div>
+        <button 
+          [ngbPopover]="addTask" 
+          [autoClose]="'outside'" 
+          container="body" 
+          [placement]="['right', 'right-top', 'right-bottom']" 
+          popoverClass="task-popover-container"
+          class="calendar-item__popover-btn">
+          New Task & Goal
+        </button>
+      </div>
+      <div>
+        <button (click)='openModal("create-poll")' class="calendar-item__popover-btn">
+          New Scheduling Poll
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<app-modal (closeModal)='modalType = null' [width]="modalType === 'add' ? '1069' : '912'"  [isBlue]='false'>
+  <app-add-event-modal *ngIf='modalType === "add"' ></app-add-event-modal>
+  <app-create-poll-modal *ngIf='modalType ==="create-poll"'></app-create-poll-modal>
+  <app-poll-modal *ngIf='modalType ==="poll"'></app-poll-modal>
+</app-modal>

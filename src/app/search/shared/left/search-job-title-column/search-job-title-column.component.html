@@ -1,0 +1,30 @@
+<div class="search-groups__sidebar-section">
+    <app-search-column-header title="Job Title">
+        <div class="mt-2">
+            <div class="search-groups__sidebar-section__delivery-time-options search-groups__sidebar-section__wrap">
+                <div class="
+                    custom-control 
+                    custom-checkbox 
+                    page-section-text-grey
+                    " *ngFor="let jobTitle of jobTitles">
+                    <input type="checkbox" [checked]="jobTitle.isSelected" class="custom-control-input" [id]="jobTitle.name" name="type"
+                           (change)="checkedJobTitle($event)" [value]="jobTitle.name">
+                    <label
+                        class="custom-control-label" [for]="jobTitle.name" >
+                    {{ jobTitle.name }}
+                    </label>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mt-2">
+                <div class="input-container">
+                    <input type="text" (keyup.enter)="selectJobTitle($event)" placeholder="Enter occupation" class="form-control">
+                </div>
+                <div>
+                    <button class="btn backgroundless search-btn" type="submit">
+                        <img src="assets/img/right-arrow.svg" class="search-groups__sidebar-section__location__img"/>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </app-search-column-header>
+</div>

@@ -1,0 +1,131 @@
+@import 'src/variables';
+@import 'src/mixins.scss';
+
+.detailed-info {
+    @include thin-scrollbar--vertical;
+
+    max-height: 75vh !important;
+    overflow-y: auto !important;
+    background:white;
+    padding:15px;
+    border-radius: 0 0 5px 5px;
+    border-top: solid 1px #E6E6E6;
+}
+
+h6 {
+    margin-bottom: 0;
+    color: #808080;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.detail-content {
+    display: flex;
+    flex-direction: column;
+    width:100%;
+    word-wrap: break-word;
+    word-break: break-all;
+    h5 {
+        font-size:14px;
+        margin-bottom:10px;
+        color: $dark-blue;
+    }
+    .left {
+        margin-right:30px;
+        h5 {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        @media #{$break1}{
+            width: 100%;
+        }
+        @media #{$break2}{
+            min-width:15%;
+            max-width:15%;
+        }
+        @media #{$break3}{
+            min-width:15%;
+            max-width:15%;
+        }
+        img {
+            width:25px;
+            margin-left:30px;
+            margin-bottom:10px;
+        }
+    }
+    .right {
+        position: relative;
+        @media #{$break1}{
+            width: 100%;
+        }
+        @media #{$break2}{
+            width: 88%;
+        }
+        @media #{$break3}{
+            width: 88%;
+        }
+        .col-6 {
+            margin-bottom:15px;
+        }
+        h6 {
+            font-weight:bold;
+            margin-bottom:5px;
+            font-size:14px;
+        }
+        span {
+            display: block;
+            margin:0;
+            &.interest {
+                border-radius: 5px;
+                padding:5px;
+                margin-bottom:5px;
+                display: inline-block;
+                color:$dark-blue;
+                margin-right:5px;
+                background:#DCE1E6;
+            }
+        }
+        .more {
+            position: absolute;
+            right:0;
+            bottom:-15px;
+            font-size:20px;
+            cursor: pointer;
+        }
+    }
+    .profile {
+        img {
+            width:70px;
+            height:70px;
+            border-radius: 50%;
+        }
+        span {
+            font-size:12px;
+        }
+        .recommendator-info {
+            margin-left: 10px;
+            margin-bottom:15px;
+        }
+    }
+}
+
+.skills {
+    margin-bottom: 2px;
+    width: auto !important;
+    display: flex;
+    flex-wrap: wrap;
+    span {
+      font-size: 12px;
+      padding: 5px 10px;
+      background: #DCE1E6;
+      border-radius: 5px;
+      margin-bottom: 5px !important;
+    }
+  }
+  .benefit__span, .company-details-text{
+      font-size: 14px;
+    color: #808080;
+  }
+  
+  .capitalize { text-transform: capitalize; }
+

@@ -1,0 +1,39 @@
+
+<div class="info-wrapper">
+    <div class="info-header {{ currency.name }} ">
+        <img src="assets/img/wallet/transactions/{{ currency.name }}.svg" alt="" class="info-header-img">
+        <a (click) = "close()" style="color: #ffffff;">&#10005;</a>
+    </div>
+    <div class="row">
+            <div class="info-currency col-7">
+                <div class="info-currency-section">
+                    <div class="info-currency-section-title"> {{ currency.name }} </div>
+                    <div class="info-currency-section-count"> {{ currency.amount }} </div>
+                </div>
+                <div class="info-currency-section">
+                        <div class="info-currency-section-title">Account number</div>
+                        <div class="info-currency-section-count"> {{ currency.accountNumber }} </div>
+                </div>
+                    <div class="info-currency-section">
+                            <div class="info-currency-section-title">Exchange rate</div>
+                            <div class="info-currency-section-count">
+                                    <p class="card-currency-exchangeRates" *ngIf="currency.exchangeRate && currency['name']=='Gold HyperCoins'">
+                                            1 HPC - {{ currency.exchangeRate / 100 }} Dollar
+                                    </p>
+                                    <p class="card-currency-exchangeRates" *ngIf="currency.exchangeRate && currency['name']!='Gold HyperCoins'">
+                                            1 {{currency.name}} - {{ currency.exchangeRate }} HPC
+                                    </p>
+                            </div>
+                    </div>
+            </div>
+            <div class="info-balance col-5">
+                    <p class="info-balance-title">Balance</p>
+                    <div class="row info-balance-currency" *ngFor="let currency of currencies">
+                        <p class="col-md-8"> {{ currency.name }} </p>
+                        <p class="col-md-4 info-balance-currency-count"> {{ currency.amount }} </p>
+                    </div>
+                    <button class="btn backgroundless info-balance-btn">Other</button>
+            </div>
+    </div>
+
+</div>

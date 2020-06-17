@@ -1,0 +1,163 @@
+
+<div class="transactions">
+    <div class="transactions-sort">
+        <div class="transactions-sort-line">
+            <div>
+                    <button class="btn transactions-sort-type"
+                            [ngClass]="{active: tableType=='transactions'}"
+                           (click)="tableType = 'transactions' ">Transactions</button>
+
+                    <button class="btn transactions-sort-type"  
+                        [ngClass]="{active: tableType=='statment'}"  
+                        (click)="tableType = 'statment' " >Statment</button>
+            </div>
+            <div class="d-flex align-items-center">
+                <div class="d-flex align-items-center" *ngIf="transactions.length > 0">
+                        <img src="assets/img/wallet/71.svg" alt=""> 
+                        <button class="btn no-padding-margin"
+                                (click)="export()" 
+                                >Dowload</button>
+                </div>
+                <div class="d-flex align-items-center" *ngIf="transactions.length > 0">
+                        <img src="assets/img/625.svg" alt=""> 
+                        <button class="btn no-padding-margin" 
+                                (click) = "print()"  
+                                *ngIf="transactions.length > 0">Print</button>
+                </div>
+
+            </div>
+        </div>
+        <div class="transactions-sort-line">
+                <div class="transactions-sort-search">
+                                <input type="text" class="form-control" id="transactionSearch" placeholder="Search">
+                                <label for="transactionSearch"><img src="assets/img/wallet/208.svg" alt="search"  class="transactions-sort-search-img"></label>
+                </div>
+
+            <div class="d-flex">
+                    <div ngbDropdown class="dropDown">
+                            <button ngbDropdownToggle class="btn dropDown-open-btn no-padding-margin">Date <img src="assets/img/right-arrow.svg" alt="" class="arrowDown"></button>
+                            <div ngbDropdownMenu  class="options blocks-option options-calendar dropDown-menu">
+                                   <!-- calendar-->
+                                   <ngb-datepicker #dp (select)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t" outsideDays="hidden" [navigation]="'arrows'"></ngb-datepicker>
+                                   <ng-template #t let-date let-focused="focused">
+                                        <span class="custom-day"
+                                        [class.focused]="focused"
+                                        [class.range]="isRange(date)"
+                                        [class.faded]="isHovered(date) || isInside(date)"
+                                        (mouseenter)="hoveredDate = date"
+                                        (mouseleave)="hoveredDate = null" >
+                                        {{ date.day }}
+                                        </span>
+                                   </ng-template>
+                                   <p> Chosen date: 
+                                           {{fromDate['day']}}.{{fromDate['month']}}.{{fromDate['year']}}
+                                            - 
+                                            {{toDate['day']}}.{{toDate['month']}}.{{toDate['year']}} </p>
+                                   <!-- <hr>
+                                   <pre>From: {{ fromDate | json }}</pre>
+                                   <pre>To: {{ toDate | json }}</pre> -->
+
+
+                                   <!-- calendar -->
+                            </div>
+                    </div>
+                    
+                    <div ngbDropdown class="dropDown">
+                            <button ngbDropdownToggle class="btn dropDown-open-btn no-padding-margin">Category <img src="assets/img/right-arrow.svg" alt="arrow" class="arrowDown"></button>
+                            <div ngbDropdownMenu  class="options options-category dropDown-menu row">
+                                <div *ngFor="let category of categories; let i = index;" class="options-category-item col-md-6">
+                                        <div class="custom-control custom-checkbox">
+                                        <input type="checkbox"  class="custom-control-input" id="checkbox_{{i}}">
+                                        <label class="custom-control-label" for="checkbox_{{i}}">
+                                        {{ category }}
+                                        </label>
+                                        </div>
+                                </div>
+                            </div>
+                    </div>
+                    
+                    <div ngbDropdown class="dropDown">
+                            <button ngbDropdownToggle class="btn dropDown-open-btn no-padding-margin">Status <img src="assets/img/right-arrow.svg" alt="" class="arrowDown"></button>
+                            <div ngbDropdownMenu  class="options dropDown-menu options-status">
+                                <button class="btn options-status-btn">
+                                        <img src="assets/img/wallet/transactions/done.svg" alt="" class="options-status-img">
+                                        Done
+                                </button>
+                                <button class="btn options-status-btn">
+                                        <img src="assets/img/wallet/transactions/pending.svg" alt="" class="options-status-img">
+                                        Pending
+                                </button>
+                                <button class="btn options-status-btn">
+                                        <img src="assets/img/wallet/transactions/rejected.svg" alt="" class="options-status-img">
+                                        Rejected
+                                </button>
+                            </div>
+                    </div>
+            </div>
+
+        </div>
+    </div>
+        <div class="transactions-history">
+                <ul class="transactions-history-header row align-items-center col-5 col-md-12">
+                        <li class="transactions-item-status col-md-1">Status</li> 
+                        <li class="transactions-item-date col-md-3">Date</li>
+                        <li class="transactions-item-description col-md-4">Description</li>
+
+                        <ng-container *ngIf="tableType=='transactions'">
+                                <li class="transactions-item-category col-md-2">Category</li>
+                                <li class="transactions-item-amount col-md-2" style="text-align: center">Amount</li>
+                        </ng-container>
+
+
+                        <ng-container *ngIf="tableType=='statment'">
+                                <li class="transactions-item-income col-md-1">Income</li>
+                                <li class="transactions-item-spending col-md-1">Spending</li>
+                                <li class="transactions-item-balance col-md-2">Balance</li>
+                        </ng-container>
+                </ul>
+                <div class="transaction-history-list" *ngIf="!isLoaded">
+                        <ul class="transactions-history-item row align-items-center col-12"  *ngFor="let transaction of transactions">
+                                <li class="transactions-item-status col-12 col-md-1">
+                                        <img src="assets/img/wallet/transactions/{{transaction['status']}}.svg" alt="">
+                                </li>
+                                <li class="transactions-item-date col-12 col-md-3"> {{ transaction.transition_at | date }} </li>
+                                <li class="transactions-item-info col-12 col-md-4"> {{ transaction['description'] }} </li>
+                                
+                                <ng-container  *ngIf="tableType=='transactions'">
+                                        <li class="transactions-item-type col-12 col-md-2"> {{ transactionType[transaction['transaction_type']] }} </li>
+                                        <li class="transactions-item-count bold col-12 col-md-2 d-flex align-items-center justify-content-end {{ transaction['status'] }}">
+                                                +{{ transaction.amount }} HPC
+                                                <img src="assets/img/wallet/147.svg" alt="" class="moreInfoButton" (click)="transactionInfoModal()" >
+                                        </li>
+                                </ng-container>
+                                
+                                <ng-container  *ngIf="tableType=='statment'">
+                                        <li class="transactions-item-income bold col-12 col-md-1">0 HPC</li>
+                                        <li class="transactions-item-spending bold col-12 col-md-1">0 HPC</li>
+                                        <li class="transactions-item-balance bold col-12 col-md-2">
+                                                0 HPC
+                                                <img src="assets/img/wallet/147.svg" alt="" class="moreInfoButton" (click)="transactionInfoModal()" >
+                                        </li>
+                                </ng-container>
+
+                        </ul>
+                </div>
+        </div>
+
+<!-- pagination -->
+        <ngb-pagination [collectionSize]="amount" [pageSize]="first" [maxSize]="first"  [(page)]="page" 
+        (pageChange)="changePage($event)" class="d-flex justify-content-end mt-4 pagination" *ngIf="first < amount && transactions.length > 0" >
+        </ngb-pagination>
+<!-- pagination -->
+
+<!-- spinner -->
+        <app-spinner *ngIf="isLoaded" class="d-flex align-items-center justify-content-center mt-4"></app-spinner>
+<!-- spinner -->
+
+</div>
+<app-modal (closeModal)="modalType = null">
+        <ng-container *ngIf=" modalType  && modalType === 'transactionInfo' " >
+                <app-transaction-info  (onClose)="onClose()"></app-transaction-info>
+        </ng-container>
+</app-modal>
+

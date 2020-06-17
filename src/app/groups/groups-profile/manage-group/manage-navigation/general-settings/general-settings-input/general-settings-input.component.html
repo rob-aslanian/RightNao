@@ -1,0 +1,156 @@
+<form [formGroup]='settingsForm'>
+  <div class="general-settings-content__group-name">
+      <div class="d-flex justify-content-between">
+
+          <div class="col-5">
+              <span>Group name</span>
+          </div>
+          <div class="col-7 d-flex justify-content-between">
+              <span>A Different Type of ART</span>
+              <a style="cursor: pointer" (click)='expandSettings("name")'>Change</a>
+          </div>
+
+      </div>
+  <ng-container *ngIf='toggleSettings.name'>
+          <div class="col-6 pt-3">
+              <input type="text" 
+                     class="form-control" 
+                     placeholder="Type your group name here" 
+                     formControlName='name'>
+
+              <button class="btn btn-primary mt-3" (click)='changeGroupName()'>
+                  Save
+              </button>
+          </div>
+  </ng-container>
+
+  </div>
+  <hr>
+
+  <div class="general-settings-content__group-type">
+      <div class="d-flex justify-content-between">
+          <div class="col-5">
+              <span>Group type</span>
+          </div>
+
+          <div class="col-7 d-flex justify-content-between">
+              <span>Arts</span>
+              <a style="cursor: pointer"  (click)='expandSettings("type")'>Change</a>
+          </div>
+      </div>
+      <ng-container *ngIf='toggleSettings.type'>
+
+          <div class="col-6 pt-3">
+              <select 
+              class="form-control"
+              formControlName='type'>
+                  <option *ngFor='let key of groupKeys' [value]="key">{{ groupsEnum[key]  }}</option>
+
+              </select>
+
+              <button class="btn btn-primary mt-3" >
+                  Save
+              </button>
+
+          </div>
+    </ng-container>
+
+  </div>
+  <hr>
+
+  <div class="general-settings-content__group-privacy">
+      <div class="d-flex justify-content-between">
+
+          <div class="col-5">
+              <span>Privacy</span>
+          </div>
+
+          <div class="col-7 d-flex justify-content-between">
+              <span>Closed Group</span>
+              <a style="cursor: pointer" (click)='expandSettings("privacy")'>Change</a>
+          </div>
+      </div>
+      <ng-container *ngIf='toggleSettings.privacy'>
+          <div class="col-6 pt-3">
+              <div class="d-flex justify-content-between">
+                  <div class="custom-control custom-radio register-group__input-field__radio-item">
+                          <input type="radio" 
+                                 value="public" 
+                                 class="custom-control-input" 
+                                 id="public" 
+                                 name="privacy_type" 
+                                 formControlName='privacy_type'
+                                 >
+
+                          <label class="custom-control-label group-register-label" for="public">
+                              <h4 class="page-section-text-grey mb-0">Public Group</h4>
+                          </label>
+                      </div>
+
+                      <div class="custom-control custom-radio register-group__input-field__radio-item">
+                          <input type="radio" 
+                              value="closed" 
+                              class="custom-control-input" 
+                              id="closed" 
+                              name="privacy_type" 
+                              formControlName='privacy_type'
+                              >
+
+                          <label class="custom-control-label group-register-label" for="closed">
+                              <h4 class="page-section-text-grey mb-0">Closed Group</h4>
+                          
+                          </label>
+                      </div>
+
+                      <div class="custom-control custom-radio register-group__input-field__radio-item">
+                          <input type="radio"
+                              value="secret" 
+                              class="custom-control-input" 
+                              id="secret" 
+                              name="privacy_type" 
+                              formControlName='privacy_type'
+                              >
+
+                          <label class="custom-control-label group-register-label" for="secret">
+                              <h4 class="page-section-text-grey mb-0">Secret Group</h4>
+                          </label>
+                      </div>
+                  </div>
+
+              <button class="btn btn-primary mt-3" (click)='changeGroupPrivacyType()'>
+                  Save
+              </button>
+          </div>
+      </ng-container>
+  </div>
+
+  <hr>
+  <div class="general-settings-content__group-url">
+      <div class=" d-flex justify-content-between">
+
+          <div class="col-5">
+              <span>Public URL</span>
+          </div>
+
+          <div class="col-7 d-flex justify-content-between">
+              <span>www.rightnao.com/63548792115447</span>
+              <a style="cursor: pointer;" (click)='expandSettings("url")'>Change</a>
+          </div>
+      </div>
+
+      <ng-container *ngIf='toggleSettings.url'>
+          <div class="col-6 pt-3">
+
+              <input type="text" 
+                     class="form-control" 
+                     placeholder="Type your group name here"
+                     formControlName='url'>
+
+              <button class="btn btn-primary mt-3" (click)='savePublicUrl()'>
+                  Save
+              </button>
+          </div>
+      </ng-container>
+
+  </div>
+</form>

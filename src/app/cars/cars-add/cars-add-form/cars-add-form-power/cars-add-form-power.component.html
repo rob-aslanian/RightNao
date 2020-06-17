@@ -1,0 +1,23 @@
+
+<form [formGroup]="form" class="col-md-5">
+        <div class="form-group">
+                <p>Power</p>
+                <div class="custom-control custom-radio custom-control-inline col-6 col-md-3"  *ngFor="let item of powerUnits">
+                        <input  type="radio" 
+                                class="custom-control-input" 
+                                [value]="item" 
+                                id="powerUnits-{{ item }}" 
+                                name="powerUnit"
+                                formControlName="powerUnit">
+                        <label  for="powerUnits-{{ item }}" class="custom-control-label"> 
+                        {{ item }}
+                        </label>
+                </div>
+                <div>
+                        <input type="number" 
+                                class="form-control" 
+                                placeholder="Enter power" 
+                                formControlName="power">
+                </div>
+        </div>
+</form>

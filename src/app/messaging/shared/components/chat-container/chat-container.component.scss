@@ -1,0 +1,70 @@
+.company{
+    border-radius: 5px;
+}
+
+.file-icon-msg{
+    width: 20px !important;
+    height: 20px !important;
+    margin: 0 13px 0 0 !important;
+}
+.chatBox-sms:hover  {
+    .msg__box__buttons {
+        display: flex;
+    } 
+}
+
+.chatBox-sms-ballon {
+    .message-text{
+        display: block;
+    }
+}
+
+
+.msg__box{
+    display: block;
+    position: relative;
+    &__buttons{
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: calc(50% - 10px);
+        left: -50px;
+        button img{
+            width: 18px;
+            height: 17px;
+        }
+        div img {
+            width: 18px;
+            height: 18px;
+        }
+    }
+}
+
+.msg__box__buttons.msg__box__buttons-received {
+    right: -70px;
+    .modalPhoto-drop_head.btn-custom__links {
+        padding: 0;
+    }
+}
+.msg__box__buttons {
+    display: none;
+}
+
+.message-time {
+    // visibility: hidden;
+    // display: none;
+    font-size: 12px;
+    opacity: 0;
+    transition: 0.4s;
+    color: #808080;
+}
+
+.chatBox-sms:hover .message-time {
+    // visibility: visible;
+    opacity: 1;
+}
+
+.image-wrapper {
+    background: unset !important;
+}

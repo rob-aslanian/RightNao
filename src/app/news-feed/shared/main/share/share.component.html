@@ -1,0 +1,23 @@
+<div class="d-flex justify-content-between comment-item align-items-center list-view" ngbDropdown>
+    <button type="button" class="backgroundless share-btn hidden-dropdown-icon d-flex align-items-center" ngbDropdownToggle>
+        <img src="assets/img/84.svg" alt="share">
+        <span style="color: #808080; font-size: 14px; margin-top: 1px;">
+          <ng-content></ng-content>
+        </span>
+        <h5 class="ml-2 mb-0 reaction-text" style="color:#808080;">Share</h5>
+    </button>
+    <div class="list-block" ngbDropdownMenu >
+      <button class="backgroundless d-block" (click)="open('your_newsfeed')">Share on your newsfeed</button>
+      <!-- <button class="backgroundless d-block" (click)="open('connection_newsfeed')">Share on your connections newsfeed</button>
+      <button class="backgroundless d-block">Share in a group</button> -->
+      <button class="backgroundless d-block mb-1" (click)="shareInMessage()">Share in Messaging</button>
+    </div>
+</div>
+
+
+<app-modal (closeModal)="modalType = null">
+    <ng-container *ngIf="modalType !== null">
+        <app-shares-modal *ngIf="modalType === 'view'"></app-shares-modal>
+        <app-share-to-modal *ngIf="modalType !== 'view'" [type]="modalType" (close)="modal.close()"></app-share-to-modal>
+    </ng-container>
+</app-modal>

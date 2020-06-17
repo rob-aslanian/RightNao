@@ -1,0 +1,27 @@
+ 
+
+
+ .errors{
+   display: flex;
+   justify-content: center;
+    span{
+      color: red !important;
+    }
+ }
+
+ .custom-padding-left {
+  padding-left: 13px;
+}
+
+.custom-padding-right {
+  padding-right: 13px;
+}
+
+:host ::ng-deep ngb-typeahead-window.dropdown-menu.show {
+  max-width: 533px;
+  overflow-x: hidden;
+
+  button {
+    width: 533px
+  }
+}

@@ -1,0 +1,25 @@
+ 
+    <ng-container *ngIf='router.url && router.url !== "/registration/groups"'>
+       <app-shared-unlogin-header ></app-shared-unlogin-header>
+    </ng-container>
+
+    <ng-container *ngIf='router.url && router.url === "/registration/groups"'>
+       <app-header></app-header>
+    </ng-container>
+
+    <div class="wrap" style="background-color:#EAEDF2;"> 
+        <div class="sidenav" [ngClass]='{"no-cover": router.url && router.url === "/registration/groups" }'></div>
+
+        <div class="top__content"  *ngIf='router.url !== "/registration" &&  router.url !== "/registration/company" && router.url !== "/registration/feedback" '>
+            <button class="backgroundless" (click)="back()" >Back</button>
+        </div>
+        <!-- Feedback -->
+        <div class="top__content" *ngIf='router.url === "/registration/feedback"'>
+            <button class="backgroundless mr-3" [routerLink]="['/landing']" >Go to my account</button>
+            <img  [src]="profileImage"  [ngClass]="{'user-photo': !isCompanyActive}" style="width: 35px; height: 35px;" class="mr-2">
+        </div>
+
+        <div class="ceneter__content">
+            <router-outlet></router-outlet>
+        </div>  
+    </div> 

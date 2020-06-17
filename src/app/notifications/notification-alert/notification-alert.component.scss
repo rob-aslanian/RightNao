@@ -1,0 +1,12 @@
+.notification{
+    margin: -5px 24px 0;
+    position: relative;
+    cursor: pointer;
+
+    &::after { content: unset !important; }
+}
+
+.notf-header-dropD.dropdown-menu.show {
+    top: 33px !important;
+    left: -390px !important;
+}

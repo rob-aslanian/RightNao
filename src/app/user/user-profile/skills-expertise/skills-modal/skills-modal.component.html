@@ -1,0 +1,59 @@
+<!-- Add Skills  -->
+<ng-container *ngIf="modalType === 'add'; else:editModal">
+    <div class="popup-content add-skills">
+        <h2>{{ '1321'| translate }}</h2>
+        <form (keyup.enter)="addSkills()">
+            <div class="form-group mb-3">
+                <input type="text" 
+                class="form-control" 
+                id="headline" 
+                [formControl]="skillControl"
+                [ngbTypeahead]="searchSkills" (selectItem)="addSkills($event); "
+                [ngClass]="{ 'is-invalid': submitForm && skillControl.errors }"
+                [placeholder]="'543'| translate "
+                maxlength="64"
+                    >
+
+            </div>
+<span class="error_message" *ngIf="skillControl.errors && submitForm" >{{utils.$getErrors('already_exist')}}</span>
+
+            <div class="entered-buttons">
+                
+              <button  *ngFor='let skill of skills; let i = index' type="button">
+                  {{ skill }}
+                  <span (click)='deleteSkill(i)'> &#10005;</span>
+              </button>
+            </div>
+          
+            <!-- <div class="d-flex align-items-center"> -->
+                <button type="button" class="btn btn-primary d-block ml-auto mt-3" (click)="submit()"
+                    [disabled]='(skills.length === 0 || skillsLength > 51)'>Save</button>
+            <!-- </div> -->
+        </form>
+      </div>
+</ng-container>
+<!-- Add skills -->
+
+<!-- Edit Skills -->
+<ng-template #editModal>
+    <div class="popup-content edit-skills">
+        <div class="skill-lines-wrap" *ngIf="data" cdkDropList
+            (cdkDropListDropped)="drop($event)">
+            <div class="skill-line d-flex align-items-center" *ngFor="let skill of data" cdkDrag>
+                <p>{{ skill.name }}</p>
+                <div class="btn-group">
+                    <button class="recycle" type="button" (click)="removeSkill(skill.id)">
+                        <img src="assets/img/53.svg"alt="recycle">
+                    </button>
+                    <button class="hand">
+                        <img src="assets/img/76.svg" alt="pointers" cdkDragHandle>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary d-block ml-auto mt-3" (click)="result.emit([])">Save</button>
+    </div>
+</ng-template>
+<!-- Edit Skills -->
+
+

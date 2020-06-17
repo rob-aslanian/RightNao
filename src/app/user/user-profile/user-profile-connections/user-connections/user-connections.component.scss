@@ -1,0 +1,38 @@
+.me{
+    position: relative;
+    z-index: -9999;
+}
+
+.user-mutual-connections{
+    border: solid 1px #E6E6E6;
+    background-color: white;
+    border-radius: 4px;
+    min-width: 205px;
+    // max-height: 178px;
+    position: relative;
+    padding-left: 25px;
+    padding-top: 25px;
+    h3{
+        margin-bottom: 25px;
+        margin-bottom: 25px;
+        position: absolute;
+        left: 77px;
+        top: 16px;
+    }
+    img{
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        margin-bottom: 25px;
+    }
+}
+
+.mutual{
+    flex: 0 0 50%;
+    max-width: 32%
+}
+
+.center-heading {
+    padding-left: 8px;
+    padding-bottom: 10px;
+}

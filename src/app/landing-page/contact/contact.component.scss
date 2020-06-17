@@ -1,0 +1,97 @@
+@import 'src/variables';
+
+
+.header-for-contact {
+    height:80px;
+    background:$dark-blue;
+    display:flex;
+    padding:0 20px;
+    justify-content: space-between;
+    align-items: center;
+    img {
+        width:230px;
+        // @include media-breakpoint-only(xs){
+        //     width:100px;
+        // }
+    }
+    a {
+        color:$background-light-cyan;
+        font-size: 18px;
+    }
+}
+.container.contact {
+    max-width:942px;
+    padding-top:30px;
+    color:$dark-grey;
+    button {
+        font-size:14px;
+    }
+    h1 {
+        font-size:20px;
+        color:$dark-blue;
+        margin-bottom:20px;
+    }
+    span {
+        display: block;
+        font-size: 14px;
+    }
+    h2 {
+        font-size:16px;
+        color:$dark-blue;
+        margin-bottom: 20px;
+    }
+    .feedback, .contact-us {
+        background:white;
+        border:solid 1px #e6e6e6;
+        padding:20px;
+        border-radius:5px;
+    }
+    .feedback__instruction {
+        font-size: 14px;
+    }
+    textarea {
+        resize: none;
+        height:236px;
+    }
+    label {
+        color:$dark-blue;
+        font-size:14px;
+        margin-left:3px;
+        margin-bottom: 5px;
+    }
+    .contact-us {
+        span {
+            margin-bottom:16px;
+            padding-left:35px;
+            &:last-child {
+                margin-bottom:15px;
+            }
+        }
+    }
+    .mail::before {
+        content: url(/assets/img/22.svg);
+        position: absolute;
+        left:36px;
+    }
+    .number::before {
+        position: absolute;
+        content: url(/assets/img/23.svg);
+        left:36px;
+    }
+    .location::before {
+        position: absolute;
+        left:38px;
+        content: url(/assets/img/24.svg);
+    }
+    .map {
+        height:132px;
+        background: #000;
+        margin-bottom: 20px;
+    }
+}
+
+.feedback-success-message {
+    padding-top: 40px;
+    text-align: center;
+    color: $dark-blue;
+}

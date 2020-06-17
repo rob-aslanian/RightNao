@@ -1,0 +1,201 @@
+@import "src/variables";
+@import 'src/mixins.scss';
+
+@mixin task-checkboxes() {
+    .custom-control-label {
+        font-size: 14px;
+        line-height: 24px;
+    }
+    .custom-control-input:focus ~ 
+    .custom-control-label {
+        &::before {
+            box-shadow: unset;
+        }
+        &::after {
+            box-shadow: unset;
+        }
+    }
+
+    .custom-control-input:checked ~ 
+    .custom-control-label {
+        text-decoration: line-through;
+        &::before {
+            border-radius: 4px;
+        }
+        &::after {
+            border-radius: 4px;
+        }
+    }
+
+    // Custom colored checkboxes
+
+    .custom-control-input:checked ~
+    .custom-control-label.event-dark-cyan {
+        &::before {
+            background-color: $dark-cyan;
+        }
+        &::after {
+            background-color: $dark-cyan;  
+        }
+    }
+
+    .custom-control-input:checked ~
+    .custom-control-label.event-light-blue {
+        &::before {
+            background-color: $blue-option;
+        }
+        &::after {
+            background-color: $blue-option;  
+        }
+    }
+
+    .custom-control-input:checked ~
+    .custom-control-label.event-dark-blue {
+        &::before {
+            background-color: $dark-blue-option;
+        }
+        &::after {
+            background-color: $dark-blue-option;  
+        }
+    }
+
+    .custom-control-input:checked ~
+    .custom-control-label.event-lavender {
+        &::before {
+            background-color: $lavender;
+        }
+        &::after {
+            background-color: $lavender;  
+        }
+    }
+
+    .custom-control-input:checked ~
+    .custom-control-label.event-purple {
+        &::before {
+            background-color: $purple;
+        }
+        &::after {
+            background-color: $purple;
+        }
+    }
+
+    .custom-control-input:checked ~
+    .custom-control-label.event-green {
+        &::before {
+            background-color: $green;
+        }
+        &::after {
+            background-color: $green;
+        }
+    }
+
+    .custom-control-input:checked ~
+    .custom-control-label.event-yellow {
+        &::before {
+            background-color: $yellow;
+        }
+        &::after {
+            background-color: $yellow;  
+        }
+    }
+
+    .custom-control-input:checked ~
+    .custom-control-label.event-orange {
+        &::before {
+            background-color: $orange;
+        }
+        &::after {
+            background-color: $orange;  
+        }
+    }
+
+    .custom-control-input:checked ~
+    .custom-control-label.event-pink {
+        &::before {
+            background-color: $pink;
+        }
+        &::after {
+            background-color: $pink;  
+        }
+    }
+
+    .custom-control-input:checked ~
+    .custom-control-label.event-dark-red {
+        &::before {
+            background-color: $dark-red;
+        }
+        &::after {
+            background-color: $dark-red;  
+        }
+    }
+    
+}
+
+
+
+.calendar-tasks {
+    &__header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+
+        &__title {
+            color: $dark-grey;
+            font-size: $medium-text;
+            margin-bottom: 0;
+            margin-left: 7px;
+        }
+    
+        &__progress-bar {
+            &__info {
+                color: $dark-grey;
+                font-size: $medium-text;
+                display: block;
+                text-align: right;
+                margin-bottom: 2px;
+            }
+            &__bar-container {
+                width: 160px;
+                position: relative;
+    
+                .bar {
+                    height: 4px;
+                    border-radius: 2px;
+                    
+                    &--grey-bar {
+                        background-color: #DCE1E6;
+                        width: 100%;
+                    }
+                    &--cyan-bar {
+                        background-color: $dark-cyan;
+                        width: 50%;
+                        position: absolute;
+                        top: 0;
+                    }
+                }
+            }
+        }
+
+    }
+    &__list {
+        &__item {
+            background-color: $white;
+            padding: 16px 16px 16px 22px;
+            border-radius: 5px;
+            border: solid 1px $input-grey;
+            position: relative;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+
+            @include event-color-codes;
+            @include task-checkboxes;   
+        }
+        
+    }
+
+}
+
+
+

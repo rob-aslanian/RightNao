@@ -1,0 +1,780 @@
+<div class="help-content-heading">
+    <h2>Jobs</h2>
+</div>
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('become-candidate')">
+        <h3>How to become a candidate?</h3>
+        <span *ngIf="toggle.view.active['become-candidate']">&#9652;</span>
+        <span *ngIf="!toggle.view.active['become-candidate']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['become-candidate']">
+        <div class="help-content-text">
+            <p>
+                You can share your career interests, including the types of companies and roles you are most interested in, with employees on Hypercube. Once you opt to share your career goals with us employers will be able to find you based on your shared career interests, when they are searching for candidates.
+            </p>
+            <p>
+                To share your career interests:
+            </p>
+            <ul>
+                <li>
+                    Go to Jobs page
+                </li>
+                <li>
+                    Click <i>“Career interests”</i> Tab 
+                </li>
+                <li>
+                    Switch the toggle <i>“Are you open to new opportunities?”</i> to <b>Yes</b> 
+                </li>
+            </ul>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('share-interests')">
+        <h3>How to share your Career Interests to employees?</h3>
+        <span *ngIf="toggle.view.active['share-interests']">&#9652;</span>         
+        <span *ngIf="!toggle.view.active['share-interests']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['share-interests']">
+        <div class="help-content-text">
+            <p>
+                To share your career interests first thing, you need to do is to switch the toggle <i>“Are you open to new opportunities?”</i> to <b>Yes</b>
+            </p>
+            <p>
+                This also controls whether or not your profile shows up in candidates search results. 
+            </p>
+            <p>
+                We take steps not to show your current company (founders and employees) that you are looking for a job but we can’t guarantee it. 
+            </p>
+            <p>
+                Follow the prompts on the page to select your career preferences. 
+            </p>
+            <ul>
+                <li>
+                    What job titles are you considering
+                </li>
+                <li>
+                    Which industries do you prefer?
+                </li>
+                <li>
+                    What types of jobs you are open to?
+                </li>
+                <li>
+                    How many years of experience do you have?
+                </li>
+                <li>
+                    Would you like to work at companies these size?
+                </li>
+                <li>
+                    What are your salary expectations?
+                </li>
+                <li>
+                    What locations do you want to work in?
+                </li>
+            </ul>
+            <p>
+                These fields are optional but when you fill the career interest’s form you should consider that your answers determine which jobs we recommend.
+            </p>
+        </div>
+    </ng-template>
+</div> 
+
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('create-job-alerts')">
+        <h3>How to create Job alerts?</h3>
+        <span *ngIf="toggle.view.active['create-job-alerts']">&#9652;</span>         
+        <span *ngIf="!toggle.view.active['create-job-alerts']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['create-job-alerts']">
+        <div class="help-content-text">
+            <p>
+                You can set up a Job Alert if you search for jobs 
+            </p>
+            <ol>
+                <li>
+                    To the right of job search results page, switch the toggle and <b>Set a job alert</b>.
+                </li>
+                <li>
+                    Select how often you'd like to receive an email alert or notification about new jobs on that fit those specific search parameters. Alerts can be sent daily or weekly.
+                </li>
+                <li>
+                    Click activate.
+                </li>
+            </ol>
+            <p>
+                <b>Note:</b> 
+                Unregistered users can also create job alerts, by entering their email address in the field. 
+            </p>
+        </div>
+    </ng-template>
+</div>
+
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('access-job-alerts')">
+        <h3>How to Access Your Job Alerts?</h3>
+        <span *ngIf="toggle.view.active['access-job-alerts']">&#9652;</span>         
+        <span *ngIf="!toggle.view.active['access-job-alerts']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['access-job-alerts']">
+        <div class="help-content-text">
+            <p>
+                You can access your <b>job alerts</b> from your <b>Jobs page</b>, go to <b>manage jobs</b> and select tab the <b>Job Alerts</b>. You can edit parameters or delete alerts.
+            </p>
+        </div>
+    </ng-template>
+</div>
+
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('apply-for-job')">
+        <h3>How to apply for a job on Hypercube?</h3>
+        <span *ngIf="toggle.view.active['apply-for-job']">&#9652;</span>         
+        <span *ngIf="!toggle.view.active['apply-for-job']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['apply-for-job']">
+        <div class="help-content-text">
+            <p>
+                    If you see a job that you're interested in as you search for jobs, you can apply for it on Hypercube. <br>
+                    <b>Note:</b> Once you apply for a job, you can’t withdraw or modify your application submitted. 
+            </p>
+            <p>To apply for a job on HyperCube:</p>
+            <ol>
+                <li>
+                    <b>Search for a job</b>
+                </li>
+                <li>
+                    Click on a job title to view details.
+                </li>
+                <li>
+                    Click the <b>Apply</b> button at the top right.
+                </li>
+                <li>
+                    You will be asked to Switch the toggle <i>“Are you open to new opportunities?”</i> to <b>Yes</b> and click <b>next</b>.
+                </li>
+                <li>
+                    Complete the required fields. 
+                </li>
+                <li>
+                    You can upload <b>additional documents</b> and write down <b>cover letter (it cam be Optiona)</b> 
+                </li>
+                <li>
+                    You can also choose to <b>follow the company</b> that posted the job by clicking on checkbox.
+                </li>
+                <li>
+                    Click <b>Submit</b> when finished.
+                </li>
+            </ol>
+        </div>
+    </ng-template>
+</div>
+
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('access-applied-job')">
+        <h3>How to Access your applied jobs on Hypercube?</h3>
+        <span *ngIf="toggle.view.active['access-applied-job']">&#9652;</span>         
+        <span *ngIf="!toggle.view.active['access-applied-job']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['access-applied-job']">
+        <div class="help-content-text">
+            <p>
+                You can access your <b>Applied Jobs</b> from your jobs page, go to manage jobs and select the Applied Jobs. Keep in mind that you can’t withdraw or modify your application.
+            </p>
+        </div>
+    </ng-template>
+</div>
+
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('search-for-jobs')">
+        <h3>How to Search for jobs?</h3>
+        <span *ngIf="toggle.view.active['search-for-jobs']">&#9652;</span>         
+        <span *ngIf="!toggle.view.active['search-for-jobs']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['search-for-jobs']">
+        <div class="help-content-text">
+            <p>
+                With Hypercube, you can use a combination of keywords and filters to find the right job for you.  
+                As you enter your search terms, the dropdown menu under the search box will automatically suggest options to you. Hypercube search is smart. 
+            </p>
+            <p>
+                For more accurate results, you can search jobs with filters. <br>
+                List of filters:
+            </p>
+            <ul>
+                <li>
+                    <b>
+                        Date Posted - 
+                    </b>
+                    filter jobs (24 hours, Last 3 days, Last 14 days, Last 30 days, Any Date).
+                </li>
+                <li>
+                    <b>
+                        Location - 
+                    </b>
+                    filter by jobs specific location (<b>Country, City</b>).
+                </li>
+                <li>
+                    <b>
+                        Industry - 
+                    </b>
+                    filter jobs by the industry and subindustry of the company.
+                </li>
+                <li>
+                    <b>
+                        Company - 
+                    </b>
+                    filter jobs by the name of companies or by their size.
+                </li>
+                <li>
+                    <b>
+                        Experience Level - 
+                    </b>
+                    filter jobs by their requirements.
+                </li>
+                <li>
+                    <b>
+                        Job type – 
+                    </b>
+                    filter jobs by the type you are interested in.
+                </li>
+                <li>
+                    <b>
+                        Salary - 
+                    </b>
+                    You can filter jobs by compensation. <br>
+                    <b>Note: </b>it is an optional field for companies to give you salary estimates. You can specify: Currency, Period, and Minimum and Maximum amount.
+                </li>
+                <li>
+                    <b>
+                        Skills - 
+                    </b>
+                    filter jobs by the skills employer requires from candidates.
+                </li>
+                <li>
+                    <b>
+                        Language -  
+                    </b>
+                    filter jobs by languages employer requires from candidates.
+                </li>
+                <li>
+                    <b>
+                        Degree -  
+                    </b>
+                    filter jobs by degree employer requires from candidates.
+                </li>
+                <li>
+                    <b>
+                        Jobs Only from the companies you are following.
+                    </b>
+                </li>
+                <li>
+                    <b>
+                        Jobs without cover letter - 
+                    </b>
+                    display jobs which do not require cover letters.
+                </li>
+                <li>
+                    <b>
+                        Jobs only with salary - 
+                    </b>
+                    display jobs which have salary estimates.
+                </li>
+            </ul>
+            <p>
+                You can use each filter one at a time or multiple filters at once. 
+                find right job, you can apply for job, if you don’t want to apply for a job at this time, you can save it by clicking <img src="/assets/img/44.svg" alt="button"> icon. You will be able to access your saved jobs from <b>"Manage jobs"</b> at any time.
+            </p>
+        </div>
+    </ng-template>
+</div>
+
+
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('post-job')">
+        <h3>How to post a job on Hypercube?</h3>
+        <span *ngIf="toggle.view.active['post-job']">&#9652;</span>         
+        <span *ngIf="!toggle.view.active['post-job']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['post-job']">
+        <div class="help-content-text">
+            <p>
+                If you have a job offer you would like to post, Hypercube offers the ability to create online job postings to advertise open positions at your company. 
+            </p>
+            <p>
+                Candidates can search for these opportunities throughout the Jobs section. In addition, job postings will be recommended to potential candidates through the <b>"Recommended Jobs"</b> and <b>“Jobs in your location”</b> future.
+            </p>
+            <p>
+                To post a job:
+            </p>
+            <ol>
+                <li>
+                    Click the <b>Work</b> icon in the right side (Main) menu and select <b>Hire</b> from the menu that appears.
+                    <br> 
+                    <b>Note: </b>if you are logged in as user you will be asked to switch your account to company’s account.
+                </li>
+                <li>
+                    Click <b>Post a job</b>.
+                </li>
+                <li>
+                    On the first page of posting a job you will be asked to choose the plan. We offer scaled down job posting packages to help even the smallest of companies achieve their goals.
+                    You have seven options:
+                    <ul>
+                        <li>
+                            Basic – free, Job advertisement duration: 5 days
+                        </li>
+                        <li>
+                            Start – Price: 15 Gel, Job advertisement duration: 15 days
+                        </li>
+                        <li>
+                            Standard – Price: 20 Gel, Job advertisement duration: 30 days
+                        </li>
+                        <li>
+                            Professional – Price: 25 Gel, Job advertisement duration: 30 days
+                        </li>
+                        <li>
+                            Professional + Price: 30 Gel, Job advertisement duration: 30 days
+                        </li>
+                        <li>
+                            Exclusive – Price: 40 Gel, Job advertisement duration: 30 days
+                        </li>
+                        <li>
+                            Premium – Price: 50 Gel, Job advertisement duration: 30 days
+                        </li>
+                    </ul>
+                    <b>Note: </b>Prices may vary depending on country. <br>
+                    We have 5, 15 and 30-day job posting options. With additional features you can choose automatically renewal and publishing anonymously.
+                </li>
+                <li>
+                    After choosing the plan <b>click next</b>. 
+                </li>
+                <li>
+                    You'll be prompted to fill in the following fields:
+                    <ul>
+                        <li>
+                            <b>
+                                Job Title: 
+                            </b>
+                            As you type in the job title, you'll see a list of standard title suggestions.
+                            <br>
+                            Choose the appropriate title from the dropdown that appears. 
+                        </li>
+                        <li>
+                            <b>
+                                Job Location: 
+                            </b>
+                            As you type in the location, you'll see a dropdown list appear, where you can select the appropriate location.
+                        </li>
+                        <li>
+                            <b>
+                                Job functions: 
+                            </b>
+                            select up to three
+                        </li>
+                        <li>
+                            <b>
+                                Employment type: 
+                            </b>
+                            select one
+                        </li>
+                        <li>
+                            Enter a <b>Job description</b> (required) in the text box.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Click <b>Next</b>.
+                </li>
+                <li>
+                    On the next page you have several optional fields. Tell us more about applicant’s qualification:
+                    <ul>
+                        <li>
+                            <b>
+                                Experience Level: 
+                            </b>
+                            the relevant experience
+                        </li>
+                        <li>
+                            <b>
+                                Skills: 
+                            </b>
+                            the skills needed for the job
+                        </li>
+                        <li>
+                            <b>
+                                Languages: 
+                            </b>
+                            the required languages for the job (up to 5)
+                        </li>
+                        <li>
+                            <b>
+                                Education: 
+                            </b>
+                            level of education
+                        </li>
+                        <li>
+                            <b>                        
+                                Work authorization: 
+                            </b>
+                            you can specify what kind of work authorization an employee will need.
+                        </li>
+                        <li>
+                            <b>
+                                License & Certification: 
+                            </b>
+                            you can specify if there is a need for some specific license or certification .
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    You can then complete the following additional fields to enhance your job posting:
+                    <br>
+                    <b>Salary:</b> specify currency, Period of time, minimum – Maximum amount.
+                    <br>
+                    <b>Benefits:</b> insert benefits your company is offering to candidates.
+                    <br>
+                    Specify <b>number of Positions</b>, if <b>cover letter</b> is needed and if this work can be done <b>remotely</b>. 
+                </li>
+                <li>
+                    If you are planning to schedule the job post, enter <b>publish date</b>.
+                </li>
+                <li>
+                    Click <b>Preview</b> to review the order details before posting your job. 
+                </li>
+                <li>
+                    When done, click <b>Publish</b>.
+                </li>
+                <li>
+                    Fill in your credit card details and <b>click Pay</b>. 
+                </li>
+            </ol>
+            <p>
+                Once your job is posted, you can <b>access your posted jobs, track and manage your applicants, pause </b> or <b>renew</b> it. After posting a job, you and your colleagues can <b>invite Candidates</b> and <b>share it with messenger</b> on HyperCube.
+            </p>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('manage-applicants')">
+        <h3>How to track and manage applicants?</h3>
+        <span *ngIf="toggle.view.active['manage-applicants']">&#9652;</span>         
+        <span *ngIf="!toggle.view.active['manage-applicants']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['manage-applicants']">
+        <div class="help-content-text">
+            <p>
+                Once your job is posted, you can track and manage applicants.
+            </p>
+            <p>
+                To manage applicants:
+            </p>
+            <ol>
+                <li>
+                    Click the <b>Work</b> icon in the right side menu and select <b>Hire</b> from the menu that appears. 
+                    <br>
+                    <b>Note: </b>if you are logged in as user you will be asked to switch your account to company’s account. 
+                </li>
+                <li>
+                    Click <b>Applicants</b>.
+                </li>
+                <li>
+                    On the <b>Applicants' Page</b> you will see all your posted Jobs and number of applicants for each job post.
+                </li>
+                <li>
+                    Click on Job post to see applicant’s details. 
+                </li>
+            </ol>
+            <p>
+                On applicant’s page you will see all the applicants who applied on your job post. Here you have tools to manage and categorize them.
+            </p>
+            <ul>
+                <li>
+                    <b>
+                        Add a Label: 
+                    </b>
+                    you can add a label to applicant. You have 3 options: <i>Favorite</i>, <i>In Review</i> or <i>disqualified</i>.
+                </li>
+                <li>
+                    <b>
+                        Download Resume: 
+                    </b>
+                    you can download applicant’s resume (CV) in PDF format.
+                </li>
+                <li>
+                    <b>
+                        Sort by: 
+                    </b>
+                    First name, Last name, applied date, Years of experience.
+                </li>
+                <li>
+                    <b>
+                        Search: 
+                    </b>
+                    search with keyword. 
+                </li>
+                <li>
+                    <b>
+                        Message:
+                    </b>
+                    message candidate to ask more details or invite to interview. 
+                </li>
+                <li>
+                    <b>
+                        Share: 
+                    </b>
+                    you can share applicant’s info only with your college who is also company page admin together with you. 
+                </li>
+                <li>
+                    <b>
+                        Report/Block: 
+                    </b>
+                    please visit <a href="">How to Report a User? / How to block a User?</a> to understand more about blocking and reporting a User.
+                </li>
+                <li>
+                    <b>
+                        Language of profile: 
+                    </b>
+                    if applicant has his/her profile created on other language, you will see the language selecting option. 
+                </li>
+            </ul>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('manage-job-posts')">
+        <h3>How to manage job posts? </h3>
+        <span *ngIf="toggle.view.active['manage-job-posts']">&#9652;</span>         
+        <span *ngIf="!toggle.view.active['manage-job-posts']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['manage-job-posts']">
+        <div class="help-content-text">
+            <p>
+                Once your job is posted, you can access your posted from <a href="">my jobs page</a>.
+            </p>
+            <ol>
+                <li>
+                    Click the <b>Work</b> icon on the right side menu and select <b>Hire</b> from the menu that appears.
+                    <br>
+                    <b>Note: </b>if you are logged in as user you will be asked to switch your account to company’s account.
+                </li>
+                <li>
+                    Click <b>My Jobs</b>.
+                </li>
+                <li>
+                    On <b>My Jobs page</b> you will see <b>Job title, job status, Views, applicants, posted date, expiration date, budget, ad creator’s name</b>.
+                </li>
+                <li>
+                    With Action button you can pause published job or activate paused one. Also you can renew expired or, publish or delete drafted Job post.
+                </li>
+            </ol>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('create-candidate-alerts')">
+        <h3>How to create candidate alerts?</h3>
+        <span *ngIf="toggle.view.active['create-candidate-alerts']">&#9652;</span>         
+        <span *ngIf="!toggle.view.active['create-candidate-alerts']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['create-candidate-alerts']">
+        <div class="help-content-text">
+            <p>
+                You can set up a candidate Alert if you are an admin of a company and you search for candidates
+            </p>
+            <ol>
+                <li>
+                    To the right of job search results page, switch the toggle and <b>Set an alert</b>.
+                </li>
+                <li>
+                    Select how often you'd like to receive an email alert or notification about new candidates registered on HyperCube that fit those specific search parameters. Alerts can be sent daily or weekly.
+                </li>
+                <li>
+                    Click <b>Activate</b>.
+                </li>
+            </ol>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('access-candidate-alerts')">
+        <h3>How to Access Your Candidate Alerts?</h3>
+        <span *ngIf="toggle.view.active['access-candidate-alerts']">&#9652;</span>         
+        <span *ngIf="!toggle.view.active['access-candidate-alerts']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['access-candidate-alerts']">
+        <div class="help-content-text">
+            <p>
+                You can access your <b>job alerts</b> from your <b>Jobs page</b>, go to <b>manage jobs</b> and select tab the <b>Job Alerts</b>. You can edit or delete search alerts.
+            </p>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('search-for-candidates')">
+        <h3>How to Search for candidates?</h3>
+        <span *ngIf="toggle.view.active['search-for-candidates']">&#9652;</span>         
+        <span *ngIf="!toggle.view.active['search-for-candidates']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['search-for-candidates']">
+        <div class="help-content-text">
+            <p>
+                With Hypercube, you can use a combination of keywords and filters to find the exact candidates you are looking for. 
+            </p>
+            <p>
+                As you enter your search terms, the dropdown menu under the search box will automatically suggest options to you. Hypercube search is smart. When searching for “David,” for example, the dropdown menu will display results for both “David” and “Dato”.
+            </p>
+            <p>
+                For more accurate results, you can search candidates with filters.
+                <br>
+                List of filters:
+            </p>
+            <ul>
+                <li>
+                    <b>
+                        Location - 
+                    </b>
+                    filter by candidate’s specific location (<b>Country, City</b>)
+                </li>
+                <li>
+                    <b>
+                        Company - 
+                    </b>
+                    filter candidates by the name of companies (<b>Current company, Past company</b>) in their work history.
+                </li>
+                <li>
+                    <b>
+                        Industry -  
+                    </b>
+                    filter candidates by the industry their current employer (<b>company</b>) is registered in. After filtering industries, you can even narrow down suitable candidates, by selecting applicable <b>subindustry</b>.
+                </li>
+                <li>
+                    <b>
+                        Years of Experience – 
+                    </b>
+                    filter candidates by the years of experience from their work history.
+                </li>
+                <li>
+                    <b>
+                        Job type – 
+                    </b>
+                    filter candidates by the job type they are interested in.
+                </li>
+                <li>
+                    <b>
+                        Skills - 
+                    </b>
+                    filter candidates by specific skills.
+                </li>
+                <li>
+                    <b>
+                        Language - 
+                    </b>
+                    filter candidates by languages they speak. 
+                </li>
+                <li>
+                    <b>
+                        Education:
+                    </b>
+                    <ul>
+                        <li>
+                            <b>
+                                School - 
+                            </b>
+                            filter candidates by the name of the schools they attended.
+                        </li>
+                        <li>
+                            <b>
+                                Degree -  
+                            </b>
+                            filter candidates by degree.
+                        </li>
+                        <li>
+                            <b>
+                                Field of study -  
+                            </b>
+                            filter candidates by field of study.
+                        </li>
+                        <li>
+                            <b>
+                                Student? - 
+                            </b>
+                            click the checkbox next to “student” if you want to search students.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <b>
+                        Salary - 
+                    </b>
+                    You can filter candidates by salary if he/she filled up salary expectations on “carrier interests” page. You can specify: Currency, Period, and Minimum and Maximum amount.
+                </li>
+                <li>
+                    <b>
+                        Willing to travel.
+                    </b>
+                </li>
+                <li>
+                    <b>
+                        Willing to work remotely.
+                    </b>
+                </li>
+                <li>
+                    <b>
+                        Relocation.
+                    </b>
+                </li>
+            </ul>
+            <p>
+                You can use each filter one at a time or multiple filters at once.
+                <br>
+                If you use two or more different filters together, only candidates who meet both criteria will show up in the results.
+                <br>
+                If you use two more values for the same filter (for example, Georgia and Armenia), candidates who meet either criteria will show up in the results.
+            </p>
+        </div>
+    </ng-template>
+</div>
+
+<div class="help-content-info">
+    <div class="help-content-heading" (click)="myToggle('invite-candidate')">
+        <h3>How to invite a candidate to apply for a job?</h3>
+        <span *ngIf="toggle.view.active['invite-candidate']">&#9652;</span>         
+        <span *ngIf="!toggle.view.active['invite-candidate']">&#9662;</span>
+    </div>
+    <ng-template [ngIf]="toggle.view.active['invite-candidate']">
+        <div class="help-content-text">
+            <p>
+                When you post a job offer on Hypercube, you have ability to invite candidates to apply for your job offer. 
+            </p>
+            <p>
+                To invite a candidate to a job:
+            </p>
+            <ol>
+                <li>
+                    Post a Job.
+                </li>
+                <li>
+                    Search for candidates or visit “candidates in your location” page and browse them.
+                </li>
+                <li>
+                    Select a specific candidate you want to invite and click on “invite to apply” button on the top right corner of candidate’s card.
+                </li>
+                <li>
+                    On the pop-up window select the job offer you want to send to candidate.
+                </li>
+                <li>
+                    Customize your invitation text and click “submit”.
+                </li>
+            </ol>
+        </div>
+    </ng-template>
+</div>

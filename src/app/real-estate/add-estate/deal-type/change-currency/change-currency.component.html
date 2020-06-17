@@ -1,0 +1,77 @@
+<div class="col-7 p-0">
+        <div class="change-metrics" ngbDropdown>
+            <button class="btn backgroundless" 
+                    ngbDropdownToggle
+                    [ngClass]="{'custom-invalid': ctrl.invalid && isSubmitted }">Change Currency</button>
+            <div class="" ngbDropdownMenu>
+
+                    <div class="custom-control custom-radio">
+
+                            <input class="custom-control-input" 
+                                   type="radio" 
+                                   [id]="'gold'+name" 
+                                   value="gold"
+                                   [formControl]='ctrl'
+                                   [name]="name" 
+                                   (change)='emit($event)'>
+
+                            <label class="custom-control-label" [for]="'gold'+name">Gold</label>
+                    </div>
+
+                    <div class="custom-control custom-radio">
+
+                            <input class="custom-control-input" 
+                                   type="radio" 
+                                   [id]="'silver'+name" 
+                                   value="silver"
+                                   [formControl]='ctrl'
+                                   [name]="name" 
+                                   (change)='emit($event)'>
+
+                            <label class="custom-control-label" [for]="'silver'+name">Silver</label>
+                    </div> 
+                    
+                    <div class="custom-control custom-radio">
+
+                            <input class="custom-control-input" 
+                                   type="radio" 
+                                   [id]="'dollar'+name" 
+                                   value="dollar"
+                                   [formControl]='ctrl'
+                                   [name]="name" 
+                                   (change)='emit($event)'>
+
+                            <label class="custom-control-label" [for]="'dollar'+name">Dollar</label>
+                    </div> 
+
+                    <div class="custom-control custom-radio">
+
+                            <input class="custom-control-input" 
+                                   type="radio" 
+                                   [id]="'euro'+name" 
+                                   value="euro"
+                                   [formControl]='ctrl'
+                                   [name]="name" 
+                                   (change)='emit($event)'>
+
+                            <label class="custom-control-label" [for]="'euro'+name">Euro</label>
+                    </div> 
+
+                    <div class="custom-control custom-radio">
+
+                            <input class="custom-control-input" 
+                                   type="radio" 
+                                   [id]="'yen'+name" 
+                                   [formControl]='ctrl'
+                                   value="yen"
+                                   [name]="name" 
+                                   (change)='emit($event)'>
+
+                            <label class="custom-control-label" [for]="'yen'+name">Yen</label>
+                    </div> 
+
+            </div>
+        </div>
+</div>
+
+ 

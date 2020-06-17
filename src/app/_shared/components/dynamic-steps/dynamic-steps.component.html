@@ -1,0 +1,20 @@
+<div class="steps-second-edition-bozish">
+    <div class="steps-wrapper">
+            <h3 class="steps-wrapper-title">
+                Create Ad in 3 steps
+            </h3>
+            <div class="steps-amount">
+
+                <ng-container *ngFor="let step of steps">
+                    <div class="steps-item" [ngClass]="{'activeSteps': ( currentStep+2 ) > step }">
+                        <span *ngIf="currentStep < step">{{ step }}</span>
+                        <img src="assets/img/459.svg" alt="" *ngIf="currentStep >= step" class="steps-success">
+                    </div>
+                    <div class="steps-line" *ngIf="steps.length !== step" [ngClass]="{'activeSteps': ( currentStep+1 ) > step }"></div>
+                </ng-container>
+
+            </div>
+            <p class="steps-description"> {{ selectedModel?.description }} </p>           
+            <p class="steps-description"> {{ selectedModel?.descriptionSecond }} </p>        
+    </div> 
+</div>

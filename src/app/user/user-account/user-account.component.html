@@ -1,0 +1,44 @@
+
+
+<!-- User Account main content -->
+<main class="account-main before-footer">
+    <div class="dark-blue-bg">
+        <div class="account-main-data d-flex justify-content-between" *ngIf="(getprofile | async) as profile" >
+            <div class="profile">
+                <img class="user-img" [src]="profile.avatar ? '/file/'+ profile.avatar : 'assets/img/124.svg' " alt="profile-picture">
+                <div class="profile-headings">
+                    <h2>{{ profile.firstname + ' ' + profile.lastname }}</h2>
+                    <span *ngIf="profile.experiences[0]"> {{ profile.experiences[0].title }} </span>
+                    <span *ngIf="profile.experiences[0]">{{ profile.experiences[0].company }}</span>
+                </div>
+            </div>
+            <div class="member-since align-self-end">
+                <h3>Member since {{ profile.date_of_registration }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="container account-wrap">
+        
+
+        <div class="account-two-box-wrap row">
+            <div class="col-lg-3">
+                <div class="account-left-navigation">
+                    <a  class="link-border" routerLinkActive="active-border" [routerLink]="['general']">
+                        <span> {{  "1052" | translate }} </span>
+                    </a>
+                    <a class="link-border" routerLinkActive="active-border" [routerLink]="['security']"  >
+                        <span> {{ "1255" | translate }} </span>                     
+                    </a>
+                    <a class="link-border" routerLinkActive="active-border" [routerLink]="['notifications']" >
+                        <span> {{ "979" | translate }} </span>
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-9">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- User Account main content end -->
+

@@ -1,0 +1,18 @@
+<label for="upload-file">
+    <ng-content ></ng-content>
+</label>
+<!-- <label for="upload-file">
+   
+  </label> -->
+<input class="backgroundless" class="d-none" type="file" multiple id="upload-file" 
+        (change)="uploadFiles($event)" #fileInput />
+  
+<div class="docs-wrap" *ngIf="files && files.length > 0">
+    <span *ngFor="let file of files; let i = index; trackBy:trckByFn">
+        <img [src]="file.icon" alt="pdf">
+        {{ file.name }}
+        <a (click)="removeFile(i)">&#10005;</a>
+    </span>
+
+</div>
+

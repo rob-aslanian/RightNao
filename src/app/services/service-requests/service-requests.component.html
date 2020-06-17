@@ -1,0 +1,89 @@
+<main class="main-light-blue before-footer">
+  <div class="container profile find-work">
+      <div class="row justify-content-between company-wrap find-work">
+          <div class="col-md-3 col-sm-12 find-work-wrap">
+              <div class="find-work__sidebar">
+                  <!--Categories-->
+                  <div class="find-work__sidebar-section">
+                      <app-service-request-all-categories></app-service-request-all-categories>
+                  </div>
+
+                  <!--Location-->
+                  <div class="find-work__sidebar-section">
+                      <app-service-request-location></app-service-request-location>
+                  </div>
+
+                  <!--Project type-->
+                  <div class="find-work__sidebar-section">
+                      <app-service-request-project-type></app-service-request-project-type>
+                  </div>
+
+                  <!--Delivery time-->
+                  <div class="find-work__sidebar-section">
+                      <app-service-request-delivery-time></app-service-request-delivery-time>
+                  </div>
+
+                  <!--Price-->
+                  <div class="find-work__sidebar-section">
+                      <app-service-request-price></app-service-request-price>
+                  </div>
+
+                  <!--Illustration style-->
+                  <div class="find-work__sidebar-section">
+                      <app-service-request-illustration></app-service-request-illustration>
+                  </div>
+
+                  <!--Tools and technologies-->
+                  <div class="find-work__sidebar-section">
+                      <app-service-request-tools></app-service-request-tools>
+                  </div>
+
+                  <!--Languages-->
+                  <div class="find-work__sidebar-section">
+                        <app-service-request-languages></app-service-request-languages>
+                  </div>
+
+                  <!--Service includes-->
+                  <div class="find-work__sidebar-section">
+                      <app-service-request-includes></app-service-request-includes>
+                  </div>
+
+                  <!--Rating-->
+                  <div class="find-work__sidebar-section">
+                      <app-service-request-rating></app-service-request-rating>
+                  </div>
+
+                  <!--Show only-->
+                  <div class="find-work__sidebar-section">
+                      <app-service-request-show-only></app-service-request-show-only>
+                  </div>
+              </div>
+          </div>
+
+
+          <div class="col find-work-wrap">
+              <div class="find-work__content">
+                  <div class="find-work__content__filters">
+                      <app-service-request-filter></app-service-request-filter>
+                  </div>
+
+                  <div class="find-work__content__results">
+                      <div class="find-work__content__results__heading">
+                          <span class="page-section-text-grey">Showing 591 results</span>
+                          <div class="dropdown">
+                              <div class="dropdown-toggle find-work-dropdown">My Filters</div>
+                              <div class="dropdown-menu">content</div>
+                          </div>
+                      </div>
+
+                      <div class="find-work__content__results__list">
+                         <app-service-request-card></app-service-request-card>
+                      </div>
+                  </div>
+              </div>
+          </div>
+        
+
+      </div>
+  </div>
+</main>

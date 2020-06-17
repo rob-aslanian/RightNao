@@ -1,0 +1,48 @@
+<div class="section-header d-flex">
+    <h1>{{ '915' | translate  }}</h1>
+    <div class="col line">
+        <button class="add" (click)="open()" *ngIf="data.isAdmin">
+            <img src="assets/img/50.svg" alt="add">
+        </button>
+    </div>
+</div>
+    
+
+<div class="section-content col" *ngIf="data.milestones && data.milestones.length > 0" >
+
+    <div *ngFor="let year of getMileStoneYears | slice: 0: startPage; let  i = index;"   class="milestone">
+        <h3>{{ year }}</h3>
+        <div class="milestone__box">
+            <div *ngFor="let milestone of milestonesByYears(year) | slice: 0: startPage;  " class="milestone__box__content" >
+                <ng-container *ngIf="milestone.year === year">
+                        <button class="edit milestones-edit" (click)="open(true , milestone)"  *ngIf="data.isAdmin" >
+                            <img src="assets/img/19.svg" alt="edit" >
+                        </button>
+                        <div class="milestone-text" >
+                            <h3> {{ milestone.title }} </h3>                                           
+                            <p style="margin: unset">{{ milestone.description }}</p>
+                        </div>
+                </ng-container> 
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+
+<ng-container *ngIf="!(data.milestones && data.milestones.length > 0) && data.isAdmin" >
+        <app-empty-profile [key]='"milestone"' (openModal)='openEmptyModal()'></app-empty-profile>
+</ng-container>
+
+
+<!-- More less buttons -->
+<app-more-less [dataLength]="data.milestones.slice(0,4).length" (start)="startPage = $event;"></app-more-less>
+
+<app-modal (closeModal)="modalType = null">
+  <ng-container *ngIf="modalType === 'add'">
+      <app-milestone-modal [id]="data.companyId" (result)="getMileStone($event)"></app-milestone-modal>
+  </ng-container>
+  <ng-container *ngIf="modalType === 'edit'">
+      <app-milestone-modal [id]="data.companyId" [data]="editableData"  (result)="getMileStone($event)"  ></app-milestone-modal>
+  </ng-container>
+</app-modal>

@@ -1,0 +1,69 @@
+@import 'src/variables'; 
+
+//  * * * Header * * * 
+.dark-blue-bg-for-estate {
+    background-color: $dark-blue;
+   
+
+    .manage {
+        align-items: center;
+        &__navigation {
+            a {
+                color: white; 
+                cursor: pointer; 
+                padding-bottom: .6rem;
+                margin: 0;
+                border-bottom: 3px solid transparent;
+                white-space: nowrap;
+                text-decoration: none; 
+
+                &:hover {
+                    border-bottom: 3px solid $lignt-cyan;
+                }
+
+            }
+        }; 
+
+        &__add {
+            img {
+                cursor: pointer; 
+
+            }
+            a {
+                color: $lignt-cyan;
+                text-decoration: none;   
+                cursor: pointer; 
+                margin: 0; 
+
+                &:hover {
+                    text-decoration: none; 
+                }
+            }
+        }
+    }
+ }
+
+//   * * * * C o n t e n t * * * *
+
+.content {
+    background-color: white; 
+    border: 1px solid $grey-dark; 
+    border-radius: .5rem; 
+
+    &__active {
+        font-size: .875rem; 
+        color: $dark-grey; 
+    }
+
+}
+
+
+.down-arrow {
+    transform: rotate(45deg); 
+    -webkit-transform: rotate(45deg); 
+}; 
+
+.active {
+    border-bottom: 3px solid $lignt-cyan !important;
+
+}

@@ -1,0 +1,63 @@
+@import "src/variables";
+
+.post-wrapper {
+  .post-header {
+    img {
+      height: 50px;
+      width: 50px;
+    }
+    h6 {
+      font-size: 0.8rem;
+      color: $dark-grey;
+    }
+    h4 {
+      font-size: 1rem !important;
+    }
+  }
+}
+
+:host ::ng-deep app-post.new-post{
+    .feed-box{
+        animation: 4s toggleColor ease-in-out;
+    }
+    
+}
+
+
+
+@keyframes toggleColor{
+    0%{ background: #afbace }
+    100% { background: #fff }
+}
+
+.delete-post{
+    animation: 2s deletePost ease-in-out;
+}
+
+@keyframes deletePost{
+    0%{ opacity: 1; }
+    100% { opacity: 0;}
+}
+
+
+.dropdown-toggle.hidden-dropdown-icon {
+  &::after {
+    content: unset;
+  }
+}
+
+h4 {
+  cursor: pointer; 
+}
+
+.feed-box-landing {
+  background: none !important;
+}
+
+.landingLine {
+  border-right: 1px solid $light-grey;
+}
+
+.cursorForLanding {
+  cursor: pointer; 
+}

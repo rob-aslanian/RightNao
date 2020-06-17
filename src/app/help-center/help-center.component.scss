@@ -1,0 +1,204 @@
+@import "../../variables.scss";
+
+
+// ========================================================================
+// Start help styles
+// ========================================================================
+// Responsive
+@media (max-width: 991px){
+    .help-menu {
+        white-space: nowrap;
+        overflow-x: auto;
+        a {
+            display: inline-block;
+            margin-right:20px;
+        }
+    }
+}
+@media (min-width:992px){
+    .help-menu {
+        
+        a {
+            display: block;
+            margin-bottom:15px;
+        }
+    }
+}
+
+
+
+
+
+
+.landing-header {
+    display: flex;
+    justify-content: space-between;
+    background-color: $dark-blue;
+    padding:0 20px;
+    a {
+        color:$background-light-cyan;
+    }
+}
+.landing-logo{
+    display: flex;
+    align-items: center;
+    height: 60px;
+    img{
+        width: 38px;
+    }
+    .landing-logoText{
+        font: normal 30px above;
+        margin-left: 15px;
+        display: flex;
+        align-items: center;
+        color: #ffffff;
+        span.cyan {
+            color: $background-light-cyan;
+        }
+        .additional {
+            margin-left:20px;
+        }
+    }
+}
+
+
+.header-for-search {
+    height:144px;
+    padding:0 15px;
+    background: #a3aeba;
+    display: flex;
+    align-items: center;
+    .search-content {
+        margin:auto;
+        width:912px;
+        h1 {
+            font-size: 20px;
+            text-align: center;
+            margin-bottom:20px;
+            color:$dark-blue;
+        }
+    }
+    ::placeholder {
+        font-size:14px;
+        color:$dark-grey;
+    }
+}
+.container.help-boxes {
+    max-width:1257px;
+    padding-top:45px;
+}
+.box-heading {
+    background: $blue;
+    display: flex;
+    justify-content: space-between;
+    padding:10px 20px;
+    align-items:center;
+    border-radius:5px 5px 0 0 ;
+    img {
+        height:40px;
+    }
+    a {
+        color:white;
+        font-size:20px;
+        margin-bottom:0;
+    }
+}
+.box-content {
+    background: white;
+    border-radius: 0 0 5px 5px;
+    padding:20px;
+    margin-bottom:30px;
+    a {
+        color:$dark-grey;
+        margin-bottom:10px;
+        display: block;
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        &:last-child {
+            margin-bottom:0;
+        }
+    }
+}
+.container.help-info {
+    max-width:1257px;
+    padding-top:45px;
+    color:$dark-grey;
+    padding-bottom: 60px;
+    .help-content-text {
+        margin-top:20px;
+        &>:last-child {
+            margin-bottom:0;
+        }
+    }
+}
+b {
+    color: $dark-blue;
+}
+.help-menu {
+    border-radius:5px;
+    border:1px solid #e6e6e6;
+    background: white;
+    padding:20px;
+    a {
+        color:$dark-grey;
+        font-size: 16px;
+        text-decoration: none;
+        &:hover {
+            color:$dark-blue;
+        }
+        &:last-child {
+            margin-bottom: 0;
+        }
+        &.active {
+            font-weight: bold;
+            color:$dark-blue;
+        }
+    }
+}
+.help-content {
+    border-radius:5px;
+    border:1px solid #e6e6e6;
+    background: white;
+    padding:20px 20px 0 20px;
+}
+
+ul, ol {
+    margin-bottom: 1rem;
+}
+
+.help-content-info {
+    padding:20px 0;
+    border-bottom:1px solid $light-grey;
+    img {
+        margin: 0 5px 5px 5px;
+        max-height: 18px;
+    }
+    &:last-child {
+        border-bottom:none;
+    }
+    a {
+        color: $dark-grey;
+    }
+}
+.help-content-heading {
+    h2 {
+        font-size:20px;
+        color:$dark-blue;
+        font-weight: bold;
+    }
+    user-select: none;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    h3 {
+        font-size: 16px;
+        margin-bottom:0;
+        font-weight: bold;
+        color:$dark-blue;
+    }
+}
+// ========================================================================
+// Finish help styles
+// ========================================================================

@@ -1,0 +1,59 @@
+.custom-control {
+    padding-left: 0;
+}
+
+.custom-control-label {
+    padding-left: 35px;
+    padding-bottom: 2px;
+    color: #808080;
+}
+
+.custom-control-label::before {
+    left: 0;
+}
+
+.custom-control-label::after {
+    left: 0;
+}
+
+.experience-edit {
+    transition: .3s all ease-in-out;
+    opacity: 0;
+}
+
+.accomplishment {
+    &:first-child {
+        .experience-edit {
+            opacity: 1;
+        }
+    }
+    &:hover {
+        .experience-edit {
+            opacity: 1;
+        }
+    }
+}
+
+// .accomplishment:not(:first-child){
+//     &:hover{
+//         transition: .3s all;
+//         .editOnHover{
+//             display: block;
+//             bottom: 1px;
+//         }
+//     }
+// }
+
+// .accomplishment{
+//     &:first-child{
+//         .editOnHover{
+//             display: block;
+//         }
+//     }
+// }
+
+// .editOnHover{
+//     bottom: 1px;
+//     display: none;
+//     bottom: unset;
+// }

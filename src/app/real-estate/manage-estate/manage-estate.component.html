@@ -1,0 +1,28 @@
+<div class="dark-blue-bg-for-estate">
+    <div class="container">
+        <div class="row ">
+            <div class="col-12 manage d-flex justify-content-between">
+                <div class="col-md-5 mt-4 d-flex manage__navigation justify-content-between">
+                    <a [routerLink]="[ '/real-estate/manage-estate/announcement' ]" routerLinkActive="active">Announcement</a>
+                    <a [routerLink]="[ '/real-estate/manage-estate/saved-items' ]" routerLinkActive="active">Saved items</a>
+                    <a [routerLink]="[ '/real-estate/manage-estate/advertisement' ]" routerLinkActive="active">Advertisement</a>
+                </div>
+                <div class="col-md-7 manage__add d-flex justify-content-end d-flex">
+                    <img class="mr-2" src="assets/img/612.svg" alt="">
+                    <a [routerLink]="[ '/real-estate/add-estate' ]">Add property</a>
+                </div> 
+            </div>
+        </div>   
+    </div>
+</div>
+    
+<div class="container mt-3" style="min-height: 65.1vh;">
+    <div class="row pb-5">
+            <div class="content col-md-9 pb-5">
+                <router-outlet></router-outlet>
+            </div>
+        <div class="ads col-md-3">
+            <app-user-profile-landing-languages></app-user-profile-landing-languages>
+        </div>
+    </div>
+</div>

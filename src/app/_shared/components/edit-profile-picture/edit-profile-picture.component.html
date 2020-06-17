@@ -1,0 +1,13 @@
+<div class="photo-modal">
+  <div class="image-area-container">
+    <div class="image-area" *ngIf="imgLoaded">
+      <app-add-image [img]="avatar !== '' ? avatar : null" [cropType]="cropType"></app-add-image>
+    </div>
+    <app-spinner class="loader" *ngIf="!imgLoaded"></app-spinner>
+  </div>
+  <div class="text-right">
+    <button class="btn btn-primary" (click)="onUpload($event)">
+      Save
+    </button>
+  </div>
+</div>

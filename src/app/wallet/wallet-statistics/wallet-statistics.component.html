@@ -1,0 +1,13 @@
+<div class="statistics-nav">
+            <div class="statistics-nav-item" *ngFor="let currency of currencies">
+                    <p class="statistics-nav-item-title"> {{ currency['name'] }} </p>
+                    <div class="d-flex align-items-center">
+                        <img src="assets/img/wallet/transactions/background{{ currency['name'] }}.svg" alt=""  class="statistics-nav-item-img">
+                        <p  class="statistics-nav-item-amount"> {{ currency['amount'] }} </p>
+                    </div>
+            </div>
+</div>
+
+<div class="statistics">
+</div>
+<!-- [ngClass]="{currency['name']: activeCurrency == currency['name'] }"  -->

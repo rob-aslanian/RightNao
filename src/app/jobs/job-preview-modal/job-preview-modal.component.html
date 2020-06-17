@@ -1,0 +1,67 @@
+<div class="modal-content post-a-job">
+  <div class="popup-content default-modal">
+    <form>
+      <div class="company-posting-job post-a-job-wrap">
+        <!-- <div class="visible"> -->
+        <div class="detailed-view-line d-flex" *ngIf="descriptionLangs">
+          <select *ngIf="descriptionLangs.length > 1; else:oneLang"  (change)="changeLang($event)">
+            <option [value]="lang" [selected]="lang === descriptionLangs[0]" 
+                    *ngFor="let lang of descriptionLangs;">
+              {{ lang }}
+            </option>
+          </select>
+
+          <ng-template #oneLang>
+             {{  descriptionLangs[0] }} 
+          </ng-template>
+          
+        </div>
+        <div class="line-one">
+          <img [src]="companyInfo?.avatar ? '/file/' +  companyInfo.avatar : 'assets/img/default-company.svg' " alt="job-vacancy">
+          <div class="vacancy-content">
+            <div class="d-flex justify-content-between">
+              <h3 *ngIf="data.details.title">{{  data.details.title }}</h3>
+              <span class="package" *ngIf="jobPlan">{{ jobPlan }}</span>
+            </div>
+            <span>
+              {{ companyInfo.name ? companyInfo.name + ' /' : ''  }}
+              {{ companyInfo.industry ? companyInfo.industry  : ''  }}
+            </span>
+            <div class="vacancy-info">
+              <span *ngIf="data.details.city || data.details.country">
+                <img src="assets/img/24.svg" alt="tick"> 
+                  {{ data.details._city  }}
+                  {{ data.details.country ? ", " + utils.getCountryName(data.details.country) : '' }}
+              </span>
+              <!-- <span *ngIf="hiringDate">
+                <img src="assets/img/48.svg" alt="date"> 
+                {{ hiringDate | date:"M.d.yyyy" }}
+              </span> -->
+
+              <span *ngIf="data.details.employment_types">
+                <img src="assets/img/159.svg" alt="temporary"> 
+                {{ data.details.employment_types }}
+              </span>
+              <span *ngIf="data.details.job_functions && data.details.job_functions.length > 0">
+                <img src="assets/img/160.svg" alt="field">
+                {{ data.details.job_functions | addDelimetr : ',' }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- </div> -->
+        <hr>
+        <!-- Company Details -->
+            <app-company-details [data]="data.details" [selectedLang]="descriptionLang"></app-company-details>
+        <!-- Company Details -->
+      </div>
+      <div class="d-flex buttons">
+        <!-- <button class="ml-auto backgroundless" (click)="editJob()">Edit</button> -->
+        <button class="backgroundless" type="button" (click)="saveJobAsDraft()">Save as Draft</button>
+        <button class="btn btn-primary" type="button" (click)="publishJob()">Publish</button>
+      </div>
+    </form>
+
+  </div>
+</div>

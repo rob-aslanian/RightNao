@@ -1,0 +1,14 @@
+.new__comment{
+    animation: 4s toggleColor ease-in-out;
+}
+
+@keyframes toggleColor{
+    0%{ background: #afbace }
+    100% { background: #dce1e6 }
+}
+
+.dropdown-toggle.hidden-dropdown-icon {
+    &::after {
+      content: unset;
+    }
+  }

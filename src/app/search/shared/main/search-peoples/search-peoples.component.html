@@ -1,0 +1,4 @@
+<app-search-all-title [amount]="amount" type="people"></app-search-all-title>
+<div class="network-boxes-container form-row mb-2">
+    <app-profile-box [profile]="people" *ngFor="let people of peopleList; let i = index" [view]="searchService.view"></app-profile-box>
+</div>

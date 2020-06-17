@@ -1,0 +1,129 @@
+<form [formGroup]="basicForm" autocomplete="off">
+ <div class="dasdasdasd-information">
+   <div class="w-50">
+      <div class="mt-4">
+          <label for="title" class="label-control m-0">Title</label>
+          <div class="text-right">
+              <span>{{ basicForm.get('title').value.length }}/64</span>
+          </div>
+           <input type="text" 
+                  id="title" 
+                  class="form-control" 
+                  placeholder="type title" 
+                  formControlName="title"
+                  maxlength="64"
+                  [ngClass]="{'is-invalid': basicForm.get('title').invalid && isSubmitted }">
+        </div>
+        <div class="mt-3">
+                <label for="total" class="label-control">House rules <span style="color: #808080;">(optional)</span></label>
+                <input type="text" 
+                       id="total" 
+                       class="form-control" 
+                       placeholder="type house rules" 
+                       formControlName="house_rule">
+        </div>
+    </div>
+   
+     <div class="mt-3">
+          <label for="description" class="label-control" >Description <span style="color: #808080;">(optional)</span> </label>
+          <textarea type="text" 
+                    id="description" 
+                    placeholder="Description" 
+                    class="form-control" 
+                    rows="5"
+                    formControlName="description"></textarea>
+     </div>
+
+     <div class="price">
+        <div class="mt-3">
+            <label for="" 
+                   class="d-block"
+                   [ngClass]="{'custom-invalid': basicForm.get('price').invalid && isSubmitted }">Price</label>
+                    
+            <div class="custom-control custom-radio d-inline-block mr-3 mb-2 checkbox-home">
+
+                <input class="custom-control-input" 
+                       type="radio" 
+                       id="PriceType_Total"  
+                       value="PriceType_Total" 
+                       name="price" 
+                       formControlName="price">
+
+                <label class="custom-control-label" for="PriceType_Total">Total price</label>
+            </div>
+
+             <div class="custom-control custom-radio d-inline-block mr-3 mb-2 checkbox-home">
+
+                <input class="custom-control-input" 
+                       type="radio" 
+                       id="m5"  
+                       value="PriceType_MetreSquare" 
+                       name="price"
+                       formControlName="price">
+
+                <label class="custom-control-label" for="m5">m<sup>2</sup></label>    
+            </div>
+
+            <div class="custom-control custom-radio d-inline-block mr-3 mb-2 checkbox-home">
+
+                <input class="custom-control-input" 
+                       type="radio" 
+                       id="ft5"  
+                       value="PriceType_FeetSquare" 
+                       name="price"
+                       formControlName="price">
+
+                <label class="custom-control-label" for="ft5">ft<sup>2</sup></label>    
+           </div>
+        </div> 
+
+        <div class="col-7 p-0">
+                <input type="number" 
+                       class="form-control"
+                       placeholder="Enter price"
+                       formControlName="enterPrice"
+                       [ngClass]="{'is-invalid': basicForm.get('enterPrice').invalid && isSubmitted }">
+
+                <div class="change-metrics" ngbDropdown>
+                        <app-change-currency [name]='"zuriko"' 
+                                             [ctrl]='basicForm.get("currency")'></app-change-currency>
+                </div>
+        </div>
+        <div class="col-11 p-0">
+            <div class="d-flex align-items-center justify-content-between mt-3" 
+                 formArrayName="phones" 
+                 *ngFor="let item of basicForm.get('phones')['controls']; let i = index;">
+                     <ng-container [formGroupName]="i">
+                            <select name="" 
+                                    id="" 
+                                    class="form-control" 
+                                    style="width: 25%;" 
+                                    formControlName="country_code_id"
+                                    [ngClass]="{'is-invalid': isSubmitted  &&  basicForm.get('phones').at(i).get('country_code_id').invalid}">
+                            <option value="">Select one</option>
+                            <option *ngFor="let phone of countryCodes" 
+                                   [value]='phone.id' >{{ phone.country }}</option>
+                            </select>
+
+                            <input type="number" 
+                                   class="form-control" 
+                                   style="width: 65%;" 
+                                   placeholder="Type phone number"
+                                   formControlName="number"
+                                   [ngClass]="{'is-invalid': isSubmitted && basicForm.get('phones').at(i).get('number').invalid }">
+                     </ng-container>
+
+                     <div class="add-fetching-data pl-2" (click)="addNewPhone()" *ngIf="i === 0; else delete" >  
+                           <img src="assets/img/148.svg" alt="">
+                     </div>
+       
+                     <ng-template #delete>
+                            <div class="add-fetching-data pl-2" (click)="deleteClick(i)">  
+                                <img src="assets/img/267.svg" alt="">
+                            </div>
+                     </ng-template>
+                </div>
+        </div>
+    </div>
+   </div>
+</form>

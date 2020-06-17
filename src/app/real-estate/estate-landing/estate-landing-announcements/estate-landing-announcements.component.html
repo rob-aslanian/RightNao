@@ -1,0 +1,23 @@
+<div class="announcements row pb-5">
+
+    <div class="announcements__title col-12 ">
+        <div class="col-12 d-flex justify-content-between mt-2">
+            <span>latest announcements</span>
+            <div class="connections-first-line" ngbDropdown >
+                    <button ngbDropdownToggle class="ml-auto" [ngClass]="isCardView ? 'blocks' : 'list'"></button>
+                        <div ngbDropdownMenu class="options blocks-option" style="left: 370px">
+                            <button ngbDropdownItem (click)="isCardView = true" > <img src="assets/img/blocks.svg" alt=""> Card view</button>
+                            <button ngbDropdownItem (click)="isCardView = false" > <img src="assets/img/semi-blocks.svg" alt=""> List view</button>
+                        </div>
+                </div>
+        </div>
+    </div>
+
+    <div class="row m-0 w-100">
+        <div class="{{ isCardView ?  'col-12' : 'col-6' }}" *ngFor="let home of homies">
+            <app-home-box [isCardView]='isCardView' [home]='home'></app-home-box>
+        </div>
+    </div> 
+   
+
+</div> 

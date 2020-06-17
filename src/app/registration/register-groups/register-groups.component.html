@@ -1,0 +1,93 @@
+ 
+    <div class="register-group-wrapper">
+        <div class="register-group">
+            <div class="register-group__heading">
+                <h2 class="register-group__heading__title">Register Group</h2>
+            </div>
+        </div>
+        <form [formGroup]='registerForm' (ngSubmit)='submit()'>
+          <div class="register-group__input-field">
+              <div class="register-group__input-field__group-name">
+                  <label class="page-section-text-blue register-group__input-field__text">Name your group <span class="required-field-star">*</span></label>
+                  <div>
+                      <input type="text" 
+                            placeholder="Enter name" 
+                            class="form-control"
+                            formControlName='name'
+                            [ngClass]='{"is-invalid": forCtrls.name.errors && submitted }'>
+                  </div>
+              </div>
+          </div>
+          <ng-container *ngIf='forCtrls.name.errors' >
+               <p class="is-invalid" > URL is already taken </p>
+
+          </ng-container>
+          <div class="register-group__input-field">
+              <div class="register-group__input-field__group-type">
+                  <label class="page-section-text-blue register-group__input-field__text">Group type <span class="required-field-star">*</span></label>
+                  <div>
+                      <select 
+                      class="form-control"
+                      formControlName='type'
+                      [ngClass]='{"is-invalid": forCtrls.type.errors && submitted }'>
+                          <option value="" disabled selected>Select one</option>
+                          <option *ngFor='let key of groupKeys' [value]="key">{{ groupsEnum[key]  }}</option>
+                      </select>
+                  </div>
+              </div>
+          </div>
+
+          <div class="register-group__input-field">
+              <h4 class="page-section-text-blue register-group__input-field__text">Privacy <span class="required-field-star">*</span></h4>
+              <div class="">
+
+                  <div class="custom-control custom-radio register-group__input-field__radio-item">
+                      <input type="radio" 
+                            value="public" 
+                            class="custom-control-input" 
+                            id="public" 
+                            name="privacy_type" 
+                            formControlName='privacy_type'>
+
+                      <label class="custom-control-label group-register-label" for="public">
+                          <h4 class="page-section-text-grey mb-0">Public Group</h4>
+                          <span class="page-section-text-grey-small">Anyone can see the group, group members and their posts</span>
+                      </label>
+                  </div>
+
+                  <div class="custom-control custom-radio register-group__input-field__radio-item">
+                      <input type="radio" 
+                            value="closed" 
+                            class="custom-control-input" 
+                            id="closed" 
+                            name="privacy_type" 
+                            formControlName='privacy_type'>
+
+                      <label class="custom-control-label group-register-label" for="closed">
+                          <h4 class="page-section-text-grey mb-0">Closed Group</h4>
+                          <span class="page-section-text-grey-small">Group visible in search results. Members can invite other members to join. Only members can see posts</span>
+                      </label>
+                  </div>
+
+                  <div class="custom-control custom-radio register-group__input-field__radio-item">
+                      <input type="radio"
+                            value="secret" 
+                            class="custom-control-input" 
+                            id="secret" 
+                            name="privacy_type" 
+                            formControlName='privacy_type'>
+
+                      <label class="custom-control-label group-register-label" for="secret">
+                          <h4 class="page-section-text-grey mb-0">Secret Group</h4>
+                          <span class="page-section-text-grey-small">Only members can find group, see members and their posts</span>
+                      </label>
+                  </div>
+                  
+              </div>
+          </div>
+          <div class="d-flex justify-content-end">
+              <button class="btn btn-primary register-group-btn">Create</button>
+          </div>
+        </form>
+      </div>
+

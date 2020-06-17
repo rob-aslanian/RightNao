@@ -1,0 +1,28 @@
+ @import 'src/variables';
+
+ .checkbox-home {
+    display: block !important;
+    label {
+        color: $dark-grey;
+        padding-left: 10px;
+    }
+}
+
+.custom-invalid {
+    color: red;
+}
+
+ 
+
+
+.add-fetching-data {
+    width: 30px;
+    height: 30px;   
+    border-radius: 50%;   
+    border: 1px solid $dark-grey;
+    cursor: pointer;
+    img {
+         width: 13px;
+         height: 20px;
+    }
+ };

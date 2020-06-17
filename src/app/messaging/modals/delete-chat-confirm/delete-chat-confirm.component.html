@@ -1,0 +1,12 @@
+<div class="smsModal-delete-Conversation">
+  <h1>Delete Conversation <a (click)="close()">&#10005;</a></h1>
+  <div class="popup-content">
+      <p>
+          This will permanently delete the conversation history
+      </p>
+      <div class="d-flex justify-content-end">
+          <button (click)="onDelete()" class="save-and-add backgroundless">Delete</button>
+          <button *ngIf="!archiveStatus" class="btn btn-primary" (click)="archiveConversation()">Archive</button>
+      </div>
+  </div>
+</div>

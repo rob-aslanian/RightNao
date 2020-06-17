@@ -1,0 +1,21 @@
+<div class="center-content-jobs mt-3 p-3" >
+
+    <!-- Content -->
+    <ng-container *ngIf="(jobs | async) as jobs; else:loading">
+        <div class="d-flex align-items-center justify-content-between" *ngIf="jobs.amount_of_results">
+            <h2>Jobs</h2>
+            <span class="results">Showing {{ jobs.amount_of_results }} results</span>
+        </div>
+
+        <app-company-box type="all" [jobs]="jobs.job_search_result" [id]="jobID"></app-company-box>
+    </ng-container>
+    <!-- Content -->
+    
+
+    <!-- Loader -->
+    <ng-template #loading>
+        <app-spinner class="d-flex justify-content-center"></app-spinner>
+    </ng-template>
+    <!-- Loader -->
+
+</div>

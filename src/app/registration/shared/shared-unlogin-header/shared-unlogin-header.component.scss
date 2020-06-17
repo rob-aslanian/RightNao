@@ -1,0 +1,33 @@
+/*Import variables file*/
+@import "src/variables.scss";
+/*END OF Import variables file*/
+
+
+.logo__header{
+    background: $dark-blue;
+    margin-right: 10px;
+    display: flex;
+    padding: 1rem;
+    align-items: center;
+    position: absolute;
+    z-index: 3;
+}
+
+
+.landing-logoText{
+    font: normal 30px above;
+    margin-left: 15px;
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    span{
+        color: $background-light-cyan;
+    }
+}
+
+@media all and (max-width: 1000px) {
+    .logo__header{
+        width: 100%;
+        position: unset;
+    }
+}

@@ -1,0 +1,106 @@
+@import 'src/variables';
+
+.portfolio-detailed {
+    width: 100%;
+    background: $white;
+    position: relative;
+    img {
+        object-fit: contain;
+        cursor: pointer;
+    }
+
+   .portfolio-tools {
+        position: absolute;
+        top: -50px;
+        right: -116px;
+       .rounded-box-wrapper {
+           .rounded-box {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                margin-bottom: 1rem;
+                background: $white;
+                cursor: pointer;
+                img {
+                    width: 25px;
+                    height: 36px;
+                    margin: 0px auto;
+                    display: block;
+                    padding-top: 10px;
+                }
+           }
+           span {
+               color: $white;
+               padding-left: 10px;
+               padding-bottom: 22px;
+               right: -136px;
+               cursor: pointer;
+           }
+       }
+       .tools {
+        position: relative;
+        .addational-tools { 
+            display: none;
+            img {
+                height: 25px;
+                width: 25px;
+                margin-left: 10px;
+                margin-top: 5px;
+             }
+        };
+        &:hover{
+            .addational-tools {
+                box-shadow: 0 0 20px 0 rgba(0,0,0,.15);
+                border-radius: 6px;
+                position: absolute;
+                min-width: 150px;
+                height: 47px;
+                background: #FFFFFF;
+                right: 118px;
+                top: 3px;
+                padding: 5px;
+                display: block;
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        width: 0;
+                        height: 0;
+                        border-top: 8px solid transparent;
+                        border-bottom: 8px solid transparent;
+                        border-left: 14px solid $white;
+                        left: 149px;
+                        top: 15px;
+                    }
+               }
+            }
+         }
+      }
+  };
+
+.portfolio-section {
+
+};
+
+.border-bottom-desc {
+    padding-bottom: 4px;
+    border-bottom: 1px solid #dcdcdc;
+};
+
+.details-left {
+    img {
+
+        width: 20px;
+    };
+    span {
+        color: $dark-grey;
+        padding-left: 15px;
+    }
+   
+};
+
+.dots {
+    position: absolute;
+    top: -69px;
+    right: 41px;
+
+}

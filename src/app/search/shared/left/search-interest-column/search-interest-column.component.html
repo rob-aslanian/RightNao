@@ -1,0 +1,28 @@
+<div class="search-groups__sidebar-section">
+        <app-search-column-header title="Interests">
+            <div class="mt-2">
+                    <div class="search-groups__sidebar-section__delivery-time-options search-groups__sidebar-section__wrap">
+                        <div class="
+                            custom-control 
+                            custom-checkbox 
+                            page-section-text-grey
+                            " *ngFor="let interest of interests">
+                            <input type="checkbox" [checked]="interest.isSelected" class="custom-control-input" [id]="interest.name" name="type"
+                                   (change)="checkInterest($event)" [value]="interest.name">
+                            <label
+                                class="custom-control-label" [for]="interest.name" >
+                            {{ interest.name }}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mt-2">
+                        <div class="input-container">
+                            <input type="text" class="form-control" id="skill" placeholder="Enter interests" (keyup.enter)="selectInterest($event)"/>
+                        </div>
+                        <button class="btn backgroundless search-btn" type="submit">
+                            <img src="assets/img/right-arrow.svg" class="search-groups__sidebar-section__location__img"/>
+                        </button>
+                    </div>
+            </div>
+        </app-search-column-header>
+    </div>

@@ -1,0 +1,84 @@
+<div class="dark-blue-bg-for-jobs">
+    <div class="background-content-wrap post">
+        <div class="profile container">
+            <div class="row">
+                <div class="col-md-9">
+                <h1>ADD POST</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<form [formGroup]="servicesForm" class="profile form-container">
+    <div class="col-md-5">
+        <div class="form-group">
+            <label  for="selectSer" class="label-control"> <h6>Select service category  <span>*</span> </h6></label>
+            <select name="service"
+                    id="selectSer" 
+                    class="form-control"
+                    (change)="selectService($event)"
+                    formControlName="service"
+                    [ngClass]="{'is-invalid':servicesForm.get('service').invalid && isSubmitted}">
+                <option value="" disabled>Select Service</option>
+                <option [value]="item['type']" 
+                        *ngFor="let item of categoryList">
+                            {{ item['text'] }} 
+                </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="col-md-5">
+        <div class="form-group">
+            <label  for="selectSub" class="label-control"> <h6>Select service subcategory  <span>*</span> </h6></label>
+            <select name="sub_categor"
+                    id="selectSub" 
+                    class="form-control"
+                    formControlName="sub_category"
+                    [ngClass]="{'is-invalid':servicesForm.get('sub_category').invalid && isSubmitted,
+                                'has_reppossed':servicesForm.get('service').invalid}">
+                <option value="" disabled>Select Service</option>
+                <option [value]="item" 
+                        *ngFor="let item of subCategoryList">
+                            {{ item }} 
+                </option>
+            </select>
+        </div>
+    </div>
+    <div class="col-md-7">
+        <label> <h6> Price <span>*</span> </h6></label>
+        <app-add-price [form]="servicesForm"></app-add-price>
+    </div>
+    <div class="col-md-6">
+        <label class="label-control"> <h6> Choose Location <span>*</span> </h6></label>
+        <app-add-location></app-add-location>
+    </div>
+    <div class="col-md-6">
+        <label  for="0" class="label-control"> <h6> Phone<span>*</span> </h6></label>
+        <app-phones></app-phones>
+    </div>
+    <ng-container formGroupName="detail">
+        <div class="title col-md-5">
+            <label  for="title" class="label-control"> <h6> Title <span>*</span> </h6></label>
+            <input [ngClass]="{'is-invalid':servicesForm.get('detail').get('title').invalid && isSubmitted}"
+                    type="text" class="form-control" 
+                   placeholder="Enter title" id="title"
+                   formControlName="title">
+        </div>
+
+
+        <div class="editor col-md-8">
+           <div class="text-editor">
+                <label  for="description" class="label-control"> <h6> Description <span>*</span> </h6></label>
+               <app-text-editor [placeholder]='"Enter Description"' 
+                                [id]='"description"'
+                                formControlName="description"></app-text-editor>
+
+           </div>
+        </div>
+   </ng-container>
+   <app-service-slider  (result)='getFiles($event)' [filesForEdit]='files' *ngIf="files"></app-service-slider>
+   <div class="d-flex justify-content-end mt-4">
+       <button class="btn btn-primary" (click)="next()">Next</button>
+   </div>
+</form>

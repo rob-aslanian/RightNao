@@ -1,0 +1,9 @@
+<!-- Main content -->
+<div class="main-content" #anchor>
+  <button class="btn btn-primary load_more"  (click)="loadNewPosts()" *ngIf="hasNewPost">
+    Fresh News {{ newPosts.length }}
+  </button>
+  <app-create-post></app-create-post>
+  <app-posts [type]="type"></app-posts>
+</div>
+<!-- Main content -->

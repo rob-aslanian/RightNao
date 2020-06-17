@@ -1,0 +1,28 @@
+<div class="languages-content d-flex p-2">
+
+  <div class="languages d-flex justify-content-between col-11">
+    <a *ngFor="let lang of languagesToShowList; let i = index" 
+       (click)="changeLanguage(lang, i)"
+       [ngClass]="{'active': activeLanguageIndex === i }"
+        > {{ lang | lang }} 
+    </a>   
+  </div>   
+   
+  <div class="edit col d-flex justify-content-center p-0" 
+       (click)="openModal()"
+       >
+    <a> 
+      <img src="assets/img/19.svg" alt="">
+    </a>
+  </div>
+
+  <app-modal>
+      <app-landing-languages-modal 
+          [languagesList] = 'languagesList'
+          [selectedIntLang] = 'selectedIntLang'
+          (result) = 'getSelectedLanguage($event)'
+        >
+      </app-landing-languages-modal>
+  </app-modal>
+
+</div>    

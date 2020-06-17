@@ -1,0 +1,124 @@
+
+<div class="p-3">
+    <div class="add-portfolio">
+            <div class="add-portfolio-container">
+                    <div class="d-flex justify-content-between">
+                            <h5>Create a Project</h5>
+                            <a style="cursor: pointer">
+                                <img src="assets/img/54.svg" alt="back" [routerLink]="['/user/profile/'+userUrl+'/portfolio/'+userId+'/'+addType]" >
+                            </a>
+                    </div>
+                 <form autocomplete="off" [formGroup]="portfolioForm">
+                        <div class="row">
+
+                           <div class="col-md-7">
+                                        <div class="upload upload-info mb-4 pl-4">
+                                                <div  class="progress-container">
+                                                        <div class="limit">
+                                                                <span>{{ 50 - fileSizeInPercentage }} % to free upload limit</span>   
+                                                        </div>
+                                                        <div class="progress-bar">
+
+                                                        </div>
+                                                        <div class="progress-bar-animate" [style.width.%]='fileSizeInPercentage'>
+
+                                                        </div>
+                                                        <div class="ungprade">
+                                                                <a>Ungprade now</a> <span>to get unlimited uploads</span>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                        <div class="upload upload-big" [ngClass]="{ 'invalid': isSubmitted && fileErr }">
+                                                
+                                                <app-upload-file [supportedType]='addType' 
+                                                                 (result)='getFiles($event, null, true)'
+                                                                 [fileEdit]='primaryFile?.fileForView'></app-upload-file> 
+                                        </div>
+                          
+                           </div>
+
+                           <div class="col-md-5">
+                                        <div class="form-group">
+                                                <label for="title">Title</label>
+                                                <input type="text" 
+                                                       class="form-control" 
+                                                       id="title" 
+                                                       placeholder="Add a title" 
+                                                       formControlName="title" 
+                                                       [ngClass]="{'is-invalid': isSubmitted && prtCtrls.title.errors }">
+                                        </div>
+
+                                        <div class="form-group" >
+
+                                                <label for="tools" >Tools</label>
+ 
+                                                <input type="text"
+                                                       #tool
+                                                       [ngbTypeahead]="searchTool" 
+                                                       [resultFormatter]="toolFormatter" 
+                                                       [inputFormatter]="toolFormatter"
+                                                       (keyup.enter)='selectTool($event, false, tool)'
+                                                       (selectItem)='selectTool($event,  true, tool)'
+                                                       class="form-control"
+                                                       placeholder="Enter Tool">
+
+                                                <ng-container *ngIf="selectedTools.length > 0" >
+                                                        <span *ngFor="let item of selectedTools; let i = index" class="tool">
+                                                                        {{ item.name }}<a class="pl-2" (click)='removeTool( i )' style="cursor: pointer">X</a>
+ 
+                                                        </span>
+                                                </ng-container>
+
+           
+                                        </div>
+
+                                        <div class="form-group">
+                                                <label for="description">Description</label>
+                                                <textarea class="form-control" 
+                                                          placeholder="Tell us about your process and you arreved at this design" 
+                                                          cols="4" 
+                                                          formControlName="description"
+                                                          [ngClass]="{'is-invalid': isSubmitted && prtCtrls.description.errors }"></textarea>
+                                        </div>
+
+                                        <div  class="custom-control custom-checkbox" style="margin-left: -15px;" >
+
+                                                <input  class="custom-control-input custom-control-label"  
+                                                        id="check-connections" 
+                                                        type="checkbox" 
+                                                        formControlName="is_comment_disabled">
+
+                                                <label  class="custom-control-label" 
+                                                        for="check-connections" 
+                                                        style="color:#808080"> Close Comments </label>
+                                        </div>
+                           </div>
+
+                        </div>   
+                        <div class="col-md-7 p-0">
+                                <h5 class="pt-4 pb-4">Multi-shot</h5>  
+                                        
+                                <div class="row">        
+                                        <div class="col-3" *ngFor="let file of files; let i = index">
+                                                <div class="upload upload-small">
+                                                        <app-upload-file [supportedType]='addType' 
+                                                                         [index]='i'  
+                                                                         [fileEdit]='file?.fileForView'
+                                                                         (result)='getFiles( $event, i )'></app-upload-file> 
+                                                </div>
+                                        </div>
+                                </div>
+                                
+                        </div>
+
+                        <div class="d-flex justify-content-end mt-3">
+                                <button class="btn btn-primary" (click)='submitForm()' type="button">
+                                        Publish
+                                </button>
+                        </div>  
+                 </form>
+                </div>
+  
+    </div>
+
+</div>

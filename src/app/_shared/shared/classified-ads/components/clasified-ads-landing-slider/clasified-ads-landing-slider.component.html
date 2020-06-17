@@ -1,0 +1,17 @@
+<div class="start" style="position: relative">
+    <app-slider-bad-boy-edition [amount]='1'>
+        <div class="row flex-nowrap god">
+            <div class="col-12 backgr-image" *ngFor="let item of list" 
+                [ngStyle]="{ 'background-image': 'url('+ item.img +')'}">
+                <h3>{{item?.header}}</h3>
+                <p>{{item?.paragraph}}</p>
+                <button class="btn" [routerLink]="path ? [path] : []" >{{item?.button}}</button>
+            </div>
+        </div>
+    </app-slider-bad-boy-edition>
+    <div class="dot" (click)='changeSlide(i, $event)' 
+                     *ngFor="let item of list; let i = index"
+                     [ngStyle]="{'left':(30 + (i * 20))+'px' }" 
+                     [ngClass]="{'active-ball': i == activePage}"></div>
+
+</div>

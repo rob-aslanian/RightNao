@@ -1,0 +1,129 @@
+<div class="detailed-info" (scroll)="onScroll($event)">
+  <div class="row">
+    <!-- Right -->
+    <div class="col-6">
+      <div class="detail-box" *ngIf="data?.job_functions as jobFunctions">
+         <h6>Job Functions</h6>
+         <div  >
+            <span class="company-details-text capitalize" *ngIf="jobFunctions?.length > 0" >
+                {{  jobFunctions | addDelimetr:', ' | beautify }}
+            </span>
+          </div> 
+      </div>
+      <div class="detail-box mt-2"  *ngIf="data?.employment_types">
+          <h6>Employment Type</h6>
+          <span class="company-details-text capitalize">
+              {{ data.employment_types | addDelimetr:',' }} 
+          </span> 
+       </div>
+       <div class="detail-box mt-2" *ngIf="data?.salary_max || data?.salary_min || data?.additional_compensation">
+          <h6>Compensation</h6>
+          <span class="company-details-text">
+            {{ data.salary_min }} - {{  data.salary_max}} {{ data.salary_currency }} | 
+            {{ data.salary_interval ? 'Per ' + data.salary_interval : '' }}
+            <ng-container *ngIf="data?.additional_compensation as comp">
+                <span *ngIf="comp.length > 0" class="capitalize">+ {{ comp |  addDelimetr:', ' | beautify  }}</span>
+            </ng-container>  
+          </span>
+       </div>
+    </div>
+
+    <!-- Left -->
+    <div class="col-6">
+        <div class="detail-box"  *ngIf="(data.additional_info) as info ">
+            <h6>Suitable for</h6>
+            <span class="company-details-text capitalize" *ngIf="info.suitable_for" >
+                 {{ info.suitable_for | addDelimetr:', ' | beautify }}
+            </span>
+         </div>
+         <div class="detail-box mt-2" *ngIf="data?.number_of_positions" >
+            <h6>Number of positions</h6>
+            <span class="company-details-text" >
+                {{ data.number_of_positions }} position
+            </span>
+         </div>
+         <div class="detail-box mt-2" *ngIf="data?.number_of_positions" >
+            <h6>Deadline date</h6>
+            <span class="company-details-text" *ngIf="data?.deadline_day || data?.deadline_month || data?.deadline_year" >
+                {{ data.deadline_day + '-' + data.deadline_month + '-' + data.deadline_year }} 
+            </span>
+         </div>
+    </div>
+ 
+  </div>
+
+  <ng-container *ngIf="selectedDescription">
+      <hr>
+      <div class="detail-content">
+          <h5>Job Description</h5>
+        <div class="right description">
+          <div class="job-description-textarea company-details-text"  [innerHtml]="selectedDescription"></div>
+        </div>
+      </div>
+      <div class="detail-box mt-3"  *ngIf="selectedWhyUs">
+          <h6>Why us</h6>
+          <div class="why-us-textarea company-details-text"  [innerHtml]="selectedWhyUs"></div>
+       </div>
+  </ng-container>
+  
+
+  <!-- Qualifications -->
+  <ng-container *ngIf="matcher">
+    <ng-container *ngIf="matcher['preterred'].experience !== 'experience_unknown' || 
+                         matcher['required'].experience !== 'experience_unknown' ">
+        <hr>
+        <div class="detail-content">
+          <div class="description">
+              <app-vacansy-match *ngIf="matcher" [data]="matcher"></app-vacansy-match>
+          </div>
+        </div>
+    </ng-container>
+    
+  </ng-container>
+    <!-- Qualifications -->
+
+  <!-- Benefits -->
+  <ng-container *ngIf="benefits">
+    <hr>
+    <div class="detail-content">
+      <div class="left">
+        <h5>Benefits</h5>
+      </div>
+      <div class="right">
+        <div class="form-row" *ngIf="benefits && benefits.length > 0">
+          <div class="col-md-6" *ngFor="let benefit of benefits; let i = index; trackBy:trackByFn">
+            <div>
+              <img [src]="benefit.icon" [alt]="benefit.id" class="mr-2">
+              <span class="benefit__span">{{ benefit.name  | translate }}</span>
+            </div>
+          </div>
+        </div>
+      </div> 
+    </div>
+  </ng-container>
+
+   <!-- Additional files -->
+   <ng-container *ngIf="data?.files.length > 0 ">
+     <hr>
+      <div class="detail-content">
+        <h5>Additional files</h5>
+        <div class="right container pl-0">
+          <div class="row">
+            <div class="col-6 mb-0" >
+                <div *ngIf="data?.files as files" class="mb-2">
+                    <span class="company-details-text">Upload Files</span>
+                    <span class="mt-2">
+                      <a *ngFor="let document of files; trackBy:trackByFn" class="mr-5 download-document-link" [href]="'/file/' + document.address" [download]="document.name">
+                        <img [src]="document.name | fileIcon" alt="pdf">
+                        {{ document.name }}
+                      </a>
+                    </span>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </div>
+   </ng-container>
+   
+  
+</div>

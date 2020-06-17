@@ -1,0 +1,58 @@
+<div class="modal-content">
+  <div class=" add-interest">
+
+    <form [formGroup]="interestForm"   autocomplete="off">
+      <div class="mobile-modal">
+      <div class="buttons d-flex">
+        <app-add-image [img]="data ? data.image : null" style="width: 100%;"></app-add-image>
+
+      </div>
+      <br>
+      <div class="form-group">
+        <label for="add-interest" >{{ '782'| translate }}<span>*</span></label>
+        <input type="text" 
+        class="form-control" 
+        formControlName="interest"
+        [ngClass]="{ 'is-invalid': submited && inter.interest.errors }" id="add-interest"
+        maxlength="64"
+        >
+      </div>
+
+    <ng-container *ngIf="submited &&  inter.interest.errors">
+          <span class="error_message"  *ngFor="let error of utils.getErrorsKey(inter.interest.errors)">
+                  {{ utils.$getErrors(error) }}
+          </span> 
+   </ng-container>
+
+
+      <div class="form-group mb-0">
+        <div class="d-flex justify-content-between">
+            <label for="add-interest-description">{{ '461'| translate }}</label>
+            <span> {{ inter.description && inter.description.value !== null ?
+                inter.description.value.length : 0 }} / 120</span>
+        </div>
+        <textarea class="form-control" 
+                  formControlName="description" 
+                  maxlength="120"
+                  id="add-interest-description" 
+                  [placeholder]="'Enter description'" 
+                  [ngClass]="{ 'is-invalid': submited && inter.description.errors }"></textarea>
+      </div>
+
+    <ng-container *ngIf="submited &&  inter.description.errors">
+          <span class="error_message"  *ngFor="let error of utils.getErrorsKey(inter.description.errors)">
+                  {{ utils.$getErrors(error) }}
+          </span> 
+   </ng-container>
+  </div>
+      <div class="d-flex justify-content-between mobile-button">
+          <button class="save-and-add backgroundless btn" (click)="remove()" *ngIf="data">{{ '1185'| translate }}</button>
+          <div class="button-container d-flex">
+            <button class="backgroundless pr-3" (click)="submit(true)" *ngIf="!data">{{ '1233'| translate }}</button>
+            <button class="btn btn-primary" (click)="submit()">{{ '1231'| translate }}</button>
+          </div>
+      </div>
+
+    </form>
+  </div>
+</div>

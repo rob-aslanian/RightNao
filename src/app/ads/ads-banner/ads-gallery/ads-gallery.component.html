@@ -1,0 +1,20 @@
+<div class="ads__gallery">
+  <ng-container *ngIf="galleries | async ">
+    <div class="ads__gallery__row row" *ngIf="images && images?.length > 0">
+      <app-infinity-scroll (scrolled)="scroll()">
+        <div class="row">
+          <ng-container *ngFor="let image of images; trackBy:trackByFn">
+              <div class="col-3 mt-3" style="cursor: pointer" (click)="selectedImage = image">
+                  <img [src]="'/file/' + image.address" alt="" class="ads__gallery__row__image">
+                  <img src="assets/img/459.svg" class="ads__checkbox" *ngIf="selectedImage === image">
+              </div>
+          </ng-container>
+        
+        </div>
+      </app-infinity-scroll>
+    </div>
+  </ng-container>
+  <div class="d-flex justify-content-end">
+    <button class="btn btn-primary ml-2" type="submit" (click)="emitData()">Next</button>
+  </div>
+</div>

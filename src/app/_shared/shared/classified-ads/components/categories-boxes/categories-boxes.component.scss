@@ -1,0 +1,28 @@
+
+div {
+    .cat-title {
+        position: absolute;
+        left: 29px;
+        bottom: 10px;
+        transform: translate(-15px, 0px);
+        font-size: 18px;
+        color: #fff;
+        cursor: pointer;
+        font-weight: 700;
+    };
+    img {
+        width: 100%;
+        max-height: 126px;
+        border-radius: 4px;
+    }
+    h1 {
+        top: 25px;
+        left: 13px;
+        color: white;
+        cursor: pointer;
+    }
+    
+}
+.header-title {
+    position: absolute;
+}

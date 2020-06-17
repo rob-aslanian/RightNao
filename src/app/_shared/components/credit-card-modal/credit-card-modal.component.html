@@ -1,0 +1,66 @@
+
+    <div class="popup-content default-modal">
+        <form [formGroup]="creditForm">
+            <div class="form-row">
+                <div class="col-md-6 pr-3">
+                    <h2>Credit Card</h2>
+                    <div class="we-accept"> 
+                        <span>We accept</span>
+                        
+                        <div class="cards">
+                            <a><img src="assets/img/237.svg" alt="visa"></a>
+                            <a><img src="assets/img/238.svg" alt="master"></a>
+                        </div>
+                    </div>
+                    <input disabled  type="text" class="form-control" placeholder="Name on card">
+                    <input disabled  type="text" class="form-control" placeholder="Credit card number">
+                    <div class="form-row">
+                        <div class="col-md-4 ">
+                            <select disabled class="form-control">
+                                <option hidden selected disabled>Exp. Month</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 ">
+                            <select disabled class="form-control">
+                                <option hidden selected disabled>Exp. Year</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 ">
+                            <input disabled type="text" class="form-control" placeholder="Enter CVV">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 pl-3">
+                    <h2>Billing Address</h2>
+                    <input disabled  type="text" class="form-control" placeholder="Street address">
+                    <input disabled  type="text" class="form-control" placeholder="Apartment, unit, building, floor, etc.">
+                    <div class="form-row">
+                        <div class="col-md-6 ">
+                            <input disabled  type="text" class="form-control" placeholder="City">
+                        </div>
+                        <div class="col-md-6 ">
+                            <input disabled  type="text" class="form-control" placeholder="State / Province / Region">
+                        </div>
+                        <div class="col-md-6 ">
+                            <input disabled  type="text" class="form-control" placeholder="Postal Code">
+                        </div>
+                        <div class="col-md-6 ">
+                            <select disabled class="form-control">
+                                <option hidden selected disabled>Country / Region</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="custom-control custom-checkbox">
+                        <input disabled  disabledtype="checkbox" class="custom-control-input disabled " id="save-address">
+                        <label class="custom-control-label" for="save-address">Save Address</label>
+                    </div>
+                </div>
+            </div>
+            <div class="total-payment">
+                <span>Banner Ad - New Application</span>
+                
+                <span *ngIf="total">Total <span class="count">{{ total }}</span> </span>
+            </div>
+            <button class="btn btn-primary" (click)="closeModal.emit(true)">Publish for free</button>
+        </form>
+    </div>

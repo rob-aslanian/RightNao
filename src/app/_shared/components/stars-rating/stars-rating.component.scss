@@ -1,0 +1,13 @@
+.stars-rating {
+    .star {
+        filter: grayscale(1) opacity(0.5);
+    }
+    .full {
+        filter: unset !important;
+    }
+    img {
+        height: 30px;
+        width: 30px;
+        margin-right: 5px;
+    }
+}

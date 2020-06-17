@@ -1,0 +1,12 @@
+.share-btn {
+    img {
+        height: 18px;
+        padding-right: 5px;
+    }
+}
+
+.dropdown-toggle.hidden-dropdown-icon {
+    &::after {
+      content: unset;
+    }
+  }

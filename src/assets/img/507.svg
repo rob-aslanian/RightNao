@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2018 (64-Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="25px" height="25px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 0.581 0.58"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str3 {stroke:#052337;stroke-width:0.021;stroke-miterlimit:22.9256}
+    .str1 {stroke:#052337;stroke-width:0.021;stroke-linecap:round;stroke-miterlimit:2.61313}
+    .str0 {stroke:#052337;stroke-width:0.021;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:22.9256}
+    .str2 {stroke:#052337;stroke-width:0.021;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2.61313}
+    .fil1 {fill:none}
+    .fil0 {fill:none;fill-rule:nonzero}
+    .fil2 {fill:#00F4FF;fill-rule:nonzero}
+   ]]>
+  </style>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_1167779508576">
+   <polyline class="fil0 str0" points="0.29,0.098 0.29,0.29 0.432,0.29 "/>
+   <path class="fil1 str1" d="M0.151 0.048c-0.087,0.05 -0.14,0.142 -0.14,0.242 0,0.155 0.125,0.28 0.279,0.28 0.155,0 0.28,-0.125 0.28,-0.28 0,-0.154 -0.125,-0.279 -0.28,-0.279"/>
+   <polyline class="fil1 str2" points="0.123,0.184 0.15,0.048 0.012,0.06 "/>
+   <path class="fil2 str3" d="M0.29 0.249c-0.022,0 -0.041,0.019 -0.041,0.041 0,0.023 0.019,0.041 0.041,0.041 0.023,0 0.041,-0.018 0.041,-0.041 0,-0.022 -0.018,-0.041 -0.041,-0.041z"/>
+   <g>
+    <line class="fil0 str0" x1="0.29" y1="0.083" x2="0.29" y2= "0.102" />
+    <line class="fil0 str0" x1="0.083" y1="0.29" x2="0.102" y2= "0.29" />
+    <line class="fil0 str0" x1="0.29" y1="0.498" x2="0.29" y2= "0.478" />
+    <line class="fil0 str0" x1="0.498" y1="0.29" x2="0.478" y2= "0.29" />
+   </g>
+  </g>
+ </g>
+</svg>

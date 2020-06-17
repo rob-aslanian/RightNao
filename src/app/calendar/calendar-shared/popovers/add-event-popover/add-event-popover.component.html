@@ -1,0 +1,125 @@
+<div class="add-event-popover">
+  <div class="position-relative">
+    <button class="btn close-btn"></button>
+  </div>
+  <div class="add-event__field d-flex align-items-center mt-3">
+    <div class="add-event__field__icon-wrap mr-2">
+      <img src="../../../../../assets/img/627.svg"/>
+    </div>
+    <div class="col p-0">
+      <input type="text" class="form-control calendar-input title-input" placeholder="Event title">
+    </div>
+  </div>
+
+  <div class="calendar-time-range my-4">
+    <div class="row">
+      <div class="col-9">
+        <div class="d-flex align-items-center calendar-time-range__dates-container">
+          <div class="calendar-time-range__dates">
+            <span>2019</span>
+            <h2>Fri, Sep 20</h2>
+          </div>
+          <div class="calendar-time-range__arrow">
+            <img src="../../../../../assets/img/147.svg"/>
+          </div>
+          <div class="calendar-time-range__dates">
+            <span>2019</span>
+            <h2>Fri, Sep 20</h2>
+          </div>
+        </div>
+      </div>
+      <div class="col-3 d-flex align-items-end  justify-content-end">
+        <div class="d-flex align-items-end">
+            
+          <div class="calendar-time-range__switch">
+            <div class="d-flex align-items-end">
+              <span class="pr-2">All day</span>
+              <label class="switch">
+                <input type="checkbox"><span class="slider round"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>  
+
+  <div class="add-event-popover__field d-flex align-items-center">
+    <div class="add-event-popover__field__icon-wrap mr-2">
+      <img src="../../../../../assets/img/207.svg"/>
+    </div>
+    <div class="col p-0">
+      <input type="text" class="form-control calendar-input" placeholder="Add location">
+    </div>
+  </div>
+
+  <div>
+    <div class="add-event-popover__field d-flex align-items-center">
+      <div class="add-event-popover__field__icon-wrap mr-2">
+        <img src="../../../../../assets/img/264.svg"/>
+      </div>
+      <div class="col p-0">
+        <input type="text" class="form-control calendar-input" placeholder="Invite attendees">
+      </div>
+    </div>
+    <div class="add-event-popover__field__attendee-list">
+      <div class="add-event-popover__field__attendee-list__item d-flex align-items-center">
+          <div class="add-event-popover__field__attendee-list__item__img">
+            <img src="../../../../../assets/img/user_photo.png"/>
+          </div>
+          <span>Amelia Bannett </span>
+          <span class="ml-1">✕</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="add-event-popover__field row align-items-center">
+    <div class="col-5 d-flex align-items-center">
+      <div class="add-event-popover__field__icon-wrap mr-2">
+        <img src="../../../../../assets/img/621.svg"/>
+      </div>
+      <div class="col p-0">
+        <div ngbDropdown autoClose="outside" placement="bottom-left" class="add-event-dropdown">
+          <div ngbDropdownToggle class="add-event-dropdown__toggle">
+            <span class="add-event-dropdown__toggle__calendar-bullet bullet-purple"></span><span>Personal</span>
+          </div>
+          <div ngbDropdownMenu class="add-event-dropdown__menu add-event-dropdown__menu--full-width mt-2">
+            <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+              <span class="add-event-dropdown__toggle__calendar-bullet bullet-purple"></span>
+              <span class="ml-1">Personal</span>
+            </div>
+            <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+              <span class="add-event-dropdown__toggle__calendar-bullet bullet-light-blue"></span>
+              <span class="ml-1">Work</span>
+            </div>
+            <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+              <span class="add-event-dropdown__toggle__calendar-bullet bullet-green"></span>
+              <span class="ml-1">My Finances</span>
+            </div>
+            <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+              <span class="add-event-dropdown__toggle__calendar-bullet bullet-yellow"></span>
+              <span class="ml-1">Friends</span>
+            </div>
+            <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+              <span class="add-event-dropdown__toggle__calendar-bullet bullet-pink"></span>
+              <span class="ml-1">Birthdays</span>
+            </div>
+            <div class="btn d-flex align-items-center add-event-dropdown__menu__btn">
+              <span class="add-event-dropdown__toggle__calendar-bullet bullet-lavender"></span>
+              <span class="ml-1">Holidays</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col"></div>
+    <div class="col-4"></div>
+  </div>
+
+  <div class="d-flex justify-content-end align-items-center">
+    <button class="backgroundless">More options</button>
+    <button class="btn btn-primary" style="height: 24px">Save</button>
+  </div>
+</div>
+
+

@@ -1,0 +1,130 @@
+<!-- Content in the center -->
+<div class="profile-container">
+        <div class="center-row mt-4 ">
+            <div class="review mt-3">
+                <h4>Reviews <small>({{ review.review_amount  }})</small> </h4>
+                <div class="row mt-1">
+                    <div class="col-12">
+                        <div class="d-flex justify-content-between align-items-baseline">
+                            <div class="avg d-flex mb-2">
+                                <app-stars-rating [avgNumber]='avgNumber'></app-stars-rating>  {{ avgNumber }}
+                            </div>
+                            <div ngbDropdown>
+                                <a class="backgroundless d-block" style="color: grey;" ngbDropdownToggle>{{ sortedBy }} ▾</a>
+                                <div class="most-recent" ngbDropdownMenu>
+                                    <button ngbDropdownItem class="backgroundless d-block" (click)='sort("Most recent")'>Most recent</button>
+                                    <button ngbDropdownItem class="backgroundless d-block" (click)='sort("Oldest first")'>Oldest first</button>
+                                    <button ngbDropdownItem class="backgroundless d-block" (click)='sort("Reviews - Negative First")'>Reviews - Negative First</button>
+                                    <button ngbDropdownItem class="backgroundless d-block mb-1" (click)='sort("Reviews - Positive First")'>Reviews - Positive First</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rating d-flex align-items-baseline">
+                            <div class="">
+                                <span>{{ review.reviews_avg.clarity_avg.toFixed(1) }}</span>
+                                <img class="pl-1 pr-1" src="../../assets/img/34.svg" style="height: 15px;" alt="star">
+                                <span >Clarity in specification</span>
+                            </div>
+                            <div class="pl-4">
+                                <span>{{ review.reviews_avg.communication_avg.toFixed(1) }}</span>
+                                <img class="pl-1 pr-1" src="../../assets/img/34.svg" style="height: 15px;" alt="star">
+                                <span>Communication</span>
+                            </div>
+                            <div class="pl-4">
+                                <span>{{review.reviews_avg.payment_avg.toFixed(1)  }}</span>
+                                <img class="pl-1 pr-1" src="../../assets/img/34.svg" style="height: 15px;" alt="star">
+                                <span>Payment Promptness</span>
+                            </div>
+                        </div>
+ 
+                    </div>
+
+               <ng-container *ngFor="let review of review.reviews">
+                <div class="review-border"></div>
+                <div class="col-sm-2 profile">
+                    <div class="text-center">
+                        <img [src]="review.company_profile.id ? 
+                                    review.company_profile.avatar ? '/file/'+review.company_profile.avatar : 'assets/img/default-company.svg'  : 
+                                    review.user_profile.avatar |  avatar: review.company_profile.id" 
+                                    alt="neo-less" 
+                                    style="width: 50px; height:50px;"
+                                    [ngClass]="{'user-photo': !review.company_profile.id}">
+
+                        <h6 style="cursor: pointer" 
+                            class="pt-2" 
+                            [routerLink]="[ review.company_profile.id ? 
+                                            '/company/profile/'+review.company_profile.url : 
+                                            '/user/profile/'+review.user_profile.url ]"
+                            routerLinkActive="router-link-active" >
+                            {{ review.company_profile.id ?  
+                            review.company_profile.name : 
+                            review.user_profile.firstname + ' ' + review.user_profile.lastname }}</h6>
+                    </div>
+                </div>
+                <div class="col-sm-10">
+                    <div class="d-flex justify-content-between">
+                        <div class="start-wrap">
+                            <div class="avg d-flex align-items-baseline">
+                                    <app-stars-rating [avgNumber]='review.review_avg'></app-stars-rating>  <span>{{ review.review_avg.toFixed(1) }}</span>
+                            </div>
+                        </div>
+                        <div>
+                            <img class="mr-1" src="../../assets/img/48.svg" alt="time">
+                            <span style="color: grey">{{ review.review_at | date }}</span>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <h5 style="font-weight: 400;">{{ review.service.title }}</h5>
+                    </div>
+                    <div class="d-flex align-items-center" *ngIf="review.hire">
+                          <div class="ball" [ngClass]="{ 'blue-ball': review.hire === 'will_hire', 
+                                                         'yellow-ball': review.hire === 'not_answer',
+                                                         'red-ball': review.hire === 'not_hire' }">
+                          </div>
+                        <span class='pl-2' *ngIf="review.hire === 'will_hire'"> Would work again </span>
+                        <span class='pl-2' *ngIf="review.hire === 'not_answer'"> Maybe would work again </span>
+                        <span class='pl-2' *ngIf="review.hire === 'not_hire'"> Would not work again </span>
+                    </div>
+
+                    <div class="mt-2">
+                       <app-read-more [text]="review.description" [maxLength]="350"></app-read-more>
+                    </div>
+                    <div class="quality-wrapper mt-2">
+                        <div class="col-sm-6" style="padding: 0px;" *ngIf="review.clarity">
+                            <div class="d-flex justify-content-between flex-wrap align-items-baseline">
+                                <h5 style="color: grey;">Clarity in Specification</h5>
+                                <app-stars-rating [avgNumber]='review.clarity'></app-stars-rating>                            
+                            </div>
+                        </div>
+                        <div class="col-sm-6" style="padding: 0px;" *ngIf="review.communication">
+                            <div class="d-flex justify-content-between flex-wrap align-items-baseline">
+                                <h5 style="color: grey;">Communication</h5>
+                                <app-stars-rating [avgNumber]='review.communication'></app-stars-rating>                            
+                            </div>
+                        </div>
+                        <div class="col-sm-6" style="padding: 0px;" *ngIf="review.payment">
+                                <div class="d-flex justify-content-between flex-wrap align-items-baseline">
+                                    <h5 style="color: grey;">Payment</h5>
+                                    <app-stars-rating [avgNumber]='review.payment'></app-stars-rating>                            
+                                </div>
+                        </div>
+
+                    </div>
+
+                </div>
+               </ng-container>
+
+
+                </div>
+    
+                <ngb-pagination [collectionSize]="review.review_amount" 
+                                *ngIf="review.review_amount > 6"
+                                [pageSize]="'6'" 
+                                [(page)]="page"  
+                                (pageChange)="changePage($event)" 
+                                class="d-flex justify-content-end mt-4">
+               </ngb-pagination>
+            </div>
+        </div>
+    </div>
+    

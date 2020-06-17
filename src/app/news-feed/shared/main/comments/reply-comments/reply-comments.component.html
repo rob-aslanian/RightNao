@@ -1,0 +1,20 @@
+<div class="text-comment__input__comment__container">
+    <div class="sub__comment ml-2 mt-3">
+
+        <button class="backgroundless mt-2 grey-item ml-4" *ngIf="amount > 2 && (amount > first + 2 && amount !== first + 2)" (click)="loadMore()">
+            Load previous replies
+        </button>
+
+       
+        <app-comment-form [parentId]="comment.id"></app-comment-form>
+        <!-- Comments -->
+        <ng-container *ngIf="comments && comments.length > 0; ">
+                <app-comment (deleteComment)="removeComment($event)" [comment]="comment" [isNew]="comment.isNew" *ngFor="let comment of comments"></app-comment>
+        </ng-container>
+
+
+         <app-spinner class="d-flex justify-content-center mt-4" *ngIf="isLoading"></app-spinner>
+        <!-- Comments -->
+
+    </div>
+</div>

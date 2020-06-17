@@ -1,0 +1,47 @@
+
+<div class="main-cont-for-ads">
+        <div class="d-flex">
+                <div class="ads-create-wrapper">
+                                <h2 class="ads-create-wrapper-title">
+                                                Create Image Ad
+                                </h2>
+                                <form [formGroup]="adsForm">
+                                        <div>
+                                                <p>Ad name</p>
+                                                <input type="text" 
+                                                        placeholder="Enter ad name" 
+                                                        class="form-control" 
+                                                        formControlName="name" 
+                                                        [ngClass]="{ 'is-invalid': 
+                                                                                (adFm.name.touched || 
+                                                                                adFm.name.dirty ) && 
+                                                                                adFm.name.errors }">
+                                        </div>
+                                        <div  *ngIf="activeFormat != 'carousel'">
+                                                <p>Destination URL</p>
+                                                <input type="text" 
+                                                        placeholder="Enter URL" 
+                                                        class="form-control" 
+                                                        formControlName="url" 
+                                                        [ngClass]="{ 'is-invalid': 
+                                                                                (adFm.url.touched || 
+                                                                                adFm.url.dirty ) && 
+                                                                                adFm.url.errors }">
+                                        </div>
+                                </form>
+                                <p>Ad Content</p>
+                                <div class="grey-wrapper">
+                                        <router-outlet></router-outlet>
+                                </div>
+
+                                <div class="d-flex align-items-center justify-content-between mt-4 mb-4">
+                                        <button class="btn backgroundless">Back</button>
+                                        <div>
+                                                <button class="btn backgroundless" (click)="createNewAdd()">Save and Create New</button>
+                                                <button class="btn  btn-primary" (click)="createAdd()" [disabled]="!adsForm.valid">Finish</button>
+                                        </div>
+                                </div>
+                </div>
+                <app-ads-preview></app-ads-preview> 
+        </div>
+</div>

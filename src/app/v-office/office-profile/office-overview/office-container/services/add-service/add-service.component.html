@@ -1,0 +1,95 @@
+<app-dream-job [title]='"ADD A SERVICE"'></app-dream-job>
+
+<div class="container mt-5 pb-5">
+  <div class="row p-0">
+    <div class="col-lg-9">
+      <div class="post-container">
+        <div class="post-wrapper">
+          <form autocomplete="off" [formGroup]="service">
+
+              <!-- Services detailed -->
+              <app-service-details [details]='details' [isSubmit]='isSubmit'></app-service-details>
+              <!-- Services detailed -->
+
+              <!-- Slider -->
+              <ng-container *ngIf="!isEdit || ( isEdit &&  filesForEdit.length > 0 )">
+                <app-service-slider (result)='getImages($event)'  [filesForEdit]='filesForEdit' [isEdit]='isEdit'></app-service-slider>
+              </ng-container>
+              <!-- Slider -->
+
+              <!-- Delivery-Time -->
+              <app-service-delivery-time [delivery]='delivery' [sumbitted]='isSubmit'></app-service-delivery-time>
+              <!-- Delivery-Time -->
+
+              <!-- Location -->
+              <app-location [location]='location' [sumbitted]='isSubmit'></app-location>
+              <!-- Location -->
+              
+              <ng-container *ngIf="!toggleWorkingOurs">
+                  <div class="add-working-hour" (click)='toggleWorkingOurs = !toggleWorkingOurs'>
+                          <a> + </a> <span> Add Working Hours</span>
+                  </div>
+              </ng-container>
+              
+              
+              
+              <!-- Location -->
+                  
+              <ng-container *ngIf="toggleWorkingOurs">
+                  <div class="working-hours-toggle">
+                          <p class="mt-3" >Working hours</p>
+                          <div class="d-flex align-items-center">
+                              <span class="selected-days pr-3" style="color: #808080;">24/7</span>
+                              <div class="notification-checkbox">
+                                  <label class="switch">
+                                      <input type="checkbox"  id="accept_invitations" (change)=' isHoursDisabled = !isHoursDisabled' formControlName="hoursDisabled">
+                                      <span class="slider round"></span>
+                                  </label>
+                              </div>
+                          </div>
+                  </div>
+              
+                  <div class="busniess-hours" [ngClass]="{'disabled-hours': service.get('hoursDisabled').value }" >
+                      <div *ngFor="let hour of buesniesHourse; let i = index" style="position: relative;">
+                          <app-working-hours [id]='i' 
+                                             (result)='getBuesniessHours($event, i )'  
+                                             [sumbitted]='isSubmit' 
+                                             [edit]='hour'></app-working-hours>
+                          
+                                      
+                        <a class="remove-hour" (click)='deleteHour(i)'>X</a>
+                      </div>
+                      <a (click)='addAnotherHours()' class="add-buesniess-hours" *ngIf="buesniesHourse.length < 3 ">Add another</a>
+                  </div>
+              </ng-container>
+              
+
+              <!-- Addational Details -->
+              <app-additinioal-details [qualifications]='qualifications'></app-additinioal-details>
+              <!-- Addational Details -->
+              
+
+            <div class="d-flex justify-content-end mt-4">
+
+             
+                  <button style="color: #00D4E3;" class="backgroundless ml-4" (click)='submit(true)'>Save as Draft</button>
+          
+
+                  <!-- <button style="color: #00D4E3;" class="backgroundless ml-4" (click)='removeVoffieService()'>Remove</button> -->
+       
+
+              <button class="btn btn-primary ml-4" type="submit" (click)='submit(false)'>Publish</button>
+            </div>
+          </form>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-3">
+
+      <!-- ADS -->
+      <app-ads [isLeft]="true"></app-ads>
+      <!-- ADS -->
+    </div>
+  </div>

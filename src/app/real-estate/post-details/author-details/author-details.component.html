@@ -1,0 +1,30 @@
+<div class="author">
+    <div class="d-flex justify-content-center">
+        <div class="author__img">
+            <img [src]="profile.avatar | avatar:profile.isCompany" alt="avatar">
+        </div>
+    </div>
+    <div class="author__name">
+        <p class="m-0">{{ !profile.isCompany ? profile.firstname + " " + profile.lastname : profile.name }}</p>
+    </div>
+    <div class="author__position">
+        <p>Agent</p>
+    </div>
+    <div class="author__raiting d-flex justify-content-center">
+        <img src="assets/img/215.svg" alt="star" class="mr-2">
+        <span>4.0/5</span>
+    </div>
+    <div class="author__contact d-flex align-items-center justify-content-around mt-3 p-2">
+        <img src="assets/img/16.svg" alt="phone">
+        <p *ngIf="!profile.isCompany; else company">  +{{ profile.phone }}</p>
+        <ng-template #company>
+            <p *ngIf="profile.country_code &&  profile.number">  
+                +{{ profile.country_code }}
+                {{ profile.number }}</p>
+        </ng-template>
+        
+    </div>
+    <div class="author__all mt-4">
+        <p>See all post (215)</p>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+<div class="ads-banner-cont">
+  <div class="ads-dBlue-title">
+    <img src="./assets/img/196.svg" alt="ico" />
+    Advertisement Details
+  </div>
+
+  <div class="form-group ads-custom-formS">
+    <label for="">Advertisement Name <span>*</span></label>
+    <input type="text" placeholder="Enter name" class="form-control" [formControl]="name"/>
+  </div>
+
+   <ng-container *ngIf="profile">
+      <div class="profile__content ads-section">
+        <div class="d-flex align-items-center">
+          <img [src]="'/file/' + profile.avatar" alt="">
+          <div class="d-flex flex-column">
+             <h4 class="profile__content__name">{{ profile.firstname }} {{ profile.lastname }}</h4>
+             <div *ngIf="profile.experiences[0] as experience" class="mt-2">
+                <h4 class="profile__content__info">{{ experience.title }}</h4>
+                <span class="profile__content__info">{{ experience.company }}</span>
+             </div>
+          </div>
+        </div>
+        <a  [routerLink]="['/user/profile/' , profile.url]">Update your profile</a>
+      </div>
+     
+       <div class="ads-dBlue-title sm ads-section">Profile Completion</div>
+     
+       <div class="static-progress">
+         <div class="progress-splited">
+           <div></div>
+           <div></div>
+           <div></div>
+           <div></div>
+           <div></div>
+         </div>
+         <div class="progress-hide"  [ngStyle]="{'width': profile.profile_complete_percent + '%'}" >
+           <div class="progress-splited cyan">
+             <div></div>
+             <div></div>
+             <div></div>
+             <div></div>
+             <div></div>
+           </div>
+         </div>
+         <div class="progress-count">
+           {{ profile.profile_complete_percent }}%
+         </div>
+       </div>
+   </ng-container>
+   
+
+  <!-- Start banners footer -->
+  <div class="ads-banners-foot">
+    <div>
+      <button class="backgroundless" (click)="back.emit(true)">back</button>
+    </div>
+    <div>
+      <button class="backgroundless" (click)="open('review')">Review</button>
+      <button class="btn btn-primary  btn-primary--high" (click)="publish()">Publish</button>
+    </div>
+  </div>
+  <!-- End banners footer -->
+</div>
+
+<app-modal>
+  <app-ads-review-modal type="candidate" [data]="adsReview" *ngIf="modalType === 'review' " (result)="getReview($event)"></app-ads-review-modal>
+</app-modal>
+
+

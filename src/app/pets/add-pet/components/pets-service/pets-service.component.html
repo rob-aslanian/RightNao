@@ -1,0 +1,7 @@
+<div class="breed">
+    <label for="animal-category" class="title-label">Pets Service</label>
+    <select name="" id="" class="form-control" [formControl]='petSerCtrl' [ngClass]="{'is-invalid': petSerCtrl.invalid && isSubmitted}">
+        <option value="" disabled >Select pet service</option>
+        <option [value]="pet.id"  *ngFor="let pet of PET_SERVICE">{{ pet.name }}</option>
+    </select>
+</div>

@@ -1,0 +1,17 @@
+<div class="search-groups__sidebar-section">
+    <app-search-column-header title="Gender">
+        <div class="d-flex justify-content-between align-items-center mt-2">
+            <div class="input-container d-flex justify-content-between">
+                    <form [formGroup]="form">
+                        <div  class="gender">
+                            <input formControlName="isFemale"  id="female" name="female" type="checkbox" value="female" >
+                            <label class="female" for="female"></label>
+                            
+                            <input formControlName="isMale" id="male" name="male" type="checkbox" value="male"  >
+                            <label class="male" for="male"></label>
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </app-search-column-header>
+</div>

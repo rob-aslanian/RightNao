@@ -1,0 +1,48 @@
+ 
+<div class="header col-12 d-flex justify-content-between row mt-4 pr-0 pl-0">
+    
+    <div class="header__categories col-lg-5 d-flex justify-content-between" *ngIf="withoutType">
+        <button class="btn btn-secondary"  
+                (click)='template.status = "PostStatus_Active"; searchByTemplate()'
+                [ngClass]="{'btn-dark': template.status === 'PostStatus_Active'}">Active</button>
+
+        <button class="btn btn-secondary"  
+                (click)='template.status = "PostStatus_Expired"; searchByTemplate()'
+                [ngClass]="{'btn-dark': template.status === 'PostStatus_Expired'}">Expired</button>
+                
+        <button class="btn btn-secondary" 
+                (click)='template.status = "PostStatus_Hidden"; searchByTemplate()'
+                [ngClass]="{'btn-dark': template.status === 'PostStatus_Hidden'}">Hidden</button>
+    </div>
+
+    <div class="header__offers col-lg-7 d-flex justify-content-end pr-0">
+            <!-- <button class="btn btn-secondary mr-4" (click)="openModal('offers')">offers (215)</button>
+            <button class="btn btn-secondary" (click)="openModal('alerts')">Allerts (2015)</button> -->
+            <!-- <div class="header__offers__notify">
+                <img style="cursor: pointer" 
+                     src="assets/img/256.svg" alt="" 
+                     (click)="openModal('notifications')"
+                     >
+                <div class="header__offers__notify__counter">
+                    <span>2</span>
+                </div>
+            </div> -->
+    </div>
+    <div class="header__search col-12 d-flex mt-4 pr-0">
+        <div class="col-md-9 p-0">
+            <input type="text" 
+                   class="form-control mr-4" 
+                   placeholder="Search"
+                   [(ngModel)]="template.query" 
+                   (keyup)='searchByTemplate()'>
+        </div>
+        <div class="col-md-3 pr-0" *ngIf="withoutType">
+            <select name="" id="" class="form-control" (change)='template.propertyType = $event.target.value; searchByTemplate()'>
+                <option value="" selected disabled>Property type</option>
+                <option *ngFor="let item of propertyTypes" 
+                        [value]='item.id'>{{ item.key }}</option>
+            </select>
+        </div>
+    </div>
+
+</div>

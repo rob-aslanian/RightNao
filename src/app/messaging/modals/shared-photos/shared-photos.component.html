@@ -1,0 +1,106 @@
+<div class="smsModal-photos">
+    <h1 class="shared-photos-modal-title">Shared Photos
+        <a (click)="close()">&#10005;</a>
+    </h1>
+    <div class="popup-content">
+        <div class="d-flex align-items-center">
+
+            <div class="modalPhoto-drop">
+                <div (click)="onDownloadClick()" class="modalPhoto-drop_head">
+                    <img  src="./assets/img/71.svg" alt="ico"> Download
+                </div>
+            </div>
+
+            <div class="modalPhoto-drop">
+                <div popoverClass="forward-overlay" [placement]="'bottom'" [container]="'body'" [autoClose]="'outside'" #f="ngbPopover" [ngbPopover]="forward" class="modalPhoto-drop_head">
+                    <img src="./assets/img/56.svg" alt="ico"> Forward
+                </div>
+
+            </div>
+
+            <div class="modalPhoto-drop">
+                <div  [placement]="'bottom'" [container]="'body'" [autoClose]="'outside'" #i="ngbPopover" [ngbPopover]="info" class="modalPhoto-drop_head">
+                    <img src="./assets/img/47.svg" alt="ico"> Info
+                </div>
+            </div>
+
+            <div class="modalPhoto-drop mLA">
+                <div [ngbPopover]="viewType" class="modalPhoto-drop_head">
+                    <img src="{{ isSlideView ? './assets/img/55.svg' : './assets/img/blocks.svg'}}" alt="ico">
+                </div>
+            </div>
+
+        </div>
+        <div *ngIf="!isSlideView" class="m6">
+            <div class="row sms-shared-photo_item">
+                <div class="col-md-3 gallery-item" *ngFor="let photo of photos.slice().reverse()">
+                    <div class="gallery-item-container">
+                        <div class="custom-control custom-checkbox" >
+                            <input type="checkbox" [id]="photo.fileUrl" class="custom-control-input" (change)="onGridPhotoClick(photo)">
+                            <label class="custom-control-label " [for]="photo.fileUrl"></label>
+                        </div>
+                        <img src="{{photo.fileUrl | filepath}}" alt="picture" [ngClass]="{'grid-selected-photo' : isPhotoSelectedForDownload(photo)}"  (click)="onGridPhotoClick(photo)" class="mb-3">
+                    </div>
+                </div>
+
+                <!-- <img  *ngFor="let photo of photos.slice().reverse()"  src="{{photo.fileUrl | filepath}}" alt="picture" [ngClass]="{'grid-selected-photo' : isPhotoSelectedForDownload(photo)}"  (click)="onGridPhotoClick(photo)"> -->
+            
+            </div>
+        </div>
+        
+        <div *ngIf="isSlideView" class="sms-photos-slider">
+            <div class="sms-photos-slider_main">
+                <img src="{{selectedPhoto.fileUrl | filepath}}" alt="picture">
+            </div>
+            <div class="gallery-btn-wrapper">
+                <button  (click)="nav('PREV')" class="previous"></button>
+                <button  (click)="nav('NEXT')" class="next" ></button>
+            </div>
+            <div class="sms-photos-slider_foot">
+                <img  *ngFor="let photo of photos.slice().reverse()" [ngClass]="{'active' : photo.file == selectedPhoto.file}"  src="{{photo.fileUrl | filepath}}" alt="small-picture"  (click)="selectedPhoto = photo">
+            </div>
+        </div> 
+    </div>
+
+    <ng-template #forward>
+        <app-forward-overlay [selectedItems]="selectedItems" [overlayRef]="f" [fileId]="selectedPhoto.fileUrl" ></app-forward-overlay>
+    </ng-template>
+
+    <ng-template #info>
+
+        <div class="modalPhoto-drop_body">
+            <div class="modalPhoto-drop-info">
+                <a class="close" (click)="i.close()">&#10005;</a>
+                <div class="drop_subtitle">Upload by</div>
+                <div class="d-flex">
+                    <img [src]="getParticipant(selectedPhoto.sender_id).avatar ? '/file/'+getParticipant(selectedPhoto.sender_id).avatar : './assets/img/defaultAvatar.svg'" class="modalPhoto-drop-img" alt="picture">
+                    <div>
+                        <h6 class="modalPhoto-drop-title">{{getParticipant(selectedPhoto.sender_id).name}}</h6>
+                        <div>{{getPhotoDateTime(selectedPhoto.timestamp)}}</div>
+                    </div>
+                </div>
+                <br>
+                <div>Details</div>
+                <div>
+                    {{selectedPhoto.file_size / 1000}} KB
+                </div>
+            </div>
+        </div>
+
+    </ng-template>
+
+    <ng-template #viewType>
+        <div class="modalPhoto-drop_body right">
+            <div class="shared-photo-view">
+                <div (click)="isSlideView = true" [ngClass]="{'selected' : isSlideView}" class="selected">
+                    <img  src="./assets/img/55.svg" alt="ico"> 
+                    <span style="color: #808080;">Gallery View</span>
+                </div>
+                <div (click)="isSlideView = false" [ngClass]="{'selected' : !isSlideView}">
+                    <img  src="./assets/img/blocks.svg"  alt="ico"> 
+                    <span style="color: #808080;" > Card View </span>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</div>

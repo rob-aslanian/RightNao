@@ -1,0 +1,32 @@
+<div class="search-groups__sidebar-section">
+    <app-search-column-header title="Language">
+        <div class="mt-2">
+            <div class="search-groups__sidebar-section__delivery-time-options search-groups__sidebar-section__wrap">
+                    <div class="
+                    custom-control 
+                    custom-checkbox 
+                    page-section-text-grey
+                    " *ngFor="let language of languages">
+                    <input type="checkbox" [checked]="language.isSelected" class="custom-control-input" [id]="language.name" name="type"
+                           (change)="checkeLanguage($event)" [value]="language.name">
+                    <label
+                        class="custom-control-label" [for]="language.name" >
+                    {{ language.name }}
+                    </label>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between align-items-center mt-2">
+                <div class="input-container">
+                        <input type="text" class="form-control" id="wanted-location" placeholder="Enter language"
+                                [ngbTypeahead]="searchLanugage" [resultFormatter]="formatLanguage"
+                                [inputFormatter]="formatLanguage" (selectItem)="selectLanguage($event)">
+                </div>
+                <div>
+                    <button class="btn backgroundless search-btn" type="submit">
+                        <img src="assets/img/right-arrow.svg" class="search-groups__sidebar-section__location__img"/>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </app-search-column-header>
+</div>

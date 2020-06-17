@@ -1,0 +1,107 @@
+
+ 
+
+<form [formGroup]='delivery'>
+  
+    <div class="col-lg-12 pl-0" >         
+                       
+            <div class="d-flex  mt-3" *ngIf="type !== 'order'">
+                        <img src="../../assets/img/430.svg" alt="price" class="detail-price">
+                        <h5  class="mt-1 ml-2">Price</h5>
+            </div>
+        
+                <label  class="mt-3 label-black" >{{  selectedModel['price'] }} <span  class="star" *ngIf="type !== 'order'">*</span></label>  
+                <div class="row">
+                    <div class="col-3">
+                        <div class="ml-4">
+                            <div class="custom-radio-control custom-radio  d-block" *ngFor='let pri of priceKeys; i as index'>
+                                <input type="radio"  class="custom-control-input" [value]='pri' [id]='pri' name="price"   formControlName='price' >
+                                <label class="custom-control-label" [for]='pri' > {{ price[pri] }} </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-9">
+                            <div class="row">     
+             
+                                    <div class="col-lg-4 mt-2">
+                                        <input type="number"
+                                            [placeholder]='pri.price.value == "Price_Negotiable" ? "From" : "Enter amount"' 
+                                            class="form-control" 
+                                            formControlName='amount'
+                                            [ngClass]='{"is-invalid": pri.amount.errors && isSubmited }'>
+                                    </div>
+                            
+                            
+                                    <ng-container *ngIf='pri.price.value == "Price_Negotiable"'>
+                                            <div class="col-lg-4 mt-2">
+                                                <input  type="number" 
+                                                        placeholder="To" 
+                                                        class="form-control" 
+                                                        formControlName='hourly'
+                                                        [ngClass]='{"is-invalid": pri.hourly.errors && isSubmited }'>
+                                            </div>
+                                    </ng-container>
+                            
+                                    <div class="col-lg-3 mt-2">
+                                        <select     class="form-control"
+                                                    formControlName='currency'
+                                                    [ngClass]='{"is-invalid": pri.currency.errors && isSubmited }'
+                                                    style="height: 100%;">
+                                            <option  *ngFor='let curr of currency' [value]='curr' > {{ curr }} </option>
+                                        </select>
+                                    </div>
+                        
+                                </div>
+                    </div>
+                </div>
+        
+          
+    </div>
+
+    <div class="col-lg-8 pl-0" >
+        <div class="d-flex  mt-5" *ngIf="type !== 'order'">
+            <img src="assets/img/507.svg" alt="time">
+            <h5 class="mt-1 ml-2">Delivery Time</h5>
+        </div>
+    
+        <label   class="mt-3">{{ selectedModel['time'] }} <span class="star" *ngIf="type !== 'order'">*</span></label>      
+ 
+        <div class="ml-4">
+            <div class="custom-radio-control custom-radio" *ngFor='let time of deliveryTimeKeys'>
+                <input type="radio"  class="custom-control-input"  name="time" [id]="time" [value]='time' formControlName='time'>
+                <label class="custom-control-label" [for]="time"> {{ deliveryTime[time] }} </label>
+            </div>    
+    
+            <ng-container *ngIf="type === 'service' || type === 'order'">
+                    <div class="custom-radio-control custom-radio">
+                        <input type="radio"  
+                               class="custom-control-input"  
+                               name="time" 
+                               id="custom_date" 
+                               value='Custom' 
+                               formControlName='time'
+                               [ngClass]="{ 'is-invalid': pri.time.errors && isSubmited }">
+                        <label class="custom-control-label" for="custom_date"> Custom </label>
+                    </div>
+                    <ng-container *ngIf="pri.time.value === 'Custom'">
+                        <div class="col-lg-6 pr-0 mt-2">
+                            <input class="form-control" 
+                                   ngbDatepicker 
+                                   #d='ngbDatepicker' 
+                                   (click)='d.toggle()' 
+                                   placeholder="Date" 
+                                   style="width: 90%;"
+                                   [navigation]='"arrows"'
+                                   formControlName="date"
+                                   [minDate]='getToday'>                     
+                        </div>
+                        
+                    </ng-container>   
+            </ng-container>
+        </div>
+    
+     
+ 
+    </div>
+
+</form>

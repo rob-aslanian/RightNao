@@ -1,0 +1,51 @@
+
+    <div class="content__header w-100">
+        <app-manage-estate-header-search (result) = 'openModal($event)' ></app-manage-estate-header-search>
+    </div>
+    <div class="content__box mt-4 w-100">
+        <div class="content__active col-12 d-flex justify-content-between">
+            <p *ngIf="template.status === 'PostStatus_Active' ||  
+                        !template.status"> Active posts {{ amount }} </p>
+            <p *ngIf="template.status === 'PostStatus_Expired'"> Expired posts {{ amount }} </p>
+            <p *ngIf="template.status === 'PostStatus_Hidden'"> Hidden posts {{ amount }} </p>
+
+
+            <div class="d-flex align-items-center"> 
+                <p class="m-0">Date ascending</p>
+                <img src="assets/img/down-grey.svg" 
+                     alt="down-arrow"
+                     class="ml-2"
+                     style="cursor: pointer"> 
+            </div>
+        </div>
+     
+        <div class="landing__announcements mt-3">
+                
+                <ng-container *ngIf="!isLoading; else loading">
+                        <app-home-box  *ngFor="let home of homies" 
+                                       [home]='home'
+                                       [isMy]='true'
+                                       (result)='result($event)'></app-home-box>
+                </ng-container>
+
+                <ng-template #loading>
+                      <div class="d-flex justify-content-center align-items-center">
+                             <app-spinner></app-spinner>
+                      </div>
+                </ng-template>
+                
+        </div>
+
+        <ngb-pagination [collectionSize]="amount" 
+                        *ngIf="amount > 6 && !loading"
+                        [pageSize]="'6'" 
+                        [(page)]="page"  
+                        (pageChange)="changePage($event)" 
+                        class="d-flex justify-content-end mt-4"></ngb-pagination>
+
+        <!-- * * * * Modals * * * *  -->
+        <app-modal>
+            <app-notification-modals *ngIf="modalType === 'notifications'" [notifications]='notifications'></app-notification-modals>
+        </app-modal>
+        <!-- * * * / * * *  -->
+    </div>

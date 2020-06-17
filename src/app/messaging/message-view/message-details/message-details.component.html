@@ -1,0 +1,283 @@
+<div class="chatbox-mainMember-row">
+
+    <ng-container *ngIf="conversation.is_group == true">
+        <div class="chatbox-mainMember d-flex">
+
+            <div class="chatbox-mainMember-imgOuter">
+
+                <app-group-avatar [conversation]="conversation"></app-group-avatar>
+
+                <!-- <div class="shape-hexagon active"></div> -->
+                <label for="chatbox-imgEdit" class="chatbox-mainM-imgEdit">
+                </label>
+                <input (change)="fileChange($event)" id="chatbox-imgEdit" class="hide-input" type="file" />
+            </div>
+            <div class="chatbox-mainMember-desc">
+                <ng-container *ngIf="!toggleGroupRename">
+                    <h2>{{conversation | conversationName}}</h2>
+                </ng-container>
+
+
+                <!-- Start group name edit input -->
+                <ng-container *ngIf="toggleGroupRename">
+                    <div class="addLabel-input">
+                        <input style="width: 80% !important; float:left !important" [(ngModel)]="renameText" type="text" placeholder="Enter a group name"
+                            class="form-control">
+                    </div>
+                    <button (click)="renameGroup()" class="btn-custom__link">Done</button>
+                </ng-container>
+
+                <!-- End group name edit input -->
+
+
+            </div>
+        </div>
+
+        <ng-container *ngIf="showMoreInfo">
+            <div class="darkBlue-mainMember-titl">
+                Conversation Members {{conversation.participants.length}}
+            </div>
+
+            <ng-container *ngFor="let participant of conversation.participants">
+                <div *ngIf="!participant.has_left" (click)="onParticipantClick(participant.id)" class="chatMembers-item nano" style="cursor: pointer;">
+                    <div class="chatMembers-item-img">
+                        <img src="{{participant.avatar | defaultAvatar}}" alt="photo">
+                    </div>
+                    <div class="chatMembers-item_body">
+                        <div class="chatMembers-item-title">
+                            <h3>{{participant.name}}</h3>
+                            <div *ngIf="participant.is_active" class="shape-hexagon active"></div>
+                        </div>
+                    </div>
+                </div>
+            </ng-container>
+        </ng-container>
+
+        <!-- Start aditional info expand/colapse line, it has triangle button -->
+        <div class="info-expand_line">
+            <button (click)="showMoreInfo = !showMoreInfo"></button>
+        </div>
+        <!-- End aditional info expand/colapse line, it has triangle button -->
+
+    </ng-container>
+
+    <ng-container *ngIf="conversation.is_group == false && getParticipant().is_company">
+        <div class="chatbox-mainMember d-flex">
+            <div class="chatbox-mainMember-imgOuter">
+                <div class="chatbox-mainMember-img company">
+                    <img src="{{company?.avatar | defaultAvatar}}" alt="photo">
+                </div>
+                <div *ngIf="company?.online" class="shape-hexagon active"></div>
+            </div>
+            <div class="chatbox-mainMember-desc">
+                <h2 [routerLink]="['/company/profile' , company?.url]" style="cursor: pointer;" >{{company?.name}}</h2>
+                <div class="chatbox-mainMember-small" *ngIf="company?.industry?.id as id">
+                    {{ id | industry }}
+                </div>
+
+                <div class="chatbox-mainMember-small"  *ngIf="company?.addresses as addresses"> 
+                    <ng-container *ngFor="let address of addresses">
+                        <ng-container *ngIf="address.primary">
+                            {{ address.city.city }}, 
+                            {{ utils.getCountryName(address.country_id) }} 
+                        </ng-container>
+                    </ng-container>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Start aditional info of selected message -->
+        <div class="mainMember-aditional-info">
+           
+            
+            <div class="sms-darkBlue-title">Contact Information</div>
+
+            <div class="sms-img-plus-text" *ngIf="company?.email">
+                <div>
+                    <img src="./assets/img/205.svg" alt="ico">
+                </div>
+                {{ company.email }}
+            </div>
+
+            <div class="sms-img-plus-text" *ngIf="company?.phone.country_code && company?.phone.number">
+                <div>
+                    <img src="./assets/img/206.svg" alt="ico">
+                </div>
+                {{ company.phone.country_code }} {{ company.phone.number }}
+            </div>
+   
+
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="conversation.is_group == false && !getParticipant().is_company">
+          
+        <div class="chatbox-mainMember d-flex" >
+            <div class="chatbox-mainMember-imgOuter">
+                <div class="chatbox-mainMember-img">
+                    <img src="{{user?.avatar | defaultAvatar}}" alt="photo">
+                </div>
+                
+                <img *ngIf="getParticipant().is_active" class="hexagon"  src="assets/img/211.svg" alt="active">
+              
+            </div>
+            <div class="chatbox-mainMember-desc" >
+                <h2 [routerLink]="['/user/profile' , user?.url]" style="cursor: pointer;">{{user?.firstname}} {{user?.lastname}}</h2>
+                <div class="chatbox-mainMember-small">
+                    {{ user?.experiences[0]?.title }}
+                </div>
+                <div class="chatbox-mainMember-small">
+                    {{ user?.experiences[0]?.company }}
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Start aditional info of selected message -->
+        <div class="mainMember-aditional-info">
+            <ng-container *ngIf="showMoreInfo">
+            
+                <div *ngIf="showContactInfoLabel(user)" class="sms-darkBlue-title">Contact Information</div>
+
+                <div *ngIf="user?.email !== ''" class="sms-img-plus-text">
+                    <div>
+                        <img src="./assets/img/205.svg" alt="ico">
+                    </div>
+                    {{user?.email}}
+                </div>
+
+                <div *ngIf="user?.phone !== ''" class="sms-img-plus-text">
+                    <div>
+                        <img src="./assets/img/206.svg" alt="ico">
+                    </div>
+                    {{user?.phone}}
+                </div>
+
+                <div *ngIf="user?.location.city !== '' || user?.location.country !== ''" class="sms-img-plus-text">
+                    <div>
+                        <img src="./assets/img/207.svg" alt="ico" style="height: 19px;">
+                    </div>
+                    <ng-container *ngIf="user?.location.city">
+                            {{user.location.city }},
+                    </ng-container>
+                    {{user?.location.country | country }}
+                </div>
+ 
+            </ng-container>
+            <div *ngIf="showContactInfoLabel(user)" class="info-expand_line">
+                <button (click)="showMoreInfo = !showMoreInfo"></button>
+            </div>
+        </div>
+    </ng-container>
+
+
+
+
+    <!-- Start Search in conversation form -->
+    <div class="search-messages seachInCon-padding">
+        <input (keyup)="searchMessage()" [(ngModel)]="searchText" type="text" class="form-control" placeholder="Search in conversation">
+        <div style="height: 15px"></div>
+        <!-- <button class="btn-custom__link" *ngIf="!showClearSearchBtn" (click)="searchMessage()">Search</button>-->
+        <button class="btn-custom__link" *ngIf="searchText !==''" (click)="searchText='';searchMessage()">Clear</button>
+    </div>
+    <!-- End Search in conversation form -->
+
+    <!-- Start head tab, it has right line -->
+    <div class="messages__headTab">
+        Labels
+    </div>
+    <!-- End head tab, it has right line -->
+
+    <!-- Start labels it may be green, pink, light-blue,
+           orange, slate-blue and blue.
+      -->
+    <!-- <div class="label-balloon-headTab">
+        <div class="label-balloon green">business</div>
+        <div class="label-balloon pink">work</div>
+        <div class="label-balloon light-blue">work</div>
+        <div class="label-balloon orange">work</div>
+        <div class="label-balloon slate-blue">work</div>
+        <div class="label-balloon blue">work</div>
+    </div> -->
+    <!-- End labels -->
+    <div *ngIf="allLabelsLoaded" class="d-flex flex-wrap">
+        <div *ngFor="let labelId of conversation.labels" [ngClass]="getLabel(labelId).color" class="label-balloon">{{getLabel(labelId).name}}
+            <span (click)="removeLabelFromConv(labelId)" style="cursor: pointer" aria-hidden="true">&times;</span>
+        </div>
+    </div>
+
+    <!-- Start add labels form -->
+    <div class="addLabel-input">
+        <ng-template #labelsTemplate let-r="result" let-t="term">
+            <img src="{{'./assets/img/labels/' +r.color + '.svg'}}" alt="ico"> {{r.name}}
+        </ng-template>
+        <!-- <form> -->
+        <input id="typeahead-focus" [(ngModel)]="typedLabel" [ngbTypeahead]="searchLabel" (focus)="focus$.next($event.target.value)"
+            (click)="click$.next($event.target.value)" #instance="ngbTypeahead" type="text" class="form-control" (selectItem)="onLabelSelect($event)"
+            [resultFormatter]="formatMatches" [resultTemplate]="labelsTemplate" [inputFormatter]="formatMatches" placeholder="Add Label">
+        <!-- <button *ngIf="selectedLabelId !== ''" (click)="onClearSearch()">Clear</button> -->
+        <!-- <input type="text" placeholder="Add Label" class="form-control"> -->
+        <!-- </form> -->
+
+        <!-- <div class="addLabel-input-searched"> -->
+        <!-- <div *ngFor="let labelId of conversation.labels" [ngClass]="getLabel(labelId).color" class="label-balloon">{{getLabel(labelId).name}}</div> -->
+        <!-- </div> -->
+
+    </div>
+    <!-- End add labels form -->
+
+    <button (click)="openManageLabelsModal(manageLabelsModal)" class="btn-custom__link">manage labels</button>
+
+
+    <ng-container *ngIf="this.listenersService.getConversationPhotos.length !== 0">
+        <div class="messages__headTab">
+            shared photos
+        </div>
+
+        <div class="sms-sharedPhotos-box">
+            <img *ngFor="let photo of this.listenersService.getConversationPhotos.slice().reverse() | slice: 0: 12" src="{{photo.fileUrl | filepath}}"
+                (click)="openSharedPhotosModal(sharedPhotosModal, photo.fileUrl)" alt="photo" class="sms-shared-photo">
+
+            <!-- Show rest of the image when clicked show more -->
+            <ng-container *ngIf="showMorePhotos">
+                <img *ngFor="let photo of this.listenersService.getConversationPhotos.slice().reverse() | slice: 12: this.listenersService.getConversationPhotos.length" src="{{photo.fileUrl | filepath}}"
+                    (click)="openSharedPhotosModal(sharedPhotosModal, photo.fileUrl)" alt="photo" class="sms-shared-photo">
+            </ng-container>
+        </div>
+
+        <button *ngIf="this.listenersService.getConversationPhotos.length > 12" (click)="showMorePhotos = !showMorePhotos"
+            class="btn-custom__link">show {{showMorePhotos ? 'less' : 'more'}}</button>
+    </ng-container>
+
+    <ng-container *ngIf="this.listenersService.getConversationFiles.length !== 0">
+        <div class="messages__headTab">
+            Shared files
+        </div>
+
+        <div class="sms-sharedFiles-box">
+            <a *ngFor="let file of this.listenersService.getConversationFiles.slice().reverse()" (click)="downloadFile(file.fileUrl)" class="sms-sharedFiles-a pdf"
+                style="cursor: pointer">
+                <span class="shared-files">
+                    <img src="{{getFileExt(file.file_name) | fileIcon}}" class="chatBox-sms-ballon-img" alt="image">
+                </span>
+                <span class="shared-files-name">
+                        {{file.file_name}}
+                </span>
+                
+            </a>
+        </div>
+    </ng-container>
+
+    <ng-template #manageLabelsModal>
+        <app-manage-labels (closeModal)="closeModal()"></app-manage-labels>
+    </ng-template>
+
+    <ng-template #sharedPhotosModal>
+        <app-shared-photos [conversation]="conversation" [photos]="this.listenersService.getConversationPhotos" [selectedPhotoIndex]="selectedPhotoIndex"
+            (closeModal)="closeModal()">
+        </app-shared-photos>
+    </ng-template>
+</div>
+<!-- End selected message info row -->

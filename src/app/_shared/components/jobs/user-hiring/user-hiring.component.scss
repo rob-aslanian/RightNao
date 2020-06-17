@@ -1,0 +1,9 @@
+@import "src/variables";
+@import 'src/mixins.scss';
+
+.popup-content.default-modal.choose-hirer-company {
+    max-height: 650px;
+    overflow-y: auto;
+
+    @include thin-scrollbar--vertical;
+}

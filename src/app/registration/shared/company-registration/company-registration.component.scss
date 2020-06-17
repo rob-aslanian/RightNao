@@ -1,0 +1,105 @@
+/*Import variables file*/
+@import "src/variables";
+@import 'src/mixins.scss';
+/*END OF Import variables file*/
+
+.form-control{
+    margin-bottom: unset !important;
+}
+.form-group{
+    margin-bottom: 2rem;
+}
+
+.top__content{
+    text-align: end;
+    padding: 1rem;
+    img{ 
+        height: 35px;
+        width: 35px;
+        margin-left: 1rem;
+     }
+}
+
+.modal__content{
+    background: #fff;
+    padding: 0 1.5rem 1.5rem;
+    .btn_row{ text-align: end; }
+
+}
+
+.row-group{
+    margin-bottom: 2rem;
+    position: relative;
+    .error_message{
+        position:absolute; 
+        bottom: -30px;
+        width: max-content;
+        left: 21px;
+    }
+}
+
+.name-required{
+   @include required-star($background-dark-cyan, 7px, 12px, 16px);
+   .required-field__text-content {
+       color: $dark-grey;
+       font-size: 14px;
+   }
+}
+
+.url-required {
+    @include required-star($background-dark-cyan, 7px, 82px, 16px);
+}
+
+.industry-required {
+    @include required-star($background-dark-cyan, 7px, 64px, 16px);
+}
+
+.type-required {
+    @include required-star($background-dark-cyan, 7px, 78px, 16px);
+}
+
+.email-required {
+    @include required-star($background-dark-cyan, 7px, 85px, 16px);
+}
+
+.country-code-required {
+    @include required-star($background-dark-cyan, 7px, 52px, 16px);
+}
+
+.phone-required {
+    @include required-star($background-dark-cyan, 7px, 74px, 16px);
+}
+
+.address-required {
+    @include required-star($background-dark-cyan, 7px, 140px, 16px);
+}
+
+.apartment-required {
+    @include required-star($background-dark-cyan, 7px, 280px, 16px);
+}
+
+.country-required {
+    @include required-star($background-dark-cyan, 7px, 98px, 16px);
+}
+
+.city-required {
+    @include required-star($background-dark-cyan, 7px, 40px, 16px);
+}
+
+.zip-required {
+    @include required-star($background-dark-cyan, 7px, 125px, 16px)
+}
+
+
+
+.form-control{
+    height: 38px !important;
+    &:focus{
+        ~ .required-field{ 
+            display: none !important;
+        }
+    }
+}
+
+
+

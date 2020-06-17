@@ -1,0 +1,107 @@
+@import 'src/variables.scss';
+
+
+
+.post {
+  background-color: $dark-blue;
+  h1 {
+      color: white;
+      font-family: above;
+  }
+
+    .post__service {
+        margin-left: 2rem;
+        color:#264361;
+        cursor: pointer;
+        border: 1px solid #264361;
+        padding: 0.3rem;
+        border-radius: 5%;
+        text-align: center;
+    }
+        
+ }
+
+ .office-wrap {
+    margin-top: 1.5rem; 
+    .office {
+        flex-basis: 50%;
+        .office__container {
+            margin-right: 1.5rem;
+            background-color: $white;
+            .office__content {
+                padding: 1.5rem;
+                .office__content--grey {
+                    color: $dark-grey; 
+                }
+            }
+        }
+
+    }
+}
+.star {
+    color:$background-dark-cyan;
+    padding-left:0.2rem;
+}
+.form-small {
+    width: 43%;
+} 
+
+
+.a-blue {
+    color: $background-dark-cyan;
+    text-decoration: none;
+
+  }
+  .btn-blue {
+    background-color: #00F4FF !important;
+    padding: 1px 15px !important;
+  }
+   
+
+@media screen and (max-width:438px)
+{
+    .a-left {
+    margin-left: 3rem;
+    }
+    .form-small {
+        width: 100%;
+    } 
+    .office {
+        flex-basis: 100% !important;
+    }
+    .office__container {
+        margin: 0rem !important;
+    }
+}
+ 
+ 
+ label {
+     font-weight: 500; 
+ };
+
+ .tool_name{
+    color: #052337;
+    font-weight: 400;
+    font-size: 18px;
+    background-color:#DCE1E6;
+    width: 370px;
+    margin-right: 15px;
+    height: 32px;
+    border-radius: 5px;
+    padding: 5px;
+    padding-left: 12px;
+}
+
+.tools-options {
+    width: 132px;
+    height: 32px;
+}
+
+.tools-container {
+    display: flex; 
+    cursor: pointer;
+}
+
+.delete-tool {
+    margin-top: 5px;
+}

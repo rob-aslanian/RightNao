@@ -1,0 +1,17 @@
+<div class="new-home-wrapper">
+        <div class="type-of-home">
+        <label class="label-control d-block" [ngClass]="{'invalid-custom': informationCtrl.invalid && 
+                                                                           isSubmitted}" >More information </label>       
+            <div class="custom-control custom-radio d-inline-block mr-3 mb-2 checkbox-home" 
+                *ngFor="let status of information; let i = index">
+                    <input class="custom-control-input" 
+                            type="radio" 
+                            [id]="status.id" 
+                            [value]="status.id" 
+                            [formControl]="informationCtrl" 
+                            name="more-information"
+                            autocomplete="off">
+                    <label class="custom-control-label" [for]="status.id">{{ status.name }}</label>
+            </div>
+        </div>
+</div>

@@ -1,0 +1,26 @@
+.search-filters-option {
+    span {
+        display: block;
+        font-weight:bold;
+        font-size: 14px;
+        padding:5px 10px ;
+    }
+    img {
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+    }
+    button {
+        text-align: unset;
+        color: grey;
+        font-size: 14px;
+        a {
+            float:right;
+        }
+    }
+}
+
+.filter_row{
+    padding-left: 2rem;
+    width: 250px;
+}

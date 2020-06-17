@@ -1,0 +1,74 @@
+
+
+<div class="offers pb-3">
+
+    <div class="tab w-25">
+        <span [ngClass]="{'active-tab': isOffers  }"  (click)='handleSwitchTabs(true)'>Offers</span> 
+        <span [ngClass]="{'active-tab': !isOffers }"  (click)='handleSwitchTabs(false)'>Alerts</span>
+    </div>
+    
+
+    <div class="offers__one d-flex justify-content-between pt-3">
+               <p>Showing {{ isOffers ?  'counter offers' : 'alerts'}} {{ amount }}</p>
+               <div class="offers__one__toggle col-md-3 d-flex justify-content-between">
+                    <p style="cursor: pointer;">Turn off</p>
+                    <div class="" style="position: absolute; right: 2rem;">
+                        <label class="switch">
+                            <input type="checkbox" (change)='toggleNotifications($event)'><span class="slider round"></span>
+                        </label>
+                    </div>
+                </div>
+    </div>
+
+    <div class="offers__two">
+        <div class="offers__two__box w-100 d-flex justify-content-between align-items-center pr-0" *ngIf="!isLoading">
+
+          <div class="profile-wrapper d-flex align-items-center justify-content-between w-100" *ngFor="let item of data">
+              <div class="d-flex">
+                    <div class="offers__two__box__img ">
+                            <div class="offers__two__box__img__content">
+                                 <img [src]="item['company_profile']['id'] ? 
+                                             item['company_profile']['avatar'] : 
+                                             item['user_profile']['avatar'] | avatar: !!item['company_profile']['id'] " alt="avatar">                        
+                            </div>
+                        </div>
+            
+                        <div class="offers__two__box__details ml-4">
+                            <div class="offers__two__box__details__name">
+                                <p>{{ item['company_profile']['id'] ?
+                                      item['company_profile']['name'] : 
+                                      item['user_profile']['firstname'] + " " + item['user_profile']['lastname'] }}</p>
+                            </div>
+                            <div class="offers__two__box__details__message">
+                                <button class="btn backgroundless m-0 pl-0" (click)="sendMessage(!!item['company_profile']['id'], item['company_profile']['id'] ?
+                                                                                                                                  item['company_profile'] : 
+                                                                                                                                  item['user_profile'] )">
+                                    <img style="cursor: pointer" src="assets/img/message.svg" alt=""> <span> Message </span>
+                                </button>
+                            </div>
+                        </div>
+              </div>
+              <div *ngIf="isOffers">
+                  <div class="offers__two__box__details ml-4">
+                        <div class="offers__two__box__details__name">
+                                <p>
+                                        {{ item.max_price }} - {{ item.min_price }}
+                                </p>
+                        </div>
+                        <div class="offers__two__box__details__message">
+                                <button class="btn backgroundless mt-0">Reject</button>
+                                <button class="btn btn-primary mt-0">Accept</button>
+                        </div>
+                    </div>
+              </div>
+          </div>
+
+        </div>
+        <ng-container *ngIf="isLoading">
+              <div class="d-flex justify-content-center">
+                   <app-spinner></app-spinner>
+              </div>
+        </ng-container>
+        
+    </div>
+</div>

@@ -1,0 +1,204 @@
+@import 'src/variables'; 
+
+
+@mixin Deactivated( $text, $bgColor, $color ) {
+    content: $text;
+    position: absolute;
+    height: 23px;
+    width: 138px;
+    left: -21px;
+    top: 21px;
+    transform: rotate(-37deg);
+    font-size: 14px;
+    text-align: center;
+    background-color: transparent;
+    color: $color;
+    z-index: 3;
+    border-bottom: 23px solid $bgColor;
+    border-left: 18px solid transparent;
+    border-right: 30px solid transparent;
+}
+.is-sold {
+    &::before {
+        @include Deactivated("Sold", green , white )
+    }
+};
+
+.is-urgent{
+    &::before {
+        @include Deactivated("Urgent", #FFCC00 , white )
+    }
+}
+
+
+.announcements {
+    background-color: white; 
+    border: 1px solid $grey-dark; 
+    border-radius: .5rem; 
+    width: 100%;
+    overflow: hidden;
+
+    &__title {
+        div {
+            span {
+                color: $dark-grey; 
+                font-size: 1rem; 
+            }
+        }
+    }
+
+    &__box {
+        height: 20rem;
+        &__img {
+            widows: 26rem; 
+            height: 100%;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        &__footer{
+            p {
+            color: $dark-grey;
+            font-size: 14px;
+            margin: 0;
+            }
+        }
+        &__title {
+            font-size: 16px !important;
+            color: black !important;
+            cursor: pointer;
+            margin: 0;
+            &:hover {
+                border-bottom: 1px solid $light-grey;
+            }
+        }
+        &__description{
+            color:$dark-grey;
+            font-size: 14px;
+        }
+        &__price {
+            font-size: 20px !important;
+            color:$dark-cyan !important;
+            font-weight: 600;
+        }
+
+        &__text {
+            p {
+                font-size: 1.125rem;
+                margin: 0; 
+       
+            }
+
+            span  {
+                font-size: 1.5rem; 
+                color: $dark-cyan; 
+                font-weight: bold; 
+
+            }
+        }
+
+        &__info {
+
+            &__location {
+                align-items: center; 
+                span {
+                    font-size: .875rem; 
+                    color: $dark-grey; 
+                    white-space: nowrap;
+                }
+            }
+            &__phone {
+                padding: 5px 10px;
+                border-radius: 4px;
+                background: #E6E6E6;
+                span {
+                     color: $dark-blue;
+                }
+            }
+        }
+  }
+}
+
+.list-view {
+    width: 100%;
+    height: 100% !important;
+  }
+  .card-view {
+     width: 100%;
+     height: 65%;
+  }
+
+.borderForBox {
+     border-radius: 4px;
+     border: 1px solid $grey-dark; 
+     overflow: hidden;
+}
+
+.slider-file {
+    position: absolute;
+    transform: translate(-500px, 0px);
+    transition: 1s;
+}
+
+.dots {
+    position: absolute;
+    z-index: 1;
+    bottom: 9px;
+    left: 30%;
+    .ball {
+        width: 15px;
+        height: 15px;
+        background: #cccccc;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+}
+.active-ball {
+   background: #00D4E3 !important;
+}
+
+.btn-grey {
+    background-color: $cool-grey !important;
+}
+.bottoms {
+    button {
+       color: $dark-blue;
+    }
+}
+.dropdown-menu {
+    left: -130px !important;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.15);
+ }
+
+ .info {
+     font-size: 14px;
+     p {
+         color: $dark-grey;
+     }
+ }
+
+.alert-icon {
+    position: relative;
+    & span {
+        position: absolute;
+        right: -7px;
+        height: 14px;
+        width: 14px;
+        font-size: 12px;
+        text-align: center;
+        line-height: 14px;
+        background-color: $autumn-orange;
+        border-radius: 1px;
+        color: $white;
+    }
+}
+.test {
+    position: absolute;
+    bottom: 20px;
+    right: 15px;
+}

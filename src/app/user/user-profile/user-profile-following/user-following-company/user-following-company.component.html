@@ -1,0 +1,137 @@
+<!-- Content in the center -->
+<div class="col pl-0 pr-0">
+    <div class="center-heading">
+        <h3>Companies & Organizations <span> {{ userFollowingCompanies.length }} </span></h3>
+    </div> 
+
+        <div class="center-content-network">
+        <!-- card view -->
+        <ng-template [ngIf]="toggle.view.selected == 'card'" >
+            <form [formGroup]="connectionsForm" >
+            <div class="network-boxes-container form-row" formArrayName="checkbox" >
+                <div class="col-lg-6 col-md-6"  [ngClass]="connectionsForm.controls.checkbox.controls[i] ? 'selected' : null" *ngFor="let item of userFollowingCompanies; let i = index" >
+                    <div class="network-box d-flex flex-column justify-content-between">
+                        <div>
+                        <div class="network-line-one">
+                            <div class="custom-control custom-checkbox">
+                            </div>
+                            <button *ngIf="item.id !== myCompanyID" class="btn-more" (click)="myToggle('dots'+i)" >
+                                <img class="btn-more" src="assets/img/107.svg" alt="...">
+                            </button>
+                        </div>
+                        <div class="network-line-two btn-more">
+                            <ng-template [ngIf]="toggle.main.active['dots'+i]" >
+                                <div class="options connection-option btn-more" >
+                                    <button   type="button" (click)="openSmallChatBox(item)" class="message">Message</button>
+                                    <button  class="review" (click)='openReview(item)'>Write a Review</button>
+                                    <button  class="report" (click)="reportCompany(item,i)" >Report / block</button>
+                                    <button  class="follow btn-more" *ngIf="!item.follow" (click)="followCompany('follow', item.id, i)" >Follow</button>
+                                    <button  class="unfollow btn-more" *ngIf="item.follow" (click)="followCompany('unfollow', item.id, i)" >Unfollow</button>
+                                </div>    
+                            </ng-template>
+                            <div class="left">
+                                <img class="company" [src]="item.avatar == '' ? 'assets/img/default-company.svg' : '/file/'+item.avatar" alt="profile">
+                            </div>
+                            <div class="right">
+                                <a [routerLink]="['/company/profile/' + item.url]" >
+                                    <h4> {{ item.name }} </h4>
+                                </a>
+                                <span *ngIf="item.addresses.length > 0"> {{ item.addresses[0].city.city }} </span>
+                                <span> {{ item.network_info.followers }} Followers </span>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="network-line-four">
+                            <button class="btn btn-outline-primary" *ngIf="!item.follow && item.id !== myCompanyID" (click)="followCompany('follow', item.id, i)">Follow</button>
+                            <button class="btn btn-outline-primary" *ngIf="item.follow && item.id !== myCompanyID" (click)="followCompany('unfollow', item.id, i)">Unfollow</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        </ng-template>
+
+            
+        <!-- list view -->
+        <ng-template [ngIf]="toggle.view.selected == 'list'" >
+            <form [formGroup]="connectionsForm">
+            <div class="network-boxes-container-long-view" formArrayName="checkbox" >
+                <div class="network-box" [ngClass]="connectionsForm.controls.checkbox.controls[i] ? 'selected' : null" *ngFor="let item of userFollowingCompanies; let i = index" >
+                    <div class="custom-control custom-checkbox" >
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <div class="network-box-component-one">
+                            <img class="company" [src]="item.avatar == '' ? 'assets/img/default-company.svg' : '/file/'+item.avatar" alt="profile">
+                            <div class="one-right">
+                                <h4> {{ item.name }} </h4>
+                            </div>
+                        </div>
+
+                        <div class="network-box-component-two">
+                            <span *ngIf="item.addresses.length > 0"> {{ item.addresses[0].city.city }} </span>
+                            <!-- <span> {{ item.company.followers }} </span> -->
+                        </div>
+
+                        <div class="network-box-component-three">
+                            <div class="d-flex">
+                                <span> {{ item.network_info.followers }} Followers </span>
+                            </div>
+                        </div>
+
+                        <div class="network-box-component-four">
+                            <button class="btn btn-outline-primary" *ngIf="!item.follow && item.id !== myCompanyID" (click)="followCompany('follow',item.id,i)" >Follow</button>
+                        </div>
+                    </div>
+
+                    <button *ngIf="item.id !== myCompanyId" class="network-dots-btn btn-more" (click)="myToggle('list_dots'+i)" >
+                        <img class="btn-more" src="assets/img/107.svg" alt="...">
+                    </button>
+
+                    <ng-template [ngIf]="toggle.main.active['list_dots'+i]" >
+                        <div class="options connection-option btn-more">
+                            <button  type="button" (click)="openSmallChatBox(item)" class="message">Message</button>
+                            <button  class="review" (click)='openReview(item)'>Write a Review</button>
+                            <button  class="report" (click)="reportCompany(item,i)" >Report / block</button>
+                            <button class="follow btn-more" *ngIf="item.following" (click)="followCompany('follow',item.id,i)" >Follow</button>
+                            <button class="unfollow btn-more" *ngIf="!item.following" (click)="followCompany('unfollow',item.id,i)" >Unfollow</button>
+                        </div>  
+                    </ng-template>
+
+                </div>
+            </div>
+            </form>
+        </ng-template>
+
+    </div>
+<!--         
+    </div>
+</div> -->
+<!-- Content in the center end -->
+
+<!-- Start modals -->
+
+     <!-- write review starts -->
+    <app-modal (closeModal)="modalType = null">
+        <ng-container *ngIf=" modalType  && modalType === 'reportCompany' " >
+        <app-report-block-user 
+                [blockId]="companyReport"
+                type='company'
+                (isBlocked)='isBlockedCompany($event)'
+                (closeModal)='close($event)'>
+        </app-report-block-user>
+    </ng-container>
+
+    <ng-container *ngIf='modalType && modalType === "write"'>
+                <app-write-review 
+                [companyId]='idC'
+                (closeModal)="close($event)" 
+                >
+                </app-write-review>
+            </ng-container>    
+</app-modal>
+            
+            
+
+        <!-- write review end -->  
+
+<!-- End modals -->

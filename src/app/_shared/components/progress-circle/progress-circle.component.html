@@ -1,0 +1,11 @@
+<svg width="500" height="100" >
+    <ng-container *ngFor="let key of ratesKey; trackBy:trackByFn">
+        <circle class="progress__meter" [attr.cx]="setCordinat(key)"  cy="40"  [attr.r] = "radius"  stroke-width="4" fill="none"/> 
+        <circle class="progress__value" [attr.cx]="setCordinat(key)"  cy="40"  [attr.r] = "radius" [style.strokeDasharray] = "circumference" 
+        [style.strokeDashoffset] = "circumference * (1 - calcPercentageForRating((rates[key])) / 100)" stroke-width="4"  fill="none"/>
+        <text [attr.x] = "cordinateforValue(key, calcPercentageForRating(rates[key]))" y="45">{{ calcPercentageForRating(rates[key]) }}<tspan style="font-size: 13px">%</tspan></text>
+        <text [attr.x] = "cordinateForStars(key)" y="92">{{ utils.getScore(key) }} star</text>
+    </ng-container>
+</svg>
+
+       

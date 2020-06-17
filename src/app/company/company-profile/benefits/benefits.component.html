@@ -1,0 +1,31 @@
+<div class="section-header d-flex">
+    <h1>{{ '68' | translate }}</h1>
+    <div class="col line"> 
+        <button class="add"  (click)="open('Add')" *ngIf="isAdmin">
+            <img src="assets/img/50.svg" alt="add">
+        </button>
+        <button class="edit skills-edit" (click)="open('Edit')" *ngIf="isAdmin">
+            <img src="assets/img/19.svg" alt="edit">
+        </button>
+    </div>
+</div> 
+
+<div class="section-content" *ngIf="benefits && benefits.length > 0">
+    <div class="row">
+        <div class="col-3 benefit" *ngFor="let benefit of benefits; let i = index">
+            <img [src]="benefit.icon" alt  appAppLazyImage>
+            <span class="benefit__span">{{ benefit.name | translate }}</span>
+        </div>
+    </div>
+</div>
+
+<ng-container *ngIf="!( benefits && benefits.length > 0 ) && isAdmin" >
+        <app-empty-profile [key]='"benefits"' (openModal)='openEmptyModal()'></app-empty-profile>
+</ng-container>
+    
+
+
+<app-modal [width]="997">
+    <app-benefits-modal (result)="getBenefits($event)" [existBenefits]="benefits"></app-benefits-modal>
+</app-modal>
+

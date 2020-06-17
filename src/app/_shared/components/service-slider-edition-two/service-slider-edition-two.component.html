@@ -1,0 +1,33 @@
+
+<div class="col-12" >
+  <div class="row mt-3 services-slider">
+    <div class="service-slider-buttons service-slider-next" 
+         (click)='handleSlider( true )' >
+         <img src="assets/img/147.svg" 
+              alt="" 
+              style="transform: rotate(-90deg);  
+              filter: brightness(0.5);">
+     </div>
+         
+    <div class="service-slider-buttons service-slider-back" 
+         (click)='handleSlider( false )'>
+         <img src="assets/img/147.svg" 
+              alt="" 
+              style="filter: brightness(0.5);
+              transform: rotate(90deg);">
+    </div>
+
+    <div class="col-sm-10" style="max-height: 539px;">
+        <img  class="services-image-large" 
+              [src]="'/file/'+bigImage" 
+              alt="mile"/>
+    </div>
+    <div class="col-sm-2" style="padding: 0px; height: 100%;">
+      <div class="col-12 service-image-wrapper"  [ngClass]='{"service-image-wrapper--active": selectedindex === i}'
+        *ngFor='let img of slider; index as i' (click)='makeImageActive(i)'>
+        <img class="services-image-small" [src]="'/file/'+img.address" alt="mile" style="width: 100%;" />
+      </div>
+    </div>
+    
+  </div>
+</div>

@@ -1,0 +1,45 @@
+@import 'src/variables';
+
+.slider-button {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+};
+
+.file {
+    width: 100%;
+    object-fit: contain;
+};
+
+
+.next-slide {
+    right: 25px;
+};
+
+.previus-slide {
+    left: 10px;
+    transform: translate(0, -50%) rotate(180deg);
+};
+
+.file-box {
+    .sub-files {
+        height: 90px;
+        width: 114px;
+        margin-left: 21px;
+        border-radius: 6px;
+        object-fit: contain;
+    }
+};
+
+.active-file {
+    border: 3px solid $background-light-blue;
+};
+img {
+    cursor: pointer;
+}
+.img-file {
+    width: 100%;
+    object-fit: cover;
+    max-height: 731px;
+    cursor: zoom-in;
+}

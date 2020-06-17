@@ -1,0 +1,115 @@
+@import 'src/variables'; 
+
+
+span {
+    font-size: .875rem; 
+    color: $dark-grey; 
+};
+
+.arrow-left {
+    position: absolute;
+    top: -9%;
+    right: 3rem;
+    transform: translate(0px, -15px);
+    cursor: pointer;
+};
+
+.arrow-right {
+    position: absolute;
+    right: 2rem;
+    top: -9%;
+    cursor: pointer;
+    transform: translate(0px, -15px);
+};
+.home-box{
+   width: 100%;
+   height: 100%;
+   position: relative;
+ 
+   img {
+       width: 100%;
+       height: 100%;
+       border-radius: 4px;
+   }
+   
+};
+.home-description {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    padding: 0px 10px;
+
+    p {
+        color: $white;
+        margin: 0px;
+        font-weight: 700;
+    };
+
+    span {
+        color: $white;
+    };
+}
+:host ::ng-deep .sponsored {
+    border: unset !important;
+    margin-left: -15px;
+    margin-right: -15px;
+}
+
+
+.header {
+
+    &__categories {
+        &__box {
+            border: 1px solid $lighter-grey; 
+            background-color: $lighter-grey; 
+            border-radius: .2rem; 
+            padding: .2rem 1.4rem .2rem 1.4rem; 
+            cursor: pointer;
+            color: $dark-grey; 
+            margin: 0; 
+            padding: 0; 
+            
+            p {
+                color: $dark-grey; 
+                margin: 0; 
+                padding: 0; 
+            }
+        }
+    }; 
+
+    &__offers {
+        &__notify {
+            img {
+                margin-top: .3rem; 
+                margin-right: .5rem; 
+            }
+            &__counter {
+                position: absolute; 
+                right: 0;
+                top: 0; 
+                background-color: $autumn-orange; 
+                width: 0.875rem; 
+                height: 0.875rem;
+                border-radius: .2rem;
+                display: flex; 
+                justify-content: center; 
+                align-items: center;  
+                
+                span {
+                    color: white; 
+                    font-size: 0.75rem; 
+                }
+            }
+        }
+    }
+}
+
+
+// button {
+//     background-color: $lighter-grey !important; 
+//     color: $dark-grey !important;     
+//     font-size: .875rem; 
+//     white-space: nowrap;
+//     padding-top: .5rem; 
+//     padding-bottom: .5rem; 
+// }

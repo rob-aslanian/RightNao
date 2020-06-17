@@ -1,0 +1,181 @@
+<div class="jobs-career-interest">
+    <div class="intro pt-5">
+        <img src="assets/img/62.svg" alt="intro">
+        <h6 class="jobs-career-interest__section-title">Desired Job</h6>
+    </div>
+
+    <form [formGroup]="careerForm" (ngSubmit)="submit()">
+        <div class="form-row">
+            <div class="form-group col-lg-6 jobs-career-interest__section">
+                <label for="job-title" class="jobs-career-interest__section-title">What job titles are you considering?
+                    <span class="required-star">*</span></label>
+                <input type="text" class="form-control" id="job-title" placeholder="Enter job title"
+                    formControlName="jobs"
+                    [ngClass]="{ 'is-invalid': (carrer.jobs.touched || carrer.jobs.dirty) && carrer.jobs.errors }">
+                <span class="error_message" *ngIf="(carrer.jobs.touched || carrer.jobs.dirty) && carrer.jobs.errors">
+                    {{ utils.$getErrors('required') }}
+                </span>
+
+            </div>
+            <div class="form-group col-lg-6 jobs-career-interest__section">
+                <label for="years-of-experience" class="jobs-career-interest__section-title">How many years of
+                    experience do
+                    you have?</label>
+                <select name="" id="years-of-experience" class="form-control" formControlName="experience">
+                    <option value="" disabled>Select one</option>
+                    <option [value]="experiencesYear.id" *ngFor="let experiencesYear of experiencesYears">
+                        {{ experiencesYear.name }}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row mt-3">
+            <div class="form-group col-lg-6 jobs-career-interest__section">
+                <label for="prefered-industries" class="jobs-career-interest__section-title">Which industries do you
+                    prefer?</label>
+                <select name="" id="prefered-industries" class="form-control" formControlName="industry">
+                    <option value="" selected disabled>Select one</option>
+                    <option *ngFor="let industry of inudstries" [value]="industry.id">
+                        {{ industry.name }}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group col-lg-6 jobs-career-interest__section">
+                <label for="company-size" class="jobs-career-interest__section-title">Would you like to work at
+                    companies
+                    these sizes?</label>
+                <select name="" id="company-size" class="form-control" formControlName="company_size">
+                    <option value="" disabled>Select one</option>
+                    <option [value]="companySize" *ngFor="let companySize of copmanySizeKeys">
+                        {{ companySizes[companySize] }}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-row pt-3">
+            <div class="form-group col-12">
+                <label for="open-types" class="jobs-career-interest__section-title">What types of jobs are you open
+                    to?</label>
+                <div class="form-row  ml-2" formArrayName="job_types">
+                    <div class="form-group mr-5" *ngFor="let jobType of jobTypes; let i = index">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" [value]="jobType.id" [id]="jobType.id"
+                                [formControlName]="i" (change)="jobTypesChange($event , 'job_types' , i)">
+                            <label class="custom-control-label jobs-career-interest__headline" [for]="jobType.id">
+                                {{ jobType.name }}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="intro pt-3">
+            <img src="assets/img/155.svg" alt="intro">
+            <h6 class="jobs-career-interest__section-title">Salary</h6>
+        </div>
+        <div class="d-flex mt-2 mb-3">
+            <div class="custom-control custom-radio write-a-review__content__submit-review__type-options__item">
+                <input type="radio" formControlName="salary_interval" class="custom-control-input" value="Month"
+                    id="monthly" name="salary_interval">
+                <label class="custom-control-label" for="monthly">Monthly</label>
+            </div>
+            <div class="custom-control custom-radio write-a-review__content__submit-review__type-options__item ml-4">
+                <input type="radio" formControlName="salary_interval" class="custom-control-input" value="Hour"
+                    id="hourly" name="salary_interval">
+                <label class="custom-control-label" for="hourly">Hourly</label>
+            </div>
+            <div class="custom-control custom-radio write-a-review__content__submit-review__type-options__item ml-4">
+                <input type="radio" formControlName="salary_interval" class="custom-control-input" value="Year"
+                    id="annual" name="salary_interval">
+                <label class="custom-control-label" for="annual">Annual</label>
+            </div>
+        </div>
+        <div class="form-row col-md-8 pl-0">
+            <div class="form-group col-md-3">
+                <input type="number" class="form-control" formControlName="salary_min" placeholder="Min"
+                    [ngClass]="{ 'is-invalid': (carrer.salary_min.touched || carrer.salary_min.dirty) && carrer.salary_min.errors }">
+            </div>
+            <div class="form-group col-md-3">
+                <input type="number" class="form-control" formControlName="salary_max" placeholder="Max"
+                    [ngClass]="{ 'is-invalid': (carrer.salary_max.touched || carrer.salary_max.dirty) && carrer.salary_max.errors }">
+            </div>
+            <div class="form-group col-md-3">
+                <select id="currency" class="form-control" formControlName="salary_currency">
+                    <option value="" disabled>Currency</option>
+                    <option *ngFor="let currency of currencies" [value]="currency">
+                        {{ currency }}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="intro pt-5">
+            <img src="assets/img/60.svg" alt="intro">
+            <h6 class="jobs-career-interest__section-title">Mobility</h6>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="wanted-location" class="jobs-career-interest__section-title" class="pb-1">Which locations do you want to
+                    work
+                    in?</label>
+                <input type="text" class="form-control" id="wanted-location" placeholder="Enter city"
+                    formControlName="cities" [ngbTypeahead]="searchLocation" [resultFormatter]="formatLocation"
+                    [inputFormatter]="formatLocation" (selectItem)="selectLocation($event)">
+            </div>
+
+        </div>
+
+        <div class="form-group" style="margin-left: -9px;">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="willing-to-travel" formControlName="travel">
+                <label class="custom-control-label jobs-career-interest__section-title" for="willing-to-travel">
+                    I am willing to travel
+                </label>
+            </div>
+            <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="work-remotely" formControlName="remote">
+                    <label class="custom-control-label jobs-career-interest__section-title" for="work-remotely">I am
+                        open to
+                        working remotely</label>
+                </div>
+        </div>
+
+        <div class="intro pt-5">
+            <img src="assets/img/156.svg" alt="intro">
+            <h6 class="jobs-career-interest__section-title">Additional Info</h6>
+        </div>
+        <h6 class="jobs-career-interest__section-title" class="pt-3 pb-2">Suitable for</h6>
+        <div class="form-row" formArrayName="suitable_for">
+            <div class="form-group mr-5" *ngFor="let suitable of suitableFor; let i = index">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" [id]="suitable.value" [value]="suitable.value"
+                        (change)="jobTypesChange($event , 'suitable_for' , i)" [formControlName]="i">
+                    <label class="custom-control-label jobs-career-interest__headline" [for]="suitable.value">
+                        {{ suitable.name }}
+                    </label>
+                </div>
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-end">
+            <button class="btn-default btn btn-primary">Save</button>
+        </div>
+
+    </form>
+</div>
+
+<app-modal>
+    <div class="popup-content default-modal">
+        <p>To save career interest please register as a candidate by switching the toggle to yes </p>
+        <app-user-career-new-opp ></app-user-career-new-opp>
+
+        <div class="d-flex justify-content-end">
+            <button class="btn btn-primary" (click)="submit(true)">Save</button>
+        </div>
+        
+    </div>  
+</app-modal>
+    

@@ -1,0 +1,83 @@
+@import 'src/variables';
+
+
+.member-requests-content{
+    background: $white;
+    border-radius: .5rem;
+    border: 1px solid $light-grey;
+    &__title{
+       h4{
+        font-size: 1rem;     
+        }  
+    }
+    &__check-all{
+        .actions{
+            div{
+                a{
+                    font-size: 0.875rem;
+                    color: $dark-grey;
+                    padding-right: 1rem;
+                    &:hover{
+                        text-decoration: none;
+                    }
+                    img{
+                        width: 1rem;
+                        height: 1rem;
+                    }
+                }
+            }
+        }
+        .more{
+            font-size: 1.1rem;
+            color: $dark-grey; 
+            margin-right: 3rem;  
+            &:hover{   
+                text-decoration: none;    
+            }   
+        } 
+    } 
+    &__user{ 
+        &__avatar{ 
+            margin-right: 1rem;
+            .user-avatar{ 
+                width: 4.375rem;
+                height: 4.375rem;
+                border-radius: 50%;
+            }
+            .company-avatar{
+                width: 4.375rem;
+                height: 4.375rem;
+                border-radius: .3rem;
+            }
+        }
+        &__name{
+            p{
+                font-size: 1rem;
+                margin: 0;
+                white-space: nowrap;
+            }
+            span{
+                font-size: .75rem;
+                color: $dark-grey;
+            }
+        }
+        &__info{
+            padding-left: 4.5rem !important;
+            @media #{$break2} {
+                padding-left: 1rem !important;
+            }
+            span{
+                color: $dark-grey;
+                font-size: .75rem;
+                margin-bottom: .5rem;
+            }
+        }
+        &__settings{
+            text-align: right;
+            margin-top: -.8rem;
+            &__buttons{
+                justify-content: flex-end;
+            }
+        }
+    }
+}

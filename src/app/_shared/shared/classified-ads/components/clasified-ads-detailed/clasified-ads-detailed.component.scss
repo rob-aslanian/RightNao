@@ -1,0 +1,75 @@
+.ads-details{
+    background: white;
+    border-radius: 4px;
+    padding: 15px;
+
+}
+
+.big-one {
+   height: 400px;
+   width: 100%;
+   object-fit: contain;
+   border-radius: 4px;
+}
+
+.small-ones {
+    height: 50px;
+    width: 100%;
+    border-radius: 4px;
+    cursor: pointer;
+    opacity: .5;
+}
+
+.pointers {
+    .bitvh  {
+        position: absolute;
+        height: 35px;
+        width: 35px;
+        border-radius: 50%;
+        background: white;
+        box-shadow: inset 1px 1px 2px #ced4da, 0 0 0 transparent!important;
+        z-index: 5;
+        cursor: pointer;
+        bottom: 55px;
+    }
+    .pointer-left {
+        left: 0px;        
+    }
+    .pointer-right {
+        right: 0px;
+    }
+}
+.active-one {
+    opacity: 1 !important;
+}
+
+.profile {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+}
+p {
+    color: #052337;
+}
+
+.locationn {
+   span {
+       color: #808080;
+       font-size: 14px;
+   }
+}
+
+.category {
+    padding: 10px;
+    background: #00d4e3;
+    border-radius: 4px;
+    p {
+        margin: 0px;
+        margin-right: 10px;
+        +p {
+            font-weight: 500;
+            font-size: 16px;
+            color: #052337;
+        }
+    }
+}

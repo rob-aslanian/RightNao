@@ -1,0 +1,62 @@
+@import 'src/variables';
+.budget-box-item {
+    border: 2px solid $cool-grey;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    &-price {
+        color: $dark-cyan;
+        font-size: 24px;
+    }
+    &-amount {
+        color: $dark-grey;
+    }
+}
+.price-per {
+    &-btn {
+        width: 38px;
+        height: 38px;
+        text-align: center;
+        line-height: 38px;
+        font-size: 25px;
+        color: $dark-grey;
+        background-color: $background-soft-blue;
+        padding: 0;
+        &-minus {
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+        &-plus {
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+    }
+    &-input {
+        border-radius: 0%;
+        width: 70%;
+    }
+}
+.custom-box-height {
+    height: 160px;
+}
+.w-58 {
+    width: 58px;
+}
+
+input::placeholder {
+    color: $light-grey;
+}
+input {
+    text-align: center;
+    color: $dark-grey !important;
+}
+.custom_input {
+    width: 45px;
+    height: 38px;
+    text-align: center;
+    line-height: 38px;
+    background-color: $white;
+    color: $dark-grey;
+}

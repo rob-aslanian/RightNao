@@ -1,0 +1,36 @@
+<form [formGroup] = "projectType">
+<div class="service-request__content__request-details__type">
+  <div>
+      <h5 class="page-section-text-blue heading-margin service-request__content__request-details__type-title">What type of project you have? <span class="required-field-star">*</span></h5>
+  </div>
+  <div class="service-request__content__request-details__type-options">
+      <div class="custom-control custom-radio service-request__content__request-details__type-options__item">
+          <input type="radio" 
+                 class="custom-control-input" 
+                 id="onetime" 
+                 name="typeOfProject"
+                 value="One_Time_Project"
+                 formControlName="typeOfProject">
+          <label class="custom-control-label" for="onetime">One time project</label>
+      </div>
+      <div class="custom-control custom-radio service-request__content__request-details__type-options__item">
+          <input type="radio" 
+                 class="custom-control-input" 
+                 id="ongoing" 
+                 name="typeOfProject"
+                 value="On_Going_Project"
+                 formControlName="typeOfProject">
+          <label class="custom-control-label" for="ongoing">On-going project</label>
+      </div>
+      <div class="custom-control custom-radio service-request__content__request-details__type-options__item">
+          <input type="radio" 
+                 class="custom-control-input" 
+                 id="notsure" 
+                 name="typeOfProject"
+                 value="Not_Sure"
+                 formControlName="typeOfProject">
+          <label class="custom-control-label" for="notsure">I’m not sure</label>
+      </div>
+  </div>
+</div>
+</form>

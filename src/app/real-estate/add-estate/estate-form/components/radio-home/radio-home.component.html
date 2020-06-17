@@ -1,0 +1,13 @@
+
+<label for="Layout_Walls" class="d-block" [ngClass]="{'custom-invalid': isSubmitted && 
+                                                                        ctrl.invalid }">{{ title }}</label>
+
+<div class="custom-control custom-radio mr-4 d-inline-block" *ngFor="let item of data">
+    <input class="custom-control-input" 
+           type="radio"  
+           [id]="item.id" 
+           [name]="title" 
+           [value]="item.id"
+           [formControl]='ctrl'>
+    <label class="custom-control-label" [for]="item.id" style="color: #808080">{{ item.name }} </label>
+</div> 

@@ -1,0 +1,115 @@
+@import 'src/variables';
+
+.location {
+    &-wrapper {
+        width: 100%;
+        margin-right: 25px;
+        background-color: $white;
+        padding: 15px;
+        p {
+            margin-bottom: 0 ;
+        }
+        &-title {
+            font-size: 20px;
+        }
+    }
+    &-target {
+        &-title {
+            font-size: 16px;
+        }
+        p {
+
+        }
+    }
+    &-include {
+        border: 1px solid #CCCCCC;
+        padding: 15px;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        &-header {
+            display: flex;
+            align-items: center;
+        }
+        &-title {
+            font-size: 18px;
+        }
+        &-description {
+            margin-left: 15px;
+            color: #808080;
+            font-size: 14px;
+        }
+        &-search {
+            border-bottom: 1px solid #CCC;
+            margin-bottom: 10px;
+            &-img {
+                margin-right: 10px;
+
+            }
+            &-input {
+                border: none;
+                width: 96%;
+            }
+        }
+    }
+    &-city-list {
+        min-height: 200px;
+    }
+    &-city-search {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 200px;
+        color: #808080;
+        img {
+            width: 40px;
+        }
+    }
+}
+
+.dropDown-menu {
+    top: 5px !important;
+    left: -235px !important;
+    width: 300px;
+    &-item {
+        width: 100%;
+        h5 {
+            font-size: 14px;
+        }
+        p {
+            color: #808080;
+            font-size: 12px;
+            margin: 0;
+        }
+    }
+}
+
+.selected-city {
+    &-container {
+        padding: 15px 0;
+
+    }
+    &-item {
+        display: inline-block;
+        background-color: #E6E6E6;
+        border-radius: 5px;
+        padding: 5px 10px;
+        margin: 10px 0;
+        margin-right: 10px;
+        button {
+            font-size: 14px;
+        }
+    }
+}
+.lang-selector {
+    width: 250px;
+    height: 40px;
+    border-radius: 5px;
+    color: #808080;
+}
+.btn:disabled {
+    background: $light-grey !important;
+    color: #000 !important;
+    text-decoration: none !important;
+}

@@ -1,0 +1,37 @@
+ 
+
+.comments {
+    height: 77px;
+    width: 100%;
+    &:last-child {
+        border-bottom: 1px solid #dcdcdc;
+    }
+    .comment-box {
+        border-top: 1px solid #dcdcdc;
+        height: 100%;
+        width: 100%;
+       
+        .profile-img {
+            height: 50px;
+            width: 50px;
+            border-radius: 50%;
+        }
+        .profile-info {
+            p {
+                font-size: .95rem;
+                color:  #808080;
+            }
+        }
+        .details {
+            span {
+                font-size: 0.8rem;
+                color: #808080;
+                padding-left: 5px;
+            }
+        }
+    }
+
+}
+a {
+    float: unset !important;
+}

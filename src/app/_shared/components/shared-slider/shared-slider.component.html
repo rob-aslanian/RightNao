@@ -1,0 +1,55 @@
+<ng-container *ngIf="files.length > 0" >
+    
+    <ng-container *ngIf="type === 'Photo'">
+        <img   [src]="'/file/'+primaryFile"  
+                alt="cover"  
+                class="file img-file"  
+               (click)='openModal( false )'>
+
+    </ng-container>
+    
+    <ng-container *ngIf="type === 'Video' " >
+          <video [src]="'/file/'+primaryFile" class="file" controls style="height: 400px;" ></video>
+    </ng-container>
+    
+    
+    
+    <div class="slider-button next-slide" (click)='handleNextSlide()'  *ngIf="selectedIndex !== files.length-1">
+                <img src="assets/img/Subtraction 2.svg" alt="left">
+    </div>
+    
+    <div class="slider-button previus-slide" (click)='handlePrevSlide()'  *ngIf="selectedIndex > 0">
+                <img src="assets/img/Subtraction 2.svg" alt="right">
+    </div>
+    
+    <div class="d-flex justify-content-center file-box mt-3" *ngIf="hasSlides">
+        <ng-container *ngFor="let file of files; let i = index">
+
+            <ng-container *ngIf="type === 'Photo'" >
+
+                <img  [src]="'/file/'+file" 
+                      alt="file" 
+                      class="sub-files"  
+                      [ngClass]="{'active-file': selectedIndex === i}" 
+                      (click)='handleFileChanges( file , i)'>
+
+            </ng-container>
+
+            <ng-container *ngIf="type === 'Video'">
+                
+                 <video   [src]="'/file/'+file" 
+                          class="sub-files"      
+                          [ngClass]="{'active-file': selectedIndex === i}"
+                          (click)='handleFileChanges( file , i)'></video>
+
+            </ng-container>
+            
+        </ng-container>
+    </div>
+
+</ng-container>
+
+<ng-container *ngIf="type === 'Photo' && open === 'photo'" >
+        <app-photo-modal [src]="'/file/'+primaryFile" (onSrc)='openModal(true)'></app-photo-modal>
+</ng-container>
+

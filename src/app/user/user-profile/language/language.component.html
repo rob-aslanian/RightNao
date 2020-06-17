@@ -1,0 +1,73 @@
+ <ng-container *ngIf="Languages.length != 0">
+     
+    <div class="section-header d-flex">
+        <h1  class="mb-0">{{ '842'| translate }}</h1>
+        <div class="col line">
+            <button class="add" *ngIf="data.isMe" (click)='openLanguage("save")'>
+                <img src="assets/img/50.svg" alt="add">
+            </button>
+        </div>
+    </div>
+    
+    <div class="languages row">
+        <div class="col-sm-6   mt-3"
+            *ngFor="let language of Languages  | slice: 0:startPage ; let i = index">
+            <div class="section-content p-0 language">
+                <div class="languages-text">
+                    <h3>{{ language.language | languagePipe }}</h3>
+                    <div class="stars" *ngIf='language.rate' >
+
+                    <ngb-rating rate="{{ language.rate }}" [readonly]="true" max="5">
+
+                    </ngb-rating>
+
+                        <div *ngIf='language.rate == 1'>Beginner</div>
+                        <div *ngIf='language.rate == 2'>Elementary</div>
+                        <div *ngIf='language.rate == 3'>Intermediate</div>
+                        <div *ngIf='language.rate == 4'>Advanced</div>
+                        <div *ngIf='language.rate == 5'>Native</div>
+
+                    </div>
+                    <button class="edit bottom-edit" *ngIf="data.isMe"
+                    (click)='openLanguage("edit",language,i)'>
+                        <img src="assets/img/19.svg" alt="edit">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+ </ng-container>
+
+<ng-container  *ngIf="Languages.length === 0 && data.isMe">
+     <div class="mt-3">
+        <div class="section-header d-flex">
+                <h1  class="mb-0">{{ '842'| translate }}</h1>
+                <div class="col line">
+                    <button class="add" *ngIf="data.isMe" (click)='openLanguage("save")'>
+                        <img src="assets/img/50.svg" alt="add">
+                    </button>
+                </div>
+        </div>
+        <app-empty-profile [key]='"languages"' (openModal)='openEmptyModal()'></app-empty-profile> 
+     </div>
+</ng-container>
+
+
+<app-more-less  [dataLength]="Languages.length" (start)="startPage = $event"></app-more-less>
+
+
+
+
+
+<app-modal (closeModal)="modalType = null">
+    <!-- Add -->
+    <ng-container *ngIf="modalType === 'add'">
+        <app-language-modal [currentLangs]="currentLangs" (result)="getLanguage($event)"></app-language-modal>
+    </ng-container>
+
+    <!-- Edit -->
+    <ng-container *ngIf="modalType === 'edit'">
+        <app-language-modal [currentLangs]="currentLangs" [data]='editLanguage'    (result)="getLanguage($event)"></app-language-modal>
+    </ng-container>
+ </app-modal>

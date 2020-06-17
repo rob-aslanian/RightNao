@@ -1,0 +1,11 @@
+<ng-container *ngIf="searchService.type === 'all'">
+    <div class="d-flex justify-content-between mt-2 mb-2" *ngIf="titleData && amount > 0">
+        <div class="d-flex align-items-baseline">
+            <h5 *ngIf="titleData?.title as title">{{ title }}</h5>
+            <span class="page-section-text-grey ml-3" >
+                Showing {{ amount }} results
+            </span>
+        </div>
+        <a [routerLink]="[titleData.link]" class="backgroundless">See all</a>
+    </div>
+</ng-container>

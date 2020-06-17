@@ -1,0 +1,36 @@
+<div class="aditional-input-box">
+
+  <div class="aditional-labels-row">
+
+    <div *ngFor="let item of selectedItems; let i = index" class="aditional-label-balloon">
+      {{item.name}}
+      <span (click)="removeSelectedItem(item.id)" style="cursor: pointer" aria-hidden="true">&times;</span>
+    </div>
+
+    <input #searchUserInput 
+      (focus)="showResultBox=true" 
+      (blur)="hideSearchResultBox()" 
+      type="text" 
+      class="aditional-labels-input" 
+      placeholder="{{selectedItems.length == 0 ? 'Type a name (at least 3 characters)' : ''}}"
+      [(ngModel)]="searchText" 
+      (keyup)="getFriendships()">
+
+
+    <div [ngClass]="{'aditional-input-row-forward' : isParentForwardOverlay}" class="aditional-input-row">
+
+      <div *ngFor="let item of searchResult; let i = index" (click)="onSelectItem(item.friend)" class="chatMembers-item nano">
+        <div class="chatMembers-item-img">
+          <img src="{{item.friend.avatar | defaultAvatar}}" alt="photo">
+        </div>
+        <div class="chatMembers-item_body">
+          <div class="chatMembers-item-title">
+            <h3>{{item.friend.first_name}} {{item.friend.last_name}}</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- <button (click)="close()" class="backgroundless"> Close </button> -->
+</div>

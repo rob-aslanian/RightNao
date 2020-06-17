@@ -1,0 +1,31 @@
+<div class="search-messages">
+
+  <!-- <ng-template #labelsTemplate let-r="result" let-t="term">
+      <img src="{{'./assets/img/labels/' +r.color + '.svg'}}" alt="ico">
+      {{r.name}}
+  </ng-template>
+
+  <input 
+    id="typeahead-focus" 
+    [(ngModel)]="label" 
+    [ngbTypeahead]="search" 
+    (focus)="focus$.next($event.target.value)" 
+    (click)="click$.next($event.target.value)"
+    #instance="ngbTypeahead" 
+    type="text" 
+    class="form-control" 
+    (selectItem)="onLabelSelect($event)" 
+    [resultFormatter]="formatMatches"
+    [inputFormatter]="formatMatches" 
+    [resultTemplate]="labelsTemplate"
+    placeholder="Filter with Labels">
+  <div style="height: 15px"></div>
+  <button class="btn-custom__link" *ngIf="selectedLabelId !== ''" (click)="onClearSearch()">Clear</button> -->
+
+  <input 
+    (keyup)="onKeyUp()" 
+    [(ngModel)]="conSearchText" type="text" 
+    class="form-control" 
+    placeholder="Search">
+    <button class="btn-custom__link" *ngIf="conSearchText !== ''" (click)="conSearchText='';onKeyUp()">Clear</button> 
+</div>

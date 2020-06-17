@@ -1,0 +1,128 @@
+<div class="announcements__box  mt-3" style="position: relative;">
+    <div class="borderForBox" style="height: 100%;" > 
+        <div [ngClass]="{'is-sold': pet.common.post_status == 'PostStatus_Sold',
+                            'is-urgent': pet.common.is_urgent }"></div>
+
+            <div class="row m-0 card-view " 
+                    [ngClass]="{ 'list-view': !isCardView }" >
+                <div class="{{ isCardView ? 'col-12' : 'col-5' }}  p-0" 
+                    style="position: relative;"
+                    *ngIf="files.length">
+                    <div class="announcements__box__img" style="height: 100%;" (mouseenter)='nextImage($event)'>
+                        <img [src]="files[counter] || files[0]" alt="image" style="position: absolute; z-index: 1;">
+                        <img [src]="files[counter + 1] || files[0]" alt="image" style="position: absolute; z-index: 0;">
+                        <div class="dots" *ngIf="this.files.length > 1">
+                                <div class="ball" 
+                                    *ngFor="let ball of files; let i = index" 
+                                    (click)='counter = i' 
+                                    [ngClass]="{'active-ball': i === counter}"></div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="!isCardView" class="col-7">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <p class="announcements__box__title" [routerLink]="['/pets/details', pet['id']]"> {{ pet.info.detail.title }} </p>
+                        <div class="bottoms"  ngbDropdown *ngIf="pet.common.is_me">
+                                <button class="btn backgroundless" ngbDropdownToggle><img src="assets/img/107.svg" alt="dots" ></button> 
+                                 <div  class="bottoms btn-more" ngbDropdownMenu>
+                                      <button ngbDropdownItem  class="btn backgroundless" (click)="edit(pet.id)">Edit</button>
+                                      <button ngbDropdownItem  class="btn backgroundless">
+                                        <span *ngIf=" pet.common.post_status == 'PostStatus_Active' "  
+                                            (click)="changePetStatus(pet.id, 'PostStatus_Hidden')">
+                                            Make a hidden
+                                        </span>
+                                        <span *ngIf=" pet.common.post_status == 'PostStatus_Hidden' "  
+                                            (click)="changePetStatus(pet.id, 'PostStatus_Active')">
+                                            Make a active
+                                        </span>
+                                      </button>
+                                      <button ngbDropdownItem  class="btn backgroundless" (click)="changePetStatus(pet.id, 'PostStatus_Sold')">Make a sold </button>
+                                      <button ngbDropdownItem  
+                                              class="btn backgroundless" 
+                                              (click)="manage('urgent')"
+                                              *ngIf="!pet.common.is_urgent">Make urgent</button>
+                                      <button ngbDropdownItem  class="btn backgroundless" (click)="manage('remove')">Delete</button>
+                                 </div>
+                         </div>
+                    </div>
+                    <p class="announcements__box__price">{{  pet.common.price.fix_price  }}{{ pet.common.price.currency }}</p>
+                    <!-- <div class="d-flex align-items-center">
+                        <div class="info">
+                            <span>{{ car.years }}</span>
+                            <p>Years</p>
+                        </div>
+                        <div class=" ml-4 mr-4 info">
+                            <span> {{ car.mileage }}{{car.mileageUnit}} </span>
+                            <p>Mileage</p>
+                        </div>
+                    </div> -->
+                    <p class="announcements__box__description"> {{ pet.info.detail.description }} </p>
+                    <div class="d-flex align-items-center" *ngIf="pet.common.is_me">
+                        <button class="btn btn-grey mr-2 ml-2" 
+                                (click)="manage('urgent')" 
+                                *ngIf="!pet.common.is_urgent">
+                            Urgent
+                        </button>
+                        <button class="btn btn-grey mr-2 ml-2">Boost</button>
+                        <button class="btn btn-grey mr-2 ml-2" (click)="manage('discounted')">Discounted</button>
+                    </div>
+                    <div class="test">
+                        <button class="btn" *ngIf="!pet.common.is_me">
+                            <img [src]="pet.common.has_liked ? 
+                                        'assets/img/99.svg' : 
+                                        'assets/img/44.svg'"
+                                (click)='changeLikeStatus()' 
+                                alt="like" 
+                                style="height: 15px; cursor: pointer;">
+                        </button>
+                        <div *ngIf="pet.common.is_me" class="alert-icon">
+                                <img style="cursor: pointer" 
+                                    src="assets/img/256.svg" alt="alert" 
+                                    (click)="manage('notifications')">
+                                <span> {{ pet.common.alerts + pet.common.offers  }} </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pr-2 pl-2 announcements__box__footer" *ngIf="isCardView">
+                <div class="d-flex align-items-center justify-content-between">
+                    <p class="announcements__box__title" [routerLink]="['/pets/details', pet['id']]"> {{ pet.info.detail.title }} </p>
+                    <p>{{ pet.common.created_at | date }}</p>
+                </div>
+                <div class="d-flex align-items-center justify-content-between">
+                    <!-- <p>{{ pet.common.location.country }}, {{  pet.common.location.city }}</p> -->
+                    <p  class="announcements__box__price">{{  pet.common.price.fix_price  }}{{ pet.common.price.currency }}</p>
+                    <button class="btn" *ngIf="!pet.common.is_me">
+                        <img [src]="pet.common.has_liked ? 
+                                    'assets/img/99.svg' : 
+                                    'assets/img/44.svg'"
+                            (click)='changeLikeStatus()' 
+                            alt="like" 
+                            style="height: 15px; cursor: pointer;">
+                    </button>
+                </div>
+                <!-- <div class="d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <div>
+                                <p>Year</p>
+                                <p>{{ car.years }}</p>
+                        </div>
+                        <div class="pr-2 pl-2">
+                                <p>Mileage</p>
+                                <p> {{ car.mileage }}{{car.mileageUnit}} </p>
+                        </div>
+                    </div>
+                    <button class="btn" *ngIf="!isMe">
+                        <img [src]="pet.common.has_liked ? 
+                                    'assets/img/99.svg' : 
+                                    'assets/img/44.svg'"
+                            (click)='addToSave()' 
+                            alt="like" 
+                            style="height: 15px; cursor: pointer;">
+                    </button>
+                </div> -->
+            </div>
+
+            
+    </div>
+</div>

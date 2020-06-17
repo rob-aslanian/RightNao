@@ -1,0 +1,24 @@
+
+<form [formGroup]="form" class="col-md-5">
+    <div class="form-group">
+        <label for="capacityUnits-0">Capacity</label>
+        <div class="custom-control custom-radio custom-control-inline"  *ngFor="let item of capacityUnits; let i = index;">
+                <input  type="radio" 
+                        class="custom-control-input" 
+                        [value]="item" 
+                        id="capacityUnits-{{ i }}" 
+                        name="vehicleCapacityUnit"
+                        formControlName="vehicleCapacityUnit">
+                <label  for="capacityUnits-{{ item }}" class="custom-control-label"> 
+                    {{ item }}
+                </label>
+        </div>
+        <div>
+            <input type="number" 
+                    class="form-control" 
+                    placeholder="Enter capacity" 
+                    formControlName="capacity">
+                    <!-- [ngClass]="{'is-invalid':form.get('capacity').invalid && isSubmitted}" -->
+        </div>
+    </div>
+</form>

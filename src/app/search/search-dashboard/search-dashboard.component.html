@@ -1,0 +1,227 @@
+
+<div class="search-dashboard pt-4 pb-4">
+    <div class="search-dashboard-container">
+
+        <div class="search-dashboard-heading">
+            <form (ngSubmit)="submit()">
+                <div class="form-group d-flex">
+                        <input [formControl]="keyword"  type="text" class="form-control" placeholder="Enter keyword">
+                        <button  type="submit" class="btn btn-primary ml-2">
+                            Search
+                        </button>
+                    </div>
+            </form>
+        </div>
+
+        <div class="search-dashboard-body">
+               <div class="d-flex">
+                   <hr>
+                     <h5 class="text-align-center">Search By</h5>
+                   <hr>
+               </div>
+
+               <div class="search-dashboard-searchs mt-4">
+                   <div class="row ml-0">
+                       
+                     <div class="col-md-6">
+                         <div class="row">
+                             <div class="col-4 mb-4" [routerLink]="['people']"  >
+                                 <div class="search-box">
+                                      <img src="assets/img/users.svg" alt="search">
+                                 </div>
+                                 <span>People</span>
+                             </div>
+      
+                             <div class="col-4 mb-4 disabled_search">
+                                 <div class="search-box">
+                                      <img src="assets/img/reg_proffesional.svg" alt="search">
+                                 </div>
+                                 <span>Professional</span>
+                             </div>
+      
+                             <div class="col-4 mb-4" [routerLink]="['company']" >
+                                  <div class="search-box">
+                                      <img src="assets/img/reg_company.svg" alt="search">
+                                  </div>
+                                  <span>Company</span>
+                             </div>
+                         </div>
+                     </div>
+                     
+                     <div class="col-md-6">
+                         <div class="row">
+                            <div class="col-4 mb-4"  [routerLink]="['company']">
+                                <div class="search-box">
+                                        <img src="assets/img/reg_organization.svg" alt="search">
+                                    </div>
+                                    <span>Organization</span>
+                                </div>
+        
+                                <div class="col-4 mb-4 disabled_search" >
+                                    <div class="search-box">
+                                        <img src="assets/img/menu-icons/new/search_group.svg" alt="search">
+                                    </div>
+                                    <span>Groups</span>
+                                </div>
+        
+                                <div class="col-4 mb-4 disabled_search">
+                                    <div class="search-box">
+                                        <img src="assets/img/menu-icons/new/search_business.svg" alt="search">
+                                    </div>
+                                    <span>Businesses</span>
+                                </div>
+                         </div>
+                     </div>
+ 
+                     <div class="col-md-6">
+                       <div class="row">
+                            <div class="col-4 mb-4 disabled_search">
+                                    <div class="search-box">
+                                        <img src="assets/img/menu-icons/new/search_brand.svg" alt="search">
+                                    </div>
+                                    <span>Brands</span>
+                               </div>
+          
+                               <div class="col-4 mb-4" [routerLink]="['candidate']"  [ngClass]="{'disabled_search': !isCompany}">
+                                    <div class="search-box">
+                                        <img src="assets/img/menu-icons/new/search_candidates.svg" alt="search">
+                                    </div>
+                                    <span>Candidates</span>
+                               </div>
+                               
+                               <div class="col-4 mb-4"  [routerLink]="['job']">
+                                    <div class="search-box">
+                                        <img src="assets/img/menu-icons/new/search_job.svg" alt="search">
+                                    </div>
+                                    <span>Jobs</span>
+                               </div>
+                       </div>
+                     </div>
+
+                     <div class="col-md-6">
+                         <div class="row">
+                                <div class="col-4 mb-4 disabled_search">
+                                        <div class="search-box">
+                                        <img src="assets/img/menu-icons/new/Volunteering.svg" alt="search">
+                                        </div>
+                                        <span>Volunteering</span>
+                                   </div>
+              
+                                   <div class="col-4 mb-4 disabled_search">
+                                        <div class="search-box">
+                                        <img src="assets/img/menu-icons/new/Internship.svg" alt="search">
+                                        </div>
+                                        <span>Internship</span>
+                                   </div>
+              
+                                   <div class="col-4 mb-4 disabled_search">
+                                        <div class="search-box">
+                                        <img src="assets/img/menu-icons/new/Exchange.svg" alt="search">
+                                        </div>
+                                        <span>Exchange</span>
+                                   </div>
+                         </div>
+                     </div>
+   
+                     <div class="col-md-6">
+                         <div class="row">
+                                <div class="col-4 mb-4 disabled_search">
+                                        <div class="search-box">
+                                           <img src="assets/img/menu-icons/new/search_event.svg" alt="search">
+                                        </div>
+                                        <span>Events</span>
+                                   </div>
+              
+                                   <div class="col-4 mb-4 disabled_search">
+                                        <div class="search-box">
+                                        <img src="assets/img/menu-icons/new/Website.svg" alt="search">
+                                        </div>
+                                        <span>Websites</span>
+                                   </div>
+              
+                                   <div class="col-4 mb-4"  [routerLink]="['service']">
+                                        <div class="search-box">
+                                            <img src="assets/img/menu-icons/new/search_service.svg" alt="search">
+                                        </div>
+                                        <span>Services</span>
+                                   </div>
+              
+                         </div>
+                     </div>
+
+                     <div class="col-md-6">
+                         <div class="row">
+                            <div class="col-4 mb-4"  [routerLink]="['service_request']">
+                                    <div class="search-box">
+                                        <img src="assets/img/menu-icons/new/search_request.svg" alt="search">
+                                    </div>
+                                    <span>Service Requests</span>
+                                </div>
+            
+                                <div class="col-4 mb-4 disabled_search">
+                                    <div class="search-box">
+                                        <img src="assets/img/menu-icons/new/search_product.svg" alt="search">
+                                    </div>
+                                    <span>Products</span>
+                                </div>
+            
+                                <div class="col-4 mb-4 disabled_search">
+                                    <div class="search-box">
+                                        <img src="assets/img/menu-icons/new/search_photo.svg" alt="search">
+                                    </div>
+                                    <span>Pictures</span>
+                                </div>
+                         </div>
+                     </div>
+
+                     <div class="col-md-6">
+                         <div class="row">
+                                <div class="col-4 mb-4 disabled_search">
+                                        <div class="search-box">
+                                            <img src="assets/img/menu-icons/new/search_video.svg" alt="search">
+                                        </div>
+                                        <span>Video</span>
+                                   </div>
+            
+                                   <div class="col-4 mb-4 disabled_search">
+                                        <div class="search-box">
+                                        <img src="assets/img/menu-icons/new/Podcasts.svg" alt="search">
+                                        </div>
+                                        <span>Podcasts</span>
+                                   </div>
+            
+                                   <div class="col-4 mb-4 disabled_search">
+                                        <div class="search-box">
+                                            <!-- <img src="" alt=""> -->
+                                        </div>
+                                        <span>Podcasts</span>
+                                   </div>
+            
+                         </div>
+                     </div>
+
+                     <div class="col-md-6">
+                         <div class="row">
+                                <div class="col-4 mb-4 disabled_search">
+                                    <div class="search-box">
+                                        <img src="assets/img/menu-icons/new/search_music.svg" alt="search">
+                                    </div>
+                                    <span>Music</span>
+                                </div>
+
+
+        
+                                <div class="col-4 mb-4 disabled_search">
+                                    <div class="search-box">
+                                        <img src="assets/img/menu-icons/new/search_news.svg" alt="search">
+                                    </div>
+                                    <span>News</span>
+                                </div>
+                         </div>
+                     </div>   
+
+                   </div>
+               </div>
+         </div>
+    </div>
+</div>

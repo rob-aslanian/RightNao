@@ -1,0 +1,27 @@
+@import '../../../../variables'; 
+
+.dark-blue-bg-for-network, 
+.long-dark-blue-bg {
+    height: 70px;
+}
+
+.post__request {
+    margin-left: 2rem;
+    color: #264361;
+    cursor: pointer;
+    border: 1px solid #264361;
+    padding: 0.3rem;
+    border-radius: 5%;
+    text-align: center;
+}
+
+
+.container.services {
+    max-width: 1257px;
+    flex-wrap: wrap;
+};
+
+.full-heigth {
+    height: 100% !important;
+    padding: 1.5rem; 
+}

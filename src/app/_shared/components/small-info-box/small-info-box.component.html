@@ -1,0 +1,26 @@
+<div class="modalPhoto-drop_body">
+    <div class="modalPhoto-drop-info">
+        <a class="close" >&#10005;</a>
+        <div class="mb-2">
+            <div>Connection Request Sender</div>
+            <div>{{  fullName }}</div>
+        </div>
+
+     <ng-container *ngIf='dateData'>
+    <div class="date-container">
+        <div class="mb-2">
+            <div>Connection Request Date</div>
+            <div>
+                {{dateData.createdAt | date:"dd/mm/yyyy"}}
+            </div>
+        </div>
+        <div class="mb-2">
+            <div>Connected Date</div>
+            <div>
+               {{dateData.responededAt | date:"dd/mm/yyyy" }}
+            </div>
+        </div>
+    </div>
+    </ng-container>
+    </div>
+</div>

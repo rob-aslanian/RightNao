@@ -1,0 +1,35 @@
+<div class="header-search-container"></div>
+<div class="header__search input-group   p-4 d-flex justify-content-center">
+    <div class="profile d-flex">
+        <div class="header__search__dropdown  p-0 d-flex" style="width: 65%;">
+            <div class="p-1 drop-down  input-group-prepend left-side" ngbDropdown style="position: relative;">
+                <button class="btn backgroundless property-type" ngbDropdownToggle style="padding-top: 2px; color: grey;"> {{ selected }}</button>
+
+                <div class="property-types" ngbDropdownMenu>
+                    <ul>
+                        <li ngbDropdownItem (click)='updateQueryParams( item.id, item.name )' 
+                            *ngFor="let item of CATEGORIES">
+                            {{ item.name }}
+                        </li>
+
+                    </ul>
+                </div>
+
+            </div>
+            <div class="search-bar-ads p-0 w-100">
+                <input type="text" class="form-control pr-5" placeholder="Enter a search locations" style="border-left: transparent;">
+            </div>
+        </div>
+
+        <div class="header__search__button ml-3  d-flex align-items-center" style="width: 35%;">
+            <button class="btn btn-primary" style="height: 37px;">Search</button>
+            <button class="btn btn-light ml-3" style="height: 37px;" 
+                    [routerLink]="[manage]" routerLinkActive="router-link-active" 
+                    [queryParams]='queryParams'>Manage</button>
+            <button class="btn ml-3 backgroundless" style="height: 37px;" [routerLink]="[add]"  >
+                <img src="assets/img/add-estate.svg" alt="add" class="w-100 h-100">
+            </button>
+        </div>
+        
+    </div>
+</div>

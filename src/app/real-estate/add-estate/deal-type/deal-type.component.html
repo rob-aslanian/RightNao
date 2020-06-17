@@ -1,0 +1,355 @@
+<div class="profile">
+    <form  [formGroup]="form" >
+
+        <div class="mt-2 col-5 pl-0">
+                  <label for=""> Select deal type </label>
+                  <select   class="form-control" formControlName="deal_type" [ngClass]="{'is-invalid': form.get('deal_type').errors && submitted }">
+                       <option value="">Select deal type</option>
+                       <option *ngFor="let key of deal_type_keys" [value]="key">{{ deal_type[key] }}</option>
+                  </select>
+        </div>
+     <!-- Location -->
+     <ng-container *ngIf="form.get('deal_type').value !== 'DealType_Materials' && 
+                          form.get('deal_type').value !== 'DealType_Move'">
+        <div class="mt-4 col-5 pl-0" *ngIf="form.get('deal_type').value !== 'DealType_Renovation' && 
+                                            form.get('deal_type').value !== 'DealType_Build'">
+              <label for="proprty-type" class="label-control">
+                    Property type
+              </label>
+              <select id="proprty-type" 
+                      formControlName="property_type" 
+                      class="form-control"
+                      [ngClass]="{'is-invalid': form.get('property_type').errors && submitted }">
+                  <option value="" disabled> Select Property type </option>
+                  <option value="" *ngFor="let type of dealsType" [value]='type.id'> {{ type.name }} </option>
+              </select>
+        </div>
+
+            <div class="mt-4  pl-0" formGroupName="location">
+                <label for="" class="label-control pb-1">Location 
+                    <small *ngIf="form.get('deal_type').value === 'DealType_Renovation' || form.get('deal_type').value === 'DealType_Build'" style="color: #808080;">
+                       ( Select locations where you sell your service  )
+                   </small>
+                </label>
+                <div class="col-lg-5 pl-0">
+                    <select *ngIf="(listOfLanguages | async ) as languages" 
+                             class="form-control" 
+                             formControlName="country_id"
+                             [ngClass]="{'is-invalid': form.get('location').get('country_id').errors && submitted }">
+
+                        <option value="" selected disabled> Country </option>
+                        <option  *ngFor="let lang of languages" [value]="lang.asc"> {{ lang.name }} </option>
+                    </select>
+    
+                    <div class="mt-3">
+                        <input type="text" 
+                            [ngbTypeahead]="searchCity" 
+                            [resultFormatter]="cityFormatter" 
+                            [inputFormatter]="cityFormatter"
+                            class="form-control"
+                            placeholder="Enter city"
+                            [attr.disabled]='form.get("location").get("country_id").value ? null : true'
+                            formControlName='city'
+                            [ngClass]="{'is-invalid': form.get('location').get('city').errors && submitted }">
+                    </div>
+                <ng-container *ngIf="form.get('deal_type').value !== 'DealType_Renovation' && 
+                                     form.get('deal_type').value !== 'DealType_Build'">
+                    <div class="mt-3">
+                        <input type="text" 
+                            class="form-control" 
+                            placeholder="Street ( Choosable if possible )"
+                            formControlName="street"
+                            [ngClass]="{'is-invalid': form.get('location').get('street').errors && submitted }">
+                    </div>
+                    
+                    <div class="mt-3">
+                            <input type="text" 
+                                class="form-control" 
+                                placeholder="Building / Block / House / Number"
+                                formControlName="address"
+                                [ngClass]="{'is-invalid': form.get('location').get('address').errors && submitted }">
+                    </div>    
+                </ng-container>
+               </div>
+            </div>
+      </ng-container>
+      
+      <ng-container *ngIf="form.get('deal_type').value === 'DealType_Materials'">
+           <div class="new-home-wrapper mt-3">
+                <div class="type-of-home">
+                        <label class="label-control d-block">Select Materials</label>       
+                        <div class="custom-control custom-checkbox d-inline-block mr-3 mb-2 checkbox-home" 
+                                style="width: 250px;"
+                                *ngFor="let item of select_materials; let i = index">
+                                <input class="custom-control-input" 
+                                       type="checkbox" 
+                                       [id]="item.id" 
+                                       [(ngModel)]="item.checked" 
+                                       [ngModelOptions]="{standalone: true}">
+                                <label class="custom-control-label" [for]="item.id">{{ item.name }}</label> 
+                        </div>
+                </div>
+            </div>
+      </ng-container>
+
+      <!-- Build -->
+      <ng-container *ngIf="form.get('deal_type').value === 'DealType_Build'">
+          <div  [formGroup]="buildForm">
+                <app-total-area></app-total-area>
+                <div class="new-home-wrapper mt-3">
+                    <div class="type-of-home">
+                            <label class="label-control d-block"> Timing </label>       
+                            <div class="custom-control custom-radio d-inline-block mr-3 mb-2 checkbox-home" 
+                                    style="width: 250px;"
+                                    *ngFor="let item of timing; let i = index">
+                                    <input class="custom-control-input" 
+                                            type="radio" 
+                                            name="timing"
+                                            [id]="item.id" 
+                                            [value]="item.id"
+                                            formControlName="timing">
+                                    <label class="custom-control-label" [for]="item.id">{{ item.name }}</label> 
+                            </div>
+                    </div>
+                </div>
+
+          </div>
+
+      </ng-container>
+      
+
+      <ng-container *ngIf="form.get('deal_type').value === 'DealType_Move'">
+                <div class="mt-4">
+    
+                    <div class="d-flex justify-content-between col-4 pl-0">
+                            <app-checkbox-home [list]='move_location' 
+                                               [title]='"Location (select location where you sell your service)"'></app-checkbox-home>
+                    </div> 
+
+                    <div class="col-6 pl-0">
+                        <ng-multiselect-dropdown    [placeholder]="'Select Country'"
+                                                    [data]="( listOfLanguages | async )"
+                                                    [settings]="dropdownSettingsSubIndustry"
+                                                    (onDeSelect)='onDeselect($event )'
+                                                    (onDeSelectAll)='countries = []'
+                                                    (onSelect)="onItemSelect($event, false)"
+                                                    (onSelectAll)="onItemSelect($event, true )" ></ng-multiselect-dropdown>
+                    </div>
+
+                </div>
+                <div class="mt-4 col-9 pl-0">
+                    <div class="mt-2 type-of-home col-10 pl-0">
+                            <app-checkbox-home [list]='select_services' [title]='"Select services"'></app-checkbox-home>
+                    </div>
+                </div>
+
+             
+      </ng-container>
+
+      <!--  Renovation -->
+      <ng-container *ngIf="form.get('deal_type').value === 'DealType_Renovation' ">
+          <div class="exterior pt-4" [formGroup]="exterior">
+              <label for="" class="labe-control d-block" [ngClass]="{'invalid-custom': exterior.get('price_type').errors && submitted }">Exterior</label>
+                 <div class="type-of-home">
+                     <div class="custom-control custom-radio d-inline-block mr-3 mb-2 checkbox-home">
+
+                             <input class="custom-control-input"  
+                                     type="radio"  
+                                     id="exterior_m" 
+                                     value="PriceType_MetreSquare" 
+                                     [name]="'price_type'" 
+                                     formControlName="price_type">
+                              <label class="custom-control-label"  for="exterior_m">Price per m<sup>2</sup></label> 
+
+                      </div>
+          
+                      <div class="custom-control custom-radio d-inline-block mr-3 mb-2 checkbox-home">
+
+                              <input class="custom-control-input"  
+                                     type="radio"  
+                                     id="exterior_ft"  
+                                     [name]="'price_type'" 
+                                     value="PriceType_FeetSquare" 
+                                     formControlName="price_type">
+
+                              <label class="custom-control-label"  for="exterior_ft">Price per ft<sup>2</sup></label> 
+                              
+                      </div>
+                      <div class="col-8 row m-0 pl-0">
+                          <div class="col-4 pl-0">
+                               <input type="number" 
+                                      placeholder="$min" 
+                                      class="form-control"
+                                      formControlName="min_price"
+                                      [ngClass]="{'is-invalid': exterior.get('min_price').errors && submitted }">
+                          </div>
+                          <div class="col-4 pl-0">
+                                <input type="number"
+                                       placeholder="$max" 
+                                       class="form-control"
+                                       formControlName="max_price"
+                                       [ngClass]="{'is-invalid': exterior.get('max_price').errors && submitted }">                   
+                          </div>
+                          <div class="col-4 pl-0 align-self-center">
+                                <app-change-currency [name]='"exterior"' 
+                                                     [ctrl]='exterior.get("currency")'></app-change-currency>
+                          </div>
+          
+                      </div>
+                 </div>
+          </div>
+
+          <div class="interior pt-3" [formGroup]="interior">
+                <label for="" class="labe-control d-block" [ngClass]="{'invalid-custom': interior.get('price_type').errors && submitted }">Interior</label>
+                  <div class="type-of-home">
+                      <div class="custom-control custom-radio d-inline-block mr-3 mb-2 checkbox-home">
+                               <input class="custom-control-input"  
+                                            type="radio"  
+                                            id="exterior_m_interior" 
+                                            value="PriceType_MetreSquare"
+                                            [name]="'price_type'" 
+                                            formControlName="price_type">
+
+                               <label class="custom-control-label"  for="exterior_m_interior">Price per m<sup>2</sup></label> 
+                       </div>
+           
+                       <div class="custom-control custom-radio d-inline-block mr-3 mb-2 checkbox-home">
+
+                               <input class="custom-control-input"  
+                                            type="radio"  
+                                            id="interior_ft_interior"  
+                                            [name]="'price_type'" 
+                                            value="PriceType_FeetSquare"
+                                            formControlName="price_type">
+
+                               <label class="custom-control-label"  for="interior_ft_interior">Price per ft<sup>2</sup></label> 
+
+                       </div>
+                       <div class="col-8 row m-0 pl-0">
+     
+                           <div class="col-4 pl-0">
+                                <input type="number" 
+                                       placeholder="$min" 
+                                       class="form-control"
+                                       formControlName="min_price"
+                                       [ngClass]="{'is-invalid': interior.get('min_price').errors && submitted }">
+                                       
+                           </div>
+                           <div class="col-4 pl-0">
+                                 <input type="number" 
+                                        placeholder="$max" 
+                                        class="form-control"
+                                        formControlName="max_price"
+                                        [ngClass]="{'is-invalid': interior.get('max_price').errors && submitted }">                   
+                           </div>
+                           <div class="col-4 pl-0 align-self-center">
+                                <app-change-currency [name]='"interior"'  
+                                                     [ctrl]='interior.get("currency")'></app-change-currency>
+                           </div>
+           
+                       </div>
+                  </div>
+            </div>
+            
+            <div class="exterior_interior  pt-3" [formGroup]="interior_exterior">
+
+                    <label for="" 
+                           class="labe-control d-block" 
+                           [ngClass]="{'invalid-custom': interior_exterior.get('price_type').errors && submitted }">Interior and Exterior</label>
+
+                      <div class="type-of-home">
+                     <div class="custom-control custom-radio d-inline-block mr-3 mb-2 checkbox-home">
+
+                              <input class="custom-control-input"  
+                                        type="radio"  
+                                        id="exterior_interior" 
+                                        value="PriceType_MetreSquare"
+                                        [name]="'price_type'" 
+                                        formControlName="price_type">
+
+                              <label class="custom-control-label"  for="exterior_interior">Price per m<sup>2</sup></label> 
+                      </div>
+          
+                      <div class="custom-control custom-radio d-inline-block mr-3 mb-2 checkbox-home">
+                              <input class="custom-control-input"  
+                                     type="radio"  
+                                     id="exterior_interior_price"  
+                                     value="PriceType_FeetSquare"
+                                     [name]="'price_type'" 
+                                     formControlName="price_type">
+
+                              <label class="custom-control-label"  for="exterior_interior_price">Price per ft<sup>2</sup></label> 
+                      </div>
+                      <div class="col-8 row m-0 pl-0">
+                          <div class="col-4 pl-0">
+
+                               <input type="number" 
+                                      placeholder="$min" 
+                                      class="form-control"
+                                      formControlName="min_price"
+                                      [ngClass]="{'is-invalid': interior_exterior.get('min_price').errors && submitted }">
+
+                          </div>
+                          <div class="col-4 pl-0">
+                                <input type="number"
+                                       placeholder="$max" 
+                                       class="form-control"
+                                       formControlName="max_price"
+                                       [ngClass]="{'is-invalid': interior_exterior.get('max_price').errors && submitted }">                   
+                          </div>
+
+                          <div class="col-4 pl-0 align-self-center">
+                                <app-change-currency [name]='"interior_exterior"'  
+                                                     [ctrl]='interior_exterior.get("currency")'></app-change-currency>
+                          </div>
+          
+                      </div>
+                    </div> 
+                </div>
+
+
+      </ng-container>
+
+      <ng-container *ngIf="form.get('deal_type').value === 'DealType_Materials' || 
+                           form.get('deal_type').value === 'DealType_Move' || 
+                           form.get('deal_type').value === 'DealType_Renovation' || 
+                           form.get('deal_type').value === 'DealType_Build'">
+        <div class="col-6 pl-0" [formGroup]="deal_type_renovation"> 
+                <div class="mt-3">
+                    <label for="title" class="label-control mb-0">Title</label>
+                        <div class="col-8 pl-0">
+                           <div class="text-right">
+                                    <p>{{ deal_type_renovation.get('title').value.length }}/64</p>
+                            </div>
+
+                            <input type="text" 
+                                   class="form-control" 
+                                   id="title" 
+                                   autocomplete="off" 
+                                   placeholder="type title"
+                                   formControlName="title"
+                                   [ngClass]="{'is-invalid': deal_type_renovation.get('title').errors && submitted }">
+                        </div>
+                        <div class="mt-2">
+                            <label for="description">Description 
+                                <span style="color: #808080;">(optional)</span></label>
+                                <textarea name="" 
+                                          id="description" 
+                                          class="form-control" 
+                                          rows="5" 
+                                          autocomplete="off" 
+                                          placeholder="Description"
+                                          formControlName="description"></textarea>
+                        </div>
+                </div>
+            </div>
+      </ng-container>      
+            <app-service-slider (result)='getFiles($event)' [filesForEdit]='files'></app-service-slider>
+            <div class="mt-4 text-right">
+                  <button class="btn btn-primary"  (click)="navigate(form.get('deal_type').value, form.get('property_type').value )">
+                      Next
+                  </button>
+            </div>
+    </form>
+</div>
+

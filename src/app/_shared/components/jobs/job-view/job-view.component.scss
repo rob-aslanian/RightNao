@@ -1,0 +1,354 @@
+@import 'src/variables';
+
+.job__link{
+  max-width: fit-content;
+  cursor: pointer;
+  span{
+    font-size: 14px;
+    color: #808080;
+    padding-right: 20px;
+  }
+}
+
+.info-list{
+  display: flex;
+  align-items: center;
+
+  span {
+    padding: 0 !important;
+  }
+}
+
+
+.line-to-top{
+  bottom: 20px !important;
+}
+
+
+.job-footer{
+  display: flex;
+  justify-content: flex-end;
+  border-top: solid 1px #E6E6E6;
+}
+
+.options {
+    display: none;
+    // padding: 10px 15px 10px 15px;
+    position: absolute;
+    background: white;
+    z-index: 4;
+    border-radius: 5px;
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.75);
+    right: 0;
+    top: 50px;
+    width: 220px;
+    color: #808080;
+    .social__networks{
+      display: flex;
+      margin-left: 26px;
+      margin-top: 10px;
+      button{
+        padding: unset;
+        img {
+          height: 22px;
+        }
+      }
+    }
+    .btn-more {
+      padding: 10px 15px;
+    }
+    button{
+        display: block;
+        padding-top: 10px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        color: #808080;
+        font-size: 12px;
+        width: 100%;
+        text-align: left;
+        &:hover {
+            background: $background-soft-blue;
+            text-decoration: none;
+        }
+    }
+
+  }
+  .lang-selector{
+    border: unset;
+    background: unset;
+    font-weight: bold;
+    // margin-bottom: 1rem;
+    text-transform: uppercase;
+    outline: unset !important;
+  }
+
+  .options.info{
+
+    width:440px;
+    padding:15px;
+    top: 58px;
+    h6 {
+        color: black;
+    }
+    .docs {
+        margin-top:5px;
+        align-items: center;
+        padding-right:30px;
+        margin-bottom:20px;
+        a {
+            color:$dark-grey;
+            font-weight:normal;
+            font-size:12px;
+        }
+        img {
+            margin-right:5px;
+        }
+    }
+    span {
+        font-size: 12px;
+        color:$dark-blue !important;
+        margin-bottom: 5px !important;
+    }
+    p {
+        font-size:12px;
+        margin-top: 5px;
+    }
+  }
+
+  .center-content-jobs {
+    background: white;
+  
+    @media #{$break1} {
+      border-radius: 0;
+      border: none;
+      margin-bottom: 0;
+    }
+  
+    @media #{$break2} {
+      border-radius: 5px;
+      border: solid 1px #e6e6e6;
+      margin-bottom: 16px;
+    }
+  
+    @media #{$break3} {
+      border-radius: 5px;
+      border: solid 1px #e6e6e6;
+      margin-bottom: 16px;
+    }
+  
+    padding: 20px;
+    position: relative;
+  
+    h2 {
+      font-size: 20px;
+      font-weight: bold;
+    }
+  
+    h3 {
+      font-size: 16px;
+      color: $dark-blue;
+    }
+  
+    .search {
+      padding-right: 30px;
+    }
+  }
+
+  .candidate {
+  
+
+    .line-one {
+        display:flex;
+        img {
+            border-radius: 50%;
+            width:75px;
+            height:75px;
+        }
+        .candidate-content {
+            margin-left:20px;
+            padding-right:10px;
+            & > span {
+                font-size: 14px;
+                color:$dark-grey;
+            }
+        }
+        h3 {
+          font-size: 16px;
+          color: $dark-blue;
+        }
+        .skills {
+            overflow: hidden;
+            height:30px;
+            margin-bottom:5px;
+            margin-top:5px;
+            @media #{$break1}{
+                margin-left:-90px;
+            }
+            span {
+                font-size: 12px;
+                padding:5px 10px;
+                background:#DCE1E6;
+                border-radius: 5px;
+                margin-bottom:5px;
+                display: inline-block;
+            }
+        }
+    }
+    .line-two {
+        text-align:right;
+        // @media #{$break3}{
+        //     visibility: hidden;
+        // }
+    }
+    // &:hover .line-two {
+    //     visibility:visible;
+    // }
+    .visible {
+        padding:0px 5px 5px 15px;
+    }
+  }
+  
+  
+  // User jobs start
+  .job-vacancy {
+    @extend .candidate;
+
+    padding: 1rem;
+    
+      .skills span {
+        border-radius: 5px;
+        padding: 5px;
+        display: inline-block;
+        color: $dark-blue;
+        margin-right: 5px;
+        background: #DCE1E6;
+        margin-bottom: 5px;
+      }
+    
+      .description {
+        .job-description-textarea {
+          width: 100%;
+          min-height: 300px;
+          border: none;
+          outline: none;
+          font-size: 14px;
+          color: $dark-grey;
+          resize: none;
+        }
+    
+        .why-us-textarea {
+          @extend .job-description-textarea;
+          min-height: 200px;
+        }
+      }
+  
+    .line-one {
+        position: relative;
+      img {
+        border-radius: 5px;
+      }
+  
+      margin-bottom:15px;
+    }
+  
+    .vacancy-content {
+      @extend .candidate-content;
+      width: 100%;
+      padding-right: 10px;
+      div {
+        @media #{$break1} {
+          display: block !important; 
+        }
+      }
+    }
+  
+    .vacancy-info {
+      margin-top: 5px;
+  
+      span {
+        font-size: 12px;
+        color: $dark-grey;
+        padding-right: 20px;
+      }
+  
+      img {
+        width: initial;
+        height: 16px;
+        margin-bottom: 5px;
+        margin-right: 5px;
+        border-radius: 0;
+      }
+    }
+  
+    .line-two {
+      position: absolute;
+      bottom: 5px;
+      right: 10px;
+      img {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  
+    .right .custom-control label {
+      margin-bottom: 10px;
+    }
+  
+    .vacancy-options {
+      right: 0;
+      top: 40px;
+  
+      img {
+        margin-right: 5px;
+      }
+  
+      button {
+        padding-left: 20px;
+      }
+    }
+  
+    .heart {
+      float: right;
+      margin-top: -24px;
+    }
+  
+    .detailed-view-line {
+      border-bottom: 1px solid #e6e6e6;
+      margin: 0 12px;
+      margin-left: 5px;
+      span {
+        font-size: 14px;
+        color: $dark-grey;
+        line-height: 10px;
+        padding: 12px 0;
+      }
+
+      .detailed-view-line__btn-container {
+       padding-top: 0;
+       padding-bottom: 12px;
+        // button {
+        //   padding-top: 0;
+        //   padding-bottom: 0;
+        // }
+      }
+    }
+  
+    .vacancy-description {
+      font-size: 14px;
+      color: $dark-grey;
+    }
+  }
+  
+  .company-more__icon {
+    height: 20px !important;
+    width: 20px  !important;
+    position: relative;
+    top: -2px;
+  }
+  .social__networks {
+     img {
+         width: unset !important;
+     }
+  }

@@ -1,0 +1,67 @@
+<ng-container>
+    <div class="center-heading d-flex">
+        <h3>Mutual Connections<span> {{ mutualConnections.length }} </span></h3>
+    </div>
+  <div class="connections-wrap">
+    <div class="section-content user-mutual-connections">
+      <div class="row user-connections">
+        <div class="col-6 mutual" *ngFor="let mutual of mutualConnections">
+          <img class="profile" [src]="mutual.avatar == '' ? 'assets/img/124.svg' : '/file/'+mutual.avatar" alt="profile">
+          <h3> {{ mutual.firstname + ' ' + mutual.lastname  }} </h3>
+        </div>
+      </div>
+
+        </div>
+      <div class="section-header d-flex">
+          <h1>Connections <span> {{ userConnections.length }} </span></h1>
+      </div>
+  
+      <div class="section-content user-connections">
+          <div class="row user-connection">
+              <div class="col-lg-6 col-md-6 selected pl-1 pr-1" *ngFor="let item of userConnections; let i = index">
+                  <div class="connection-profile-wrap d-flex flex-column justify-content-between">
+                    <div>
+                      <div class="connection-profile d-flex">
+                        <img class="profile" [src]="item.avatar == '' ? 'assets/img/124.svg' : '/file/'+item.avatar" alt="profile">   
+                          <div class="connection-info">
+                           <a [routerLink]="['/user/profile/'+item.url]">
+                             <h3> {{ item.firstname + ' ' + item.lastname }} </h3>
+                           </a>
+                              <span> {{ item.experiences.length > 0 ? item.experiences[0].company : "" }} </span>
+                              <span> {{ item.experiences.length > 0 ? item.experiences[0].title : "" }} </span>
+                              <div class="mutual-friends-count d-flex align-items-center">
+                                  <img src="assets/img/121.svg" alt="chain">
+                                  <span> {{ item.network_info.mutual_connections_amount }} mutual friends</span>
+                              </div>
+                          </div>
+                      </div>
+                      <button #connectBtn *ngIf="item.id !== myUserId && !item.friend && !item.friend_request && !isCompany; else unFriend" 
+                      class="btn btn-outline-primary" (click) = "sendFriendRequest(item.id, i)">Connect</button>
+                      <ng-template #unFriend>
+                          <button *ngIf="item.id !== myUserId && item.friend && !isCompany " class="btn btn-outline-primary" (click) = "disconnect(item.id, i)">Disconnect</button>
+                      </ng-template>
+                      
+                      
+                  </div>
+              </div>
+              
+  
+          </div>
+      </div>
+      </div>
+
+  </div>
+</ng-container>
+
+<!-- <div class="network-box-component-one" *ngFor="let item of userConnections">
+  <img class="profile" [src]="item.avatar == '' ? 'assets/img/124.svg' : '/file/'+item.avatar" alt="profile">
+  <div class="one-right">
+      <a [routerLink]="['/user/profile/'+item.friend.url]">
+          <h4> {{ item.firstname + ' ' + item.lastname }} </h4>
+      </a>
+      <button class="chat">
+          <img src="assets/img/106.svg" alt="chat">
+      </button>
+  </div>
+</div> -->
+

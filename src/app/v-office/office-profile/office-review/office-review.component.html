@@ -1,0 +1,15 @@
+
+<ng-container *ngIf="review && review.reviews.length > 0">
+    <app-service-order-review-box (pagination)='onPageChange($event)' [review]='review'></app-service-order-review-box>
+</ng-container>
+
+
+<div class="review mt-3" *ngIf="review?.reviews && review.reviews.length === 0">
+    <div class="without-review">
+        <h4>Reviews <small>(0)</small> </h4>
+        <div class="text-center">
+            <img src="assets/img/nocontent.svg" alt="photo">
+            <p class="mt-2" style="color: #808080; font-size: 14px">You don`t have reviews yet. After the order is done, the customer can review your job</p>
+        </div>
+    </div>
+<div> 

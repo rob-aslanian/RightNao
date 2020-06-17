@@ -1,0 +1,47 @@
+.days-title {
+  color: #808080;
+  font-size: 14px;
+  padding-left: 3px;
+}
+
+span.dropdown-icon {
+    position: absolute;
+    right: 20px;
+    top: 32px;
+    font-size: 16px;
+    color: #808080;
+  }
+
+:host ::ng-deep ng-multiselect-dropdown {
+    .multiselect-dropdown {
+      div {
+        span:last-child {
+          display: none;
+        }
+        .dropdown-btn {
+          min-height: 38px;
+          span {
+            font-size: 14px;
+            color: #808080;
+          }
+        }
+      }
+    }
+  }
+  
+  .custom-control-label::after {
+    margin-top: 0;
+  }
+  .custom-control-label::before {
+    margin-top: 0;
+  }
+.line{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+}
+.radioWrap {
+  margin: 0;
+}

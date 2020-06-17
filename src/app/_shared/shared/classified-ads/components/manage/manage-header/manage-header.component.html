@@ -1,0 +1,25 @@
+<div class="wallet-header">
+    <div class="profile container wallet-header-container">
+        <ul class="wallet-header-nav">
+            <li><a [routerLink]="[ place=='ads-services' ? 
+                                    '/ads-services/manage/announcement' :
+                                    '/for-sale/manage/announcement' ]" 
+                    routerLinkActive="active">Announcement</a></li>
+            <li> <a [routerLink]="[ place=='ads-services' ? 
+                                    '/ads-services/manage/saved-items' :
+                                    '/for-sale/manage/saved-items' ]" 
+                    routerLinkActive="active">Saved items</a> </li>
+            <li> <a>Request</a> </li>
+            <li> <a>Advertisement</a> </li>
+        </ul>
+         
+        <button [routerLink]="[ place=='ads-services' ? 
+                                '/ads-services/add' : 
+                                'for-sale/add-sale' ]"
+                 class="btn backgroundless">
+            <img class="mr-2" src="assets/img/612.svg" alt="">
+            Add property
+        </button>
+        
+    </div>
+</div>

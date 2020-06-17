@@ -1,0 +1,16 @@
+
+
+.order-now-wrapper {
+    background: #fff;
+    padding: 25px;
+    label {
+        font-size: 14px;
+        color: #052337;
+    }
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+};
+ 
+:host ::ng-deep button {
+    margin: unset !important;
+}

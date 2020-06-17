@@ -1,0 +1,183 @@
+<!-- Start main menu [routerLink]="['/']" -->
+<!-- End main menu -->
+
+
+<!-- Top header -->
+<header class="header-main-tag" *ngIf="isAuth; else:notAuthHeader">
+    <nav class="header d-flex justify-content-end">
+        <div class="main-menu-box">
+            <a [routerLink]="['/landing']" class="main-logo">
+                <img src="./assets/img/hypercube_logo.svg" alt="logo">
+            </a>
+            <div class="main-menu"  [ngClass]="{'mobile': isMobile , 'desktop' : !isMobile , 'mobile-clicked':isMobileClicked && isMobile}" 
+                (click)="isMobile ? toggleMenu($event) : null" (appClickOutside)="isMobileClicked = $event" >
+                <div class="main-menu-subBack"></div>
+                <div class="main-menu-btn" [ngClass]="{'mobile': isMobile , 'desktop' : !isMobile}">
+                    <img src="./assets/img/menu_icon.svg" alt="menu-btn" [ngClass]="{'mobile': isMobile , 'desktop' : !isMobile}">
+                </div>
+                  
+                    <ul class="main-menu-nav">
+
+                        <li   *ngFor='let link of menuUrl; let i = index trackBy:trackByFn;'
+                              [ngClass]="{ 
+                                'mobile':   isMobile , 
+                                'desktop' : !isMobile,
+                                'disabled-link': link.disabled,
+                                'without-child': !link.hasChildren
+                               }"  
+                             (click)="isMobile ? toggleSubNav($event) : null" >
+                        <!-- Main Links -->
+                      <ng-container *ngIf="link.name !== 'Search' " >
+                          <a>
+                              <div class="main-menu-ico">
+                                  <img  [src]="link.icon"  
+                                        alt="ico"  
+                                        class="ico1 white-icons">
+                              </div>
+                              <div style="cursor: pointer" class="link-menu">{{ link.name }}</div>
+                          </a>
+                      </ng-container>
+
+                      <ng-container *ngIf="link.name === 'Search' " >
+                            <a [routerLink]="[link.path]"   >
+                                <div class="main-menu-ico">
+                                    <img  [src]="link.icon"  
+                                          alt="ico"  
+                                          class="ico1 white-icons">
+                                </div>
+                                <div style="cursor: pointer" class="link-menu">{{ link.name }}</div>
+                            </a>
+                        </ng-container>
+                      
+
+ 
+
+                        <!-- Sub links -->
+                            <ng-container *ngIf="link.childrens.length > 0" >
+                                    <div class="main-menu-subBack" [ngClass]="{'fiexed-height-children': i > 5}">
+                                        <ul class="main-menu-subNav">
+                                         <li *ngFor="let link of link.childrens let i = index ;  trackBy:trackByFn;" 
+                                             [routerLink]="[link.path]" 
+                                             routerLinkActive="active-sub"
+                                             [routerLinkActiveOptions]="{exact:true}"
+                                             style="cursor: pointer;"
+                                             [ngClass]="{'disabled-sub-link': !link.path }"
+                                             (click)="removeHover($event)"
+                                             style="height: 74px; cursor: pointer;">
+                                             <a>
+                                                 <ng-container *ngIf='link.icon'>
+                                                     <div class="main-menu-ico">
+                                                         <img [src]="link.icon" alt="link" class="white-icons">
+                                                     </div>
+                                                 </ng-container>
+                                                 <div style="cursor: pointer" class="link-menu pt-1">{{ link.name }}</div>
+                                             </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </ng-container>
+
+                        </li>
+                    </ul>
+                    
+            </div>
+        </div>
+
+        <!-- Right Items -->
+        <div class="top-items d-flex btn-more"  >
+
+            <!-- Filters  -->
+                <app-header-filters></app-header-filters>
+            <!-- Filters  -->
+
+            <!-- Notification -->
+                 <app-notification-box ></app-notification-box>
+            <!-- Notification -->
+
+
+
+            <div class="profile-photo"  >
+                <img [src]="avatarUrl" alt="photo" [class]="isCompanyProfileActive ? 'company-photo btn-more' : 'user-photo btn-more'"  
+                     [ngbPopover]="mainMenu"  #menu="ngbPopover" [autoClose]="'outside'" (click)="$event.preventDefault()">
+                <ng-template #mainMenu>
+                        <div class="account-settings-wrap " (click)="menu.close()">
+                            <div class="d-flex active-account">
+                                <img [src]="avatarUrl"  [class]="isCompanyProfileActive ? 'company-photo' : 'user-photo'" alt="photo">
+                                <div class="profile-info">
+                                    <h3>{{ activeProfile.name }}</h3>
+                                    <a [routerLink]="[profileUrl]">View Profile</a>
+                                </div>
+                            </div>
+                            <div class="user__settings">
+                                <a (click)="open($event)" class="d-block mb-2">My referral link</a> <br>
+                                <a [routerLink]="[accountSettingsUrl]">Account Settings</a>
+                            </div>
+                            <!-- SWITCH -->
+                                <!-- <div class="switch" *ngIf="myCompanies && myCompanies.getMyCompanies.length > 0">
+                                    <h3>Switch</h3>
+                                    <div class="switch-wrap">
+                                        <a class="user" *ngIf="isCompanyProfileActive" [routerLink]="['user/profile/' + url]"   (click)="swithcToUser()">
+                                            <img src="{{activeUserProfile.avatar ? '/file/' + activeUserProfile.avatar : 'assets/img/124.svg'}}" class="user-photo" alt="user">
+                                            <span>{{ activeUserProfile.name }}</span>
+                                        </a>
+                                        <ng-container *ngFor="let company of myCompanies.getMyCompanies">
+                                            <a class="user" *ngIf="company.id != activeProfile.id" [routerLink]="['/company/profile/' + company.url]" >
+                                                <img [src]="company.avatar ? '/file/' + company.avatar : 'assets/img/default-company.svg'" class="company-photo" alt="company">
+                                                <span>{{ company.name }}</span>
+                                            </a>
+                                        </ng-container>
+                                    </div>
+                                </div> -->
+                            <!-- SWITCH -->
+
+                            <div class="register">
+                                <h3>Create</h3>
+                                <div class="register-icons-wrap">
+                                    <ng-container *ngFor="let create of createdList; trackBy:trackByFn">
+                                        <div class="register-icon active-icon" [routerLink]="create['link']" 
+                                             [ngClass]="{'passive-icon': create['disabled']}">
+                                            <img [ngClass]="{'passive-icon-image': create['disabled']}" [src]="create['icon']" alt="company">
+                                            <span>{{ create['name'] }}</span>
+                                        </div>
+                                    </ng-container>
+                                    
+                                </div>
+                            </div>
+                            <div>
+                                <button type="button" class="backgroundless" (click)="signOut()" style="color: #808080;">
+                                    Sign Out
+                                </button>                                
+                            </div>
+                        </div>
+                </ng-template>
+                
+            </div>
+        </div>
+        <!-- End -->
+
+    </nav>
+</header>
+
+<!-- WAllet counter -->
+<a [routerLink]="['/wallet/earn']" *ngIf="isAuth">
+    <app-wallet-counter></app-wallet-counter>
+</a>
+<!-- WAllet counter -->
+
+
+<app-modal (closeModal)="isModalOpen = false">
+    <div class="modal__content">
+         <h3>Invite people on our platform using the link and you will be rewarded</h3>
+         <div class="referal__link">
+             <div class="referal__link__input" *ngIf="referalLink">
+                {{ referalLink }}
+             </div>
+             <button class="btn backgroundless" (click)="copyReferalLink($event)">Copy</button>
+         </div>
+    </div>
+</app-modal>
+<ng-template #notAuthHeader>
+    <app-common-header-land-pages></app-common-header-land-pages>
+</ng-template>
+
+<!-- End -->

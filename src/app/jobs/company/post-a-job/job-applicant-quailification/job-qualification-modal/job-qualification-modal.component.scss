@@ -1,0 +1,70 @@
+@import 'src/variables';
+
+
+:host ::ng-deep app-import-from-profile {
+    form {
+        padding: 0 !important;
+        margin: 1.5rem 0;
+    }
+}
+
+.keyword{
+    margin-bottom: 12px;
+    padding: 5px 10px;
+    background: #DCE1E6;
+    color: $dark-blue;
+    border-radius: 5px;
+    margin-right: 12px;
+    font-size: 14px;
+    display: inline-block;
+    white-space: nowrap;
+}
+.qualifications-modal {
+    max-height: 750px;
+    overflow-y: auto;
+    padding-right: 16px;
+    margin-right: -16px;
+    /* width */
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+    
+    /* Track */
+    &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 4px grey; 
+    border-radius: 10px;
+    }
+
+    
+    
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background:$light-grey;
+        border-radius: 10px;
+        background: $dark-blue; 
+    }
+
+
+    &__content {
+        &__section {
+            margin-top: 36px;
+        }
+
+        &__skills-list {
+            margin-top: 16px;
+        }
+
+        &__tools {
+            &__container {
+                margin: 14px 0;
+            }
+            &__title {
+                max-width: 416px !important;
+                background: #DCE1E6;
+                border-radius: 5px;
+                padding: 8px 12px;
+                margin-right: 10px
+            }
+        }
+    }
+}

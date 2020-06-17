@@ -1,0 +1,11 @@
+.tools {
+
+  .edit {
+    display: inline-block;
+    transform: scale(-1, 1);
+  }
+}
+
+.is-invalid{
+  border: 1px solid red;
+}

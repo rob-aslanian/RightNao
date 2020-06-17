@@ -1,0 +1,21 @@
+<div class="wrap main-light-blue">
+    <div class="container register-company sign-in">
+      <div class="row mx-0 register__form">
+        <div class="mb-5">
+            <h1>Register {{ type }}</h1>
+            <h3>For registration you need to have a user account</h3>
+        </div>
+
+        <h2 class="mb-4">Sign in User Account</h2>
+
+        <app-user-login (signed)="redirect()"></app-user-login>
+
+        <div class="cross_line mb-3">
+          <span>Or</span>
+        </div>
+
+        <button type="button" class="btn btn-blue" style="max-width: unset;" [routerLink]="['/registration/user']" >Register New User</button>
+      </div>
+    </div>
+  </div>
+  

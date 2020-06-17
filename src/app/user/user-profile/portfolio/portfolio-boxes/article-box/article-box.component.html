@@ -1,0 +1,43 @@
+ <div class="article-box mb-4" >
+      <div class="box" style="cursor: pointer;"  style="position: relative;"> 
+
+
+            <div class="row" style="height: 100%" >
+                  <div class="col-6 pl-0" style="height: 100%;">
+                        <img [src]="article?.files.length > 0 ? '/file/'+article.files[0]['address'] : 'assets/img/product-2.jpg'" 
+                              alt="prodigy" 
+                              class="article-photo" 
+                              [routerLink]="['../', article.id , 'Article' ]">
+                  </div>
+                  <div class="col-6 pl-0" style="height: 100%;">
+                        <div class="dots" ngbDropdown>
+                              <button class="btn backgroundless" ngbDropdownToggle><img src="assets/img/107.svg" alt="dots"></button>
+                              <div class="options" ngbDropdownMenu>
+                                    <a ngbDropdownItem class="backgroundless" [routerLink]="[ '../edit-article', article.id , 'Article']" style="color: #212529;" >Edit articles</a>
+                                    <a ngbDropdownItem class="backgroundless" (click)='removeArticle( article.id )'>Delete articles</a>
+                              </div>
+                        </div> 
+                        
+                        <p class="article-title pt-2"> Article Titles </p>
+                        <p class="post-time">{{ article?.created_at | date }}</p>
+                        <p class="article-paragraph" >
+                            {{ article?.title }}
+                        </p>
+
+                        <div class="info pb-3">
+                              <a>
+                                    <img class="heart" [src]="article?.has_liked ? 'assets/img/99.svg' : 'assets/img/44.svg' " alt="favourites">
+                                    <span>{{ article?.like_count }}</span>
+                              </a>
+            
+                              <a style="padding-left: 10px;">
+                                    <img src="assets/img/6.svg" alt="view" style="height: 15px;">
+                                    <span>{{ article?.view_count }}</span>
+                              </a>
+                        </div>
+
+                  </div>
+            </div>
+
+      </div>
+</div> 

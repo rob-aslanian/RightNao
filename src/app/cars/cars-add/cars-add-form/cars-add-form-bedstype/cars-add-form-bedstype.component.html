@@ -1,0 +1,19 @@
+
+<form [formGroup]="form">
+    <p>Type of bed</p>
+    <div class="row">
+        <div class="custom-control custom-radio custom-control-inline col-3"  *ngFor="let item of bedsTypes;let i = index;">
+                <input  type="radio" 
+                        class="custom-control-input" 
+                        [value]="item['type']" 
+                        id="beds-{{ item['type'] }}"  
+                        name="typeOfBeds"
+                        formControlName="typeOfBeds">
+                        
+                        <!-- [ngClass]="{'is-invalid':form.get('typeOfBeds').invalid && isSubmitted}" -->
+                    <label  for="beds-{{ item['type'] }}" class="custom-control-label">  
+                            {{ item['text'] }}
+                </label>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,38 @@
+@import 'src/variables';
+.total-wrapper {
+    width: 100%;
+    background-color: $blue;
+    border-radius: 5px;
+    color: $white;
+    padding: 22px;
+    margin: 15px 0;
+    h3 {
+        font-size: 18px;
+    }
+}
+.price-container {
+    &-item {
+        display: inline-block;
+        margin-right: 60px;
+        p, small {
+            color: $light-grey;
+            font-size: 16px;
+        }
+        p {
+            text-transform: capitalize;
+        }
+    }
+    h4 {
+        font-size: 18px;
+        margin-left: 34px;
+        span {
+            margin-left: 14px;
+            font-size: 24px;
+            color: $background-dark-cyan;
+        }
+    }
+    .left-content {
+        border-right: 2px solid $dark-grey;
+        width: 80%;
+    }
+}

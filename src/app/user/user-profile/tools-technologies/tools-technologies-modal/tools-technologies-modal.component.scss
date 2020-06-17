@@ -1,0 +1,26 @@
+.tool_name{
+    color: #052337;
+    font-weight: 400;
+    font-size: 18px;
+    background-color:#DCE1E6;
+    width: 370px;
+    margin-right: 15px;
+    height: 32px;
+    border-radius: 5px;
+    padding: 5px;
+    padding-left: 12px;
+}
+
+.tools-options {
+    width: 132px;
+    height: 32px;
+}
+
+.tools-container {
+    display: flex; 
+    cursor: pointer;
+}
+
+.delete-tool {
+    margin-top: 5px;
+}

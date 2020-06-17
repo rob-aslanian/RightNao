@@ -1,0 +1,131 @@
+@import "src/_variables.scss";
+
+.business-to-follow {
+    background-color: $white; 
+    border: 1px solid $cool-grey; 
+    border-radius: .5rem; 
+    min-height: 19.9375rem; 
+    // min-height: 50%;
+
+    &__title{
+        h4{
+            font-size: 1.25rem; 
+            font-weight: 400;
+
+        }
+        a{
+            z-index: 0 !important;
+            img{
+                width: 0.875rem; 
+                height: 0.875rem;
+            }
+        }
+     }
+      // 
+    .business-to-follow__card__content {
+            &__card{
+            text-align: center;
+             
+                span {
+                    color: $dark-grey; 
+                    font-size: .75rem; 
+                }
+
+               
+                &__title{
+                    justify-content: center; 
+                    h4{
+                        margin: 0; 
+                        font-size: 1rem;
+                        white-space: nowrap; 
+                        cursor: pointer; 
+                    }
+                }
+                &__img{
+                    .company-avatar{
+                        border-radius: .5rem; 
+                        width: 4.375rem;
+                        height: 4.375rem;
+                    }
+                    .user-avatar{
+                        border-radius: 50%; 
+                        width: 4.375rem;
+                        height: 4.375rem;
+                    }
+                    
+                }
+                &__category {
+                    height: 2rem;
+                    @media (max-width: 1267px) {
+                        // display: none; 
+                    }
+                }
+
+                &__rating {
+                    justify-content: center;     
+                        .stars {
+                            margin-right: .4rem; 
+                            span{
+                                color: #00f4ff;
+                                font-size: 18px;
+                                padding: 4px;
+                            }
+                        }
+                   span {
+                       margin-top: .2rem; 
+                   }
+                }
+            }
+
+            .swipe-left{
+                position: absolute;
+                left: 1.4rem;
+        
+                transform: rotate(180deg); 
+            }
+
+            .swipe-right{
+                position: absolute; 
+                right: 1.4rem;
+                z-index: 1;
+            }
+
+            .swipe-left-disable {
+                position: absolute;
+                left: 1.4rem;
+    
+                // transform: rotate(180deg); 
+            }
+
+            .swipe-right-disable {
+                position: absolute;
+                right: 1.4rem;
+        
+                transform: rotate(180deg); 
+            }
+        
+    }
+    
+}
+
+:host ::ng-deep ngb-rating {
+    span {
+        font-size: 1.125rem; 
+        color: $background-dark-cyan; 
+
+    }
+}
+
+a{
+    // z-index: 111;
+    cursor: pointer; 
+}
+
+.disabled-arrow {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+ .customHeight {
+     height: 3rem !important;
+ }

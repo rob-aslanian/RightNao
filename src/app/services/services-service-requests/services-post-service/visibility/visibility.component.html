@@ -1,0 +1,54 @@
+<form [formGroup] = "visibility">
+<div class="service-request__request-details__heading service-request-section-heading">
+    <div class="service-request__content__request-details__heading__icon-wrapper">
+        <img src="../../../assets/img/fq.svg" class="service-request__content__request-details__heading__icon">
+    </div>
+    <h4 class="service-request__content__request-details__heading__title">Visibility</h4>
+</div>
+
+<div class="service-request__content__request-details__type">
+    <div>
+        <h5 class="page-section-text-blue heading-margin service-request__content__request-details__type-title">Who can see your service request?</h5>
+    </div>
+    <div class="service-request__content__request-details__type-options">
+        <div class="custom-control custom-radio service-request__content__request-details__type-options__item">
+            <input type="radio" 
+                   class="custom-control-input" 
+                   id="anyone" 
+                   name="whoCanSee"
+                   value="Anyone"
+                   formControlName = 'whoCanSee'>
+            <label class="custom-control-label" for="anyone">Anyone</label>
+        </div>
+        <div class="custom-control custom-radio service-request__content__request-details__type-options__item">
+            <input type="radio" 
+                   class="custom-control-input" 
+                   id="rightnaousers" 
+                   name="whoCanSee"
+                   value="Only_RightNao_Users"
+                   formControlName="whoCanSee"
+                   >
+            <label class="custom-control-label" for="rightnaousers">Only RightNão users</label>
+        </div>
+        <div class="custom-control custom-radio service-request__content__request-details__type-options__item">
+            <input type="radio" 
+                   class="custom-control-input" 
+                   id="invitedonly" 
+                   name="whoCanSee"
+                   value="Only_Invited"
+                   fomrControlName='whoCanSee'>
+            <label class="custom-control-label" for="invitedonly">Invited only</label>
+        </div>
+    </div>
+</div>
+
+<div class="service-request__content__visibility__invite">
+    <label class="page-section-text-blue heading-margin">What work do you need to have done? <span class="page-section-text-grey">(You can also invite freelancer outside of Rightnão)</span></label>
+    <div>
+        <input type="text" 
+               placeholder="Enter name or email address separated by comma" 
+               class="form-control"
+               formControlName = 'work'>
+    </div>
+</div>
+</form>

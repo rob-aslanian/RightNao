@@ -1,0 +1,35 @@
+ 
+<div style="background-color:#EAEDF2;">
+    <div class="comming__soon__header"></div>
+    <div style="margin: 0 15vw;">
+        <div class="row error-content">
+            <div class="col-md-6 col-sm-12" *ngIf="(title | async) as type">
+                <h1 class="mb-2">
+                    <ng-container *ngIf="type['target'] as target">
+                        {{ target | beautify }} - 
+                    </ng-container>  
+
+                    Coming soon 
+                </h1>
+                <p>
+                    We constantly provide new features for your personal <br> 
+                    & buisness development. Go to <a [routerLink]="['/']" >Home Page</a> 
+                </p>
+                <div class="bottom_content">
+                     <b>I am interested</b>
+                     <button class="btn btn-primary ml-4" [disabled]="hasNotifyBox" (click)="submit($event , type['target'])">Vote</button>
+                </div>
+            </div>
+            <div class="offset-md-1"></div>
+            <div class="col-md-5 col-sm-12">
+                <img src="assets/img/comming_soon.png" alt="image">
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<!-- Insert notify box-->
+    <div  #notifyBox></div>
+<!-- Insert notify box-->
+

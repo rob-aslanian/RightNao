@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="65" height="65" viewBox="0 0 65 65">
+  <g id="Play" transform="translate(-1046.194 -454.718)">
+    <g id="Ellipse_13" data-name="Ellipse 13" transform="translate(1046.194 454.718)" fill="none" stroke="#fff" stroke-width="3">
+      <circle cx="32.5" cy="32.5" r="32.5" stroke="none"/>
+      <circle cx="32.5" cy="32.5" r="31" fill="none"/>
+    </g>
+    <g id="Ellipse_14" data-name="Ellipse 14" transform="translate(1046.194 454.718)" stroke="#fff" stroke-width="3" opacity="0.35">
+      <circle cx="32.5" cy="32.5" r="32.5" stroke="none"/>
+      <circle cx="32.5" cy="32.5" r="31" fill="none"/>
+    </g>
+    <path id="Polygon_3" data-name="Polygon 3" d="M10.747,3.578a2,2,0,0,1,3.578,0l9.3,18.6a2,2,0,0,1-1.789,2.894H3.236a2,2,0,0,1-1.789-2.894Z" transform="translate(1096.151 474.589) rotate(90)" fill="#fff"/>
+  </g>
+</svg>

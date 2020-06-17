@@ -1,0 +1,27 @@
+
+  <form [formGroup]="phonesForm" autocomplete="off" class="phone-form">
+      <ng-container formArrayName="phones" *ngFor="let item of Phones.controls; let i = index;">
+        <ng-container [formGroupName]="i">
+            <div class="row">
+                <div class="col-4 form-group">
+                    <select class="form-control" id="country-index" formControlName="country_code_id" >
+                        <option value="" disabled>Country </option>
+                        <option [value]="code.id"  [attr.data-code]="code.country_code" *ngFor="let code of countryCodes;" >
+                            {{  code.country }}
+                            (+{{  code.country_code }}) 
+                        </option>
+                    </select>
+                </div>
+                
+                <div class="col-8 form-group"> 
+                    <input type="number"  class="form-control" id="company-phone-number" placeholder="Number" formControlName="number"  
+                            (keydown)="utils.maxNumberLenght($event , 32)">
+                </div>
+                <button class="backgroundless ml-auto mt-0" (click)="remove(i)" *ngIf="multiple && i > 0 ">Remove</button>
+            </div>
+        </ng-container>
+      </ng-container>
+      <div class="row mb-2">
+          <button class="backgroundless mt-0 ml-auto" (click)="addAnother()" *ngIf="multiple">Add another</button>
+      </div>
+  </form>

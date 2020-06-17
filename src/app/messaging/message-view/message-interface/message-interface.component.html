@@ -1,0 +1,16 @@
+<!-- Start chat box row -->
+
+<app-search-n-select *ngIf="showSearchUserFields" 
+    [selectedItems]="selectedItems" [currentProfile]="getAllParticipant()">
+</app-search-n-select>
+<div class="chatBox-row">
+    <app-chat-container [conversation]="conversation" [(totalUnread)]="totalUnread"></app-chat-container>
+</div> 
+
+
+<!-- End chat box row -->
+
+
+<!-- Start chat box form -->
+<app-send-message-form (handleAfterSending)="handleAfterSending()" [selectedItems]="selectedItems" [conversation]="conversation"></app-send-message-form>
+<!-- ENd chat box form -->

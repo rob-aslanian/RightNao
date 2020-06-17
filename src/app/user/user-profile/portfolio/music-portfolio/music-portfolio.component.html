@@ -1,0 +1,9 @@
+
+    <div class="col-11 container">
+        <app-music-box *ngFor="let music of portfolios; let i = index"
+                        [index]='i'
+                        [music]='music'
+                        (result)='getMusic($event)'></app-music-box>
+    </div>
+
+ 

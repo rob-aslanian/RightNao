@@ -1,0 +1,69 @@
+<div>
+    <label class="budget-box-item box custom-box-height" 
+            [for]="modelItem['description']" 
+            [ngClass]="{'activeBox': modelItem['active']}">
+            <h6 class="budget-box-item-price">
+                {{ modelItem['name'] }}
+            </h6>
+            <p class="budget-box-item-amount" *ngIf="modelItem['mark']">
+                {{ modelItem['mark'] }}
+            </p>
+            <p class="budget-box-item-amount" *ngIf="(modelItem['name']!='Custom') || 
+            (modelItem['name']=='Custom' && openBox[boxNumber]['selectedCards']!=2);else testInput">
+                {{ modelItem['description'] }}
+            </p>
+            <ng-template #testInput>
+                <form [formGroup]="form" style="display: flex; align-items: center;">
+                        <input type="number" 
+                                class="form-control w-58" 
+                                *ngIf="!per;else perInput" 
+                                placeholder="0"
+                                formControlName="amount" >
+                                <span *ngIf="boxNumber==0" class="ml-2">,000</span>
+                </form>
+                    
+                    <ng-template #perInput>
+                        <div class="d-flex">
+                            
+                            <form class="mr-2" [formGroup]="form">
+                                    <p class="budget-box-item-amount" >
+                                            Referral
+                                        </p>
+                                        <input type="number" 
+                                                class="form-control w-58"  
+                                                formControlName="amount" 
+                                                placeholder="0">
+                            </form>
+                            
+                            <div>
+                                    <p class="budget-box-item-amount" >
+                                        Price per referral
+                                    </p>
+                                    <div class="price-per d-flex align-items-center justify-content-center">
+                                        <span class="price-per-btn price-per-btn-minus" (click)="minus($event, modelItem)" >
+                                            -
+                                        </span>
+                                        <!-- <input type="number" class="form-control price-per-input" placeholder="$1"> -->
+                                        <div class="custom_input">
+                                                {{ modelItem['price_per'] }}$
+                                        </div>
+                                        <span class="price-per-btn price-per-btn-plus"  (click)="plus($event, modelItem)" >
+                                            +
+                                        </span>
+                                    </div>
+                            </div>
+                            
+                        </div>
+                    </ng-template>
+            </ng-template>
+    </label>
+    <div class="custom-control custom-radio d-none">
+        <input type="radio" 
+                name="amount_of_{{boxNumber}}{{index}}" 
+                [id]="modelItem['description']" 
+                class="custom-control-input" 
+                [value]="modelItem['value']"
+                (click)="selectBox(boxNumber,index)">
+        <label class="custom-control-label" [for]="modelItem['description']"></label>
+    </div>
+</div>

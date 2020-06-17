@@ -1,0 +1,56 @@
+<div class="section-header d-flex">
+    <h1>{{ '782'| translate }}</h1>
+    <div class="col line">
+        <button class="add" *ngIf="isAdmin && data.interests.length < 20"   (click)="open(false)">
+            <img src="assets/img/50.svg" alt="add">
+        </button>
+    </div>
+</div>
+
+<div class="interests row" *ngIf="data.interests.length != 0 ">
+    <div class="col-sm-6 mt-3"
+        *ngFor="let interest of data.interests | slice: 0:startPage">
+        <div class="section-content p-0">
+            <img class="interest-image"
+            (click)="showPhotoModal($event)"
+                [src]="interest.image?'/file/' + interest.image: 'assets/img/image_interests.svg'"
+                alt="product-1" appAppLazyImage>
+
+            <div class="interests-text">
+                <h3>{{ interest.interest }}</h3>
+                <p>{{ interest.description }}</p>
+
+                <button class="edit bottom-edit" *ngIf="isAdmin"
+                    (click)="open(true,interest)">
+                    <img src="assets/img/19.svg" alt="edit">
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<ng-container  *ngIf="data.interests.length === 0 && isAdmin">
+        <app-empty-profile [key]='"intersets"' (openModal)='openEmptyModal()'></app-empty-profile>
+</ng-container>
+
+<app-more-less  [dataLength]="data.interests.length" (start)="startPage = $event"></app-more-less>
+
+
+
+<!-- Modals -->
+<app-modal (closeModal)="modalType = null">
+    <!-- Add -->
+    <ng-container *ngIf="modalType === 'add'">
+        <app-interest-modal (result)="getInterest($event)" [getInterests] = 'data.interests'></app-interest-modal>
+    </ng-container>
+
+    <!-- Edit -->
+    <ng-container *ngIf="modalType === 'edit'">
+        <app-interest-modal  [data]="editableData" [getInterests] = 'data.interests' (result)="getInterest($event)"></app-interest-modal>
+    </ng-container>
+  </app-modal>
+<!-- Modals -->
+
+
+<app-photo-modal [src]="src" (onSrc) = "src=undefined"></app-photo-modal>

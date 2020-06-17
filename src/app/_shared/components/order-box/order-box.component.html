@@ -1,0 +1,136 @@
+
+<div class="order mt-2"  [ngClass]="{'expandedProfile': toggledDetailedView}" (click)='toggleView($event)'>
+    <div class="d-flex justify-content-between order-box   align-items-center">
+         <div class="profile d-flex h-100 align-items-center" style="margin-right: 3px;"  >
+            <img [src]="profileInfo.avatar | avatar: profileInfo.isCompanyActive " 
+                alt="profile"
+                [ngClass]="{'user-photo': !profileInfo.isCompanyActive }"
+                class="profile-photo">
+            <span class="pl-2" *ngIf="order.status === 'new'"> {{ profileInfo.name }} </span> 
+            <span class="pl-2" *ngIf="order.status !== 'new'" style="margin-left: 14px; white-space: nowrap;"> {{ order.service.title }} </span> 
+
+         </div>
+         
+         <div class="status d-flex" *ngIf="order.status !== 'new'"  >
+              <p class="{{order.status}} status mb-0"></p>
+               <span>
+                       {{ order.status | status }}
+               </span>
+         </div>
+
+         <div class="service" *ngIf="order.status === 'new'">
+                      {{ order.service.title }}
+         </div>
+
+         <!-- Service Title -->
+         <div class="due-on">
+            <ng-container *ngIf="order.delivery_time !== 'Custom'">
+                  {{ dueOn }}
+            </ng-container>
+
+            <ng-container *ngIf="order.delivery_time === 'Custom'">
+                  {{ order.custom_date }}
+            </ng-container>
+         </div>
+         
+         <!-- Add Note -->
+         <div class="note" *ngIf="type !== 'new'" style="position: relative;" ngbDropdown #myDrop="ngbDropdown" >
+               <img src="assets/img/note.svg" alt="note" ngbDropdownToggle *ngIf="!order.note" style="width: 25px;">
+               <span  ngbDropdownToggle *ngIf="order.note">{{ order.note | addDots:'15' }}</span>
+               <div  class="popup-note" ngbDropdownMenu>
+                     <textarea [(ngModel)]="note" 
+                               (keyup.enter)='handleModelChange( note, myDrop )'  
+                               class="form-control" 
+                               placeholder="Add Note"></textarea>
+               </div>                 
+         </div>
+
+         <div class="price">
+                    {{ order.price_amount }} {{ order.currency }}
+         </div>
+
+         <img src="assets/img/147.svg" alt="pointer" [ngClass]="{'toggled': !toggledDetailedView }">
+
+    </div>
+    
+</div>
+
+<hr *ngIf="!toggledDetailedView" class="mt-0">
+
+<ng-container *ngIf="toggledDetailedView">
+   <div class="m-3">
+      <div class="d-flex justify-content-between">
+         <div class="profile d-flex align-items-center">
+            <img class="profile-photo" [src]="profileInfo.avatar | avatar: profileInfo.isCompanyActive "  alt="profile" [ngClass]="{'company-photo': profileInfo.isCompanyActive }">
+
+             <div class="info pl-3">
+                <p class="m-0"> {{ profileInfo.name }} </p>
+                <small style="color: #808080">Tbilisi, Georgia</small>
+                <button class="backgroundless d-block p-0" (click)='message( profileInfo, profileInfo.isCompanyActive )'><img src="assets/img/106.svg" alt="message" > Message </button>
+            </div>
+         </div>
+
+         <div class="invite">
+            
+            <ng-container *ngIf="serviceType === 'service' ">
+               <ng-container *ngIf="type === 'delivered'">
+                 <button class="btn  ml-3" (click)='CancelDeliverdServiceOrder( order.id )' style="background:#e6e6e6; padding: 4px 18px;">Decline</button>
+                  <button class="btn btn-primary ml-3" (click)='AcceptDeliverdServiceOrder( order.id )'>Accept</button>
+               </ng-container>
+            </ng-container>
+            
+            <ng-container *ngIf="type === 'completed'">
+                  <button class="btn btn-primary" (click)='writeReview()'>
+                     Write a Review
+                  </button>     
+            </ng-container>
+            
+               <button class="btn" (click)='declineOrder( order.id, order.status  )' style="background:#e6e6e6;padding: 4px 18px;" *ngIf=" ( type === 'in_progress' || type === 'new') &&  
+                                                                                                         serviceType !== 'service' ">Decline</button>
+
+                <button *ngIf="type === 'new' && serviceType !== 'service' " class="btn btn-primary ml-3" (click)='acceptOrder( order.id, order.service.id )'>Accept</button>
+
+                <button *ngIf="type === 'in_progress' && serviceType !== 'service'" class="btn btn-primary ml-3" (click)='devliverServiceOrder( order.id, order.service.id )'>Deliver</button>
+         </div>
+
+        </div>
+
+        <div class="content">
+              <h5 class="mt-2 mb-2 pt-1">{{ order.service.title }}</h5>
+              
+              <span class="price pt-1">
+                  {{ order.price_amount }} {{ order.currency }}
+              </span>
+
+              <div class="delivery-time pt-1 pb-1" *ngIf="order.delivery_time !== 'Custom'">
+                 <img src="assets/img/492.svg" alt="time" class="mr-2">
+                 <span>{{ deliveryTime[order.delivery_time] }}</span>
+              </div>
+
+             <p class="description">
+                  {{ order.description }}
+             </p>
+             <div class="uploaded-files pb-2">
+                <p class="mb-3">Uploaded file</p>
+ 
+                  <ng-container *ngFor="let file of order.files">
+                     <ng-container *ngIf="( file.mime_type | mimeType ) === 'image'">
+                        <div class="d-inline-block mr-3">
+                           <app-file-container [file]='file' [hasClass]='true'></app-file-container>
+                        </div>
+                    </ng-container>
+                  </ng-container>
+
+                  <ng-container *ngFor="let file of order.files">
+                        <ng-container *ngIf="( file.mime_type | mimeType ) !== 'image'">
+                           <div class="d-block mr-3 pt-2 mb-2"> 
+                              <app-file-container [file]='file' [hasClass]='true'></app-file-container>
+                           </div>
+                       </ng-container>
+                  </ng-container>
+
+               </div>
+
+        </div>
+    </div>
+</ng-container>

@@ -1,0 +1,21 @@
+
+<form [formGroup]="form" class="col-md-5">
+    <div class="form-group">
+            <p>Color</p>
+            <div class="color-container">
+                    <div *ngFor="let item of colors; let i = index;">
+                            <input  type="radio" 
+                                    class="color-input" 
+                                    [value]="item" 
+                                    id="color-{{ i }}" 
+                                    name="colour"
+                                    formControlName="colour">
+                            <label  for="color-{{ i }}" class="color-label"> 
+                                <div class="color-box" [ngStyle]="{'background': item}">
+                                </div>
+                            </label>
+                        </div>
+            </div>
+
+    </div>
+</form>

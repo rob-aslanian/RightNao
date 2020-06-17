@@ -1,0 +1,33 @@
+@import "src/variables";
+
+ul {
+    padding:0;
+    margin: 5px 0 0 0;
+    display: flex;
+    overflow: hidden;
+    overflow-x: initial;
+    list-style-type: none;
+    > li {
+        margin-right:40px;
+        > a {
+            text-decoration: none; 
+            white-space: nowrap;
+            color:$dark-grey;
+            padding-bottom:16px;
+            display: block;  
+           
+            &.active {
+                color: #ffffff;
+                border-bottom:3px solid $background-dark-cyan;
+                
+            }
+            
+        }
+        &:hover {
+            > a{
+                color: #ffffff;
+                border-bottom:3px solid $background-dark-cyan;
+            }
+        }
+    }
+}

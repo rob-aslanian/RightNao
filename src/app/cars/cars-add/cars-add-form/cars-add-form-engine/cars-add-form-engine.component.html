@@ -1,0 +1,16 @@
+
+    <form [formGroup]="form"  class="col-md-5">
+        <div class="form-group form-container">
+            <p> Engine size </p>
+            <select name="engineSize"
+                    id="selectEngineSize" 
+                    class="form-control"
+                    (change)="parseToInt($event, 'engineSize')">
+                <option value="" disabled>Select engine size</option>
+                <option [value]="item" 
+                        *ngFor="let item of engineSize">
+                            {{ item }}
+                </option>
+            </select>
+        </div>
+    </form>

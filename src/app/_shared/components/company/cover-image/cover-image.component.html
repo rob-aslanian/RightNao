@@ -1,0 +1,58 @@
+  <!-- Cover image area start -->
+  <div class="cover-image" *ngIf="data">
+
+    <div *ngIf="imageLoaded" class="cover-image-content d-flex justify-content-center">
+        <img class="company-cover" *ngIf="image !== null " [src]="image" alt="company profile" cdkDragLockAxis="y" cdkDrag (cdkDragEnded)="drag($event)">
+    </div>
+
+    <div class="drag-image align-self-center" *ngIf="imageLoaded" cdkDragHandle >
+        <img src="assets/img/52.svg" alt="signs"  ><span>Drag to position cover image</span>
+    </div>
+    
+    <img class="company-cover" *ngIf="image !== null && !imageLoaded" [src]="'/file/' + image" alt="company profile" >
+    
+    <button class="btn view-as-visitor" *ngIf="data.isAdmin && !isClickedVisitor && hasViewMode" (click)="viewAsVisitor(true)">
+        View as visitor
+    </button>
+
+    <button class="btn view-as-visitor" *ngIf="!data.isAdmin && isClickedVisitor" (click)="viewAsVisitor(false)">
+        Exit as visitor
+    </button>
+
+    <ng-container *ngIf="data.isAdmin && !imageLoaded" >
+      <div (appClickOutside)="showPopup = $event" class="edit-content" ngbTooltip="1,600 x 400 recommended" 
+      [autoClose]="'outside'" placement="left">
+            <button class="btn cover-edit"     (click)="showPopup = !showPopup"
+                    tooltipClass="edit__tooltip">
+            </button>
+
+            <div class="options-for-edit" *ngIf="showPopup" >
+                <div class="option">
+                          <input
+                            class="d-none"
+                            accept="image/*"
+                            type="file"
+                            (change)="imageUpload($event)"
+                            #fileInput />
+        
+                    <img src="assets/img/51.svg" alt="message">
+                    <button  (click)="fileInput.click($event)" >Upload Image</button>
+                </div>
+                <div class="option" >
+                    <img src="assets/img/52.svg" alt="star">
+                    <button [disabled]="!hasImage" (click)="reposition()">Reposition</button>
+                </div>
+                <div class="option" >
+                    <img src="assets/img/53.svg" alt="heart">
+                    <button [disabled]="!hasImage" (click)="removeImage()">Delete</button>
+                </div>
+            </div>
+        </div>
+      
+    </ng-container>
+    <div class="buttons" *ngIf="imageLoaded">
+        <button class="btn btn-secondary" (click)="discard()">Discard</button>
+        <button class="btn btn-primary ml-2" (click)="saveImage()">Save</button>
+    </div>
+</div>
+<!-- Cover image area end -->

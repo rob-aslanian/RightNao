@@ -1,0 +1,16 @@
+<main class="main-light-blue before-footer">
+    <app-search-header *ngIf="searchService.type !== 'all' "></app-search-header>
+    <div class="search-groups">
+        <div class="row justify-content-between company-wrap">
+            <div class="col-sm-12 search-groups-wrap" *ngIf="searchService.type !== 'all'"
+                 [ngClass]="{'col-md-3': searchService.showLeft , 'col-md-0':!searchService.showLeft}">
+                <app-left></app-left>
+            </div>
+            <div class="col search-groups-wrap" style="padding-top: 24px;">
+                <app-main></app-main>
+            </div>
+
+            <app-ads class="col-lg-3 col-md-12 search-groups-wrap" style="padding-top: 24px;" [isLeft]="true"></app-ads>
+        </div>
+    </div>
+</main>

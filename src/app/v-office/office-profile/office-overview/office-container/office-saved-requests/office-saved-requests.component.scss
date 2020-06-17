@@ -1,0 +1,30 @@
+@import 'src/variables';
+
+
+.request-wrapper {
+    background: #fff;
+    border-radius: 4px;
+    padding: 13px;
+    position: relative;
+}
+
+.most-recent {
+    position: absolute;
+    z-index: 10;
+    background-color: $white;
+    box-shadow: 0 0 20px 0 rgba(0,0,0,.75);
+    right: 13px;
+    border-radius: 5%;
+    width: 205px;
+        button {
+            width: 100%;
+            color: grey;
+            text-align: left;
+            margin-top: 3px;
+  
+            &:hover {
+                background: #DCE1E6;
+            }
+        }
+
+}

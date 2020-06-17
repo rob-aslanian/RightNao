@@ -1,0 +1,266 @@
+<form [formGroup]="locationForm" autocomplete="off">
+    <ng-container *ngIf="type === 'location'">
+        <div class="add-location-wrap">
+            <div class="form-group">
+                <label for="location-name">{{ '870' | translate }}</label>
+                <input type="text" class="form-control" id="location-name" formControlName="name" maxlength="64"
+                    [ngClass]="{ 'is-invalid': submited && location.name.errors }" [placeholder]=" '554' | translate ">
+
+                <!--Error -->
+                <span class="error_message" *ngIf="submited && location.name.errors">
+                    {{ utils.$getErrors('symbolsAndLatin') }}
+                </span>
+                <!--Error -->
+
+            </div>
+            <br>
+            <h3> {{ '1362' | translate }} <span>*</span></h3>
+            <div class=" form-group">
+                <input type="text" class="form-control" id="location-street-address-1" [placeholder]=" '574' | translate "
+                    formControlName="street_address" maxlength="128"
+                    [ngClass]="{ 'is-invalid': submited && location.street_address.errors }">
+
+                <!-- Errors -->
+                <ng-container *ngIf="submited && location.street_address.errors">
+                    <span class="error_message"
+                        *ngFor="let error of utils.getErrorsKey(location.street_address.errors)">
+                        {{ utils.$getErrors(error) }}
+                    </span>
+                </ng-container>
+                <!-- Errors -->
+            </div>
+
+            <div class="form-group">
+                <input type="text" class="form-control" id="location-street-address-2"
+                    [placeholder]="'1365' | translate" formControlName="apartment" maxlength="32"
+                    [ngClass]="{ 'is-invalid': submited && location.apartment.errors }">
+                <!-- Errors -->
+                <ng-container *ngIf="submited && location.apartment.errors">
+                    <span class="error_message" *ngFor="let error of utils.getErrorsKey(location.apartment.errors)">
+                        {{ utils.$getErrors(error) }}
+                    </span>
+                </ng-container>
+                <!-- Errors -->
+            </div>
+
+            <div class="row">
+
+                <div class="col-6 form-group">
+                    <select class="form-control" id="location-street-address-4-right" (change)="selectCountry($event)"
+                        formControlName="country_id"
+                        [ngClass]="{ 'is-invalid': submited && location.country_id.errors }">
+                        <option value="" disabled>{{ '391' | translate  }}</option>
+                        <option [value]="country.asc" *ngFor="let country of countries | async">
+                            {{ country.name }}
+                        </option>
+                    </select>
+                    <!--Error -->
+                    <span class="error_message" *ngIf="submited && location.country_id.errors">
+                        {{ utils.$getErrors('required') }}
+                    </span>
+                    <!--Error -->
+                </div>
+
+                <div class="col-6 form-group">
+                    <input type="text" class="form-control" id="location-street-address-3-left" [placeholder]=" '314' | translate"
+                        (selectItem)="selectCity($event)" [(ngModel)]="selectedCity" formControlName="city_id"
+                        [ngbTypeahead]="searchCity" autocomplete="off" [disabled]="selectedCountry"
+                        [resultFormatter]="cityFormatter" [inputFormatter]="cityFormatter"
+                        [ngClass]="{ 'is-invalid': submited && location.city_id.errors }">
+
+                    <!-- Errors -->
+                    <ng-container *ngIf="submited && location.city_id.errors">
+                        <ul>
+                            <li  *ngFor="let error of utils.getErrorsKey(location.city_id.errors)">
+                                <span class="error_message">
+                                    {{ utils.$getErrors(error) }}
+                                </span>
+                            </li>
+                        </ul>
+                    </ng-container>
+                    <!-- Errors -->
+                </div>
+
+
+                <div class="col-6 form-group">
+                    <input type="text" 
+                    class="form-control" 
+                    id="location-street-address-4-left"
+                    [placeholder]="'573' | translate" 
+                    formControlName="zip_code" 
+                    [ngClass]="{ 'is-invalid': submited && location.zip_code.errors }" 
+                    (keydown)="utils.maxNumberLenght($event , 32)">
+
+                    <!-- Errors -->
+                    <ng-container *ngIf="submited && location.zip_code.errors">
+                        <span class="error_message" *ngFor="let error of utils.getErrorsKey(location.zip_code.errors)">
+                            {{ utils.$getErrors(error) }}
+                        </span>
+                    </ng-container>
+                    <!-- Errors -->
+                </div>
+
+       
+                <div class="col-6 form-group">
+                    <input type="text" class="form-control" id="location-street-address-3-right"
+                        [placeholder]=" '544' | translate" formControlName="state" maxlength="64"
+                        [ngClass]="{ 'is-invalid': submited && location.state.errors }">
+                    <!-- Errors -->
+                    <ng-container *ngIf="submited && location.state.errors">
+                        <span class="error_message" *ngFor="let error of utils.getErrorsKey(location.state.errors)">
+                            {{ utils.$getErrors(error) }}
+                        </span>
+                    </ng-container>
+                    <!-- Errors -->
+                </div>
+
+            </div>
+
+            <div class="ml-3 mb-5 custom-control custom-checkbox ">
+                <input type="checkbox" class="custom-control-input" value="something" id="set-as-main-office"
+                    formControlName="primary">
+                <label for="set-as-main-office" class="custom-control-label"> {{ '1299' | translate  }}</label>
+            </div>
+
+
+            <!-- Phones-->
+            <h3> {{ '1059' | translate  }}</h3>
+            <app-phone (result)="getPhones($event)" [data]="phonesData" [multiple]="true"></app-phone>
+
+            <!-- Busniess hours -->
+            <h3> {{ '257' | translate  }}</h3>
+            <app-busines-hours (result)="getBusinessHours($event)" [multiple]="true" [data]="busniessHoursData">
+            </app-busines-hours>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="type === 'addresses'">
+        <div class="form-group mt-0">
+            <label> {{ '116' | translate  }}</label>
+            <input type="text" class="form-control" id="location-name" formControlName="name" maxlength="64"
+                [ngClass]="{ 'is-invalid': submited && location.name.errors }">
+
+            <!--Error -->
+            <span class="error_message" *ngIf="submited && location.name.errors">
+                {{ utils.$getErrors('symbolsAndLatin') }}
+            </span>
+            <!--Error -->
+        </div>
+
+        <div class="form-group">
+           <ng-container *ngIf='data'>
+               <label>{{  '115' | translate  }}<span>*</span></label>
+           </ng-container>
+
+           <ng-container *ngIf='!data'>
+                <label>{{ '60' | translate   }}<span>*</span></label>
+            </ng-container>
+        
+
+            <input type="text" class="form-control" id="location-street-address-1" [placeholder]=" '574' | translate"
+                formControlName="street_address" maxlength="128"
+                [ngClass]="{ 'is-invalid': submited && location.street_address.errors }">
+
+            <!-- Errors -->
+            <ng-container *ngIf="submited && location.street_address.errors">
+                <span class="error_message" *ngFor="let error of utils.getErrorsKey(location.street_address.errors)">
+                    {{ utils.$getErrors(error) }}
+                </span>
+            </ng-container>
+            <!-- Errors -->
+        </div>
+
+        <div class="form-group">
+            <input type="text" class="form-control" id="location-street-address-2"
+                [placeholder]="'163' | translate" formControlName="apartment" maxlength="32"
+                [ngClass]="{ 'is-invalid': submited && location.apartment.errors }">
+            <!-- Errors -->
+            <ng-container *ngIf="submited && location.apartment.errors">
+                <span class="error_message" *ngFor="let error of utils.getErrorsKey(location.apartment.errors)">
+                    {{ utils.$getErrors(error) }}
+                </span>
+            </ng-container>
+            <!-- Errors -->
+        </div>
+
+        <div class="form-group">
+            <select class="form-control" id="location-street-address-4-right" (change)="selectCountry($event)"
+                formControlName="country_id" [ngClass]="{ 'is-invalid': submited && location.country_id.errors }">
+                <option value="" disabled>{{ '391'  | translate }}</option>
+                <option [value]="country.asc" *ngFor="let country of countries | async">
+                    {{ country.name }}
+                </option>
+            </select>
+            <!--Error -->
+            <span class="error_message" *ngIf="submited && location.country_id.errors">
+                {{ utils.$getErrors('required') }}
+            </span>
+            <!--Error -->
+        </div>
+
+        <div class="form-group">
+            <input type="text" class="form-control" id="location-street-address-3-left" [placeholder]="'314' | translate"
+                (selectItem)="selectCity($event)" [(ngModel)]="selectedCity" formControlName="city_id"
+                [ngbTypeahead]="searchCity" autocomplete="off" [disabled]="selectedCountry"
+                [resultFormatter]="cityFormatter" [inputFormatter]="cityFormatter"
+                [ngClass]="{ 'is-invalid': submited && location.city_id.errors }">
+
+            <!-- Errors -->
+            <ng-container *ngIf="submited && location.city_id.errors">
+                <span class="error_message" *ngFor="let error of utils.getErrorsKey(location.city_id.errors)">
+                    {{ utils.$getErrors(error) }}
+                </span>
+            </ng-container>
+            <!-- Errors -->
+        </div>
+
+        <div class="form-group">
+            <input type="text" class="form-control" id="location-street-address-3-right"
+                [placeholder]="'544' | translate " formControlName="state" maxlength="64"
+                [ngClass]="{ 'is-invalid': submited && location.state.errors }" disabled>
+            <!-- Errors -->
+            <ng-container *ngIf="submited && location.state.errors">
+                <span class="error_message" *ngFor="let error of utils.getErrorsKey(location.state.errors)">
+                    {{ utils.$getErrors(error) }}
+                </span>
+            </ng-container>
+            <!-- Errors -->
+        </div>
+
+        <div class="form-group">
+            <input type="text" class="form-control" id="location-street-address-4-left"
+                [placeholder]="'573' | translate " formControlName="zip_code"
+                [ngClass]="{ 'is-invalid': submited && location.zip_code.errors }" (keydown)="utils.maxNumberLenght($event , 32)">
+
+            <!-- Errors -->
+            <ng-container *ngIf="submited && location.zip_code.errors">
+                <span class="error_message" *ngFor="let error of utils.getErrorsKey(location.zip_code.errors)">
+                    {{ utils.$getErrors(error) }}
+                </span>
+            </ng-container>
+            <!-- Errors -->
+        </div>
+
+
+        <div class="ml-3 mb-5 custom-control custom-checkbox ">
+            <input type="checkbox" class="custom-control-input" value="something" id="set-as-main-office"
+                formControlName="primary">
+            <label for="set-as-main-office" class="custom-control-label"> {{ '1299'  | translate }}</label>
+        </div>
+
+        <ng-container *ngIf='data'>
+            <label for="">{{  '82'  | translate }}</label>
+        </ng-container>
+
+        <ng-container *ngIf='!data'>
+                <label for="">{{ '497' | translate  }}</label>
+        </ng-container>
+  
+        <app-phone (result)="getPhones($event)" [data]="phonesData" [multiple]="true"></app-phone>
+
+        <!-- Busniess hours -->
+        <app-busines-hours (result)="getBusinessHours($event)" [multiple]="true" [data]="busniessHoursData">
+        </app-busines-hours>
+
+    </ng-container>
+</form>

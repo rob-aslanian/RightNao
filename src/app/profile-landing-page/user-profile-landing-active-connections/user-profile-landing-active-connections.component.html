@@ -1,0 +1,26 @@
+<div class="active-connections mt-3 p-3" >
+  <div class="active-connections-title">
+    <h4> {{ 'Connections ' + ' ' +  allConnections.length }} </h4>
+  </div>
+  <hr>
+  <div class="active-connections__content">
+    
+    <div class="active-connections__content__card mt-2 " *ngFor="let connection of allConnections">
+      <div class="d-flex  align-items-center pb-2" style="width: 100%;">
+        <img [src]="connection.avatar ? '/file/' + connection.avatar : 'assets/img/124.svg' " alt="" style="width: 15%;">
+        <!-- <a [routerLink]="[ '//user/profile/', connection.url ]">{{ connection.firstname + ' ' + connection.lastname }} </a> -->
+        <a *ngIf="!isCompanyActive" (click)="openSmallChatBox(connection)" style="width: 70%; padding-left: 10px; font-size: 14px;">{{ connection.firstname + ' ' + connection.lastname }} </a>
+        <a *ngIf="isCompanyActive" (click)="openSmallChatBoxCompany(connection)" style="width: 70%; padding-left: 10px; font-size: 14px;">{{ connection.firstname + ' ' + connection.lastname }} </a>
+        <div class="online-status">
+            <img src="assets/img/hexagons/light-blue.svg" alt="online" style="width: 16px; height: 16px;" *ngIf="connection.online">
+            <img src="assets/img/hexagons/214.svg" alt="online" style="width: 16px; height: 16px;" *ngIf="!connection.online">
+        </div>
+      </div>
+    </div>
+
+    <ng-template #infoPopover>
+      <app-small-info-box [data]="connection"></app-small-info-box>
+    </ng-template>
+      
+  </div>
+</div>

@@ -1,0 +1,95 @@
+<div class="saved">
+        <app-manage-search [onlyMe] = "false"></app-manage-search>
+    <!-- <div class="saved__slider mt-4">
+            <span> Saved all items </span>
+            <div style="position: relative;">     
+                    <app-slider-bad-boy-edition [amount]='4'>          
+                            <div class="row flex-nowrap">
+                                <div class="col-3">
+                                         <div class="home-box" style="height: 110px;">
+                                                <img src="assets/img/buildings/1.jpg" alt="">
+                                                <div class="home-description">
+                                                     <div class="d-flex justify-content-between align-items-center">
+                                                           <p>Buy</p>
+                                                           <span>42 Property</span>
+                                                     </div>
+                                                </div>
+                                         </div>
+                                </div>
+                                <div class="col-3">
+                                            <div class="home-box" style="height: 110px;">
+                                                <img src="assets/img/buildings/3.jpg" alt="">
+                                                <div class="home-description">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <p>Rent</p>
+                                                        <span>42 Property</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                </div>
+                                <div class="col-3">
+                                        <div class="home-box" style="height: 110px;">
+                                            <img src="assets/img/buildings/2.jpg" alt="">
+                                            <div class="home-description">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <p>Lease</p>
+                                                    <span>42 Property</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="col-3">
+                                        <div class="home-box" style="height: 110px;">
+                                            <img src="assets/img/buildings/4.jpg" alt="">
+                                            <div class="home-description">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <p>Share</p>
+                                                    <span>42 Property</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        
+                        </app-slider-bad-boy-edition>
+                        
+                        <div class="arrow-left" (click)='rotateLeft()'>
+                            <img src="assets/img/509.svg" alt="arrow-left">
+                        </div> 
+                        
+                        <div class="arrow-right" (click)='rotateRight()'>
+                            <img src="assets/img/508.svg" alt="arrow-rigt">
+                        </div>
+                    
+            </div>       
+    </div> -->
+
+    <div class="saved__box">
+        <div class="saved__box__title col-12">
+            <span>Saved post {{ amount }}</span>
+        </div>
+        <div class="landing__announcements mt-3">
+            <ng-container *ngIf="!isLoading; else loading">
+                <div class="col-xl-12" *ngFor="let car of cars">
+                    <app-cars-box [isCardView]='false' [car]='car'></app-cars-box>
+                </div>
+            </ng-container>
+
+            <ng-template #loading>
+                <div class="d-flex justify-content-center align-items-center">
+                        <app-spinner></app-spinner>
+                </div>
+            </ng-template>
+                
+        </div>
+
+        <ngb-pagination [collectionSize]="amount" 
+                        *ngIf="amount && amount > first"
+                        [pageSize]="first" 
+                        [(page)]="page"  
+                        (pageChange)="changePage($event)" 
+                        class="d-flex justify-content-end mt-4">
+        </ngb-pagination>
+    </div>
+
+</div>

@@ -1,0 +1,188 @@
+<div class="box-{{ view }}" *ngIf="profile">
+  
+     <div class="network-box" [ngClass]="{'pt-3': !hasMorePopUp}" (click)="adClick($event, profile)">
+     <span class="ad" *ngIf="profile?.isAd">Ad</span>
+ 
+       <ng-container *ngIf="hasMorePopUp">
+           <ng-content></ng-content>
+                <div class="more-dots">
+                        <button class="btn-more"   [ngbPopover]="userMore" [autoClose]="true" #popBox="ngbPopover">
+                                <img class="btn-more" src="assets/img/107.svg" alt="...">
+                        </button>
+
+                         <a class="options connection-option" #userMore [ngClass]="{'d-none': !popBox.isOpen() }">
+                            <app-more-popup  [data]='{
+                                "profileId":  profile.id,
+                                "isFollowed" :  profile.follow,
+                                "isBlocked":  profile.blocked,
+                                "isConnect":  profile.friend,
+                                "canAddInFavourites": false,
+                                "isCompany": isCompany,
+                                "isFriendRequest":profile.friend_request,
+                                "isFavorite":  profile.favorite
+                            }'  
+                            ngbDropdownItem
+                            (result)='getResult()'
+                            ></app-more-popup>    
+                                                         
+                        </a>
+                </div>
+                
+            </ng-container>  
+ 
+     
+        <div class="network-line-{{ view === 'card' ? 'two' : 'one' }}" style="padding-top: 8px;">
+            <img class="profile" 
+                [ngClass]="{'rounded-image': !isCompany}" 
+                [src]="profile.avatar | avatar: isCompany"
+                alt="profile" />
+ 
+            <div class="right">
+                <a class="router" [routerLink]="[ !isCompany ? '/user/profile/'+profile.url : 
+                                                  !hasCareerCenter ? '/company/profile/'+profile.url :
+                                                  '/career_center/detail/' + profile.id]">
+                    <h4>{{ profile.name  ||  profile.firstname + " " + profile.lastname }}</h4>
+                </a>
+
+                     <!-- Rating -->
+                    <ng-container *ngIf="isCompany">
+                        <div style="margin-left: -3px;" [ngClass]="{'fit-content': view == 'card'}">
+                                <ngb-rating  [(rate)]="profile.avarage_rating" 
+                                max="5" 
+                                [readonly]="true"></ngb-rating>
+                        </div>
+                  </ng-container>
+
+                <ng-container *ngIf="view === 'card' ">
+                  <!-- Company -->
+                  <ng-container *ngIf="isCompany">
+                        <!-- Company Industry -->
+
+                        <span *ngIf="profile.industry.id">
+                                {{ profile.industry.id | industry }}
+                        </span>
+
+                         <!-- Company Location -->
+                        <ng-container *ngFor="let addr of profile.addresses">
+                            <ng-container *ngIf="addr.primary">
+                                <span *ngIf="addr.city.city as city" >{{ city }}, {{ addr.country_id | country }}</span>
+                            </ng-container>
+                        </ng-container>
+                        
+                    <!-- Company Followers -->
+                    <ng-container *ngIf="isCompany">
+                            <div class="pt-2">
+                                  <span style="margin-left: 2px;"> {{ profile.network_info.followers }} Followers </span>
+                            </div>  
+                            <div *ngIf="profile.amount_jobs as jobsAmount">
+                                <span style="margin-left: 2px; color: #00D4E3;"> {{ jobsAmount }} Job Offers </span>
+                            </div>      
+                    </ng-container>
+                        
+                  </ng-container>
+                  
+
+                  <!-- User -->
+                  <ng-container *ngIf="profile.experiences && !isCompany">
+                      <span *ngIf="profile.experiences.length > 0">
+                          {{ profile.experiences[0].title }}
+                      </span>
+                      <span *ngIf="profile.experiences.length > 0">
+                          {{ profile.experiences[0].company }}
+                      </span>
+
+                    <!-- user mutual connections -->
+                    <ng-container *ngIf="!isCompany">
+                        <div class="d-flex mt-2"> 
+                            <img src="assets/img/121.svg" alt="mutual">
+                            <span style="margin-left: 5px;"> {{ profile.network_info.mutual_connections_amount }} mutual
+                                connections </span>
+                        </div>
+                    </ng-container>                    
+                    
+                  </ng-container>
+
+
+                </ng-container>
+
+            </div>
+
+        </div>
+
+
+        <ng-container *ngIf="view === 'list' ">
+
+         <ng-container *ngIf="isCompany">
+                <!-- Company Industry -->
+              <div class="network-line-two" >
+                <span *ngIf="profile.industry.id">
+                        {{ profile.industry.id | industry }}
+                </span>
+
+                    <!-- Company Location -->
+
+                <ng-container *ngFor="let addr of profile.addresses">
+                    <ng-container *ngIf="addr.primary">
+                        <span *ngIf="addr.city.city as city" >{{ city }}, {{ addr.country_id | country }}</span>
+                    </ng-container>
+                </ng-container>
+             </div>
+            </ng-container>
+
+
+          <ng-container *ngIf="!isCompany">
+              <div class="network-line-two">
+                  <span *ngIf="profile.experiences.length > 0">
+                      {{ profile.experiences[0].title }}
+                  </span>
+                  <span *ngIf="profile.experiences.length > 0">
+                      {{ profile.experiences[0].company }}
+                  </span>
+              </div>
+          </ng-container>
+          
+ 
+            <div class="network-line-three">
+                <div class="d-flex"  *ngIf="!isCompany">
+                    <img src="assets/img/121.svg" [ngClass]="{'rounded-image': !isCompany}" >
+                    <span> {{ profile.network_info.mutual_connections_amount }} mutual connections </span>
+                </div>
+                <span style="margin-left: 2px;" *ngIf="isCompany"> {{ profile.network_info.followers }} Followers </span>
+            </div>
+
+        </ng-container>
+
+        <div class="network-line-four" *ngIf="!profile.me && (!hasMorePopUp && view !== 'list' )">
+
+            <button class="btn btn-outline-primary"
+                *ngIf="!profile.friend && !profile.friend_request && !isCompanyActive && !isCompany"
+                (click)="connect(profile.id)">Connect</button>
+
+            <button class="btn btn-outline-primary" *ngIf="(!profile.follow && isCompanyActive) || (!profile.follow && isCompany)"
+                (click)="follow(profile.id)"> Follow</button>
+
+            <button *ngIf="!hasCareerCenter && ( (profile.friend && !isCompanyActive) || ( profile.follow && isCompany ) )" type="button" (click)="openChatBox(profile.id)"
+                class="btn btn-outline-primary"> Message</button>  
+
+            <button ngbDropdown *ngIf="hasCareerCenter && profile?.career_center?.cv_button_enabled" type="button" 
+                class="btn btn-primary"  ngbDropdownToggle > 
+                Drop CV
+                <div class="drop_cv__context" ngbDropdownMenu>
+                    <div class="custom-control  custom-radio page-section-text-grey" *ngFor="let option of DropCVOptions">
+                        <input   type="radio" class="custom-control-input" [id]="profile.id + option['value'] " 
+                                 [value]="option['value']" name="cv_options" [(ngModel)]="dropCvRadio"
+                                 [checked]="option['value'] === dropCvRadio">
+                        <label class="custom-control-label" [for]="profile.id +  option['value']" >
+                            {{ option['name'] }}
+                        </label>
+    
+                    </div>
+
+                    <button type="button" class="btn btn-primary mt-4" style="float: right" (click)="dropCv()">Done</button>
+                </div>
+            </button>  
+
+
+
+    </div>
+</div>

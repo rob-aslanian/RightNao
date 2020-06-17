@@ -1,0 +1,165 @@
+<cdk-virtual-scroll-viewport #scrollChatCtnr class="chat-virtual-scroll" itemSize="50">
+  <div *cdkVirtualFor="let messageItem of messageList; let i = index">
+
+    <!-- Container to Group Notification Example when someone leaves the group- Start -->
+    <ng-container *ngIf="messageItem.type == 'ParticipantLeft' || messageItem.type == 'AddParticipant' ">
+      <b></b>
+      <!-- who added in group -->
+      <div class="chatBox-sms-alert">
+        <img src="{{messageItem.type == 'ParticipantLeft' ? 'assets/img/69.svg' : 'assets/img/120.svg'}}" alt="ico">{{messageItem | groupNotification: conversation}}
+      </div>
+    </ng-container>
+    <!-- Container to Group Notification Example when someone leaves the group- End -->
+  
+    <!-- Container to show Date Separator in between messages - Start -->
+    <ng-container *ngIf="messageItem.type == 'MessageDate'">
+      <div class="chatBox-sms-dateSeparate">
+          {{ messageItem.timestamp | date: 'M.dd.y' }}
+      </div>
+    </ng-container>
+    <!-- Container to show Date Separator in between messages - End -->
+  
+    <!-- Container to show the actual Message - Start -->
+    <ng-container *ngIf="messageItem.type == 'UserMessage'">
+      
+      <!-- Message send from the other user - Right hand side messages - Start-->
+      <div class="chatBox-sms from-me" *ngIf="messageItem.sender_id == currentUserId">
+        <div class="chatBox-sms-mainImg">
+          <img src="{{getParticipant(messageItem.sender_id).avatar | defaultAvatar}}" alt="photo">
+        </div>
+        <div class="chatBox-sms-ballon">
+          <span innerHTML="{{messageItem.text | highlight: searchText}}" class='message-text'></span>
+
+          <!-- If message contains file- Starts -->
+          <ng-container *ngIf="messageItem.files.length !== 0">
+            <ng-container *ngFor="let file of messageItem.files">
+                <img *ngIf="listenersService.isImage(getFileExt(file.file_name)) == true" (click)="openSharedPhotosModal(sharedPhotosModal, file.file)" src="{{file.file | filepath}}" class="chatBox-sms-ballon-img" alt="image">
+                <a *ngIf="listenersService.isImage(getFileExt(file.file_name)) == false" (click)="downloadImage(file.file, false)" style="cursor: pointer">
+                  <img src="{{getFileExt(file.file_name) | fileIcon}}" class="chatBox-sms-ballon-img file-icon-msg" alt="image">
+                  {{file.file_name}}
+                </a>
+                 
+              </ng-container>
+              <div class="msg__box__buttons" >
+                  <button (click)="downloadImage(messageItem.files)" class="btn-custom__link">
+                    <!-- Download -->
+                    <img src="./assets/img/71.svg" alt="ico">
+                  </button>
+                  <div popoverClass="forward-overlay" [container]="'body'" (click)="forwarMsg(messageItem.files)" [autoClose]="'outside'" #forwardFromMeRef="ngbPopover" [ngbPopover]="forwardFromMe" class="modalPhoto-drop_head">
+                    <img src="./assets/img/56.svg" alt="ico"> 
+                    <!-- Forward -->
+                  </div>
+                  <ng-template #forwardFromMe>
+                    <app-forward-overlay [selectedItems]="selectedItems" [overlayRef]="forwardFromMeRef" [filesId]="forwardMsgIds"></app-forward-overlay>
+                  </ng-template>
+                </div>
+              
+          </ng-container>  
+          <!-- If message contains file- Ends -->       
+        </div>
+        
+        <!-- To show the hyperlinks shared inside the message - Start -->
+        <a *ngFor="let link of getLinksInMessage(messageItem.text)" href="{{link}}" target="_blank" class="chatbox-shared-link">
+            <div class="chatbox-shared-link_in" >
+              <h2>{{link | linkMetaData}}</h2>
+              <div class="desc">{{link | linkMetaData: 'title'}}</div>
+            </div>
+        </a> 
+        <!-- To show the hyperlinks shared inside the message - End -->
+  
+        <div class="message-time pr-3">{{messageItem.timestamp | dateFormat}}
+          
+          <!-- Message status - currently we are showing only for the latest message -->
+          <ng-container *ngIf="i == messageList.length - 1">
+            <!-- Message status for Individual -->
+            <div *ngIf="!conversation.is_group && messageStatusPipe.transform(messageItem ) !== 'seen'" [ngClass]="messageItem | messageStatus" class="chatBox-sms-status message-status-icon"></div>
+            <div *ngIf="!conversation.is_group && messageStatusPipe.transform(messageItem ) == 'seen'"  class="chatBox-groupSMS-status">
+                <img src="{{getSecondParticipant().avatar | defaultAvatar}}" alt="picture">
+            </div>
+
+            <!-- Message status for group -->
+            <div *ngIf="conversation.is_group" class="chatBox-groupSMS-status">
+              <img *ngFor="let userId of messageItem.seen_by" src="{{getParticipant(userId).avatar | defaultAvatar}}" alt="picture">
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <!-- Message send from the other user - Right hand side messages - Ends-->
+  
+      <!-- Message send from the other user - Left hand side messages - Start-->
+      <div class="chatBox-sms from-some" *ngIf="messageItem.sender_id !== currentUserId">
+        <div class="chatBox-sms-mainImg">
+          <img [ngClass]="{'company' : !conversation.is_group && getParticipant(messageItem.sender_id).is_company}"  src="{{getParticipant(messageItem.sender_id).avatar | defaultAvatar}}" alt="photo">
+        </div>
+        <div class="chatBox-sms-ballon">
+          <div class="chatbox-person-name" *ngIf="conversation.is_group">{{getParticipant(messageItem.sender_id).name}}</div>
+          <span innerHTML="{{messageItem.text | highlight: searchText}}"  class='message-text'></span>
+          
+          <!-- If message contains file- Starts -->
+          <ng-container *ngIf="messageItem.files.length !== 0">
+              <div *ngFor="let file of messageItem.files" class="msg__box">
+                  <img *ngIf="listenersService.isImage(getFileExt(file.file_name)) == true" (click)="openSharedPhotosModal(sharedPhotosModal, file.file)" src="{{file.file | filepath}}" class="chatBox-sms-ballon-img" alt="image">
+                  <a *ngIf="listenersService.isImage(getFileExt(file.file_name)) == false" (click)="downloadImage(file.file, false)" style="cursor: pointer">
+                    <img src="{{getFileExt(file.file_name) | fileIcon}}" class="chatBox-sms-ballon-img file-icon-msg" alt="image">
+                    {{file.file_name}}
+                  </a>
+                </div>
+
+
+                <div class="msg__box__buttons msg__box__buttons-received" >
+                    <button (click)="downloadImage(messageItem.files)" class="btn-custom__link">
+                      <!-- Download -->
+                      <img src="./assets/img/71.svg" alt="ico">
+                    </button>
+                    <div popoverClass="forward-overlay" [container]="'body'" (click)="forwarMsg(messageItem.files)" [autoClose]="'outside'" #forwardFromMeRef="ngbPopover" [ngbPopover]="forwardFromMe" class="modalPhoto-drop_head">
+                      <img src="./assets/img/56.svg" alt="ico"> 
+                      <!-- Forward -->
+                    </div>
+                    <ng-template #forwardFromMe>
+                      <app-forward-overlay [selectedItems]="selectedItems" [overlayRef]="forwardFromMeRef" [filesId]="forwardMsgIds"></app-forward-overlay>
+                    </ng-template>
+                  </div>
+                
+            </ng-container>  
+            <!-- If message contains file- Ends --> 
+
+          </div>
+          
+            <div class="message-time pl-3">
+              <!-- only time -->
+              {{messageItem.timestamp | dateFormat}}
+            </div>
+  
+        <!-- To show the hyperlinks shared inside the message - Start -->
+        <a *ngFor="let link of getLinksInMessage(messageItem.text)" href="{{link}}" target="_blank" class="chatbox-shared-link">
+            <div class="chatbox-shared-link_in" >
+              <h2>{{link | linkMetaData }}</h2>
+              <div class="desc">{{link | linkMetaData: 'title'}}</div>
+            </div>
+        </a>
+        <!-- To show the hyperlinks shared inside the message - End -->
+    </div>
+    </ng-container>
+    <!-- Container to show the actual Message - End -->
+  </div>
+
+ 
+</cdk-virtual-scroll-viewport>
+
+
+
+<ng-template #sharedPhotosModal>
+    <app-shared-photos 
+      [conversation]="conversation" 
+      [photos]="this.listenersService.getConversationPhotos" 
+      [selectedPhotoIndex] = "selectedPhotoIndex"
+      (closeModal)="closeModal()">
+    </app-shared-photos>
+</ng-template>
+
+
+
+<!-- who leave group -->
+<!-- <div class="chatBox-sms-alert">
+  <img src="assets/img/69.svg" alt="ico"> Murtuza Chakkiwala left the group
+</div> -->

@@ -1,0 +1,249 @@
+//        =)
+@import 'src/variables';
+
+.title{
+    h4{
+        font-size: 1.25rem;
+    }
+    span{
+        padding-left: .3rem;
+        font-size: .875rem;
+        color: $dark-grey;
+    }
+}
+
+.reviews-content{
+    
+    .new-reviews{
+        background-color: $white;
+        border-radius: .5rem;
+
+        .avatar{
+            img{
+                height: 3.125rem;
+                width: 3.125rem;
+            }
+            p{
+                font-size: .875rem;
+            }
+        }
+
+        .reviews-description{
+            .raiting{
+                img{
+                    width: 1.4rem;
+                    height: 1.4rem;
+                    &:not(:first-child){
+                        margin-left: .5rem;
+                    }
+                }
+                .average-raiting{
+                    font-size: .875rem;
+                    color: $dark-grey;
+                    padding-left: .5rem;
+                }
+            }
+            .date{
+                margin-left: auto;
+                span{
+                    font-size: .75rem;
+                    color: $dark-grey;
+                }
+                img{
+                    width: .9rem;
+                    height: .9rem;
+                    margin-right: .3rem;
+                }
+            }
+            .description-title{
+              h4{
+                  font-size: 1.125rem;
+              }  
+            }
+            .work-status{
+                // .blue-circle{
+                //     width: 1rem;
+                //     height: 1rem;
+                //     border-radius: 50%;
+                //     background-color: $background-dark-cyan;
+                //     margin-right: 1rem;
+                //     margin-top: .1rem;
+                // }
+                p{
+                    color: $dark-grey;
+                    font-size: .875rem;
+                }
+            }
+            .description-text{
+                p{
+                    color: $dark-grey;
+                    font-size: .875rem;
+                }
+            }
+            .rates{
+                div{
+                    font-size: 0.875rem;
+                    color: $dark-grey;
+                    img{
+                        width: 1rem;
+                        height: 1rem;
+                        &:not(:first-child){
+                            margin-left: .5rem;
+                        }
+                    }
+                }
+            }
+            .buttons{
+                a{
+                    color: $background-light-cyan;
+                    margin-right: 1rem;
+                }
+                button{
+                    height: 1.5rem;
+                    width: 5rem;
+                    color: #052337;
+                    background-color: #00f4ff;
+                    border-color: #00f4ff;
+                    font-size: .875rem;
+                    padding-top: 0rem;
+                    font-weight: 500;
+                }
+
+            }
+        }
+    }
+    // *** Reviews Bottom content ***
+    .reviews{
+        background-color: $white;
+        border-radius: .5rem;
+        padding: 1rem;
+        margin: 0;
+        .raiting{
+            img{
+                width: 1rem;
+                height: 1rem;
+                margin-right: .4rem;
+            }
+            .recent {
+                margin-left: auto;
+
+                .options {
+                    position: absolute; 
+                    background-color: #eeeeee;
+                    z-index: 3; 
+                    border-radius: .5rem; 
+                    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); 
+                    white-space: nowrap;
+
+                    p {
+                        cursor: pointer; 
+                        font-size: .875rem; 
+
+                        &:hover {
+                            cursor: pointer; 
+                            background-color: $light-grey; 
+                            transition: .3s; 
+                        }
+                    }
+                }
+                a {
+                    font-size: .875rem;
+                    color: $dark-grey;
+                }
+            }
+        }
+        .rates{
+            padding-bottom: 1rem;
+            div{
+                img{
+                    height: 1rem;
+                    width: 1rem;
+                }
+                span{
+                    color: $dark-grey;
+                    font-size: .875rem;
+                }
+            }
+        }
+
+        .user-ratings{
+            &:first-child{
+            }
+            border-top: 1px solid $light-grey;
+            .user-avatar{
+                img{
+                    border-radius: 50%;
+                    width: 3.125rem;
+                    height: 3.125rem;
+                }
+                p{
+                    font-size: .875rem;
+                    margin: 0;
+                    padding: 0;
+                }
+            }
+            .user-description{
+                .user-rating{
+                    img{
+                        width: 1rem;
+                        height: 1rem;
+                        margin-right: .4rem;                    
+                    }
+                    span{
+                        color: $dark-grey;
+                        font-size: .875rem;
+                        padding-left: .5rem;
+                    }
+                }
+                .description-title{
+                    h4{
+                        font-size: 1.125rem;
+                    }
+                }
+                .status{
+                    p{
+                        color: $dark-grey;
+                        font-size: .875rem;
+                    }
+                }
+                .description-text{
+                    font-size: .875rem;
+                    color: $dark-grey;
+                }
+                .show-more{
+                    a{
+                    font-size: .875rem;
+                    color: $background-light-cyan;
+                    padding-bottom: .3rem
+                    }
+                }
+            }
+        }
+        
+    } 
+}
+
+.blue-circle{
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: $background-dark-cyan;
+    margin-right: 1rem;
+    margin-top: .1rem;
+}
+.red-circle{
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: $error;
+    margin-right: .5rem;
+    margin-top: .1rem;
+}
+.yellow-circle{
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: #ffe552;
+    margin-right: .5rem;
+    margin-top: .1rem;
+}

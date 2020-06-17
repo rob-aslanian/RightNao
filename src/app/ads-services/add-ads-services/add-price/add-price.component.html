@@ -1,0 +1,58 @@
+<form [formGroup]="form.get('price')" class="price">
+    <div class="price-buttons">
+        <div *ngFor="let item of priceList; let i = index;">
+                <input  type="radio" 
+                        [value]="item['type']" 
+                        id="{{ i }}" 
+                        name="price_type"
+                        formControlName="price_type">
+                <label  for="{{ i }}" [ngClass]="{'active': form.get('price').get('price_type') == item['type']}"> 
+                    {{ item['text'] }}
+                </label>
+        </div>
+    </div>
+    <div *ngIf="form.get('price').get('price_type').value == 'PriceType_AddPrice'" class="row mt-2 ml-1">
+        <input type="number" placeholder="Enter price" formControlName="fix_price" class="form-control col-8">
+        <div>
+                <div ngbDropdown>
+                    <button class="btn backgroundless"  ngbDropdownToggle>Change Currency</button>
+                    <div ngbDropdownMenu>
+                            <div class="custom-control custom-radio" ngbDropdownItem *ngFor="let currency of currencyList;">
+        
+                                    <input class="custom-control-input" 
+                                           type="radio" 
+                                           [id]="currency" 
+                                           [value]="currency"
+                                           formControlName='currency'
+                                           name="currency">
+        
+                                    <label class="custom-control-label" [for]="currency"> {{ currency }} </label>
+                            </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+    <div  *ngIf="form.get('price').get('price_type').value == 'PriceType_PriceRange'" class="row  mt-2  ml-1">
+        <input type="number" placeholder="Max Price" formControlName="min_price" class="form-control col-4">
+        <input type="number" placeholder="Min Price" formControlName="max_price" class="form-control col-4 ml-2">
+        <div>
+                <div ngbDropdown>
+                    <button class="btn backgroundless" 
+                            ngbDropdownToggle>Change Currency</button>
+                    <div ngbDropdownMenu>
+                            <div class="custom-control custom-radio" ngbDropdownItem *ngFor="let currency of currencyList;">
+        
+                                    <input class="custom-control-input" 
+                                           type="radio" 
+                                           [id]="currency" 
+                                           [value]="currency"
+                                           formControlName='currency'
+                                           name="currency">
+        
+                                    <label class="custom-control-label" [for]="currency"> {{ currency }} </label>
+                            </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,13 @@
+
+<label for="" class="title-label">Color</label>
+<div class="col-8 p-0">
+    <div class="dragon-ball d-inline-block mr-3"  
+        *ngFor="let color of colors; let i = index" 
+        [ngClass]="{'selected-color': colorControl.value === color }">
+            <div class="ball" 
+                    [style.background]="color" 
+                    placement='top' 
+                    [ngbTooltip]='color'
+                    (click)='colorControl.setValue(color)'></div>
+    </div>  
+</div>

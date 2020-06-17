@@ -1,0 +1,4 @@
+<app-search-all-title [amount]="amount" type="candidate"></app-search-all-title>
+
+<app-user-box *ngIf="candidateList.length > 0" [applicants]="candidateList" type="all" [companyID]="companyID">
+</app-user-box>

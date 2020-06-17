@@ -1,0 +1,29 @@
+<div class="calendar-events">
+  <app-calendar-event-card 
+  [ngbPopover]="eventInfo"
+  container="body" 
+  [placement]="['left', 'left-bottom', 'left-top']" 
+  popoverClass="task-popover-container"
+  [autoClose]="false"
+  ></app-calendar-event-card>
+
+  <button class="btn calendar-events__upcoming my-3">
+    <img src="../../../../../assets/img/626.svg"/>
+    <span class="ml-2">In 1 hour 2 min</span>
+  </button>
+
+  <app-calendar-event-card 
+  [ngbPopover]="eventInfo"
+  container="body" 
+  [placement]="['left', 'left-bottom', 'left-top']"
+  popoverClass="task-popover-container"
+  [autoClose]="false"
+  >
+</app-calendar-event-card>
+  <app-calendar-event-card></app-calendar-event-card>
+</div>
+
+<ng-template #eventInfo>
+  <app-event-popover></app-event-popover>
+</ng-template>
+

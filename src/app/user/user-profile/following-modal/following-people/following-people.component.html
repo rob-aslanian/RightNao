@@ -1,0 +1,140 @@
+<ng-container *ngIf="!isCompanyActive">
+    <div *ngIf="!isLoading; else spinner" class="content d-flex pb-5 pl-3 pr-2">
+      <div class="content__item col-lg-4 mt-3" *ngFor="let item of followingPoeple; let i = index ">
+          <div class="d-flex content__item__box pt-3">
+          <div class="content__item__box__img col-md-3 d-flex pl-0 pr-0">
+            <img [src]="item.avatar == '' ? 'assets/img/124.svg' : '/file/'+item.avatar" alt="">
+          </div>
+          <div class="content__item__box__details col-md-9">
+              <div class="content__item__box__details d-flex">
+                <a [routerLink]="[ '/user/profile/', item.url ]" 
+                   class="content__item__box__details__name" 
+                   (click)="closeModal()"> {{ item.firstname + " " + item.lastname }} </a>
+              </div>
+              <div style="height: 4rem">
+                <div class="content__item__box__raiting">
+                  <!-- <span> * * * * * * * * * * * * *</span> -->
+                </div>
+                <div class="content__item__box__details__industry">
+                  <div class="">
+                    <span *ngIf="item.experiences[0]"> {{ item.experiences[0].title + " " + item.experiences[0].company  }} </span>
+                  </div>
+                  <div class="">
+                    <span *ngIf="item.location.city"> {{ item.location.city }} </span>
+                  </div>
+                  <div class="">
+                    <span *ngIf="item.location.country"> {{ item.location.country | country }} </span>
+                  </div>
+                </div>
+                <div class="content__item__box__details__followers-offers">
+                  <span>{{ item.network_info.followers + " " + 'Followers'}}</span>
+                  <!-- <p>5 Job offers</p> -->
+                </div>
+              </div>
+              <div class="content__item__box__details__button d-flex justify-content-end">
+                <button class="btn btn-primary" 
+                        *ngIf="!isCompanyLogged && item.id !== myUserID && !item.follow" 
+                        (click)="followUserToUser(item.id, i)">
+                          Follow
+                </button>
+                <button class="btn btn-primary" 
+                        *ngIf="isCompanyLogged && item.id !== myUserID && !item.follow" 
+                        (click)="followUserForCompany(item.id, i)">
+                        Follow
+                </button>
+                <button class="btn btn-primary" 
+                        *ngIf="!isCompanyLogged && item.id !== myUserID && item.follow" 
+                        (click)="unfollowUserToUser(item.id, i)">
+                        Unfollow
+                </button>
+                <button class="btn btn-primary" 
+                        *ngIf="isCompanyLogged && item.id !== myUserID && item.follow" 
+                        (click)="unFollowUserForCompany(item.id, i)">
+                        Unfollow
+                </button>
+              </div>
+          </div>  
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  
+<ng-container *ngIf="isCompanyActive">
+    <div *ngIf="!isLoading; else spinner" class="content d-flex pb-5 pl-3 pr-2">
+      <div class="content__item col-md-4 mt-3" *ngFor="let item of followingPeopleForCompany; let i = index ">
+          <div class="d-flex content__item__box pt-3">
+          <div class="content__item__box__img col-md-3 d-flex pl-0 pr-0">
+            <img [src]="item.avatar == '' ? 'assets/img/124.svg' : '/file/'+item.avatar" alt="">
+          </div>
+          <div class="content__item__box__details col-md-9">
+              <div class="content__item__box__details d-flex">
+                <a [routerLink]="[ '/user/profile/', item.url ]" 
+                   class="content__item__box__details__name" 
+                   (click)="closeModal()"
+                   > {{ item.firstname + " " + item.lastname }} 
+                </a>
+              </div>
+              <div style="height: 4rem">
+                <div class="content__item__box__raiting">
+                  <!-- <span> * * * * * * * * * * * * *</span> -->
+                </div>
+                <div class="content__item__box__details__industry">
+                  <div class="">
+                    <span *ngIf="item.experiences[0]"> {{ item.experiences[0].title + " " + item.experiences[0].company  }} </span>
+                  </div>
+                  <div class="">
+                    <span *ngIf="item.location.city"> {{ item.location.city }} </span>
+                  </div>
+                  <div class="">
+                    <span *ngIf="item.location.country"> {{ item.location.country | country }} </span>
+                  </div>
+                </div>
+                <div class="content__item__box__details__followers-offers">
+                  <!-- <span>{{ item.network_info.followers + " " + 'Followers'}}</span> -->
+                  <!-- <p>5 Job offers</p> -->
+                </div>
+              </div>
+              <div *ngIf="isCompanyLogged; else forUser" class="content__item__box__details__button d-flex justify-content-end">
+                <button class="btn btn-primary" *ngIf="item.id !== myCompanyID" (click)="followForCompany(item.id)">Follow</button>
+              </div>
+              <ng-template #forUser>
+                  <div class="content__item__box__details__button d-flex justify-content-end">
+                      <button class="btn btn-primary" 
+                              *ngIf="!isCompanyLogged && item.id !== !myUserID && !item.follow" 
+                              (click)="followUserToUser(item.id, i)">
+                              Follow
+                      </button>
+                      <button class="btn btn-primary" 
+                              *ngIf="isCompanyLogged && item.id !== !myUserID && !item.follow" 
+                              (click)="followUserForCompany(item.id, i)">
+                              Follow
+                      </button>
+                      <button class="btn btn-primary" 
+                              *ngIf="!isCompanyLogged && item.id !== myUserID && item.follow" 
+                              (click)="unfollowUserToUser(item.id, i)">
+                              Unfollow
+                      </button>
+                      <button class="btn btn-primary" 
+                              *ngIf="isCompanyLogged && item.id !== myUserID && item.follow" 
+                              (click)="unFollowUserForCompany(item.id, i)">
+                              Unfollow
+                      </button>
+                  </div>
+              </ng-template>
+              
+          </div>  
+        </div>
+      </div>
+    </div>
+  </ng-container>
+  
+  
+
+
+
+<ng-template #spinner>
+  <div class="content d-flex justify-content-center">
+    <app-spinner></app-spinner>
+  </div>
+</ng-template>
+

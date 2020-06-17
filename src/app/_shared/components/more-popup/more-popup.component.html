@@ -1,0 +1,204 @@
+<div class="options-for-more" *ngIf="data">
+    <ng-container *ngIf="(!isFollow && isCompany) || ((!isConnect ||  isFriendRequest) && !isCompany); else:followed">
+        <div class="option d-flex align-items-center">
+            <div class="option-icon-coniner">
+                <img src="assets/img/41.svg" alt="message">
+            </div>
+            <button (click)="openChatBox();"> {{ '905'| translate }}</button>
+        </div>
+
+        <!-- User -->
+        <ng-container *ngIf="!isCompany">
+            <div class="option d-flex align-items-center btn-more" *ngIf="!isFriendRequest && !isConnect && !isBlocked && !isCurrenctCompany">
+                <div class="option-icon-coniner">
+                    <img src="assets/img/120.svg" alt="save">
+                </div>
+                <button (click)="connect()">{{ '355'| translate }}</button>
+            </div> 
+
+          
+            
+                <div class="option d-flex align-items-center" *ngIf="isFollow">
+                    <div class="option-icon-coniner">
+                        <img src="assets/img/46.svg" alt="uf">
+                    </div>
+                    <button (click)="unFollow()">{{ '1457'| translate }}</button>
+                </div>
+
+                <div class="option d-flex align-items-center" *ngIf='!isFollow'>
+                    <div class="option-icon-coniner">
+                        <img src="assets/img/70.svg" alt="uf">
+                    </div>
+                    <button class='btn-more' (click)='follow()'>{{ '629'| translate }}</button>
+                </div>
+ 
+
+            <div class="option d-flex align-items-center btn-more" *ngIf="!isCompany">
+                <div class="option-icon-coniner">
+                    <img src="assets/img/71.svg" alt="save">
+                </div>
+                <button (click)="savePDF()">{{ '1237'| translate }}</button>
+            </div>
+        </ng-container>
+        <!-- User -->
+
+        <div class="option d-flex align-items-center" *ngIf="!isBlocked">
+            <div class="option-icon-coniner">
+                <img src="assets/img/42.svg" alt="uf">
+            </div>
+            <button type="button" (click)="open('report')">{{ '1189'| translate }}</button>
+        </div>
+
+        <div class="option d-flex align-items-center" *ngIf="isBlocked">
+            <div class="option-icon-coniner">
+                <img src="assets/img/57.svg" alt="uf">
+            </div>
+            <button type="button" (click)="unblock();">{{ '1189'| translate }}</button>
+        </div>
+    </ng-container>
+
+    <ng-template #followed>
+
+        <div class="option d-flex align-items-center">
+            <div class="option-icon-coniner">
+                <img src="assets/img/41.svg" alt="message">
+            </div>
+            <button (click)="openChatBox();">{{ '905'| translate }}</button>
+        </div>
+        <!-- Reccomendation -->
+        <ng-container *ngIf="!isCompany && !isCurrenctCompany">
+            <div class="option d-flex align-items-center" *ngIf='!isCompanyActive'>
+                <div class="option-icon-coniner">
+                    <img src="assets/img/74.svg" alt="ask">
+                </div>
+                <button (click)="open('ask')">{{ '187'| translate }}</button>
+            </div>
+
+            <div class="option d-flex align-items-center btn-more" *ngIf='!isCompanyActive'>
+                <div class="option-icon-coniner">
+                    <img src="assets/img/75.svg" alt="recommen">
+                </div>
+                <button (click)="open('recommend')">{{ '1169'| translate }}</button>
+            </div>
+        </ng-container>
+
+        <div class="option d-flex align-items-center btn-more" *ngIf="!isCompany">
+            <div class="option-icon-coniner">
+                <img src="assets/img/71.svg" alt="save">
+            </div>
+            <button (click)="savePDF()">{{ '1237'| translate }}</button>
+        </div>
+
+
+        <div class="option d-flex align-items-center btn-more" *ngIf='!isCurrenctCompany && !isCompany'>
+            <div class="option-icon-coniner">
+                <img src="assets/img/73.svg" alt="dc">
+            </div>
+            <button (click)='disconnent()'>{{ '469'| translate }}</button>
+        </div>
+
+        <div class="option d-flex align-items-center" *ngIf="isCompany">
+            <div class="option-icon-coniner">
+                <img src="assets/img/43.svg" alt="star">
+            </div>
+            <button (click)="open('review');">{{ '1579'| translate }}</button>
+        </div>
+
+        <div class="option d-flex align-items-center" *ngIf="( isCurrenctCompany && isCompany ) || ( !isCurrenctCompany && !isCompany )">
+            <!--Not favorite -->
+            <ng-container *ngIf="!isFavorite">
+                <div class="option-icon-coniner">
+                    <img src="assets/img/44.svg" alt="heart">
+                </div>
+                <button (click)='addToFavorite()'>{{ '107'| translate }}</button>
+            </ng-container>
+
+            <!-- Favorite -->
+            <ng-container *ngIf="isFavorite">
+                <div class="option-icon-coniner">
+                    <img src="assets/img/99.svg" alt="heart">
+                </div>
+                <button (click)='removeFromFavorite()'>  {{ '1185'| translate }}</button>
+            </ng-container>
+
+        </div>
+
+        <div class="option d-flex align-items-center" *ngIf="isFollow">
+            <div class="option-icon-coniner">
+                <img src="assets/img/46.svg" alt="uf">
+            </div>
+            <button (click)="unFollow()">{{ '1457'| translate }}</button>
+        </div>
+
+        <div class="option d-flex align-items-center" *ngIf='!isFollow'>
+                <div class="option-icon-coniner">
+                    <img src="assets/img/70.svg" alt="uf">
+                </div>
+                <button class='btn-more' (click)='follow()'>{{ '1606'| translate }}</button>
+        </div>
+        <div class="option d-flex align-items-center" *ngIf="!isBlocked">
+            <div class="option-icon-coniner">
+                <img src="assets/img/42.svg" alt="uf">
+            </div>
+            <button type="button" (click)="open('report')">{{ '1189'| translate }}</button>
+        </div>
+        <div class="option d-flex align-items-center" *ngIf="isBlocked">
+            <div class="option-icon-coniner">
+                <img src="assets/img/57.svg" alt="uf">
+            </div>
+            <button type="button" (click)="unblock();">{{ '1189'| translate }}</button>
+        </div>
+
+        <!-- <div class="option d-flex align-items-center btn-more" *ngIf="!isCompany && !isCurrenctCompany">
+                <div class="option-icon-coniner">
+                    <img src="assets/img/47.svg" alt="uf">
+                </div>
+            <button class="btn-more" [ngbPopover]="infoPopover">Info</button>
+        </div> -->
+    </ng-template>
+    
+</div>
+
+<!-- Info -->
+<ng-template #infoPopover>
+    <app-small-info-box [data]="profile"></app-small-info-box>
+</ng-template>
+<!-- Info -->
+
+
+<!-- Modals -->
+<app-modal (closeModal)="modalType = null">
+
+    <ng-container *ngIf="modalType === 'report'">
+        <app-report-block-user [blockId]="profile" [type]="isCompany ? 'company' : 'user'" (closeModal)="modal.close()"
+            (isBlocked)="isBlocked = $event; ">
+        </app-report-block-user>
+    </ng-container>
+
+    <ng-container *ngIf="modalType === 'review' ">
+        <app-write-review [companyId]="profile.id" (closeModal)="modalType = null; modal.close()"></app-write-review>
+    </ng-container>
+
+    <ng-container *ngIf='modalType === "ask"'>
+        <app-reccomendations-modal (closeModal)="close($event)" 
+                                   [modalType]="modalType"
+                                   (result)="getResult($event)"
+                                   [data]="profile"></app-reccomendations-modal>
+    </ng-container>
+
+    <ng-container *ngIf='modalType === "recommend"'>
+
+        <app-reccomendations-modal (closeModal)="close($event)" 
+                                   [modalType]="modalType" 
+                                   (result)="getResult($event)"
+                                   [data]="profile"></app-reccomendations-modal>
+    </ng-container>
+    
+</app-modal>
+
+
+<!---START SAVE TO PDF -->
+<ng-container *ngIf="profile && !isCompany">
+        <app-save-to-pdf [data]="profile" class="d-none"></app-save-to-pdf>
+</ng-container>
+<!-- END SAVE TO PDF -->

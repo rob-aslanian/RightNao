@@ -1,0 +1,58 @@
+<div class="service-request__content__request-details__upload mt-4">
+  <h5 class="page-section-text-blue heading-margin">Upload File <span class="page-section-text-grey">(Maximum file size: 10MB)</span></h5>
+  <div class="service-request__content__request-details__upload__btn">
+      <label class="btn btn-outline-secondary"  
+             for="fileUpload" style="padding: 7px">Upload</label>
+      <input type="file" 
+             (change)="uploadFile($event)"
+             id="fileUpload" 
+             accept="image"
+             class="d-none">
+  </div>
+
+  <div  class="service-request__content__request-details__upload-container mt-4">
+ 
+          <div class="service-request__content__request-details__upload-container__box d-inline-block" *ngFor="let file of files; let i = index">
+             <a (click)='delete( i )'>X</a>
+              <img *ngIf="file.mime_type === 'image'" 
+                    class="service-request__content__request-details__upload-container__img"  
+                    [src]="file.address | file"/>
+                    
+              <ng-container *ngIf="file.mime_type === 'application' || file.mime_type === 'application/pdf' ">
+                <div style="height: 100%; width: 100%;" class="d-flex justify-content-center align-items-center flex-wrap" style="overflow: hidden; height: 100%;">
+                    <div>
+                        <img  class="service-request__content__request-details__upload-container__img" 
+                              style="width: 25px; height: 25px"   
+                              [src]="file.mime_type === 'application' ? 'assets/img/144.svg' : '/assets/img/145.svg' "/>
+
+                        <span class="d-block" style="word-break: break-all;">{{ file.name }}</span>
+                    </div>
+                </div>
+              </ng-container>
+      </div>
+      <!-- <div>
+          <div class="service-request__content__request-details__upload-container__box">
+              <div class="service-request__content__request-details__upload-container__box-file-details">
+                  <label class="mb-0 page-section-text-grey-small" 
+                         for="upload-doc">
+                  <img src="../assets/img/144.svg" class="mb-1"/>
+                        <p class="page-section-text-grey-small">Upload file title</p> 
+                  </label>
+                  <input type="file" class="d-none" id="upload-doc">
+              </div>
+          </div>
+      </div>
+      <div>
+          <div class="service-request__content__request-details__upload-container__box">
+              <div class="service-request__content__request-details__upload-container__box-file-details">
+                <label class="mb-0 page-section-text-grey-small" for="upload-pdf">
+                    <img src="../assets/img/145.svg" class="mb-1"/>
+                    <p class="page-section-text-grey-small">Upload file title</p> 
+                  </label>
+                  <input type="file" class="d-none" id="upload-pdf">
+              </div>
+          </div>
+      </div> -->
+
+  </div>
+</div>

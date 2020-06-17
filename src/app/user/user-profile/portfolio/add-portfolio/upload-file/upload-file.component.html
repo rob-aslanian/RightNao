@@ -1,0 +1,37 @@
+ 
+ 
+ <div class="upload-files">
+   <ng-container *ngIf="!file"> 
+       <div class="d-flex align-items-center justify-content-center" style="height: 100%">
+           <div class="container-upload">
+               <label [for]="index">
+                          <img src="assets/img/71.svg" alt="">
+                          <span class="d-block">Upload</span>
+               </label>
+               
+               <input type="file"  [id]="index" (change)='uploadFile($event)' >
+       
+            </div>
+        </div>
+   </ng-container>
+  
+
+    <div class="files" *ngIf="file" (click)='makePrimary( file )'>
+
+        <ng-container *ngIf="file && supportedType === 'Photo'">
+            <img [src]="file | file" alt="file" class="file" (click)='makePrimary( file )' style="border-radius: 5px;">
+        </ng-container>
+
+        <ng-container *ngIf="file && supportedType === 'Video'">
+            <video [src]="file" controls class="file" ></video>
+        </ng-container>
+        
+        <div class="remove-file" (click)='removeFile()'>
+                 <a>
+                    X
+                </a>
+        </div>
+
+    </div>
+ 
+ </div>

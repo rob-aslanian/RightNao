@@ -1,0 +1,36 @@
+@import "src/variables.scss";
+
+.photo-modal {
+    padding: 40px 32px;
+    // border-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.image-area-container {
+    height: 350px;
+    background: $background-soft-blue;
+    position: relative;
+    border-radius: 5px;
+}
+
+.image-area {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+:host ::ng-deep app-add-image {
+    .img-content{
+        min-height: 350px;
+    }
+}
+
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}

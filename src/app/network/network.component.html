@@ -1,0 +1,122 @@
+<main class="main-light-blue before-footer">
+    <div class="dark-blue-bg-for-network long-dark-blue-bg"  [ngClass]='{"landing-header": router.url === "/network/landing"}'>
+        <div class="background-content-wrap">
+            <h1>Network</h1>
+ 
+            <ul *ngIf="router.url != '/network/landing' ">
+                <li [ngClass]="{'mobile': isMobile , 'desktop':!isMobile}">
+                    <a [routerLink]="['/network/contacts']" routerLinkActive="active">
+                        Contacts
+                    </a>
+                </li>
+
+                <li [ngClass]="{'mobile': isMobile , 'desktop':!isMobile}">
+                        <a [routerLink]="['/network/connection']" routerLinkActive="active">
+                            Connections
+                        </a>
+                </li>
+
+                <li [ngClass]="{'mobile': isMobile , 'desktop':!isMobile}" #following="ngbPopover"
+                    [ngbPopover]="followingNav" [autoClose]="'outside'">
+                    <a [routerLink]="['/network/following']" routerLinkActive="active" [ngClass]="{'disabled__router': isMobile}">Following</a>
+
+                    <!-- Desktop -->
+                    <ul class="options main-menu" *ngIf="!isMobile">
+                        <li><a [routerLink]="['/network/following/people']"> People</a></li>
+                        <li><a [routerLink]="['/network/following/companies']"> Companies & Organizations</a></li>
+                    </ul>
+
+                    <!-- Mobile -->
+                    <ul class="options main-menu" #followingNav
+                        [ngClass]="{'d-block': following.isOpen() && isMobile }">
+                        <li><a [routerLink]="['/network/following/people']"> People</a></li>
+                        <li><a [routerLink]="['/network/following/companies']"> Companies & Organizations</a></li>
+                    </ul>
+
+
+                </li>
+                <li [ngClass]="{'mobile': isMobile , 'desktop':!isMobile}" #followers="ngbPopover"
+                    [ngbPopover]="followersNav" [autoClose]="'outside'">
+                    <a [routerLink]="['/network/followers']" routerLinkActive="active" [ngClass]="{'disabled__router': isMobile}">
+                        Followers
+                    </a>
+                    <!-- Desktop -->
+                    <ul class="options main-menu" *ngIf="!isMobile">
+                        <li><a [routerLink]="['/network/followers/people']"> People</a></li>
+                        <li><a [routerLink]="['/network/followers/companies']"> Companies & Organizations</a></li>
+                    </ul>
+
+                    <!-- Mobile -->
+                    <ul class="options main-menu" #followersNav
+                        [ngClass]="{'d-block': followers.isOpen() && isMobile }">
+                        <li><a [routerLink]="['/network/followers/people']"> People</a></li>
+                        <li><a [routerLink]="['/network/followers/companies']"> Companies & Organizations</a></li>
+                    </ul>
+                </li>
+                <li [ngClass]="{'mobile': isMobile , 'desktop':!isMobile}" #grow="ngbPopover" [ngbPopover]="growNav"
+                    [autoClose]="'outside'">
+                    <a [routerLink]="['/network/grow-network']" routerLinkActive="active" [ngClass]="{'disabled__router': isMobile}">
+                        Grow Your Network
+                    </a>
+
+                    <!-- Desktop -->
+                    <ul class="options main-menu" *ngIf="!isMobile">
+                        <li><a [routerLink]="['/network/grow-network/people']"> People</a></li>
+                        <li><a [routerLink]="['/network/grow-network/companies']"> Companies & Organizations</a></li>
+                    </ul>
+
+                    <!-- Mobile -->
+                    <ul class="options main-menu" #growNav [ngClass]="{'d-block': grow.isOpen() && isMobile }">
+                        <li><a [routerLink]="['/network/grow-network/people']"> People</a></li>
+                        <li><a [routerLink]="['/network/grow-network/companies']"> Companies & Organizations</a></li>
+                    </ul>
+
+                </li>
+                <li [ngClass]="{'mobile': isMobile , 'desktop':!isMobile}">
+                    <a [routerLink]="['/network/import']" routerLinkActive="active">
+                        Invite
+                    </a>
+                </li>
+                <li [ngClass]="{'mobile': isMobile , 'desktop':!isMobile}" #manage="ngbPopover" [ngbPopover]="manageNav"
+                    [autoClose]="'outside'">
+                    <a [routerLink]="['/network/manage']" routerLinkActive="active" [ngClass]="{'disabled__router': isMobile}">
+                        Manage
+                    </a>
+
+                    <!-- Desktop -->
+                    <ul class="options main-menu" *ngIf="!isMobile">
+                        <li><a [routerLink]="['/network/manage/received-requests']"> Received Requests</a></li>
+                        <li><a [routerLink]="['/network/manage/sent-requests']"> Sent Requests</a></li>
+                        <li><a [routerLink]="['/network/manage/sent-invitations']"> Sent Invitations</a></li>
+                        <li><a [routerLink]="['/network/manage/blocklist']"> Blocklist</a></li>
+                    </ul>
+
+                    <!-- Mobile -->
+                    <ul class="options main-menu" #manageNav [ngClass]="{'d-block': manage.isOpen() && isMobile }">
+                        <li><a [routerLink]="['/network/manage/received-requests']"> Received Requests</a></li>
+                        <li><a [routerLink]="['/network/manage/sent-requests']"> Sent Requests</a></li>
+                        <li><a [routerLink]="['/network/manage/sent-invitations']"> Sent Invitations</a></li>
+                        <li><a [routerLink]="['/network/manage/blocklist']"> Blocklist</a></li>
+                    </ul>
+                </li>
+            </ul>
+ 
+        </div>
+    </div>
+
+
+    <div class="container network">
+        <div class="row justify-content-between network-responsive-ads">
+            <div class="netowrk-custom-col">
+                <router-outlet></router-outlet>
+            </div>
+            <!-- Content on the right, ads -->
+            <app-ads class="col-lg-3 col-md-12 network-ads" [isLeft]="true"></app-ads>
+            <!-- Content on the right end, ads -->
+        </div>
+    </div>
+
+
+
+
+</main>

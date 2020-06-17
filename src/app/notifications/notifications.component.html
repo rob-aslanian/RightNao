@@ -1,0 +1,92 @@
+<main class="main-light-blue">
+    <div class="dark-blue-bg-for-network">
+        <div class="background-content-wrap">
+            <h1>Notifications</h1>
+        </div>
+    </div>
+
+    <div class="container profile">
+        <div class="row justify-content-between">
+
+            <!-- Content on the left -->
+            <div class="col-lg-3 left-row-notifications">
+                <a [routerLink]="[settingPath]"   class="notif-sett-butt">
+                    <img src="./assets/img/97.svg" alt="ico">
+                    <div>
+                        Notifications Settings
+                    </div>
+                </a>
+            </div>
+
+
+            <!-- Content in the center -->
+            <div class="center-row col-lg-6 mt-30">
+                    
+                    <!-- Start notifications separate white background box -->
+                        <app-infinity-scroll (scrolled)="onScroll()" >
+                            <!-- Recent -->
+                            <ng-container>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="not-blue-title">
+                                        Recent
+                                    </div>
+                                    <a [routerLink]="[settingPath]"   class="backgroundless notif-set-link">
+                                            <!-- <img src="./assets/img/97.svg" alt="ico"> -->
+                                            <div>
+                                                Notifications Settings
+                                            </div>
+                                    </a>
+                                </div>
+                                <div class="not-white-back">
+
+                                    <ng-container  *ngIf="recentNottification && recentNottification.length > 0; else noRecentData ">                                              
+                                        <app-notification-row [data]="nottification" *ngFor="let nottification of recentNottification"
+                                                              (result)="removeNottification($event , 'recent')">
+                                        </app-notification-row>
+                                    </ng-container>
+
+                                    <ng-template #noRecentData>
+                                        <div class="pl-3">
+                                            No Data
+                                        </div>
+                                    </ng-template>
+
+                                </div>
+                            </ng-container>
+
+                             <!-- Earlier -->
+                             <ng-container>
+                                <div class="not-blue-title">
+                                    Earlier
+                                </div>
+                                <div class="not-white-back">
+
+                                    <ng-container  *ngIf="earlierNottification && earlierNottification.length > 0; else:noEarlierData; "> 
+                                        <app-notification-row [data]="nottification" *ngFor="let nottification of earlierNottification"
+                                                              (result)="removeNottification($event , 'earlier')">
+                                        </app-notification-row>
+                                    </ng-container>
+
+                                    <ng-template #noEarlierData>
+                                        No Data
+                                    </ng-template>  
+                                </div>
+                            </ng-container>
+
+                        </app-infinity-scroll>
+                    <!-- End notifications separate white background box -->
+                    <!-- <app-spinner *ngIf="!isLoading" class="d-flex justify-content-center"></app-spinner> -->
+
+               
+            </div>
+            <!-- Content in the center end -->
+
+
+            <!-- Content on the right -->
+             <app-ads class="col-lg-3" [isLeft]="true"></app-ads>
+            <!-- Content on the right -->
+
+                              
+        </div>
+    </div>
+</main>

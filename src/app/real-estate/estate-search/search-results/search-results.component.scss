@@ -1,0 +1,30 @@
+@import 'src/variables'; 
+
+.search-results {
+    background-color: white; 
+    border: 1px solid $grey-dark; 
+    border-radius: .5rem; 
+
+    &__title {
+
+        &__results {
+            p {
+                font-size: .875rem; 
+                color: $dark-grey; 
+            }; 
+        }; 
+
+        &__sort { 
+            span {
+                font-size: .875rem; 
+                color: $dark-grey; 
+                cursor: pointer; 
+            }; 
+
+            img {
+                cursor: pointer; 
+            }
+        }
+    }
+    
+}

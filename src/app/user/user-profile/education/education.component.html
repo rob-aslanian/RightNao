@@ -1,0 +1,114 @@
+  <ng-container *ngIf="educations.length">
+  
+    <div class="section-header d-flex">
+        <h1>{{ '501'| translate }}</h1>
+        <div class="col line">
+            <button class="add" *ngIf="isMe"  (click)="open( false )">
+                <img src="assets/img/50.svg" alt="add">
+            </button>
+        </div>
+    </div>
+
+    <div *ngIf="educations.length != 0" >
+        
+    <div class="section-content">
+        <div class="education" *ngFor="let education of educations | slice:0:startPage">
+            <button class="edit" *ngIf="isMe" (click)="open(true , education)"> 
+                <img src="assets/img/19.svg" alt="edit" >
+            </button>
+            <h2>
+                <strong>
+                        {{ education.school }}
+                </strong>
+            </h2>
+            <p>
+                {{ education.degree !== null && education.degree.length > 0 ? 
+                    education.degree+" | " : "" 
+                }}
+                {{education.field_study}}
+            </p>
+            <p>{{ education.start_date | monthPipe }} - <span *ngIf="education.finish_date"> {{ education.finish_date | monthPipe  }} 
+                
+            </span> 
+            <span *ngIf="education.currently_study">Present</span> 
+            <span> | {{ education.start_date | dateFromTo:education.finish_date  }}</span>
+        </p>
+        <p *ngIf="education.description && education.description !== '' " class="mt-3">
+            <app-read-more [text]="education.description" [maxLength]="100"></app-read-more>
+        </p>
+
+            
+            
+            <!-- Media content -->
+            <div class="media__content">
+                    <!-- Links -->
+                    <ng-container *ngIf="education.link && education.link.length > 0 ">
+                            <a [href]="getLink(link)" target="_blank"  *ngFor="let link of education.link" style="display: block;">
+                                {{  link.address  ?  link.address :  link.url | lowercase }}
+                            </a> <br>
+                    </ng-container> 
+                    <!-- Links -->
+        
+                    <!-- Files -->
+                    <div class="row">             
+                        <ng-container *ngIf="education.file && education.file.length > 0">
+                            <div *ngFor="let file of education.file" class="col-6">
+  
+                                    <img [src]="file.file ? file.file : '/file/' + file.address " alt class="col-12 media__content__files"
+                                    (click)="photo = file.file ? file.file : '/file/' + file.address"
+                                    style="object-fit: cover;"
+                                    *ngIf="file['ext'] || file['mime_type'].split('/')[1] === 'jpeg' || 
+                                            file['ext'] || file['mime_type'].split('/')[1] === 'jpg'  || 
+                                            file['ext'] || file['mime_type'].split('/')[1] === 'png'  || 
+                                            file['ext'] || file['mime_type'].split('/')[1] === 'gif'  || 
+                                            file['ext'] || file['mime_type'].split('/')[1] === 'bmp'; else: notImage" appAppLazyImage>
+              
+                                        
+                                <ng-template #notImage>
+                                    <a [href]="file.file ? file.file :  '/file/' + file.address" target="_blank" style="display: block;">
+                                        {{ file.name  }}
+                                    </a>
+                                </ng-template>                       
+                            </div>
+                        </ng-container> 
+                    </div>
+                    <!-- Files -->
+                </div>
+                <!-- Media content -->
+    
+        </div>
+    </div>
+
+    <app-more-less [dataLength]="educations.length" (start)="startPage = $event"></app-more-less>
+
+    </div>
+  </ng-container>
+
+ <ng-container  *ngIf="educations.length === 0 && isMe">
+        <div class="section-header d-flex">
+                <h1>{{ '501'| translate }}</h1>
+                <div class="col line">
+                    <button class="add" *ngIf="isMe"  (click)="open( false )">
+                        <img src="assets/img/50.svg" alt="add">
+                    </button>
+                </div>
+        </div>
+        <app-empty-profile [key]='"education"' (openModal)='openEmptyModal()'></app-empty-profile>
+ </ng-container>
+
+  <app-modal (closeModal)="modalType = null">
+
+    <ng-container *ngIf="modalType === 'add'">
+        <app-education-modal (result)="getData($event)"></app-education-modal>
+    </ng-container>
+
+    <ng-container *ngIf="modalType === 'edit'">     
+        <app-education-modal (result)="getData($event)" [data]="editContent" ></app-education-modal>    
+    </ng-container>
+
+  </app-modal>
+
+  <ng-container *ngIf="photo">
+        <app-photo-modal [src]='photo' (onSrc)=' photo = "" '></app-photo-modal>
+  </ng-container>
+  

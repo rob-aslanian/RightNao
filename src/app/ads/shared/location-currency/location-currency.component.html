@@ -1,0 +1,27 @@
+<div class="mt-1">
+    <div class="form-group" [formGroup]="form">
+      <div class="ads-dBlue-title">
+        <span class="location-section-title">Select country and currency</span>
+      </div>
+      <div class="row">
+        <div class="col-sm-3">
+            <select class="form-control" formControlName="location">
+                <option value="" disabled>Select Country</option>
+                <option [value]="country.asc" *ngFor="let country of countries; trackBy:trackByFn">
+                    {{ country.name }}
+                </option>
+            </select>
+        </div>
+
+        <div class="col-sm-3">
+            <select id="currency" class="form-control" formControlName="currency">
+                <option value="" disabled>Select Currency</option>
+                <option *ngFor="let currency of curriencies; trackBy:trackByFn" [value]="currency">
+                  {{ currency  }}
+                </option>
+            </select>
+        </div>
+      </div>
+    </div>
+</div>
+

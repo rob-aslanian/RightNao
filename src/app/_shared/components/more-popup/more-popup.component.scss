@@ -1,0 +1,67 @@
+@import 'src/variables';
+
+.options-for-more {   
+    display: block;
+    position: absolute;
+    background: white;
+    min-width: 260px;
+    border-radius:4px;
+    top: 33px;
+    left: 0;
+    z-index:1;
+    text-align: left;
+    box-shadow: 0 0 20px 0 rgba(0,0,0,0.75);
+    .option {
+        // padding: 10px 15px;
+        position: relative;
+        img {
+            width: 20px;
+            height:20px;
+            margin-right: 10px;
+            position: relative;
+            top: -4px;
+        }
+        button {
+            text-decoration: none;
+            color: $dark-grey;
+            font-size: 14px;
+            background:none;
+            border: none;
+            outline:none;
+            cursor: pointer;
+            width: 100%;
+            padding: 10px 15px;
+            padding-left: 40px;
+            text-align: left;
+            z-index: 2;
+        }
+        &:hover {
+            background:$background-soft-blue;
+        }
+        &:first-child {
+            border-radius: 4px 4px 0 0;
+            padding-top: 15px;
+        }
+        &:last-child {
+            border-radius:  0 0 4px 4px;
+            padding-bottom: 15px;
+        }
+        .option-icon-coniner {
+            height: 20px;
+            width: 20px;
+            position: absolute;
+            left: 10px;
+            z-index: 0;
+        }
+    }
+}
+
+
+.pdf__content{
+    position: fixed;
+    z-index: -9999999 !important;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}

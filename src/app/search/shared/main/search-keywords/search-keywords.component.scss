@@ -1,0 +1,27 @@
+.popover-keyword{
+    background: white;
+    padding: 16px;
+    border-radius: 5px;
+    top: 145px;
+    left: 90px;
+    position: relative;
+    box-shadow: 0 0 20px 0 rgba(0,0,0,.75);
+    overflow: hidden;
+    input {
+      width: 220px;
+      height: 32px;
+      margin-bottom: 12px;
+    }
+    div {
+      div {
+        text-align: right;
+      }
+    }
+    button{
+      margin-left: auto;
+    }
+}
+
+button:disabled {
+  img { filter: grayscale(1);  }
+}

@@ -1,0 +1,334 @@
+  <h2> {{  "662" | translate }} </h2>
+  <hr>
+
+  <!-- Industry start -->
+  <div class="row mb-2">
+        <div class="col-lg-3">
+            <h3 class="mb-0">
+                {{ "769" | translate }}
+            </h3>
+        </div>
+        <div class="col-lg-8"  *ngIf="industryText !== null">
+            <span> {{ industryText }} </span>
+        </div>
+        <div class="col-lg-1">
+            <div class="col d-none d-lg-block">
+      
+            </div>
+            <div class="col button-col">
+                <button (click)="toggle('industry')" [ngClass]="{'active': isOpenEditForm['industry'] }"></button>
+            </div>
+        </div>
+    </div>
+  
+    <!-- Area to display when editing industry -->
+    <div *ngIf="isOpenEditForm['industry'] then Industry"></div>
+    <ng-template #Industry>
+    <form >
+        <div class="form-group">
+                <select class="form-control" name="industry" id="industry" [(ngModel)]="comapnySelectedIndustry">
+                    <option selected disabled value="null" >{{ "769" | translate }}</option>
+                    <option *ngFor="let industry of company_industries" [value]="industry.id" >{{ industry.name }}</option>
+                </select>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-primary" (click)="submit('industry')" > {{ "1231" | translate }} </button>
+        </div>
+    </form>
+    </ng-template>
+    <!-- Area to display when editing industry end -->
+    <!-- Industry end -->
+
+
+  <!-- Sub Industry start -->
+  <div class="row mb-2">
+      <div class="col-lg-3">
+          <h3 class="mb-0 mt-1">
+              {{ "1367" | translate }}
+          </h3>
+      </div>
+    <!-- <div class="width-auto">
+    </div> -->
+          <div class="col-lg-8"  *ngIf="subindustries && subindustries.length > 0">
+              <span> {{ subindustries | addDelimetr:','  }} </span>
+          </div>
+    <div class="col-lg-1">
+        <div class="col d-none d-lg-block">
+  
+        </div>
+        <div class="col button-col">
+            <button (click)="toggle('subindustry')" [ngClass]="{'active': isOpenEditForm['subindustry'] }"></button>
+        </div>
+    </div>
+  </div>
+
+  <!-- Area to display when editing industry -->
+  <div *ngIf="isOpenEditForm['subindustry'] then SubIndustry"></div>
+  <ng-template #SubIndustry>
+  <form >
+      <div class="form-group">
+           <app-industry (result)="getIndustry($event)" 
+                         [data]="data.industry['subindustries']"
+                         [id]="comapnySelectedIndustry"></app-industry>
+      </div>
+      <div class="form-group">
+          <button class="btn btn-primary" (click)="submit('subindustry')" > {{ "1231" | translate }} </button>
+      </div>
+  </form>
+  </ng-template>
+  <!-- Area to display when editing industry end -->
+  <!-- Sub Industry end -->
+
+
+  <!-- Company type start -->
+  <div class="row mb-2">
+    <div class="col-lg-3">
+        <h3 class="mb-0 mt-1">
+            {{ "346" | translate }}
+        </h3>
+    </div>
+    <div class="col-lg-8" *ngIf="companySelectedType">
+        <span> {{ companySelectedType }} </span>
+    </div>
+    <div class="col-lg-1">
+        <div class="col d-none d-lg-block">
+    
+        </div>
+        <div class="col button-col">
+            <button  (click)="toggle('type')" [ngClass]="{'active': isOpenEditForm['type'] }"  ></button>
+        </div>
+    </div>
+</div>
+
+<!-- Area to display when editing company size start -->
+<div *ngIf="isOpenEditForm['type'] then companyType"></div>
+<ng-template #companyType>
+    <form >
+        <div class="form-row form-group">
+            <div class="col-6">
+                <select type="text" class="form-control" id="company-size" [formControl]="typeControl">
+                    <option *ngFor="let type of companyTypesKey;" [value]="type">
+                        {{ companyTypes[type] }}
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary" (click)="submit('companyType')"> {{ "1231" | translate }} </button>
+        </div>
+    </form>
+</ng-template>
+  <!-- Company type end -->
+
+
+  <!-- Date founded start -->
+  <div class="row mb-2">
+      <div class="col-lg-3">
+          <h3 class="mb-0 mt-1">
+              {{ "435" | translate }}
+          </h3>
+      </div>
+      <div class="col-lg-8" *ngIf="foundationDate && foundationDate !== '' ">
+          <span> {{  foundationDate }} </span>
+      </div>
+      <div class="col-lg-1">
+          <div class="col d-none d-lg-block">
+    
+          </div>
+          <div class="col button-col">
+              <button  (click)="toggle('date')" [ngClass]="{'active': isOpenEditForm['date'] }" ></button>
+          </div>
+      </div>
+  </div>
+
+
+
+  <!-- Area to display when editing date start -->
+  <div *ngIf="isOpenEditForm['date'] then dataFound"></div>
+  <ng-template #dataFound>
+      <form [formGroup]="foundationGroup" autocomplete="off">
+          <div class="form-row form-group">
+              <div class="col-2">
+                  <select
+                      class="form-control"
+                      formControlName="day"
+                      [ngClass]="{ 'is-invalid': submited && foundDate.day.errors }"
+                  >
+                      <option value="" disabled selected> {{ "438" | translate }} </option>
+                      <option [value]="day" *ngFor="let day of Days"  tabindex="9"  > {{day}} </option>
+                  </select>
+              </div>
+              <div class="col-3">
+                  <select
+                      class="form-control"
+                      formControlName="month"
+                      [ngClass]="{ 'is-invalid': submited && foundDate.month.errors }"
+                  >
+                      <option value="" disabled selected> {{ "926" | translate }} </option>
+                      <option [value]="month.id" *ngFor="let month of Months"  tabindex="10"> 
+                              {{month.name}}
+                      </option>
+                  </select>
+              </div>
+              <div class="col-2">
+                  <select
+                      class="form-control"
+                      formControlName="year"
+                      [ngClass]="{ 'is-invalid': submited && foundDate.year.errors }"
+                  >
+                      <option value="" disabled selected> {{ "1582" | translate }} </option>
+                      <option [value]="year" *ngFor="let year of Years" >
+                          {{year}}
+                      </option>
+                  </select>
+              </div>
+          </div>
+
+          <div class="form-group">
+              <button class="btn btn-primary" (click)="submit('foundationDate')"> {{ "1231" | translate }} </button>
+          </div>
+      </form>
+  </ng-template>
+  <!-- Area to display when editing date end -->
+
+  <!-- Date founded end -->
+
+
+
+  <!-- Company size start -->
+  <div class="row mb-2">
+      <div class="col-lg-3">
+          <h3 class="mb-0 mt-1">
+              {{ "345" | translate }}
+          </h3>
+      </div>
+      <div class="col-lg-8" *ngIf="comapnySize">
+          <span> {{ comapnySize }} </span>
+      </div>
+      <div class="col-lg-1">
+          <div class="col d-none d-lg-block">
+    
+          </div>
+          <div class="col button-col">
+              <button  (click)="toggle('size')" [ngClass]="{'active': isOpenEditForm['size']}"  ></button>
+          </div>
+      </div>
+  </div>
+
+  <!-- Area to display when editing company size start -->
+  <div *ngIf="isOpenEditForm['size'] then companySize"></div>
+  <ng-template #companySize>
+      <form>
+          <div class="form-row form-group">
+              <div class="col-6">
+                  <select type="text" class="form-control" id="company-size" [formControl]="sizeControl">
+                      <option *ngFor="let size of companyEmployeesKeys" [value]="size">
+                          {{ companyEmployees[size] }}
+                      </option>
+                  </select>
+              </div>
+          </div>
+
+          <div class="form-group">
+              <button class="btn btn-primary" (click)="submit('size')"> {{ "1231" | translate }} </button>
+          </div>
+      </form>
+  </ng-template>
+  <!-- Area to display when editing company size end -->
+
+  <!-- Company size end -->
+
+  <!-- Parking start -->
+  <div class="row mb-2">
+      <div class="col-lg-3">
+          <h3 class="mb-0 mt-1">
+              {{ "1027" | translate }}
+          </h3>
+      </div>
+      <div class="col-lg-8" *ngIf="companySelectedParking">
+          <span> {{ companySelectedParking }} </span>
+      </div>
+      <div class="col-lg-1">
+          <div class="col d-none d-lg-block">
+    
+          </div>
+          <div class="col button-col">
+              <button  (click)="toggle('parking')" [ngClass]="{'active': isOpenEditForm['parking'] }" ></button>
+          </div>
+      </div>
+  </div>
+
+  <!-- Area to display when editing parking start -->
+  <div *ngIf="isOpenEditForm['parking'] then companyParking"></div>
+  <ng-template #companyParking>
+      <form >
+          <div class="form-row form-group">
+              <div class="col-6">
+                  <select type="text" class="form-control" id="company-parking" [formControl]="parkingControl">  
+                      <option  *ngFor='let park of companyParkingKeys' [value]='park'>
+                          {{  parking[park] }}
+                     </option>
+                  </select>
+              </div>
+          </div>
+
+          <div class="form-group">
+              <button class="btn btn-primary" (click)="submit('parking')"> {{ "1231" | translate }} </button>
+          </div>
+      </form>
+  </ng-template>
+  <!-- Area to display when editing parking end -->
+  <!-- Parking end -->
+
+  <!-- Business Hours start -->
+  <div class="row mb-2">
+      <div class="col-lg-3">
+          <h3 class="mb-0 mt-1 ">
+              {{ "257" | translate }}
+          </h3>
+      </div>
+      <div class="col-lg-8" *ngIf="businessHours && businessHours.length > 0">
+        <ng-container *ngFor="let business_hour of businessHours">
+            <span>
+                <ng-container *ngIf="business_hour.week_days.length > 1; else: oneDay">
+                        {{ business_hour.week_days[0] | capitalize }} - {{ business_hour.week_days[business_hour.week_days.length - 1] | capitalize }}
+                </ng-container>
+
+                <ng-template #oneDay>
+                        {{ business_hour.week_days[0] | capitalize }}
+                </ng-template>
+
+
+                <ng-container *ngIf="business_hour.hour_from && business_hour.hour_to">
+                    | {{ business_hour.hour_from }} - {{ business_hour.hour_to }}
+                </ng-container>
+            </span>
+        </ng-container>
+      </div>
+      <div class="col-lg-1">
+          <div class="col d-none d-lg-block">
+    
+          </div>
+          <div class="col button-col">
+              <button  (click)="toggle('hours')" [ngClass]="{'active': isOpenEditForm['hours']}" ></button>
+          </div>
+      </div>
+  </div>
+
+  <div *ngIf="isOpenEditForm['hours'] then hours"></div>
+  <ng-template #hours>
+
+    <app-busines-hours 
+        [multiple]="true"
+        (result)='businessResult($event)'
+        [data]="businessHours">    
+    </app-busines-hours>   
+
+
+        <div class="d-flex justify-content-between col-7 px-0">
+              <button class="btn btn-primary h-100" (click)="submit('hours')"> {{ "1231" | translate }} </button>
+        </div>
+
+  </ng-template>
+  <!-- Business Hours end -->

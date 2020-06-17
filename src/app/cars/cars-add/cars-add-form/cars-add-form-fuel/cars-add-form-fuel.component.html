@@ -1,0 +1,16 @@
+<form [formGroup]="form" class="col-12 basic-form">
+    <div class="form-group">
+        <p [ngClass]="{'custom-red':form.get('fuelType').invalid && isSubmitted}">Fuel Type</p>
+        <div class="custom-control custom-radio custom-control-inline col-6 col-md-3 mr-0"  *ngFor="let item of fuelTypes; let i = index;">
+            <input  type="radio" 
+                    class="custom-control-input" 
+                    [value]="item['type']" 
+                    id="fuetlType-{{ i }}" 
+                    name="fuelType"
+                    formControlName="fuelType">
+            <label  for="fuetlType-{{ i }}" class="custom-control-label"> 
+            {{ item['text'] }}
+            </label>
+        </div>
+    </div>
+</form>

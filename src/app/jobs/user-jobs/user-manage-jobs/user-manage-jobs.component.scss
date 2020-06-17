@@ -1,0 +1,30 @@
+@import "src/variables";
+
+:host ::ng-deep ngb-tabset{
+    .nav-tabs {
+        margin-bottom:30px;
+        list-style: none !important;
+        display: inline-flex !important;
+        padding: 0;
+        li.nav-item {
+           margin-right:20px;
+           a{
+                color:$dark-grey;
+                display: block;
+                padding:10px;
+                text-decoration: none;
+           }
+            // Active Tab
+            a.active {
+                border-bottom:3px solid $background-dark-cyan;
+                color: $dark-blue !important;
+            }
+        }
+
+        
+    }
+
+
+}
+
+

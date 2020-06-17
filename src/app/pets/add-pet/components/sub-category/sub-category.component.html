@@ -1,0 +1,8 @@
+<label class="title-label">Select subcategory</label>
+<div class="mt-1 d-flex custom-radio-input-god">
+        <div class="mt-2" *ngFor="let item of SUB_CATEGORY">
+            <input  type="radio" [id]="item.id"  [formControl]='subCtrl' class="d-none" name="subCtrl" [value]="item.id">
+            <label [for]="item.id" 
+                   class="btn btn-light-dark mr-3">{{ item.name }}</label>
+        </div>
+</div>

@@ -1,0 +1,15 @@
+<div class="text-comment__input mt-3">
+    <form  [formGroup]="commentForm" (ngSubmit)="submit()">
+        <input type="text" class="form-control text-comment__input--big" placeholder="Add a comment"
+               formControlName="text">
+    </form>
+    <input class="inputfile" type="file" id="lists-imag" (change)="loadFile($event)" >
+    <label for="lists-imag" class="label-upload"><img src="assets/img/310.svg" alt="upload"></label>  
+    <img [src]="profileAvatar" class="form-control-image" alt="company">  
+    
+</div>
+<ng-container *ngIf="files.length > 0">
+    <div class="d-flex mt-1 comment-files-container">
+        <app-file-container class="files__row" [file]="file" *ngFor="let file of files; let idx = index;" (click)="removeImg(idx)"></app-file-container>
+    </div>
+  </ng-container>

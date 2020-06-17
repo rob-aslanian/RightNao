@@ -1,0 +1,6 @@
+<app-add-ads-services *ngIf="!isLoading;else spinner"></app-add-ads-services>
+<ng-template #spinner>
+    <div class="profile form-container d-flex align-items-center justify-content-center">
+        <app-spinner></app-spinner>
+    </div>
+</ng-template>

@@ -1,0 +1,58 @@
+@import 'src/variables';
+
+.service-request {
+    border-radius: 4px;
+    border: 1px solid #e6e6e6;
+    padding: 10px;
+}
+
+.profile {
+    img {
+        width: 35px;
+        height: 35px;
+        border-radius: 4px;
+    }
+    .user-photo {
+       border-radius: 50%;
+    }
+    .location {
+       font-size: 12px;
+       color: #808080;
+    }
+    .profile-name {
+       font-size: 14px;        
+    }
+    position: relative;
+    .stars {
+        position: absolute;
+        top: 20px;
+        left: 144px;    
+    }
+}
+
+:host ::ng-deep app-stars-rating {
+    span {
+        height: 10px !important;
+        width: 10px  !important;
+        margin-right: 5px;
+        img {
+            width: 100% !important;
+            height: 100% !important;
+        }
+    }
+}
+.service-request-body {
+    img {
+        width: 14px;
+        height: 14px;
+    }
+    span {
+        color: #808080;
+        font-size: 14px;
+    }
+}
+.price {
+    p {
+        font-weight: 700;
+    }
+}

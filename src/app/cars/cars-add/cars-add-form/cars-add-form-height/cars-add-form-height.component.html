@@ -1,0 +1,23 @@
+
+<form [formGroup]="form" class="col-md-5">
+    <div class="form-group">
+        <p>Vehicle Heigh</p>
+        <div class="custom-control custom-radio custom-control-inline col-3"  *ngFor="let item of CarsHeight; let i = index;">
+                <input  type="radio" 
+                        class="custom-control-input" 
+                        [value]="item['type']" 
+                        id="CarsHeight-{{ i }}" 
+                        name="vehicleHeightUnit"
+                        formControlName="vehicleHeightUnit">
+                <label  for="CarsHeight-{{ i }}" class="custom-control-label"> 
+                    {{ item['text'] }}<sup>2</sup>
+                </label>
+        </div>
+        <div>
+            <input type="number" 
+                    class="form-control" 
+                    placeholder="Enter height"
+                    formControlName="vehicleHeight">
+        </div>
+    </div>
+</form>

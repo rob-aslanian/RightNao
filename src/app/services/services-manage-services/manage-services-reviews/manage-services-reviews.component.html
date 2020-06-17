@@ -1,0 +1,5 @@
+
+<ng-container *ngIf="listOfReviews && listOfReviews.reviews?.length > 0">
+        <app-service-order-review-box (pagination)='onPageChange($event)' [review]='listOfReviews'></app-service-order-review-box>
+</ng-container>
+    

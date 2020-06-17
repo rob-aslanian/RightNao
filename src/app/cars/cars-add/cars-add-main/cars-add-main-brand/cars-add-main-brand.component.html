@@ -1,0 +1,36 @@
+<form [formGroup]="form" class="col-md-5">
+    <div class="form-group form-container">
+        <label for="selectBrand" class="label-control"> Select Brand  <span>*</span></label>
+        <select name="brand"
+                id="selectBrand" 
+                class="form-control"
+                (change)="selectBrand($event)"
+                formControlName="brand"
+                [ngClass]="{'is-invalid':form.get('brand').invalid && isSubmitted}">
+            <option value="" disabled>Select Brand</option>
+            <option [value]="item" 
+                    *ngFor="let item of brandList">
+                        {{ item }} 
+            </option>
+        </select>
+    </div>
+            
+    <div class="form-group form-container">
+        <label  for="inputModel" class="label-control">Enter Model  <span>*</span></label>
+        <input type="text" 
+                class="form-control" 
+                id="inputModel"
+                placeholder="Enter Model"
+                formControlName="model"
+                [ngClass]="{'is-invalid':form.get('model').invalid && isSubmitted}">
+    </div>
+    
+    <div class="form-group form-container">
+        <label  for="inputTrim" class="label-control">Enter model trim  <span>*</span></label>
+        <input type="text" 
+                class="form-control" 
+                id="inputTrim"
+                placeholder="Enter Model"
+                formControlName="trim">
+    </div>
+</form>

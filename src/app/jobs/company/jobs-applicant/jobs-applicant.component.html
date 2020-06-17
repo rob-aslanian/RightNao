@@ -1,0 +1,124 @@
+<main class="main-light-blue">
+    <div class="jobs">
+        <div class="row justify-content-between">
+
+            <!-- Content in the center -->
+            <div class="col">
+
+                <!-- Skill detailed view start -->
+                <h5 class="mt-3 mb-3 font-weight-bold big-screen" *ngIf="jobTitle">{{ jobTitle }}</h5>
+
+                <ngb-tabset title="Simple"  (tabChange)="selectTab($event)">
+                    <!-- START TOTAL APPLICANTS  -->
+                    <ngb-tab id="total">
+                        <ng-template ngbTabTitle >
+                            <div class="total-applicants active pl-2">
+                                <div class="d-flex align-items-center">
+                                    <span class="applicant-count">{{ totalApplicants.length }}</span>
+                                </div>
+                                <span>Total Applicants</span>
+                            </div>
+                        </ng-template>
+                        <ng-template ngbTabContent>  
+                            <div class="d-flex">
+                                <ng-container *ngIf="totalApplicants.length > 0">
+                                    <app-user-box class="col-12 pl-0 pr-0" [applicants]="totalApplicants" [companyID]="companyID" [jobId]="jobId" ></app-user-box>
+                                </ng-container>
+                                
+                                <app-spinner style="margin: 0 auto;" *ngIf="!totalApplicants"></app-spinner>
+                            </div>
+                                                
+                        </ng-template>
+                    </ngb-tab>
+                     <!-- END TOTAL APPLICANTS  -->
+
+                    <!-- START NEW  APPLICANTS  -->
+                    <ngb-tab id="new" >
+                        <ng-template ngbTabTitle >
+                            <div class="new-applicants applicants">
+                                <div class="d-flex align-items-center pl-0">
+                                    <span class="applicant-count">{{ newApplicants.length }}</span>
+                                </div>
+                                <span>New</span>
+                            </div>
+                        </ng-template>
+                        <ng-template ngbTabContent>
+                            <ng-container *ngIf="newApplicants.length > 0">
+                                <app-user-box [applicants]="newApplicants" [companyID]="companyID" [jobId]="jobId" ></app-user-box>
+                            </ng-container> 
+                        </ng-template>
+                    </ngb-tab>
+                    <!-- END NEW APPLICANTS  -->
+
+                    <!-- START FAVORITE APPLICANTS  -->
+                    <ngb-tab id="favorite"  >
+                      <ng-template ngbTabTitle >
+                          <div class="favorite-applicants applicants">
+                              <div class="d-flex align-items-center">
+                                <img src="assets/img/164.svg" alt="fav">
+                                <span class="applicant-count"> {{ favoriteApplicants.length }}</span>
+                              </div>
+                              <span>Favorite</span>
+                          </div>
+                      </ng-template>
+                      <ng-template ngbTabContent>
+                          <ng-container *ngIf="favoriteApplicants.length > 0">
+                              <app-user-box [applicants]="favoriteApplicants" [companyID]="companyID" [jobId]="jobId" type="Favorite"></app-user-box>
+                          </ng-container> 
+                      </ng-template>
+                    </ngb-tab>
+                    <!-- END FAVORITE APPLICANTS  -->
+
+                     <!-- START REVIEW APPLICANTS  -->
+                     <ngb-tab id="review" >
+                      <ng-template ngbTabTitle >    
+                          <div class="review-applicants applicants">
+                              <div class="d-flex align-items-center">
+                                <img src="assets/img/220.svg" alt="review">
+                                <span class="applicant-count">  {{ reviewApplicants.length }}</span>
+                              </div>
+                              <span>In Review</span>
+                          </div>
+                      </ng-template>
+                      <ng-template ngbTabContent>
+                          <ng-container *ngIf="reviewApplicants.length > 0">
+                              <app-user-box [applicants]="reviewApplicants" [companyID]="companyID" [jobId]="jobId" type="In_review"></app-user-box>
+                          </ng-container> 
+                      </ng-template>
+                    </ngb-tab>
+                    <!-- END REVIEW APPLICANTS  -->
+
+                    <!-- START Disqualified APPLICANTS  -->
+                    <ngb-tab id="disqualified"  >
+                      <ng-template ngbTabTitle >
+                        <div class="disqualified-applicants applicants">
+                            <div class="d-flex align-items-center">
+                                <img src="assets/img/219.svg" alt="dis">
+                                <span class="applicant-count">{{ disqualifiedApplicants.length }}</span>
+                            </div>
+                            <span>Disqualified</span>
+                        </div>
+                      </ng-template>
+                      <ng-template ngbTabContent>
+                          <ng-container *ngIf="disqualifiedApplicants.length > 0">
+                              <app-user-box [applicants]="disqualifiedApplicants"  [companyID]="companyID" [jobId]="jobId" type="Disqualified" ></app-user-box>
+                          </ng-container> 
+                      </ng-template>
+                    </ngb-tab>
+                    <!-- END Disqualified APPLICANTS  -->
+
+                  </ngb-tabset>
+
+                <button class="backgroundless big-screen ml-auto mt-1" [routerLink]="['/jobs/company']"  >Go to jobs</button>
+                <!-- Skill detailed view end -->
+            </div>      
+            <!-- Content in the center end -->
+
+
+
+            <!-- Content on the right -->
+               <app-ads class="col-lg-3 col-md-12" [isLeft]="true"></app-ads>
+            <!-- Content on the right end -->
+        </div>
+    </div>
+</main>

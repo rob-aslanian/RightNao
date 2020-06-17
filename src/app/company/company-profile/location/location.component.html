@@ -1,0 +1,97 @@
+<div class="section-header d-flex" *ngIf="locations">
+    <h1>{{ '868' | translate }}</h1>
+    <div class="col line">
+        <button class="add" (click)="open()" *ngIf="isAdmin">
+            <img src="assets/img/50.svg" alt="add">
+        </button>
+    </div>
+</div>
+
+<div *ngIf="locations && locations.length > 0" class="locations">
+    <div class="location d-flex" *ngFor="let location of locations | slice:0:startPage"> 
+        <div class="section-content  col" >
+            <button class="edit mr-1 mt-1" (click)="open(true , location)" type="button" *ngIf="isAdmin">
+                <img src="assets/img/19.svg" alt="edit">
+            </button>
+                <h3><img src="assets/img/location.svg" alt *ngIf="location.name && location.name !== '' " appAppLazyImage>
+                  {{ location.name  }}
+                </h3>
+
+                <p>
+                    <!-- Address  -->
+                    {{ location.street_address && location.street_address !== '' ?  
+                        location.street_address + '.' : null
+                    
+                    }}
+                    <!-- Apartament -->
+                    {{
+                        location.apartment && location.apartment !== '' ?  
+                        location.apartment + '.' : null
+                    }}
+
+                    <!-- Zip Code -->
+                    {{
+                        location.zip_code && location.zip_code !== '' ?  
+                        location.zip_code + ',' : null
+                    }}
+
+                    <!-- City --->
+                    {{
+                        location.city.city && location.city.city !== '' ?  
+                        location.city.city + ',' : null
+                    }}
+
+                    <!-- Country -->
+                    {{
+                        location.country_id && location.country_id !== '' ?  
+                        countrieAbbr[location.country_id] : null
+                    }}
+                   
+                </p>
+                <!-- Phone -->
+                 <ng-container *ngIf="location.phones && location.phones.length > 0">
+                    <p *ngFor="let phone of location.phones">
+                        {{ phone.number }}
+                    </p>
+                 </ng-container>
+                 
+                <!-- Business hours -->
+                <ng-container *ngIf="location.business_hours && location.business_hours.length > 0">
+                
+                    <ng-container *ngFor="let business_hour of location.business_hours">
+                        <p>
+                            <ng-container *ngIf="business_hour.week_days && business_hour.week_days.length > 1; else: oneDay">
+                                    {{ business_hour.week_days[0] }} - {{ business_hour.week_days[business_hour.week_days.length - 1] }}
+                            </ng-container>
+
+                            <ng-template #oneDay>
+                                    {{ business_hour.week_days[0] }}
+                            </ng-template>
+                            
+
+                            <ng-container *ngIf="business_hour.hour_from && business_hour.hour_to">
+                                | {{ business_hour.hour_from }} - {{ business_hour.hour_to }}
+                            </ng-container>
+                        </p>
+                    </ng-container>
+                </ng-container>                                    
+            </div>
+    </div>
+
+    <app-more-less [dataLength]="locations.length" (start)="startPage = $event;" [startPage]="1"></app-more-less>
+
+</div>
+
+<ng-container *ngIf="!( locations && locations.length > 0 ) && isAdmin" >
+        <app-empty-profile [key]='"location"' (openModal)='openEmptyModal()'></app-empty-profile>
+</ng-container>
+
+<app-modal (closeModal)="modelType = null">
+    <ng-container *ngIf="modelType === 'add' ">     
+         <app-location-modal [companyId]="companyProfile.id" (result)="getLocation($event)"></app-location-modal>
+    </ng-container>
+    
+    <ng-container *ngIf="modelType === 'edit' ">     
+        <app-location-modal [companyId]="companyProfile.id" (result)="getLocation($event)" [data]="editableLocation"></app-location-modal>
+    </ng-container>
+</app-modal>

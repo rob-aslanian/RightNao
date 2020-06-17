@@ -1,0 +1,22 @@
+
+<form [formGroup]="price">
+        <div class="text-editor position-relative" ngbDropdown>
+                <label for="description" class="title-label" for="price">Price</label>
+                <input type="number" 
+                       class="form-control" 
+                       id="price" 
+                       placeholder="Enter price" formControlName="fix_price"
+                       [ngClass]="{'is-invalid': isSubmitted && price.get('fix_price').invalid }">
+
+                <div class="box" ngbDropdownToggle>
+                        <span>{{ price.get('currency').value  }}</span>
+                </div>
+
+                <div ngbDropdownMenu >
+                        <button  class="btn d-block" (click)="price.get('currency').setValue('GEL')" ngbDropdownItem>GEL</button>
+                        <button  class="btn d-block" (click)="price.get('currency').setValue('USD')" ngbDropdownItem>USD</button>
+                        <button  class="btn d-block" (click)="price.get('currency').setValue('EUR')" ngbDropdownItem>EUR</button>
+                </div>
+        </div>  
+</form>
+        

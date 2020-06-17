@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2018 (64-Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="12px" height="13px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 0.257 0.279"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str0 {stroke:gray;stroke-width:0.021;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2.61313}
+    .fil0 {fill:none}
+   ]]>
+  </style>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_2237575178368">
+   <path class="fil0 str0" d="M0.215 0.016l0.026 0.025c0.007,0.007 0.007,0.019 0,0.026l-0.138 0.138 -0.069 0.018 0.018 -0.069 0.137 -0.138c0.008,-0.007 0.019,-0.007 0.026,0z"/>
+   <line class="fil0 str0" x1="0.168" y1="0.039" x2="0.218" y2= "0.089" />
+   <line class="fil0 str0" x1="0.011" y1="0.269" x2="0.238" y2= "0.269" />
+  </g>
+ </g>
+</svg>

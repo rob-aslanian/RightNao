@@ -1,0 +1,8 @@
+.btn.btn-primary {
+    margin-top: 18px;
+    height: 24px;
+    outline: none;
+    &:focus {
+        box-shadow: none;
+    }
+}

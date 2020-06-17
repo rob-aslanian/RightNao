@@ -1,0 +1,35 @@
+
+.article {
+    background: #fff;
+    border-radius: 4px;
+    padding: 15px;
+    min-height: 1100px;
+    .article-header {
+        img {
+          float: left;
+          width: 500px;
+          height: 400px;
+          cursor: pointer;
+          vertical-align: unset;  
+        }
+ 
+    }
+    .content {
+        border-top: 1px solid #dcdcdc;
+    }
+    .clear-fix {
+        content: '';
+        clear: left;
+        display: block;
+    }
+}
+
+p {
+::ng-deep  img {
+            max-width: 300px;
+            max-height: 300px ;
+            object-fit: contain;
+            margin-top: 10px;
+            user-select: none;
+    }
+}

@@ -1,0 +1,35 @@
+.settings-selection .dropdown-menu{
+    background: transparent;
+    border: 0;
+    max-height: inherit;
+    overflow: inherit;
+}
+
+.messaging-main-content {
+    display: flex;
+    height: calc( 100% - 24px);
+}
+
+@media(max-width: 1024px) {
+    .messaging-main_right {
+        display: none;
+    }
+}
+
+@media(max-width: 768px) {
+    // .messaging-head {
+    //     display: none;
+    // }
+    // .messaging-main_center {
+    //     display: none;
+    // }
+    // .messaging-main-content {
+    //     display: none;
+    // }
+}
+
+.settings-selection {
+    .dropdown-toggle::after {
+        content: unset;
+    }
+}

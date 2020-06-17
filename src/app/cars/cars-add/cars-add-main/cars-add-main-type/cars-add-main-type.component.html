@@ -1,0 +1,18 @@
+<form [formGroup]="form" class="col-md-5">
+    <div class="form-group" [ngClass]="{'has_reppossed': action=='edit'}">
+        <label  for="selectType" class="label-control"> Select Type  <span>*</span></label>
+        <select name="vehicleType"
+                id="selectType" 
+                class="form-control"
+                (change)="selectType($event)"
+                formControlName="vehicleType"
+                [ngClass]="{'is-invalid':form.get('vehicleType').invalid && isSubmitted}">
+            <option value="" disabled>Select Type</option>
+            <option [value]="item['type']" 
+                    *ngFor="let item of types">
+                        {{ item['title'] }} 
+            </option>
+        </select>
+    </div>
+</form>
+<app-cars-add-main-truck *ngIf="isTruck" [action]="action" ></app-cars-add-main-truck>

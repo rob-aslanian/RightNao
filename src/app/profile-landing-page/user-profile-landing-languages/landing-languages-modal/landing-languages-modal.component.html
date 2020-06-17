@@ -1,0 +1,29 @@
+<div class="modal-content">
+    <div class="popup-content add-language">
+        <form [formGroup] = 'languagesForm' (ngSubmit)='changeLanguage()'>
+            <div class="form-group">
+                <label for="language-title">Language</label>
+
+                <select class="form-control" formControlName='language'>
+                    <option  [value]="selectedIntLang" 
+                             [selected] = 'selectedIntLang' 
+                             disabled
+                            > 
+                            {{ selectedIntLang | lang }} 
+                    </option>
+                    <option *ngFor="let language of languagesList; let i = index" 
+                            [value]="language" 
+                            tabindex="9"
+                            >
+                        {{ language | lang }} 
+                    </option>
+                </select>
+            </div>
+
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-primary" type="submit">Save</button>
+            </div>
+
+        </form>
+    </div>
+</div>

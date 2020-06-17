@@ -1,0 +1,16 @@
+<app-dream-job [title]='"MY BUSINESS"'></app-dream-job>
+<div class="d-flex justify-content-center">
+  <div class="col-lg-7"> 
+    <div class="row">
+          <div class="col-sm-6  busniess-wrapper-box">
+                  <app-my-business-box [type]='"office"' 
+                                      [offices]='offices' 
+                                      (result)='handleOutput($event)'></app-my-business-box>
+          </div>
+        
+        <div class="col-sm-6 busniess-wrapper-box">
+                  <app-my-business-box [type]='"shop"'></app-my-business-box>
+        </div>
+    </div>
+  </div>  
+</div>

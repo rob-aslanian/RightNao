@@ -1,0 +1,60 @@
+<div class="feed-box">
+
+    <ng-container *ngIf="(profileQuery | async) as _profile">
+        <div class="d-flex pt-3">
+            <div class="">
+                <img class="user_photo" [src]="_profile.avatar ? '/file/' + _profile.avatar : 
+                                               profile.isCompany ? 'assets/img/default-company.svg' :
+                                               'assets/img/124.svg'" alt="user-photo"
+                      [ngClass]="{'user-photo': !profile.isCompany  , 'company-photo': profile.isCompany }">
+            </div>
+            <div class="ml-2">
+                <h2>
+                   {{ profile.isCompany ? 
+                      _profile.name :  _profile.firstname + ' ' + _profile.lastname }}
+                </h2>
+                <!-- User -->
+                <ng-container *ngIf="!profile.isCompany &&  _profile.experiences[0] as experience; else:companyInfo" >
+                    <p>{{ experience.title }}</p>
+                    <p>{{ experience.company }}</p>
+                </ng-container>
+                <!-- User -->
+
+                <!-- Company -->
+                <ng-template #companyInfo>
+                    <p *ngIf="(_profile?.industry) as industry ">
+                        {{  industry.id | industry }}
+                    </p>
+                    <p *ngIf="_profile?.addresses">
+                      {{  _profile.addresses | companyAddress }}
+                    </p>
+                </ng-template>      
+                <!-- Company -->
+
+            </div>
+        </div>
+    
+        <div class="feed-border">
+            <div class="feed-box__connections" *ngIf="(_profile.network_info) as info">
+    
+                <div class="d-flex justify-content-between mt-1" *ngIf="info?.connections">
+                    <h5>Connections</h5>
+                    <span class="feed-box__connections__amount-span">{{ info.connections }}</span>
+                </div>
+                <div class="d-flex justify-content-between mt-1" *ngIf="info?.followings">
+                    <h5>Following</h5>
+                    <span class="feed-box__connections__amount-span">{{ info.followings }}</span>
+                </div>
+                <div class="d-flex justify-content-between mt-1" *ngIf="info?.followers">
+                    <h5>Followers</h5>
+                    <span class="feed-box__connections__amount-span">{{ info.followers }}</span>
+                </div>
+                <div class="d-flex justify-content-between mt-1" *ngIf="info?.employees">
+                    <h5>Employees</h5>
+                    <span class="feed-box__connections__amount-span">{{ info.employees }}</span>
+                </div>
+            </div>
+    
+        </div>
+    </ng-container>
+</div>

@@ -1,0 +1,19 @@
+@import 'src/variables';
+.plus {
+    border: 1px solid #808080;
+    border-radius: 50%;
+    width: 28px;
+    padding: 5px;
+}
+
+
+
+.basic-form {
+    & label {
+        font-size: 14px;
+        color: $dark-grey;
+    }
+    .custom-red {
+        color: red;
+    }
+}

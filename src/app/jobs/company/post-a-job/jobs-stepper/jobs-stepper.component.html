@@ -1,0 +1,27 @@
+<div class="post-a-job__sidebar">
+  <aside class="post-a-job__sidebar__box post-a-job__sidebar__progress-bar stepper">
+    <h2 class="post-a-job__content__section-title">Post a Job in 3 steps</h2>
+
+    <div class="d-flex justify-content-between align-items-center post-a-job__sidebar__progress-bar__steps">
+
+      <ng-container *ngFor="let step of steps">
+        <div class="
+            post-a-job__sidebar__progress-bar__steps__item 
+            post-a-job__sidebar__progress-bar__steps__item{{ step === page  ? '--active' : page > step ? '--done' : '' }}">
+          <span class="
+                post-a-job__sidebar__progress-bar__steps__text 
+                post-a-job__sidebar__progress-bar__steps__text{{ step === page ? '--active' : '' }} ">
+            {{ step }}
+          </span>
+        </div>
+        <span *ngIf="step !== 3" class="post-a-job__sidebar__progress-bar__steps__line 
+            post-a-job__sidebar__progress-bar__steps__line{{ step === page || page > step ? '--active' : '' }}"></span>
+
+      </ng-container>
+
+
+    </div>
+    
+    <div *ngIf="steppers[page]" [innerHTML]="steppers[page]" class="stepper-text"></div>
+  </aside>
+</div>

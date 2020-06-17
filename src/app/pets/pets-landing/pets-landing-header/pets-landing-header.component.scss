@@ -1,0 +1,203 @@
+@import 'src/variables'; 
+
+.header {
+    position: relative;
+    &__nav {
+        width: 80%; 
+        background-color: rgb(0, 0, 0, 0.5);
+        border-top-right-radius: .5rem ; 
+        border-top-left-radius: .5rem; 
+        height: 52px;
+            &__item {
+                text-align: center;
+                &:hover {
+                background-color: white; 
+                border-top-left-radius: 6px;
+                border-top-right-radius: 6px;
+                     p {
+                        color: #052337; 
+
+                     }
+                }
+                p { 
+                    font-size: 1.5rem; 
+                    color: white;
+                    cursor: pointer;  
+                    opacity: 1; 
+                    width: 100%; 
+                    height: 100%;
+                    margin: 0px;
+                    padding-top: 7px;    
+                }
+            }
+    }
+
+    &__search {
+        border: 1px solid transparent;  
+        border-top-right-radius: .5rem; 
+        background-color: white;
+
+        &__dropdown {
+            border: 1px solid $light-grey; 
+            border-radius: .5rem; 
+
+            div {
+                input {
+                    border: 1px solid transparent !important; 
+
+                    &:focus {
+                        box-shadow: none;
+                    }
+                }; 
+                select {
+                    border: none; 
+                    border-right: 1px solid $light-grey; 
+                    border-radius: 0; 
+
+                    &:focus {
+                             color: #495057; 
+                             background-color: #fff; 
+                             border-color: white; 
+                             outline: 0; 
+                             box-shadow: none; 
+                    };
+                };
+            }; 
+            };
+        };
+
+        &__button-advanced {
+            background-color: white; 
+            border: 1px solid transparent; 
+            border-bottom-left-radius: .5rem; 
+            border-bottom-right-radius: .5rem; 
+
+            p {
+                font-size: .875rem; 
+                color: $dark-grey;
+                cursor: pointer;
+            };
+
+
+        };
+        
+    }; 
+
+    .more-box {
+        border: 1px solid white;
+        background-color: white; 
+        z-index: 3;
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3); 
+        border-radius: .5rem; 
+        position: absolute; 
+        top: 0; 
+        width: 120%;
+
+        p {
+            font-size: 1.5rem; 
+            border-bottom: 2px solid $background-soft-blue; 
+            padding-bottom: .8rem; 
+            color: #052337; 
+
+            margin: 0; 
+        };
+
+        ul {
+            list-style: none; 
+            padding: 1rem; 
+            text-align: left; 
+
+            li {
+                
+                font-size: 1rem; 
+                font-weight: bold;
+                color: $light-black;  
+                cursor: pointer; 
+                padding-top: .5rem; 
+            };
+
+        };
+    };
+
+    .property-types {
+        border: 1px solid white;
+        background-color: white; 
+        z-index: 3;
+        box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3); 
+        border-radius: .5rem; 
+        position: absolute; 
+        top: 2.75rem; 
+        width: 100%;
+
+        ul {
+            list-style: none; 
+            padding: 1rem; 
+            text-align: left; 
+
+            li {
+                font-size: .875rem; 
+                color: $dark-grey;  
+                cursor: pointer; 
+                padding-top: .5rem; 
+            };
+
+        };
+    }
+
+    .borders {
+        border-radius: .5rem; 
+        background-color: white;
+    };
+
+
+   
+ .active-tab {
+     background: #fff;
+     border-top-left-radius: 6px;
+     border-top-right-radius: 6px;
+     p {
+        color: #052337; 
+     }
+ };
+
+ .drop-down {
+     button {
+         color: $dark-blue;
+     };
+     &::after {
+        content: "";
+        display: block;
+        height: 30px;
+        position: absolute;
+        background: #c4c4c4;
+        width: 2px;
+        top: 6px;
+        right: 0px;
+        &::after {
+            content: "▾";
+            display: block;
+        }
+     }
+     
+}
+.manage-estate {
+    position: absolute;
+    right: 0px;
+    z-index: 5;
+    transform: translate(0px, 5px);
+    img {
+        cursor: pointer;
+    }
+    button {
+        font-size: 1rem;
+        font-weight: bold;
+        color: #052337;
+        cursor: pointer;
+        padding-top: 0.5rem;
+        &:hover {
+            background-color: #f8f9fa;
+            width: 90%;
+            text-align: initial;
+        }
+    }
+}

@@ -1,0 +1,119 @@
+<div class="announcements__box  mt-3" style="position: relative;">
+<div class="borderForBox" style="height: 100%;" > 
+  <div class="row m-0" style="height: 100%;">
+
+    <div [ngClass]="{'is-sold': home.rental_info.post_status ===  'post_status',
+                     'is-urgent': home.is_urgent }"></div>
+
+    <div class="{{ !isCardView ? 'col-12' : 'col-6' }} list-view  p-0" 
+         [ngClass]="{ 'card-view': isCardView }" 
+         style="position: relative;">
+         <!-- (mouseenter)='nextImage($event)' -->
+        <div class="announcements__box__img" style="height: 100%;" >
+            <img [src]="files[counter] || files[0]" alt="image" style="position: absolute; z-index: 1; background: white;">
+            <img [src]="files[counter + 1] || files[0]" alt="image" style="position: absolute; z-index: 0;">
+            <div class="dots" *ngIf="this.files.length > 1">
+                  <div class="ball" 
+                       *ngFor="let ball of files; let i = index" 
+                       (click)='counter = i' 
+                       [ngClass]="{'active-ball': i === counter}"></div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col mt-2">
+
+            <div class="announcements__box__text">
+                <div class="d-flex justify-content-between">
+                    <p style="cursor: pointer;" [routerLink]="['/real-estate', 'details', home.id]" routerLinkActive="router-link-active" >{{ home['rental_details'][0]['title'] }}</p>
+                    <div class="bottoms"  ngbDropdown *ngIf="isMy && home.rental_info.is_me">
+                           <button class="btn backgroundless" ngbDropdownToggle><img src="assets/img/107.svg" alt="dots" ></button> 
+                            <div  class="bottoms btn-more" ngbDropdownMenu>
+                                 <button ngbDropdownItem  class="btn backgroundless" (click)="emit('edit')">Edit</button>
+                                 <button ngbDropdownItem  class="btn backgroundless" (click)="emit('hidden')">Hidden</button>
+                                 <button ngbDropdownItem  class="btn backgroundless" (click)="emit('make a solid')">Make a sold </button>
+                                 <button ngbDropdownItem  
+                                         class="btn backgroundless" 
+                                         (click)="emit('urgent')"
+                                         *ngIf="!home?.is_urgent">Make urgent</button>
+                                 <button ngbDropdownItem  class="btn backgroundless" (click)="emit('delete')">Delete</button>
+                            </div>
+                    </div>
+
+                </div>
+                <span>${{ home?.price?.min_price }}</span>
+
+            </div>
+
+            <div class="addation-information" *ngIf="isCardView" style="height: 52%;">
+                         <div class="d-flex   align-items-center mt-2 mb-2" >
+                               <div class="info pr-2" *ngIf="home['total_area']">
+                                   <img src="assets/img/Group3.svg" alt="area" class="pr-2">
+                                   <span> Area {{ home['total_area']  }} <sup>2</sup> </span>
+                               </div>
+
+                               <div class="info pr-2" *ngIf="home['bathrooms'] ">
+                                    <img src="assets/img/Group2.svg" alt="area" class="pr-2">
+                                    <span> Bathrooms {{ home['bathrooms']  }}</span>
+                                </div>
+
+                                <div class="info" *ngIf="home['badrooms'] ">
+                                    <img src="assets/img/Group5.svg" alt="area" class="pr-2">
+                                    <span> {{ home['badrooms'] }} 5 </span>
+                                </div>
+                               
+                         </div>
+                <div class="mb-3 mt-3">
+                    <p>
+                         {{ home['rental_details'][0]['description'] }}
+                    </p>
+                </div>
+            </div>
+
+    
+            <div class="announcements__box__info d-flex justify-content-between mt-3">
+
+                <div class="announcements__box__info__phone" *ngIf="home['phones'] && home['phones'].length > 0">
+                     <img src="assets/img/phone.svg" alt="phone">
+                     
+                     <span class="pl-2">
+                          {{ home['phones'][0]['number'] }}
+                      </span>
+                </div>
+
+                <div class="announcements__box__info__location d-flex  p-0" *ngIf="home?.rental_info?.location?.city && home?.rental_info?.location?.country">
+                    <img class="mr-2 " src="assets/img/24.svg" alt="location">
+                    <span>{{ home?.rental_info?.location?.city }}, {{ home?.rental_info?.location?.country | country }}</span>
+                </div>  
+    
+                <div class="announcements__box__info__location d-flex" *ngIf="postedDate && !isMy">
+                    <img class="mr-2" src="assets/img/621.svg" alt="calendar">
+                    <span>{{ postedDate }}</span>
+                </div>  
+    
+            </div>
+    
+            <div class="announcements__box__like  d-flex justify-content-end pb-3" *ngIf="!home.rental_info.is_me">
+                <img [src]="home.rental_info.has_liked ? 
+                            'assets/img/99.svg' : 
+                            'assets/img/44.svg'"
+                     (click)='addToSavedItems(home.rental_info.has_liked)' 
+                     alt="like" 
+                     style="height: 15px; cursor: pointer;">
+            </div>
+ 
+             <div class="announcements__box__like offers_headline  offers__notify" *ngIf="isMy && home.rental_info.is_me">
+                <img style="cursor: pointer" 
+                     src="assets/img/256.svg" alt="" 
+                     (click)="emitNotifications( home.rental_info.disabled_alerts, home.rental_info.disabled_offers )">
+                <div class="offers__notify__counter">
+                    <span>{{ home.rental_info.offers }}</span>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+  
+  </div>
+
+</div>

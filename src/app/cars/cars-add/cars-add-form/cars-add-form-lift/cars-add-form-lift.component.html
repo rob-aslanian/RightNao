@@ -1,0 +1,25 @@
+
+<form [formGroup]="form" class="col-md-5">
+    <div class="form-group">
+        <p>Lift Height</p>
+            <div class="custom-control custom-radio custom-control-inline col-3"  *ngFor="let item of CarsLiftHeight">
+                    <input  type="radio" 
+                            class="custom-control-input" 
+                            [value]="item" 
+                            id="CarsLiftHeight-{{ item }}" 
+                            name="vehicleLiftHeightUnit"
+                            formControlName="vehicleLiftHeightUnit">
+                    <label  for="CarsLiftHeight-{{ item }}"  class="custom-control-label"> 
+                        {{ item }}
+                    </label>
+            </div>
+            <div>
+                <input type="number" 
+                        class="form-control" 
+                        placeholder="Enter lift height"
+                        formControlName="vehicleLiftHeight">
+            </div>
+    </div>
+</form>
+
+

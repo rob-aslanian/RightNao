@@ -1,0 +1,113 @@
+@import "src/variables";
+.main-calendar-header {
+    padding-left: 32px;
+    padding-right: 24px;
+    height: 64px;
+    border-bottom: 1px solid $lighter-grey;
+
+    @at-root .calendar-outline {
+        border: 1px solid $lighter-grey;
+        color: $lighter-grey;
+        height: 32px;
+        padding: 0 20px;
+        background: none;
+
+        &--left {
+            padding: 0 12px;
+            img {
+                transform: rotate(90deg)
+            }
+        }
+        &--right {
+            padding: 0 12px;
+            img {
+                transform: rotate(-90deg);
+            }
+        }
+    }
+
+    &__date {
+        color: $dark-blue;
+        font-size: $heading-medium;
+        margin-bottom: 0;
+    }
+
+    &__dropdown {
+        margin-right: 28px;
+        cursor: pointer;
+        &__text {
+            padding-left: 32px;
+            line-height: 24px; 
+            display: inline-block;
+            background-position-x: left;
+        }
+
+        &__option {
+            background: none;
+            border: none;
+            width: 100%;
+            padding-left: 52px;
+            padding-top: 6px;
+            padding-bottom: 6px;
+            text-align: left;
+            background-position-x: 18px;
+            
+            cursor: pointer;
+
+            &:hover {
+                background-color: $input-grey;
+            } 
+        }
+
+        &__text, &__option {
+            display: inline-block;
+            color: $dark-grey;
+            font-size: $medium-text;
+            background-repeat: no-repeat;
+            background-position-y: center;
+            &.calendar-day {
+                background-image: url("../../../../assets/img/619.svg");
+            }
+            &.calendar-week {
+                background-image: url("../../../../assets/img/620.svg");
+            }
+            &.calendar-month {
+                background-image: url("../../../../assets/img/621.svg");
+            }
+            &.calendar-year {
+                background-image: url("../../../../assets/img/622.svg");
+            }
+            &.calendar-list {
+                background-image: url("../../../../assets/img/623.svg");
+            }
+        }
+        .dropdown-menu {
+            box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.50);
+            border: none;
+            // left: -18px !important;
+        }
+
+        .dropdown-toggle::after {
+            color: $dark-grey !important;
+            top: 3px;
+            position: relative;
+        }
+
+        .calendar-share {
+            background-image: url("../../../../assets/img/624.svg")
+        }
+    }
+
+    .print-btn {
+        border: none;
+        background: none; 
+        color: $dark-grey;
+        font-size: $medium-text;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        img {
+            padding-right: 8px;
+        }
+    }
+}

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="51" height="51" viewBox="0 0 51 51">
+  <defs>
+    <filter id="Subtraction_2" x="0" y="0" width="51" height="51" filterUnits="userSpaceOnUse">
+      <feOffset input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="1.5" result="blur"/>
+      <feFlood flood-color="#a3aeba" flood-opacity="0.639"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#Subtraction_2)">
+    <path id="Subtraction_2-2" data-name="Subtraction 2" d="M2049-3040a20.864,20.864,0,0,1-14.85-6.15A20.862,20.862,0,0,1,2028-3061a20.862,20.862,0,0,1,6.151-14.849A20.865,20.865,0,0,1,2049-3082a20.864,20.864,0,0,1,14.849,6.15A20.862,20.862,0,0,1,2070-3061a20.862,20.862,0,0,1-6.151,14.849A20.862,20.862,0,0,1,2049-3040Zm-4.17-17.784c0,.079,0,.175,0,.292v6.188c0,.673.286,1.074.766,1.074a1.4,1.4,0,0,0,.938-.458l9.3-9.3a1.19,1.19,0,0,0,0-1.676l-9.3-9.3a1.4,1.4,0,0,0-.937-.457c-.48,0-.766.4-.766,1.076v12.56Z" transform="translate(-2023.5 3086.5)" fill="#fff"/>
+  </g>
+</svg>

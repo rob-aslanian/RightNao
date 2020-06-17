@@ -1,0 +1,35 @@
+@import 'src/variables';
+label {
+    text-transform: capitalize;
+}
+
+.color-label {
+    transition: 0.3s;
+    width: 32px;
+    height: 32px;
+    margin: 6px;
+    border-radius: 50%;
+    border: 2px solid $light-grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    .color-box {
+        width: 26px;
+        height: 26px;
+        border-radius: 50%;
+        // background: red;
+    }
+}
+.color-input {
+    display: none;
+}
+.color-input:checked + label {
+    border: 2px solid $background-light-blue;
+}
+.color-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}

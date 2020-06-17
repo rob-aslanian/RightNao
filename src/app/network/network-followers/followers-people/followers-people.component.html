@@ -1,0 +1,71 @@
+<!-- !-- Content in the center --> 
+<div class="col">
+    <div class="center-heading">
+        <h3 *ngIf="connectionsList.length" >People<span> {{ connectionsList.length }} </span></h3>
+        <div class="d-flex center-heading__filter-wrapper">
+           
+            <form class="d-flex" >
+                <input type="text" class="form-control mr-2 search" [formControl]='searchCtrl'>
+            </form>
+
+            <button class="btn btn-primary"  [routerLink]='["/search/people"]' >
+                <img src="assets/img/105.svg" alt="">
+                Filters
+            </button>
+    
+        </div>
+    </div>
+
+
+    <div class="center-content-network" ngbDropdown>
+        <div class="connections-first-line">
+ 
+                <div class="custom-control custom-checkbox box">
+                    <input type="checkbox" class="custom-control-input"  id="check-connections" (change)='selectAll($event)' #checkbox>
+                    <label class="custom-control-label " for="check-connections"></label>
+                </div>
+ 
+
+            <ng-template [ngIf]="isSelectedConn" >
+                <button class="unfollow" (click)="followAll()" >
+                    <img src="assets/img/70.svg" alt="Follow">
+                    Follow
+                </button>
+            </ng-template>
+
+            <button class="ml-auto btn-more" [ngClass]="view == 'card' ? 'blocks btn-more' : 'list btn-more'"  ngbDropdownToggle >
+            </button>
+
+
+                <div class="options blocks-option" ngbDropdownMenu>
+                    <button ngbDropdownItem (click)="changeView('card')" >Card view</button>
+                    <button ngbDropdownItem (click)="changeView('list')" >List view</button>
+                </div>
+
+        </div>
+
+        
+ 
+ 
+
+     <div class="row" *ngIf="!isLoaded;">
+            <app-profile-box    
+              *ngFor="let item of connectionsList; let i = index"
+               [profile]='item' 
+               [hasMorePopUp]='true'
+               [view]='view'>
+                    <div class="custom-control custom-checkbox checkbox-wrapper">
+                            <input type="checkbox"  
+                                class="custom-control-input" 
+                                [id]="i" 
+                                [(ngModel)]="item.isSelected"
+                                (change)='checkUser($event, i )'
+                                >
+                            <label class="custom-control-label" [for]="i"></label>
+                    </div>
+           </app-profile-box>
+     </div>
+     <app-spinner class="loader" *ngIf="isLoaded"></app-spinner>
+
+  </div>
+</div>

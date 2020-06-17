@@ -1,0 +1,38 @@
+.grid-selected-photo{
+    border: 2px solid #244361;
+}
+
+.gallery-item {
+    position: relative;
+}
+
+.gallery-btn-wrapper {
+    position: absolute;
+    top: 38%;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    height: 40px;
+}
+
+.previous, .next {
+    margin-top: 0;
+}
+.next {
+    top: 19px;
+    left: -28px;
+}
+.previous {
+    top: 19px;
+    right: -28px;
+}
+
+.gallery-item-container {
+    .custom-control.custom-checkbox {
+        position: absolute;
+        right: -8px;
+        top: 3px;
+        transition: 0.3s;
+    }
+}

@@ -1,0 +1,31 @@
+@import 'src/variables';
+
+.proposal-box {
+    background: #fff;
+    border-radius: 4px;
+    border: 1px solid #e6e6e6;
+    .proposal-box-headline {
+        background: #EAEDF2;
+        padding: 10px 15px;
+        border-radius: 4px;
+        height: 42px;
+        p {
+            color: $dark-blue;
+        }
+    }
+    .proposal-box-content {
+        padding: 15px;
+        span {
+            font-size: 16px;
+            color: $dark-blue;
+        }
+    }
+}
+.price {
+    color: $dark-cyan;
+    font-size: 1rem;
+}
+.additional-information {
+     color: $dark-grey;
+     font-size: 16px;
+}

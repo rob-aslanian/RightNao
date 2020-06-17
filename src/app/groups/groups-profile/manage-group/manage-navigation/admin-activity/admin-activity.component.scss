@@ -1,0 +1,54 @@
+@import 'src/variables';
+
+
+.admin-activity-content{
+    background: $white;
+    border-radius: .5rem;
+    border: 1px solid $light-grey;
+    &__title{
+        h4{
+            font-size: 1rem;
+        }
+
+    }
+    &__today{
+        &__line{
+            color: $dark-grey;
+            background-color: $background-soft-blue;
+            border-radius: .3rem;
+            font-size: .75rem;
+        }
+        &__user{
+            &__avatar{
+                img{
+                    width: 2.1875rem;
+                    height: 2.1875rem;
+                    border-radius: 50%;
+                }
+            }
+            &__name{
+                span{
+                    color: $dark-blue;
+                    font-size: .875rem;
+                }
+                p{
+                    font-size: .875rem;
+                    color: $dark-grey;
+                    margin-bottom: 0;
+                }
+            }
+            &__more{
+                &__date{
+                    span{
+                        font-size: 0.75rem;
+                        color: $dark-grey;
+                        padding-right: .4rem;
+                    }
+                }
+                &__settings{
+                    padding-left: 1.4rem;
+                }
+            }
+        }
+    }
+}

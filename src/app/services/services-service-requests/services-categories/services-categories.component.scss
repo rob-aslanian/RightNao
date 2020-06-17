@@ -1,0 +1,26 @@
+@import '../../../../variables';
+
+.all-categories{
+    background-color: $white;
+    padding: 1rem;
+    .title{
+        h4{
+            font-size: 1.25rem;
+        }
+    }
+    .all-categories-title{
+        p{
+            margin-top: 1rem;
+            padding-left: .4rem;
+            font-size: 1rem;
+        }
+    }
+    .all-categories-content{
+        div{
+            p{
+                color: $dark-grey;
+                font-size: 0.875rem;
+            }
+        }
+    }
+}

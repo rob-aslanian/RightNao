@@ -1,0 +1,62 @@
+<h2> {{ "1531" | translate }} </h2>
+<button class="dark-button" (click)="toggle('add' , null); scrollTo = add"></button>
+<hr>
+<ng-container *ngFor='let website of data.websites; let i = index'>
+    <div class="row" >
+        <div class="col-lg-3">
+            <h3>
+               {{website.website}}
+            </h3>
+        </div>
+        <div class="col d-none d-lg-block">
+    
+        </div>
+        <div class="col d-none d-lg-block">
+    
+        </div>
+        <div class="col button-col">
+            <button  [ngClass]="{'active': isOpenEditForm[i]}" (click)="toggle('edit' , i , website)"></button>
+        </div>
+
+    </div>
+
+    <!-- Edit -->
+    <div *ngIf="isOpenEditForm[i] then edit" ></div>
+    <ng-template #edit>
+        <form>
+            <label>Edit Website</label>
+            <div class="form-group form-row">
+                <input type="url" class="form-control col-4 mr-3" placeholder="Enter URL here" [formControl]="websiteControl" >
+                <button class="backgroundless" (click)="remove()" > {{ "1185" | translate }} </button>
+            </div>
+            
+            <div class="form-group">
+                <button class="btn btn-primary" (click)="submit('edit')"> {{ "1231" | translate }} </button>
+            </div>
+        </form>
+    </ng-template>
+
+</ng-container>
+
+
+
+
+
+<!-- Area to display while adding website start -->
+<div *ngIf="isOpenForm then add" id="add" ></div>
+<ng-template #add >
+    <div class="button-col">
+        <button  class="active" (click)="isOpenForm = false" ></button>
+    </div>
+    <form>
+        <label> Add Website</label>
+        <div class="form-group form-row">
+            <input type="url" class="form-control col-4 mr-3" placeholder="Enter URL here" [formControl]="websiteControl" >
+        </div>
+        
+        <div class="form-group">
+            <button class="btn btn-primary" (click)="submit('add')"> {{ "1231" | translate }} </button>
+        </div>
+    </form>
+</ng-template>
+<!-- Area to display while adding website end-->

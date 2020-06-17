@@ -1,0 +1,20 @@
+
+@media (min-width: 412px) and (max-width: 1030px) {
+    .modal-content{
+        width: 70vw !important; 
+        margin: 0 auto !important;
+    }
+}
+
+.modal-content{
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5) !important;
+}
+
+.calendar-modal-header {
+    padding-bottom: 8px;
+    padding-left: 50px !important;
+    padding-right: 15px !important;
+}
+// .modal-content {
+//     width: 597px;
+// };

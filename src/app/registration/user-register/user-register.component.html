@@ -1,0 +1,172 @@
+
+
+
+
+    <div class="wrap main-light-blue" >
+      
+      <div class="container register user-registration">
+        <h1>{{ '1150'  | translate  }} {{ type }}  </h1>
+        <h2 class="mb-3">{{ '408'  | translate }}</h2>
+
+        <form [formGroup]="registerForm" autocomplete="off" class="user-registration-form">
+
+            <div class="form-group" style="height:52px;">
+
+                <input type="text" class="form-control m-0"
+                       [value]="registerForm.get('firstname').value | capitalize" 
+                       [placeholder]="'620' | translate" formControlName="firstname" minlength="2" maxlength="64"
+                       [ngClass]="{ 'is-invalid':  (f.firstname.touched || f.firstname.dirty || submitted)  && f.firstname.errors }" >
+                <span class="error_message" *ngIf="f.firstname.touched  && f.firstname.hasError('symbols')" >Use only latin letters</span>
+            </div>
+        
+            <div class="form-group"  style="height:52px;">
+                    <input type="text" class="form-control m-0" [placeholder]="'849' | translate"
+                           formControlName="lastname"
+                           [value]="registerForm.get('lastname').value | capitalize"  minlength="2" maxlength="128"
+                           [ngClass]="{ 'is-invalid':  (f.lastname.touched  || f.lastname.dirty || submitted) && f.lastname.errors }" >
+                     <span class="error_message" *ngIf="f.lastname.touched  && f.lastname.hasError('symbols')" >Use only latin letters</span>
+            </div> 
+            
+            
+            <div class="password-wrap mb-3 username__input" style="height:52px;">
+                <input type="text" class="form-control m-0 " [placeholder]="'1483' | translate" formControlName='username' 
+                                minlength="6"  maxlength="30"
+                                [ngClass]="{ 'is-invalid': (f.username.touched || f.username.dirty || submitted ) && f.username.errors }"  
+                                (focus)="viewUserNameValidator = true" (blur)="viewUserNameValidator = false">
+                <span class="error_message" *ngIf="userNameExist" >This username is already in use.</span>
+                <div class="password-criteria" *ngIf="registerForm.get('username').invalid && viewUserNameValidator">
+                    <div class="arrow"></div>
+                    <ul>
+                        <li>Username Criteria</li>
+                        <li [ngClass]="{ 'valid': 
+                                                !registerForm.get('username').hasError('required')  &&
+                                                !registerForm.get('username').hasError('minlength') && 
+                                                !registerForm.get('username').hasError('maxlength')}" >
+                                                Username must be between <br/>
+                                                    6 and 30 characters
+                        </li>                       
+                        <li [ngClass]="{ 'valid': !registerForm.get('username').hasError('pattern') }" >Allowed characters: a-z, A-Z, 0-9, ( _ ), ( . )</li> 
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="password-wrap">
+                <input autocomplete="new-password" type="password" class="form-control" 
+                        [placeholder]="'1034' | translate" [ngClass]="{ 'is-invalid': (f.password.touched || submitted) && f.password.errors }" 
+                        minlength="8" maxlength="64"
+                        (focus)="viewValidator = true" (blur)="viewValidator = false" formControlName="password" 
+                        [type]="hide ? 'password' : 'text'" >
+                <span class="password-icon-1" (click)="hide = !hide" >
+                    <img [src]="!hide ? '/assets/img/eye.svg' : '/assets/img/266.svg' " alt="eye">
+                </span>
+                <div class="password-criteria" style="right:-250px;" *ngIf="registerForm.get('password').invalid && viewValidator">
+                    <div class="arrow"></div>
+                    <ul>
+                        <li>{{ '1035' | translate }}</li>
+                        <li [ngClass]="{ 'valid': !registerForm.get('password').hasError('minLength') }" >{{ '193' | translate }}</li>
+                        <li [ngClass]="{ 'valid': !registerForm.get('password').hasError('uppercase') }" >{{ '194' | translate }}</li>
+                        <li [ngClass]="{ 'valid': !registerForm.get('password').hasError('number') }" >{{ '195' | translate }}</li>
+                        <!-- <li [ngClass]="{ 'valid': !registerForm.get('password').hasError('symbols') }" >{{ '196' | translate }}</li>
+                        <li [ngClass]="{ 'valid': !registerForm.get('password').hasError('initials') }" >
+                                {{ '1036' | translate }}
+                        </li> -->
+                    </ul>
+                </div>
+            </div>
+           
+            <div class="form-group" style="height:52px;">
+                <input autocomplete="new-password" type="email" class="form-control m-0" [placeholder]="'507' | translate"  maxlength="128"
+                       formControlName="email" [ngClass]="{ 'is-invalid': (f.email.touched || f.email.dirty ||  submitted ) && f.email.errors }" >
+                <span class="error_message" *ngIf="f.email.touched && f.email.hasError('email')" >Please enter a valid email</span>
+                <span  *ngIf="emailExist && !f.email.errors" class="error_message">
+                        this email is already in use.
+                </span>
+            </div>
+
+            <div class="form-group" style="height:52px;" *ngIf="type !== 'user' ">
+                <input autocomplete="new-password" type="text" class="form-control m-0" placeholder="License or VAT Number"  maxlength="128" >
+            </div>
+            
+
+            <select class=" form-control test" formControlName="country" >
+                <option value="" disabled>Country </option>
+                <option [value]="country.asc" *ngFor="let country of countries | async">
+                    {{ country.name }}
+                </option>
+            </select>
+            
+            
+            <div class="row mx-0">
+                <div class="col-1 pl-0 ml-1 mt-1 mr-2 w-10 my-0">
+                    <img src="assets/img/birthday.svg" alt="birthday">
+                </div>
+                <div class="col-3 pl-0 pr-1 my-0">
+                    <select class="form-control" name="b-day" formControlName="day" [ngClass]="{ 'is-invalid': submitted && f.day.errors }" ngDefaultControl >
+                    <option value="" disabled selected>{{ '438' | translate }}</option>
+                    <option *ngFor="let day of days" [value]="day" tabindex="9" > {{day}} </option>
+                </select>
+                </div>
+                <div class="col px-1 my-0">
+                    <select class="form-control" name="b-month" formControlName="month" [ngClass]="{ 'is-invalid': submitted && f.month.errors }" ngDefaultControl >
+                        <option value="" disabled selected>{{ '926' | translate }}</option>
+                        <option *ngFor="let month of Months" [value]="month.id" tabindex="10"> 
+                                {{month.name}}
+                        </option>
+                        
+                    </select>
+                </div>
+                <div class="col-3 pl-1 pr-0 my-0">
+                    <select class="form-control" name="b-year" formControlName="year" [ngClass]="{ 'is-invalid': submitted && f.year.errors }" ngDefaultControl>
+                        <option value="" disabled selected>{{ '1582' | translate }}</option>
+                        <option *ngFor="let year of upTo"  [value]="year" >
+                            {{year}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="gender">
+                <span class="grey">{{ '661' | translate }}</span>
+                <input type="radio" id="female" formControlName="gender"  value="female"  name="gender">                  
+                <label for="female" class="female" [ngClass]="{ 'invalid-gender': submitted && f.gender.errors }"></label>
+                <input type="radio" id="male" formControlName="gender"  value="male" name="gender">
+                <label for="male" class="male" [ngClass]="{ 'invalid-gender': submitted && f.gender.errors }"></label>    
+
+            </div>
+
+      <div class="d-flex justify-content-end">
+            <button 
+                type="submit" 
+                class="btn btn-primary sign_up pt-1 pb-1" 
+                (click)="onSubmit()" 
+                tabindex="14">
+                Sign up
+            </button> 
+     </div>
+
+
+            <div class="already-registered">
+                <p>{{ '146' | translate }}</p>
+                <a [routerLink]="['/registration/login']" class="ml-2">{{ '1314' | translate }}</a>
+            </div>
+
+        </form>
+            <!-- End -->
+            <!-- <div class="social-links d-flex justify-content-between align-items-center mt-3 pt-3">
+                <span> Or sign in using </span>
+                <img src="assets/img/linkedin.svg" alt="likend-in">
+                <img src="assets/img/google.svg" alt="google">
+                <img src="assets/img/facebook.svg" alt="facebook">
+                <img src="assets/img/vk.svg" alt="vk">
+                <img src="assets/img/renren.svg" alt="xz">
+        </div> -->
+    </div>
+
+    
+</div>
+
+
+<app-modal (closeModal)="showModal = false;" [width]="997">
+    <app-user-agree-modal *ngIf="showModal" (agree)="register()"></app-user-agree-modal>
+</app-modal>
+

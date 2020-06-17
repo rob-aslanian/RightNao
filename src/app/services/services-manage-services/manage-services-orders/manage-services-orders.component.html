@@ -1,0 +1,33 @@
+<div class="order-box-container">
+        <div class="order-box">
+            <div class="d-flex justify-content-between">
+                <h5>New Orders ({{ orders.length }})</h5>
+                <button class="backgroundless">All</button>
+            </div>
+            <div class="mt-3">
+                    <div class="header-wrapper">
+                        <div class="d-flex justify-content-between">
+                              <div class="buyer">
+                                <span>Buyer</span>
+                                <span style="margin-left: 15px;">Service</span>
+                              </div>
+                              <span style="margin-right: 50px;"> Status </span>
+                              <span style="margin-right: 59px;">Due on</span>
+                              <span style="margin-right: 84px;">Note</span>
+                              <span style="margin-right: 15%;">Price</span>
+                        </div>
+                    </div>
+                </div>
+    
+            <ng-container *ngFor="let order of orders">
+                <app-order-box [order]='order' [type]='order.status' (result)='getResult($event)' [serviceType]='"service"'></app-order-box>
+            </ng-container>
+
+        </div>
+    </div>
+
+<app-modal (closeModal)='modalType = null'>
+    <ng-container *ngIf="modalType === 'review'">
+        <app-write-review-service [profile]='profileInfo' (result)='getResultFromReview($event)'></app-write-review-service>
+    </ng-container>
+</app-modal>

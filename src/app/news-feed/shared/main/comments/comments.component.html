@@ -1,0 +1,29 @@
+<div class="text-comment mt-3">
+
+    <!-- Form -->
+    <app-comment-form></app-comment-form>
+    <!-- Form -->
+
+    <div class="d-flex justify-content-end">
+        <div class="comments-list" ngbDropdown>
+            <button class="backgroundless grey" ngbDropdownToggle>Top Comments</button>
+            <div class="list-block-list" ngbDropdownMenu>
+                <button class="backgroundless d-block" (click)="sortBy('amount_of_like')">Top Comments</button>
+                <button class="backgroundless d-block" (click)="sortBy('time_creation')">Recent Comments</button>
+            </div>
+
+        </div>
+    </div>
+
+    <ng-container *ngIf="comments && comments.length > 0 ">
+            <app-comment (deleteComment)="removeComment($event)" [comment]="comment" [isNew]="comment.isNew" *ngFor="let comment of comments"></app-comment>
+    </ng-container>
+
+     <app-spinner class="d-flex justify-content-center mt-4" *ngIf="isLoading"></app-spinner>
+
+     <div class="d-flex justify-content-end">
+        <button *ngIf="commentAmount > 5 && (commentAmount > first + 5 && commentAmount !== first + 5)" (click)="loadMore()" class="backgroundless pt-2">Load more comments</button>
+     </div>
+
+</div>
+<!-- Comments-Text -->

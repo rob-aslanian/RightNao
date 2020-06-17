@@ -1,0 +1,150 @@
+<div class="feed-box mt-1" 
+     [ngClass]="{
+       'new-post': isNew,
+       'feed-box-landing': isLanding,
+       'feed-box': !isLanding
+      }" 
+     [id]="'post_' + post.id"
+     >
+  <div class="post-wrapper mb-3">
+
+
+    <!-- Profile content -->
+    <div class="row post-header" *ngIf="(post.user_profile || post.company_profile) as profile">
+      <div class="ml-3" [routerLink]="profile.company_profile ? '/company/profile/' + profile.url : '/user/profile/' + profile.url "  >
+
+        <img [src]="profile.avatar ? '/file/' + profile.avatar : 
+                    profile.company_profile ? 'assets/img/default-company.svg' :
+                  'assets/img/124.svg'" alt="img" [ngClass]="{'company-photo': !profile.company_profile , 'user-photo':!profile.user_profile }">
+      </div>
+      <div class="col-8">
+        <h4 [routerLink]="profile.company_profile ? '/company/profile/' + profile.url : 
+                           '/user/profile/' + profile.url ">{{
+                        profile.name ?  profile.name : 
+                        profile.firstname + ' ' + profile.lastname }}
+        </h4>
+        <h6 *ngIf="(post?.changed_at || post?.created_at) as time">{{ time | date:'MMM d, y, h:mm a' }}</h6>
+      </div>
+
+      <div class="col">
+        <div class="d-flex justify-content-end list-view" ngbDropdown #postDrd="ngbDropdown" *ngIf="type !== 'share' && type !== 'landing' ">
+          <button class="backgroundless hidden-dropdown-icon" type="button" ngbDropdownToggle>
+            <img src="assets/img/107.svg" alt="..." style="height: 20px; width:20px;">
+          </button> 
+    
+          <ng-container *ngIf="(post.user_profile || post.company_profile) as profile" >
+              <div class="list-block" ngbDropdownMenu >
+                
+                <!-- POST OWNER -->
+                <ng-container *ngIf="profile.id === postOwnerId; else:notOwner">
+                  <button class="backgroundless d-block" (click)="editPost(post);postDrd.close();">Edit</button>
+                  <button class="backgroundless d-block mb-1" (click)="removePost(post.id);postDrd.close();">Delete</button>
+                </ng-container>
+                <!-- POST OWNER -->
+    
+        
+                <ng-template #notOwner>
+                    <!-- <button class="backgroundless d-block">Save this post</button> -->
+                    <button class="backgroundless d-block" (click)="unfollow(profile.id , !post.user_profile);postDrd.close();">Unfollow</button>
+                    <!-- <button class="backgroundless d-block">Report this post</button> -->
+                </ng-template>
+                  
+              </div>
+          </ng-container>
+          
+    
+        </div>
+      </div>
+    </div>  
+    <!-- Profile content -->
+
+  </div>
+    <div *ngIf="type === 'landing'; else defaultContent" 
+         class=" d-flex profile-content"
+         style="cursor: pointer;"
+         (click)="openCommentsModal()">
+          <!-- <div class="col-md-8 p-0"> -->
+          <h5 class="col-md-5 mt-3 mb-3 pl-0 pr-1" *ngIf="post?.text" >
+            <app-read-more [text]="post.text" 
+                            [maxLength]="150" 
+                            split="#" 
+                            [tags]="post.tags">
+            </app-read-more>
+          </h5>
+          <!-- </div> -->
+          <div class="col-md-7 post-image mt-2" >
+              <app-files-viewer *ngIf="post?.files" 
+                                [files]="post.files"
+                                >
+              </app-files-viewer>
+          </div>
+    </div>
+
+    <ng-template #defaultContent>
+      <h5 class="mt-3 mb-3" *ngIf="post?.text" >
+        <app-read-more [text]="post.text" [maxLength]="150" split="#" [tags]="post.tags"></app-read-more>
+      </h5>
+      <div class="post-image mt-2" >
+          <app-files-viewer *ngIf="post?.files" [files]="post.files"></app-files-viewer>
+      </div>
+    </ng-template>
+    
+
+  <!-- Likes -->
+  <div class="likes-wrapper mt-3" *ngIf="type !== 'share'">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+      <app-reaction-count  [postId]="post.id" [reactions]="post.likes_amount" (click)="openLikes(post.id)"></app-reaction-count>
+      <div class="comment-count d-flex align-items-center" *ngIf="!isLanding">
+        <app-reaction *ngIf="isLanding"  [liked]="post.liked" [postId]="post.id"></app-reaction>
+        <h5 *ngIf="post.comments_amount > 0 && !isLanding" style="cursor: pointer;" (click)="showComment = !showComment">{{ post.comments_amount }} comments &nbsp; |</h5>
+        <h5 *ngIf="isLanding" (click)="openCommentsModal()" style="cursor: pointer;" > {{ post.comments_amount }} comments &nbsp;</h5>
+        <h5 *ngIf="!isLanding && post.shares_amount > 0" (click)="post.shares_amount > 0 ? openShare(post.id) : $event.preventDefault();">
+          &nbsp; {{ post.shares_amount }} shares
+        </h5>
+        <h5 *ngIf="isLanding" (click)="openCommentsModal()" style="cursor: pointer;">{{ post.shares_amount }} shares</h5>
+      </div>
+    </div>
+  </div>
+
+  <!-- Comments -->
+  <div class="comments-container" *ngIf="type !== 'share' && type !== 'landing'">
+    <div class="comments">
+      <div class="d-flex align-items-center">
+        <app-reaction [liked]="post.liked" [postId]="post.id"></app-reaction>
+
+        <!-- Comment -->
+        <div class="d-flex comment-item align-items-center" *ngIf="!post.is_comments_disabled">
+ 
+              <h5 class="mr-2 d-flex align-items-center" 
+                  (click)="showComment = !showComment">
+                  <img src="assets/img/491.svg" alt="comments"> 
+                  <h5 class="ml-2 mb-0 reaction-text" >Comment</h5>
+              </h5>
+        </div>
+        <!-- Comment -->
+
+        <app-share class="mr-2" [post]="post"></app-share>
+      </div>
+
+    </div>
+  </div>
+  <!-- Comments -->
+
+  <app-comments *ngIf="showComment && type !== 'share'" 
+                [postId]="post.id" 
+                [commentAmount]="post.comments_amount">
+  </app-comments>
+
+  <div class="line-borderr"></div>
+</div>
+
+<app-modal (closeModal)="closeLikes()">
+
+  <app-reaction-modal *ngIf="isOpenLikeModal"></app-reaction-modal>
+  <app-comments-modal-landing  *ngIf ="modalType === 'forLandingComments'"
+                               [post] = 'post'
+                               (onCloseModal) = 'closeModalForLanding($event)' 
+                               >
+  </app-comments-modal-landing>
+
+</app-modal>

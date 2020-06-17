@@ -1,0 +1,9 @@
+<div class="intro mb-2 d-flex">
+    <h6 class="jobs-career-interest__title">Are you open to new opportunities?</h6>
+    <div class="opportunities-checkbox">
+        <label class="switch">
+            <input type="checkbox" [(ngModel)]="jobsService.newOpp" (ngModelChange)="toglleOpenFlag($event)">
+            <span class="slider round"></span>
+        </label>
+    </div>
+</div>

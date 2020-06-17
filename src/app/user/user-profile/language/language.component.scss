@@ -1,0 +1,53 @@
+.language{
+     min-height: 101px;
+}
+
+.section-header {
+     margin-bottom: 2px;
+}
+
+.bottom-edit {
+     transition: .3s all ease-in-out;
+     opacity: 0;
+}
+
+.languages {
+     div {
+          &:first-child {
+               .section-content {
+                    .languages-text {
+                         .bottom-edit {
+                             opacity: 1;
+                         }
+                    }
+               }
+          }
+          &:hover {
+               .section-content {
+                    .languages-text {
+                         .bottom-edit {
+                             opacity: 1;
+                         }
+                    }
+               }
+          }
+     }
+ }
+
+ .languages-text {
+      h3 {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-height: 20px;
+      }
+ }
+
+ .col.line {
+     margin-bottom: 10px;
+ }
+
+ :host ::ng-deep ngb-rating {
+     span{
+         color: #00D4E3;
+     }
+ }

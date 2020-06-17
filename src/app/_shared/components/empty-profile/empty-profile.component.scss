@@ -1,0 +1,31 @@
+.white-box-container {
+    background: white;
+    height: 100px;
+    border: solid 1px #E6E6E6;
+    border-radius: 5px;
+    cursor: pointer;
+    .white-box-wrapper {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        img {
+            padding-left: 1rem;
+        }
+        span {
+            padding-left: 1rem;
+            font-size: .875rem;
+            color: #808080;
+        }
+    }
+   
+}
+@media screen and( max-width: 450px  ) {
+     .white-box-wrapper {
+         justify-content: center;
+     }
+     img {
+        flex-basis: 100%;
+     }
+
+}

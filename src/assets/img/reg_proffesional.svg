@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW 2018 (64-Bit) -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="1.25in" height="0.72222in" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 196.91 113.77"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .str0 {stroke:gray;stroke-width:2.19;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2.61313}
+    .str1 {stroke:gray;stroke-width:2.19;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:2.61313}
+    .fil0 {fill:none}
+    .fil2 {fill:#00F4FF}
+    .fil1 {fill:#EAEDF2}
+    .fil3 {fill:white}
+   ]]>
+  </style>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_2855296070224">
+   <rect class="fil0" width="196.91" height="113.77"/>
+   <path class="fil0 str0" d="M101.33 101.05l-42.95 0c-1.08,0 -1.98,-0.89 -1.98,-1.98 0,-31.63 0,-63.27 0,-94.9 0,-1.09 0.89,-1.98 1.98,-1.98l52.93 0 22.38 22.38 0 37.15"/>
+   <path class="fil1 str0" d="M133.69 24.57l-20.47 0c-1.05,0 -1.91,-0.86 -1.91,-1.91l0 -20.47 22.38 22.38z"/>
+   <path class="fil2 str0" d="M72.88 31.8c0.77,-0.2 2.28,0.36 3.28,0.6 2.54,0.61 5.61,0.61 8.15,0 1,-0.24 2.51,-0.8 3.28,-0.6 0.77,0.2 2.52,1.45 2.69,3.42l0.51 5.86c0.04,0.5 -0.41,0.91 -0.91,0.91l-19.29 0c-0.5,0 -0.96,-0.41 -0.91,-0.91l0.51 -5.86c0.17,-1.97 1.92,-3.22 2.69,-3.42z"/>
+   <circle class="fil2 str0" cx="80.2" cy="22.72" r="7.08"/>
+   <line class="fil0 str1" x1="69.67" y1="54.88" x2="120.42" y2= "54.88" />
+   <line class="fil0 str1" x1="69.67" y1="67.77" x2="95.04" y2= "67.77" />
+   <line class="fil0 str1" x1="97.45" y1="42.39" x2="120.42" y2= "42.39" />
+   <line class="fil0 str1" x1="69.67" y1="80.66" x2="95.04" y2= "80.66" />
+   <polygon class="fil2 str1" points="103.5,81.06 107.36,76.51 107.04,70.19 112.83,68.77 116.29,63.46 121.81,65.72 127.72,63.46 130.86,68.54 136.97,70.19 136.53,76.13 140.51,81.06 136.65,85.61 136.97,91.94 131.18,93.35 127.72,98.66 122.2,96.4 116.29,98.66 113.15,93.59 107.04,91.94 107.48,85.99 "/>
+   <polyline class="fil0 str1" points="122.82,96.65 115.86,111.58 112.33,105.86 105.68,106.84 112.01,93.28 "/>
+   <polyline class="fil0 str1" points="124.87,104.75 128.06,111.58 131.59,105.86 138.23,106.84 131.91,93.28 "/>
+   <circle class="fil3 str1" cx="122.01" cy="81.06" r="9.75"/>
+  </g>
+ </g>
+</svg>

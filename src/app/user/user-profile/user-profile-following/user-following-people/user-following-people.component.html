@@ -1,0 +1,173 @@
+<!-- !-- Content in the center -->
+<div class="col pl-0 pr-0">
+  <div class="center-heading">
+      <h3>People<span> {{ userFollowings.length }} </span></h3>
+  </div>
+
+
+  <div class="center-content-network">
+      
+      <!-- card view -->
+      <ng-template [ngIf]="toggle.view.selected == 'card'" >
+          <form [formGroup]="connectionsForm" >
+          <div class="network-boxes-container form-row" formArrayName="checkbox" >
+              <div class="col-lg-6 col-md-6" [ngClass]="connectionsForm.controls.checkbox.controls[userFollowings.indexOf(item)] ? 'selected' : null" *ngFor="let item of userFollowings; let i = index" >
+                  <div class="network-box d-flex flex-column justify-content-between">
+                        <div>
+                      <div class="network-line-one">
+                          <div class="custom-control custom-checkbox">
+                          </div>
+                          <button class="btn-more" (click)="myToggle('dots'+i)" *ngIf="item.id !== myUserId">
+                              <img class="btn-more" src="assets/img/107.svg" alt="...">
+                          </button>
+                      </div>
+                      <div class="network-line-two">
+                          <ng-template [ngIf]="toggle.main.active['dots'+i]">
+                              <div class="options connection-option btn-more">
+                                  <button  *ngIf="item.id !== myUserId"
+                                    type="button" (click)="openSmallChatBox(   
+                                      item.firstname,
+                                      item.lastname,
+                                      item.avatar ? '/file/'+  item.avatar : 'assets/img/124.svg',
+                                      item.id
+                                  )" class="message">Message</button>
+                                  <button class="disconnect btn-more"   *ngIf="item.friend && item.id !== myUserId && !isCompany" (click)="disconnect(item.id,i)" >Disconnect</button>
+                                  <button class="connect btn-more"      *ngIf="!item.friend && !item.friend_request && item.id !== myUserId && !isCompany" (click)="connect(item.id,i)" >Connect</button>
+                                  <button class="connect"         *ngIf="item.friend_request && !isCompany">Request Sent</button>
+                                  <button class="save"         (click)="saveToPDF($event,i)">Save to PDF</button>
+                                  <button class="report"      *ngIf="item.id !== myUserId" (click)="reportBlock(item,i)">Report / block</button>
+                                  <button class="info btn-more" [ngbPopover]="infoPopover">Info</button>
+                              </div>    
+            
+                          </ng-template>
+                          
+                          <ng-template #infoPopover>
+                              <app-small-info-box [data]="item"></app-small-info-box>
+                          </ng-template>
+                          <div class="network-line-two">
+                              
+                              <ng-template #infoPopover>
+                                  <app-small-info-box [data]="item"></app-small-info-box>
+                              </ng-template>
+                              <div class="left">
+                                  <img class="profile" [src]="item.avatar == '' ? 'assets/img/124.svg' : '/file/'+item.avatar" alt="profile">
+                              </div>
+                              <div class="right">
+                                  <a [routerLink]="['/user/profile/'+item.url]">
+                                      <h4> {{ item.firstname + ' ' + item.lastname }} </h4>
+                                  </a>
+                                  <span *ngIf="item.experiences.length > 0"> {{ item.experiences[0].title }} </span>                               
+                                  <span *ngIf="item.experiences.length > 0"> {{ item.experiences[0].company }} </span>   
+                                  <span> {{ item.network_info.followers}} Followers </span>                            
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+                      <div class="network-line-four">
+                          <button class="btn btn-outline-primary" *ngIf="!item.follow && myUserId !== item.id" (click)="follow(item)">Follow</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </form>
+      </ng-template>
+
+          
+      <!-- list view -->
+      <ng-template [ngIf]="toggle.view.selected == 'list'" >
+          <form [formGroup]="connectionsForm">
+          <div class="network-boxes-container-long-view" formArrayName="checkbox" >
+              <div class="network-box" [ngClass]="connectionsForm.controls.checkbox.controls[userFollowings.indexOf(item)].value ? 'selected' : null" *ngFor="let item of userFollowings; let i = index" >
+                  <div class="custom-control custom-checkbox" >
+                  </div>
+                  <div class="d-flex justify-content-between">
+                      <div class="network-box-component-one">
+                          <img class="profile" [src]="item.avatar == '' ? 'assets/img/124.svg' : '/file/'+item.avatar" alt="profile">
+                          <div class="one-right">
+                              <h4> {{ item.firstname + ' ' + item.lastname }} </h4>
+                          </div>
+                      </div>
+
+                      <div class="network-box-component-two">
+                          <span *ngIf="item.experiences.length > 0"> {{ item.experiences[0].title }} </span>
+                          <span *ngIf="item.experiences.length > 0"> {{ item.experiences[0].company }} </span>
+                      </div>
+
+                      <div class="network-box-component-three">
+                          <div class="d-flex">
+                              <span> {{ item.network_info.followers}} Followers </span>
+                          </div>
+                      </div>
+
+                      <div class="network-box-component-four">
+                          <button class="btn btn-outline-primary" *ngIf="!item.follow && myUserId !== item.id" (click)="follow(item)" >Follow</button>
+                      </div>
+                  </div>
+
+                  <button class="network-dots-btn btn-more" (click)="myToggle('list_dots'+userFollowings.indexOf(item))" >
+                      <img class="btn-more" src="assets/img/107.svg" alt="...">
+                  </button>
+
+                  <ng-template [ngIf]="toggle.main.active['list_dots'+userFollowings.indexOf(item)]" >
+                      <div class="options connection-option btn-more">
+                              <button *ngIf="item.id !== myUserId" 
+                               type="button" (click)="openSmallChatBox(
+                                  item.firstname,
+                                  item.lastname,
+                                  item.avatar ? '/file/'+  item.avatar : 'assets/img/124.svg',
+                                  item.id
+                              )" class="message">Message</button>
+                              <button class="disconnect"               *ngIf="item.friend && item.id !== myUserId" (click)="disconnect(item.id,i)" >Disconnect</button>
+                              <button class="connect"       *ngIf="!item.friend && !item.friend_request && item.id !== myUserId" (click)="connect(item.id,i)" >Connect</button>
+                              <button class="request"               *ngIf="item.friend_request">Request Sent</button>
+                              <button class="save"   (click)="saveToPDF($event,i)">Save to PDF</button>
+                              <button class="report"                           *ngIf="item.id !== myUserId" (click)="reportBlock(item,i)">Report / block</button>
+                              <button class="info" [ngbPopover]="infoPopover" *ngIf='item.friend'>Info</button>
+                      </div>    
+                  </ng-template>
+                  <ng-template #infoPopover>
+                          <app-small-info-box [data]="item"></app-small-info-box>
+                      </ng-template>
+              </div>
+          </div>
+          </form>
+      </ng-template>
+
+  <!---START SAVE TO PDF -->
+  <div class="me" style="position: absolute; z-index:-999;">
+          <app-save-to-pdf 
+          [data]="userFollowings[index]" 
+          *ngIf="savePDF" 
+          [save]="savePDF" 
+          (saved)="savePDF = !$event">
+          </app-save-to-pdf>
+          </div>
+          <!-- END SAVE TO PDF -->
+      
+
+      
+  </div>
+</div>
+<!-- Content in the center end -->
+
+
+<!-- Start modals -->
+
+<!-- modal - what you can do -->
+<app-modal (closeModal)="modalType = null">
+      <ng-container *ngIf='modalType && modalType === "reportBlock" '>
+       <app-report-block-user
+              (closeModal)='close($event)' 
+              type="user"
+              [blockId]='reportBlockUer'
+              (isBlocked)='isBlockedUser($event)'
+          >
+       </app-report-block-user>
+     </ng-container>
+</app-modal>
+<!-- End modals -->
+
+<ng-template *ngIf="!isPeople">
+<app-companies></app-companies>
+</ng-template>
+

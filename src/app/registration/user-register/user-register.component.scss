@@ -1,0 +1,108 @@
+/*Import variables file*/
+@import "src/variables.scss";
+/*END OF Import variables file*/
+
+
+// .password-criteria {
+//     color: $error;
+//     font-size: 12px;
+//     padding-left: 28px;
+//     li {
+//         margin: 5px 0;
+//         &:first-child {
+//             color: black;
+//             font-size: 14px;
+//             list-style: none;
+//             margin-left: -16px;
+//             margin-bottom: 10px;
+//         }
+//     }  
+// }
+
+// .password-wrap {
+//     position: relative;
+//     .password-icon-1, .password-icon-2 {
+//         position: absolute;
+//         top:6px;
+//         cursor: pointer;
+//     }
+//     .password-icon-1 {
+//         right: 10px;
+//     }
+//     // .password-icon-2 {
+//     //     right: 25px;
+//     // }
+//     // .password-icon-3 {
+//     //     position: absolute;
+//     //     top:22px;
+//     //     cursor: pointer;
+//     //     right: 10px;
+//     // }
+// }
+
+// .gender {
+//     span {
+//         font-size: 14px;
+//     }
+//     input {
+//         display: none;
+//         &:checked+label.female, &:hover+label.female {
+//             background:url(/assets/img/8.svg);
+//         }
+//         &:checked+label.male, &:hover+label.male {
+//             background:url(/assets/img/10.svg);
+//         }
+//     }
+//     label {
+//         padding: 20px;
+//         cursor: pointer;
+//         margin:0 5px -14px 10px;
+//         &.female {
+//             background:url(/assets/img/7.svg);
+//         }
+//         &.male {
+//             background:url(/assets/img/9.svg);
+//         }
+//     }
+// }
+
+
+
+//Error
+.invalid-gender{
+    border: 1px solid red;
+    border-radius: 50%;
+    }
+
+
+//Frontend Functionality Developer style
+.error_message{
+    font-size: 0.75rem;
+    color: red;
+    text-transform: capitalize;
+}
+
+.username__input{
+    position: relative;
+    &::after{
+        content: "@rightnao.com";
+        position: absolute;
+        right: 9px;
+        top: 9px;
+        color: #cccccc;
+        font-size: 12px;
+    }
+}
+
+
+.social-links {
+ border-top: 1px solid $light-grey;
+    img {
+         width: 30px;
+         height: 30px; 
+     }
+     span {
+         font-size: .875rem;
+         color: $dark-grey;
+     }
+}

@@ -1,0 +1,64 @@
+@import "src/variables";
+@import 'src/mixins.scss';
+.calendar-event-card {
+    background-color: $white;
+    padding: 16px 6px 16px 22px;
+    border-radius: 5px;
+    border: solid 1px $input-grey;
+    position: relative;
+    margin-bottom: 16px;
+    
+
+    @include event-color-codes;
+
+    &__title {
+        color: $dark-blue;
+        font-size: $medium-text;
+    }
+    &__heading-icon {
+        position: absolute;
+        right: 8px;
+    }
+
+    &__img {
+        height: 15px;
+        width: 15px;
+    }
+
+    &__info {
+        font-size: $small-text;
+        color: $dark-grey;
+    }
+
+    &__people-container {
+        display: flex;
+        align-items: center;
+        margin-top: 8px;
+
+        &__img {
+            height: 24px;
+            width: 24px;
+            margin-right: 12px;
+
+            img {
+                height: 100%;
+                width: 100%;
+                border-radius: 50%;
+            }
+
+            &:last-child {
+                height: 24px;
+                width: 24px;
+                border-radius: 50%;
+                background-color: $input-grey;
+                color: $dark-grey;
+                font-weight: bold;
+                font-size: 10px;
+                text-align: center;
+                span {
+                    line-height: 24px;
+                }
+            }
+        }
+    }
+}

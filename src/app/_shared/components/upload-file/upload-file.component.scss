@@ -1,0 +1,17 @@
+label {
+    cursor: pointer; 
+}
+.service-request__content__request-details__upload-container__box {
+    position: relative;
+    a {
+        position: absolute;
+        width: 25px;
+        height: 25px;
+        background: #052337;
+        color: white;
+        border-radius: 50%;
+        right: 0px;
+        cursor: pointer;
+    };
+ 
+}

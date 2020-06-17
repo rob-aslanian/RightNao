@@ -1,0 +1,63 @@
+@import "../../../variables";
+
+// .small-conversation-main{
+//     position: fixed !important;
+//     bottom: 0;
+//     z-index: 100000 !important;
+//     width: 500px;
+//     right: 0
+// }
+
+.sms-nano-body{
+    background: white;
+}
+
+.header-toggle-body{
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+
+
+.sms-nano-body-row.sms-nano-search-margin{
+    padding-top: 0 !important;
+    margin-top: 0 !important
+}
+
+.sms-nano-searchedSMS.unread, .sms-nano-searchedSMS.unread h2{
+    font-weight: bold !important
+}
+
+.sms-nano-body-row-scroll{
+    overflow-x: hidden;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+        width: 4px;
+    }
+    
+    /* Track */
+    &::-webkit-scrollbar-track {
+    // box-shadow: inset 0 0 4px red;
+    background-color: #cccccc;
+    border-radius: 10px;
+    }
+
+    
+    
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+    background: #244361;
+    border-radius: 10px;
+        &:hover {
+            background: $dark-blue; 
+        }
+    }
+}
+
+.chatBox-row.sms-nano-search-container {
+    height: auto;
+    margin: 16px 20px 16px 16px
+}
+.minimized-body {
+    top: -45px !important;
+}

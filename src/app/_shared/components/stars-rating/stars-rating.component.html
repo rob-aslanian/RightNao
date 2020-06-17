@@ -1,0 +1,10 @@
+<div class="stars-rating" *ngIf="avgNumber < 6">
+    
+    <ng-template #t let-fill='fill'>
+            <span class="star" [class.full]='fill === 100'>
+                <span class="half" [style.width.%]='fill'><img src="assets/img/34.svg" alt="star"></span>
+            </span>
+    </ng-template>
+
+    <ngb-rating [rate]='rating'  [starTemplate]='t' [readonly]='true' max='5'></ngb-rating>
+</div>

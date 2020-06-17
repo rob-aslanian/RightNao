@@ -1,0 +1,35 @@
+@import "../../../../variables";
+
+:host ::ng-deep ngb-rating {
+    span {
+        font-size: 15px;
+        color: $background-dark-cyan;
+        margin: 0 2px;
+    }
+}
+
+ 
+.options.blocks-option{
+    top: auto;
+    right: auto;
+}
+
+
+.checkbox-wrapper {
+    top: -14px;
+    left: 1px;
+
+}
+
+.fit-height-card {
+    max-height: 208px;
+}
+.fit-height-list  {
+    max-height: 71px;
+}
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}

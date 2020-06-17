@@ -1,0 +1,146 @@
+<div class="container offers">
+    <div class="row">
+        <div class="headline mt-4 col-12">
+            <h4>Received Proposals  <span> {{ '(' + listOfProposals.length + ')' }} </span></h4>
+        </div>
+        <div class="offers-content mt-3 pb-4 w-100 p-3">
+            <div class="offers-content__select d-flex justify-content-between w-100">
+                <div class="col-md-6 p-0">
+                    <select name="" id="" class="form-control" (change) = 'filterProposalsByTitle($event.target.value)' >
+                        <option value="all" selected> All Service Requests </option>
+                        <option *ngFor="let item of listOfRequestTitles; let i = index" [value]="item" > {{ item }} </option>
+                    </select>
+                </div>
+                <div class="col-md-6 d-flex justify-content-end">  
+                    <p (click)="toggleOptions()" style="cursor: pointer"> {{ filterTitle }} </p>
+                    <div class="options p-3" *ngIf="isOptionsActive">
+                        <p (click)="customProposaFilter('latest')">Latest</p>
+                        <p (click)="customProposaFilter('oldest')">Oldest</p>
+                        <p (click)="customProposaFilter('low')">Price - Lowest First</p>
+                        <p (click)="customProposaFilter('high')">Price - Highest First</p>
+                        <p (click)="customProposaFilter('delivery')">Delivery Time</p>
+                        <p (click)="customProposaFilter('raiting')">Raiting</p>
+                    </div>
+                </div>
+            </div>
+            
+        <ng-container *ngIf="!isFilterActive; else filteredProposals">
+            <div class="offers-content-details d-flex flex-md-row flex-column justify-content-between" *ngFor="let item of listOfProposals; let i = index">
+                <div class="offer-img mt-1 col-md-4">
+                    <img [src]="item.service.files.length > 0 ? '/file/' + item.service.files[0].address : 'assets/img/comming_soon.png'" alt="">
+                </div>
+                <div class="offer-description ml-3 col-md-8">
+                    <div class="author row d-flex mt-1">
+                        <img class="user-img" [src]="item.user_profile.avatar ? '/file/' + item.user_profile.avatar : 'assets/img/defaultAvatar.svg' " alt="">
+                        <div class="pl-3">
+                            <p class="user-name">{{ item.user_profile.firstname + ' ' + item.user_profile.lastname }}</p>
+                            <div class="location d-flex">
+                                <p class="city" *ngIf="item.user_profile.location.city.length > 0"> {{ item.user_profile.location.city + ','}} </p>
+                                <p class="city" *ngIf="item.user_profile.location.country.length > 0"> {{ item.user_profile.location.country }} </p>
+                            </div>
+                            <div class="message" *ngIf="myUserID !== item.user_profile.id">
+                                <img src="assets/img/message.svg" alt="">
+                                <a class="message-btn" style="cursor: pointer">
+                                    Message
+                                </a>
+                            </div>
+                        </div>
+                        <div class="line-border"></div>
+                        <div class="v-office d-flex">
+                            <img class="v_office-logo pl-3 pr-2" src="assets/img/v_office.svg" alt="">
+                            <p>{{ item.service.category.main }}</p>
+                        </div>
+                        <div class="line-border"></div>
+                        <div class="raiting d-flex  pl-3" *ngIf="item.service.reviews" >
+                            <ng-container *ngIf="item.service.reviews.reviews_avg as avg">
+                                <app-stars-rating [avgNumber]='(avg.clarity_avg + avg.communication_avg + avg.payment_avg) / 3 '></app-stars-rating>          
+                            </ng-container>
+                            
+                        </div>
+                        <div class="price justify-content-end">
+                            <p> {{ item.price_amount + ' '  + item.currency }} </p>
+                        </div>
+                    </div>
+                    <div class="d-block row mt-3">
+                        <div class="offer-text-title col">
+                            <h4> {{ item.service.title }} </h4>
+                        </div>
+                        <div class="offer-text col-12">
+                            <p> {{ item.service.description }} </p>
+                        </div>
+                        <div class="time d-flex col-8 justify-content-between">
+                            <p>{{ 'Delivery time: ' + item.service.delivery_time.split('/') }}</p>
+                            <p>Expiration time:</p>
+                        </div>
+                        <div class="buttons d-flex col-12 justify-content-end">
+                            <a class="btn-ignore mr-3 mt-2" (click)="ignoreProposalForServiceRequest(i,item.id)">Ignore</a>
+                            <button class="btn btn-primary mt-2" (click)="orderProposalForServiceRequest(i, item.id)">Order</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+
+                                                    <!-- * * * Filtered Proposals * * * * -->
+        <ng-template #filteredProposals>
+                <div class="offers-content-details d-flex flex-md-row flex-column justify-content-between" *ngFor="let item of filteredPorposals; let i = index">
+                <div class="offer-img mt-1 col-md-4">
+                    <img [src]="item.service.files.length > 0 ? '/file/' + item.service.files[0].address : 'assets/img/comming_soon.png'" alt="">
+                </div>
+                <div class="offer-description ml-3 col-md-8">
+                    <div class="author row d-flex mt-1">
+                        <img class="user-img" [src]="item.user_profile.avatar ? '/file/' + item.user_profile.avatar : 'assets/img/defaultAvatar.svg' " alt="">
+                        <div class="pl-3">
+                            <p class="user-name">{{ item.user_profile.firstname + ' ' + item.user_profile.lastname }}</p>
+                            <div class="location d-flex">
+                                <p class="city" *ngIf="item.user_profile.location.city.length > 0"> {{ item.user_profile.location.city + ','}} </p>
+                                <p class="city" *ngIf="item.user_profile.location.country.length > 0"> {{ item.user_profile.location.country }} </p>
+                            </div>
+                            <div class="message" *ngIf="myUserID !== item.user_profile.id">
+                                <img src="assets/img/message.svg" alt="">
+                                <a class="message-btn" style="cursor: pointer">
+                                    Message
+                                </a>
+                            </div>
+                        </div>
+                        <div class="line-border"></div>
+                        <div class="v-office d-flex">
+                            <img class="v_office-logo pl-3 pr-2" src="assets/img/v_office.svg" alt="">
+                            <p>{{ item.service.category.main }}</p>
+                        </div>
+                        <div class="line-border"></div>
+                        <div class="raiting  pl-3" *ngIf="item.service.reviews">
+                                <ng-container *ngIf="item.service.reviews.reviews_avg as avg">
+                                        <app-stars-rating [avgNumber]='(avg.clarity_avg + avg.communication_avg + avg.payment_avg) / 3 '></app-stars-rating>          
+                                </ng-container>                
+                        </div>
+                        <div class="price justify-content-end">
+                            <p> {{ item.price_amount + ' '  + item.currency }} </p>
+                        </div>
+                    </div>
+                    <div class="d-block row mt-3">
+                        <div class="offer-text-title col">
+                            <h4> {{ item.service.title }} </h4>
+                        </div>
+                        <div class="offer-text col-12">
+                            <p> {{ item.service.description }} </p>
+                        </div>
+                        <div class="time d-flex col-8 justify-content-between">
+                            <p>{{ 'Delivery time: ' +  item.service.delivery_time.split('/')  }}</p>
+                            <p>Expiration time:</p>
+                        </div>
+                        <div class="buttons d-flex col-12 justify-content-end">
+                            <a class="btn-ignore mr-3 mt-2" (click)="ignoreProposalForServiceRequest(i,item.id)">Ignore</a>
+                            <button class="btn btn-primary mt-2" (click)="orderProposalForServiceRequest(i, item.id)">Order</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+        
+
+
+        </div>
+    </div>
+    
+</div>

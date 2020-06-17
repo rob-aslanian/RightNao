@@ -1,0 +1,334 @@
+@import 'src/variables';
+
+
+.drop_cv__context{
+    box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.50);
+    top: -190px !important;
+    left: -216px !important;
+    padding: 1rem;
+}
+.box-card{
+    .network-box {
+        border: solid 1px #e6e6e6;
+        border-radius:5px;
+        padding:  0 12px 6px;
+        margin-bottom:10px;
+        white-space: nowrap;
+        // width:32%;
+        // margin-right:2%;
+        background-color: #ffffff;
+        transition: background-color 0.3s ease-out;
+        position: relative;
+        max-height: 186px;
+        min-height: 186px;
+        // &:nth-child(3n+3){
+        //     margin-right:0;
+        // }
+        &:hover {
+            background:$background-soft-blue;
+            .network-line-one{
+                visibility: visible;
+            }
+        }
+        &.selected{
+            background:$background-soft-blue;
+            .custom-checkbox{
+                visibility: visible;
+            }
+        }
+    }
+    span {
+        font-size:12px;
+        display: block;
+        color:$dark-grey;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        &.count {
+            display: inline-block;
+        }
+    }
+    .extra-margin {
+        margin: 20px 0;
+    }
+    .network-line-one {
+        display: flex;
+        justify-content: space-between;
+        min-height: 28px;
+        visibility: hidden;
+        button {
+            background: none;
+            border:none;
+            cursor: pointer;
+            padding:4px 0 0 0;
+            outline: none;
+        }
+        label::before {
+            background:$background-soft-blue;
+        }
+        .custom-checkbox {
+            margin-top:-10px;
+        }
+    }
+    .network-line-two {
+        display: flex;
+        margin-left: 10px;
+        position: relative;
+        .left {
+            position: relative;
+            height:100%;
+        }
+        .profile {
+            width: 70px;
+            height:70px;
+            border-radius: 5px;
+            object-fit: cover;
+            object-position: center;
+        }
+        .company {
+            width: 70px;
+            height:70px;
+            border-radius: 5px;
+            object-fit: cover;
+            object-position: center;
+        }
+        .chat {
+            position: absolute;
+            bottom:-9px;
+            left:20px;
+            border: none;
+            background:none;
+            cursor: pointer;
+        }
+        .right {
+            margin-left: 10px;
+            width: 68%;
+    
+            h4 {
+                font-size:16px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                color: $dark-blue;
+            }
+            .followers {
+                margin-top: 10px;
+            }
+            .offers {
+                color:$background-light-cyan;
+            }
+            .date {
+                margin-top: 10px;
+                img {
+                    margin-top:-5px;
+                    margin-right: 5px;
+                }
+            }
+            .mutual-connections {
+                img {
+                    width:19px;
+                }
+            }
+            .buttons {
+                display: flex;
+                margin: 10px 0;
+                button {
+                    font-size:14px;
+                    margin-right:10px;
+                    padding: 0 17px;
+                }
+            }
+            .short {
+                padding:0 15px;
+                display: block;
+                margin-left: auto;
+                margin-top:20px;
+            }
+        }
+    }
+    
+    .network-line-four {
+        text-align: right;
+        // padding-top:10px;
+        bottom: 5px;
+        position: absolute;
+        right: 10px;
+        & > button {
+            background:none;
+            border: none;
+            padding:0;
+            outline:none;
+            cursor:pointer;
+            margin-left: 7px;
+            &.btn {
+                margin-bottom:5px;
+                border: solid 1px $background-light-cyan;
+                padding: 0px 10px;
+                &:hover {
+                    background:$background-light-cyan;
+                }
+            }
+        }
+        img {
+            width:14px;
+        }
+    }
+}
+
+.box-list {
+    .network-box {
+        border: solid 1px #e6e6e6;
+        border-radius:5px;
+        margin-bottom: 10px;
+        padding:  6px;
+        position: relative;
+        background-color: #ffffff;
+        transition: background-color 0.3s ease-out;
+        display: flex;
+        align-items: center;
+        
+        &:hover {
+            background:$background-soft-blue;
+        }
+        &:hover {
+            .custom-checkbox,.network-dots-btn{
+                visibility: visible;
+            }
+        }
+        
+        .followers {
+            margin-top: 10px;
+        }
+        .offers {
+            color:$background-light-cyan;
+        }
+        &.selected{
+            background:$background-soft-blue;
+            .custom-checkbox{
+                visibility: visible;
+            }
+        }
+    }
+    span {
+        font-size:12px;
+        display: block;
+        color:$dark-grey;
+        margin:0 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        &.count {
+            display: inline-block;
+            margin:0;
+        }
+    }
+    .custom-checkbox {
+        margin-top:-7px;
+        position: absolute;
+        margin-left:5px;
+        visibility: hidden;
+        label::before {
+            background:$background-soft-blue;
+        }
+    }
+    .network-line-one {
+        width: 30%;
+        margin-left:35px;
+        display:flex;
+        align-items: center;
+        .chat {
+            padding:0;
+        }
+        & > img {
+            width: 35px;
+            height:35px;
+            border-radius: 5px;
+            object-fit: cover;
+            object-position: center;
+            &.company {
+                border-radius:5px;
+            }
+        }
+    }
+    .right {
+        margin-left: 10px;
+        overflow: hidden;
+        h4 {
+            font-size:14px;
+            font-weight:bold;
+            color:$dark-blue;
+            margin-bottom:0;
+            overflow:hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+    }
+    .network-line-two {
+        width: 20%;
+        align-self: center;
+    }
+    .network-line-three {
+        width: 30%;
+        img {
+            width:15px;
+        }
+        align-self: center;
+    }
+    .network-line-four {
+        display:flex;
+        align-items:center;
+        justify-content: flex-end;
+        margin-right:35px;
+        img {
+            width:14px;
+        }
+    }
+    button {
+        background:none;
+        border: none;
+        // padding:0;
+        outline:none;
+        cursor:pointer;
+        &.btn {
+            border: solid 1px $background-light-cyan;
+            padding: 0px 10px;
+            color:$background-light-cyan;
+            &:hover {
+                background:$background-light-cyan;
+                color: white;
+            }
+        }
+    }
+}
+
+ 
+:host ::ng-deep .dropdown-menu {
+//    min-width: unset !important;
+//    padding: unset !important;   
+};
+.dropdown-item {
+    padding:  unset !important;
+}
+:host ::ng-deep .options-for-more {
+    top: 30px !important;
+};
+
+.rounded-image {
+    border-radius: 50% !important;
+}
+.fit-content {
+    margin-top: -10px;
+}
+
+.more-dots {
+    position: absolute;
+    right: 9px;
+    top: 0px;
+    button {
+        background: none;
+        border:none;
+        cursor: pointer;
+        padding:4px 0 0 0;
+        outline: none;
+    };
+ 
+};
+ 
